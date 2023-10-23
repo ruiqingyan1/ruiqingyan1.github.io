@@ -1,0 +1,496 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Maven Summary | 花夕 &amp; Blog</title><meta name="author" content="花夕"><meta name="copyright" content="花夕"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="浅浅记录一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maven Summary">
+<meta property="og:url" content="http://ruiqingyan1.github.io/2023/07/22/2/6/2/3Day01/index.html">
+<meta property="og:site_name" content="花夕 &amp; Blog">
+<meta property="og:description" content="浅浅记录一下">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ruiqingyan1.github.io/img/cover198.jpg">
+<meta property="article:published_time" content="2023-07-22T04:30:00.000Z">
+<meta property="article:modified_time" content="2023-07-22T13:00:00.000Z">
+<meta property="article:author" content="花夕">
+<meta property="article:tag" content="Java后端学习笔记">
+<meta property="article:tag" content="03、Maven">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ruiqingyan1.github.io/img/cover198.jpg"><link rel="shortcut icon" href="/img/favicon2.ico"><link rel="canonical" href="http://ruiqingyan1.github.io/2023/07/22/2/6/2/3Day01/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":10000,"languages":{"author":"作者: 花夕","link":"链接: ","source":"来源: 花夕 & Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Maven Summary',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-07-22 21:00:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4052103_6tjtkhibmy5.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/css/custom@1.0.0.css"><link rel="stylesheet" href="/css/color@1.0.0.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">373</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">51</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">65</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="iconfont icon-hua2"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="iconfont icon-shengdan-huaduo"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-xianhua"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%80%83%E7%A0%94/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 考研</span></a></li><li><a class="site-page child" href="/categories/%E8%8B%B1%E8%AF%AD/"><i class="fa-fw iconfont icon-ziyuan1"></i><span> 英语</span></a></li><li><a class="site-page child" href="/categories/%E8%AF%81%E4%B9%A6/"><i class="fa-fw iconfont icon-ziyuan2"></i><span> 证书</span></a></li><li><a class="site-page child" href="/categories/%E7%AB%9E%E8%B5%9B/"><i class="fa-fw iconfont icon-18"></i><span> 竞赛</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-bojuelvpai-huashu"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"><i class="fa-fw iconfont icon-lotus"></i><span> 课程设计</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="fa-fw iconfont icon-xiaohua1"></i><span> 计算机基础</span></a></li><li><a class="site-page child" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/"><i class="fa-fw iconfont icon-shengdanjie-huahuan"></i><span> 计科本科课程</span></a></li><li><a class="site-page child" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E8%AF%BE%E7%A8%8B/"><i class="fa-fw iconfont icon-meihua1"></i><span> 计科研究生课程</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%A7%91%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/"><i class="fa-fw iconfont icon-hua8"></i><span> 计科文献阅读</span></a></li><li><a class="site-page child" href="/categories/%E4%B8%9A%E4%BD%99%E5%85%B4%E8%B6%A3%E8%AF%BE%E7%A8%8B/"><i class="fa-fw iconfont icon-xiaohuanghua"></i><span> 业余兴趣课程</span></a></li><li><a class="site-page child" href="/categories/Mac%E8%BD%AF%E4%BB%B6/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> Mac软件</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-xuehua"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BB%E4%B9%A6%E6%8B%BE%E8%B4%9D/"><i class="fa-fw iconfont icon-shengdan-huahuan"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/categories/%E4%BC%BC%E6%B0%B4%E5%B9%B4%E5%8D%8E/"><i class="fa-fw iconfont icon-shengdantubiao-09"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-hudie"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E7%95%99%E8%A8%80%E6%9D%BF/"><i class="fa-fw iconfont icon-icon-test"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw iconfont icon-xinnianghuaguan-"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw iconfont icon-huameiguihuaxianhua"></i><span> 关于我</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/cover198.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="花夕 &amp; Blog"><img class="site-icon" src="/img/avatar1.png"/><span class="site-name">花夕 &amp; Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="iconfont icon-hua2"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="iconfont icon-shengdan-huaduo"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-xianhua"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%80%83%E7%A0%94/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 考研</span></a></li><li><a class="site-page child" href="/categories/%E8%8B%B1%E8%AF%AD/"><i class="fa-fw iconfont icon-ziyuan1"></i><span> 英语</span></a></li><li><a class="site-page child" href="/categories/%E8%AF%81%E4%B9%A6/"><i class="fa-fw iconfont icon-ziyuan2"></i><span> 证书</span></a></li><li><a class="site-page child" href="/categories/%E7%AB%9E%E8%B5%9B/"><i class="fa-fw iconfont icon-18"></i><span> 竞赛</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-bojuelvpai-huashu"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"><i class="fa-fw iconfont icon-lotus"></i><span> 课程设计</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="fa-fw iconfont icon-xiaohua1"></i><span> 计算机基础</span></a></li><li><a class="site-page child" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/"><i class="fa-fw iconfont icon-shengdanjie-huahuan"></i><span> 计科本科课程</span></a></li><li><a class="site-page child" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E8%AF%BE%E7%A8%8B/"><i class="fa-fw iconfont icon-meihua1"></i><span> 计科研究生课程</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%A7%91%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/"><i class="fa-fw iconfont icon-hua8"></i><span> 计科文献阅读</span></a></li><li><a class="site-page child" href="/categories/%E4%B8%9A%E4%BD%99%E5%85%B4%E8%B6%A3%E8%AF%BE%E7%A8%8B/"><i class="fa-fw iconfont icon-xiaohuanghua"></i><span> 业余兴趣课程</span></a></li><li><a class="site-page child" href="/categories/Mac%E8%BD%AF%E4%BB%B6/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> Mac软件</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-xuehua"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BB%E4%B9%A6%E6%8B%BE%E8%B4%9D/"><i class="fa-fw iconfont icon-shengdan-huahuan"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/categories/%E4%BC%BC%E6%B0%B4%E5%B9%B4%E5%8D%8E/"><i class="fa-fw iconfont icon-shengdantubiao-09"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-hudie"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E7%95%99%E8%A8%80%E6%9D%BF/"><i class="fa-fw iconfont icon-icon-test"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw iconfont icon-xinnianghuaguan-"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw iconfont icon-huameiguihuaxianhua"></i><span> 关于我</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Maven Summary</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-22T04:30:00.000Z" title="发表于 2023-07-22 12:30:00">2023-07-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-07-22T13:00:00.000Z" title="更新于 2023-07-22 21:00:00">2023-07-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java%E5%90%8E%E7%AB%AF/">Java后端</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java%E5%90%8E%E7%AB%AF/03%E3%80%81Maven/">03、Maven</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Maven Summary"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>写笔记的目的是便于自己记忆和查找，并不是便于零基础第三者的学习，所以建议听课后可以当温故浅看一下？</p>
+<p>学习的课程是Bilibili上黑马的JavaSE零基础教程，链接： <a target="_blank" rel="noopener" href="https://b23.tv/YjsFt0d">https://b23.tv/YjsFt0d</a></p>
+<p>0、目录概述<br>1、Maven概述<br>1.1、Maven是什么<br>在Javaweb开发中，需要使用大量的jar包，我们手动去导入；<br>如何能够让一个东西自动帮我导入和配置这个jar包。由此，Maven诞生了！<br>Maven的本质是一个项目管理工具，将项目开发和管理过程抽象成一个项目对象模型（POM）</p>
+<p>Maven是用Java语言编写的。他管理的东西统统以面向对象的形式进行设计，最终它把一个项目看成一个对象，而这个对象叫做POM(project object model)，即项目对象模型。</p>
+<p>我们说一个项目就是一个对象，作为对象的行为、对象的属性都有哪些呢？</p>
+<p>Maven说我们需要编写一个pom.xml文件，Maven通过加载这个配置文件就可以知道我们项目的相关信息了！到这里我们知道了Maven离不开一个叫pom.xml的文件。因为这个文件代表就一个项目。<br>提个问题大家思考，如果我们做8个项目，对应的是1个文件，还是8个文件？肯定是8个！</p>
+<p>那Maven是如何帮我们进行项目资源管理的呢？这就需要用到Maven中的第二个东西：依赖管理。这也是它的第二个核心！</p>
+<p>所谓依赖管理就是maven对项目所有依赖资源的一种管理，它和项目之间是一种双向关系，即当我们做项目的时候maven的依赖管理可以帮助你去管理你所需要的其他资源，当其他的项目需要依赖我们项目的时候，maven也会把我们的项目当作一种资源去进行管理，这就是一种双向关系。</p>
+<p>那maven的依赖管理它管理的这些资源存在哪儿呢？主要有三个位置：本地仓库，私服，中央仓库</p>
+<p>本地仓库顾名思义就是存储在本地的一种资源仓库，如果本地仓库中没有相关资源，可以去私服上获取，私服也是一个资源仓库，只不过不在本地，是一种远程仓库，如果私服上也没有相关资源，可以去中央仓库去获取，中央仓库也是一种远程仓库。</p>
+<p>Maven除了帮我们管理项目资源之外还能帮助我们对项目进行构建，管理项目的整个生命周期，当然它的这些功能需要使用一些相关的插件来完成，当然整个生命周期过程中插件是需要配合使用的，单独一个无法完成完整的生命周期。</p>
+<p>1.2、Maven的作用<br>Maven的作用我们可以分成三类：</p>
+<p>（1）项目构建：提供标准的，跨平台的自动化构建项目的方式</p>
+<p>（2）依赖管理：方便快捷的管理项目依赖的资源（jar包），避免资源间的版本冲突等问题</p>
+<p>（3）统一开发结构：提供标准的，统一的项目开发结构，如下图所示：</p>
+<p>各目录存放资源类型说明：</p>
+<p>src/main/java：项目java源码</p>
+<p>src/main/resources：项目的相关配置文件（比如mybatis配置，xml映射配置，自定义配置文件等）</p>
+<p>src/main/webapp：web资源（比如html，css，js等）</p>
+<p>src/test/java：测试代码</p>
+<p>src/test/resources：测试相关配置文件</p>
+<p>src/pom.xml：项目pom文件</p>
+<p>2、下载安装Maven<br>2.1、新版下载<br>官网：Maven官网</p>
+<p>2.2、旧版下载<br>旧版本下载步骤：我们以3.6.1版本为例</p>
+<p>点击 sources</p>
+<p>2.3、安装<br>maven是一个绿色软件，解压即安装，非常容易，</p>
+<p>我们将下载好的apache-maven-3.6.1-bin.zip直接解压到D盘根目录下即可</p>
+<p>解压完成后我们可以查看一下maven自己的一个目录结构如下</p>
+<p>各目录结构说明：</p>
+<p>bin：可执行程序目录，</p>
+<p>boot：maven自身的启动加载器</p>
+<p>conf：maven配置文件的存放目录</p>
+<p>lib：maven运行所需库的存放目录</p>
+<p>2.4、配置环境变量<br>我的电脑————&gt;属性————-&gt;高级系统设置—————&gt;新建系统变量MAVEN_HOME，</p>
+<p>在我们的系统环境变量中</p>
+<p>配置如下配置：</p>
+<p>MAVEN_HOME maven的目录<br>在系统的path中配置 %MAVEN_HOME%\bin<br>之后在命令行窗口中输入mvn -version<br>测试Maven是否安装成功，保证必须配置完毕！</p>
+<p>环境变量配置好之后需要测试环境配置结果，我们需要在DOS命令窗口下输入以下命令查看输出</p>
+<p>mvn -v<br>1</p>
+<p>如果能够看到输出的maven的版本信息代表配置成功</p>
+<p>2.5、配置阿里云镜像<br>国内建议使用阿里云的镜像(可以百度搜 maven 阿里云镜像,也可以打开下方链接)<br>阿里云链接直达</p>
+<p>在settings.xml里面的mirrors标签里面导入</p>
+<p><mirror><br>  <id>aliyunmaven</id><br>  <mirrorOf>*</mirrorOf><br>  <name>阿里云公共仓库</name><br>  <url><a target="_blank" rel="noopener" href="https://maven.aliyun.com/repository/public">https://maven.aliyun.com/repository/public</a></url>
+</mirror><br>1<br>2<br>3<br>4<br>5<br>6<br>2.6、配置本地仓库<br>在Maven -bin 的同级目录下建立一个文件夹 maven-repo</p>
+<p>建立一个本地仓库：localRepository</p>
+<p>在settings.xml里面的localRepository下导入</p>
+<p><localRepository>D:\Develop\apache-maven-3.6.1\maven-repo</localRepository><br>1<br>3、Maveb基础概念<br>3.1、仓库<br>仓库：用于存储资源，主要是各种jar包</p>
+<p>关于仓库，我们前面讲到了有三种：本地仓库，私服，中央仓库，其中私服和中央仓库都属于远程仓库</p>
+<p>中央仓库：maven团队自身维护的仓库，属于开源的</p>
+<p>私服：各公司/部门等小范围内存储资源的仓库，私服也可以从中央仓库获取资源</p>
+<p>本地仓库：开发者自己电脑上存储资源的仓库，也可从远程仓库获取资源</p>
+<p>私服的作用：</p>
+<p>（1）保存具有版权的资源，包含购买或自主研发的jar</p>
+<p>（2）一定范围内共享资源，能做到仅对内不对外开放</p>
+<p>3.2、坐标<br>我们说maven的仓库里存储了各种各样的资源（jar包），那这些资源我们如何找到它们呢？我们需要知道它们具体的一个位置才能知道如何找到它们，这个就叫坐标</p>
+<p>坐标：maven中的坐标用于描述仓库中资源的位置</p>
+<p>maven坐标的主要组成如下：</p>
+<p>groupId：定义当前资源隶属组织名称（通常是域名反写，如：org.mybatis；com.itheima）</p>
+<p>artifactId：定义当前资源的名称（通常是项目或模块名称，如：crm，sms）</p>
+<p>version：定义当前资源的版本号</p>
+<p>packaging：定义资源的打包方式，取值一般有如下三种</p>
+<p>jar：该资源打成jar包，默认是jar java工程打包为jar<br>war：该资源打成war包 web工程打包为war<br>pom：该资源是一个父资源（表明使用maven分模块管理），打包时只生成一个pom.xml不生成jar或其他包结构<br>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</p>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--指定pom的模型版本-->
+    <modelVersion>4.0.0</modelVersion>
+    <!--打包方式 web工程打包为war java工程打包为jar-->
+    <packaging>war</packaging>
+
+    <!--组织id-->
+    <groupId>com.itheima</groupId>
+    <!--项目id-->
+    <artifactId>web01</artifactId>
+    <!--组织id  release代表完成版,SNAPSHOT代表开发版-->
+    <version>1.0-SNAPSHOT</version>
+
+    <!--设置当前工程的所有依赖-->
+    <dependencies>
+        <!--具体的依赖-->
+        <dependency>
+        </dependency>
+    </dependencies>
+</project>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>4、创建一个MavenWeb项目<br>启动IDEA</p>
+<p>创建一个MavenWeb项目</p>
+<p>创建完成等待项目初始化完成</p>
+<p>观察maven仓库中多了什么东西？<br>注意：IDEA项目创建成功后，看一眼Maven的配置</p>
+<p>到这里，Maven在IDEA中的配置和使用就OK了!</p>
+<p>4.1、标记文件夹功能<br>我们在创建的MavenWeb 项目的 main 目录下创建 java，resources</p>
+<p>鼠标悬停在java文件夹，右键</p>
+<p>resources 也同样标记</p>
+<p>创建MavenWeb 项目我们需要手动去补全目录，并且要对补全的目录进行标记，切记</p>
+<p>5、创建一个普通的Maven项目</p>
+<p>5.1、IDEA配置Tomcat<br>IDEA配置Tomcat步骤</p>
+<p>我们也可以不配置Tomcat，而是在 pom.xml 中配置 tomcat 插件来运行项目</p>
+<p>在Maven仓库中搜索 tomcat Maven</p>
+<p>找到 org.apache.tomcat.maven</p>
+<p>我们使用2.1版本的，相对来说稳定一些</p>
+<pre><code>&lt;!--构建--&gt;
+&lt;build&gt;
+    &lt;!--设置插件--&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;!--具体的插件配置--&gt;
+            &lt;groupId&gt;org.apache.tomcat.maven&lt;/groupId&gt;
+            &lt;artifactId&gt;tomcat7-maven-plugin&lt;/artifactId&gt;
+            &lt;version&gt;2.1&lt;/version&gt;
+            &lt;!--配置端口--&gt;
+            &lt;configuration&gt;
+                &lt;port&gt;80&lt;/port&gt;
+                &lt;!--虚拟路径--&gt;
+                &lt;path&gt;/&lt;/path&gt;
+                &lt;!--解决get请求中文乱码--&gt;
+                &lt;uriEncoding&gt;utf-8&lt;/uriEncoding&gt;
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre><p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>插件配置好后，在IDEA右侧maven-project操作面板上可以看到该插件，并且可以利用该插件启动项目</p>
+<p>运行后该插件会给我们一个可运行地址：</p>
+<p>5.2、pom文件<br>pom.xml 是Maven的核心配置文件</p>
+<p>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</p>
+<!--Maven版本和头文件-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+
+  <groupId>com.kuang</groupId>
+  <artifactId>javaweb-01-maven</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <!--Package：项目的打包方式
+  jar：java应用
+  war：JavaWeb应用
+  -->
+  <packaging>war</packaging>
+
+
+  <!--配置-->
+  <properties>
+    <!--项目的默认构建编码-->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!--编码版本-->
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
+  <!--项目依赖-->
+  <dependencies>
+    <!--具体依赖的jar包配置文件-->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+    </dependency>
+  </dependencies>
+
+  <!--项目构建用的东西-->
+  <build>
+    <finalName>javaweb-01-maven</finalName>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.2.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>6、Maven依赖管理<br>6.1、依赖配置与依赖传递<br>依赖是指在当前项目中运行所需的jar，依赖配置的格式如下：</p>
+<!--设置当前项目所依赖的所有jar-->
+<p><dependencies><br>    <!--设置具体的依赖--><br>    <dependency><br>        <!--依赖所属群组id--><br>        <groupId>Junit</groupId><br>        <!--依赖所属项目id--><br>        <artifactId>Junit</artifactId><br>        <!--依赖版本号--><br>        <version>4.12</version>
+    </dependency>
+</dependencies><br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>依赖传递：</p>
+<p>依赖具有传递性，分两种</p>
+<p>（1）直接依赖：在当前项目中通过依赖配置建立的依赖关系</p>
+<p>（2）间接依赖：被依赖的资源如果依赖其他资源，则表明当前项目间接依赖其他资源</p>
+<p>6.1.1、依赖传递冲突<br>依赖传递的冲突问题：</p>
+<p>在依赖传递过程中产生了冲突，我们有三种优先法则</p>
+<p>（1）路径优先：当依赖中出现相同资源时，层级越深，优先级越低，反之则越高</p>
+<p>（2）声明优先：当资源在相同层级被依赖时，配置顺序靠前的覆盖靠后的</p>
+<p>（3）特殊优先：当同级配置了相同资源的不同版本时，后配置的覆盖先配置的</p>
+<p>以一个项目为根，直接依赖称为1度资源，直接依赖的直接依赖称为2度资源，直接依赖的直接依赖的直接依赖称为3度资源。</p>
+<p>当然依赖冲突在这里我们并不需要记，后面会有如何解决此问题的办法。</p>
+<p>6.1.2、可选依赖<br>可选依赖指的是对外隐藏当前所依赖的资源➡不透明</p>
+<p>加一个<optional> 标签</p>
+<p><dependencies><br>    <dependency><br>        <groupId>Junit</groupId><br>        <artifactId>Junit</artifactId><br>        <version>4.12</version><br>        <optional>true</optional>
+    </dependency>
+</dependencies><br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>6.1.3、排除依赖<br>排除依赖指主动断开依赖的资源，被排除的资源无需指定版本</p>
+<p><dependencies><br>    <dependency><br>        <groupId>Junit</groupId><br>        <artifactId>Junit</artifactId><br>        <version>4.12</version><br>        <exclusions><br>            <exclusion><br>                <groupId>log4j</groupId><br>                <artifactId>log4j</artifactId>
+            </exclusion>
+    </dependency>
+</dependencies><br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>6.1、依赖范围<br>依赖的jar默认情况可以在任何地方可用，可以通过scope标签设定其作用范围</p>
+<p>这里的范围主要是指以下三种范围</p>
+<p>（1）主程序范围有效（src/main目录范围内）</p>
+<p>（2）测试程序范围内有效（src/test目录范围内）</p>
+<p>（3）是否参与打包（package指令范围内）</p>
+<p>此外：scope标签的取值有四种：compile,test,provided,runtime</p>
+<p>这四种取值与范围的对应情况如下：</p>
+<p>7、Maven生命周期与插件<br>Maven对项目构建的生命周期划分为3套</p>
+<p>clear：清理工作<br>default：核心工作，例如编译、测试、打包、部署等<br>site：产生报告、发布站点等<br>7.1、clear生命周期<br>clean：清理工作</p>
+<p>pre-clean：执行一些在clean之前的工作</p>
+<p>clean：移除上一次构建产生的所有文件</p>
+<p>post-clean：执行一些在clean之后立刻完成的工作</p>
+<p>7.2、default生命周期<br>default：核心工作，例如编译，测试，打包，部署等</p>
+<p>这里面的事件非常的多，如下图</p>
+<p>对于default生命周期，每个事件在执行之前都会将之前的所有事件依次执行一遍</p>
+<p>7.3、site生命周期<br>site：产生报告，发布站点等</p>
+<p>pre-site：执行一些在生成站点文档之前的工作</p>
+<p>site：生成项目的站点文档</p>
+<p>post-site：执行一些在生成站点文档之后完成的工作，为部署做准备</p>
+<p>site-deploy：将生成的站点文档部署到特定的服务器上</p>
+<p>7.4、插件<br>插件：</p>
+<p>插件与生命周期内的阶段绑定，在执行到对应生命周期时执行对应的插件<br>maven默认在各个生命周期上都绑定了预先设定的插件来完成相应功能<br>插件还可以完成一些自定义功能<br>插件的配置方式如下：我们以打包源码为例</p>
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>2.2.1</version>
+            <executions>
+                <excution>
+                    <goals>
+                        <!--当goal属性的值为test-jar时，是对测试代码打包-->
+                        <goal>jar</goal>
+                    </goals>
+                    <phase>generate-test-resources</phase>
+                </excution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>在IDEA右侧maven-project操作面板上可以看到</p>
+<p>这样在IDEA左侧 target目录下就会有我们的源码包</p>
+<p>8、解决Maven中遇到的问题<br>每次创建Maven项目都要配置Maven版本的解决办法</p>
+<p>进行maven全局配置</p>
+<p>maven默认web项目中的web.xml版本问题<br>解决办法：替换为webapp4.0版本和tomcat一致，在我们配置的tomcat目录下可找到新web.xml代码</p>
+<p>tomcat - webapps - root - WEB-INF- web.xml</p>
+<p><web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+  version="4.0"
+  metadata-complete="true"><br>&lt;/web-app&gt;<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>约定大于配置<br>maven由于它的约定大于配置，我们之后可能遇到我们写的配置文件，无法被导出或者生效的问题</p>
+<p>什么意思？</p>
+<p>在java目录下新建properties</p>
+<p>在resources目录下新建properties</p>
+<p>启动tomcat</p>
+<p>我们发现java和resources都被打包到了同一个路径下：classes，我们俗称这个路径为classpath</p>
+<p>java目录下的properties并没有被打包，resources目录下的properties被打包了，这就是我们说的我们写的配置文件，无法被导出或者生效</p>
+<p>解决方案：</p>
+<!--在build中配置resources,来防止我们资源导出失败的问题-->
+<!--resources下的properties、xml都可以导出-->
+<!--java下的properties、xml都可以导出-->
+<build>
+    <resources>
+        <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+            <include>**/*.properties</include>
+            <include>**/*.xml</include>
+        </includes>
+        <filtering>true</filtering>
+        </resource>
+        <resource>
+        <directory>src/main/java</directory>
+        <includes>
+            <include>**/*.properties</include>
+            <include>**/*.xml</include>
+        </includes>
+        <filtering>true</filtering>
+        </resource>
+    </resources>
+</build>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://ruiqingyan1.github.io">花夕</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://ruiqingyan1.github.io/2023/07/22/2/6/2/3Day01/">http://ruiqingyan1.github.io/2023/07/22/2/6/2/3Day01/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://ruiqingyan1.github.io" target="_blank">花夕 & Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Java后端学习笔记</a><a class="post-meta__tags" href="/tags/03%E3%80%81Maven/">03、Maven</a></div><div class="post_share"><div class="social-share" data-image="/img/cover198.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://s2.loli.net/2023/05/05/Rko49zpvy7CqY2r.png" target="_blank"><img class="post-qr-code-img" src="https://s2.loli.net/2023/05/05/Rko49zpvy7CqY2r.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://s2.loli.net/2023/05/05/9AzkVXEPcmwM8FL.png" target="_blank"><img class="post-qr-code-img" src="https://s2.loli.net/2023/05/05/9AzkVXEPcmwM8FL.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/07/22/2/6/3AI/3Day01/" title="Maven Summary"><img class="cover" src="/img/cover198.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Maven Summary</div></div></a></div><div class="next-post pull-right"><a href="/2023/07/23/2/6/3AI/4Day01/" title="Git Summary"><img class="cover" src="/img/cover197.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Git Summary</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/07/22/2/6/3AI/3Day01/" title="Maven Summary"><img class="cover" src="/img/cover198.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-22</div><div class="title">Maven Summary</div></div></a></div><div><a href="/2023/08/13/2/6/2/10Day01/" title="Day01+Day02"><img class="cover" src="/img/cover176.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-13</div><div class="title">Day01+Day02</div></div></a></div><div><a href="/2023/08/14/2/6/2/10Day02/" title="Day03+Day04"><img class="cover" src="/img/cover175.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-14</div><div class="title">Day03+Day04</div></div></a></div><div><a href="/2023/08/17/2/6/2/10Day05/" title="Day09+Day10"><img class="cover" src="/img/cover172.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-17</div><div class="title">Day09+Day10</div></div></a></div><div><a href="/2023/08/18/2/6/2/10Day06/" title="Day11+Day12"><img class="cover" src="/img/cover171.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-18</div><div class="title">Day11+Day12</div></div></a></div><div><a href="/2023/08/15/2/6/2/10Day03/" title="Day05+Day06"><img class="cover" src="/img/cover174.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-15</div><div class="title">Day05+Day06</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar1.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">花夕</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">373</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">51</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">65</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ruiqingyan1"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:wei2836377438@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">考研ing~ &nbsp &nbsp</div></div><div class="card-widget"><div class="item-headline"><i></i><span></span></div><div class="item-content"></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/10/10/2/1/70/" title="7、毕业设计"><img src="/img/rbgs12.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="7、毕业设计"/></a><div class="content"><a class="title" href="/2023/10/10/2/1/70/" title="7、毕业设计">7、毕业设计</a><time datetime="2023-10-10T10:30:00.000Z" title="发表于 2023-10-10 18:30:00">2023-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/01/2/LeetCode/040300E100/" title="1~100题"><img src="/img/cover202.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1~100题"/></a><div class="content"><a class="title" href="/2023/10/01/2/LeetCode/040300E100/" title="1~100题">1~100题</a><time datetime="2023-10-01T09:00:00.000Z" title="发表于 2023-10-01 17:00:00">2023-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/01/2/6/3AI/AI/" title="人工智能(AI)学习 Schedule and Summary"><img src="/img/covera10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="人工智能(AI)学习 Schedule and Summary"/></a><div class="content"><a class="title" href="/2023/10/01/2/6/3AI/AI/" title="人工智能(AI)学习 Schedule and Summary">人工智能(AI)学习 Schedule and Summary</a><time datetime="2023-10-01T04:30:00.000Z" title="发表于 2023-10-01 12:30:00">2023-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/01/2/LeetCode/040300/" title="积箧盈藏-03研究生课程-leetcode刷题汇总"><img src="/img/cover201.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="积箧盈藏-03研究生课程-leetcode刷题汇总"/></a><div class="content"><a class="title" href="/2023/10/01/2/LeetCode/040300/" title="积箧盈藏-03研究生课程-leetcode刷题汇总">积箧盈藏-03研究生课程-leetcode刷题汇总</a><time datetime="2023-09-30T16:00:00.000Z" title="发表于 2023-10-01 00:00:00">2023-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/09/04/2/1/60/" title="6、专业综合课程设计"><img src="/img/rbgs21.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="6、专业综合课程设计"/></a><div class="content"><a class="title" href="/2023/09/04/2/1/60/" title="6、专业综合课程设计">6、专业综合课程设计</a><time datetime="2023-09-04T10:30:00.000Z" title="发表于 2023-09-04 18:30:00">2023-09-04</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/index_img2.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 By 花夕</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来的我的个人博客━(*｀∀´*)ノ亻!  ——不妨随便看看\(^o^)/❀</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="玫瑰,月季,牡丹,樱花,丁香,蝴蝶兰,郁金香,紫罗兰,满天星,凤仙花" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
