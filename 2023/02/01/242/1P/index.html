@@ -1,0 +1,692 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>1、基础部分 | 花夕 &amp; Blog</title><meta name="author" content="花夕"><meta name="copyright" content="花夕"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习人工智能之前要有Python基础，主要参考《Python编程_从入门到实践》这本书。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1、基础部分">
+<meta property="og:url" content="http://ruiqingyan.com/2023/02/01/242/1P/index.html">
+<meta property="og:site_name" content="花夕 &amp; Blog">
+<meta property="og:description" content="学习人工智能之前要有Python基础，主要参考《Python编程_从入门到实践》这本书。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ruiqingyan.com/img/rd4.jpg">
+<meta property="article:published_time" content="2023-02-01T11:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-25T13:00:00.000Z">
+<meta property="article:author" content="花夕">
+<meta property="article:tag" content="AI学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ruiqingyan.com/img/rd4.jpg"><link rel="shortcut icon" href="/img/favicon2.ico"><link rel="canonical" href="http://ruiqingyan.com/2023/02/01/242/1P/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/16.png"/><link rel="mask-icon" href="/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-62KVKFBVSY"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-62KVKFBVSY');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "f");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":1000,"languages":{"author":"作者: 花夕","link":"链接: ","source":"来源: 花夕 & Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '1、基础部分',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-25 21:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4052103_6tjtkhibmy5.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/css/custom@1.0.0.css"><link rel="stylesheet" href="/css/color@1.0.0.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar2.png" onerror="onerror=null;src='/img/404.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">228</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua2"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-xianhua"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/2024/01/01/11/2024/"><i class="fa-fw iconfont icon-ziyuan2"></i><span> 日常</span></a></li><li><a class="site-page child" href="/2024/01/01/12/index/"><i class="fa-fw iconfont icon-18"></i><span> 算法</span></a></li><li><a class="site-page child" href="/2024/01/01/13/index/"><i class="fa-fw iconfont icon-ziyuan1"></i><span> 英语</span></a></li><li><a class="site-page child" href="/2024/01/01/14/index/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-bojuelvpai-huashu"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"><i class="fa-fw iconfont icon-lotus"></i><span> 课程设计</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="fa-fw iconfont icon-xiaohua1"></i><span> 计算机基础</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%A7%91%E5%9F%BA%E7%A1%80%E8%AF%BE/"><i class="fa-fw iconfont icon-hua8"></i><span> 计科本科课程</span></a></li><li><a class="site-page child" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/"><i class="fa-fw iconfont icon-xiaohuanghua"></i><span> 业余兴趣课程</span></a></li><li><a class="site-page child" href="/251/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> 计科文献阅读</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/rd4.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="花夕 &amp; Blog"><img class="site-icon" src="/img/avatar2.png"/><span class="site-name">花夕 &amp; Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua2"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-xianhua"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/2024/01/01/11/2024/"><i class="fa-fw iconfont icon-ziyuan2"></i><span> 日常</span></a></li><li><a class="site-page child" href="/2024/01/01/12/index/"><i class="fa-fw iconfont icon-18"></i><span> 算法</span></a></li><li><a class="site-page child" href="/2024/01/01/13/index/"><i class="fa-fw iconfont icon-ziyuan1"></i><span> 英语</span></a></li><li><a class="site-page child" href="/2024/01/01/14/index/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-bojuelvpai-huashu"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"><i class="fa-fw iconfont icon-lotus"></i><span> 课程设计</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="fa-fw iconfont icon-xiaohua1"></i><span> 计算机基础</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%A7%91%E5%9F%BA%E7%A1%80%E8%AF%BE/"><i class="fa-fw iconfont icon-hua8"></i><span> 计科本科课程</span></a></li><li><a class="site-page child" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/"><i class="fa-fw iconfont icon-xiaohuanghua"></i><span> 业余兴趣课程</span></a></li><li><a class="site-page child" href="/251/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> 计科文献阅读</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">1、基础部分</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-01T11:00:00.000Z" title="发表于 2023-02-01 19:00:00">2023-02-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-25T13:00:00.000Z" title="更新于 2023-02-25 21:00:00">2023-02-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">AI学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1%E3%80%81%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/">1、基础部分</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="1、基础部分"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note info icon-padding flat"><i class="note-icon falt"></i><p>🖼 人工智能学习<a href="/2023/02/01/242/AI">总目录</a></p>
+<p>🖼 Python基础主要学了《Python编程_从入门到实践》这本书，特点是很容易理解，适合入门</p>
+<p>🖼 数学基础一开始学了 《白话机器学习的数学》这本书，也很容易理解</p>
+</div>
+<h2 id="1、《Python编程-从入门到实践》目录及小结">1、《Python编程_从入门到实践》目录及小结</h2>
+<div class="note info icon-padding flat"><i class="note-icon falt"></i><p>这本书入门容易，但是内容不是很全，推荐洪锦魁大大的《Python王者归来》，内容很全</p>
+<p>第18、19章的tkinter建议用pyqt代替，31章海龟绘图可以用opencv、matplotlib等等，33章pygame的声音可以跳</p>
+<p>其他做的都挺好的，建议看看，简单知识丰富，做一个自己的工具文件夹，存入不同部分，用的时候到找相关文件就ok</p>
+</div>
+<div class="note warning icon-padding flat"><i class="note-icon falt"></i><ul><li><a href="/2023/02/01/242/101/" title="第1章 起步（安装Python、PyCharm、Anaconda）">第1章 起步（安装Python、PyCharm、Anaconda）</a></li><li><a href="/2023/02/02/242/102/" title="第2章 变量和简单数据类型">第2章 变量和简单数据类型</a></li><li><a href="/2023/02/03/242/103/" title="第3章 列表简介">第3章 列表简介</a></li><li><a href="/2023/02/04/242/104/" title="第4章 操作列表">第4章 操作列表</a></li><li><a href="/2023/02/05/242/105/" title="第5章 if语句">第5章 if语句</a></li><li><a href="/2023/02/06/242/106/" title="第6章 字典">第6章 字典</a></li><li><a href="/2023/02/07/242/107/" title="第7章 用户输入和while循环">第7章 用户输入和while循环</a></li><li><a href="/2023/02/08/242/108/" title="第8章 函数">第8章 函数</a></li><li><a href="/2023/02/09/242/109/" title="第9章 类">第9章 类</a></li><li><a href="/2023/02/10/242/110/" title="第10章 文件和异常">第10章 文件和异常</a></li><li><a href="/2023/02/11/242/111/" title="第11章 测试代码">第11章 测试代码</a></li><li><a href="/2023/02/12/242/112/" title="第12章 武装飞船">第12章 武装飞船</a></li><li><a href="/2023/02/13/242/113/" title="第13章 外星人来了">第13章 外星人来了</a></li><li><a href="/2023/02/14/242/114/" title="第14章 计分">第14章 计分</a></li><li><a href="/2023/02/15/242/115/" title="第15章 生成数据">第15章 生成数据</a></li><li><a href="/2023/02/16/242/116/" title="第16章 下载数据">第16章 下载数据</a></li><li><a href="/2023/02/17/242/117/" title="第17章 使用API">第17章 使用API</a></li><li><a href="/2023/02/18/242/118/" title="第18章 从Django入手">第18章 从Django入手</a></li><li><a href="/2023/02/19/242/119/" title="第19章 用户账户">第19章 用户账户</a></li><li><a href="/2023/02/20/242/120/" title="第20章 设置应用程序的样式并部署">第20章 设置应用程序的样式并部署</a></li></ul>
+</div>
+<div class="note success icon-padding flat"><i class="note-icon falt"></i><details class="toggle" style="border: 1px solid green"><summary class="toggle-button" style="background-color: green;">知识小结</summary><div class="toggle-content"><h3 id="chap1-配置Python环境-知识小结：">chap1 配置Python环境 知识小结：</h3>
+<p>主要系统讲了如何配置三种python编程环境，具体优劣如下</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">编程环境</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Pycharm</td>
+<td>以整个项目为块，通用，方便进行大型项目</td>
+<td>每次实验需要从头开始</td>
+</tr>
+<tr>
+<td style="text-align:left">Pycharm Console</td>
+<td>以每个行为块，也可以以多行为块</td>
+<td>实验过程中可以显示每个变量</td>
+</tr>
+<tr>
+<td style="text-align:left">Jupyter Notebook</td>
+<td>以任意行为块</td>
+<td>利于阅读和修改</td>
+</tr>
+</tbody>
+</table>
+<p>出错后要自己去理解报错信息、每天抽时间构思三个代码</p>
+<h3 id="chap2-变量及简单数据类型-知识小结：">chap2 变量及简单数据类型 知识小结：</h3>
+<ul>
+<li>1、变量命名</li>
+<li>2、字符串（str.title()、str2.upper()、str.strip()、 f&quot;{}{}&quot;、 &quot; {} {} &quot;.format(a,b)）</li>
+<li>3、两整数相除\整数+浮点数得到浮点数、数中下划线、多变量赋值、常量命名</li>
+<li>4、注释</li>
+<li>5、数据类型（字符串类型str、整数类型int、浮点类型float、布尔类型bool、空值类型NoneType、）</li>
+</ul>
+<h3 id="chap3-列表入门（List）知识小结：">chap3 列表入门（List）知识小结：</h3>
+<ul>
+<li>1、增append().insert(0,‘a’)</li>
+<li>2、删del.pop(0).remove(‘a’)</li>
+<li>3、改list[0]=‘A’</li>
+<li>4、查list[0]</li>
+</ul>
+<h3 id="chap4-列表进阶（List）知识小结：">chap4 列表进阶（List）知识小结：</h3>
+<ul>
+<li>1、len(list)</li>
+<li>2、sort(reverse=True)、sorted(list)、list.reverse()</li>
+<li>3、赋值列表list1=list[:]</li>
+<li>4、按序遍历列表enumerate(list)</li>
+<li>5、切片[:]、[1:]、[:1]、[-1:]</li>
+</ul>
+<h3 id="chap5-if语句-知识小结：">chap5 if语句 知识小结：</h3>
+<ul>
+<li>1、if - elif - else</li>
+<li>2、in  、 not in</li>
+</ul>
+<h3 id="chap6-字典（Dict）知识小结：">chap6 字典（Dict）知识小结：</h3>
+<ul>
+<li>1、增dict[‘a’]=A</li>
+<li>2、删del dict[‘a’]</li>
+<li>3、改dict[‘a’]=A</li>
+<li>4、查dict.get(‘points’,‘None’)</li>
+<li>5、遍历dict.items()、dict…keys()、dict…values()</li>
+</ul>
+<h3 id="chap7-用户输入和while循环-知识小结：">chap7 用户输入和while循环 知识小结：</h3>
+<ul>
+<li>1、name = input(“请输入你的名字：”)</li>
+<li>2、while()</li>
+</ul>
+<h3 id="chap8-函数-知识小结：">chap8 函数 知识小结：</h3>
+<ul>
+<li>1、位置参数、关键字参数、默认值（传入参数是list[:]禁止函数修改列表）</li>
+<li>2、*list传递任意数量实参[]、**list传递多参多信息{ : }</li>
+<li>3、匿名函数lambda x:(x%2==1)、filter、map</li>
+<li>4、导入模块 import、from import、as</li>
+</ul>
+<h3 id="chap9-类-知识小结：">chap9 类 知识小结：</h3>
+<ul>
+<li>1、定义类</li>
+<li>2、创建实例、使用属性、使用方法、更改属性值、调用方法更改属性值</li>
+<li>3、子类如何继承父类CobiDog(Dog)</li>
+<li>4、实例可做属性，写在__init__，self.heart = Heart()</li>
+</ul>
+<h3 id="chap10-文件和异常-知识小结：">chap10 文件和异常 知识小结：</h3>
+<ul>
+<li>1、f.read()、f.readlines()、f.write()</li>
+<li>2、words.split()</li>
+<li>3、try-except xxError-else</li>
+<li>4、import json、json.dump(numbers,f)、json.load(f)</li>
+</ul>
+<h3 id="chap11测试代码-知识小结：">chap11测试代码 知识小结：</h3>
+<ul>
+<li>1、单元测试（合适函数某方面没问题）、测试用例（一组单元测试）、全覆盖（一套单元测试，覆盖各种可能）</li>
+<li>2、unittest.TestCase，如果整个文件作为被测试框架导入测试，变量__name__的值不是__main__，故不会调用unittest.main()</li>
+<li>3、断言方法（assertEqual(a,b)、assertNotEqual(a,b)、assertTrue(x)、assertFalse(x)、assertIn(item,list)、assertNotIn(item,list)）</li>
+<li>4、setUp()方法怎么写？（导入unittest和测试类Dog，定义TestDog(unittest.TestCase)类，定义setUp方法存储即将测试的信息，定义test函数测试）</li>
+</ul>
+<h3 id="chap12-武装飞船-知识小结：">chap12 武装飞船 知识小结：</h3>
+<p>没什么特别重要的，主要是熟悉前面的知识</p>
+<ul>
+<li>怎么定制游戏基本结构、屏幕绘图、玩家移动游戏元素、向上飞行字段、删除不需要对象</li>
+</ul>
+<h3 id="chap13-外星人来了-知识小结：">chap13 外星人来了 知识小结：</h3>
+<p>没什么特别重要的，主要是熟悉前面的知识</p>
+<ul>
+<li>创建外星人对象、批量对象、控制对象移动、检测响应时间、判断游戏是否结束</li>
+</ul>
+<h3 id="chap14-记分-知识小结：">chap14 记分 知识小结：</h3>
+<p>没什么特别重要的，主要是熟悉前面的知识</p>
+<ul>
+<li>鼠标检测、隐藏鼠标、显示help、实现计分</li>
+</ul>
+<h3 id="chap15-生成数据-知识小结：">chap15 生成数据 知识小结：</h3>
+<ul>
+<li>1、使用matplotlib创建简单的图表</li>
+<li>2、使用plotly绘制直方图探索掷多个骰子结果</li>
+</ul>
+<h3 id="chap16-下载数据-知识小结：">chap16 下载数据 知识小结：</h3>
+<ul>
+<li>1、处理CSV、JSON文件</li>
+<li>2、使用matplotlib、datetime、plotly绘图</li>
+</ul>
+<h3 id="chap17-使用API-知识小结：">chap17 使用API 知识小结：</h3>
+<ul>
+<li>1、requests包使用API采集数据</li>
+<li>2、解析API数据并进行可视化</li>
+</ul>
+<h3 id="chap18-从Django入手-知识小结：">chap18 从Django入手 知识小结：</h3>
+<ul>
+<li>1、Django项目规范</li>
+<li>2、Django迁移数据库</li>
+<li>3、Django shell（定义URL、创建视图函数、编辑网页模版、继承模版）</li>
+</ul>
+<h3 id="chap19-用户账户-知识小结：">chap19 用户账户 知识小结：</h3>
+<ul>
+<li>1、用户添加主题、条目、编辑已有条目、注册、登录、注销</li>
+<li>2、修饰器禁止用户访问，外键关联特定用户，迁移指定数据</li>
+<li>3、视图函数、filter()获取数据、简单的保护决策</li>
+</ul>
+<h3 id="chap20-设置应用程序的样式并部署-知识小结：">chap20 设置应用程序的样式并部署 知识小结：</h3>
+<ul>
+<li>1、Bootstrap模版，Navbar static赋予学习笔记简单外观，jumbotron突出主页消息</li>
+<li>2、部署Heroku服务器</li>
+</ul>
+</div></details>
+</div>
+<h2 id="2、《白话机器学习的数学》目录及小结">2、《白话机器学习的数学》目录及小结</h2>
+<div class="note warning icon-padding flat"><i class="note-icon falt"></i><ul><li><a href="/2023/02/21/242/121/" title="第1章 开始二人之旅">第1章 开始二人之旅</a></li><li><a href="/2023/02/22/242/122/" title="第2章 学习回归—基于广告费预测点击率">第2章 学习回归—基于广告费预测点击率</a></li><li><a href="/2023/02/23/242/123/" title="第3章 学习分类—基于图像大小进行分类">第3章 学习分类—基于图像大小进行分类</a></li><li><a href="/2023/02/24/242/124/" title="第4章 评估已建立的模型">第4章 评估已建立的模型</a></li><li><a href="/2023/02/25/242/125/" title="第5章 实现—使用Python编程">第5章 实现—使用Python编程</a></li></ul>
+</div>
+<div class="note success icon-padding flat"><i class="note-icon falt"></i><details class="toggle" style="border: 1px solid green"><summary class="toggle-button" style="background-color: green;">知识小结</summary><div class="toggle-content"><h3 id="chap1-开始二人之旅-知识小结：">chap1 开始二人之旅 知识小结：</h3>
+<ul>
+<li>1、机器学习：是指机器通过统计学算法，对大量历史数据进行学习，进而利用生成的经验模型指导业务。</li>
+<li>2、回归（连续数据）、分类（有标签离散数据）、聚类（无标签离散数据）</li>
+<li>3、有监督学习使用数据有标签、无监督学习使用无标签数据。</li>
+</ul>
+<h3 id="chap2-学习回归-知识小结：">chap2 学习回归 知识小结：</h3>
+<ul>
+<li>1、最小二乘法、目标函数</li>
+<li>2、下降梯度、梯度下降法</li>
+<li>3、学习率、更新表达式</li>
+<li>4、多项式回归、过拟合、欠拟合</li>
+<li>5、多重回归：包含多个变量的回归，写成向量</li>
+<li>6、随机梯度下降法、小批量梯度下降法</li>
+</ul>
+<h3 id="chap3-知识小结：">chap3 知识小结：</h3>
+<ul>
+<li>1、内积、权重向量</li>
+<li>2、感知机、线性可分</li>
+<li>3、逻辑回归、sigmoid函数、决策边界</li>
+<li>4、似然函数</li>
+<li>5、对数似然函数</li>
+</ul>
+<h3 id="chap4-知识小结：">chap4 知识小结：</h3>
+<ul>
+<li>1、“只对训练数据才是正确”、MSE均方误差</li>
+<li>2、精确度Accuracy、召回率、F值</li>
+<li>3、交叉验证、K折交叉验证</li>
+<li>4、正则化、过拟合、欠拟合、区分</li>
+</ul>
+<h3 id="chap5-知识小结：">chap5 知识小结：</h3>
+<ul>
+<li>1、回归步骤</li>
+<li>2、分类—感知机</li>
+<li>3、分类—逻辑回归</li>
+<li>4、正则化</li>
+</ul>
+</div></details>
+</div>
+<h2 id="3、《Python王者归来》目录及小结">3、《Python王者归来》目录及小结</h2>
+<div class="note warning icon-padding flat"><i class="note-icon falt"></i><ul><li><a href="/2023/10/01/242/126/" title="chap1基本观念、chap2认识变量与基本数学运算、chap3 Python的基本数据类型">chap1基本观念、chap2认识变量与基本数学运算、chap3 Python的基本数据类型</a></li><li><a href="/2023/10/02/242/127/" title="chap4基本输入与输出、chap5程序的流程控制使用if语句">chap4基本输入与输出、chap5程序的流程控制使用if语句</a></li><li><a href="/2023/10/03/242/128/" title="chap6列表（List）、chap7循环设计、chap8元组（Tuple）">chap6列表（List）、chap7循环设计、chap8元组（Tuple）</a></li><li><a href="/2023/10/04/242/129/" title="chap9字典（Dict）、chap10集合（Set）、chap11函数设计">chap9字典（Dict）、chap10集合（Set）、chap11函数设计</a></li><li><a href="/2023/10/05/242/130/" title="chap12类、chap13设计应用模块">chap12类、chap13设计应用模块</a></li><li><a href="/2023/10/06/242/131/" title="chap14文件读写、chap15异常处理、chap16正则表达式">chap14文件读写、chap15异常处理、chap16正则表达式</a></li><li><a href="/2023/10/07/242/132/" title="chap17Python处理图像文件、chap18使用tkinter开发GUI、chap19动画与游戏">chap17Python处理图像文件、chap18使用tkinter开发GUI、chap19动画与游戏</a></li><li><a href="/2023/10/08/242/133/" title="chap20数据图表的设计、chap21json数据、chap22Python处理csv/pickle/shelve/excel">chap20数据图表的设计、chap21json数据、chap22Python处理csv/pickle/shelve/excel</a></li><li><a href="/2023/10/09/242/134/" title="chap23网络爬虫、chap24Selenium、chap25用Python传短信">chap23网络爬虫、chap24Selenium、chap25用Python传短信</a></li><li><a href="/2023/10/10/242/135/" title="chap26文字识别系统、chap27Python处理PDF、chap28Python操作鼠标屏幕与键盘">chap26文字识别系统、chap27Python处理PDF、chap28Python操作鼠标屏幕与键盘</a></li><li><a href="/2023/10/11/242/136/" title="chap29SQLite与Mysql数据库、chap30多线程与多任务">chap29SQLite与Mysql数据库、chap30多线程与多任务</a></li><li><a href="/2023/10/12/242/137/" title="chap31海龟绘图、chap32处理QRcode、chap33控制声音">chap31海龟绘图、chap32处理QRcode、chap33控制声音</a></li><li><a href="/2023/10/13/242/138/" title="chap34人脸识别系统">chap34人脸识别系统</a></li><li><a href="/2023/10/14/242/139/" title="chap35建立词云、chap36网络程序设计">chap35建立词云、chap36网络程序设计</a></li></ul>
+</div>
+<div class="note success icon-padding flat"><i class="note-icon falt"></i><details class="toggle" style="border: 1px solid green"><summary class="toggle-button" style="background-color: green;">知识小结</summary><div class="toggle-content"><h3 id="chap1-配置Python环境-知识小结：">chap1 配置Python环境 知识小结：</h3>
+<p>主要系统讲了如何配置三种python编程环境，具体优劣如下</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">编程环境</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Pycharm</td>
+<td>以整个项目为块，通用，方便进行大型项目</td>
+<td>每次实验需要从头开始</td>
+</tr>
+<tr>
+<td style="text-align:left">Pycharm Console</td>
+<td>以每个行为块，也可以以多行为块</td>
+<td>实验过程中可以显示每个变量</td>
+</tr>
+<tr>
+<td style="text-align:left">Jupyter Notebook</td>
+<td>以任意行为块</td>
+<td>利于阅读和修改</td>
+</tr>
+</tbody>
+</table>
+<p>出错后要自己去理解报错信息、每天抽时间构思三个代码</p>
+<h3 id="chap2-变量及简单数据类型-知识小结：">chap2 变量及简单数据类型 知识小结：</h3>
+<ul>
+<li>1、变量命名</li>
+<li>2、字符串（str.title()、str2.upper()、str.strip()、 f&quot;{}{}&quot;、 &quot; {} {} &quot;.format(a,b)）</li>
+<li>3、两整数相除\整数+浮点数得到浮点数、数中下划线、多变量赋值、常量命名</li>
+<li>4、注释</li>
+<li>5、数据类型（字符串类型str、整数类型int、浮点类型float、布尔类型bool、空值类型NoneType、）</li>
+</ul>
+<h3 id="chap3-列表入门（List）知识小结：">chap3 列表入门（List）知识小结：</h3>
+<ul>
+<li>1、增append().insert(0,‘a’)</li>
+<li>2、删del.pop(0).remove(‘a’)</li>
+<li>3、改list[0]=‘A’</li>
+<li>4、查list[0]</li>
+</ul>
+<h3 id="chap4-列表进阶（List）知识小结：">chap4 列表进阶（List）知识小结：</h3>
+<ul>
+<li>1、len(list)</li>
+<li>2、sort(reverse=True)、sorted(list)、list.reverse()</li>
+<li>3、赋值列表list1=list[:]</li>
+<li>4、按序遍历列表enumerate(list)</li>
+<li>5、切片[:]、[1:]、[:1]、[-1:]</li>
+</ul>
+<h3 id="chap5-if语句-知识小结：">chap5 if语句 知识小结：</h3>
+<ul>
+<li>1、if - elif - else</li>
+<li>2、in  、 not in</li>
+</ul>
+<h3 id="chap6-字典（Dict）知识小结：">chap6 字典（Dict）知识小结：</h3>
+<ul>
+<li>1、增dict[‘a’]=A</li>
+<li>2、删del dict[‘a’]</li>
+<li>3、改dict[‘a’]=A</li>
+<li>4、查dict.get(‘points’,‘None’)</li>
+<li>5、遍历dict.items()、dict…keys()、dict…values()</li>
+</ul>
+<h3 id="chap7-用户输入和while循环-知识小结：">chap7 用户输入和while循环 知识小结：</h3>
+<ul>
+<li>1、name = input(“请输入你的名字：”)</li>
+<li>2、while()</li>
+</ul>
+<h3 id="chap8-函数-知识小结：">chap8 函数 知识小结：</h3>
+<ul>
+<li>1、位置参数、关键字参数、默认值（传入参数是list[:]禁止函数修改列表）</li>
+<li>2、*list传递任意数量实参[]、**list传递多参多信息{ : }</li>
+<li>3、匿名函数lambda x:(x%2==1)、filter、map</li>
+<li>4、导入模块 import、from import、as</li>
+</ul>
+<h3 id="chap9-类-知识小结：">chap9 类 知识小结：</h3>
+<ul>
+<li>1、定义类</li>
+<li>2、创建实例、使用属性、使用方法、更改属性值、调用方法更改属性值</li>
+<li>3、子类如何继承父类CobiDog(Dog)</li>
+<li>4、实例可做属性，写在__init__，self.heart = Heart()</li>
+</ul>
+<h3 id="chap10-文件和异常-知识小结：">chap10 文件和异常 知识小结：</h3>
+<ul>
+<li>1、f.read()、f.readlines()、f.write()</li>
+<li>2、words.split()</li>
+<li>3、try-except xxError-else</li>
+<li>4、import json、json.dump(numbers,f)、json.load(f)</li>
+</ul>
+<h3 id="chap11测试代码-知识小结：">chap11测试代码 知识小结：</h3>
+<ul>
+<li>1、单元测试（合适函数某方面没问题）、测试用例（一组单元测试）、全覆盖（一套单元测试，覆盖各种可能）</li>
+<li>2、unittest.TestCase，如果整个文件作为被测试框架导入测试，变量__name__的值不是__main__，故不会调用unittest.main()</li>
+<li>3、断言方法（assertEqual(a,b)、assertNotEqual(a,b)、assertTrue(x)、assertFalse(x)、assertIn(item,list)、assertNotIn(item,list)）</li>
+<li>4、setUp()方法怎么写？（导入unittest和测试类Dog，定义TestDog(unittest.TestCase)类，定义setUp方法存储即将测试的信息，定义test函数测试）</li>
+</ul>
+<h3 id="chap12-武装飞船-知识小结：">chap12 武装飞船 知识小结：</h3>
+<p>没什么特别重要的，主要是熟悉前面的知识</p>
+<ul>
+<li>怎么定制游戏基本结构、屏幕绘图、玩家移动游戏元素、向上飞行字段、删除不需要对象</li>
+</ul>
+<h3 id="chap13-外星人来了-知识小结：">chap13 外星人来了 知识小结：</h3>
+<p>没什么特别重要的，主要是熟悉前面的知识</p>
+<ul>
+<li>创建外星人对象、批量对象、控制对象移动、检测响应时间、判断游戏是否结束</li>
+</ul>
+<h3 id="chap14-记分-知识小结：">chap14 记分 知识小结：</h3>
+<p>没什么特别重要的，主要是熟悉前面的知识</p>
+<ul>
+<li>鼠标检测、隐藏鼠标、显示help、实现计分</li>
+</ul>
+<h3 id="chap15-生成数据-知识小结：">chap15 生成数据 知识小结：</h3>
+<ul>
+<li>1、使用matplotlib创建简单的图表</li>
+<li>2、使用plotly绘制直方图探索掷多个骰子结果</li>
+</ul>
+<h3 id="chap16-下载数据-知识小结：">chap16 下载数据 知识小结：</h3>
+<ul>
+<li>1、处理CSV、JSON文件</li>
+<li>2、使用matplotlib、datetime、plotly绘图</li>
+</ul>
+<h3 id="chap17-使用API-知识小结：">chap17 使用API 知识小结：</h3>
+<ul>
+<li>1、requests包使用API采集数据</li>
+<li>2、解析API数据并进行可视化</li>
+</ul>
+<h3 id="chap18-从Django入手-知识小结：">chap18 从Django入手 知识小结：</h3>
+<ul>
+<li>1、Django项目规范</li>
+<li>2、Django迁移数据库</li>
+<li>3、Django shell（定义URL、创建视图函数、编辑网页模版、继承模版）</li>
+</ul>
+<h3 id="chap19-用户账户-知识小结：">chap19 用户账户 知识小结：</h3>
+<ul>
+<li>1、用户添加主题、条目、编辑已有条目、注册、登录、注销</li>
+<li>2、修饰器禁止用户访问，外键关联特定用户，迁移指定数据</li>
+<li>3、视图函数、filter()获取数据、简单的保护决策</li>
+</ul>
+<h3 id="chap20-设置应用程序的样式并部署-知识小结：">chap20 设置应用程序的样式并部署 知识小结：</h3>
+<ul>
+<li>1、Bootstrap模版，Navbar static赋予学习笔记简单外观，jumbotron突出主页消息</li>
+<li>2、部署Heroku服务器</li>
+</ul>
+</div></details>
+</div>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://ruiqingyan.com">花夕</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://ruiqingyan.com/2023/02/01/242/1P/">http://ruiqingyan.com/2023/02/01/242/1P/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://ruiqingyan.com" target="_blank">花夕 & Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">AI学习笔记</a></div><div class="post_share"><div class="social-share" data-image="/img/rd4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/01/242/AI/" title="人工智能(AI)学习 Schedule and Summary"><img class="cover" src="/img/rd3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">人工智能(AI)学习 Schedule and Summary</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/01/242/101/" title="第1章 起步（安装Python、PyCharm、Anaconda）"><img class="cover" src="/img/r32.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">第1章 起步（安装Python、PyCharm、Anaconda）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/02/03/242/103/" title="第3章 列表简介"><img class="cover" src="/img/r34.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-03</div><div class="title">第3章 列表简介</div></div></a></div><div><a href="/2023/02/01/242/101/" title="第1章 起步（安装Python、PyCharm、Anaconda）"><img class="cover" src="/img/r32.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-01</div><div class="title">第1章 起步（安装Python、PyCharm、Anaconda）</div></div></a></div><div><a href="/2023/02/02/242/102/" title="第2章 变量和简单数据类型"><img class="cover" src="/img/r33.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-02</div><div class="title">第2章 变量和简单数据类型</div></div></a></div><div><a href="/2023/02/05/242/105/" title="第5章 if语句"><img class="cover" src="/img/r36.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-05</div><div class="title">第5章 if语句</div></div></a></div><div><a href="/2023/02/04/242/104/" title="第4章 操作列表"><img class="cover" src="/img/r35.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-04</div><div class="title">第4章 操作列表</div></div></a></div><div><a href="/2023/02/06/242/106/" title="第6章 字典"><img class="cover" src="/img/r37.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-06</div><div class="title">第6章 字典</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="avatar"/></div><div class="author-info__name">花夕</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">228</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ruiqingyan1"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">日更每天21:00 &nbsp And &nbsp  考研ing~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E3%80%8APython%E7%BC%96%E7%A8%8B-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E8%B7%B5%E3%80%8B%E7%9B%AE%E5%BD%95%E5%8F%8A%E5%B0%8F%E7%BB%93"><span class="toc-text">1、《Python编程_从入门到实践》目录及小结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#chap1-%E9%85%8D%E7%BD%AEPython%E7%8E%AF%E5%A2%83-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap1 配置Python环境 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap2-%E5%8F%98%E9%87%8F%E5%8F%8A%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap2 变量及简单数据类型 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap3-%E5%88%97%E8%A1%A8%E5%85%A5%E9%97%A8%EF%BC%88List%EF%BC%89%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap3 列表入门（List）知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap4-%E5%88%97%E8%A1%A8%E8%BF%9B%E9%98%B6%EF%BC%88List%EF%BC%89%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap4 列表进阶（List）知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap5-if%E8%AF%AD%E5%8F%A5-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap5 if语句 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap6-%E5%AD%97%E5%85%B8%EF%BC%88Dict%EF%BC%89%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap6 字典（Dict）知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap7-%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E5%92%8Cwhile%E5%BE%AA%E7%8E%AF-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap7 用户输入和while循环 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap8-%E5%87%BD%E6%95%B0-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap8 函数 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap9-%E7%B1%BB-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap9 类 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap10-%E6%96%87%E4%BB%B6%E5%92%8C%E5%BC%82%E5%B8%B8-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap10 文件和异常 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap11%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap11测试代码 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap12-%E6%AD%A6%E8%A3%85%E9%A3%9E%E8%88%B9-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap12 武装飞船 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap13-%E5%A4%96%E6%98%9F%E4%BA%BA%E6%9D%A5%E4%BA%86-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap13 外星人来了 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap14-%E8%AE%B0%E5%88%86-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap14 记分 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap15-%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap15 生成数据 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap16-%E4%B8%8B%E8%BD%BD%E6%95%B0%E6%8D%AE-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap16 下载数据 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap17-%E4%BD%BF%E7%94%A8API-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap17 使用API 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap18-%E4%BB%8EDjango%E5%85%A5%E6%89%8B-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap18 从Django入手 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap19-%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap19 用户账户 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap20-%E8%AE%BE%E7%BD%AE%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%A0%B7%E5%BC%8F%E5%B9%B6%E9%83%A8%E7%BD%B2-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap20 设置应用程序的样式并部署 知识小结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E3%80%8A%E7%99%BD%E8%AF%9D%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E5%AD%A6%E3%80%8B%E7%9B%AE%E5%BD%95%E5%8F%8A%E5%B0%8F%E7%BB%93"><span class="toc-text">2、《白话机器学习的数学》目录及小结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#chap1-%E5%BC%80%E5%A7%8B%E4%BA%8C%E4%BA%BA%E4%B9%8B%E6%97%85-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap1 开始二人之旅 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap2-%E5%AD%A6%E4%B9%A0%E5%9B%9E%E5%BD%92-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap2 学习回归 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap3-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap3 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap4-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap4 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap5-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap5 知识小结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E3%80%8APython%E7%8E%8B%E8%80%85%E5%BD%92%E6%9D%A5%E3%80%8B%E7%9B%AE%E5%BD%95%E5%8F%8A%E5%B0%8F%E7%BB%93"><span class="toc-text">3、《Python王者归来》目录及小结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#chap1-%E9%85%8D%E7%BD%AEPython%E7%8E%AF%E5%A2%83-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap1 配置Python环境 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap2-%E5%8F%98%E9%87%8F%E5%8F%8A%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap2 变量及简单数据类型 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap3-%E5%88%97%E8%A1%A8%E5%85%A5%E9%97%A8%EF%BC%88List%EF%BC%89%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap3 列表入门（List）知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap4-%E5%88%97%E8%A1%A8%E8%BF%9B%E9%98%B6%EF%BC%88List%EF%BC%89%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap4 列表进阶（List）知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap5-if%E8%AF%AD%E5%8F%A5-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap5 if语句 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap6-%E5%AD%97%E5%85%B8%EF%BC%88Dict%EF%BC%89%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap6 字典（Dict）知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap7-%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E5%92%8Cwhile%E5%BE%AA%E7%8E%AF-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap7 用户输入和while循环 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap8-%E5%87%BD%E6%95%B0-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap8 函数 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap9-%E7%B1%BB-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap9 类 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap10-%E6%96%87%E4%BB%B6%E5%92%8C%E5%BC%82%E5%B8%B8-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap10 文件和异常 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap11%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap11测试代码 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap12-%E6%AD%A6%E8%A3%85%E9%A3%9E%E8%88%B9-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap12 武装飞船 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap13-%E5%A4%96%E6%98%9F%E4%BA%BA%E6%9D%A5%E4%BA%86-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap13 外星人来了 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap14-%E8%AE%B0%E5%88%86-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap14 记分 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap15-%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap15 生成数据 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap16-%E4%B8%8B%E8%BD%BD%E6%95%B0%E6%8D%AE-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap16 下载数据 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap17-%E4%BD%BF%E7%94%A8API-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap17 使用API 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap18-%E4%BB%8EDjango%E5%85%A5%E6%89%8B-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap18 从Django入手 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap19-%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap19 用户账户 知识小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chap20-%E8%AE%BE%E7%BD%AE%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%A0%B7%E5%BC%8F%E5%B9%B6%E9%83%A8%E7%BD%B2-%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-text">chap20 设置应用程序的样式并部署 知识小结：</span></a></li></ol></li></ol></div></div><div class="card-widget card-post-series"><div class="item-headline"><i class="fa-solid fa-layer-group"></i><span>系列文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/05/11/242/4D/" title="4、深度学习"><img src="/img/rd7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4、深度学习"></a><div class="content"><a class="title" href="/2023/05/11/242/4D/" title="4、深度学习">4、深度学习</a><time datetime="2023-05-11T12:00:00.000Z" title="发表于 2023-05-11 20:00:00">2023-05-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/21/242/3M/" title="3、机器学习"><img src="/img/rd6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="3、机器学习"></a><div class="content"><a class="title" href="/2023/03/21/242/3M/" title="3、机器学习">3、机器学习</a><time datetime="2023-03-21T12:00:00.000Z" title="发表于 2023-03-21 20:00:00">2023-03-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/26/242/2S/" title="2、工具及软件基础"><img src="/img/rd5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2、工具及软件基础"></a><div class="content"><a class="title" href="/2023/02/26/242/2S/" title="2、工具及软件基础">2、工具及软件基础</a><time datetime="2023-02-26T11:00:00.000Z" title="发表于 2023-02-26 19:00:00">2023-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/01/242/1P/" title="1、基础部分"><img src="/img/rd4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1、基础部分"></a><div class="content"><a class="title" href="/2023/02/01/242/1P/" title="1、基础部分">1、基础部分</a><time datetime="2023-02-01T11:00:00.000Z" title="发表于 2023-02-01 19:00:00">2023-02-01</time></div></div></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/02/01/21/004/" title="如何写一篇优秀的论文"><img src="/img/rd3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何写一篇优秀的论文"/></a><div class="content"><a class="title" href="/2024/02/01/21/004/" title="如何写一篇优秀的论文">如何写一篇优秀的论文</a><time datetime="2024-02-01T00:30:00.000Z" title="发表于 2024-02-01 08:30:00">2024-02-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/01/245/MMPretrain/" title="MMPretrain工具箱"><img src="/img/r101.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MMPretrain工具箱"/></a><div class="content"><a class="title" href="/2024/01/01/245/MMPretrain/" title="MMPretrain工具箱">MMPretrain工具箱</a><time datetime="2024-01-01T11:00:00.000Z" title="发表于 2024-01-01 19:00:00">2024-01-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/01/245/001/" title="1、《Distilling the Knowledge in a Neural Network》"><img src="/img/r1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1、《Distilling the Knowledge in a Neural Network》"/></a><div class="content"><a class="title" href="/2024/01/01/245/001/" title="1、《Distilling the Knowledge in a Neural Network》">1、《Distilling the Knowledge in a Neural Network》</a><time datetime="2024-01-01T11:00:00.000Z" title="发表于 2024-01-01 19:00:00">2024-01-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/01/11/2024/" title="日常"><img src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="日常"/></a><div class="content"><a class="title" href="/2024/01/01/11/2024/" title="日常">日常</a><time datetime="2024-01-01T00:30:00.000Z" title="发表于 2024-01-01 08:30:00">2024-01-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/01/11/exercise/" title="健身"><img src="/img/rd11.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="健身"/></a><div class="content"><a class="title" href="/2024/01/01/11/exercise/" title="健身">健身</a><time datetime="2024-01-01T00:30:00.000Z" title="发表于 2024-01-01 08:30:00">2024-01-01</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/rd13.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By 花夕</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来的我的个人博客━(*｀∀´*)ノ</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const initWaline = () => {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-comments-blog.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  const loadWaline = async () => {
+    if (typeof Waline === 'object') initWaline()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js')
+      initWaline()
+    }
+  }
+
+  if ('Waline' === 'Waline' || !true) {
+    if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>(() => {
+  const isChatBtn = true
+  const isChatHideShow = true
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = 'T9itjhtGq78bcPAhB'
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'G-62KVKFBVSY', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

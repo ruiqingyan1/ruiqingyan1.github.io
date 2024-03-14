@@ -26,44 +26,47 @@ h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
     }
 }
 
-
 #content-inner.layout h1::before {
-    color: #ef50a8 ;
-    margin-left: -1.55rem;
-    font-size: 1.3rem;
-    margin-top: -0.23rem;
-}
-#content-inner.layout h2::before {
-    color: #ffbf00 ;
-    margin-left: -1.35rem;
-    font-size: 1.1rem;
-    margin-top: -0.12rem;
-}
-#content-inner.layout h3::before {
-    color: #a9e000 ;
-    margin-left: -1.22rem;
-    font-size: 0.95rem;
-    margin-top: -0.09rem;
-}
-#content-inner.layout h4::before {
-    color: #57c850 ;
-    margin-left: -1.05rem;
-    font-size: 0.8rem;
-    margin-top: -0.09rem;
-}
-#content-inner.layout h5::before {
-    color: #5ec1e0 ;
-    margin-left: -0.9rem;
-    font-size: 0.7rem;
-    margin-top: 0.0rem;
-}
-#content-inner.layout h6::before {
-    color: #fb7061 ;
-    margin-left: -0.9rem;
-    font-size: 0.66rem;
-    margin-top: 0.0rem;
+    color: #ff6699; /* 粉红色 */
+    margin-left: -1.25rem;
+    font-size: 1.7rem; /* 调整为 1.5rem */
+    margin-top: -0.08rem; /* 减小间距为 -0.08rem */
 }
 
+#content-inner.layout h2::before {
+    color: #ffd700; /* 金色 */
+    margin-left: -1.15rem;
+    font-size: 1.6rem; /* 保持为 1.5rem */
+    margin-top: -0.08rem; /* 保持为 -0.08rem */
+}
+
+#content-inner.layout h3::before {
+    color: #66cc99; /* 青色 */
+    margin-left: -1.05rem;
+    font-size: 1.5rem; /* 保持为 1.5rem */
+    margin-top: -0.28rem; /* 减小间距为 -0.28rem */
+}
+
+#content-inner.layout h4::before {
+    color: #99cc00; /* 酸橙绿色 */
+    margin-left: -0.95rem;
+    font-size: 1.4rem; /* 保持为 1.5rem */
+    margin-top: -0.28rem; /* 保持为 -0.28rem */
+}
+
+#content-inner.layout h5::before {
+    color: #3399cc; /* 蓝色 */
+    margin-left: -0.85rem;
+    font-size: 1.3rem; /* 保持为 1.5rem */
+    margin-top: -0.08rem; /* 保持为 -0.08rem */
+}
+
+#content-inner.layout h6::before {
+    color: #ff6666; /* 深红色 */
+    margin-left: -0.75rem;
+    font-size: 1.2rem; /* 保持为 1.5rem */
+    margin-top: -0.08rem; /* 保持为 -0.08rem */
+}
 
 
 #content-inner.layout h1:hover, #content-inner.layout h2:hover, #content-inner.layout h3:hover, #content-inner.layout h4:hover, #content-inner.layout h5:hover, #content-inner.layout h6:hover {
