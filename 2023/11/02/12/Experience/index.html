@@ -1,0 +1,1102 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>PAT乙125题 | 花夕 &amp; Blog</title><meta name="author" content="花夕"><meta name="copyright" content="花夕"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="怎么刷题，刷题路径及经验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PAT乙125题">
+<meta property="og:url" content="http://ruiqingyan.com/2023/11/02/12/Experience/index.html">
+<meta property="og:site_name" content="花夕 &amp; Blog">
+<meta property="og:description" content="怎么刷题，刷题路径及经验">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ruiqingyan.com/img/rd5.jpg">
+<meta property="article:published_time" content="2023-11-02T13:35:48.000Z">
+<meta property="article:modified_time" content="2024-01-05T05:50:01.770Z">
+<meta property="article:author" content="花夕">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ruiqingyan.com/img/rd5.jpg"><link rel="shortcut icon" href="/img/favicon2.ico"><link rel="canonical" href="http://ruiqingyan.com/2023/11/02/12/Experience/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/16.png"/><link rel="mask-icon" href="/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-62KVKFBVSY"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-62KVKFBVSY');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "f");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":1000,"languages":{"author":"作者: 花夕","link":"链接: ","source":"来源: 花夕 & Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'PAT乙125题',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-05 13:50:01'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4052103_6tjtkhibmy5.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/css/custom@1.0.0.css"><link rel="stylesheet" href="/css/color@1.0.0.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar2.png" onerror="onerror=null;src='/img/404.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">561</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">40</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">53</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua2"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-xianhua"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/2024/01/01/11/2024/"><i class="fa-fw iconfont icon-ziyuan2"></i><span> 日常</span></a></li><li><a class="site-page child" href="/2024/01/01/12/index/"><i class="fa-fw iconfont icon-18"></i><span> 算法</span></a></li><li><a class="site-page child" href="/2024/01/01/13/index/"><i class="fa-fw iconfont icon-ziyuan1"></i><span> 英语</span></a></li><li><a class="site-page child" href="/2024/01/01/14/index/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-bojuelvpai-huashu"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"><i class="fa-fw iconfont icon-lotus"></i><span> 课程设计</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="fa-fw iconfont icon-xiaohua1"></i><span> 计算机基础</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%A7%91%E5%9F%BA%E7%A1%80%E8%AF%BE/"><i class="fa-fw iconfont icon-hua8"></i><span> 计科本科课程</span></a></li><li><a class="site-page child" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/"><i class="fa-fw iconfont icon-xiaohuanghua"></i><span> 业余兴趣课程</span></a></li><li><a class="site-page child" href="/251/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> 计科文献阅读</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/rd5.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="花夕 &amp; Blog"><img class="site-icon" src="/img/avatar2.png"/><span class="site-name">花夕 &amp; Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua2"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-xianhua"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/2024/01/01/11/2024/"><i class="fa-fw iconfont icon-ziyuan2"></i><span> 日常</span></a></li><li><a class="site-page child" href="/2024/01/01/12/index/"><i class="fa-fw iconfont icon-18"></i><span> 算法</span></a></li><li><a class="site-page child" href="/2024/01/01/13/index/"><i class="fa-fw iconfont icon-ziyuan1"></i><span> 英语</span></a></li><li><a class="site-page child" href="/2024/01/01/14/index/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-bojuelvpai-huashu"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"><i class="fa-fw iconfont icon-lotus"></i><span> 课程设计</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="fa-fw iconfont icon-xiaohua1"></i><span> 计算机基础</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%A7%91%E5%9F%BA%E7%A1%80%E8%AF%BE/"><i class="fa-fw iconfont icon-hua8"></i><span> 计科本科课程</span></a></li><li><a class="site-page child" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/"><i class="fa-fw iconfont icon-xiaohuanghua"></i><span> 业余兴趣课程</span></a></li><li><a class="site-page child" href="/251/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> 计科文献阅读</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">PAT乙125题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-02T13:35:48.000Z" title="发表于 2023-11-02 21:35:48">2023-11-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-01-05T05:50:01.770Z" title="更新于 2024-01-05 13:50:01">2024-01-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">36k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>115分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="PAT乙125题"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="计算机系学生为什么要刷算法">计算机系学生为什么要刷算法</h3>
+<p>什么是OJ，以及对AC、WA、TLE、CE、RE、MLE、PE等状态术语的解释 PAT乙级和甲级是什么<br>
+考PAT对学习 | 考研 | 工作的作用是什么 刷PAT乙级和甲级需要掌握哪些知识 关于PAT刷题中编程语言选择和开发环境IDE选择的一些愚⻅ 从0基础到PAT甲级100分的高效学习路径 &amp; 书籍推荐 刷题过程中如何平衡自己写代码和看他人代码的小纠结 PAT乙级和甲级题库的正确刷题顺序<br>
+PAT刷题过程中应该如何记笔记<br>
+PAT刷题过程中的一些小技巧 | 我的PAT刷题笔记 关于找不到bug该怎么办 &amp; PAT刷题过程中的一些经验总结 PAT考试的注意事项 | 考试期间的心态调整<br>
+蓝桥杯是什么 | 参加蓝桥杯有什么用<br>
+蓝桥杯省赛和决赛需要掌握的知识 从0基础到蓝桥杯省赛一等奖的高效学习路径 &amp; 书籍推荐 蓝桥杯省赛和决赛备考经验 | 备考注意事项 蓝桥杯省赛和决赛考试期间注意事项<br>
+LeetCode是什么 | 为什么要刷LeetCode<br>
+如何高效刷LeetCode | 关于白板编程</p>
+<p>很多人(尤其是一些初入⻔开发的计算机学生)可能会觉得算法在开发过程中的用处不大，甚至很多没有认真学过算法的老程序员都会这样认为，然而并不是这样~<br>
+首先，刷算法可以培养清晰的逻辑思维能力，改变人的思维方式，使人对待复杂的代码问题更容易看透本质~在未来做工程项目的过程中也会慢慢发现，当年认真学过的算法也并非当初想得那样毫无用处，反而能提高解决问题的效率，使自己能用更简单的方法、更精简的代码解决实际问题~</p>
+<p>其次，看过很多IT公司招聘信息的人就会发现，他们都会优先选择有一定算法基础的人，尤其是一些 大公司在面试过程中，对于应届生，更多考察的是数据结构与算法、计算机网络、操作系统等这些计 算机基础课程，而并非都是在考察实际应聘岗位的相关技术、工具、知识等~</p>
+<p>再者，提高算法能力不是一蹴而就的，需要静下心来用大片的时间去看书、学习、刷题、找bug或者 参加竞赛，也许市面上有很多开发类的培训班，如前端、JavaWeb、安卓之类，但鲜有算法类的培 训，因为学习算法是实实在在、需要自己付出努力的过程，自己对题目的思考、学习、钻研，别人无 法替代，也不可能通过培训速成。所以这也是为什么很多公司会在应聘的笔试面试环节考察算法能力 的原因，也许语言的特性、工具的使用、开发的技巧可以短期培训，但数据结构和算法的能力足以证 明应聘者在计算机知识方面的硬实力~而且很多大公司在考察算法时都是白板编程(关于白板编程我</p>
+<p>1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">会在文章最后讲到)，这比写代码更能考验应试者的水平~</span><br></pre></td></tr></table></figure>
+<p>最后，如果从短期⻆度来说，可能刷算法能带来的一些看得⻅的收益会给自己更多的动力，比如:PAT 乙级刷完可以让自己在C语言二级或者C语言期末考试中获得一个高分;PAT甲级能让自己在考浙大时 候直接抵复试中机试的成绩;PAT甲级考高分能让自己收到一些大公司的面试邀请;LeetCode能够让自 己在面试很多大公司尤其是国外一些公司(Google、微软、Facebook、Amazon等)时正确解答出笔试 和面试的算法问题等…无论是⻓期还是短期来看，刷算法对于有追求的计算机学生都是必经之路~</p>
+<p>虽然刷算法是需要自己一道道题目亲力亲为的，但我却可以通过总结和讲解我大学生涯刷算法过程中 的经验，帮助学习算法路上的小可爱们节约时间、少踩一些坑、多走一些捷径，或者通过blog分享代 码的方式为某道具体的算法题目提供自己的题解思路和清晰简短的代码~</p>
+<p>什么是OJ，以及对AC、WA、TLE、CE、RE、MLE、PE等状态术语的解释</p>
+<p>OJ(Online Judge)是指在线判题系统，将代码提交给OJ后，OJ会在线检测程序源代码的正确性，并 返回结果~国内著名的OJ系统有POJ(北京大学OJ)、杭电OJ(参加过ACM的人都知道)等，PAT的官 方题库、蓝桥杯题库和LeetCode也是OJ系统，都可以在线提交代码并得到返回结果~PAT考试过程中 使用的就是和平时刷题题库一样的OJ判题系统，而蓝桥杯在考试的时候只能提交答案，不能实时看到 提交的答案是否正确，但蓝桥杯平时刷题练习的题库是OJ~相比􏰀而言，PAT和蓝桥需要的都是完整 的有输入输出的代码段，而LeetCode并不需要输入输出，而是将需要填写的代码包在一个Solution类 里，甚至会给好Solution类中的函数，涉及到树的题目还会给出树的定义，我们只需要在这个函数中填 充代码并按照题目的要求返回相应类型的值即可~</p>
+<p>刷算法OJ过程中提交答案后会返回的一些状态术语， AC (Accepted = 答案正确)， WA (Wrong Answer = 答案错误)， TLE (Time Limit Exceeded = 运行超时 / 时间超限)， CE (Compile Error = 编译错误)， RE (Runtime Error = 运行时出错)， MLE (Memory Limit Exceeded = 内存超<br>
+限)， PE (Presentation Error = 格式错误)，如果刷过LeeTCode的人对这些应该比􏰀熟悉~所以我 们经常会说 AC 了几道题、 TLE 了或者 WA 了之类的~而PAT的OJ里返回的是中文反馈信息，例如答 案正确、格式错误、内存超限、运行超时、段错误等~(后面我会讲解PAT中遇到运行超时、段错误、 格式错误等不同反馈信息时应该排查bug的方向)</p>
+<p>PAT乙级和甲级是什么 和其他算法竞赛考试比起来，知道PAT的人确实不多~所以我在这里简单介绍一下~</p>
+<p>PAT是一场算法考试，考试的分数只要不是0分就会获得PAT相应等级的证书~</p>
+<p>PAT有三个等级:乙级(Basic)、甲级(Advanced)、顶级(Top)，考试时间都是3小时，满分都是 100分，每年组织三次考试，分别在3月、9月、12月~一般安排在月初或月中的周六，具体比赛时间在 报名前才会公布~全国有很多考点，每个考点所拥有的开发环境和版本也不一样，可以在官网( https ://www.patest.org/location )这里看到各考点的开发环境~一般情况下我们会选择最近的那个考点， 不过也不一定，比如离你最近的那个考点提供的 C/C++ 语言编译环境没有 Dev-C++ 只有 Visual</p>
+<p>Studio ，而你又非常喜欢 Dev-C++ 写代码，那也可以选有 Dev-C++ 的考点~比如在我第一次参加PAT 的时候，南京当时还没有考点，我就去了提供 Dev-C++ 的浙江大学紫金港校区参加考试~还有一点就 是，报名要趁早，有的时候某个考场报满了就无法在该考场报名只能去其他考场报名啦(比如我一个 小伙伴报名晚了，南京考场都报满了，只能报了苏州，做高铁去苏州参加PAT考试…)报名费之前是 200元，现在是256元~(比蓝桥杯竞赛报名费便宜耶- -)</p>
+<p>2</p>
+<p>整个PAT考试的流程是:等到开放报名入口的时候在官网报名 -&gt; 自己把网⻚上的准考证打印一下 -&gt; 考 试当天带着身份证、准考证和笔去考场 -&gt; 在电脑上做题目(和平时刷题一样提交后就能看到这道题的 得分)-&gt; 等到3小时考试时间到(考100分就可以提前交卷出考场啦) -&gt; 考完等大概半小时，考点当场 打印证书，拿着证书回家~</p>
+<p>乙级是5道中文题目，分别是15分、20分、20分、20分、25分，官网题库链接: <a target="_blank" rel="noopener" href="https://pintia.cn/probl">https://pintia.cn/probl</a> em-sets/994805260223102976/problems</p>
+<p>甲级是4道英文题目，分别是20分、25分、25分、30分，官网题库链接: <a target="_blank" rel="noopener" href="https://pintia.cn/problem-set">https://pintia.cn/problem-set</a> s/994805342720868352/problems</p>
+<p>顶级是3道英文题目，由于顶级题目偏难，一般ACM大佬才参加顶级，加上我自己也没有参加过，所以 就不多介绍啦~(相信参加顶级的一定对PAT比􏰀了解不需要我来介绍啦= =)</p>
+<p>最近PAT题库中还推出了基础编程题目集，比乙级还要更基础(简单)一些，如果觉得乙级的难度还不 够简单可以去体验一下题库~链接: <a target="_blank" rel="noopener" href="https://pintia.cn/problem-sets/14/problems">https://pintia.cn/problem-sets/14/problems</a> (一般情况下我觉得 直接从乙级or甲级开始刷题就ok啦~)</p>
+<p>刷题的话还是在官网pintia(PTA)的题库刷比􏰀好，我听说有些人是从牛客网或者其他地方刷题的， 然而很多时候虽然可能题目相似，但内部具体的测试样例还是有些不一样的，所以同样一段代码提交 上去可能会产生不同的结果，比如我博客某篇题解代码，很多人来评论说在牛客网上无法通过，但在 官网能通过，说我的代码没有考虑周全，最后发现是牛客网的内部测试样例没有按照题意来设计…当 然有的时候也会发现官网通过了牛客网没通过时确实是自己的代码有疏漏，没有考虑到一些边界情 况，正好官网的判题样例也没有考虑到…(这个时候我会把自己的代码完善一下)~官网的题库从上 到下的顺序就是每一次PAT考试产生的题目，在考试过程中也使用的是和官网OJ题库中同样的判题系 统，相比􏰀而言更真实可靠~所以还是推荐用官网PTA( <a target="_blank" rel="noopener" href="https://pintia.cn/">https://pintia.cn/</a> )直接刷题吖~</p>
+<p>考PAT对学习 | 考研 | 工作的作用是什么</p>
+<p>这也是很多人会在刚知道PAT的时候问我的问题~</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">学习方面:刷算法题当然对提高算法有很大帮助呀~刷完乙级，基本上就理解和掌握了基础的数据结</span><br><span class="line">构(数组、链表、字符串)~也会了一些比􏰀基础的算法(比如排序、查找、递归)，最重要的是，</span><br><span class="line">很多人刚入代码的坑，自己的思维无法准确的用代码来描述，想到的解决思路却无法用代码表达出</span><br><span class="line">来，乙级刷完就完全可以解决这个问题啦~刷完甲级，首先已经能看懂英文的算法题目描述了~然后</span><br><span class="line">还能理解和熟练使用一些经典的算法，比如最短路径、并查集、树、图、深度优先搜索、广度优先搜</span><br><span class="line">索、贪心算法、拓扑排序、哈希等等~对自己的算法能力的提高是显著的~</span><br></pre></td></tr></table></figure>
+<p>考研方面:首先说浙大计算机院，浙大计算机系的考研是分为初试和复试，复试又分为机试和面试， 机试的题目就是类似于PAT甲级考试的题目(每年机试过后的题目也会增加到甲级题库后面)，而且机 试可以申请免试，只要具有前一年的3月、9月、12月的任意一次PAT甲级的证书即可~要知道把所有的 机会都压在机试那一次是比􏰀冒险的，一般情况下大家都会在3月复试之前拿着前一年3次PAT考试中最 高的那次成绩申请浙大计算机系考研的复试机试免考，这样就可以在复试中更加稳妥啦~不仅是甲级 的成绩可以免机试，顶级的成绩也可以，顶级成绩乘以1.5可以充当机试成绩(最高100分)，例如顶 级考了67分及以上，就可以和甲级100分一样~我认识的很多其他学校的考研or保研的学生也会参加 PAT考试，为了得到一张满意成绩的证书，这样就能在考研or保研的面试过程中更加具有竞争力~</p>
+<p>3</p>
+<p>工作方面:首先说PAT企业联盟，PAT和很多企业合作，这也是为什么PAT定在3月(春招)9月(秋 招)12月(秋招补招or寒假实习)的原因~在PAT报名的时候填写自己的个人信息，如果是有求职意向 的，可以对自己的个人简历写详细些，让企业知道你是打算找工作的并且更加了解你拥有的技能和想 应聘的职业，这样在考完后会收到很多企业的邀请面试的邮件~也可以主动拿着PAT的证书在有效期内 (有的是一年，有的是两年，不同公司规定不同)去这些和PAT联盟的企业，一般都可以免笔试并优先 录取，比如Google中国的要求是:甲级前15名、顶级前20名且80分以上，2年有效，可以免除笔试，直 接进入Google的面试阶段;微软的要求是:甲级90分以上，并且排名在当场考试前30名，同时符合微 软项目招聘的要求(毕业时间和专业等)，可免技术笔试进面试…还有其他一些公司，例如小米、华 为、网易、美团、雅⻁、阿里、淘宝、腾讯等…都对PAT的成绩以及能够给予的优惠有详细说明，具体 企业联盟详情在官网的这里可以看到: <a target="_blank" rel="noopener" href="https://www.patest.org/company">https://www.patest.org/company</a> 。比如我收到过百度、网易 雷火的面试邀请邮件，还接到过一些企业的电话，但是由于当时我才大二大三没有打算找工作所以也 就没有去参加面试…而且我的个人简历里面也明确写了目前不打算找工作，所以打电话找我的企业不 算多，不过身边有朋友通过PAT进了网易，接到微软的面试邀请等~所以对于求职还是很有帮助的~而 且身边很多考PAT的都是非科班打算转计算机的，如果想要找计算机类的工作，考PAT通过企业联盟应 聘确实是个可行的捷径~即使不是PAT企业联盟中的企业，如果公司知道PAT(我刚知道PAT时候PAT名 气和影响力还很小，这些年逐渐扩大)对丰富简历or面试应聘也是很有帮助的~</p>
+<p>刷PAT乙级和甲级需要掌握哪些知识</p>
+<ol>
+<li>官网对于PAT乙级考试应具备的能力是这样描述的:</li>
+</ol>
+<p>概括来说乙级的要求就是，一⻔编程语言+最基本的数据结构~ 2. 官网对于PAT甲级考试应具备的能力是这样描述的:</p>
+<p>概括来说甲级的要求就是，在乙级的基础上，能阅读英文题意+基础数据结构+一些经典算法~</p>
+<p>其实我们在准备PAT的过程中无需关心乙级和甲级考察哪些知识点，因为目前PAT的题库中题目已经足 够的多，以上知识点在题库中都已经完全涉及，我们只需要刷完题库、熟练掌握题库中的那些题型就 能掌握到PAT需要考察的所有知识点~甚至能根据题库中不同类型题目出现的频率推断常考的题型是哪 些、复习的重点应该放在哪方面等(关于常考题型和复习重点我在下文会提及)~</p>
+<p>关于PAT刷题中编程语言选择和开发环境IDE选择的一些愚⻅<br>
+4</p>
+<ol>
+<li>
+<p>基本的C/C++的代码设计能力，以及相关开发环境的基本调试技巧;</p>
+</li>
+<li>
+<p>理解并掌握最基本的数据存储结构，即:数组、链表;</p>
+</li>
+<li>
+<p>理解并熟练编程实现与基本数据结构相关的基础算法，包括递归、排序、查找等; 4. 能够分析算法的时间复杂度、空间复杂度和算法稳定性;</p>
+</li>
+<li>
+<p>具备问题抽象和建模的初步能力，并能够用所学方法解决实际问题。</p>
+</li>
+<li>
+<p>具有充分的英文阅读理解能力;</p>
+</li>
+<li>
+<p>理解并掌握基础数据结构，包括:线性表、树、图;</p>
+</li>
+<li>
+<p>理解并熟练编程实现经典高级算法，包括哈希映射、并查集、最短路径、拓扑排序、关键路</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">径、贪心、深度优先搜索、广度优先搜索、回溯剪枝等;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>具备􏰀强的问题抽象和建模能力，能实现对复杂实际问题的模拟求解。</p>
+</li>
+</ol>
+<p>虽然PAT不规定编程语言，在刷题的时候也可以看到支持31种编译器，语言包括<br>
+C 、 C++ 、 Java 、 Python 、 Ruby 、 Go 、 JavaScript 、 PHP 等，但是根据考点提供的开发环 境可以看到，基本上只有支持 C/C++ 的 Dev-C++ 、 CodeBlocks 、 Visual Studio 、 VC++6.0 等，和支</p>
+<p>持 Java 的 Eclipse 、 NetBean 、 MyEclipse 等，少部分考场会有支持 Python 的 PyCharm …虽然之前 我在考场遇到过直接用记事本写 Python 代码的大佬(因为我当时的那个考场没有 Python 编译器)， 也可以直接通过网⻚OJ提交看报错信息，然而如果要调试查看变量的值的话还是非常的不方便…所以 那些不是主流的语言应该很少会有人使用它们刷PAT吧(毕竟不像LeetCode大家都是在网⻚上直接在线 写代码提交)，刷PAT用的最多的编程语言还是 Java 和 C/C++ ，那关于 C 、 C++ 、 Java 如何选择 呢?</p>
+<p>C语言作为一⻔面向过程语言，是很多计算机初学者必学的一⻔编程语言，绝大多数计算机系大一就会 教C语言，所以大多数人对C语言还是很熟悉的(不熟悉没学过也没有关系，书籍推荐部分我会讲到如 何高效学习C语言)~C语言也确实是一⻔执行效率高的语言，然而最大的缺陷是，它缺少一些必要 的、封装好的、可以直接使用的数据结构，比如我们知道数据结构里面除了数组链表还有栈、队列、 集合、映射等，做题的时候会需要用到这些数据结构，如果仅仅使用C语言，可能需要手动用数组或者 链表实现它再使用，而一些比C语言高级的语言(这里的高级是指高度封装、对程序员更加友好)已经 封装实现好了一些常用的数据结构，需要用的时候直接拿来用就可以~比如排序，使用C语言可能要手 写一个是冒泡排序或者快排，而更高级的语言已经封装好了􏰀为高效的排序算法，需要用的时候加</p>
+<p>个 #include <algorithm> 头文件然后直接一行 sort(begin(a), end(a)); 代码即可实现排序，这样能让我们在 刷算法过程中把更多的精力集中在如何解决算法逻辑而非如何用语言实现一个常用的数据结构方面， 大大提高做题的速度、降低代码的错误率~</p>
+<p>我知道大学计算机系或者想要做开发的必学 Java ，包括绝大多数人面向对象的入⻔语言也是 Java ， 所以很多人就会想用 Java 刷算法，毕竟是将来工作和开发需要用到的语言~ Java 中确实有很多好用 的集合框架封装好了各类常用数据结构，然而 Java 作为一⻔优秀的工程开发语言，在刷算法的时候 却有些显得力不从心。我在刚刷算法的时候也是使用的 Java ，一开始PAT乙级的题目还好，勉强只有 几题无法AC，都是因为运行超时…而刷甲级的时候就明显感觉出 Java 在运行时间方面的劣势了，有 些题目连 C/C++ 都需要优化算法才能保证不超时，更何况用 Java …而PAT对于同一道题目不同语言的 时间限制要求是统一的，如果用 C/C++ 没有超时的题目一样的算法思路换了 Java 描述就超时了…岂 不是很心塞…(虽然官方说可以修改 Java 输入方式提高运行效率，然而我试过了，还是会有一些30 分的题目始终无法完全AC…)如果你不介意不能在PAT甲级中获得一个满意的成绩，只是希望通过PAT 题库来锻炼自己的代码能力和编程语言运用能力，倒是可以考虑全程使用 Java 刷题…(当然我感觉 如果单纯想提高代码能力和算法水平，刷LeetCode会更节约时间)~如果执意想用 Java 学算法，而 且是0基础，可以参考下文从0基础到蓝桥杯省赛一等奖的高效学习路径 &amp; 书籍推荐部分中关于 Java 组如何备考蓝桥杯的学习路径和参考书籍~</p>
+<p>接下来说 C++ 。可能对于没有接触过 C++ 的人来说这是一⻔陌生的语言，毕竟很多人对它的第一印 象是:这是一⻔全新的和面向过程的C语言完全不一样的面向对象编程语言，进而产生畏惧感，其实不 然。下面是一段关于 C++ 的简介:</p>
+<p>C++是C语言的继承，它既可以进行C语言的过程化程序设计，又可以进行以抽象数据类型为特点的 基于对象的程序设计，还可以进行以继承和多态为特点的面向对象的程序设计。C++擅⻓面向对象 程序设计的同时，还可以进行基于过程的程序设计，因而C++就适应的问题规模而论，大小由之。</p>
+<p>C++不仅拥有计算机高效运行的实用性特征，同时还致力于提高大规模程序的编程质量与程序设计 语言的问题描述能力。</p>
+<p>5</p>
+<p>所以说， C++ 是一⻔可以兼容C语言语法的面向对象语言。其实对于刷算法来说，它是否是面向对象 语言并不重要，它关于面向对象的部分(继承封装多态之类)我们也可以完全不学习，而且对于已经 懂C语言的人来说，想要用 C++ 刷算法，几乎没有多少学习成本。也就是说，你完全可以在 C++ 的文 件里面使用C语言的语法，这不会产生报错。而那些好用的 C++ 特性又可以随意的使用，像是增强版 功能的C语言。对于刷算法来说， C++ 最大的好处是拥有 STL (标准模版库)，就像 Java 的集合框 架一样， C++ 里面封装了很多常用的数据结构，而只需掌握STL和C++的一些和C语言稍有区别的基本 语法，就完全可以使用 C++ 来刷PAT、LeetCode和蓝桥杯，这对算法之路是大有裨益的~下面是一段 关于 STL 的简介:</p>
+<p>什么意思呢，比如说刷算法过程中需要用到集合 set ，我们知道 set 的特点是集合内的元素不重复 (特别地，在 C++ 里面， set 是会自动排序的集合， unordered_set 是不会自动排序的集合)，比如 在set里分别放进 4、1、1、2、3 这几个元素，set里会自动变成 1、2、3、4 ，如果我们只会C语言，可 能需要一个个把数据放到数组里面，然后手动编写一些代码，检查进来的每一个元素在数组中是否已 经存在，如果存在就不要再放进数组，最后对整个数组进行排序，才能达到set的效果。但是如果直接 使用 C++ ，我们就可以在头文件里面加个 #include <set> ，然后直接把 set 当作一个类似于数组的容 器，把所有元素直接丢到自己定义的这个set类型的容器里，就会自动实现去重(去除重复元素)和排 序的步骤~比如说题目要求将最后所有的答案去重后按从小到大的顺序输出，就可以直接将所有的答 案元素放到set里面输出即可~这样我们在刷题过程中就能更好地集中精力解决代码思路、算法方面的 问题，而不是一个简单的答案输出或语法方面的问题，在考试过程中也能大大地节省时间，降低代码 的错误率~</p>
+<p>更重要的是，使用 C++ 能写出更加精简的代码，简短的代码对于刷算法过程中思路的梳理和把握是非 常有好处的~看过我blog代码的人应该都会发现，我每道题的代码绝大多数都比􏰀简短，这并非是我 做完题目后将代码修修改改有意为之，你们所看到的代码就是我当时做这道题的过程中产生的代码， 可能是因为曾经刷LeetCode养成的好习惯，因为LeetCode评论区有很多优秀简洁的代码，我会不断地 向他们学习，写代码过程中也会想好思路再写，写的过程中也会不断反问自己是不是一定要这么复 杂，进而不断优化自己的思路。因为代码写⻓了就容易产生错误，更容易使自己思维混乱，一旦题目 没能AC，找bug和调试的过程也是非常地麻烦~而且我已经在blog上尽可能还原了当时写完题目后产生 的代码原样，我不希望通过后期经过人工修改刻意简化的代码让很多初学者接触学习，这对初学者理 解代码思路也是十分不利的。曾经 Github 上有很多大佬帮我优化过一些代码，我只接受了其中部分代 码，如果我觉得这不是刚看到题目写代码时候就能想到的思路，就不会接受这段代码~</p>
+<p>我之前写的一篇教程 《从放弃C语言到使用C++刷算法的简明教程 by柳婼》 ( <a target="_blank" rel="noopener" href="https://www.liuchuo.net/3">https://www.liuchuo.net/3</a> 33-3 )很多人已经阅读过，里面也详细讲述了C++在C语言基础上扩充的一些新特性(如名称空<br>
+间、 cin 和 cout 、 bool 变量、 const 常量、引用、 sort 排序、 auto 声明、 to_string() 、 stoi 和</p>
+<p>stod 等)以及刷算法过程中常用的STL(如动态数组 vector 、集合 set 、映射 map 、栈 stack 、队 列 queue 、在超时的时候很好用的 unordered_map 和 unordered_set 等)，学习C++的成本已经比绝 大多数踩过算法坑的人降低很多~</p>
+<p>接下来说我关于开发环境 IDE 如何选择的看法~</p>
+<p>STL是Standard Template Library(标准模板库)的简称，从根本上说，STL是一些“容器”的集合， 这些“容器”有list，vector，set，map等，STL也是算法和其他一些组件的集合。STL的目的是标准化 组件，这样就不用重新开发，可以使用现成的组件。STL现在是C++的一部分，因此不用安装额外的 库文件。</p>
+<p>6</p>
+<p>经常有一些人会给我blog评论说，我的代码无法通过编译(大部分人都很和善，只是好奇地问我的代 码为什么能通过OJ但是无法在他的编译器上运行，而有的人直接是以理直气壮的质问和嘲讽的语气说 代码根本是错的少了头文件or错的代码还放blog上误导人之类的- -(⊙o⊙)我也是非常的无奈~)其实是 这样的，编译器的种类、版本不同，所得到的结果自然不同。如果你使用的是 Visual Studio ，可能会 有部分C99标准的库函数或语法是不被支持的，但是这在 C++11 中是支持的，所以会导致一段通过OJ 的代码在VS上无法编译通过的情况。如果你使用的是 Dev-C++ ，可能忘记了在设置中包含 -std=c++11 让Dev支持C++11特性(我在简明教程的末尾也有特别提到如何让 Dev 支持 C++11 特性)，否则一些 C++11 中的好用的函数可能会产生编译无法通过的情况~如果你用的是 Xcode 或 CLion 等，因为它 们内置了􏰀多的常用库函数，很多变量名可能在OJ中不是关键字但是在自己IDE上却是，更严格的标准 和更智能的 IDE 确实会引起一些Warning甚至Error~如果你使用的是 VC++6.0 或者 Turbo C++ ， emmmmm人生苦短，为什么不考虑换个好用的IDE呢?</p>
+<p>有的时候也会产生自己IDE上好好的，OJ上却编译错误的情况，每个OJ的判题系统有自己的编译环 境，这个编译环境的版本配置应该会在它的OJ系统中阐述介绍，比如PAT编译 C/C++ 时用的是 gcc/g++ 4.7.2 ， Java 用的是 Javac 1.6.0 等，而每个 IDE 自带的编译器版本不同，我推荐的是 Dev-C++ ，因为 绝大多数在 Dev-C++ (使用时请在设置中包含 -std=c++11 )通过的代码基本都能顺利通过PAT的OJ， 但也不是绝对，比如很多人就是习惯 Visual Studio (记得要注意考场上 Visual Studio 的版本，可能和 你平时自己用的新版本的 VS 差别很大)或者 Code::Blocks ，我认为选什么编译器是次要的(只要不 是用 VC++6.0 就好…)，最重要的是选自己考场上提供的、熟悉的 IDE 进行平时的代码刷题练习~</p>
+<p>因为我之前在网⻚上直接刷LeetCode养成了不使用IDE的习惯，所以我自己平时刷PAT题的时候都是直 接打开 Sublime Text 就开始写，写完直接提交给PAT OJ，一般情况下就能AC了…如果没能通过OJ，我 会再细看一遍修改一下代码，基本上如果是小问题就能直接解决了…如果实在遇到了难以解决的bug， 我会用 XCode 运行调试~但是由于考场上没有 XCode 这么智能方便的IDE(如果考场上有，我的做题 效率肯定翻倍提高…所以说考试时候用自己平时习惯的IDE是多么重要…极大提升AC题的效率…)，我 会在考前几天熟悉一下 Dev 的使用和调试等技巧，避免考场上出现慌乱不会用IDE的情况(我第一次 参加PAT就因为在考场上不会使用 Dev 只能用记事本敲代码…最后竟然结果还不错…emmmm)</p>
+<p>从0基础到PAT甲级100分的高效学习路径 &amp; 书籍推荐 根据上文关于编程语言如何选择的分析，我就默认正在阅读的你接受了我的安利，决定用 C++ 愉快地</p>
+<p>刷PAT并且打算在PAT甲级中获得高分甚至满分啦~</p>
+<p>首先，得学C语言~大多数人在大学里都是学过C语言的，如果你是刚入计算机坑的萌新，不会也没有 关系，可以现在开始学嘛~ 《C语言入⻔经典》 (霍顿 / 清华大学出版社)是入⻔C语言的好书~因为 作者很厉害~书在豆瓣的评分也很高~作为初学者，如果你对这种巨佬作者写的500多⻚的书比􏰀抵触 和畏惧，可以看 《啊哈C语言!逻辑的挑战(修订版)》 (啊哈磊 / 电子工业出版社)，是关于C语言入 ⻔的⻛趣的编程启蒙书~豆瓣的评分8.3，也很不错~通过这本幽默⻛趣的书也能掌握C语言~</p>
+<p>其次，得了解数据结构和一些基础的算法~我所说的了解，是指知道有哪些常用的数据结构，了解如 何分析和比􏰀不同算法的算法复杂度，不求能够像我当初学习一样直接用C语言手写实现每一个数据结 构(当然这也花费了我大量的时间，对于刷算法来说暂时没有必要，代码能力可以通过大量刷OJ算法 题目培养，而我只是提早培养了自己的代码能力而已)，但求能看懂明白这些数据结构的概念含义~ 可能《数据结构》(严蔚敏 / 清华大学出版社)这本书让很多人产生了怀疑人生甚至想要放弃编程的 想法，所以在了解数据结构这方面，我推荐阅读的是 《大话数据结构》 (程杰 / 清华大学出版社)， 至少不会像严奶奶的书那样大量使用很多伪代码让人难以理解，这本书的好处是能让人看得下去，使 用C语言进行讲解示例，而且讲述了每种数据结构如何运用在我们熟悉的生活中，对数据结构的理解很 有帮助~</p>
+<p>7</p>
+<p>接着，应该了解一下C++语言~我上面已经安利过 C++ 有哪些好处，但是我本人在学习算法过程中接 纳并学习 C++ 经历了很大的波折(辛酸~)，一开始我会了C语言，开始学 Java 做开发，当时觉得 相比􏰀而言 Java 真的比C更人性化更高级，里面封装了很多好用的函数，所以打算用 Java 刷算法， 后来发现大量超时，又换回C语言刷算法，在刷题过程中看其他博主的博客发现很多使用了C++的语法 看不懂，想找到一篇纯C语言实现的很难，而且大多数代码并不优雅，反而冗⻓地让人不想去了解~所 以只能被迫学习C++语言，一开始买了《C++ Primer Plus》中文版，900+⻚的厚书，虽然很多和C语言 内容重合看起来并不累，但看着很难挑出重点，书中有很多内容和特性都是更适合于做C++开发的人去 学习，而对刷算法这件事儿并没有多大帮助，但也没有办法，毕竟对于一个算法路上的初学者来说， 我并不了解哪些有用哪些没有用，每天带着那么厚的书去自习室很累，最后书被我用刀分成了3份每次 带一小半减轻重量…也许正是经历过这些，我才会去写短短15⻚内容的 《从放弃C语言到使用C++刷算法 的简明教程by柳婼》 (<a target="_blank" rel="noopener" href="https://www.liuchuo.net/333-3">https://www.liuchuo.net/333-3</a>)，这个教程两三个小时就可以看完，编程语 言更重要的是练习，将教程里面讲过的那些特性有些印象，在刷乙级or甲级的过程中能够想起并主动 多写多用多练，希望可爱的你们不要像我一样一开始因为怕麻烦和畏惧，错过了这么好用的刷算法的 语言~</p>
+<p>最后，就是开始刷题啦~可能有些人会觉得，不是应该在刷题之前先补充点算法理论知识么，比如看 些算法书之类的~确实，在我学习算法的过程中，刷题之前我阅读了一些算法类的书籍，比如《啊 哈!算法》、《数据结构与算法分析:C语言描述》和《算法导论》，甚至还为了准备蓝桥杯竞赛读了 《算法竞赛入⻔经典》和《大学程序设计课程与竞赛训练教材:算法设计编程实验》，阅读这些书确 实让我补充了很多关于算法的理论知识，但也花费了我大量的时间~而且对于在PAT甲级中获得一个高 分并没有太大的帮助~因为理论终究只是理论，想要在PAT这样的算法考试中获得好成绩还是需要大量 的代码训练、针对题库的题型了解和锻炼等，而且PAT甲级中涉及的算法其实并不多，可能你打开一本 算法书并不能很快找到这些在PAT考试中考察的知识点对应的章节，因为他们零散的分布在各类理论书 籍里，而针对刷题过程中遇到的题目直接去针对性搜索学习相关理论知识也能很快地掌握~重要的 是，你要克服在面对这些陌生的高大上的算法名词时的畏惧心理，遇到不懂的理论主动去网上搜索， 有很多优秀的博客会详细讲解这些算法的理论知识，在懂了基本的数据结构的基础上一定能很快地看 懂哒不用担心~</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">刷题过程中如何平衡自己写代码和看他人代码的小纠结</span><br></pre></td></tr></table></figure>
+<p>可能很多人在刷算法过程中，会觉得自己写不出来的时候看了别人写的代码就不是自己的了，感觉像 是抄了一遍别人的代码，觉得不是自己想出来的印象不够深刻，可能因为小时候做数学题的时候，发 现老师讲了一遍的数学题自己没记住，但是自己独立思考然后做出来的却印象很深刻…所以觉得写代 码的过程中也应该尽量保持独立自主完成~其实我觉得这样的想法是不太对的哦~</p>
+<p>算法这个神奇的东东，有它自身的一些特点，比如一道PAT题目，可能你看了题目后觉得自己有一点思 路了，毕竟只是给个输入要求你给出正确的输出嘛，或多或少还是有些自己的想法的，就开始自己 写，结果没能AC，修修补补改改也勉强最后AC了，但是代码却冗⻓繁琐，过阵子让你再做一遍这道题 又没有思路了…算法题就是这样，总给你一种好像也不是太难的感觉，而且这种提交后会看到自己得 分的真题题库总会让人产生一种当作一次正式考试测试一下自己的水平的想法，导致很多人刷算法完 完全全就是在把自己仅有的思维和编程语法知识完全倒出来展现在代码里，如果这个人是个竞赛高手 倒也没什么关系，但是如果基础不太好，直接自己写而排斥看他人代码的想法是对自己的算法提升是 非常不利的，可能你冗⻓而思路不够清晰的代码确实AC了这道题，但是你可能也错过了向更优秀思路 的代码学习的机会。反而那些没什么思路的人，可能去看了别人优秀的代码，让自己学会遇到这类算 法题的清晰思路，还学了一些下次能用得到的编程语言技巧(比如18年12月PAT考试结束后，一位可爱 的小学弟来感谢我学了我代码中的s.substr()的用法，让他考试的时候直接AC了一道题，增强了考试时 的信心，考试的后半段时间做题状态很好多拿了很多分)所以我建议不管这道题你写出来的代码是AC</p>
+<p>8</p>
+<p>了还是做错了找不到bug，都应该看一看别人解这道题的代码是不是和你思路相同~在我刷题的时 候，如果自己的代码和别人思路方法完全不同，那我会思考，我所写的方法是不是比别人写的代码优 秀?很多时候会发现，并不能找到错误原因的那段代码本身逻辑就􏰀为混乱，所以我的建议是直接删 掉原来写的，对自己写的代码用更好的方法进行重构，因为即使这段代码勉强调试写出来了，下一次 ⻅到它还是难以理解，对自己的考前复习也是一种打击，会让自己看到这段代码就想要跳过不看，而 且还让自己错过了一次学习他人优秀方法的机会，要知道刷题的真正意义是学到知识呀~</p>
+<p>PAT乙级和甲级题库的正确刷题顺序 我在PAT题库的离线版中对每道题都标注了这道题所属的分类，比如PAT乙级:</p>
+<p>1001.害死人不偿命的(3n+1)猜想(15) [模拟] 1002.写出这个数 (20) [字符串处理] 1003.我要通过!(20) [数学题] 1004.成绩排名 (20) [查找元素] 1005.继续(3n+1)猜想 (25) [Hash散列] 1006.换个格式输出整数 (15) [字符串处理]</p>
+<p>虽然看上去PAT乙级涉及了很多不同种类的题目，但是由于PAT乙级题库整体属于比􏰀简单的难度，所 以在PAT乙级中不同分类题目之间区别并不是很大，都是一些简单的逻辑方面的处理和编程语言语法的 运用等，所以我建议PAT乙级就直接按照题库所给出的题号顺序或者自己喜欢的顺序刷即可~刷题过程 中如果觉得自己对于某一分类的题目做的效果特别不理想，可以多刷一些和这个分类相同的题目，加 深对这个类型题目的理解~</p>
+<p>不管是为了准备PAT乙级的考试，还是仅仅是为了通过PAT乙级锻炼一下代码能力和编程语言能力，刷 的过程中如果发现这些题目实在是太简单了，可以不用完全刷完整个题库，挑一些自己做的不理想的 题型多加练习即可，如果觉得题目对于自己来说还是有一定难度，为了在PAT乙级考试中获得一个满意 的分数，还是建议把整个题库都刷一遍的~乙级的题目没有甲级那么多，题目又偏简单，刷一遍不需 要多少时间的~</p>
+<p>相比􏰀而言，PAT甲级的分类就显得非常具有参考意义。PAT甲级中的每一道题我也标注了分类，如:</p>
+<p>1001.A+B Format (20) [字符串处理]<br>
+1002.A+B for Polynomials (25) [模拟]<br>
+1003.Emergency (25) [Dijkstra算法]<br>
+1004.Counting Leaves (30) [BFS，DFS，树的层序遍历] 1005.Spell It Right (20) [字符串处理]</p>
+<p>1006.Sign In and Sign Out (25) [查找元素]<br>
+1007.Maximum Subsequence Sum(25) [动态规划，最大连续子序列和]</p>
+<p>9</p>
+<p>原则上为了准备PAT甲级的考试，最好是需要将整个题目完完全全刷一遍的~甚至有一些准备考试的学 霸会刷两三遍…当然我本人只刷过一遍…很佩服大佬们的毅力~不过也不是完全没有侧重点地刷~</p>
+<p>首先需要明确的是，如果是为了针对PAT甲级的考试，有一些题型是不会再考察的，所以刷题的过程中 如果觉得这些不会再考的题型有些难以理解，可以选择跳过不做~当然如果是想要通过题目锻炼自己 的算法能力，还是可以尝试做一下的~那为什么以前考过现在不考了呢，主要原因是，PAT考试一开始 是没有顶级的，有一些稍微复杂的应该放在PAT顶级里的题目也被混在了甲级里面，而自从有了PAT顶 级考试之后，这些稍微复杂的题目就不会再出现在之后的PAT考试中了~而且PAT甲级一开始是作为浙 江大学计算机系考研复试的上机题目出现的，在题目量不够多的时候，题型涉及面􏰀广，有了PAT考试 之后，题目类型越来越趋于稳定，有一些题号􏰀早的题目可能确实出过某类题型，但是在之后不会再 出现，甚至在考纲中也移除了相关知识点的要求~这些题目主要是动态规划和大模拟题，我将这些可 以暂时刷题过程中跳过的题目列在了下方:</p>
+<p>1007.Maximum Subsequence Sum(25) [动态规划，最大连续子序列和] 1014.Waiting in Line (30) [queue的应用]<br>
+1017.Queueing at Bank (25) [模拟]<br>
+1026.Table Tennis (30) [模拟，排序]</p>
+<p>1040.Longest Symmetric String (25) [动态规划] 1045.Favorite Color Stripe (30) [动态规划，LIS / LCS] 1068.Find More Coins (30) [01背包，动态规划]</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">其次，有一些题目虽然在题库中出现过，但是出现的次数很少，近两年也没考过，或者我觉得将来不</span><br><span class="line">会考、研究了也没有意义的，最重要的是可能研究起来也不是一时半会就能学会记住的，所以在备考</span><br><span class="line">过程中这些题目不是复习的重心，遇到这样的题目可以考虑暂缓复习，先去复习那些经常考察的题</span><br><span class="line">型，等到复习完常考的类型后还有充裕的时间时再去钻研这类题目。我把这一级别的题目列在了下</span><br><span class="line">方:</span><br></pre></td></tr></table></figure>
+<p>1010.Radix (25) [二分法]<br>
+1016.Phone Bills (25) [排序]<br>
+<a target="_blank" rel="noopener" href="http://1033.To">1033.To</a> Fill or Not to Fill (25) [贪心算法] 1056.Mice and Rice (25) [queue的用法] 1057.Stack (30) [树状数组]<br>
+1066.Root of AVL Tree (25) [平衡二叉树(AVL树)] <a target="_blank" rel="noopener" href="http://1123.Is">1123.Is</a> It a Complete AVL Tree (30) [AVL树]</p>
+<p>剩下的题目就是我们真正要集中精力刷的题目啦，我把它们分为两类，一类是比􏰀简单的题目，难度 和PAT乙级差不多(每一场PAT考试，PAT乙级的最后两道题，一般都是同场PAT甲级考试的前两道题， 只不过乙级是中文的题目描述，甲级是对应的英文题目描述，而题目、测试样例和需要提交的代码都 是一样的)，还有一类是涉及基础算法的(很有可能是你没有了解过或者只听说过但不会用的算法， 一般出现在PAT甲级考试的最后两道题)，每场考试PAT甲级就4道题，而前两道又是乙级难度的简单 题，这两道题占了45分~而后两道25分和30分的题目又不都是难题(不要觉得30分的题目一定比25分</p>
+<p>10</p>
+<p>的难…如果你复习完整个题库，你会发现，有的时候30分题目很简单，甚至短短三十行代码就能解 决，但是往往25分题目有一些出题人挖好的坑，有一些测试点总是无法通过不知道错在哪里，或者最 后一两个测试点总是超时这样的情况…)所以对于前45分，在复习的时候给自己的目标是要做到完全 AC，后面两道题可能没法完全AC但至少也要做出绝大部分测试点(要是考场上运气好or自己思考这道 题的脑回路完美避开了测试点给挖的坑or那次PAT考试的题型正好被你考前复习到了就可以满分啦~)</p>
+<p>对于那类比􏰀简单的题目，如果你在刷甲级之前已经刷完乙级，这类题目对你来说应该能够轻松驾驭 (毕竟只是乙级的题目一样的英文翻译过来嘛)，唯一的难点可能就是英文题意的理解方面，我觉得 大可不必担心自己的英文基础比􏰀菜导致甲级的题目会看不懂(比如什么四级六级没考过或者从小英 语不好呀之类的)，出现在题目中的词汇和平时我们英语考试的词汇还是有一些区别的，一些固定的 表述语句、计算机专业词汇(比如 vertex 顶点、 eulerian cycle 欧拉回路、 clique 团)对于刚接触算 法的人不管英语好不好都是陌生的，我当时的做法是将甲级题目中不会的单词或者固定搭配的中英文 都记了下来整理成了笔记，有空的时候看一看或者⻅多了也就记住了，很多题目当中都会重复出现一 些表述~何况题意看不太明白还能通过测试样例的输入输出猜测题意，基本上都是能明白题目的意思 哒~emmm绝大多数时候都能猜出来，有的时候也会翻⻋，我曾经一次考试就因为没有看懂题目中的 一句话(因为里面有我两个不认识的词汇，确实是之前没有复习整理的词汇导致的基础不扎实)，就 没能看出题目的意图，更惨的是我看着测试样例的输入输出也没能猜出来题目的意思，尽管那是一道 很简单的题目…而我对着测试样例把它想复杂了(谁让它放在了倒数第二题这么一个看着就应该很难 的题目位置…都怪自己当初太年轻…)整个考试那道题我就一直在对着测试样例的输入推测如何得到 的输出…结果到考试结束都没有猜出来，其他题目都做完了就那道题一行代码都写不出来…所以平时 看题目时候，还是应该自己去主动读一遍题意，把不会的单词和语句记下来平时看看，不要直接看别 人翻译好的题目大意，看懂了题目大意做出来了真的不代表你在考场上看着题目就能明白题意…如果 之前没有刷过乙级，编程基础又恰好比􏰀弱，这类题目直接上手可能一开始会觉得思路不够清晰，可 以考虑从乙级开始刷降低自己的心理压力，也可以直接从甲级入手，我建议是考甲级就直接从甲级入 手，就像之前建议的懂了数据结构就直接开始刷甲级遇到不会的再去现学现用，不要畏难，只要你心 里告诉自己，很简单的很简单的很简单的不信你打开排行榜看看那么多人都全刷完了排第一了~</p>
+<p>对于那类涉及基础算法的题目，是我们学习的重点和难点~这类题目包括:树、图、并查集、堆等 等，PAT和我们平时参加的大型考试不一样，大型考试命题可能前两年刚刚考过的知识点今年就不会再 考了，PAT考试不是，反而是一种考察的内容趋于稳定的状态，比如树近期考的很多，那下次还可能继 续考，甚至有的时候题目出现了重复考察的情况(我说的重复不是题目完全一样，题干部分说法还是 有差别的，但是实现的代码都差不多)，比如我有一次PAT甲级考试之前复习的时候，我认为树的遍历 这种题目，尤其是前序中序后序互相转化的题目都出现过三次了，已经没有别的花样可以变了，应该 不会再考，所以打算不复习树的遍历了(by the way，算法考试前的复习很重要，因为算法题虽然都 叫算法其实都是一些毫无关联的解决问题的思想方式集合，一个人算法再好过了几个月大半年的也有 可能忘记一类题目的解法，只能有个大概的印象，考前的复习能绝大程度调动当年刷这类题目的思路 回忆，对考试非常有帮助，很有可能平时那类题目刷的特别6，结果过了段时间考前没复习就完全不记 得怎么做了…)，结果考前半天一个正在刷算法找工作的研究生学⻓给我发红包请我讲解一下树的遍 历到底是如何转化的，他说研究了好久还是没明白，我只能“被迫”复习了一下相关内容然后讲给他 听，结果下午的考试最后一题真的就考了一样的题目…之后几次考试也真的发现PAT喜欢考上几次才考 过的题目类型，所以复习的时候还是建议面面俱到(就是有时间的话整个题库都刷一遍的意思)的同 时重点关注一下近两三年考的多的题目类型，因为还有可能会继续考，而且概率很大…为了保证在短 的复习时间内能最大程度地抓住考试重点，所以PAT甲级的题库要 从!后!往!前! 刷~<s>不仅要 从后往前，还要 按!照!分!类! 刷</s>接下来我讲解一下为什么~</p>
+<p>11</p>
+<p>因为刷一道算法题需要花一两个小时甚至半天，平时我们还要上课做别的事情，你在一段时间内刷算 法如果只按照顺序，可能今天遇到了一道最短路径的题目，弄了半天好不容易看懂了别人的代码，以 为自己懂了，结果一周后又遇到了最短路径的题目，此时已经忘记上一次怎么做出来的了…这里就要 提到刷题看别人代码的时候要避免看的每道题几乎都是不同人写的代码，我觉得至少同一个分类的题 型要看同一个人写的代码，如果这个分享代码的人是一个思路清晰的人，他对待同一类题目的解法是 有固定的思路和解题模式的，这样你在学习他的代码的时候也能形成固定的解题模式，有利于你在考 场中遇到同类题目能够直接产生稳定可靠的思路~如果你只是针对一道算法题AC了就万事大吉，下次 遇到同类题目又仅仅针对这道题进行解决，就永远无法形成自己对待这类题目的固定思路，那么考场 上遇到同类型题目能不能AC就只能看运气啦…</p>
+<p>所以刷PAT甲级的算法题应该是这样的顺序，打开题库从后往前整理一下每次考试(每一个由20分、25 分、25分、30分形成一组的四道题为一次考试)的后两道题的题目类型，比如并查集、最短路径、图 的遍历、树的遍历、DFS、BFS、图的连通分量这些，然后挑选分类从考察的多的开始逐个击破，比如 发现最近树的遍历考的特别多，近期想和“树的遍历”这个题型来杀个痛快，就从题库的从后往前顺序 把树的遍历的题目都挑出来开始做，一开始可能连树的遍历的概念都得复习(预习)一下，那就打开 百度搜树的遍历的概念，然后找点博主写的文章或者百科看看学学，懂了基础概念的大概之后，就开 始刷题，一开始刷题可能还需要看别人的代码(比如可爱的小柳柳的代码)，完全没有思路甚至只能 对着别人的代码抄一遍(甚至抄都有可能抄错了没AC自己还找不到bug…)，边写边学习思路，接下 来再挑一道树的遍历的题目，可能这一次自己能写出个大概，很有可能还是一下子写不对，继续看别 人的代码学习，学个两三题很快就会形成自己对“树的遍历”这类题目的解题模式，这样自己就能慢慢 地独立解决“树的遍历”这个类型的所有题目啦~接着再去会会其他常考的算法题型~</p>
+<p>PAT刷题过程中应该如何记笔记</p>
+<p>我在PAT刷题的过程中整理了大量的笔记，这也是我考前复习的重要参考资料，除非你有把握或者只打 算参加一次PAT考试，而且能在考前短时间复习所有的内容保证考试那一天全都记得，否则每次考前都 应该认真看一下自己平时刷题记的笔记~我记的所有笔记都是电子版的(如果你对我打字速度不算慢 这件事儿有兴趣，可以看我写的这篇入⻔教程 《双拼输入法入⻔指南》 <a target="_blank" rel="noopener" href="https://www.liuchuo.net/archi">https://www.liuchuo.net/archi</a> ves/2786和进阶教程 《【双拼输入法】自然码􏰁助码入⻔教程(􏰁助码表)》 <a target="_blank" rel="noopener" href="https://www.liuchuo.net/a">https://www.liuchuo.net/a</a> rchives/2847 ，这两篇也是我博客中访问量比􏰀高的两篇文章)，毕竟写代码写着写着去拿本子和笔 很有违和感，而且电子版的笔记易于检索、不容易丢失，内容形式也更加丰富，比如可以在看官方文 档、电子书或视频的时候直接对内容进行截图粘贴在笔记里，或者直接将电脑上写的代码粘贴在笔记 中，我一般会把笔记写在印象笔记或者 MarkDown 文件里(如果你对 Markdown 语法不了解却有兴 趣，可以看我曾经写的这篇 《Markdown语法说明笔记》 :<a target="_blank" rel="noopener" href="https://www.liuchuo.net/archives/401">https://www.liuchuo.net/archives/401</a>)， 同时我也将我刷题时候记的笔记整理在了这篇经验中~不过笔记还是自己整理的自己看比􏰀好~毕竟 每个人的知识盲区是不一样的~我认为记的笔记应该有这些类别:</p>
+<ol>
+<li>刷PAT甲级过程中整理的不认识的单词or词组or语句，记录方式应该是英文+中文翻译，示例如 下:</li>
+</ol>
+<p>threshold 起征点，下限，开端 M by N matrix M行N列矩阵 decimal system 十进制<br>
+for the sake of 为了</p>
+<p>scattered cities 分散的城市</p>
+<p>12</p>
+<p>one-way is 1 if the street is one-way from V1 to V2, or 0 if not 如果该道路是从V1到V2的单行线，则one-way为1，否则为0 fewest intersections 最少的结点<br>
+radix 基数，进制，根</p>
+<ol start="2">
+<li>对于某一类题型或者某个特殊的有技巧套路的题型的解题模式，可以是文字描述形式的，也可 以直接贴代码，比如我的这篇文章 《【最短路径】之Dijkstra算法》 (<a target="_blank" rel="noopener" href="https://www.liuchuo.net/a">https://www.liuchuo.net/a</a> rchives/2357 )就是我在刷最短路径的题目时整理的笔记，有文字解释也有代码形式，示例如 下:</li>
+</ol>
+<p>对于递归边界而言，如果当前访问的结点是叶子结点(就是路径的开始结点)，那么说明到达了递 归边界，把 v 压入 temppath ， temppath 里面就保存了一条完整的路径。如果计算得到的当前 的 value 大于最大值，就让 path = temppath ，然后把 temppath 的最后一个结点弹出， return ;</p>
+<p>1 2 3 4 5 6 7 8 9</p>
+<p>10 11 12 13</p>
+<p>// 边权之和<br>
+int value = 0;<br>
+for(int i = tempptah.size() - 1; i &gt; 0; i–) {</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  int id = temppath[i], idnext = temppath[i - 1];</span><br><span class="line">  value += v[id][idnext];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>// 点权之和<br>
+int value = 0;<br>
+for(int i = temppath.size(); i &gt;= 0; i–) {</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  int id = temppath[i];</span><br><span class="line">  value += w[id];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>
+<p>关于编程语法方面的小技巧，或者自己容易忘记的好用的函数写法，或者提醒自己做题应该注 意的点，示例如下:</p>
+</li>
+<li>
+<ol start="2">
+<li></li>
+</ol>
+</li>
+<li></li>
+<li>
+<ol start="5">
+<li></li>
+</ol>
+</li>
+</ol>
+<p>如果对数组进行sort排序: sort(a, a + n, cmp1);<br>
+如果对vector v或者字符串v进行sort排序: sort(v.begin(), v.end(), cmp1); 辗转相除法求最大公约数:</p>
+<p>#define max(a,b) a逗号后面不要加空格 define定义时候前面变量不要加空格 最后面不要加分 号</p>
+<p>printf 中的 “%%” 能够输出一个%符号~</p>
+<p>cctype 里面: isalnum 是字母数字; isalpha 是字母; isdigit 是数字; isupper 是大写字 母; islower 是小写字母; isblank 是空格/tab键; isspace 是空格/tab键/回⻋</p>
+<p>1 2 3</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int gcd(int a, int b) &#123;</span><br><span class="line">    return b == 0 ? a : gcd(b, a % b);</span><br></pre></td></tr></table></figure>
+<p>}</p>
+<p>13</p>
+<p>有了这些笔记，考前复习的时候只需要看自己写的笔记+拿两道题做一下培养一下写代码的feeling就可 以啦~</p>
+<p>PAT刷题过程中的一些小技巧 | 我的PAT刷题笔记</p>
+<p>之前有很多人问我，为什么别人blog的代码是处理一组测试数据就输出一组?不是应该全部读入之后 再输出吗?这是新手或者第一次发现别人blog上的“貌似错误的代码”竟然能够AC经常会问的一个问题 ~大多数OJ系统都是支持“处理一组测试数据就输出一组”的做法的，由于PAT的OJ系统是在你的程序 运行结束后开始检查输出是否是正确的，而且虽然在你的编译器上输入输出都显示在一个框框里，但 是在OJ上却是输入输出用文件分开的，所以对于有多组测试数据的输入，可以全部读入之后再输出， 也可以处理一组测试数据就输出一组~这样做是没有任何问题的不要担心哦摸摸头~(而且更省事了 呀不用把答案保存下来再输出了呀~O(∩_∩)O~)</p>
+<p>还有一个小问题就更好玩了，有的人问我遇到无法粘贴的黑框命令行(尤其是考试的时候)怎么在里 面粘贴输入数据…可能现在的小可爱平时都直接用的 win10 的电脑， win10 的系统一般都是可以直接 在运行之后的黑框里直接 Ctrl + C 、 Ctrl + V 复制粘贴的，但是考场上发现有的考点机房装的<br>
+是 win7 ，不能 Ctrl + C 、 Ctrl + V …当然还是有一小半的小可爱知道可以直接通过鼠标右击黑框最上 面的菜单栏选择复制和粘贴的…所以如果有办法直接复制粘贴能不用文件输入就不要用啦，觉得用文 件输入挺麻烦的呢~</p>
+<p>接下来就是一些刷题过程中关于代码方面的笔记整理~我根据我刷过的算法题整理的一些容易忘记的 知识点、找了好几个小时找到bug后总结出来的注意事项整理成如下笔记，希望能最大程度减轻你的 刷题负担和找bug的痛苦~</p>
+<p>dev中查看 vector 的值: *(&amp;v[0])@3 ——必须对 v[0] 变换，先取地址再取值， @ 后面的数字 3 能让 dev显示数组前3个的值，在用这个之前要先在编译选项-编译器里面 -std=C++11</p>
+<p>INT_MAX 、 INT_MIN 、 LLONG_MAX 在 #include <climits> 头文件里面，int最大值为2147483647，共 10位数字; LLONG_MAX 最大值有19位数字，以9开头。所以说储存13位的学号可以用 long long int ， 输出的时候使用 %013lld</p>
+<p>对 char c[15] 进行 sort 排序的 cmp(char a[], char b[]) 函数要这样写: strcmp(a, b) &lt; 0 ，因为 strcmp 返 回的不是 -1 0 1 而是 等于0 小于0 大于0 的某个值， strcmp 在头文件 #include &lt;string.h&gt; 里面</p>
+<p>对 vector v 或者 string v 进行 sort 排序: sort(v.begin(), v.end(), cmp1); ;对数组a进行sort排 序: sort(a, a + n, cmp1);</p>
+<p>将十进制 a 转换为 b 进制数，当 a 不等于 0 时，将 a%b 从后往前倒序保存下来，每次保存后 将 a/b 。这样倒序保存的数就是十进制 a 在 b 进制下的结果。</p>
+<table>
+<thead>
+<tr>
+<th>1 2 3 4 5 6 7 8</th>
+<th>// 判断n是否为素数  bool isprime(int n) { 									<code>   if (n &lt;= 1) return false;    int sqr = int(sqrt(n * 1.0));    for (int i = 2; i &lt;= sqr; i++)</code> 								<code>       if (n % i == 0) return false;    return true;</code> 							 						 						 							 								}</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>14</p>
+<p>比􏰀有学号、姓名、分数的学生成绩排名，用结构体数组存储，用sort函数对 node a, node b 进行sort 排序， cmp 函数根据情况写: cmp 函数中:升序(or非降序): a &lt; b ;降序(or非升序): a &gt; b;</p>
+<p>所谓two pointers问题，就是用 p 、 q 两个指针，使用 while 语句处理链表问题，链表什么的 用 vector 存储就好了~</p>
+<p>输出语句如果有 is / are、加s / 不加s的区别的话一定要当心，比如 “There is 1 account” 和 “There are 2 accounts” 是不同的输出语句</p>
+<p>移除字符串s的第一个字符: s.earse(s.begin()); 在字符串 s 前面增加 n 个 0 : s.insert(0, n, ‘0’); 给一些数字字符串，求这些字符串拼接起来能够构成的最小的数字的方式:用 cmp 函数就能解</p>
+<p>决: bool cmp(string a, string b) {return a + b &lt; b + a;}</p>
+<p>学生姓名和分数，如果不需要将姓名输出的话，不仅可以用 struct 结构体中 string 或者 char 存储姓 名，还可以将姓名转化为 int 类型，比如 ABC4 可以转换为 ((((A*26)+B)*26)+C)<em>10+4=((((1</em>26)+ 2) * 26) + 3) * 10 + 4</p>
+<p>用数组 hash[26] 或者 hash[10] 保存某个字母或者数字出现的次数/是否曾经出现过;用 hash[256] 保 存某个 ASCII码 字符是否出现过， exist[10000] 、 cnt[10000] 同理</p>
+<p>题目输入中所给的a b区间可能a和b给的顺序反了，要比􏰀一下a和b的大小，如果 a&gt;b 记得swap回来 ~</p>
+<p>char a[] 的⻓度要用 strlen(a) ; 得到的⻓度是里面真实存储了字母的⻓度，不包括 \0</p>
+<p>要输入一行的数据的话:</p>
+<p>如果是 string s ，则用 getline(cin, s); 在头文件 #include <string> 里面;</p>
+<p>如果是 char str[100] , 则用 cin.getline(str, 100); 在头文件 #include <iostream> 里面，也可以用 gets(str);</p>
+<p>遇到链表中有无效结点还要排序的，在结构体里面加一个 bool flag = false; 变量，将有效结点的 flag 标记为 true ，并统计有效节点的个数 cnt ，然后在 cmp 函数中这样写:</p>
+<p>这样 flag == false 的会自动变换到最后面去，到时候输出前 cnt 个有效的结点就可~ 如果问年龄区间内的前100个，而数据量很庞大的话，在处理数据的时候就可以把每个年龄的前100个</p>
+<p>选出来，然后再遍历，因为无论如何也不会超过100个，最极端的情况就是当前区间只包含一个年龄~  15</p>
+<p>注意: sort 函数的 cmp 必须按照规定来写，即必须只是 &gt; 或者 &lt; ，比如: return a &gt; b; 或<br>
+者 return a &lt; b; 而不能是 &lt;= 或者 &gt;= ，因为快速排序的思想中， cmp 函数是当结果为 false 的 时候迭代器指针暂停开始交换两个元素的位置，当 cmp 函数 return a &lt;= b 时，若中间元素前面的 元素都比它小，而后面的元素都跟它相等或者比它小，那么 cmp 恒返回 true ，迭代器指针会不 断右移导致程序越界，发生段错误~</p>
+<p>| 1 2 3 4 5 6 | <code>bool cmp(node a, node b) &#123;    if(a.flag == false || b.flag == false)    return a.flag &gt; b.flag; </code> 								<code>else    return a.value &lt; b.value; </code> 								} |<br>
+| ----------- | ------------------------------------------------------------ |<br>
+|             |                                                              |</p>
+<table>
+<thead>
+<tr>
+<th>1 2 3 4 5 6</th>
+<th>// 素数表的建立  // 首先都标记为1，外层循环i从2到√n，内层循环j从2开始到i*j&lt;n 把j的i倍都标记为0 vector<int> isprime(50000, 1); 										<code>   for (int i = 2; i * i &lt; 50000; i++)        for (int j = 2; j * i &lt; 50000; j++)</code> 									<code>           isprime[j * i] = 0;</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>集合s或者映射s中寻找是否存在某一数字: s.find(num) != s.end() 在迭代遍历集合s或者映射s时， auto it = s.begin(); it != s.end(); it++</p>
+<p>set 获取元素值: *it<br>
+map 获取元素值: it-&gt;first it-&gt;second</p>
+<ol>
+<li>
+<p>1  // 关于pair的用法</p>
+</li>
+<li>
+<p>2  // pair是一个变量类型，两两一对组成一个变量，可以自定义pair中两个元素的类型，比如string和</p>
+<p>int，string和double，double和string等</p>
+</li>
+<li>
+<p>3  // pair&lt;string, int&gt;就是string和int类型的一对pair类型，为了简便书写，我们一般会将</p>
+<p>pair&lt;string, int&gt;使用typedef重命名为p之后再使用，避免每次用的时候都写很⻓的pair&lt;string,</p>
+<p>int&gt;</p>
+</li>
+<li>
+<p>4  #include <iostream></p>
+</li>
+<li>
+<p>5  #include <vector></p>
+</li>
+<li>
+<p>6  using namespace std;</p>
+</li>
+<li>
+<p>7  int main() {</p>
+</li>
+<li>
+<p>8  typedef pair&lt;string, int&gt; p; // 建立string和int类型的一对pair类型，并将类型命名为 p</p>
+</li>
+<li>
+<p>9  vector<p> v; // 建立p类型的数组vector v</p>
+</li>
+<li>
+<p>10  p temp = make_pair(“abc”, 123);// &quot;abc&quot;和123组成的pair赋值给pair类型的临时变量</p>
+<p>temp</p>
+</li>
+<li>
+<p>11  v.push_back(temp);// 将临时变量temp放入v数组中</p>
+</li>
+<li>
+<p>12  cout &lt;&lt; temp.first &lt;&lt; &quot; &quot; &lt;&lt; temp.second &lt;&lt; endl;// 输出temp的第1个元素和第2个</p>
+<p>元素</p>
+</li>
+<li>
+<p>13  cout &lt;&lt; v[0].first &lt;&lt; &quot; &quot; &lt;&lt; v[0].second &lt;&lt; endl;// 输出v[0]的第1个元素和第2个</p>
+<p>元素</p>
+</li>
+<li>
+<p>14  return 0;</p>
+</li>
+<li>
+<p>15  }</p>
+</li>
+</ol>
+<p>当心两个数累加或者累乘过程中的超出定义的类型范围，如果是分子分母都是 long long int 类型的分 数，(分子+分子) / 分母的累加，记得在累加过程中约分，以保证不超出 long long int 范围~</p>
+<p>abs() 在头文件 #include &lt;stdlib.h&gt; 里面</p>
+<p>% 1000000007 如果怕溢出可以多取余几次，比如 result = (result + (countp * countt) % 1000000007) % 1000000007;</p>
+<p>6</p>
+<p>1 2 3 4 5 6 7</p>
+<p>// 树的遍历-前序中序转后序:<br>
+void post(int root, int start, int end) {</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (start &gt; end) return;</span><br><span class="line">int i = start;</span><br><span class="line">while (i &lt; end &amp;&amp; pre[root] != in[i]) i++;</span><br><span class="line">post(root + 1, start, i - 1);</span><br><span class="line">post(root + 1 + i - start, i + 1, end);</span><br></pre></td></tr></table></figure>
+<p>1</p>
+<p>树的遍历-后序中序转层序，只需在转前序的时候，加一个变量index，表示当前的根结点在二叉树中 所对应的下标，根结点为 0 ，左子树根结点为 2 * index ，右子树根结点为 2 * index + 1 ，将转的过程 中产生的 post[root] 的值存储在 level[index] 中， level 数组一开始都为 -1 ，这样将所有不是 -1 的点 输出即为层序的输出~</p>
+<p>树的遍历-后序中序转之字形，用 level 上面那个方法就比􏰀不方便，可以在转前序的时候，加一个变 量 level ，一开始为 0 ，每一次 level+1 ，建立一个 vector<int> v[10000] ，则每次将得到的前序的值 放入 v[level].push_back() ，得到的就是一个每一行代表树的一层的二维数组，然后对每一行之字形输 出~</p>
+<p>建立树的方式也可以用邻接表，建立结构体 struct TREE ，包含 left 和 right 两个变量，然后以建立 TREE 的二维数组 tree : vector<TREE> tree[n]; ，然后将 tree[i] 的 left 和 right 赋值为i的结点的左右</p>
+<p>子树的下标: tree[i].left=;tree[i].right=;</p>
+<table>
+<thead>
+<tr>
+<th>1 2 3 4 5 6 7 8 9 										<code>10 11 12 13 14 15 16 </code></th>
+<th>// 二叉搜索树的递归建树方法:  node* build(node *root, int v) { 										<code>   if(root == NULL) &#123;        root = new node();        root-&gt;v = v;        root-&gt;left = root-&gt;right = NULL;</code> 									<code>   &#125; else if(v &lt;= root-&gt;v)        root-&gt;left = build(root-&gt;left, v);</code> 									else 										<code>       root-&gt;right = build(root-&gt;right, v);    return root;</code> 									<code>&#125; for(int i = 0; i &lt; n; i++) &#123; </code> 									<code>   scanf(&quot;%d&quot;, &amp;t);</code> 									<code>   root = build(root, t); &#125;</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>求最短路径过程中，由dfs求得的路径path是逆的，需要倒置输出~<br>
+string 类型转 int 、 long 、 long long 、 float 、 double 、 long double // 头文件 #include</p>
+<p><string> : stoi 、 stol 、 stoll 、 stof 、 stod 、 stold</p>
+<p>char c[10] 类型转 int 、 long 、 long long // 头文件 #include <cstdlib> : atoi 、 atol 、 atoll</p>
+<p>int 、 long 、 long long 、 float 、 double 、 long double 转 string // 头文件 #include <string> : to_string</p>
+<p>17</p>
+<p>8</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> 9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">    printf(&quot;%d &quot;, pre[root]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>// 树的遍历-后序中序转前序:<br>
+void pre(int root, int start, int end) {</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if (start &gt; end) return;</span><br><span class="line">int i = start;</span><br><span class="line">while (i &lt; end &amp;&amp; post[root] != in[i]) i++;</span><br><span class="line">printf(&quot;%d &quot;, post[root]);</span><br><span class="line">pre(root - 1 - end + i, start, i - 1);</span><br><span class="line">pre(root - 1, i + 1, end);</span><br></pre></td></tr></table></figure>
+<p>}</p>
+<p>使用 reverse 倒转vector v或者数组v里面的值 // 头文件 #include <algorithm> ，使用方 法: reverse(begin(v), end(v));</p>
+<p>string 可以使用 push_back(‘a’); 和 pop_back(); 移除一个字符 // 头文件 #include <string><br>
+is_permutation 可以用来判断v2是否是v1的一个序列，返回值是0或1 // 头文件 #include <algorithm> ，</p>
+<p>使用方法: is_permutation(v1.begin(), v1.end(), v2.begin()); 判断是否是不降序列: is_sorted(begin(a), end(a));</p>
+<p>next_permutation() 和 prev_permutation() // 头文件 #include <algorithm> ，使用方法如下:</p>
+<table>
+<thead>
+<tr>
+<th>1 2 3 4 5 6 7 8</th>
+<th><code>string s = &quot;12345&quot;; do &#123; </code> 								<code>   cout &lt;&lt; s &lt;&lt; endl; &#125;while(next_permutation(s.begin(), s.end()));</code> 								<code>do &#123;    cout &lt;&lt; s &lt;&lt; endl; </code> 								<code>&#125;while(perv_permutation(s.begin(), s.end())); </code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>fill 在 #include <algorithm> 头文件中，使用方法: fill(e[0], e[0] + 500 * 500, inf); 大数组必须开全局~</p>
+<p>set 中可以使用 rbegin 访问最后一个元素，使用方法: cout &lt;&lt; *s.rbegin();<br>
+getline(cin, s); 前面如果有换行的输入，一定要在前面加上 getchar(); (用来读取空格)，否则会直接</p>
+<p>只读入要读的字符串前面的 \n ~</p>
+<p>关于质因数的解释:质因数就是一个数的约数，并且是质数。除了1以外，两个没有其他共同质因子的 正整数称为互质。因为1没有质因子，1与任何正整数(包括1本身)都是互质。任何正整数皆有独一无 二的质因子分解式。只有一个质因子的正整数为质数。</p>
+<p>queue q 只有 q.push(i); 和 q.pop(); ，不是 push_back 和 pop_front …但是可以 q.back(); 和 q.front(); 访问队列q的最后一个元素和第一个元素~</p>
+<table>
+<thead>
+<tr>
+<th>1 2 3 4 5 6 7 8 9 									10 11</th>
+<th>// vector的erase与insert要用迭代器:  vector<int> v{1, 2, 3, 4};  v.insert(v.begin()+2, 5); // {1, 2, 5, 3, 4} v.insert(v.begin(), 2, -1); // {-1, -1, 1, 2, 5, 3, 4} 									// string的erase和insert无须迭代器:  string s;  s.insert(0, “3”) // 第一个参数为0~s.length()包括len s.insert(0, 2, “3”);  s.erase(0, 5); // 下标0开始，删除5个字符  s.erase(2); // 删除下标2开始的所有字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>switch() 括号里面只能是 int 型或者 char 型<br>
+在 string s 后面加字符 s += b;<br>
+在 strings 前面加字符 s=a+s; //a可以是 char 型也可以是 string 类型</p>
+<p>18</p>
+<p>substr 只有两种用法:<br>
+string s2 = s.substr(4); // 表示从下标4开始一直到结束 string s3 = s.substr(5, 3); // 表示从下标5开始，3个字符</p>
+<p>如果树的某个结点是 NULL ，而 NULL 是没有值 val 的，所以不能够 NULL-&gt;val 更不能 NULL-&gt;next ， 否则会导致 runtime error ，可以利用 &amp;&amp; 和 || 的短路的性质 ，把 NULL 的判断提前~</p>
+<p>建立一个 node 结构体，在里面重载小于号，将里面的 node 按照 cnt 从大到小排列，如果 cnt 相等 就按照 value 从å小到大排列:</p>
+<table>
+<thead>
+<tr>
+<th>1 2 3</th>
+<th>// 求数组中最大值，可以使用algorithm头文件中的max_element()，返回的是指针 int *b = max_element(a, a + 5);  cout &lt;&lt; *b;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>1 2 3 4 5 6</th>
+<th><code>struct node &#123;    int value, cnt; </code> 									<code>   bool operator &lt; (const node &amp;a) const &#123;        return (cnt != a.cnt) ? cnt &gt; a.cnt : value &lt; a.value;</code> 									} };</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>9</p>
+<p>1 2 3 4 5 6 7 8 9</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td></tr></table></figure>
+<p>// 关于并查集(Union Find)的笔记整理 // 并查集中findFather里压缩路径的代码 int findFather(int x) {</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int t = x;</span><br><span class="line">while(x != fa[x])</span><br><span class="line">    x = fa[x];</span><br><span class="line">while(t != fa[t]) &#123;</span><br><span class="line">    int z = t;</span><br><span class="line">    t = fa[t];</span><br><span class="line">    fa[z] = x;</span><br></pre></td></tr></table></figure>
+<p>}</p>
+<p>return x; }</p>
+<p>// 并查集的并(Union)代码: void Union(int a, int b) {</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int faA = findFather(a);</span><br><span class="line">int faB = findFather(b);</span><br><span class="line">if(faA != faB) fa[faA] = faB;</span><br></pre></td></tr></table></figure>
+<p>}</p>
+<p>// 统计有多少个团体(numTrees)，每个团体多少人(cnt[i])，一共有多少个人(numBirds) for(int i = 1; i &lt;= maxn; i++) {</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(exist[i] == true) &#123;</span><br><span class="line">    int root = findFather(i);</span><br><span class="line">    cnt[root]++;</span><br></pre></td></tr></table></figure>
+<p>} }</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int numTrees = 0, numBirds = 0;</span><br><span class="line">for(int i = 1; i &lt;= maxn; i++) &#123;</span><br><span class="line">if(exist[i] == true &amp;&amp; cnt[i] != 0) &#123;</span><br></pre></td></tr></table></figure>
+<p>1</p>
+<table>
+<thead>
+<tr>
+<th>1 2 3 4 5 6 7</th>
+<th>// sscanf() 从一个字符串中读进与指定格式相符的数据  // sprintf() 字符串格式化命令，主要功能是把格式化的数据写入某个字符串中 // 在头文件 #include &lt;string.h&gt;，使用方法:  char a[50], b[50];  double temp;  sscanf(a, “%lf”, &amp;temp);  sprintf(b, “%.2lf”,temp);</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>如果觉得数组从下标0开始麻烦，可以考虑舍弃0位，从1下标开始存储数据~ 如果对于不同的结果输出不同的字母，最好考虑用字符数组或者字符串数组将这些字符预先存储好，</p>
+<p>避免多个printf语句导致的错误率增加~ string str[10] = {“Mon”, “Tue”, “Wed”, “Thu”, “Fri”, “Sat”, “Sun”}; 处理最后一个结果末尾没有空格的情况，考虑在for语句里面添加if语句的方法处理: if(i != n - 1) printf(&quot;</p>
+<p>&quot;);</p>
+<p>如果输入一组数据和输入好多个组数据的得到的同一组答案不一样，考虑下是不是int n后忘记写了输 入语句…</p>
+<p>如果 name 为10个字符，注意 char name[] 要开至少11个字符~<br>
+string.find 返回的是下标的值，如果没有，用 == string::npos ，如果找到了某个字符，就将这个字符</p>
+<p>的位置赋值给index，可以这样写代码:</p>
+<p>解释:<br>
+int index = s.find(‘a’); //返回a这个字母第一次出现的下标(从0开始) int index = s.find(‘a’, 5); //从下标5开始，寻找a第一次出现的下标</p>
+<p>按照名称的升序排序，因为 strcmp 比􏰀的是 ACSII码 ，所以 A &lt; Z 。写cmp函数的时候 return strcmp(<a target="_blank" rel="noopener" href="http://a.name">a.name</a>, <a target="_blank" rel="noopener" href="http://b.name">b.name</a>) &lt;= 0; ，因为 cmp 的 return 语句需要返回的是 true 或者 false 的值，所以要 写 &lt;= 0 这样的形式。比􏰀 ACSII码 的大小， strcmp(‘a’, ‘z’) 返回负值，因为 a&lt;z ， a - z &lt; 0</p>
+<p>不能 char *str; puts(str); 必须 char str[100000]; puts(str);<br>
+bool 变量在 main 函数里面记得要初始化， bool flag[256] = {false}; 在main函数外面(全局变量)会</p>
+<p>被自动初始化为 false 就可以不写~<br>
+unordered_map 和 multimap :头文件分别为 #include &lt;unordered_map&gt; 和 #include <map> unordered_map 是不排序的map，主要以key，下标法来访问</p>
+<table>
+<thead>
+<tr>
+<th>1 2 3</th>
+<th>// 把字符串string变成字符数组char *c，在头文件<string>里面 string s = “abc”;  char *c = s.c_str();</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>1 if(s.find(‘a’, 5) != string::npos) 2 int index = s.find(‘a’, 5);</p>
+<p>20</p>
+<p>31 32 33 34</p>
+<p>numTrees++;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    numBirds += cnt[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>}</p>
+<p>在内部 unordered_map 的元素不以键值或映射的元素作任何特定的顺序排序，其存储位置取决于哈希 值允许直接通过其键值为快速访问单个元素(所以也不是你输入的顺序，别想太多…)</p>
+<p>multimap 是可重复的map，因为元素可重复，所以一般用迭代器遍历 段错误:数组越界，访问了非法内存 段错误也有可能是因为数组a没有初始化，导致 b[a[2]] 这种形式</p>
+<p>访问了非法内存<br>
+vector<int> v[n] ——建立一个存储 int 类型数组的数组，即n行的二维数组;也可以</p>
+<p>用 vector&lt;vector<int>&gt; v 建立二维数组~ 指针是个 unsigned int 类型的整数~</p>
+<p>两个 int 类型的指针相减，等价于在求两个指针之间相差了几个 int 。如 &amp;a[0] 和 &amp;a[5] 之间相差了5 个int，会输出5~</p>
+<p>浮点数的比􏰀不能直接用 == 比􏰀，因为根据计算机中浮点数的表示方法，对于同一个小数，当用不 同精度表示时，结果是不一样的，比如 float 的 0.1 和 double 的 0.1 ，直接用 == 比􏰀就会输出不相 等，所以可以使用自定义 eps = 1e-8 进行浮点数的比􏰀:</p>
+<table>
+<thead>
+<tr>
+<th>1 2 3 4 5 6 7 8 9</th>
+<th><code>const double eps = 1e-8; #define Equ(a, b) ((fabs((a) - (b))) &lt; (eps)) #define More(a, b) (((a) - (b)) &gt; (eps)) #define Less(a, b) (((a) - (b)) &lt; (-eps)) #define LessEqu(a, b) (((a) - (b)) &lt; (eps)) </code> 								<code>if(Equ(a, b)) &#123;    cout &lt;&lt; &quot;true&quot;; </code> 								}</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>1 2 3 4 5 6 7 8 9 									10 11</th>
+<th>// 使用while接收输入的两种方式 while(scanf(“%d”, &amp;n) != EOF) { 									} 									// 等价于下面这种: //因为EOF一般为-1，所以~按位取反-1正好是0，就可以退出循环了 //所以也写成下面这种情况  while(~scanf(“%d”, &amp;n)) { 									} 									//此处有的小可爱会问我，为什么自己的命令行写这样的代码就会得不到输出结果，但是OJ却能AC，因为计 算机一直在等你的输入结束呀，你要在输入完所有数据之后按输入结束符(ctrl+d还是ctrl+c不同操作系 统不一样…)它才知道你已经输入结束了才会输出你的结果呀~但是提交到OJ就不一样啦，他会自己判断输入 文件有没有已经读取完，所以在OJ上直接能AC~</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>queue 、 stack 、 priority_queue 是用 push 和 pop</p>
+<p>vector 、 string 、 deque 是用 push_back</p>
+<p>push 和 pop 只是一个动作，而 queue 是用 front 和 back 访问第一个和最后一个元素的， stack 使 用 top 访问最上面的一个元素</p>
+<p>stack 、 vector 、 queue 、 set 、 map 作为容器，所以都有 size</p>
+<p>21</p>
+<p>传参是拷⻉，所以用引用的话更快，传参拷⻉可能会超时~<br>
+%c 是会读入空格和回⻋的，如果真的想要获取到输入中的字符 %c ，可以通过在scanf里面手动添加</p>
+<p>空格的方式避免: scanf(“%d %c %d”, &amp;a, &amp;b, &amp;c);</p>
+<p>在 #include <algorithm> 头文件里面，有 reverse 函数， reverse(s.begin(), s.end()); ， reverse 是直接改 变字符串本身的，并没有返回值，不能 reverse 之后赋值给一个字符串，所以 string t = reverse(s.begin(), s.end()); 这样是不对的~</p>
+<p>使用 fill 初始化二维数组是 fill(e[0], e[0] + 510 * 510, 99999); ，不是 fill(e，e + 510 * 510, 99999); ，因为二 维数组在内存里面存储是线性的连续的一段…从 e[0] 的内存开始一直到 n * n 大小的内存~</p>
+<p>循环无限输出考虑一下是不是 i-- 写成了 i++</p>
+<p>容器 vector 、 set 、 map 这些遍历的时候都是使用迭代器访问的， c.begin() 是一个指针，指向容器 的第一个元素， c.end() 指向容器的最后一个元素的后一个位置，所以迭代器指针it的for循环判断条件 是 it != c.end() ，我再重复一遍~ c.end() 指向容器的最后一个元素的后一个位置，这是一个重点和难 点，我画个图加深一下小可爱们的记忆(再biu你们一下，biubiubiu~这下总该记得了吧~)</p>
+<p>关于找不到bug该怎么办 &amp; PAT刷题过程中的一些经验总结</p>
+<p>我在刷题过程中也不可避免的会遇到测试点无法通过的情况，我以及身边各位算法大神的做法是:对 照着其他人的能够AC的代码，对比自己的代码，一点点更改，慢慢缩小目标区域，直到最后找到答案 ~</p>
+<p>鉴于我每天都会遇到很多向我求助代码错误点的朋友，所以我花了数天时间，重读了我过往刷过的几 千道算法题和一些刷题过程中的笔记，从报错信息方面总结了一些代码错误的常⻅原因，希望能帮助 你成功找到不能AC的真正原因~</p>
+<ol>
+<li>所有测试点都是段错误</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">段错误一般是由数组越界、堆栈溢出(比如，递归调用层数太多)等情况引起</span><br></pre></td></tr></table></figure>
+<p>段错误是非常喜闻乐⻅的一种报错方式，因为段错误锁定问题代码区域的方式􏰀为简单:首先 对可疑的代码段进行注释掉，然后提交到OJ上看是否会发生段错误，如果确实是自己注释掉的 这段代码发生了段错误，那么对应的OJ判题结果就会变为答案错误而不再是段错误，说明注释 掉的代码正是引起越界溢出的原因所在~以下是一些可能引起段错误的常⻅原因:</p>
+<p>1.1 多层 for 循环中内层循环本来打算写 j 或者 k ，却因为习惯或忘记误写成了外层循环的变 量 i 或 j ，导致数组访问 i 或 j 下标的时候发生了越界</p>
+<p>22</p>
+<table>
+<thead>
+<tr>
+<th>1 2 3 4 5 6 7 8 9 									10 11 12 13</th>
+<th><code>for(int i = 0; i &lt; m; i++) &#123; </code> 							 						 						 							 								<code>   for (int j = 0; j &lt; 100; j++) &#123;        ......</code> 								…  … // 可能第二层循环j离的太远写着写着忘了… 									for (int j = 0; j &lt; 500; j++) {// 如果这里因为习惯或忘记误写成了j v[j] = 1; // 就有可能因为数组下标不能超过100而导致数组越界访问 … 									} } 									}</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>1.2 数组开小了导致指针指向了未开辟的数组区域，出现了越界访问</p>
+<p>1.3 大数组一定要开全局，而不是写在main函数里面，否则容易发生段错误(因为大数组<br>
+在 main 函数里面的话是存储在栈里，而栈空间是在进程创建时初始化的，有固定的大小，一 般为几十KB，所以太大的数组会耗光栈空间。而全局变量占用的堆空间，堆空间中的内存是按 需分配，自由增⻓的，可以非常大，比如32位的系统中可以大到4GB。将大数组放在全局变量中 能避免栈溢出~</p>
+<p>1.4 递归的出口写的有问题，递归层数太多导致了堆栈溢出，发生段错误<br>
+1.5 打算写从后往前遍历的 for 循环，本应该写 i-- ，结果因为习惯误写成了 i++ ，导致 i 下标</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">访问了越界内存，产生了段错误</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>有几个测试点是段错误</li>
+</ol>
+<p>2.1 是否没有考虑0或者边界值的情况?比如对于一个空数组却访问了 arr[0] ，可能会出现段错</p>
+<p>误的情况</p>
+<p>2.2 对于树来说，当前结点如果是 NULL ，一定要先判断 root 结点是不是 NULL 再使用 root- &gt;val 或者 root-&gt;left 、 root-&gt;right 的情况，因为 NULL 是没有 val 、 left 、 right 等指针的(这 个在LeetCode里面是非常常⻅的错误)</p>
+<p>2.3 while 循环的边界条件未判断正确，导致访问了数组的非法内存，产生段错误 3. 所有测试点都运行超时</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果所有测试点都是运行超时，一般情况是出现了死循环</span><br></pre></td></tr></table></figure>
+<p>3.1 明明 i 从 s.length()-1 开始向前遍历，结果 i-- 误写成了 i++ 导致了无限循环</p>
+<p>3.2 while 循环的边界判断有问题，使得无限循环</p>
+<p>3.3 代码的算法需要优化，过于暴力破解的算法在一些运行时间、算法复杂度要求􏰀高的题目中 会经常发生运行超时</p>
+<ol start="4">
+<li>有几个测试点运行超时</li>
+</ol>
+<p>4.1 cin 的输入比 scanf 更耗时，如果个别测试点超时可以考虑是否可以通过优化输入将 cin 改</p>
+<p>成 scanf<br>
+4.2 对数据进行排序的过程中，有很多数据是无效数据，如果对所有数据都排序可能会引起超</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">时，所以可以考虑在放入数组之前就做一些条件判断剔除无用数据，然后再对数组进行排序</span><br></pre></td></tr></table></figure>
+<p>23</p>
+<p>4.3 如果写了 main 函数之外的其他函数，传引用会比传值的方式更省时，因为传值是拷⻉传 参，传引用是传入的地址直接在原变量上修改，所以可以考虑优化为 void func(int&amp; a) 的方式传 递参数减少耗时</p>
+<p>4.4 在 for 或者 while 循环中的及时判断条件，用 break 提前退出当前层的循环或者直接 return 0; 结束程序，可以降低代码运行时间~</p>
+<p>4.5 for 循环语句里定义 int i 和在外面定义 int i 其实有少许区别，在 for 循环语句里直接定义 的 i ，比如 for(inti=0;i&lt;10;i++) 可能会更耗时，把它改成 inti;for(i=0;i&lt;10;i++) 也是降低代 码运行时间的一种可考虑方式哦~</p>
+<p>4.6 求最短路径的题目中以用 Dijkstra 解决的非要用 DFS 强行深搜(毕竟 DFS 也是一种暴力破 解)获得答案可能会导致超时哦~</p>
+<p>4.7 使用了 v.size()-1 等方式，如果 v.size() 本身就是0，因为 v.size() 返回值是无符号整<br>
+数 unsigned int ， unsigned int 的0减去1得到的是 unsigned int 的最大值而非 -1 ，这可能会让</p>
+<p>inti 循环时 i&lt;v.size()-1 超时~</p>
+<p>4.8 是不是明明可以用键值对找到对应的值(比如 bool visit[100] 寻找对应的 visit[80] 是否<br>
+为 true ，复杂度为 O(1) )却用了 for 循环一个个找的存储方式(比如邻接矩阵可以一次查找 得到，却用了邻接表一个个查找)，以空间换时间的方式是常用降低算法时间复杂度的方式~</p>
+<p>4.9 使用 map 存储如果超时了，而题目又没有要求排序，换成用 unordered_map 就不会超时啦 ~同理，使用 set 存储如果超时了，可以考虑换成 unordered_set 避免超时~</p>
+<ol start="5">
+<li>有几个测试点答案错误</li>
+</ol>
+<p>答案错误的原因太多了，代码思路稍有不对或是小粗心都会出现很多答案错误，甚至有的时候 没有完全理解对题意却能得到大部分答案正确、个别答案错误的情况(比如PAT红黑树那道题， 我在考场上就未能完全理解题意却得到了大部分分数，但由于对题意把握的不准确，这也影响 了我调试找bug)，对着代码找半天都不知道错在哪的情况也常有发生，具体问题具体分析，以 下是我调试过程中遇到过的一些常⻅错误~</p>
+<p>5.1 输出语句的错误。比如输出的个别字母不正确、输出 yes / no 的大小写没有按照要<br>
+求、 true / false 拼写错误、 1 后面单词单数不要加 s ， 2 以上的个数后面单词复数要<br>
+加 s 、除了单复数s还有be动词的 is 和 are 的区别等问题，有时候不正确的拼写遇上多条输出 语句还会引起一半答案错误、一半答案正确的情况还始终找不到原因在哪emmmmmm</p>
+<p>5.2 switch 后面只能 int 或者 char 类型 其它类型不可以~用错了 switch 也会导致答案错误~ 5.3 memset 只能赋值 0 、 -1 和最大值(因为 memest 函数是用按位赋值的)，如果你想要给</p>
+<p>数组赋值一个特定的值，请使用 fill 函数~</p>
+<p>5.4 getline 读取的是一整行字符串，如果接下来还要读取字符 char ，会读取到上一行字符串末 尾的回⻋换行符，所以为了避免这种情况，要在 getline(cin, s); 后面加一句 getchar(); 才能得到 接下来自己想要读取到的 char ~</p>
+<p>5.5 int + int 、 int * int 的过程中都有可能出现结果超过了 int 的值而产生溢出的情况，这样就 会使一些数据􏰀大的测试用例因为溢出变成了别的数字而得到答案错误~(所以不要觉得题目 中给出的数据都在 int 范围之内就只用 int 存储所有变量，因为可能在计算加法或者乘法的过 程中超出 int 的范围)</p>
+<p>5.6 有时候会给一组ab区间，但是a b并没有按照从小到大的方式输入，可能个别数据是 a &gt; b ， 所以要先判断一下给出的区间ab谁大谁小，如果a大b小就应该使用 swap 函数交换一下~</p>
+<p>24</p>
+<p>5.7 如果是给id的题目，可能输出中要求按照不满4位在前面补 0 的情况，所以要用 printf(“%04d”, a); 的方式输出，否则遇到不满4位的id输出结果可能会导致答案错误(有时题目</p>
+<p>会显示为格式错误)~</p>
+<ol>
+<li>
+<p>内存超限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">内存超限是指开的数组或占用的内存过大，超过了要求的内存范围:</span><br></pre></td></tr></table></figure>
+<p>6.1 可以考虑开 vector 或者动态开辟数组的方式避免直接开 1000000 这样很大的数组</p>
+<p>6.2 如果是为了存储一些键值对，可以避免开 int hash[100000] 这样的大数组，而是用 map 或 者 unordered_map 来处理键值对的映射</p>
+<p>6.3 如果你开大数组是为了存储稀疏矩阵，可以用邻接表存储的方式代替邻接矩阵来降低空间复 杂度(以时间复杂度换空间复杂度的方式)~</p>
+</li>
+<li>
+<p>提交第一次超时了，第二次却AC了</p>
+<p>OJ系统大多有多台服务器，在平时练习过程中，提交那一瞬间如果遇到了新买的高配置服务器 可能运行比􏰀快，就能够让你的代码AC，有的时候遇上了普通或者慢的服务器，就有可能会运 行超时~但是PAT考试时候不要心存侥幸或是觉得这不公平哦~他们会关闭个别特别快的服务器 只留下势均力敌的几个服务器hhhhhhha~</p>
+</li>
+<li>
+<p>浮点错误<br>
+程序中出现了除以 0 、取余 0 的这种非法操作~ 所以发生浮点错误应该考虑程序中: 是否可能出现了一个数除以 0 的情况 是否可能出现了一个数取余 0 的情况 是否发生了数据溢出而导致的除以 0 或者取余 0 的情况</p>
+</li>
+<li>
+<p>返回非零<br>
+11.1 如果你用的是 C/C++ ，请使用 int main 和 return 0;</p>
+<p>11.2 如果你用的是 Java ，那么可能原因是你写的代码里面的 public class 后面的那个名字不 是 Main ，改成 Main 就可以通过了~</p>
+</li>
+<li>
+<p>格式错误</p>
+<p>13.1 可能是换行、空格等出现了问题，输出语句内可能有拼写错误、空格多打少打等情况~</p>
+<p>13.2 行末的不必要的换行或是缺少了必要的换行也有可能引起格式错误~</p>
+<p>13.3 题目要求小写/大写而自己没有按照题目要求输出也有可能格式错误~</p>
+<p>13.4 题目要求输出4位数字不足前面添加 0 的时候没有按照要求用 printf(“%04d”, a); 的方式输 出，否则遇到不满4位的id输出结果可能会导致格式错误~</p>
+</li>
+</ol>
+<p>PAT考试的注意事项 | 考试期间的心态调整</p>
+<p>首先要注意考试日期，提前去官网打印好准考证，考试带身份证、准考证和一两支笔(有一次我带了 一支笔结果路上一摔写不出来了断墨了…，考试过程中必然会打一些草稿，比如做树或者图的题目的 时候…草稿纸考场上会发不用带)，考试时间是3小时，考试开始的时间有时候每个人不统一，坐下后 可能有的人提前输入准考证和密码就能登陆进去开始做题了…有的时候有倒计时是统一开始的…不过 没关系，对于每个人来说不管有没有提前开始都只有3小时的时间(到了考试正式开始时间还没开始就 没3小时了哦)，屏幕上会显示考试剩余的时间和你的照片~</p>
+<p>25</p>
+<p>考试的时候一般坐在你左边右边的是和你不同类别的PAT考生，比如考PAT甲级的人左右坐的是考PAT 乙级的萌新or顶级的大佬，所以考试时候留意自己的考试进度就好，别人有没有在开始考试后看到题 目就开始奋笔疾书(或者应该叫噼里啪啦努力敲键盘?)和你没有关系，不用care他/她~你思考你自 己的题目就好~</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">刚在考场座位坐下的时候，可以做以下几件事情:</span><br></pre></td></tr></table></figure>
+<p>1.打开IDE试试好不好用，如果你是一个又会 C/C++ 又会 Java/Python 的大佬，可以都试一下~毕 竟有的时候会发现，一道题用xx语言处理起来有点复杂但是用另一个语言解决起来会更简单…(当 然考试绝大多数情况下还是对待各个语言很公平哒)，给自己的IDE写个包含输入、输出<br>
+的 “hello,world” ，运行一下看看有没有问题，然后打个断点试试调试好不好用~有问题可以随时找 考场老师协商解决~</p>
+<p>2.试一下鼠标键盘好不好用，可能机房的机子个别会有故障，比如我会坐下来在键盘上输入一<br>
+句 “The quick brown fox jumps over the lazy dog” 来检验键盘的26个字母是否好用~(因为这句话包 含了所有英文单词…不了解这个梗的可以参考维基百科 “The quick brown fox jumps over the lazy dog” 词条:<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/The_quick_brown_fox_jumps_over_the_lazy_dog">https://en.wikipedia.org/wiki/The_quick_brown_fox_jumps_over_the_lazy_dog</a>)</p>
+<p>3.提前建好做题的时候需要用到的cpp文件，并写好常用头文件和 main 函数和 return 0 。如果你 用的dev，在直接新建一个 .cpp 文件后，保存千万不要把这个 .cpp 文件直接保存在盘符里，比如 D盘、E盘这些，一定要在盘符里面建立一个文件夹然后将 .cpp 文件保存在这个文件夹里，要不然 编译调试的时候会出问题~还有就是不要直接保存在桌面，因为桌面一般情况下都在C盘，C盘绝 大多数情况是还原盘，也就是机房的这台机子如果一不小心重启了，整个还原盘可能都会被重置， 你刚刚保存的代码文件就消失了，如果你正好一道题写到一半…不小心机子重启了…你保存在桌面 的话没了…就得重新写这段代码了…所以可以问一下考场的老师哪一个是非还原盘符，一般情况下 是D盘E盘…也就是机子重新启动后上一次保存的文件还会在的盘…我的习惯是只建立一个 .cpp 文件，每次的题目都写在同一个 .cpp 文件里，也有的人喜欢建立4-5个 .cpp 文件、一道题目放在 一个文件里，做完一道就换一个文件…由于我只用一个 .cpp 文件写代码，所以我一般还会打开记 事本，保存在刚刚建立的那个文件夹里，用来粘贴我做完题目后的代码，毕竟对考试系统不太信任 万一我AC后的代码弄没了呢…或者有题目没AC想换种思路写，但是不确定能不能按照新的思路完 美写出来，就把旧的思路写一半没AC的代码先保存在记事本里…头文件一般写以下几个常用的， 反正多写了也不会怎样…所以我一般在考场上坐下后会在我新建的 cpp 文件里写以下一段代码然 后保存，做好开始考试的准备:</p>
+<table>
+<thead>
+<tr>
+<th>1 2 3 4 5 6 7 8 9 									<code>10 11 12 13 14 15 </code></th>
+<th><code>#include &lt;iostream&gt; #include &lt;cstdio&gt; #include &lt;algorithm&gt; #include &lt;vector&gt; #include &lt;map&gt; #include &lt;set&gt; #include &lt;string&gt; #include &lt;cctype&gt; #include &lt;unordered_map&gt; using namespace std; </code> 								<code>int main() &#123;    int n; </code> 								return 0; }</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>26</p>
+<p>由于PAT考试是联网的考试，很多时候搜索引擎什么的都能用，不像蓝桥杯那样的考试给的电脑都是只 能连局域网的，所以考试过程中需要注意的是，任何时候都不要尝试打开搜索引擎或者其他浏览器 (更别用自己随身携带的手机等设备查资料…)因为每个考场的屏幕都有监控程序，如果有违规行为 很快就会被识别到，一旦发现就会被逐出考场禁考三年，每次考试都有被强行逐出考场取消考试资格 的考生…有的时候或许只是无心之举，比如电脑上的搜狗输入法突然弹窗，你没有及时关闭，或者点 了上面的什么新闻标题跳到新闻详情⻚面了…可能会被监控程序发现后告诉考场老师来提醒警告你… 比如有的人在做PAT甲级题目的时候看不懂英文，正好浏览器最上方有一个 点击翻译 的按钮…(当年 还是直接用浏览器做题目，现在一般考试时候用的是拼题A的客户端，如果拼题A客户端临时出了问题 考场才会启用浏览器直接登录做题的方式…)然后他点了…然后就算作违规行为被禁考了…所以千万 不要脑壳子一短路随便乱点呀~还有一个禁考的例子就更好玩了，打开 Visual Studio 还是 Eclipse 的 时候，弹出来一串英文，大概意思是你现在用的这个新版的IDE出了很多新的功能要不要深入了解一下 之类的，有的人一看全英文的一下子没看懂，就点了个 Learn More 按钮，直接跳转到浏览器打开了这 个IDE官网的特性介绍⻚面…然后被监控程序发现了…我所在的考场的监考老师还是比􏰀仁慈的，只是 走到那个考生身边提醒他赶紧关闭⻚面，如果遇到不友善的监考老师就不知道会不会算做作弊啦，所 以小可爱们考试的时候一定要注意，考试过程中不要乱点别的~考完了倒是可以在等证书打印好的时 候随便倒腾电脑，我一般都会带U盘到考场上等着考完考试的时候把考试时候AC的代码拷⻉到U盘里… 毕竟回去还要给小可爱们发博客更新题解~</p>
+<p>还有一点需要注意的是，有一次考试我旁边的那个考生脚踢到了对面考生的电脑插座，导致对面考生 的电脑断电重启了…刚写好的代码全没了…所以我们在考试过程中，首先尽量保证不要影响到其他人 的正常做题，还有就是要及时记得保存自己所写的代码，不管是写到一半还是写完了还没找到bug， 这段代码如果真的因为机子断电重启突然消失了自己完全重新写是很影响做题效率和心态的…写的时 候注意随时 Ctrl + S 保存，保存，保存…</p>
+<p>考试过程中，如果一道题尤其是简单的题因为一两个测试点没有通过，不要一直纠结导致后面的题目 没时间看，注意控制好时间，很多时候后面的题目考的还是挺简单的，如果因为前面一两分错过了后 面几十分就很不划算啦~而且这种情况还挺常⻅的，不信问问那些每次考试考93、95、97分的，基本 上都是因为第一道题或者第二道题有某个测试点答案错误…个别人是因为第三第四题的算法没写好导 致最后一个测试点运行超时扣了三五分…算法考试，尤其是这种即时可⻅自己得分甚至还能看到本次 考试实时更新的得分排行榜的考试(在考试系统里点排行榜就能看到…大多数人应该在考试的时候没 有心情看…我就不一样了…我自己做不出来就去看看有多少大佬100分了…然后告诉自己我也能100的 快加油做题…)，心态是非常重要的，如果心乱了很有可能什么bug都找不到什么思路都没有了~比如 18年3月的那场考试，考试1小时20分钟的时候我已经全部做完题目确认自己得了100分然后交卷出考场 了…而和我同考场的男朋友考完后告诉我，他在我考100的时候，自己连一道题目都没能完整的AC…但 是看到我这么菜的弱鸡都能全都AC，觉得这次考试的题目一定很简单，瞬间信心倍增，一路AC，最后 考了97…(嗯…他就是那种觉得30分的难题很简单，反而会被第一题的一两个测试点卡住或者读不懂 简单题目题意的那类人)所以心态很重要，不要觉得别人做出来了自己没AC感到焦虑~要相信别人能 AC题目一定不难自己也能AC~</p>
+<p>蓝桥杯是什么 | 参加蓝桥杯有什么用</p>
+<p>蓝桥杯全称是“蓝桥杯”全国软件和信息技术专业人才大赛， Java 和 C/C++ 项目分为ABC三组，大学A 组是重点本科，大学B组是普通本科，大学C组是专科，985、211本科生和所有院校研究生只能报大学 A组，其它院校本科生可自行选择报大学A组或大学B组，高职高专院校可报大学C组或自行选择报任意 组别~语言又分为 Java 软件开发和 C/C++ 程序设计(所以每次写自己获奖证书的时候，写第九届”蓝 桥杯“全国软件和信息技术专业人才大赛 C/C++ 程序设计大学A组江苏省赛一等奖这么⻓的名字的时候 都觉得很有违和感…)，除了 Java 和 C/C++ 项目还有嵌入式设计与开发、单片机设计与开发，由于</p>
+<p>27</p>
+<p>我对这两个了解的不多就不多说啦~(我在学校担任了三年的竞赛团队班⻓，带领大家组织竞赛培 训、学习指导和去北京参加决赛考试带队订票之类的，团队里没有人参加嵌入式和单片机的…只<br>
+有 Java 和 C/C++ 的…所以对嵌入式和单片机组实在不了解…)所以竞赛分为6个组别: C/C++大学A 组 ， C/C++大学B组 ， C/C++大学C组 ， Java大学A组 ， Java大学B组 ， Java大学C组 。省赛考4个小 时且6个组同时进行，决赛也是4个小时，(软件类比赛是4个小时、电子类比赛是5个小时)分为上午 和下午两个场次，具体看准考证上自己是上午考还是下午考…考试过程中是机考，机子会被断网，在 局域网内连接到各个考点的竞赛服务器，然后在浏览器输入监考老师给出的局域网地址下载试题和提 交答案~题型分为结果填空、代码填空和编程大题，只能提交答案不能看到自己的答案是否正确，也 不会知道自己最后得了多少分，只会在公布竞赛结果的时候知道自己获得了几等奖(感觉好不透明啊 好担心有暗箱操作.jpg)~</p>
+<p>省赛每个组别设置一、二、三等奖，比例分别为10%、20%、30%，总比例为实际参赛人数的60%，零 分卷不得奖~省赛一等奖选手获得直接进入全国总决赛资格~省赛报名时间一般为每年的11月、12 月，有的学校在省赛报名之前的10月、11月左右还会举办一次校内选拔，选拔出来的学生才可以参加 省赛(我们学校是校内选拔赛通过的同学参加省赛和决赛可以报销报名费和旅费，没通过校内选拔的 想参加的话可以自费，省赛的报名费是300元)省赛的参赛时间是第二年的3月份(有时候是4月初)， 省赛的考点准考证上会写，一般情况下都是自己的学校(如果自己的学校是考点的话，不是的话就会 被安排在附近别的学校的考点，比如就有别的学校的学生省赛那天来和我们学校的考生一起参加考 试)</p>
+<p>省赛的成绩大概一两周后就会公布(还是PAT这种边做题就知道自己多少分的感觉比􏰀刺激~)，获得 省赛一等奖的可以参加全国总决赛，决赛一般是5月底在北京举行，在北京也有很多考点，准考证上会 写分配到哪个学校作为考点~我在北京大学和北京科技大学(还是北方科技大学?北京理工大学?北 方工业大学?..忘记了…)参加过~决赛的个人赛根据相应组别分别设立特、一、二、三等奖及优秀 奖~每个组特等奖1名，一等奖不高于5%，二等奖占20%，三等奖不低于25%，优秀奖不超过50%， 零 分卷不得奖~我们学校一般是周五高铁去北京(我学校近两三年比􏰀土豪，给报销地铁票、高铁票、 宾馆住宿、吃饭和打⻋费，之前只报销绿皮火⻋…)，在宾馆休息一下周六去考试，周日早晨去北京 大学邱德拔体育馆(或者别的地方)参加颁奖典礼，一般颁奖典礼我就不去了…难得帝都溜一圈，去 逛景点名胜了…然后去坐高铁，周日晚上(深夜)到达学校，结束了三天的公费旅游时光…</p>
+<p>至于蓝桥杯有什么用，官方是这样解释的:蓝桥杯大赛是全国性比赛，2017年又走出国⻔举办了国际 赛，未来大赛不但从规模还是影响力都会越来越大。能在蓝桥杯大赛上获奖对于学生来说本身是一个 荣誉和实力的象征。同时根据各个院校政策的不同，省赛对于保研、就业和院校评三好学生和算学分 等都会有一定的作用。</p>
+<p>emmmm…至于真正的作用还得看个人，如果你想要得到那两三张证书，或者想通过它丰富一下自己 参加算法竞赛的经历，都是可以参加一下的~算法竞赛其实都是相通的，如果之前在一种竞赛中努力 准备过，可以顺便在另一种竞赛中稍作准备就直接参赛，有时候也能获得不错的结果(比如就有一些 ACM大佬顺便参加蓝桥杯来拿两张证书开心一下)~在大学期间我本着不参加无意义的竞赛不考无意 义的证书的原则，最终还是决定参加了蓝桥杯，而且大学四年期间参加了四年，我当初选择参加的原 因是希望在专业课老师面前获得关注度和存在感，因为当时蓝桥杯的培训老师都是大学里教我们计算 机专业课程的老师，我在蓝桥杯中获得的成绩那些老师们也会知道，所以在大一公共基础课比􏰀多的 时候我还是不敢逃课的，后期的大二大三大四专业课多了之后…依靠参加蓝桥杯获得的在计算机系内 的存在感(毕竟即使我说我PAT甲级考了100老师也不知道那是什么呀…)，我就几乎没有上过课了… 有了更多的时间去自习室图书馆写代码看书…这也是我能在贪玩的情况下还有很多时间学习开发知 识、看课外书、刷LeetCode和PAT的原因…所以，大学的竞赛、考试、证书那么多，选择几个自己有兴 趣的、对自己未来职业发展有帮助的，专心对待，取得一个满意的、将来能写在简历上的成就(简历 上蓝桥杯我就不太好意思写…毕竟决赛没拿一等奖…)，比多考很多无意义的各种证要好很多~</p>
+<p>28</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">蓝桥杯省赛和决赛需要掌握的知识</span><br><span class="line">官方考纲对于蓝桥杯考试涉及的知识要求写的很宽泛:</span><br></pre></td></tr></table></figure>
+<p>Java组解题允许使用的特性:JDK1.6 支持的特性<br>
+C/C++组解题允许使用的特性:选手可以使用 c ⻛格或 c++⻛格或混合⻛格解答编程大题。允许使</p>
+<p>用 ANSI C(99) / ANSI C++(98) 特性。允许使用 STL 类库。</p>
+<ol>
+<li>Java 大学 C 组 解题所涉及的知识:基本语法、面向对象、网络编程、接口、集合、IO、多线 程、内部类、异常与保护，基本数据结构。(不涉及 swing 等图形界面，不涉及 html、 JSP、Tomcat、开源框架等 web 开发方面，不涉及 JDBC、SQL 等数据库编程方面)</li>
+<li>Java 大学 B 组 解题所涉及的知识:Java 大学 C 组全部知识 + 数据结构(高校《数据结构》 教材中出现的经典结构，及其通过组合、变形、改良等方法创造出的变种)+ 大学程度的基 本数学知识(含:解析几何、线性代数、微积分、概率、复平面基本性质)</li>
+<li>Java 大学 A 组 解题所涉及的知识:Java 大学 B 组全部知识 + 设计模式，反射，XML，多核与 并发，软件测试。</li>
+<li>C/C++大学 C 组 解题所涉及的知识:结构、数组、指针、标准输入输出、文件操作、递归、 基本数据结构(在代码填空中不会出现 c++知识，不会出现 ANSI C/C++ 之外的 windows API 调用)</li>
+<li>C/C++大学 B 组 解题所涉及的知识:C/C++大学 C 组全部知识 + 数据结构(高校《数据结构》 教材中出现的经典结构，及其通过组合、变形、改良等方法创造出的变种)、函数指针、位 运算 + 大学程度的基本数学知识(含:解析几何、线性代数、微积分、概率、复平面基本性 质)</li>
+<li>C/C++大学 A 组 解题所涉及的知识:C/C++大学 B 组全部知识 + 函数模板、宏替换、汇编知识</li>
+</ol>
+<p>除了编程语言的基础知识，大赛很少用到特定领域的知识。比如:电信、医药、地质、银行等特定 领域。如果偶尔用到，会详细解释概念，并给出足够的示例。但“数学领域”是个例外。大赛假定选 手具有足够的中学数学知识。包括:</p>
+<p>算数:素数，整出，余数，求模，不定方程 … 代数:函数，方程，多项式，… 解析几何:笛卡尔坐标系，点到直线的举例，极坐标… 复数:模，夹⻆，矢量的合成和分解</p>
+<p>Java 和 C/C++ 组虽然题目不同但是考察的算法都差不多，其实我觉得没有考纲说的那么夸张…尤其 对于省赛来说，基本上就是比普通的算法竞赛增加了一点数学知识，而决赛确实会更难一些(省赛和 决赛的难度不是一个数量级的，省赛很简单，决赛很难)，但是尽可能得做出自己会的题目也能得到 一个不错的名次~“蓝桥杯”在前几年的时候被人戏称“暴力杯”，意思是蓝桥杯很喜欢考暴力破解之类 的题目，之前省赛可能都是暴力破解能解决的，尤其是解决那些没有超时限制的填空题~什么叫暴力 破解呢，简单地说，暴力破解就是想办法把所有可能的情况逐一枚举~复杂地说，就是能不重复、也 不遗漏地把所有情况列举出来，然后边筛选边累积处理~最基本的做法是:循环嵌套循环or递归~虽 然近年来说暴力破解的题目有所减少，或者变成了带回溯剪枝的DFS题(DFS的本质也是遍历所有情况 的暴力破解，只不过在DFS的过程中可能需要对于不可能的情况提前return而已…)</p>
+<p>从0基础到蓝桥杯省赛一等奖的高效学习路径 &amp; 书籍推荐<br>
+29</p>
+<p>如果你想要愉快地去北京参加蓝桥杯，首先要通过省赛一等奖~否则就没有机会了去北京参加决赛了 ~(至于决赛该如何备考，我会在下文提到)千万不要把自己的目标定的很低，我之前就有小伙伴来 找我问我如何在蓝桥杯省赛中获得二等奖、三等奖…其实每年参加蓝桥杯的人数多达四五万人，其中 懂算法并且认真刷题的并不多，而且省赛一等的奖项设置的很宽，成绩在前10%的人都能获得一等 奖，很多人报名参加蓝桥杯省赛只是去体验一下都没有认真准备，所以获得一个省赛一等奖其实是很 容易的，只要你之前有认真准备~</p>
+<p>从0基础到蓝桥杯省赛一等，也分为看书和刷题两大块，刷题是主要工作~首先说看书~</p>
+<p>如果你报名的是 Java 组的，首先得了解 Java 语言，我推荐的 Java 语言入⻔书是机械工业出版社 的 《Java核心技术卷I:基础知识》 和 《Java核心技术卷II:高级特性》 ，我看的时候还是第9版，现在 应该已经出到第10版了~如果仅仅是打算用 Java 来刷算法而不是做开发，那这两本书并不需要全看 (不过一般情况下不打算用 Java 做开发的人应该不会选择用 Java 刷算法吧…)，只需要了解 Java 的基础语言和一些刷算法用得到的集合框架即可，我以第10版为例，把针对算法部分需要和不需要学 习的内容对应的章节列在了下方:</p>
+<p>《Java核心技术卷I:基础知识》 不用看 的内容: 第10章 图形程序设计 403<br>
+第11章 事件处理 439 第12章 Swing用户界面组件 469 第13章 部署Java应用程序 580</p>
+<p>第14章 并发 624</p>
+<p>《Java核心技术卷II:高级特性》需要看的内容: 第2章 输入与输出 39<br>
+第6章 日期和时间API 288</p>
+<p>在学习完语言后，还需要学习数据结构，推荐阅读的是 《大话数据结构》 (程杰 / 清华大学出版 社)，理由和下方 C/C++ 组中描述的一样就不赘述啦~</p>
+<p>之后还需要学习一点儿算法，如果是 Java 组的，建议直接看 《算法(第4版)》 ([美] Kevin Wayne 著，谢路云 译 / 人⺠邮电出版社)，这本书是算法领域的经典参考书，在亚⻢逊图书上广受好评，使 用 Java 实现代码，讲述了排序、搜索、树、图、字符串、正则表达式等经典数据结构和算法，里面 有很多插图，讲解内容清晰易懂~</p>
+<p>如果你是报名 C/C++ 组的，就和上面介绍的“从0基础到PAT甲级100分的高效学习路径 &amp; 书籍推荐”里 的内容差不多，首先学C语言，然后学习数据结构，最后学一下C++的特性和STL，我把和我上文PAT中 所述相同的部分附在了下方:</p>
+<p>首先，得学C语言~大多数人在大学里都是学过C语言的，如果你是刚入计算机坑的萌新，不会也 没有关系，可以现在开始学嘛~ 《C语言入⻔经典》 (霍顿 / 清华大学出版社)是入⻔C语言的好 书~因为作者很厉害~书在豆瓣的评分也很高~作为初学者，如果你对这种巨佬作者写的500多⻚ 的书比􏰀抵触和畏惧，可以看 《啊哈C语言!逻辑的挑战(修订版)》 (啊哈磊 / 电子工业出版</p>
+<p>30</p>
+<p>社)，是关于C语言入⻔的⻛趣的编程启蒙书~豆瓣的评分8.3，也很不错~通过这本幽默⻛趣的书 也能掌握C语言~</p>
+<p>其次，得了解数据结构和一些基础的算法~我所说的了解，是指知道有哪些常用的数据结构，了解 如何分析和比􏰀不同算法的算法复杂度，不求能够像我当初学习一样直接用C语言手写实现每一个 数据结构(当然这也花费了我大量的时间，对于刷算法来说暂时没有必要，代码能力可以通过大量 刷OJ算法题目培养，而我只是提早培养了自己的代码能力而已)，但求能看懂明白这些数据结构的 概念含义~可能《数据结构》(严蔚敏 / 清华大学出版社)这本书让很多人产生了怀疑人生甚至想 要放弃编程的想法，所以在了解数据结构这方面，我推荐阅读的是 《大话数据结构》 (程杰 / 清 华大学出版社)，至少不会像严奶奶的书那样大量使用很多伪代码让人难以理解，这本书的好处是 能让人看得下去，使用C语言进行讲解示例，而且讲述了每种数据结构如何运用在我们熟悉的生活 中，对数据结构的理解很有帮助~</p>
+<p>接着，应该了解一下C++语言~我上面已经安利过C++有哪些好处，但是我本人在学习算法过程中 接纳并学习C++经历了很大的波折(辛酸~)，一开始我会了C语言，开始学Java做开发，当时觉得 相比􏰀而言Java真的比C更人性化更高级，里面封装了很多好用的函数，所以打算用Java刷算法， 后来发现大量超时，又换回C语言刷算法，在刷题过程中看其他博主的博客发现很多使用了C++的 语法看不懂，想找到一篇纯C语言实现的很难，而且大多数代码并不优雅，反而冗⻓地让人不想去 了解~所以只能被迫学习C++语言，一开始买了《C++ Primer Plus》中文版，900+⻚的厚书，虽然 很多和C语言内容重合看起来并不累，但看着很难挑出重点，书中有很多内容和特性都是更适合于 做C++开发的人去学习，而对刷算法这件事儿并没有多大帮助，但也没有办法，毕竟对于一个算法 路上的初学者来说，我并不了解哪些有用哪些没有用，每天带着那么厚的书去自习室很累，最后书 被我用刀分成了3份每次带一小半减轻重量…也许正是经历过这些，我才会去写短短15⻚内容的</p>
+<p>《从放弃C语言到使用C++刷算法的简明教程by柳婼》 (<a target="_blank" rel="noopener" href="https://www.liuchuo.net/333-3">https://www.liuchuo.net/333-3</a>)，这个教 程两三个小时就可以看完，编程语言更重要的是练习，将教程里面讲过的那些特性有些印象，在刷 乙级or甲级的过程中能够想起并主动多写多用多练，希望可爱的你们不要像我一样一开始因为怕麻 烦和畏惧，错过了这么好用的刷算法的语言~</p>
+<p>之后还需要学习一点儿算法知识，推荐 《啊哈!算法》 (啊哈磊 / 人⺠邮电出版社)，这本书里面讲 解了栈、队列、列表、DFS、BFS、图的遍历、最短路径、树、堆、并查集、最小生成树等算法内容， 而且内容⻛趣，里面对于具体算法都有代码和注释讲解，很适合刚懂C语言和数据结构的初学者学习~</p>
+<p>说完看书就该说刷题了，首先蓝桥有自己的蓝桥OJ练习系统: <a target="_blank" rel="noopener" href="http://lx.lanqiao.cn/">http://lx.lanqiao.cn/</a> ，题库里分为入⻔ 训练、基础练习、算法训练、算法提高和历届试题，有一部分题目是vip用户才能看到，如果在学校报 名了且学校购买了vip的服务并且把这个服务权限分配给了你的蓝桥杯帐号，你就能看到这些题目… (我们学校购买的名额有限没办法让每个人都有vip，我当年用学校的系账号给自己和一些学习努力的 大佬分配了vip权限…)看不到也无所谓啦，把那些能够看到的题目刷一刷就足够啦(也可以直接看我 蓝桥杯题解中对于那些vip题的题解)~这些题目有的很简单有的很难…不过对算法的锻炼和提升倒是 真的有些帮助~除了这个题库，还有一个比􏰀重要的，就是每一届的省赛和决赛的真题，在网上搜蓝 桥杯真题或者在官网进入后的􏰁导资料模块( <a target="_blank" rel="noopener" href="http://dasai.lanqiao.cn/pages/dasai/news_detail_w.html">http://dasai.lanqiao.cn/pages/dasai/news_detail_w.html</a> ?id=644 )可以看到这些真题~真题有助于让自己明白在真实的考试情况下考察的是什么内容，对于自 己学的不好的地方的针对性复习很有帮助~</p>
+<p>蓝桥杯省赛和决赛备考经验 | 备考注意事项</p>
+<p>31</p>
+<p>首先，蓝桥杯竞赛 C/C++ 组不支持 C++11 特性，所以不能使<br>
+用 to_string 、 stoi 、 stol 、 auto 、 unordered_map 、 unordered_set 这些好用的函数啦~</p>
+<p>其次，蓝桥杯 Java 组的 JDK 版本为: JDK1.6 ，蓝桥杯 C/C++ 组的编译器版本是: Dev-cpp<br>
+5.4.0 ， Java 提交的代码中不可用 package 语句， Java 主类名字必须是 Main ， C/C++ 语言中必须 使用 ANSI 标准的函数， C/C++ 语言必须 return 0; ~</p>
+<p>由于蓝桥杯平时刷题的时候有OJ系统可以练习，但是考试的时候却只能提交源代码无法知道是否正 确，很多人就会对蓝桥杯考试产生很多疑问，例如: STL 能用吗? bits 能用吗?可以使<br>
+用 bits/stdc++ 吗?可以用 bits/stdc++.h 头文件吗?官方的回答是，无需问太多，一个简单的标准:你 用 dev-cpp5.4 没有做任何额外设置，编译通过了就可以~正好蓝桥考试提供的编译器版本就是 dev- cpp5.4 ，所以不用担心太多啦~备考的时候最好就使用自己考试时候需要用的编译环境来刷</p>
+<p>题， Java 编程环境、 Dev-cpp5.4.0 和 API 帮助文档可以在官网下载到(每个考点的机房机子上装的 也是大赛官网提供的这个编程环境): <a target="_blank" rel="noopener" href="http://dasai.lanqiao.cn/pages/dasai/news_detail_w.html?id=64">http://dasai.lanqiao.cn/pages/dasai/news_detail_w.html?id=64</a> 4</p>
+<p>在每年省赛决赛开始前的两周内， 蓝桥杯的OJ就开始登录不进去刷不出网⻚…(可以理解，毕竟几万 人参加的考试，考前肯定会有很多人去刷OJ的题目，流量太大导致服务器崩溃很正常)所以如果你想 要和他们一样在考前的时候留了两周时间专心刷题，结果到时候发现OJ根本没办法刷出网⻚一定会很 无奈的…如果真的想复习、想登录官网的OJ刷题，就一定要趁早呀~</p>
+<p>再说一下决赛如何备考~在3月末考完省赛后，大概4月初知道结果，然后距离5月底的决赛还有接近两 个月的时间，我觉得最重要的是先熟悉一下决赛的历年真题，了解决赛都考察怎样难度的内容，和省 赛很不一样~如果你对自己比􏰀有要求，想在决赛上获得一个不错的成绩，可以刷一刷杭电OJ或者看 一下刘汝佳的 《算法竞赛入⻔经典》 和 《大学程序设计课程与竞赛训练教材:算法设计编程实验》 这两 本书~</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">蓝桥杯省赛和决赛考试期间注意事项</span><br></pre></td></tr></table></figure>
+<p>首先要熟悉一下蓝桥杯的评分标准，既然不是可以直接提交代码和答案瞬间出结果的OJ判题考试，就 一定要了解它评分的方式和标准，避免因为写对了答案却忽略了细节错失不必要的分数:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">全程机器阅卷。必要环节有少量人工介入。</span><br></pre></td></tr></table></figure>
+<ol>
+<li>
+<p>结果填空题: 答案唯一。 只有 0 分或满分(格式错误为 0 分)。</p>
+</li>
+<li>
+<p>程序填空题: 按选手填写的代码代入程序中能否得出正确结果为判据。 测试数据与题面中</p>
+<p>的数据可能不同。 只有 0 分或满分(格式错误为 0 分) C/C++组选错了编译器类型可能得 0</p>
+<p>分。</p>
+</li>
+<li>
+<p>编程大题: 主要以选手所提交的程序的运行结果为依据。特殊情况会参考选手程序的编码⻛</p>
+<p>格、逻 辑性、可读性等方面。 多个测试用例单独计分。通过则该用例得分。 C/C++选手选错 了编译器类型可能得 0 分 C/C++选手主程序没有 return 0 可能得 0 分。 Java 选手使用了 package 语句按 0 分处理。 Java 选手主类名字不是 Main 按 0 分处理。</p>
+</li>
+</ol>
+<p>比赛前30分钟允许进考场，提前熟悉，有监考老师指导。考试期间不允许上网，也不能上网，该行为 属于作弊行为。也不能访问其它考生的机器，只能连接考场服务器。比赛用的电脑系统要看赛点的机 器配置，通常是 WINXP、WIN7/8/10 。 Java 选手比赛中只能使用 Eclipse Helios for JavaSE ， JDK1.6 版 本， API 帮助文档，C语言选手比赛中只能使用 Dev-cpp 5.4.0 版本， C/C++ API 帮助文档。文档</p>
+<p>是 chm 格式的中文 API 帮助文档~C组与C++组选手提交答案时，一定要注意选择C或C++(即编译器  32</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">类型)。因为使用机器阅卷，很可能会因为选手选择了错误的编译器，而使自己代码无法编译通过~</span><br></pre></td></tr></table></figure>
+<p>省赛允许学生带笔，草稿纸统一现场发，用完再领，考完试后草稿纸要写上名字交给老师的~如想带 水、吃的需要遵守赛点机房的相关要求，可在赛前一周，在蓝桥网下载的准考证上找到赛点老师信息 进行咨询~(比如我们学校考点就是允许带吃的的，毕竟要考四个小时还要提前半小时进考场，而且 还要提前出发半小时，如果真的5个小时不吃饭一直思考可能会撑不住…记得我第一次参加蓝桥杯省赛 的时候，出考场后缓了好一会儿，感觉饿的有点晕…所以我之后组织系参加省赛的时候，都会提醒大 家可以带点吃的比如面包/巧克力/水之类的以备不时之需，当然如果真的做起题目来思如泉涌基本上 是来不及写代码也没有空吃的…)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在比赛时间内每道题的答案可以提交多次，并以最后一次提交的结果为准，提交次数不限制(就是说</span><br><span class="line">那个答案框框里最后只会保留最后一次的提交结果，后一次提交的会删掉前一次提交的内容)，但是</span><br><span class="line">考试到点了就没办法提交了哦~</span><br></pre></td></tr></table></figure>
+<p>蓝桥杯大赛决赛的时候会有面包、水和牛奶提供~他们每年都要吐槽面包不好吃，说实话，我觉得很 好吃呀…</p>
+<p>赛点电脑上有的软件都可以使用，比如计算器、 Excel 、 MATLAB 、 Python 或者说参加 C/C++ 组的 打开 Eclipse 写段 Java 求答案等等~比如有一次考试，一道填空题，直接打开计算器或者 Excel 的求 和公式就能解决，根本不需要写代码，所以就可以直接这么做然后把答案提交上去…</p>
+<p>LeetCode是什么 | 为什么要刷LeetCode</p>
+<p>LeetCode( <a target="_blank" rel="noopener" href="https://leetcode.com/">https://leetcode.com/</a> )是美国的在线编程网站，虽然最近出了中国版( <a target="_blank" rel="noopener" href="https://leetcode-c">https://leetcode-c</a> <a target="_blank" rel="noopener" href="http://n.com/%EF%BC%8C%E4%B8%80%E5%BC%80%E5%A7%8B%E5%8F%AB">n.com/，一开始叫</a> 领扣 后来叫 力扣 …好奇怪的名字啊…)，但我还是建议刷英文网站对自己更有 帮助~LeetCode网站收集了各大公司的经典面试题，包括</p>
+<p>Google 、 Amazon 、 Facebook 、 Mircosoft 、 Uber 、 Adobe 、 Apple 、 LinkedIn 、 Yahoo 、 Ali baba 、 Baidu 、 Airbnb …LeetCode是一个在线编程的OJ网站，可以在线编写、编译、调试(改变输 入样例的测试值)，支持的编程语言也很多，包括</p>
+<p>C++ 、 Java 、 Python 、 Python3 、 C 、 C# 、 Javascript 、 Ruby 、 Swift 、 Go 、 Scala 、 Ko tlin 、 Rust …而且很多大中小公司也会直接或者间接使用LeetCode的题目资源，在面试的时候出算法 题考察面试者的能力等~</p>
+<p>我比􏰀喜欢LeetCode的原因是:首先，它将所有的题目分为了三个难度等级， Easy 、 Medium 和 Hard ，当年为了锻炼算法能力和编码能力，我几乎刷完了LeetCode上 Easy 和 Medium 的所有题目</p>
+<p>(不包括付费题目和近期新出的题目)~有了难度等级的分类，就可以在刷题过程中根据自己的水平 选择对应难度的题目尝试，更有针对性~其次，它几乎对每个题目都标注了 Tag 标签(现在也叫</p>
+<p>Topics )，比如数组 Array 、动态规划 Dynamic Programming 、字符串 String 、树 Tree 、哈希<br>
+表 Hash Table 、深度优先搜索 Depth-first Search 、二分搜索 Binary Search 、两指针 Two Pointers 、广 度优先搜索 Breadth-first Search 、贪心 Greedy 、栈 Stack 、回溯 Backtracking 、链表 Linked List 、位 运算 Bit Manipulation 、堆 Heap 、图 Graph 、排序 Sort 、并查集 Union Find 、二叉搜索树 Binary Search Tree 、队列 Queue 、线段树 Segment Tree 、拓扑排序 Topological Sort …可以看到这些标签几 乎涉及了所有的基础算法知识，而且分类明确，我们在刷题的时候可以根据自己的薄弱环节进行针对 性刷题(比如有些小可爱和我说学习算法的时候动态规划方面掌握的不是特别好，问怎样才能提高动 态规划这部分的能力，我就会推荐他去刷LeetCode上 Dynamic Programming 的题目，这样就能针对性 地练习很多DP问题，对自己的DP水平的提高很有帮助，比如我在大二的时候也有这样的困扰，当时刚 刚接触动态规划，很多概念􏰀为模糊遇到问题也不知道该如何应用，所以我就在LeetCode上刷了很多 DP的题目，并且将这些题目由易到难整理在了《LeetCode上Tag为动态规划(Dynamic Programming)的</p>
+<p>33</p>
+<p>题目整理》这篇博客文章中: <a target="_blank" rel="noopener" href="https://www.liuchuo.net/archives/1177">https://www.liuchuo.net/archives/1177</a> ，我当时贪心算法也学的不是很 好，所以还刷了几道贪心整理在了《LeetCode上Tag为贪心算法(Greedy)的题目整理》这篇博文中: htt ps://www.liuchuo.net/archives/1231 ，有兴趣的小可爱可以看一下~)再者，LeetCode每道题目都有 对应的讨论区(Discuss)，里面有全世界程序员提供的针对这道题的优秀代码，这些代码大多很简洁 优美，有些代码更是逻辑惊艳得让人拍案叫绝，向这些优秀的代码学习，自己的算法能力也会极大提 高~在刷题过程中如果你有了更好地题解，觉得比讨论区的代码还要惊艳，也可以在讨论区发布你自 己的题解~我也在讨论区发布过很多自己的题解，有些也广受好评，比如 <a target="_blank" rel="noopener" href="https://leetcode.com/proble">https://leetcode.com/proble</a> ms/max-chunks-to-make-sorted-ii/discuss/113464/c-9-lines-15ms/203413 ，收到异国程序员的赞美， 对自己的编码信心也会有很大的提高~最后，也是LeetCode的一个优点，就是LeetCode上的每道题题 目描述都很简短，没有类似于PAT和蓝桥杯题目那样的情景描述，实现的代码也很简短，所以平均刷一 道题只需要15、20分钟，而且是在线编程，无需在电脑上打开编译器或者编辑器，直接在网⻚上就能 写、调试、运行，提交AC后还能看到自己的代码执行效率击败了同等语言的百分之多少的人(这比很 多OJ在不同语言维度规定同样的执行时间的行为更公平)，也不需要像很多其他OJ一样动􏰂一道题就 要一两个小时甚至半天的时间才能解决，对于学习算法的效率有很大提高~</p>
+<p>总得来说，LeetCode不仅仅是为了应聘那些大公司而刷题的一个工具，更可以通过它来锻炼自己的算 法和编程能力，很多人在大学中虽然学过了编程语言，也懂了基本的数据结构与算法的概念，但是在 代码方面却很薄弱，没有大量的训练算法题提高自己的编码能力，而LeetCode就是非常合适的工具啦 ~如果是为了面试大公司，那么在考算法的笔试面试中，很大概率会遇到LeetCode的原题或近似题， 所以刷LeetCode对找工作很有帮助~</p>
+<p>如何高效刷LeetCode | 关于白板编程</p>
+<p>既然题目按难度分为了 Easy 、 Medium 和 Hard ，我们可以按照题号顺序根据题目的难度等级练习， 先解决 Easy 的题目( Easy 是真的简单)，再攻克 Medium 的题目( Medium 有的难有的简单)，最 后 Hard 可以量力而为(除了特别大的公司，一般很少考 Hard )，这样的顺序能够保证你刷题过程 中覆盖到了绝大多数算法题型~当然你也可以按照题目每次提交的通过率 Acceptance 从高到低刷，这 样大致难度也是从易到难，不过还是要参考一下题号的大小，因为题号越靠前刷过的人越</p>
+<p>多， Acceptance 的百分比就越具有客观性 ，比如你看到一道题 Acceptance 很高，但是题号很靠后， 那是因为能够坚持到这个题号的都是大佬，萌新进来刷个几十题(还很有可能是靠前的题号)就跑 了…所以大佬们刷的多的题目即使很难说不定通过率也很高…所以 Acceptance 不是绝对的…但对于题 号􏰀小的题目有一定参考价值…</p>
+<p>如果你已经刷过别的OJ，对于算法已经了解了大概，只是有个别类型的题型掌握的不是很好，那就可 以像我上面所说的那样按照 Tag 来刷，针对自己的薄弱环节进行刷题，收效更快~但是 Tag 的缺点就 是可能会形成惯性思维，比如一道题你没有思路，看到标注的 Tag 是 Hash Table ，就一下子明白要 用 hash映射 来做，但是真正面试的时候只会给题目可不会告诉你这道题的 Tag 是什么…</p>
+<p>以上就是两种刷LeetCode的顺序，根据自己的需求来选择，最好是两种结合~先广度优先地覆盖各类 算法题型，顺便培养自己的编码能力和语言能力，再针对自己做的不好的题型深度优先地刷对应的</p>
+<p>Tag ~ 因为LeetCode每道题目的简短特性，你可以利用碎片时间进行刷题，比如课间、晚上没事刷一两题~</p>
+<p>如果你是为了准备公司面试，有的公司是纯粹的“白板编程”，比LeetCode这种在线编程的要求还要 高，比如给你张A4纸让你手写代码，或者给你一支白板笔直接在白板上手写代码…有些人摸到键盘在 有了括号匹配和代码提示的情况下写代码没有任何问题，但是让你徒手写代码就写不出来了…所以在 平时练习代码的时候也要注意这方面能力的培养和训练~</p>
+<p>感谢阅读，祝小可爱们都能搞定算法，爱你们么么哒~(๑• . •๑)</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://ruiqingyan.com">花夕</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://ruiqingyan.com/2023/11/02/12/Experience/">http://ruiqingyan.com/2023/11/02/12/Experience/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://ruiqingyan.com" target="_blank">花夕 & Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95/">算法</a></div><div class="post_share"><div class="social-share" data-image="/img/rd5.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/10/28/242/501/" title="5、迁移学习"><img class="cover" src="/img/r175.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">5、迁移学习</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/02/12/PATC125/" title="PAT乙125题"><img class="cover" src="/img/rd4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">PAT乙125题</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/11/02/12/PATC125/" title="PAT乙125题"><img class="cover" src="/img/rd4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-02</div><div class="title">PAT乙125题</div></div></a></div><div><a href="/2024/01/01/12/index/" title="算法"><img class="cover" src="/img/rd3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-01</div><div class="title">算法</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="avatar"/></div><div class="author-info__name">花夕</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">561</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">40</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">53</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ruiqingyan1"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">日更每天21:00 &nbsp And &nbsp  考研ing~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E5%AD%A6%E7%94%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%88%B7%E7%AE%97%E6%B3%95"><span class="toc-text">计算机系学生为什么要刷算法</span></a></li></ol></div></div><div class="card-widget card-post-series"><div class="item-headline"><i class="fa-solid fa-layer-group"></i><span>系列文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/11/02/12/Experience/" title="PAT乙125题"><img src="/img/rd5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PAT乙125题"></a><div class="content"><a class="title" href="/2023/11/02/12/Experience/" title="PAT乙125题">PAT乙125题</a><time datetime="2023-11-02T13:35:48.000Z" title="发表于 2023-11-02 21:35:48">2023-11-02</time></div></div></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/01/22/emoji/" title="常用emoji表情"><img src="/img/rd20.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="常用emoji表情"/></a><div class="content"><a class="title" href="/2024/03/01/22/emoji/" title="常用emoji表情">常用emoji表情</a><time datetime="2024-03-01T07:00:00.000Z" title="发表于 2024-03-01 15:00:00">2024-03-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/01/21/004/" title="如何写一篇优秀的论文"><img src="/img/rd3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何写一篇优秀的论文"/></a><div class="content"><a class="title" href="/2024/02/01/21/004/" title="如何写一篇优秀的论文">如何写一篇优秀的论文</a><time datetime="2024-02-01T00:30:00.000Z" title="发表于 2024-02-01 08:30:00">2024-02-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/08/14/D08/" title="8、结构体及C++引用讲解"><img src="/img/rbgs8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="8、结构体及C++引用讲解"/></a><div class="content"><a class="title" href="/2024/01/08/14/D08/" title="8、结构体及C++引用讲解">8、结构体及C++引用讲解</a><time datetime="2024-01-08T10:30:00.000Z" title="发表于 2024-01-08 18:30:00">2024-01-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/07/14/D07/" title="7、函数"><img src="/img/rbgs7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="7、函数"/></a><div class="content"><a class="title" href="/2024/01/07/14/D07/" title="7、函数">7、函数</a><time datetime="2024-01-07T10:30:00.000Z" title="发表于 2024-01-07 18:30:00">2024-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/06/14/D06/" title="6、指针"><img src="/img/rbgs6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="6、指针"/></a><div class="content"><a class="title" href="/2024/01/06/14/D06/" title="6、指针">6、指针</a><time datetime="2024-01-06T10:30:00.000Z" title="发表于 2024-01-06 18:30:00">2024-01-06</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/rd13.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By 花夕</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来的我的个人博客━(*｀∀´*)ノ</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const initWaline = () => {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-comments-blog.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  const loadWaline = async () => {
+    if (typeof Waline === 'object') initWaline()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js')
+      initWaline()
+    }
+  }
+
+  if ('Waline' === 'Waline' || !true) {
+    if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>(() => {
+  const isChatBtn = true
+  const isChatHideShow = true
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = 'T9itjhtGq78bcPAhB'
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'G-62KVKFBVSY', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

@@ -1,0 +1,625 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>4、 在云上用GPU部署AI大模型 | 花夕 &amp; Blog</title><meta name="author" content="花夕"><meta name="copyright" content="花夕"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="浅浅记录一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4、 在云上用GPU部署AI大模型">
+<meta property="og:url" content="http://ruiqingyan.com/2023/02/04/22/240/ECSex2/index.html">
+<meta property="og:site_name" content="花夕 &amp; Blog">
+<meta property="og:description" content="浅浅记录一下">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ruiqingyan.com/img/r35.jpg">
+<meta property="article:published_time" content="2023-02-04T12:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-04T13:00:00.000Z">
+<meta property="article:author" content="花夕">
+<meta property="article:tag" content="云服务器ECS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ruiqingyan.com/img/r35.jpg"><link rel="shortcut icon" href="/img/favicon2.ico"><link rel="canonical" href="http://ruiqingyan.com/2023/02/04/22/240/ECSex2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/16.png"/><link rel="mask-icon" href="/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-62KVKFBVSY"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-62KVKFBVSY');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "f");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":1000,"languages":{"author":"作者: 花夕","link":"链接: ","source":"来源: 花夕 & Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '4、 在云上用GPU部署AI大模型',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-04 21:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4052103_6tjtkhibmy5.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/css/custom@1.0.0.css"><link rel="stylesheet" href="/css/color@1.0.0.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar2.png" onerror="onerror=null;src='/img/404.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">561</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">40</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">53</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua2"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-xianhua"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/2024/01/01/11/2024/"><i class="fa-fw iconfont icon-ziyuan2"></i><span> 日常</span></a></li><li><a class="site-page child" href="/2024/01/01/12/index/"><i class="fa-fw iconfont icon-18"></i><span> 算法</span></a></li><li><a class="site-page child" href="/2024/01/01/13/index/"><i class="fa-fw iconfont icon-ziyuan1"></i><span> 英语</span></a></li><li><a class="site-page child" href="/2024/01/01/14/index/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-bojuelvpai-huashu"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"><i class="fa-fw iconfont icon-lotus"></i><span> 课程设计</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="fa-fw iconfont icon-xiaohua1"></i><span> 计算机基础</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%A7%91%E5%9F%BA%E7%A1%80%E8%AF%BE/"><i class="fa-fw iconfont icon-hua8"></i><span> 计科本科课程</span></a></li><li><a class="site-page child" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/"><i class="fa-fw iconfont icon-xiaohuanghua"></i><span> 业余兴趣课程</span></a></li><li><a class="site-page child" href="/251/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> 计科文献阅读</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/r35.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="花夕 &amp; Blog"><img class="site-icon" src="/img/avatar2.png"/><span class="site-name">花夕 &amp; Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua2"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-xianhua"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/2024/01/01/11/2024/"><i class="fa-fw iconfont icon-ziyuan2"></i><span> 日常</span></a></li><li><a class="site-page child" href="/2024/01/01/12/index/"><i class="fa-fw iconfont icon-18"></i><span> 算法</span></a></li><li><a class="site-page child" href="/2024/01/01/13/index/"><i class="fa-fw iconfont icon-ziyuan1"></i><span> 英语</span></a></li><li><a class="site-page child" href="/2024/01/01/14/index/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-bojuelvpai-huashu"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"><i class="fa-fw iconfont icon-lotus"></i><span> 课程设计</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="fa-fw iconfont icon-xiaohua1"></i><span> 计算机基础</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%A7%91%E5%9F%BA%E7%A1%80%E8%AF%BE/"><i class="fa-fw iconfont icon-hua8"></i><span> 计科本科课程</span></a></li><li><a class="site-page child" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/"><i class="fa-fw iconfont icon-xiaohuanghua"></i><span> 业余兴趣课程</span></a></li><li><a class="site-page child" href="/251/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> 计科文献阅读</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">4、 在云上用GPU部署AI大模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-04T12:00:00.000Z" title="发表于 2023-02-04 20:00:00">2023-02-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-04T13:00:00.000Z" title="更新于 2023-02-04 21:00:00">2023-02-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8ECS/">云服务器ECS</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="4、 在云上用GPU部署AI大模型"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note warning icon-padding flat"><i class="note-icon falt"></i><ul><li><a href="/2023/02/01/22/240/ECStest1/" title="1、ECS云服务器新手上路">1、ECS云服务器新手上路</a></li><li><a href="/2023/02/02/22/240/ECStest2/" title="2、在云服务器ECS上搭建个人网站">2、在云服务器ECS上搭建个人网站</a></li><li><a href="/2023/02/03/22/240/ECSex1/" title="3、基于ECS搭建云上博客">3、基于ECS搭建云上博客</a></li><li><a href="/2023/02/04/22/240/ECSex2/" title="4、 在云上用GPU部署AI大模型">4、 在云上用GPU部署AI大模型</a></li><li><a href="/2023/02/06/22/240/ECSex3/" title="5、在阿里云上用Python写一个搜索引擎">5、在阿里云上用Python写一个搜索引擎</a></li><li><a href="/2023/02/07/22/240/ECSex4/" title="6、在阿里云服务器上搭建GitLab服务">6、在阿里云服务器上搭建GitLab服务</a></li></ul>
+</div>
+<p>本场景将提供一台配置了CentOS 7.9操作系统的GPU实例。通过本教程的操作，您可以在一台CentOS 7.9的GPU云服务器上，安装大模型运行环境（包括Anaconda、Pytorch等的），部署大语言模型，使用streamlit运行大模型对话模型网页demo。</p>
+<h3 id="0、背景知识">0、背景知识</h3>
+<p>本场景主要涉及以下云产品和服务：</p>
+<p>ChatGLB2-6B大模型：由智谱AI及清华KEG实验室于2023年6月发布的中英双语对话开源大模型。截至2023年7月，在C-Eval中，排名靠前。</p>
+<p>Pytorch：一个开源的Python机器学习库，基于Torch，底层由C++实现，应用于人工智能领域，如计算机视觉和自然语言处理。它主要由Meta Platforms的人工智能研究团队开发。著名的用途有：特斯拉自动驾驶，Uber最初发起而现属Linux基金会项目的概率编程软件Pyro，Lightning。注：来源 -维基百科。</p>
+<ul>
+<li>GPU云服务器</li>
+</ul>
+<p>GPU云服务器（GPU Cloud Computing，GPU）是提供 GPU 算力的弹性计算服务，具有超强的计算能力，服务于深度学习、科学计算、图形可视化、视频处理多种应用场景。阿里云作为亚太第一的云服务提供商，随时为您提供触手可得的算力，有效缓解计算压力，提升您的业务效率，助您提高企业竞争力。</p>
+<h2 id="1、创建实验资源">1、创建实验资源</h2>
+<div class="note info icon-padding flat"><i class="note-icon falt"></i><p>如果已经领取了免费的服务器，实例是已经创建好的不用重新买。</p>
+</div>
+<p>1.1 前往<a target="_blank" rel="noopener" href="https://ecs.console.aliyun.com/home">云服务器ECS控制台</a>，在概览页面的我的资源区域，单击创建实例。</p>
+<img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_c59bc647cf99453dbaf201adee0589e0.png" alt="img" style="zoom:50%;" />
+<p>1.2 在云服务器购买页面，参考如下说明配置参数，未提及的配置保持默认或按需修改，然后选中右侧的《云服务器ECS服务条款》，单击确认下单。</p>
+<p>**说明：**本试用教程以下列的配置信息为例，实际操作时，建议根据您的实际业务体量和需求选择。</p>
+<p>参数说明：</p>
+<table>
+<thead>
+<tr>
+<th><strong>配置项</strong></th>
+<th><strong>示例</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>地域</strong></td>
+<td>地域：华东1（杭州）</td>
+<td>实例创建后，无法直接更改地域和可用区，请谨慎选择。</td>
+</tr>
+<tr>
+<td><strong>网络及可用区</strong></td>
+<td>选择合适的专有网络和交换机，如果您要创建专有网络和交换机，请单击下方的<strong>前往控制台创建</strong>。</td>
+<td>推荐您使用专有网络，专有网络之间逻辑上彻底隔离，安全性更高，且支持弹性公网IP（EIP）、弹性网卡、IPv6等功能。可用区是指在同一地域内，电力和网络互相独立的物理区域。同一可用区内实例之间的网络延时更小，其用户访问速度更快。</td>
+</tr>
+<tr>
+<td><strong>实例</strong></td>
+<td>规格族：<strong>GPU 计算型 gn6i</strong>实例规格：<strong>ecs.gn6i-c4g1.xlarge</strong></td>
+<td>您可以前往<a target="_blank" rel="noopener" href="https://ecs-buy.aliyun.com/instanceTypes/#/instanceTypeByRegion">ECS实例可购买地域</a>，查看实例在各地域的可购情况。</td>
+</tr>
+<tr>
+<td><strong>镜像</strong></td>
+<td>公共镜像 CentOS 7.9 64位。</td>
+<td>实例启动后，系统盘将完整复制镜像的操作系统和应用数据。</td>
+</tr>
+<tr>
+<td><strong>系统盘</strong></td>
+<td>类型：<strong>ESSD云盘</strong>容量：<strong>90G</strong></td>
+<td>因本实验需要较大磁盘空间，若磁盘空间过小部分附件会无法下载。</td>
+</tr>
+<tr>
+<td><strong>公网IP</strong></td>
+<td>选中分配公网IPv4地址</td>
+<td>选中后，自动分配一个公网IPv4地址。</td>
+</tr>
+<tr>
+<td><strong>带宽计费模式</strong></td>
+<td>按使用流量</td>
+<td><strong>按使用流量模式</strong>只需为所消耗的公网流量付费。详情请参见<a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/25411.htm#publicIP-china">公网带宽计费</a>。</td>
+</tr>
+<tr>
+<td><strong>带宽峰值</strong></td>
+<td>5 Mbps</td>
+<td>无。</td>
+</tr>
+<tr>
+<td><strong>安全组</strong></td>
+<td>选择新建安全组。</td>
+<td>选择新建安全组。如果您已有开通80、443、22、3389端口的安全组，也可使用。</td>
+</tr>
+<tr>
+<td><strong>安全组类型</strong></td>
+<td>普通安全组</td>
+<td>安全组按照类型划分为普通安全组和企业级安全组，两者均免费。在安全组容量、能否添加授权安全组的规则以及默认访问控制规则等方面有一定差异，适用于不同的使用场景。</td>
+</tr>
+<tr>
+<td><strong>开通IPv4端口</strong></td>
+<td>需要开通80、443、22、3389端口。</td>
+<td>本实验需要开通80、443、22、3389端口。</td>
+</tr>
+<tr>
+<td><strong>登录凭证</strong></td>
+<td>自定义密码</td>
+<td>本教程中选择<strong>自定义密码</strong>，并手动设置一个密码，用于远程连接并登录ECS实例。</td>
+</tr>
+<tr>
+<td><strong>登录密码</strong></td>
+<td>Ecs123456</td>
+<td>当登录凭证选择自定义密码时，需要设置此选项并确认密码，在后续连接ECS实例时，您需要输入用户名root和此处设置的密码。</td>
+</tr>
+</tbody>
+</table>
+<p>1.3 在创建成功对话框中，单击管理控制台。</p>
+<img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_7895b384e049491d9cfc824b8ff86e90.png" alt="img" style="zoom:50%;" />
+<p>1.4 在实例页面，等待状态变为运行中后，即可使用该云服务器ECS。</p>
+<img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_f9c438fa03bd4324ae3ec2e1f1886739.png" alt="img" style="zoom:50%;" />
+<p>1.5点击<strong>实例ID</strong>进入实例。</p>
+<img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_7f0d3c554ddd4f1b89f0be20436d3cfa.png" alt="img" style="zoom:50%;" />
+<p>1.6进入<strong>安全组</strong>选项卡，点击<strong>安全组ID</strong>。</p>
+<img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_ccd94397865f4459b503c01215d63f22.png" alt="img" style="zoom:50%;" />
+<p>1.7在<strong>安全组规则</strong>列表中，选择<strong>入方向</strong>，点击<strong>手动添加</strong>。</p>
+<p><strong>端口范围：8501/8501</strong></p>
+<p><strong>授权对象：0.0.0.0/0</strong></p>
+<p>1.1 前往<a target="_blank" rel="noopener" href="https://ecs.console.aliyun.com/home">云服务器ECS控制台</a>，在概览页面的我的资源区域，单击创建实例。</p>
+<img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_c59bc647cf99453dbaf201adee0589e0-20231122210411959.png" alt="img" style="zoom:50%;" />
+<p>1.2 在云服务器购买页面，参考如下说明配置参数，未提及的配置保持默认或按需修改，然后选中右侧的《云服务器ECS服务条款》，单击确认下单。</p>
+<p>**说明：**本试用教程以下列的配置信息为例，实际操作时，建议根据您的实际业务体量和需求选择。</p>
+<p>参数说明：</p>
+<table>
+<thead>
+<tr>
+<th><strong>配置项</strong></th>
+<th><strong>示例</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>地域</strong></td>
+<td>地域：华东1（杭州）</td>
+<td>实例创建后，无法直接更改地域和可用区，请谨慎选择。</td>
+</tr>
+<tr>
+<td><strong>网络及可用区</strong></td>
+<td>选择合适的专有网络和交换机，如果您要创建专有网络和交换机，请单击下方的<strong>前往控制台创建</strong>。</td>
+<td>推荐您使用专有网络，专有网络之间逻辑上彻底隔离，安全性更高，且支持弹性公网IP（EIP）、弹性网卡、IPv6等功能。可用区是指在同一地域内，电力和网络互相独立的物理区域。同一可用区内实例之间的网络延时更小，其用户访问速度更快。</td>
+</tr>
+<tr>
+<td><strong>实例</strong></td>
+<td>规格族：<strong>GPU 计算型 gn6i</strong>实例规格：<strong>ecs.gn6i-c4g1.xlarge</strong></td>
+<td>您可以前往<a target="_blank" rel="noopener" href="https://ecs-buy.aliyun.com/instanceTypes/#/instanceTypeByRegion">ECS实例可购买地域</a>，查看实例在各地域的可购情况。</td>
+</tr>
+<tr>
+<td><strong>镜像</strong></td>
+<td>公共镜像 CentOS 7.9 64位。</td>
+<td>实例启动后，系统盘将完整复制镜像的操作系统和应用数据。</td>
+</tr>
+<tr>
+<td><strong>系统盘</strong></td>
+<td>类型：<strong>ESSD云盘</strong>容量：<strong>90G</strong></td>
+<td>因本实验需要较大磁盘空间，若磁盘空间过小部分附件会无法下载。</td>
+</tr>
+<tr>
+<td><strong>公网IP</strong></td>
+<td>选中分配公网IPv4地址</td>
+<td>选中后，自动分配一个公网IPv4地址。</td>
+</tr>
+<tr>
+<td><strong>带宽计费模式</strong></td>
+<td>按使用流量</td>
+<td><strong>按使用流量模式</strong>只需为所消耗的公网流量付费。详情请参见<a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/25411.htm#publicIP-china">公网带宽计费</a>。</td>
+</tr>
+<tr>
+<td><strong>带宽峰值</strong></td>
+<td>5 Mbps</td>
+<td>无。</td>
+</tr>
+<tr>
+<td><strong>安全组</strong></td>
+<td>选择新建安全组。</td>
+<td>选择新建安全组。如果您已有开通80、443、22、3389端口的安全组，也可使用。</td>
+</tr>
+<tr>
+<td><strong>安全组类型</strong></td>
+<td>普通安全组</td>
+<td>安全组按照类型划分为普通安全组和企业级安全组，两者均免费。在安全组容量、能否添加授权安全组的规则以及默认访问控制规则等方面有一定差异，适用于不同的使用场景。</td>
+</tr>
+<tr>
+<td><strong>开通IPv4端口</strong></td>
+<td>需要开通80、443、22、3389端口。</td>
+<td>本实验需要开通80、443、22、3389端口。</td>
+</tr>
+<tr>
+<td><strong>登录凭证</strong></td>
+<td>自定义密码</td>
+<td>本教程中选择<strong>自定义密码</strong>，并手动设置一个密码，用于远程连接并登录ECS实例。</td>
+</tr>
+<tr>
+<td><strong>登录密码</strong></td>
+<td>Ecs123456</td>
+<td>当登录凭证选择自定义密码时，需要设置此选项并确认密码，在后续连接ECS实例时，您需要输入用户名root和此处设置的密码。</td>
+</tr>
+</tbody>
+</table>
+<p>1.3 在创建成功对话框中，单击管理控制台。</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_7895b384e049491d9cfc824b8ff86e90-20231122210412268.png" alt="img"></p>
+<p>1.4 在实例页面，等待状态变为运行中后，即可使用该云服务器ECS。</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_f9c438fa03bd4324ae3ec2e1f1886739-20231122210412799.png" alt="img"></p>
+<p>1.5点击<strong>实例ID</strong>进入实例。</p>
+<p><img src="https://ucc.alicdn.com/pic/developer-ecology/ovurciethbfzk_7f0d3c554ddd4f1b89f0be20436d3cfa.png" alt="img"></p>
+<p>1.6进入<strong>安全组</strong>选项卡，点击<strong>安全组ID</strong>。</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_ccd94397865f4459b503c01215d63f22-20231122210413713.png" alt="img"></p>
+<p>1.7在<strong>安全组规则</strong>列表中，选择<strong>入方向</strong>，点击<strong>手动添加</strong>。</p>
+<p><strong>端口范围：8501/8501</strong></p>
+<p><strong>授权对象：0.0.0.0/0</strong></p>
+<img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_608fb285d974411fb5b07c63a8d3342f.png" alt="添加安全规则" style="zoom:50%;" />
+<h2 id="2、安装Anaconda、Pytorch">2、安装Anaconda、Pytorch</h2>
+<ol>
+<li><strong>远程登录ECS服务器。</strong>
+<ol>
+<li>进入<a target="_blank" rel="noopener" href="https://ecs.console.aliyun.com/server/region/cn-shanghai#/">ECS控制台</a>，找到刚刚创建的实例，点击<strong>远程登录</strong>。</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_3b6ac86cb9e54d95ab7f9d3e7614218e.png" alt="img"></p>
+<ol>
+<li>在远程连接对话框中，点击【<strong>登录Workbench远程</strong>】下的<strong>立即登录</strong>。</li>
+</ol>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_e89cbb5781644f938acc6cc2babd7b7d.png" alt="img"></p>
+<ol>
+<li>在登录实例对话框中<strong>输入密码</strong>，并点击<strong>确定</strong>。</li>
+</ol>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_fb02bd54baa94bb195815fe2e9f0c8ee.png" alt="img"></p>
+<ol>
+<li><strong>更新操作系统。</strong></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum update -y</span><br><span class="line">sudo yum upgrade -y</span><br></pre></td></tr></table></figure>
+<ol>
+<li>
+<p><strong>下载并安装anaconda。</strong></p>
+</li>
+<li>
+<p>在命令行中，输入以下命令，<strong>点击Enter</strong>，开始<strong>下载anaconda</strong>安装包。</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.anaconda.com/archive/Anaconda3-2023.03-1-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+<ol>
+<li>系统系统下载完成后，输入下列命令，<strong>点击Enter</strong>，开始安装。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Anaconda3-2023.03-1-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+<ol>
+<li>遇到如下界面后，<strong>点击Enter</strong>，继续安装过程。</li>
+</ol>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_84d26ca1a318465bb6c41487810fa3bc.png" alt="img"></p>
+<ol>
+<li>出现下面的界面后，继续<strong>点击Enter</strong>。</li>
+</ol>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_fca7fed41c704d568535de0292b33304.png" alt="img"></p>
+<ol>
+<li>直到出现提示<strong>Do you accept the license terms? [yes|no]</strong>，输入<strong>yes</strong>，点击<strong>Enter</strong>继续。</li>
+</ol>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_1665db9fc72e44c1b7fda9a1d573f7ed.png" alt="img"></p>
+<ol>
+<li>出现如下提示，点击<strong>Enter</strong>继续，等待<strong>anaconda</strong>完成安装，大约需要<strong>2分钟</strong>。</li>
+</ol>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_e9ebff27b9da4edd80fd40e6d139c195.png" alt="img"></p>
+<ol>
+<li>等待出现如下提示后，<strong>输入yes</strong>，点击<strong>Enter</strong>, 完成安装。</li>
+</ol>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_41a49058d6a142cbb24a6b9a044a4e26.png" alt="img"></p>
+<ol>
+<li>点击页面右上角的<strong>➕</strong>号，打开一个新的终端。</li>
+</ol>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_8fcf3c37ece14aa8a36766ccd126e7ca.png" alt="img"></p>
+<p>注：接下来所有的操作都在新的终端中完成，命令行最左边，出现**(base)<strong>字样，代表anaconda</strong>已启动**。</p>
+<ol>
+<li>在实际开发过程中，通常需要通过conda安装虚拟环境，在虚拟环境中继续后续操作。本实验中，略去此步骤。</li>
+</ol>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_8cc85324a1074715844eb65291aaa4de.png" alt="img"></p>
+<ol>
+<li>
+<p><strong>安装Pytorch</strong>。</p>
+</li>
+<li>
+<p>输入如下命令，开始<strong>安装Pytorch</strong>。</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia</span><br></pre></td></tr></table></figure>
+<ol>
+<li>出现提示<strong>Proceed ([y]/n)?</strong> 后，输入<strong>y</strong>，然后点击<strong>Enter</strong>继续安装过程。</li>
+</ol>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_d60d1ad421da436a89f35298552e18fb.png" alt="img"></p>
+<ol>
+<li>安装大致需要<strong>5分钟</strong>。等到出现下列界面时，安装就完成了。</li>
+</ol>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_087b29d0999641aaaf1e6984e8cf4199.png" alt="img"></p>
+<ol>
+<li>可以在命令行<strong>输入python</strong>，点击<strong>Ente</strong>r，进入Python界面，<strong>输入import torch</strong>，如果出现如下界面，则代表Pytorch<strong>安装成功</strong>。</li>
+</ol>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/ovurciethbfzk_f43b658469c244b9b047122ace55383d.png" alt="img"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://ruiqingyan.com">花夕</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://ruiqingyan.com/2023/02/04/22/240/ECSex2/">http://ruiqingyan.com/2023/02/04/22/240/ECSex2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://ruiqingyan.com" target="_blank">花夕 & Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8ECS/">云服务器ECS</a></div><div class="post_share"><div class="social-share" data-image="/img/r35.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/04/242/104/" title="第4章 操作列表"><img class="cover" src="/img/r35.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">第4章 操作列表</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/05/23/00Summary/" title="本科课程汇总"><img class="cover" src="/img/rd12.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">本科课程汇总</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/02/03/22/240/ECSex1/" title="3、基于ECS搭建云上博客"><img class="cover" src="/img/r34.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-03</div><div class="title">3、基于ECS搭建云上博客</div></div></a></div><div><a href="/2023/02/07/22/240/ECSex4/" title="6、在阿里云服务器上搭建GitLab服务"><img class="cover" src="/img/r38.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-07</div><div class="title">6、在阿里云服务器上搭建GitLab服务</div></div></a></div><div><a href="/2023/02/01/22/240/ECStest1/" title="1、ECS云服务器新手上路"><img class="cover" src="/img/r32.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-01</div><div class="title">1、ECS云服务器新手上路</div></div></a></div><div><a href="/2023/02/06/22/240/ECSex3/" title="5、在阿里云上用Python写一个搜索引擎"><img class="cover" src="/img/r37.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-06</div><div class="title">5、在阿里云上用Python写一个搜索引擎</div></div></a></div><div><a href="/2023/02/02/22/240/ECStest2/" title="2、在云服务器ECS上搭建个人网站"><img class="cover" src="/img/r33.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-02</div><div class="title">2、在云服务器ECS上搭建个人网站</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="avatar"/></div><div class="author-info__name">花夕</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">561</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">40</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">53</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ruiqingyan1"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">日更每天21:00 &nbsp And &nbsp  考研ing~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0%E3%80%81%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="toc-text">0、背景知识</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E5%AE%9E%E9%AA%8C%E8%B5%84%E6%BA%90"><span class="toc-text">1、创建实验资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85Anaconda%E3%80%81Pytorch"><span class="toc-text">2、安装Anaconda、Pytorch</span></a></div></div><div class="card-widget card-post-series"><div class="item-headline"><i class="fa-solid fa-layer-group"></i><span>系列文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/02/07/22/240/ECSex4/" title="6、在阿里云服务器上搭建GitLab服务"><img src="/img/r38.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="6、在阿里云服务器上搭建GitLab服务"></a><div class="content"><a class="title" href="/2023/02/07/22/240/ECSex4/" title="6、在阿里云服务器上搭建GitLab服务">6、在阿里云服务器上搭建GitLab服务</a><time datetime="2023-02-07T12:00:00.000Z" title="发表于 2023-02-07 20:00:00">2023-02-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/06/22/240/ECSex3/" title="5、在阿里云上用Python写一个搜索引擎"><img src="/img/r37.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="5、在阿里云上用Python写一个搜索引擎"></a><div class="content"><a class="title" href="/2023/02/06/22/240/ECSex3/" title="5、在阿里云上用Python写一个搜索引擎">5、在阿里云上用Python写一个搜索引擎</a><time datetime="2023-02-06T12:00:00.000Z" title="发表于 2023-02-06 20:00:00">2023-02-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/04/22/240/ECSex2/" title="4、 在云上用GPU部署AI大模型"><img src="/img/r35.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4、 在云上用GPU部署AI大模型"></a><div class="content"><a class="title" href="/2023/02/04/22/240/ECSex2/" title="4、 在云上用GPU部署AI大模型">4、 在云上用GPU部署AI大模型</a><time datetime="2023-02-04T12:00:00.000Z" title="发表于 2023-02-04 20:00:00">2023-02-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/03/22/240/ECSex1/" title="3、基于ECS搭建云上博客"><img src="/img/r34.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="3、基于ECS搭建云上博客"></a><div class="content"><a class="title" href="/2023/02/03/22/240/ECSex1/" title="3、基于ECS搭建云上博客">3、基于ECS搭建云上博客</a><time datetime="2023-02-03T12:00:00.000Z" title="发表于 2023-02-03 20:00:00">2023-02-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/02/22/240/ECStest2/" title="2、在云服务器ECS上搭建个人网站"><img src="/img/r33.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2、在云服务器ECS上搭建个人网站"></a><div class="content"><a class="title" href="/2023/02/02/22/240/ECStest2/" title="2、在云服务器ECS上搭建个人网站">2、在云服务器ECS上搭建个人网站</a><time datetime="2023-02-02T12:00:00.000Z" title="发表于 2023-02-02 20:00:00">2023-02-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/01/22/240/ECStest1/" title="1、ECS云服务器新手上路"><img src="/img/r32.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1、ECS云服务器新手上路"></a><div class="content"><a class="title" href="/2023/02/01/22/240/ECStest1/" title="1、ECS云服务器新手上路">1、ECS云服务器新手上路</a><time datetime="2023-02-01T12:00:00.000Z" title="发表于 2023-02-01 20:00:00">2023-02-01</time></div></div></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/01/22/emoji/" title="常用emoji表情"><img src="/img/rd20.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="常用emoji表情"/></a><div class="content"><a class="title" href="/2024/03/01/22/emoji/" title="常用emoji表情">常用emoji表情</a><time datetime="2024-03-01T07:00:00.000Z" title="发表于 2024-03-01 15:00:00">2024-03-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/01/21/004/" title="如何写一篇优秀的论文"><img src="/img/rd3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何写一篇优秀的论文"/></a><div class="content"><a class="title" href="/2024/02/01/21/004/" title="如何写一篇优秀的论文">如何写一篇优秀的论文</a><time datetime="2024-02-01T00:30:00.000Z" title="发表于 2024-02-01 08:30:00">2024-02-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/08/14/D08/" title="8、结构体及C++引用讲解"><img src="/img/rbgs8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="8、结构体及C++引用讲解"/></a><div class="content"><a class="title" href="/2024/01/08/14/D08/" title="8、结构体及C++引用讲解">8、结构体及C++引用讲解</a><time datetime="2024-01-08T10:30:00.000Z" title="发表于 2024-01-08 18:30:00">2024-01-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/07/14/D07/" title="7、函数"><img src="/img/rbgs7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="7、函数"/></a><div class="content"><a class="title" href="/2024/01/07/14/D07/" title="7、函数">7、函数</a><time datetime="2024-01-07T10:30:00.000Z" title="发表于 2024-01-07 18:30:00">2024-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/06/14/D06/" title="6、指针"><img src="/img/rbgs6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="6、指针"/></a><div class="content"><a class="title" href="/2024/01/06/14/D06/" title="6、指针">6、指针</a><time datetime="2024-01-06T10:30:00.000Z" title="发表于 2024-01-06 18:30:00">2024-01-06</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/rd13.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By 花夕</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来的我的个人博客━(*｀∀´*)ノ</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const initWaline = () => {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-comments-blog.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  const loadWaline = async () => {
+    if (typeof Waline === 'object') initWaline()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js')
+      initWaline()
+    }
+  }
+
+  if ('Waline' === 'Waline' || !true) {
+    if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>(() => {
+  const isChatBtn = true
+  const isChatHideShow = true
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = 'T9itjhtGq78bcPAhB'
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'G-62KVKFBVSY', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
