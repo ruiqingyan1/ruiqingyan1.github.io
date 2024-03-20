@@ -1,0 +1,1066 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>4-5、进阶配置 | 睿清颜</title><meta name="author" content="花夕"><meta name="copyright" content="花夕"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="🖼 所有搭建博客的汇总在这里：Blog全程搭建 原文在这里，建议看这个https:&#x2F;&#x2F;docs.anheyu.com&#x2F;intro.html  进阶配置 🚀 评论 开启评论需要在 comments-use 中填写你需要的评论。 支持双评论显示，只需要配置两个评论（第一个为默认显示） yml 12345678910comments:  # Up to two comments system, th">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4-5、进阶配置">
+<meta property="og:url" content="http://ruiqingyan.com/2023/01/22/241/22/index.html">
+<meta property="og:site_name" content="睿清颜">
+<meta property="og:description" content="🖼 所有搭建博客的汇总在这里：Blog全程搭建 原文在这里，建议看这个https:&#x2F;&#x2F;docs.anheyu.com&#x2F;intro.html  进阶配置 🚀 评论 开启评论需要在 comments-use 中填写你需要的评论。 支持双评论显示，只需要配置两个评论（第一个为默认显示） yml 12345678910comments:  # Up to two comments system, th">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ruiqingyan.com/img/r23.jpg">
+<meta property="article:published_time" content="2023-01-22T11:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-23T12:39:54.000Z">
+<meta property="article:author" content="花夕">
+<meta property="article:tag" content="兴趣课">
+<meta property="article:tag" content="Blog个人博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ruiqingyan.com/img/r23.jpg"><link rel="shortcut icon" href="/img/favicon2.ico"><link rel="canonical" href="http://ruiqingyan.com/2023/01/22/241/22/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/16.png"/><link rel="mask-icon" href="/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-62KVKFBVSY"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-62KVKFBVSY');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "f");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":1000,"languages":{"author":"作者: 花夕","link":"链接: ","source":"来源: 睿清颜","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '4-5、进阶配置',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-23 20:39:54'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4052103_6tjtkhibmy5.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/css/custom@1.0.0.css"><link rel="stylesheet" href="/css/color@1.0.0.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar2.png" onerror="onerror=null;src='/img/404.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua2"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-xianhua"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/2024/01/01/11/2024/"><i class="fa-fw iconfont icon-ziyuan2"></i><span> 日常</span></a></li><li><a class="site-page child" href="/2024/01/01/12/index/"><i class="fa-fw iconfont icon-18"></i><span> 算法</span></a></li><li><a class="site-page child" href="/2024/01/01/13/index/"><i class="fa-fw iconfont icon-ziyuan1"></i><span> 英语</span></a></li><li><a class="site-page child" href="/2024/01/01/14/index/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-bojuelvpai-huashu"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"><i class="fa-fw iconfont icon-lotus"></i><span> 课程设计</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="fa-fw iconfont icon-xiaohua1"></i><span> 计算机基础</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%A7%91%E5%9F%BA%E7%A1%80%E8%AF%BE/"><i class="fa-fw iconfont icon-hua8"></i><span> 计科本科课程</span></a></li><li><a class="site-page child" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/"><i class="fa-fw iconfont icon-xiaohuanghua"></i><span> 业余兴趣课程</span></a></li><li><a class="site-page child" href="/251/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> 计科文献阅读</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/r23.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="睿清颜"><img class="site-icon" src="/img/avatar2.png"/><span class="site-name">睿清颜</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua2"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-xianhua"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/2024/01/01/11/2024/"><i class="fa-fw iconfont icon-ziyuan2"></i><span> 日常</span></a></li><li><a class="site-page child" href="/2024/01/01/12/index/"><i class="fa-fw iconfont icon-18"></i><span> 算法</span></a></li><li><a class="site-page child" href="/2024/01/01/13/index/"><i class="fa-fw iconfont icon-ziyuan1"></i><span> 英语</span></a></li><li><a class="site-page child" href="/2024/01/01/14/index/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-bojuelvpai-huashu"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"><i class="fa-fw iconfont icon-lotus"></i><span> 课程设计</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="fa-fw iconfont icon-xiaohua1"></i><span> 计算机基础</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%A7%91%E5%9F%BA%E7%A1%80%E8%AF%BE/"><i class="fa-fw iconfont icon-hua8"></i><span> 计科本科课程</span></a></li><li><a class="site-page child" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/"><i class="fa-fw iconfont icon-xiaohuanghua"></i><span> 业余兴趣课程</span></a></li><li><a class="site-page child" href="/251/"><i class="fa-fw iconfont icon-shengdan-huaduo"></i><span> 计科文献阅读</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">4-5、进阶配置</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-22T11:00:00.000Z" title="发表于 2023-01-22 19:00:00">2023-01-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-23T12:39:54.000Z" title="更新于 2023-11-23 20:39:54">2023-11-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/">兴趣课</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/Blog%E5%85%A8%E7%A8%8B%E6%90%AD%E5%BB%BA/">Blog全程搭建</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>20分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="4-5、进阶配置"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note info icon-padding flat"><i class="note-icon falt"></i><p>🖼 所有搭建博客的汇总在这里：<a href="/2023/01/01/241/00/">Blog全程搭建</a></p>
+<p>原文在这里，建议看这个<a target="_blank" rel="noopener" href="https://docs.anheyu.com/intro.html">https://docs.anheyu.com/intro.html</a></p>
+</div>
+<h1>进阶配置 🚀</h1>
+<h2 id="评论">评论</h2>
+<p>开启评论需要在 comments-use 中填写你需要的评论。</p>
+<p>支持双评论显示，只需要配置两个评论（第一个为默认显示）</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">comments:</span><br><span class="line">  # Up to two comments system, the first will be shown as default</span><br><span class="line">  # Choose: Valine/Waline/Twikoo/</span><br><span class="line">  use: Twikoo,Waline # Twikoo/Waline</span><br><span class="line">  text: true # Display the comment name next to the button</span><br><span class="line">  # lazyload: The comment system will be load when comment element enters the browser&#x27;s viewport.</span><br><span class="line">  # If you set it to true, the comment count will be invalid</span><br><span class="line">  lazyload: false</span><br><span class="line">  count: true # Display comment count in post&#x27;s top_img</span><br><span class="line">  card_post_count: false # Display comment count in Home Page</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7<br>
+8<br>
+9<br>
+10</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">use</td>
+<td style="text-align:left">使用的评论（请注意，最多支持两个，如果不需要请留空）</td>
+</tr>
+<tr>
+<td style="text-align:left">text</td>
+<td style="text-align:left">是否显示评论服务商的名字</td>
+</tr>
+<tr>
+<td style="text-align:left">lazyload</td>
+<td style="text-align:left">是否为评论开启 lazyload，开启后，只有滚动到评论位置时才会加载评论所需要的资源（开启 lazyload 后，评论数将不显示）</td>
+</tr>
+<tr>
+<td style="text-align:left">count</td>
+<td style="text-align:left">是否在文章顶部显示评论数</td>
+</tr>
+<tr>
+<td style="text-align:left">card_post_count</td>
+<td style="text-align:left">是否在首页文章卡片显示评论数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Twikoo">Twikoo</h3>
+<p><code>Twikoo</code> 是一个简洁、安全、无后端的静态网站评论系统，基于<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/tcb">腾讯云开发</a>。</p>
+<p>具体如何配置评论，请查看 <a target="_blank" rel="noopener" href="https://twikoo.js.org/quick-start.html">Twikoo 文档</a></p>
+<p>你只需要把获取到的 <code>环境 ID (envId)</code> 填写到配置上去就行</p>
+<p>修改 <code>主题配置文件</code></p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Twikoo</span><br><span class="line"># https://github.com/imaegoo/twikoo</span><br><span class="line">twikoo:</span><br><span class="line">  envId:</span><br><span class="line">  region:</span><br><span class="line">  visitor: false</span><br><span class="line">  option:</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">envId</td>
+<td style="text-align:left">环境 ID</td>
+</tr>
+<tr>
+<td style="text-align:left">region</td>
+<td style="text-align:left">环境地域，默认为 ap-shanghai，如果您的环境地域不是上海，需传此参数</td>
+</tr>
+<tr>
+<td style="text-align:left">visitor</td>
+<td style="text-align:left">是否显示文章阅读数</td>
+</tr>
+<tr>
+<td style="text-align:left">option</td>
+<td style="text-align:left">可选配置</td>
+</tr>
+<tr>
+<td style="text-align:left">card_post_count</td>
+<td style="text-align:left">是否在首页文章卡片显示评论数</td>
+</tr>
+</tbody>
+</table>
+<p>开启 visitor 后，文章页的访问人数将改为 Twikoo 提供，而不是 <code>不蒜子</code></p>
+<h3 id="Valine">Valine</h3>
+<p>遵循 <a target="_blank" rel="noopener" href="https://github.com/xCss/Valine">Valine</a> 的指示去配置你的 LeanCloud 应用。以及查看相应的配置说明。</p>
+<p>然后修改 <code>主题配置文件</code>:</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">valine:</span><br><span class="line">  appId: # leancloud application app id</span><br><span class="line">  appKey: # leancloud application app key</span><br><span class="line">  avatar: monsterid # gravatar style https://valine.js.org/#/avatar</span><br><span class="line">  serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)</span><br><span class="line">  bg: # valine background</span><br><span class="line">  visitor: false</span><br><span class="line">  option:</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7<br>
+8</p>
+<p>开启 visitor 后，文章页的访问人数将改为 Valine 提供，而不是 不蒜子</p>
+<p>Valine 于 v1.4.5 开始支持自定义表情，如果你需要自行配置，请在 emojiCDN 配置表情 CDN。</p>
+<p>同时在 Hexo 工作目录下的 source/_data/创建一个 json 文件 valine.json,等同于 Valine 需要配置的 emojiMaps，valine.json 配置方式可参考如下</p>
+<p>valine.json</p>
+<p>json</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;tv_doge&quot;: &quot;6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png&quot;,</span><br><span class="line">  &quot;tv_亲亲&quot;: &quot;a8111ad55953ef5e3be3327ef94eb4a39d535d06.png&quot;,</span><br><span class="line">  &quot;tv_偷笑&quot;: &quot;bb690d4107620f1c15cff29509db529a73aee261.png&quot;,</span><br><span class="line">  &quot;tv_再见&quot;: &quot;180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png&quot;,</span><br><span class="line">  &quot;tv_冷漠&quot;: &quot;b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png&quot;,</span><br><span class="line">  &quot;tv_发怒&quot;: &quot;34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png&quot;,</span><br><span class="line">  &quot;tv_发财&quot;: &quot;34db290afd2963723c6eb3c4560667db7253a21a.png&quot;,</span><br><span class="line">  &quot;tv_可爱&quot;: &quot;9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png&quot;,</span><br><span class="line">  &quot;tv_吐血&quot;: &quot;09dd16a7aa59b77baa1155d47484409624470c77.png&quot;,</span><br><span class="line">  &quot;tv_呆&quot;: &quot;fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png&quot;,</span><br><span class="line">  &quot;tv_呕吐&quot;: &quot;9f996894a39e282ccf5e66856af49483f81870f3.png&quot;,</span><br><span class="line">  &quot;tv_困&quot;: &quot;241ee304e44c0af029adceb294399391e4737ef2.png&quot;,</span><br><span class="line">  &quot;tv_坏笑&quot;: &quot;1f0b87f731a671079842116e0991c91c2c88645a.png&quot;,</span><br><span class="line">  &quot;tv_大佬&quot;: &quot;093c1e2c490161aca397afc45573c877cdead616.png&quot;,</span><br><span class="line">  &quot;tv_大哭&quot;: &quot;23269aeb35f99daee28dda129676f6e9ea87934f.png&quot;,</span><br><span class="line">  &quot;tv_委屈&quot;: &quot;d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png&quot;,</span><br><span class="line">  &quot;tv_害羞&quot;: &quot;a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png&quot;,</span><br><span class="line">  &quot;tv_尴尬&quot;: &quot;7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png&quot;,</span><br><span class="line">  &quot;tv_微笑&quot;: &quot;70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png&quot;,</span><br><span class="line">  &quot;tv_思考&quot;: &quot;90cf159733e558137ed20aa04d09964436f618a1.png&quot;,</span><br><span class="line">  &quot;tv_惊吓&quot;: &quot;0d15c7e2ee58e935adc6a7193ee042388adc22af.png&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7<br>
+8<br>
+9<br>
+10<br>
+11<br>
+12<br>
+13<br>
+14<br>
+15<br>
+16<br>
+17<br>
+18<br>
+19<br>
+20<br>
+21<br>
+22<br>
+23</p>
+<h3 id="Waline">Waline</h3>
+<p>Waline - 一款从 Valine 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine。</p>
+<p>具体配置可参考 <a target="_blank" rel="noopener" href="https://waline.js.org/">waline 文档</a></p>
+<p>然后修改 主题配置文件:</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">waline:</span><br><span class="line">  serverURL: # Waline server address url</span><br><span class="line">  bg: # waline background</span><br><span class="line">  pageview: false</span><br><span class="line">  option:</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5</p>
+<p>开启 pageview 后，文章页的访问人数将改为 Waline 提供，而不是 不蒜子</p>
+<h2 id="在线聊天">在线聊天</h2>
+<h3 id="通用配置">通用配置</h3>
+<p>这些工具都提供了一个按钮可以打开/关闭聊天窗口。 主题也提供了一个集合主题特色的按钮来替换这些工具本身的按钮，这个聊天按钮将会出现在右下角里。 你只需要把 <code>chat_btn</code> 打开就行。</p>
+<p>修改 <code>主题配置文件</code></p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Chat Button [recommend]</span><br><span class="line"># It will create a button in the bottom right corner of website, and hide the origin button</span><br><span class="line">chat_btn: true</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3</p>
+<p>为了不影响访客的体验，主题提供一个 <code>chat_hide_show</code> 配置 设为 true 后，使用工具提供的按钮时，只有向上滚动才会显示聊天按钮，向下滚动时会隐藏按钮。</p>
+<p>修改 <code>主题配置文件</code></p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># The origin chat button is displayed when scrolling up, and the button is hidden when scrolling down</span><br><span class="line">chat_hide_show: true</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2</p>
+<p>如果使用工具自带的聊天按钮，按钮位置可能会遮挡右下角图标，请配置 <code>rightside-bottom</code> 调正右下角图标位置</p>
+<h3 id="chatra">chatra</h3>
+<p>配置 <a target="_blank" rel="noopener" href="https://chatra.com/cn/">chatra</a>,需要知道 <code>Public key</code></p>
+<p>打开 <a target="_blank" rel="noopener" href="https://chatra.com/cn/">chatra</a> 并注册账号。 你可以在 <code>Preferences</code> 中找到 <code>Public key</code></p>
+<p>修改 <code>主题配置文件</code></p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># chatra</span><br><span class="line"># https://chatra.io/</span><br><span class="line">chatra:</span><br><span class="line">  enable: true</span><br><span class="line">  id: xxxxxxxx</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5</p>
+<p><code>chatra</code> 的样式你可以 <code>Chat Widget</code> 自行配置</p>
+<h3 id="tidio">tidio</h3>
+<p>配置 tidio,需要知道 <code>Public key</code></p>
+<p>打开 <a target="_blank" rel="noopener" href="https://www.tidio.com/">tidio</a> 并注册账号。 你可以在 <code>Preferences &gt; Developer</code> 中找到 <code>Public key</code></p>
+<p>修改 <code>主题配置文件</code></p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># tidio</span><br><span class="line"># https://www.tidio.com/</span><br><span class="line">tidio:</span><br><span class="line">  enable: true</span><br><span class="line">  public_key: XXXX</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5</p>
+<p><code>tidio</code>的样式你可以<code>Channels</code>自行配置</p>
+<h3 id="daovoice">daovoice</h3>
+<p>打开 <a target="_blank" rel="noopener" href="https://www.daocloud.io/">daovoice</a> 和注册帐号</p>
+<p>找到你的 <code>app id</code><img src="https://file.crazywong.com/gh/jerryc127/CDN/img/hexo-theme-butterfly-docs-chat-daovoice-appid.png" alt="img"></p>
+<p>修改 <code>主题配置文件</code></p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># daovoice</span><br><span class="line"># http://daovoice.io/</span><br><span class="line">daovoice:</span><br><span class="line">  enable: true</span><br><span class="line">  app_id: xxxxx</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5</p>
+<p>可在<code>聊天设置</code>里配置聊天按钮等样式</p>
+<h3 id="crisp">crisp</h3>
+<p>打开 <a target="_blank" rel="noopener" href="https://crisp.chat/en/">crisp</a> 并注册帐号</p>
+<p>找到需要的网站 ID</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># crisp</span><br><span class="line"># https://crisp.chat/en/</span><br><span class="line">crisp:</span><br><span class="line">  enable: false</span><br><span class="line">  website_id: xxxxxxxx</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5</p>
+<p><img src="https://file.crazywong.com/gh/jerryc127/CDN/img/hexo-theme-buttefly-docs-chat-crisp.png" alt="img"></p>
+<h3 id="messenger">messenger</h3>
+<p>messenger 为 Facebook 旗下的聊天服务</p>
+<p>具体操作请查看 <a target="_blank" rel="noopener" href="https://developers.facebook.com/docs/messenger-platform/discovery/facebook-chat-plugin/">Facebook 洽谈附加程式 - Messenger 平台</a></p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">messenger:</span><br><span class="line">  enable: false</span><br><span class="line">  pageID: xxxxx</span><br><span class="line">  lang: zh_TW # Language en_US/zh_CN/zh_TW and so on</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4</p>
+<h2 id="ai-摘要">ai 摘要</h2>
+<p>需主题版本大于 1.1.6 版本</p>
+<p>修改主题配置文件，其中<code>key</code>和<code>Referer</code> 为 <code>tianli gpt</code> 的<code>key</code>和<code>Referer</code>，可在 <a target="_blank" rel="noopener" href="https://afdian.net/item/886a79d4db6711eda42a52540025c377">https://afdian.net/item/886a79d4db6711eda42a52540025c377</a> 购买 key，购买完成后请立即在<a target="_blank" rel="noopener" href="https://summary.tianli0.top/">前端面板</a>绑定key，以防止被盗用。</p>
+<p>适用于AnZhiYu主题项目的Key，前端管理面板 <a target="_blank" rel="noopener" href="https://summary.tianli0.top/">https://summary.tianli0.top/</a></p>
+<p>每个key限制请求字数50000字，如果是已经请求过的内容不会再次消耗key 使用时需要绑定key。 虚拟物品一经发出不支持退款。</p>
+<p>关于续费： 续费和绑定流程相同，绑定成功后会自动充值到原有的key上，也就是说无需更改网页中的key参数，直接绑定即可。 格式发送，返回的 token 即你的剩余字数</p>
+<p>yaml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 文章顶部ai摘要</span><br><span class="line">post_head_ai_description:</span><br><span class="line">  enable: true</span><br><span class="line">  gptName: AnZhiYu</span><br><span class="line">  mode: local # 默认模式 可选值: tianli/local</span><br><span class="line">  switchBtn: false # 可以配置是否显示切换按钮 以切换tianli/local</span><br><span class="line">  btnLink: https://afdian.net/item/886a79d4db6711eda42a52540025c377</span><br><span class="line">  randomNum: 3 # 按钮最大的随机次数，也就是一篇文章最大随机出来几种</span><br><span class="line">  basicWordCount: 1000 # 最低获取字符数, 最小1000, 最大1999</span><br><span class="line">  key: xxxx</span><br><span class="line">  Referer: https://xx.xx/</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7<br>
+8<br>
+9<br>
+10<br>
+11</p>
+<p>配置完成以后在文章的<code>Front-matter</code>配置<code>ai: true</code> 使用 <code>tianli gpt</code> 需将 mode 改为<code>tianli</code> 然后在需要 ai 摘要的文章的<code>Front-matter配置ai: true</code></p>
+<p>如果使用<code>local</code>,需要按照以下方式配置</p>
+<p>markdown</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: AnZhiYu主题快速开始</span><br><span class="line">ai:</span><br><span class="line">  - 本教程介绍了如何在博客中安装基于Hexo主题的安知鱼主题，并提供了安装、应用主题、修改配置文件、本地启动等详细步骤及技术支持方式。教程的内容针对最新的主题版本进行更新，如果你是旧版本教程会有出入。</span><br><span class="line">  - 本文真不错</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">mode</th>
+<th style="text-align:left">对比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">tianli</td>
+<td style="text-align:left">具有完备的训练后端功能，可优秀的完成文章的摘要，方便的快速生成对应摘要</td>
+</tr>
+<tr>
+<td style="text-align:left">local</td>
+<td style="text-align:left">本地，需自行在文章顶部添加 ai 摘要，内容自行决定，书写较为麻烦。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="控制台信息">控制台信息</h2>
+<p>关于控制台信息，主题不提供修改配置，但是可以在主题配置文件中进行关闭。</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 控制台打印信息</span><br><span class="line">console:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3</p>
+<p>控制台打印时间相关信息可以配置页脚内容来修改。</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">footer:</span><br><span class="line">  owner:</span><br><span class="line">    enable: true</span><br><span class="line">    since: 2020</span><br><span class="line">  custom_text:</span><br><span class="line">  copyright: false # Copyright of theme and framework</span><br><span class="line">  runtime:</span><br><span class="line">    enable: true</span><br><span class="line">    launch_time: 04/01/2021 00:00:00 # 网站上线时间</span><br><span class="line">    work_img: https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-上班摸鱼中.svg</span><br><span class="line">    work_description: 距离月入25k也就还差一个大佬带我~</span><br><span class="line">    offduty_img: https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-下班啦.svg</span><br><span class="line">    offduty_description: 下班了就该开开心心的玩耍，嘿嘿~</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7<br>
+8<br>
+9<br>
+10<br>
+11<br>
+12<br>
+13</p>
+<p>如果实在有强迫症也可以自行修改内容<code>themes/anzhiyu/layout/includes/anzhiyu/log-js.pug</code>。</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f29cf50177c.png" alt="控制台打印信息"></p>
+<h2 id="如何配置首页顶部右侧不使用轮播图">如何配置首页顶部右侧不使用轮播图</h2>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/642172c889a45.png" alt="效果预览"></p>
+<p>将主题配置文件中<code>home_top.swiper.enable</code> 修改为 <code>false</code> 即可.</p>
+<h2 id="标签卖萌">标签卖萌</h2>
+<p>主题配置文件中</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 标签卖萌</span><br><span class="line">diytitle:</span><br><span class="line">  enable: true</span><br><span class="line">  leaveTitle: w(ﾟДﾟ)w 不要走！再看看嘛！</span><br><span class="line">  backTitle: ♪(^∇^*)欢迎肥来！</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5</p>
+<h2 id="配置关于页与文章页底部打赏二维码">配置关于页与文章页底部打赏二维码</h2>
+<p>在主题配置文件中</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># Sponsor/reward</span><br><span class="line">reward:</span><br><span class="line">  enable: true</span><br><span class="line">  coinAudio: https://npm.elemecdn.com/akilar-candyassets@1.0.36/audio/aowu.m4a</span><br><span class="line">  QR_code:</span><br><span class="line">    - img: https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png</span><br><span class="line">      link:</span><br><span class="line">      text: wechat</span><br><span class="line">    - img: https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png</span><br><span class="line">      link:</span><br><span class="line">      text: alipay</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7<br>
+8<br>
+9<br>
+10<br>
+11</p>
+<h2 id="主题如何获取文章主色调">主题如何获取文章主色调</h2>
+<p>支持在文章<code>Post Front-matter</code>配置主色<code>main_color</code>，例如</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: AnZhiYu主题安装文档（一）</span><br><span class="line">date: 2023-03-26 18:55:44</span><br><span class="line">main_color: &quot;#c0e0e0&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5</p>
+<p>主题将会优先获取文章<code>Post Front-matter</code>颜色，如果未设置才会使用<code>cdn/api/both</code></p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 主色调相关配置</span><br><span class="line">mainTone:</span><br><span class="line">  enable: true # true or false 文章是否启用获取图片主色调</span><br><span class="line">  mode: both # cdn/api/both cdn模式为图片url+imageAve参数获取主色调，api模式为请求API获取主色调，both模式会先请求cdn参数，无法获取的情况下将请求API获取</span><br><span class="line">  # 项目地址：https://github.com/anzhiyu-c/img2color-go</span><br><span class="line">  api: https://color.anheyu.com/api?img= # mode为api时可填写</span><br><span class="line">  cover_change: true # 整篇文章跟随cover修改主色调</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">enable</td>
+<td style="text-align:left">是否开启主色调</td>
+</tr>
+<tr>
+<td style="text-align:left">mode</td>
+<td style="text-align:left">cdn/api/both cdn模式为图片url+imageAve参数获取主色调，api模式为请求API获取主色调，both模式会先请求cdn参数，无法获取的情况下将请求API获取（目前cdn模式支持多吉云和腾讯数据万象两种方式）</td>
+</tr>
+<tr>
+<td style="text-align:left">api</td>
+<td style="text-align:left">mode为api时，需返回16进制颜色，可以参考部署项目: <a target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/img2color-go">https://github.com/anzhiyu-c/img2color-go</a></td>
+</tr>
+<tr>
+<td style="text-align:left">cover_change</td>
+<td style="text-align:left">整篇文章跟随cover修改主色调</td>
+</tr>
+</tbody>
+</table>
+<h2 id="双栏">双栏</h2>
+<p>如果你需要像我一样首页双栏，修改主题配置文件<code>_config.anzhiyu.yml</code>（主题版本需要 1.1.1 以及以上）</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 双栏文章</span><br><span class="line">article_double_row: true</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2</p>
+<h2 id="首页顶部-3-大分类配置">首页顶部 3 大分类配置</h2>
+<p>首页技能点轮播下的分类，可通过配置主题配置文件<code>home_top</code></p>
+<p>bash</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+<p>1</p>
+<p>markdown</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">categories: 前端开发</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4</p>
+<p>只需要在创建分类以后在对应的文章中添加上对应的分类，配置 path 即可，注意一定要对应。</p>
+<h2 id="左下角音乐球">左下角音乐球</h2>
+<p>歌单配置很简单，只需要修改主题配置文件中<code>nav_music</code>即可.</p>
+<p>其中id与server配置可以参考<a target="_blank" rel="noopener" href="https://github.com/metowolf/MetingJS">MetingJS</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">option</th>
+<th style="text-align:center">default</th>
+<th style="text-align:left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:center"><strong>require</strong></td>
+<td style="text-align:left">song id / playlist id / album id / search keyword</td>
+</tr>
+<tr>
+<td style="text-align:left">server</td>
+<td style="text-align:center"><strong>require</strong></td>
+<td style="text-align:left">music platform: <code>netease</code>, <code>tencent</code>, <code>kugou</code>, <code>xiami</code>, <code>baidu</code></td>
+</tr>
+</tbody>
+</table>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 左下角音乐配置项</span><br><span class="line"># https://github.com/metowolf/MetingJS</span><br><span class="line">nav_music:</span><br><span class="line">  enable: true</span><br><span class="line">  console_widescreen_music: false # 宽屏状态控制台显示音乐而不是标签 enable为true 控制台依然会显示</span><br><span class="line">  id: 8152976493</span><br><span class="line">  server: netease</span><br><span class="line">  all_playlist: https://y.qq.com/n/ryqq/playlist/8802438608</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7<br>
+8</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f294ef59784.png" alt="img"></p>
+<h2 id="评论匿名邮箱">评论匿名邮箱</h2>
+<p>目前只支持Twikoo</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 评论匿名邮箱</span><br><span class="line">visitorMail:</span><br><span class="line">  enable: true</span><br><span class="line">  mail: visitor@anheyu.com</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f294f05b26a.png" alt="评论匿名"></p>
+<h2 id="文章底部工具">文章底部工具</h2>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># ptool 文章底部工具</span><br><span class="line">ptool:</span><br><span class="line">  enable: true</span><br><span class="line">  share_mobile: true</span><br><span class="line">  share_weibo: true</span><br><span class="line">  share_copyurl: true</span><br><span class="line">  categories: false # 是否显示分类</span><br><span class="line">  mode: /wechat/ # 运营模式与责任，不配置不显示</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7<br>
+8</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f29566258df.png" alt="img"></p>
+<h2 id="首页技能点配置">首页技能点配置</h2>
+<p>[blog]代表你的博客根目录。示例数据中的图片链接为本人图床，请自行上传至您自己的图床，（不保证永久可用性）。</p>
+<p>主题配置文件，关闭<code>peoplecanvas.enable</code></p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 首页随便逛逛people模式 而非技能点模式，关闭后为技能点模式需要配置creativity.yml</span><br><span class="line">peoplecanvas:</span><br><span class="line">  enable: false</span><br><span class="line">  img: https://upload-bbs.miyoushe.com/upload/2023/09/03/125766904/ee23df8517f3c3e3efc4145658269c06_5714860933110284659.png</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4</p>
+<p>创建<code>[blog]/source/_data/creativity.yml</code>，输入以下内容</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">- class_name: 开启创造力</span><br><span class="line">  creativity_list:</span><br><span class="line">    - name: Java</span><br><span class="line">      color: &quot;#fff&quot;</span><br><span class="line">      icon: https://bu.dusays.com/2023/04/09/643293b1184e9.jpg</span><br><span class="line">    - name: Docker</span><br><span class="line">      color: &quot;#57b6e6&quot;</span><br><span class="line">      icon: https://bu.dusays.com/2023/04/09/643293b0f0abe.png</span><br><span class="line">    - name: Photoshop</span><br><span class="line">      color: &quot;#4082c3&quot;</span><br><span class="line">      icon: https://bu.dusays.com/2022/12/15/639aa3a5c240e.png</span><br><span class="line">    - name: Node</span><br><span class="line">      color: &quot;#333&quot;</span><br><span class="line">      icon: https://npm.elemecdn.com/anzhiyu-blog@2.1.1/img/svg/node-logo.svg</span><br><span class="line">    - name: Webpack</span><br><span class="line">      color: &quot;#2e3a41&quot;</span><br><span class="line">      icon: https://bu.dusays.com/2023/04/09/643293b68026c.png</span><br><span class="line">    - name: Pinia</span><br><span class="line">      color: &quot;#fff&quot;</span><br><span class="line">      icon: https://npm.elemecdn.com/anzhiyu-blog@2.0.8/img/svg/pinia-logo.svg</span><br><span class="line">    - name: Python</span><br><span class="line">      color: &quot;#fff&quot;</span><br><span class="line">      icon: https://bu.dusays.com/2023/04/09/643293b1230f7.png</span><br><span class="line">    - name: Vite</span><br><span class="line">      color: &quot;#937df7&quot;</span><br><span class="line">      icon: https://npm.elemecdn.com/anzhiyu-blog@2.0.8/img/svg/vite-logo.svg</span><br><span class="line">    - name: Flutter</span><br><span class="line">      color: &quot;#4499e4&quot;</span><br><span class="line">      icon: https://bu.dusays.com/2023/04/09/643293b1055c2.png</span><br><span class="line">    - name: Vue</span><br><span class="line">      color: &quot;#b8f0ae&quot;</span><br><span class="line">      icon: https://bu.dusays.com/2023/04/09/643293b6788bd.png</span><br><span class="line">    - name: React</span><br><span class="line">      color: &quot;#222&quot;</span><br><span class="line">      icon: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K</span><br><span class="line">    - name: CSS3</span><br><span class="line">      color: &quot;#2c51db&quot;</span><br><span class="line">      icon: https://bu.dusays.com/2022/12/15/639aa3a5c251e.png</span><br><span class="line">    - name: JS</span><br><span class="line">      color: &quot;#f7cb4f&quot;</span><br><span class="line">      icon: https://bu.dusays.com/2023/04/09/643293b121f02.png</span><br><span class="line">    - name: HTML</span><br><span class="line">      color: &quot;#e9572b&quot;</span><br><span class="line">      icon: https://bu.dusays.com/2022/12/15/639aa3a5c241c.png</span><br><span class="line">    - name: Git</span><br><span class="line">      color: &quot;#df5b40&quot;</span><br><span class="line">      icon: https://bu.dusays.com/2023/04/09/643293b10ccdd.webp</span><br><span class="line">    - name: Apifox</span><br><span class="line">      color: &quot;#e65164&quot;</span><br><span class="line">      icon: https://bu.dusays.com/2022/11/19/6378d6458c6b6.png</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7<br>
+8<br>
+9<br>
+10<br>
+11<br>
+12<br>
+13<br>
+14<br>
+15<br>
+16<br>
+17<br>
+18<br>
+19<br>
+20<br>
+21<br>
+22<br>
+23<br>
+24<br>
+25<br>
+26<br>
+27<br>
+28<br>
+29<br>
+30<br>
+31<br>
+32<br>
+33<br>
+34<br>
+35<br>
+36<br>
+37<br>
+38<br>
+39<br>
+40<br>
+41<br>
+42<br>
+43<br>
+44<br>
+45<br>
+46<br>
+47<br>
+48<br>
+49<br>
+50</p>
+<p>此时可以看到首页顶部已经有技能点的轮播了。</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/641fe7b5c77c3.webp" alt="技能点轮播"></p>
+<p>文字部分在主题配置文件中<code>home_top</code>配置项修改</p>
+<h2 id="配置-nav-顶栏左侧应用列表">配置 nav 顶栏左侧应用列表</h2>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># nav左侧菜单</span><br><span class="line">nav:</span><br><span class="line">  enable: true</span><br><span class="line">  menu:</span><br><span class="line">    - title: 网页</span><br><span class="line">      item:</span><br><span class="line">        - name: 个人主页</span><br><span class="line">          link: https://index.anheyu.com/</span><br><span class="line">          icon: https://bu.dusays.com/2023/08/13/64d8c2748ef34.jpg</span><br><span class="line">        - name: 博客</span><br><span class="line">          link: https://blog.anheyu.com/</span><br><span class="line">          icon: https://bu.dusays.com/2023/07/23/64bc72c75319d.png</span><br><span class="line">        - name: 安知鱼图床</span><br><span class="line">          link: https://image.anheyu.com/</span><br><span class="line">          icon: https://bu.dusays.com/2023/08/13/64d8c2653332e.ico</span><br><span class="line">    - title: 项目</span><br><span class="line">      item:</span><br><span class="line">        - name: 安知鱼图床</span><br><span class="line">          link: https://image.anheyu.com/</span><br><span class="line">          icon: https://bu.dusays.com/2023/08/13/64d8c2653332e.ico</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7<br>
+8<br>
+9<br>
+10<br>
+11<br>
+12<br>
+13<br>
+14<br>
+15<br>
+16<br>
+17<br>
+18<br>
+19<br>
+20</p>
+<h2 id="字数统计">字数统计</h2>
+<p>要为 AnZhiYu 配上字数统计特性, 你需要如下几个步骤:</p>
+<p>打开 hexo 工作目录</p>
+<p>bash</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-wordcount --save</span><br><span class="line">或者</span><br><span class="line">yarn add hexo-wordcount</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3</p>
+<p>修改 主题配置文件:</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wordcount:</span><br><span class="line">  enable: true</span><br><span class="line">  post_wordcount: true</span><br><span class="line">  min2read: true</span><br><span class="line">  total_wordcount: true</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5</p>
+<h2 id="网站验证">网站验证</h2>
+<p>如果需要搜索引擎收录网站，可能需要登录对应搜索引擎的管理平台进行提交。 各自的验证码可从各自管理平台拿到</p>
+<p>修改 <code>主题配置文件</code></p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">site_verification:</span><br><span class="line">  # - name: google_site_verification</span><br><span class="line">  #   content: xxxxxx</span><br><span class="line">  # - name: baidu_site_verification</span><br><span class="line">  #   content: xxxxxxx</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5</p>
+<h2 id="搜索系统">搜索系统</h2>
+<p>algolia本地搜索DocSearch</p>
+<p>记得运行 hexo clean</p>
+<p>使用 <a target="_blank" rel="noopener" href="https://github.com/LouisBarranqueiro/hexo-algoliasearch">hexo-algoliasearch</a>，请记得配置 fields 参数的 <code>title</code>, <code>permalink</code> 和 <code>content</code></p>
+<p>你需要安装 <a target="_blank" rel="noopener" href="https://github.com/LouisBarranqueiro/hexo-algoliasearch">hexo-algoliasearch</a>. 根据它的说明文档去做相应的配置。</p>
+<p>修改 主题配置文件</p>
+<p>yaml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">algolia_search:</span><br><span class="line">  enable: true</span><br><span class="line">  hits:</span><br><span class="line">    per_page: 6</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4</p>
+<p>hexo 配置文件 <code>_config.yml</code> 添加以下内容</p>
+<p>注意algolia搜索出来URL前缀为hexo配置文件<code>_config.yml</code>中的<code>url</code>配置。</p>
+<p>yaml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># algolia搜索: https://github.com/LouisBarranqueiro/hexo-algoliasearch</span><br><span class="line">algolia:</span><br><span class="line">  appId: &quot;xxxx&quot;</span><br><span class="line">  apiKey: &quot;xxxx&quot;</span><br><span class="line">  adminApiKey: &quot;xxxx&quot;</span><br><span class="line">  chunkSize: 5000</span><br><span class="line">  indexName: &quot;hexo&quot;</span><br><span class="line">  fields:</span><br><span class="line">    - content:strip:truncate,0,200</span><br><span class="line">    - excerpt:strip</span><br><span class="line">    - gallery</span><br><span class="line">    - permalink</span><br><span class="line">    - photos</span><br><span class="line">    - slug</span><br><span class="line">    - tags</span><br><span class="line">    - title</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7<br>
+8<br>
+9<br>
+10<br>
+11<br>
+12<br>
+13<br>
+14<br>
+15<br>
+16</p>
+<h2 id="数学公式">数学公式</h2>
+<p>hexo-renderer-pandoc（推荐）MathjaxKaTeXhexo-renderer-markdown-ithexo-renderer-markdown-it-plus</p>
+<p>详情请见 <a target="_blank" rel="noopener" href="https://www.yyyzyyyz.cn/posts/654d8712aff4/">https://www.yyyzyyyz.cn/posts/654d8712aff4/</a></p>
+<h2 id="分享">分享</h2>
+<p>只能选择一个分享服务商</p>
+<p>sharejsaddtoany</p>
+<p>如果你不知道 <a target="_blank" rel="noopener" href="https://github.com/overtrue/share.js/">sharejs</a>，看看它的説明。</p>
+<p>修改 <code>主题配置文件</code></p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sharejs:</span><br><span class="line">  enable: true</span><br><span class="line">  sites: facebook,twitter,wechat,weibo,qq #想要显示的内容</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3</p>
+<h2 id="欢迎语配置">欢迎语配置</h2>
+<p>在每次进入首页时根据当前时间弹出欢迎语，为true时必须配置list。</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"># 欢迎语配置</span><br><span class="line">greetingBox:</span><br><span class="line">  enable: true #开启后必须配置下面的list对应的时间段，不然会出现小白条</span><br><span class="line">  default: 晚上好👋</span><br><span class="line">  list:</span><br><span class="line">    - greeting: 晚安😴</span><br><span class="line">      startTime: 0</span><br><span class="line">      endTime: 5</span><br><span class="line">    - greeting: 早上好鸭👋, 祝你一天好心情！</span><br><span class="line">      startTime: 6</span><br><span class="line">      endTime: 9</span><br><span class="line">    - greeting: 上午好👋, 状态很好，鼓励一下～</span><br><span class="line">      startTime: 10</span><br><span class="line">      endTime: 10</span><br><span class="line">    - greeting: 11点多啦, 在坚持一下就吃饭啦～</span><br><span class="line">      startTime: 11</span><br><span class="line">      endTime: 11</span><br><span class="line">    - greeting: 午安👋, 宝贝</span><br><span class="line">      startTime: 12</span><br><span class="line">      endTime: 14</span><br><span class="line">    - greeting: 🌈充实的一天辛苦啦！</span><br><span class="line">      startTime: 14</span><br><span class="line">      endTime: 18</span><br><span class="line">    - greeting: 19点喽, 奖励一顿丰盛的大餐吧🍔。</span><br><span class="line">      startTime: 19</span><br><span class="line">      endTime: 19</span><br><span class="line">    - greeting: 晚上好👋, 在属于自己的时间好好放松😌~</span><br><span class="line">      startTime: 20</span><br><span class="line">      endTime: 24</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7<br>
+8<br>
+9<br>
+10<br>
+11<br>
+12<br>
+13<br>
+14<br>
+15<br>
+16<br>
+17<br>
+18<br>
+19<br>
+20<br>
+21<br>
+22<br>
+23<br>
+24<br>
+25<br>
+26<br>
+27<br>
+28<br>
+29</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f295fbab122.png" alt="欢迎语配置"></p>
+<h2 id="博客快捷键">博客快捷键</h2>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 快捷键配置</span><br><span class="line">shortcutKey:</span><br><span class="line">  enable: true</span><br><span class="line">  delay: 100 # 所有键位延时触发而不是立即触发（包括shift，以解决和浏览器键位冲突问题）</span><br><span class="line">  shiftDelay: 200 # shift按下延时多久开启</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f28f14b1677.png" alt="博客快捷键"></p>
+<h2 id="无障碍优化">无障碍优化</h2>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 无障碍优化（在首页按下「shift + ?」以查看效果）</span><br><span class="line">accesskey:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f2969b6a83b.webp" alt="无障碍优化"></p>
+<h2 id="友情链接顶部相关配置">友情链接顶部相关配置</h2>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 友情链接顶部相关配置</span><br><span class="line">linkPageTop:</span><br><span class="line">  enable: true</span><br><span class="line">  title: 与数百名博主无限进步</span><br><span class="line">  # 添加博主友链的评论自定义格式</span><br><span class="line">  addFriendPlaceholder: &quot;昵称（请勿包含博客等字样）：\n网站地址（要求博客地址，请勿提交个人主页）：\n头像图片url（请提供尽可能清晰的图片，我会上传到我自己的图床）：\n描述：\n站点截图（可选）：\n&quot;</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f296f1ed91f.webp" alt="img"></p>
+<h2 id="缩略图后缀">缩略图后缀</h2>
+<p>该配置用于优化缩略图，archive/tag/category 页面单独开启后缀，可以优化图像质量问题，注意开启后一定要保证你的图片本身可以支持链接后➕pageThumbnailSuffix能够被访问。</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 缩略图后缀 archive/tag/category 页面单独开启后缀</span><br><span class="line">pageThumbnailSuffix: &quot;!page_thumbnail&quot;</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f297a3be6a7.webp" alt="缩略图后缀"></p>
+<h2 id="隐私协议弹窗">隐私协议弹窗</h2>
+<p>该弹窗一个窗口会话只会弹出一次。</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 隐私协议弹窗</span><br><span class="line">agreementPopup:</span><br><span class="line">  enable: true</span><br><span class="line">  url: /privacy</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f297ecbb523.webp" alt="隐私协议弹窗"></p>
+<h2 id="定制化的右键菜单">定制化的右键菜单</h2>
+<p>开启<code>rightClickMenu</code>即可。</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 右键菜单</span><br><span class="line">rightClickMenu:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f2987b95753.png" alt="右键菜单一般情况"></p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f2987b95753.png" alt="右键菜单链接情况"></p>
+<h2 id="动效控制">动效控制</h2>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 动效</span><br><span class="line">dynamicEffect:</span><br><span class="line">  postTopWave: true # 文章顶部波浪效果</span><br><span class="line">  postTopRollZoomInfo: true # 文章顶部滚动时缩放</span><br><span class="line">  pageCommentsRollZoom: true # 非文章页面评论滚动时缩放显示（仅仅Twikoo生效）</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f298e0920cb.webp" alt="文章顶部波浪效果"></p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f299eb3ea0d.gif" alt="文章顶部滚动时缩放"></p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f29a87d6dbc.gif" alt="非文章页面评论滚动时缩放显示"></p>
+<h2 id="51A统计">51A统计</h2>
+<p>可以配置 <a target="_blank" rel="noopener" href="https://v6.51.la/user/application">51A统计</a> 与<a target="_blank" rel="noopener" href="https://perf.51.la/manage/home">灵雀</a></p>
+<p>配置后可在关于页面显示统计信息。</p>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 51a统计配置</span><br><span class="line">LA:</span><br><span class="line">  enable: true</span><br><span class="line">  ck: Jp8wwGQpp21utaFQ</span><br><span class="line">  LingQueMonitorID: Jp8ztDRrxmTf7LDj</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5</p>
+<p>警告</p>
+<p>注意一定要开启数据挂件功能!!!</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f29c8ae5d5a.png" alt="开启数据挂件"></p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f29c29019c9.png" alt="51A统计ck"></p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f29be2c2aee.webp" alt="灵雀LingQueMonitorID"></p>
+<h2 id="页面卡片顶部气泡升起效果">页面卡片顶部气泡升起效果</h2>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 页面卡片顶部气泡升起效果</span><br><span class="line">bubble:</span><br><span class="line">  enable: false</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f29d7965a3d.webp" alt="页面卡片顶部气泡升起效果"></p>
+<h2 id="深色模式粒子效果canvas">深色模式粒子效果canvas</h2>
+<p>yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 深色模式粒子效果canvas</span><br><span class="line">universe:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
+<p>1<br>
+2<br>
+3</p>
+<p><img src="https://ruiqingyan.oss-cn-shenzhen.aliyuncs.com/uPic/64f29dfaa6f04.webp" alt="深色模式粒子效果canvas"></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/anzhiyu-docs/edit/main/advanced/index.md">Edit this page on GitHub</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://ruiqingyan.com">花夕</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://ruiqingyan.com/2023/01/22/241/22/">http://ruiqingyan.com/2023/01/22/241/22/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://ruiqingyan.com" target="_blank">睿清颜</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%85%B4%E8%B6%A3%E8%AF%BE/">兴趣课</a><a class="post-meta__tags" href="/tags/Blog%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">Blog个人博客</a></div><div class="post_share"><div class="social-share" data-image="/img/r23.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/01/21/241/21/" title="4-4、额外配置"><img class="cover" src="/img/r22.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">4-4、额外配置</div></div></a></div><div class="next-post pull-right"><a href="/2023/01/23/241/23/" title="4-6、页面配置📦"><img class="cover" src="/img/r18.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">4-6、页面配置📦</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/01/01/241/00/" title="Blog个人博客"><img class="cover" src="/img/rd2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="title">Blog个人博客</div></div></a></div><div><a href="/2023/01/01/241/01/" title="1-1、注册163邮箱"><img class="cover" src="/img/r1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="title">1-1、注册163邮箱</div></div></a></div><div><a href="/2023/01/02/241/02/" title="1-2、注册github"><img class="cover" src="/img/r2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-02</div><div class="title">1-2、注册github</div></div></a></div><div><a href="/2023/01/03/241/03/" title="1-3、配置git"><img class="cover" src="/img/r3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="title">1-3、配置git</div></div></a></div><div><a href="/2023/01/04/241/04/" title="1-4、配置Nodejs"><img class="cover" src="/img/r4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-04</div><div class="title">1-4、配置Nodejs</div></div></a></div><div><a href="/2023/01/05/241/05/" title="1-5、本地部署hexo项目"><img class="cover" src="/img/r5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-05</div><div class="title">1-5、本地部署hexo项目</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="avatar"/></div><div class="author-info__name">花夕</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ruiqingyan1"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">日更每天21:00 &nbsp And &nbsp  考研ing~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">进阶配置 🚀</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%84%E8%AE%BA"><span class="toc-text">评论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Twikoo"><span class="toc-text">Twikoo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Valine"><span class="toc-text">Valine</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Waline"><span class="toc-text">Waline</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E7%BA%BF%E8%81%8A%E5%A4%A9"><span class="toc-text">在线聊天</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="toc-text">通用配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chatra"><span class="toc-text">chatra</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tidio"><span class="toc-text">tidio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#daovoice"><span class="toc-text">daovoice</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#crisp"><span class="toc-text">crisp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#messenger"><span class="toc-text">messenger</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ai-%E6%91%98%E8%A6%81"><span class="toc-text">ai 摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%8F%B0%E4%BF%A1%E6%81%AF"><span class="toc-text">控制台信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E9%A6%96%E9%A1%B5%E9%A1%B6%E9%83%A8%E5%8F%B3%E4%BE%A7%E4%B8%8D%E4%BD%BF%E7%94%A8%E8%BD%AE%E6%92%AD%E5%9B%BE"><span class="toc-text">如何配置首页顶部右侧不使用轮播图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E5%8D%96%E8%90%8C"><span class="toc-text">标签卖萌</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%85%B3%E4%BA%8E%E9%A1%B5%E4%B8%8E%E6%96%87%E7%AB%A0%E9%A1%B5%E5%BA%95%E9%83%A8%E6%89%93%E8%B5%8F%E4%BA%8C%E7%BB%B4%E7%A0%81"><span class="toc-text">配置关于页与文章页底部打赏二维码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E6%96%87%E7%AB%A0%E4%B8%BB%E8%89%B2%E8%B0%83"><span class="toc-text">主题如何获取文章主色调</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E6%A0%8F"><span class="toc-text">双栏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A6%96%E9%A1%B5%E9%A1%B6%E9%83%A8-3-%E5%A4%A7%E5%88%86%E7%B1%BB%E9%85%8D%E7%BD%AE"><span class="toc-text">首页顶部 3 大分类配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A6%E4%B8%8B%E8%A7%92%E9%9F%B3%E4%B9%90%E7%90%83"><span class="toc-text">左下角音乐球</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%84%E8%AE%BA%E5%8C%BF%E5%90%8D%E9%82%AE%E7%AE%B1"><span class="toc-text">评论匿名邮箱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E5%BA%95%E9%83%A8%E5%B7%A5%E5%85%B7"><span class="toc-text">文章底部工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A6%96%E9%A1%B5%E6%8A%80%E8%83%BD%E7%82%B9%E9%85%8D%E7%BD%AE"><span class="toc-text">首页技能点配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-nav-%E9%A1%B6%E6%A0%8F%E5%B7%A6%E4%BE%A7%E5%BA%94%E7%94%A8%E5%88%97%E8%A1%A8"><span class="toc-text">配置 nav 顶栏左侧应用列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E6%95%B0%E7%BB%9F%E8%AE%A1"><span class="toc-text">字数统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E9%AA%8C%E8%AF%81"><span class="toc-text">网站验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E7%B3%BB%E7%BB%9F"><span class="toc-text">搜索系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="toc-text">数学公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E4%BA%AB"><span class="toc-text">分享</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%A2%E8%BF%8E%E8%AF%AD%E9%85%8D%E7%BD%AE"><span class="toc-text">欢迎语配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">博客快捷键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E9%9A%9C%E7%A2%8D%E4%BC%98%E5%8C%96"><span class="toc-text">无障碍优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E9%A1%B6%E9%83%A8%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE"><span class="toc-text">友情链接顶部相关配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%A9%E7%95%A5%E5%9B%BE%E5%90%8E%E7%BC%80"><span class="toc-text">缩略图后缀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%90%E7%A7%81%E5%8D%8F%E8%AE%AE%E5%BC%B9%E7%AA%97"><span class="toc-text">隐私协议弹窗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E5%88%B6%E5%8C%96%E7%9A%84%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95"><span class="toc-text">定制化的右键菜单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%95%88%E6%8E%A7%E5%88%B6"><span class="toc-text">动效控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#51A%E7%BB%9F%E8%AE%A1"><span class="toc-text">51A统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E5%8D%A1%E7%89%87%E9%A1%B6%E9%83%A8%E6%B0%94%E6%B3%A1%E5%8D%87%E8%B5%B7%E6%95%88%E6%9E%9C"><span class="toc-text">页面卡片顶部气泡升起效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E8%89%B2%E6%A8%A1%E5%BC%8F%E7%B2%92%E5%AD%90%E6%95%88%E6%9E%9Ccanvas"><span class="toc-text">深色模式粒子效果canvas</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/01/31/241/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="部署Hexo个人博客到阿里云ECS云服务（其他服务器同样适用）"><img src="/img/r32.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="部署Hexo个人博客到阿里云ECS云服务（其他服务器同样适用）"/></a><div class="content"><a class="title" href="/2023/01/31/241/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="部署Hexo个人博客到阿里云ECS云服务（其他服务器同样适用）">部署Hexo个人博客到阿里云ECS云服务（其他服务器同样适用）</a><time datetime="2023-01-31T11:00:00.000Z" title="发表于 2023-01-31 19:00:00">2023-01-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/31/241/31/" title="5-8、更多优化"><img src="/img/r31.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="5-8、更多优化"/></a><div class="content"><a class="title" href="/2023/01/31/241/31/" title="5-8、更多优化">5-8、更多优化</a><time datetime="2023-01-31T11:00:00.000Z" title="发表于 2023-01-31 19:00:00">2023-01-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/30/241/30/" title="5-7、CDN访问加速"><img src="/img/r30.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="5-7、CDN访问加速"/></a><div class="content"><a class="title" href="/2023/01/30/241/30/" title="5-7、CDN访问加速">5-7、CDN访问加速</a><time datetime="2023-01-30T11:00:00.000Z" title="发表于 2023-01-30 19:00:00">2023-01-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/29/241/29/" title="5-6、统计图表"><img src="/img/r29.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="5-6、统计图表"/></a><div class="content"><a class="title" href="/2023/01/29/241/29/" title="5-6、统计图表">5-6、统计图表</a><time datetime="2023-01-29T11:00:00.000Z" title="发表于 2023-01-29 19:00:00">2023-01-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/28/241/28/" title="5-5、文章内美化主题前的风车图标"><img src="/img/r28.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="5-5、文章内美化主题前的风车图标"/></a><div class="content"><a class="title" href="/2023/01/28/241/28/" title="5-5、文章内美化主题前的风车图标">5-5、文章内美化主题前的风车图标</a><time datetime="2023-01-28T11:00:00.000Z" title="发表于 2023-01-28 19:00:00">2023-01-28</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/rd13.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By 花夕</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来的我的个人博客━(*｀∀´*)ノ</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const initWaline = () => {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-comments-blog.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  const loadWaline = async () => {
+    if (typeof Waline === 'object') initWaline()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js')
+      initWaline()
+    }
+  }
+
+  if ('Waline' === 'Waline' || !true) {
+    if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>(() => {
+  const isChatBtn = true
+  const isChatHideShow = true
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = 'T9itjhtGq78bcPAhB'
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'G-62KVKFBVSY', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
