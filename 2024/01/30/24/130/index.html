@@ -1,0 +1,208 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>4-15 hexo博客编写指南 | Ruiqy~</title><meta name="author" content="睿清颜"><meta name="copyright" content="睿清颜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="🖼 所有搭建博客的汇总在这里：Blog全程搭建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4-15 hexo博客编写指南">
+<meta property="og:url" content="https://ruiqingyan.com/2024/01/30/24/130/index.html">
+<meta property="og:site_name" content="Ruiqy~">
+<meta property="og:description" content="🖼 所有搭建博客的汇总在这里：Blog全程搭建">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ruiqingyan.com/img/r30.jpg">
+<meta property="article:published_time" content="2024-01-30T11:00:00.000Z">
+<meta property="article:modified_time" content="2024-04-02T19:07:05.315Z">
+<meta property="article:author" content="睿清颜">
+<meta property="article:tag" content="兴趣课">
+<meta property="article:tag" content="Blog个人博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruiqingyan.com/img/r30.jpg"><link rel="shortcut icon" href="/img/favicon5.ico"><link rel="canonical" href="https://ruiqingyan.com/2024/01/30/24/130/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '4-15 hexo博客编写指南',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-04-03 03:07:05'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/font/iconfont.css"><link rel="stylesheet" href="/css/custom@1.0.0.css"><link rel="stylesheet" href="/css/color@1.0.0.css"><meta name="generator" content="Hexo 7.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar4.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua00"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua01"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-flower3"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/2024/01/01/11/2024/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/2024/01/01/12/index/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/2024/01/01/13/index/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/2024/01/01/14/index/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 课程设计</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="fa-fw iconfont icon-mudanhuacai"></i><span> CS基础</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%A7%91%E5%9F%BA%E7%A1%80%E8%AF%BE/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> CS本科课程</span></a></li><li><a class="site-page child" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/"><i class="fa-fw iconfont icon-naidonghua"></i><span> CS兴趣课程</span></a></li><li><a class="site-page child" href="/251/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> CS文献阅读</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BB%E4%B9%A6%E6%8B%BE%E8%B4%9D/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/categories/%E8%BF%90%E5%8A%A8%E5%85%BB%E7%94%9F/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/categories/%E4%BC%BC%E6%B0%B4%E5%B9%B4%E5%8D%8E/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E7%95%99%E8%A8%80%E6%9D%BF/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/r30.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruiqy~"><img class="site-icon" src="/img/avatar2.png"/><span class="site-name">Ruiqy~</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua00"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua01"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-flower3"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/2024/01/01/11/2024/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/2024/01/01/12/index/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/2024/01/01/13/index/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/2024/01/01/14/index/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 课程设计</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="fa-fw iconfont icon-mudanhuacai"></i><span> CS基础</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%A7%91%E5%9F%BA%E7%A1%80%E8%AF%BE/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> CS本科课程</span></a></li><li><a class="site-page child" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/"><i class="fa-fw iconfont icon-naidonghua"></i><span> CS兴趣课程</span></a></li><li><a class="site-page child" href="/251/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> CS文献阅读</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BB%E4%B9%A6%E6%8B%BE%E8%B4%9D/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/categories/%E8%BF%90%E5%8A%A8%E5%85%BB%E7%94%9F/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/categories/%E4%BC%BC%E6%B0%B4%E5%B9%B4%E5%8D%8E/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E7%95%99%E8%A8%80%E6%9D%BF/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">4-15 hexo博客编写指南</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-01-30T11:00:00.000Z" title="发表于 2024-01-30 19:00:00">2024-01-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-02T19:07:05.315Z" title="更新于 2024-04-03 03:07:05">2024-04-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/">兴趣课</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/Blog%E5%85%A8%E7%A8%8B%E6%90%AD%E5%BB%BA/">Blog全程搭建</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">17</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="4-15 hexo博客编写指南"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note info icon-padding flat"><i class="note-icon falt"></i><p>🖼 所有搭建博客的汇总在这里：<a href="/2023/12/31/24/100/">Blog全程搭建</a></p>
+</div>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com">睿清颜</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com/2024/01/30/24/130/">https://ruiqingyan.com/2024/01/30/24/130/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ruiqingyan.com" target="_blank">Ruiqy~</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%85%B4%E8%B6%A3%E8%AF%BE/">兴趣课</a><a class="post-meta__tags" href="/tags/Blog%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">Blog个人博客</a></div><div class="post_share"><div class="social-share" data-image="/img/r30.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/01/29/24/129/" title="4-14 CDN"><img class="cover" src="/img/r29.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">4-14 CDN</div></div></a></div><div class="next-post pull-right"><a href="/2024/01/31/24/131/" title="4-16 ..."><img class="cover" src="/img/r31.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">4-16 ...</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/12/31/24/100/" title="Blog个人博客"><img class="cover" src="/img/rd2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-31</div><div class="title">Blog个人博客</div></div></a></div><div><a href="/2024/01/01/24/101/" title="1-1 注册邮箱、注册github"><img class="cover" src="/img/r1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-01</div><div class="title">1-1 注册邮箱、注册github</div></div></a></div><div><a href="/2024/01/02/24/102/" title="1-2 配置Brew、Git、Git绑定Github、Node"><img class="cover" src="/img/r2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-02</div><div class="title">1-2 配置Brew、Git、Git绑定Github、Node</div></div></a></div><div><a href="/2024/01/03/24/103/" title="1-3 本地部署hexo，推送到github"><img class="cover" src="/img/r3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-03</div><div class="title">1-3 本地部署hexo，推送到github</div></div></a></div><div><a href="/2024/01/04/24/104/" title="1-4 买域名，DNS域名解析"><img class="cover" src="/img/r4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-04</div><div class="title">1-4 买域名，DNS域名解析</div></div></a></div><div><a href="/2024/01/05/24/105/" title="1-5 博客基础配置_config.yml"><img class="cover" src="/img/r5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-05</div><div class="title">1-5 博客基础配置_config.yml</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar4.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">睿清颜</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ruiqingyan1"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">日更每天21:00 &nbsp And &nbsp  考研ing~</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/01/31/24/131/" title="4-16 ..."><img src="/img/r31.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4-16 ..."/></a><div class="content"><a class="title" href="/2024/01/31/24/131/" title="4-16 ...">4-16 ...</a><time datetime="2024-01-31T11:00:00.000Z" title="发表于 2024-01-31 19:00:00">2024-01-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/30/24/130/" title="4-15 hexo博客编写指南"><img src="/img/r30.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4-15 hexo博客编写指南"/></a><div class="content"><a class="title" href="/2024/01/30/24/130/" title="4-15 hexo博客编写指南">4-15 hexo博客编写指南</a><time datetime="2024-01-30T11:00:00.000Z" title="发表于 2024-01-30 19:00:00">2024-01-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/29/24/129/" title="4-14 CDN"><img src="/img/r29.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4-14 CDN"/></a><div class="content"><a class="title" href="/2024/01/29/24/129/" title="4-14 CDN">4-14 CDN</a><time datetime="2024-01-29T11:00:00.000Z" title="发表于 2024-01-29 19:00:00">2024-01-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/28/24/128/" title="4-13 部署博客到阿里云ECS服务器"><img src="/img/r28.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4-13 部署博客到阿里云ECS服务器"/></a><div class="content"><a class="title" href="/2024/01/28/24/128/" title="4-13 部署博客到阿里云ECS服务器">4-13 部署博客到阿里云ECS服务器</a><time datetime="2024-01-28T11:00:00.000Z" title="发表于 2024-01-28 19:00:00">2024-01-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/27/24/127/" title="4-12 配置阿里云ECS云服务器"><img src="/img/r27.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4-12 配置阿里云ECS云服务器"/></a><div class="content"><a class="title" href="/2024/01/27/24/127/" title="4-12 配置阿里云ECS云服务器">4-12 配置阿里云ECS云服务器</a><time datetime="2024-01-27T11:00:00.000Z" title="发表于 2024-01-27 19:00:00">2024-01-27</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/r30.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2024 By 睿清颜</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来的我的个人博客━(*｀∀´*)ノ</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>(() => {
+  const isChatBtn = false
+  const isChatHideShow = false
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = 'T9itjhtGq78bcPAhB'
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

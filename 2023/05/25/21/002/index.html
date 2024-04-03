@@ -1,0 +1,302 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2、树莓派人脸识别-环境搭建、相机测试 | Ruiqy~</title><meta name="author" content="睿清颜"><meta name="copyright" content="睿清颜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="树莓派人脸识别-环境搭建、相机测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2、树莓派人脸识别-环境搭建、相机测试">
+<meta property="og:url" content="https://ruiqingyan.com/2023/05/25/21/002/index.html">
+<meta property="og:site_name" content="Ruiqy~">
+<meta property="og:description" content="树莓派人脸识别-环境搭建、相机测试">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ruiqingyan.com/img/r7.jpg">
+<meta property="article:published_time" content="2023-05-25T12:00:00.000Z">
+<meta property="article:modified_time" content="2023-05-25T12:01:00.000Z">
+<meta property="article:author" content="睿清颜">
+<meta property="article:tag" content="课程设计">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruiqingyan.com/img/r7.jpg"><link rel="shortcut icon" href="/img/favicon5.ico"><link rel="canonical" href="https://ruiqingyan.com/2023/05/25/21/002/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2、树莓派人脸识别-环境搭建、相机测试',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-25 20:01:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/font/iconfont.css"><link rel="stylesheet" href="/css/custom@1.0.0.css"><link rel="stylesheet" href="/css/color@1.0.0.css"><meta name="generator" content="Hexo 7.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar4.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua00"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua01"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-flower3"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/2024/01/01/11/2024/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/2024/01/01/12/index/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/2024/01/01/13/index/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/2024/01/01/14/index/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 课程设计</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="fa-fw iconfont icon-mudanhuacai"></i><span> CS基础</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%A7%91%E5%9F%BA%E7%A1%80%E8%AF%BE/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> CS本科课程</span></a></li><li><a class="site-page child" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/"><i class="fa-fw iconfont icon-naidonghua"></i><span> CS兴趣课程</span></a></li><li><a class="site-page child" href="/251/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> CS文献阅读</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BB%E4%B9%A6%E6%8B%BE%E8%B4%9D/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/categories/%E8%BF%90%E5%8A%A8%E5%85%BB%E7%94%9F/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/categories/%E4%BC%BC%E6%B0%B4%E5%B9%B4%E5%8D%8E/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E7%95%99%E8%A8%80%E6%9D%BF/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/r7.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruiqy~"><img class="site-icon" src="/img/avatar2.png"/><span class="site-name">Ruiqy~</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua00"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua01"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-flower3"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/2024/01/01/11/2024/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/2024/01/01/12/index/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/2024/01/01/13/index/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/2024/01/01/14/index/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 课程设计</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="fa-fw iconfont icon-mudanhuacai"></i><span> CS基础</span></a></li><li><a class="site-page child" href="/categories/%E8%AE%A1%E7%A7%91%E5%9F%BA%E7%A1%80%E8%AF%BE/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> CS本科课程</span></a></li><li><a class="site-page child" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/"><i class="fa-fw iconfont icon-naidonghua"></i><span> CS兴趣课程</span></a></li><li><a class="site-page child" href="/251/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> CS文献阅读</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%AF%BB%E4%B9%A6%E6%8B%BE%E8%B4%9D/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/categories/%E8%BF%90%E5%8A%A8%E5%85%BB%E7%94%9F/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/categories/%E4%BC%BC%E6%B0%B4%E5%B9%B4%E5%8D%8E/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E7%95%99%E8%A8%80%E6%9D%BF/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">2、树莓派人脸识别-环境搭建、相机测试</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-25T12:00:00.000Z" title="发表于 2023-05-25 20:00:00">2023-05-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-25T12:01:00.000Z" title="更新于 2023-05-25 20:01:00">2023-05-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">课程设计</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="2、树莓派人脸识别-环境搭建、相机测试"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note warning icon-padding flat"><i class="note-icon falt"></i><p><a target="_blank" rel="noopener" href="http://ruiqingyan1.github.io/2023/05/24/21/001/">1、树莓派树莓派人脸识别-硬件组装+系统烧录</a><br>
+<a target="_blank" rel="noopener" href="http://ruiqingyan1.github.io/2023/05/25/21/002/">2、树莓派人脸识别-树莓派人脸识别-环境搭建、相机测试</a><br>
+<a target="_blank" rel="noopener" href="http://ruiqingyan1.github.io/2023/05/27/21/003/">3、树莓派人脸识别-人脸检测与识别实践部分</a></p>
+</div>
+<blockquote>
+<p>请务必确保自己烧录的树莓派镜像是最新的Raspberry Pi OS，不然会出很多问题，如果你不怕麻烦使用的是19年之前的Raspberry系统，你可以看最后的opencv配置十分繁琐，而且可能存在一些解决不了的问题，十分建议使用最新Raspberry Pi OS镜像。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>关于编辑器，用自带的Thonny就ok，不要自己去下其他的ide会出很多问题，或者用自带的Text Editor也可以，写完记得ctrl+s保存再在命令行python xxx.py运行就ok</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>关于pycharm，我不建议用，太卡了！！！如果你真的想试试</p>
+<ol>
+<li>确保自己的default-jdk版本&gt;11</li>
+<li>pycharm-community下载2021年或者之前版本(不然全是报错)</li>
+<li>根据自己的操作系统下载32bit / 64bitArm 的Linux版本</li>
+<li>tar -zxvf pycharm-community-2021.1.3.tar.gz 直接解压</li>
+<li>cd  ~/pycharm-community-2021.1.3.tar.gz/bin 进入目录</li>
+<li>./pycharm.sh 运行pycharm</li>
+</ol>
+</blockquote>
+<hr>
+<blockquote>
+<p>关于Anaconda，我不建议用</p>
+<p>miniconda可以下载但是适配的Python版本过低，还有不少的环境问题需要解决。</p>
+<p>完全版的Anaconda只适配arm64架构，但是3B+的主板配64arm系统使用会出现不适配的情况因此不能正确编译，如果你是4B及以上的版本可以试试，不过我估计很卡。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>在进行环境配置之前，请确定自己已经连上wifi</p>
+<p>开机后在右上角wifi找到自己的网，输入密码连接即可（wifi名会出现中文乱码，中文会转化成Unicode后转化成ASCII，随缘找或者把wifi名字改成英文+数字的组合更好找）</p>
+<img src="https://s2.loli.net/2023/05/29/zMBLIHjn2pdu6vk.jpg" style="zoom: 33%;" />
+</blockquote>
+<h2 id="一、环境搭建">一、环境搭建</h2>
+<p>打开终端</p>
+<p>首先需要升级和更新系统，以确保系统版本最新：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade</span><br></pre></td></tr></table></figure>
+<p>接下来安装必要的库和工具：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python3-opencv   </span><br><span class="line">sudo pip3 install numpy  </span><br><span class="line">sudo pip3 install pyqt5   </span><br><span class="line">sudo apt-get install vim  </span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>python3-opencv</code>：OpenCV库是进行图像处理和计算机视觉的重要工具。</li>
+<li><code>numpy</code>：Numpy库提供了对大型多维数组的支持以及许多数学函数。一般系统都会配备好。</li>
+<li><code>pyqt5</code>：PyQt5库是用于创建GUI的Python库。一般系统都会配备好。</li>
+<li><code>vim</code>：Vim编辑器是一种高效的文本编辑器。</li>
+</ul>
+<h2 id="二、测试相机">二、测试相机</h2>
+<p>在树莓派上测试相机之前，需要启用相机模块。打开终端并输入以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo raspi-config </span><br></pre></td></tr></table></figure>
+<p>然后按照以下步骤进行设置：</p>
+<ul>
+<li>选择 <code>Interface Options</code>后回车。</li>
+<li>
+<img src="https://s2.loli.net/2023/05/29/3PSIKE59bpC1mfq.jpg" style="zoom:33%;" />
+</li>
+<li>选择 <code>Legacy Camera</code>后回车。</li>
+<li>选择 <code>yes</code>。（提示Legacy camera support is enabled，代表启动成功）</li>
+<li>
+<img src="https://s2.loli.net/2023/05/29/SRtiaXcQu65WHOz.jpg" style="zoom:33%;" />
+</li>
+<li>点击 <code>OK</code>，然后按两次 <code>→</code> 键选择 <code>Finish</code>。</li>
+<li>这里会提示reboot，点击yes重启才会生效</li>
+<li>
+<img src="https://s2.loli.net/2023/05/29/KIh9Roxp5dtECmq.jpg" style="zoom: 33%;" />
+</li>
+</ul>
+<p>在根目录下创建一个testCamera.py文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">vim testCamera.py</span><br></pre></td></tr></table></figure>
+<p>vim使用提示，输入i后ctrl+shift+v可以粘贴代码进去编辑器，按esc后输入:wq可以保存退出</p>
+<p>（会用ssh的话用finalshell很方便，ssh需要在sudo raspi-config的interface options里面打开。不会用的话用微信传输网页版、邮箱都可以。）</p>
+<p>现在可以使用以下Python代码测试相机：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line"></span><br><span class="line"># 打开摄像头</span><br><span class="line">cap = cv2.VideoCapture(0)</span><br><span class="line"></span><br><span class="line"># 检查摄像头是否已经打开</span><br><span class="line">if not cap.isOpened():</span><br><span class="line">    print(&quot;无法打开摄像头&quot;)</span><br><span class="line">    exit()</span><br><span class="line"></span><br><span class="line"># 设置摄像头参数</span><br><span class="line">cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)</span><br><span class="line">cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)</span><br><span class="line"></span><br><span class="line"># 循环读取摄像头图像</span><br><span class="line">while True:</span><br><span class="line">    # 读取当前帧</span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line"></span><br><span class="line">    # 检查是否成功读取帧</span><br><span class="line">    if not ret:</span><br><span class="line">        print(&quot;无法读取摄像头图像&quot;)</span><br><span class="line">        break</span><br><span class="line"></span><br><span class="line">    # 显示当前帧</span><br><span class="line">    cv2.imshow(&quot;Video&quot;, frame)</span><br><span class="line"></span><br><span class="line">    # 等待按键</span><br><span class="line">    if cv2.waitKey(1) == ord(&#x27;q&#x27;):</span><br><span class="line">        break</span><br><span class="line"></span><br><span class="line"># 释放摄像头</span><br><span class="line">cap.release()</span><br><span class="line"></span><br><span class="line"># 关闭所有窗口</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p>完成保存后使用以下命令运行程序：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python testCamera.py</span><br></pre></td></tr></table></figure>
+<p>这样就可以检查摄像头是否可用并测试树莓派的相机模块。正常的话图像如下：</p>
+<img src="https://s2.loli.net/2023/05/29/gjxdaXODIsYtvku.jpg" style="zoom: 33%;" />
+<p>之后返回命令行ctrl+c即可退出窗口。</p>
+<p>到这里相机测试就结束了</p>
+<h2 id="附：旧版本Raspberry配置OpenCV3">附：旧版本Raspberry配置OpenCV3</h2>
+<blockquote>
+<p>如果你是用的是2019年之前的raspberry进行，可以按照下面配置opencv3，真的不建议，我自己做了两天都才修完bug，之后换了最新的Raspberry Pi OS 2023.5.4直接下载opencv3就ok了，完全不用这么麻烦，里面做了一些内存上的优化，想试试可以看下面。</p>
+</blockquote>
+<h3 id="一、展开文件系统">一、展开文件系统</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo raspi-config   //进入后先回车，然后键盘右键两下back，键盘右键再两下finsh</span><br><span class="line">sudo reboot       //重启</span><br><span class="line">df -h             //看下内存</span><br><span class="line">sudo apt-get purge wolfram-engine    //内存小的话可以清理，不然可以不管</span><br></pre></td></tr></table></figure>
+<h3 id="二、安装依赖项">二、安装依赖项</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//0、更新软件包、升级软件包</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade</span><br><span class="line"></span><br><span class="line">//1、安装一些开发人员工具，包括CMake，这有助于我们配置OpenCV</span><br><span class="line">sudo apt-get install build-essential cmake pkg-config</span><br><span class="line"></span><br><span class="line">//2、安装一些映像I/O包，这些包允许我们从磁盘加载各种映像文件格式。此类文件格式的例子包括JPEG、PNG、TIFF等：</span><br><span class="line">sudo apt-get install libjpeg-dev libtiff5-dev  libpng-dev</span><br><span class="line"></span><br><span class="line">//3、就像我们需要图像I/O包一样，我们也需要视频I/O包。这些库允许我们从磁盘上读取各种视频文件格式，以及直接处理视频流</span><br><span class="line">sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev</span><br><span class="line">sudo apt-get install libxvidcore-dev libx264-dev</span><br><span class="line"></span><br><span class="line">//4、OpenCV库附带一个名为highgui用于在我们的屏幕上显示图像并构建基本的GUI。为了编译highgui模块，我们需要安装GTK开发库：</span><br><span class="line">sudo apt-get install libgtk2.0-dev</span><br><span class="line"></span><br><span class="line">//5、通过安装一些额外的依赖项，可以进一步优化OpenCV内部的许多操作（矩阵操作）</span><br><span class="line">sudo apt-get install libatlas-base-dev gfortran</span><br><span class="line"></span><br><span class="line">//6、我们同时安装Python 2.7和Python 3头文件，这样我们就可以使用Python绑定编译OpenCV</span><br><span class="line">sudo apt-get install python2.7-dev python3-dev</span><br></pre></td></tr></table></figure>
+<h3 id="三、下载opencv源代码">三、下载opencv源代码</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//1、从官网上下载opencv3</span><br><span class="line">cd ~</span><br><span class="line">wget -O opencv.zip https://github.com/Itseez/opencv/archive/3.3.0.zip</span><br><span class="line">unzip opencv.zip</span><br><span class="line"></span><br><span class="line">//2、完全安装OpenCV 3（例如，可以访问SIFT和SURF等功能），因此我们还需要抓取opencv_contrib存储库：</span><br><span class="line">wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.3.0.zip</span><br><span class="line">unzip opencv_contrib.zip</span><br></pre></td></tr></table></figure>
+<h3 id="四、python2-7-or-python3-我用的Python3">四、python2.7 or python3(我用的Python3)</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">1、我们首先需要安装pip内核</span><br><span class="line">wget https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">sudo python3 get-pip.py</span><br><span class="line"></span><br><span class="line">2、下载虚拟环境</span><br><span class="line">sudo pip3 install virtualenv virtualenvwrapper -i https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">sudo rm -rf ~/.cache/pip</span><br><span class="line"></span><br><span class="line">3、配置~/.profile（使用下面二者之一，推荐用下面那部分比较方便）</span><br><span class="line">echo -e &quot;\n# virtualenv and virtualenvwrapper&quot; &gt;&gt; ~/.profile</span><br><span class="line">echo &quot;export WORKON_HOME=$HOME/.virtualenvs&quot; &gt;&gt; ~/.profile</span><br><span class="line">echo &quot;export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3&quot; &gt;&gt; ~/.profile</span><br><span class="line">echo &quot;source /usr/local/bin/virtualenvwrapper.sh&quot; &gt;&gt; ~/.profile</span><br><span class="line"></span><br><span class="line">//或者把下面的内容写到~/.profile文件内</span><br><span class="line">//# virtualenv and virtualenvwrapper</span><br><span class="line">//export WORKON_HOME=$HOME/.virtualenvs</span><br><span class="line">//export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3</span><br><span class="line">//source /usr/local/bin/virtualenvwrapper.sh</span><br><span class="line"></span><br><span class="line">4、配置完之后应用配置</span><br><span class="line">source ~/.profile</span><br><span class="line"></span><br><span class="line">5、创建虚拟环境</span><br><span class="line"> mkvirtualenv cv -p python3</span><br><span class="line"></span><br><span class="line">6、怎么进入虚拟环境</span><br><span class="line">source ~/.profile</span><br><span class="line">workon cv</span><br><span class="line"></span><br><span class="line">7、安装Numpy（注意要在cv3环境内）</span><br><span class="line"> pip3 install numpy</span><br></pre></td></tr></table></figure>
+<h3 id="五、编译和安装OpenCV">五、编译和安装OpenCV</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">1、进入虚拟环境</span><br><span class="line">workon cv</span><br><span class="line"></span><br><span class="line">2、使用CMake设置我们的构建</span><br><span class="line">cd ~/opencv-3.3.0/</span><br><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line">cmake -D CMAKE_BUILD_TYPE=RELEASE \</span><br><span class="line">-D CMAKE_INSTALL_PREFIX=/usr/local \</span><br><span class="line">-D BUILD_opencv_python3=ON \</span><br><span class="line">-D INSTALL_PYTHON_EXAMPLES=ON \</span><br><span class="line">-D PYTHON3_LIBRARY=/usr/lib/aarch64-linux-gnu/libpython3.9.so \</span><br><span class="line">-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-3.3.0/modules \</span><br><span class="line">-D PYTHON3_NUMPY_INCLUDE_DIRS=/home/huaxi/.virtualenvs/cv/lib/python3.9/site-packages/numpy/core/include \</span><br><span class="line">-D PYTHON3_PACKAGES_PATH=/usr/lib/python3/dist-packages \</span><br><span class="line">-D WITH_OPENEXR=OFF \</span><br><span class="line">-DCMAKE_CXX_FLAGS=&quot;-Wa,-mbig-obj&quot;\</span><br><span class="line">-D BUILD_EXAMPLES=ON ..</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3、配置交换空间，使用四个核心进行编译</span><br><span class="line"># 打开你的/etc/dphys-swapfile然后编辑CONF_SWAPSIZE变量：</span><br><span class="line"></span><br><span class="line"># set size to absolute value, leaving empty (default) then uses computed value</span><br><span class="line"></span><br><span class="line"># you most likely don&#x27;t want this, unless you have an special disk situation</span><br><span class="line"></span><br><span class="line"># CONF_SWAPSIZE=100</span><br><span class="line"></span><br><span class="line">CONF_SWAPSIZE=1024</span><br><span class="line"></span><br><span class="line">4、激活新的交换空间，重新启动交换服务：</span><br><span class="line">sudo /etc/init.d/dphys-swapfile stop</span><br><span class="line">sudo /etc/init.d/dphys-swapfile start</span><br><span class="line"></span><br><span class="line">5、编译OpenCV</span><br><span class="line">make -j4</span><br><span class="line"></span><br><span class="line">6、在Raspberry Pi 3上安装OpenCV 3</span><br><span class="line">sudo make install</span><br><span class="line">sudo ldconfig</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="六、完成OpenCV的安装">六、完成OpenCV的安装</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">对于python2.7</span><br><span class="line">$ ls -l /usr/local/lib/python2.7/site-packages/</span><br><span class="line">总计1852</span><br><span class="line">-rw-r--r-- 1根词根1895772 3月20日20:00 cv2.so</span><br><span class="line"></span><br><span class="line">$ cd ~/.virtualenvs/cv/lib/python2.7/site-packages/</span><br><span class="line">$ ln -s /usr/local/lib/python2.7/site-packages/cv2.so cv2.so</span><br><span class="line"></span><br><span class="line">对于python3</span><br><span class="line">$ ls -l /usr/local/lib/python3.9/dist-packages/</span><br><span class="line">总计1852</span><br><span class="line">-rw-r--r-- 1根词根1895932 3月20日 21:51 cv2.cpython-34m.so</span><br><span class="line">$ cd /usr/local/lib/python3.5/site-packages/</span><br><span class="line">$ sudo mv cv2.cpython-35m-arm-linux-gnueabihf.so cv2.so</span><br></pre></td></tr></table></figure>
+<h3 id="七、测试opencv3">七、测试opencv3</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$ source ~/.profile </span><br><span class="line">$ workon cv3</span><br><span class="line">$ python</span><br><span class="line"></span><br><span class="line">import cv2</span><br><span class="line">cv2.\__version__</span><br><span class="line">&#x27;3.3.0&#x27;</span><br><span class="line"></span><br><span class="line">2、！！！确保前面正确安装执行下面可以清理内存，可以不执行，但一定不要乱执行！！！</span><br><span class="line">rm -rf opencv-3.3.0 opencv_contrib-3.3.0</span><br><span class="line"></span><br><span class="line">3、取消所有所有编译，配置交换空间，使用四个核心进行编译</span><br><span class="line">#打开你的/etc/dphys-swapfile然后编辑CONF_SWAPSIZE变量：</span><br><span class="line"></span><br><span class="line">set size to absolute value, leaving empty (default) then uses computed value</span><br><span class="line"></span><br><span class="line">#you most likely don&#x27;t want this, unless you have an special disk situation</span><br><span class="line">CONF_SWAPSIZE=100</span><br><span class="line"></span><br><span class="line">CONF_SWAPSIZE=1024   #注释掉1024MB的线路，不然以后会很卡</span><br><span class="line"></span><br><span class="line">4、激活新的交换空间，重新启动交换服务：</span><br><span class="line">sudo /etc/init.d/dphys-swapfile stop</span><br><span class="line">sudo /etc/init.d/dphys-swapfile start</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com">睿清颜</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com/2023/05/25/21/002/">https://ruiqingyan.com/2023/05/25/21/002/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ruiqingyan.com" target="_blank">Ruiqy~</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">课程设计</a></div><div class="post_share"><div class="social-share" data-image="/img/r7.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/05/24/21/001/" title="1、树莓派人脸识别-硬件组装、镜像烧录"><img class="cover" src="/img/r6.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">1、树莓派人脸识别-硬件组装、镜像烧录</div></div></a></div><div class="next-post pull-right"><a href="/2023/05/27/21/003/" title="3、树莓派人脸识别-人脸检测与识别实践部分"><img class="cover" src="/img/r9.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">3、树莓派人脸识别-人脸检测与识别实践部分</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/03/01/21/000/" title="课程设计"><img class="cover" src="/img/rd8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-01</div><div class="title">课程设计</div></div></a></div><div><a href="/2023/05/24/21/001/" title="1、树莓派人脸识别-硬件组装、镜像烧录"><img class="cover" src="/img/r6.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-24</div><div class="title">1、树莓派人脸识别-硬件组装、镜像烧录</div></div></a></div><div><a href="/2023/05/27/21/003/" title="3、树莓派人脸识别-人脸检测与识别实践部分"><img class="cover" src="/img/r9.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-27</div><div class="title">3、树莓派人脸识别-人脸检测与识别实践部分</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar4.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">睿清颜</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ruiqingyan1"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">日更每天21:00 &nbsp And &nbsp  考研ing~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">一、环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B5%8B%E8%AF%95%E7%9B%B8%E6%9C%BA"><span class="toc-text">二、测试相机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%EF%BC%9A%E6%97%A7%E7%89%88%E6%9C%ACRaspberry%E9%85%8D%E7%BD%AEOpenCV3"><span class="toc-text">附：旧版本Raspberry配置OpenCV3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%B1%95%E5%BC%80%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-text">一、展开文件系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E9%A1%B9"><span class="toc-text">二、安装依赖项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%B8%8B%E8%BD%BDopencv%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="toc-text">三、下载opencv源代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81python2-7-or-python3-%E6%88%91%E7%94%A8%E7%9A%84Python3"><span class="toc-text">四、python2.7 or python3(我用的Python3)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%BC%96%E8%AF%91%E5%92%8C%E5%AE%89%E8%A3%85OpenCV"><span class="toc-text">五、编译和安装OpenCV</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%AE%8C%E6%88%90OpenCV%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-text">六、完成OpenCV的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%B5%8B%E8%AF%95opencv3"><span class="toc-text">七、测试opencv3</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/01/31/24/131/" title="4-16 ..."><img src="/img/r31.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4-16 ..."/></a><div class="content"><a class="title" href="/2024/01/31/24/131/" title="4-16 ...">4-16 ...</a><time datetime="2024-01-31T11:00:00.000Z" title="发表于 2024-01-31 19:00:00">2024-01-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/30/24/130/" title="4-15 hexo博客编写指南"><img src="/img/r30.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4-15 hexo博客编写指南"/></a><div class="content"><a class="title" href="/2024/01/30/24/130/" title="4-15 hexo博客编写指南">4-15 hexo博客编写指南</a><time datetime="2024-01-30T11:00:00.000Z" title="发表于 2024-01-30 19:00:00">2024-01-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/29/24/129/" title="4-14 CDN"><img src="/img/r29.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4-14 CDN"/></a><div class="content"><a class="title" href="/2024/01/29/24/129/" title="4-14 CDN">4-14 CDN</a><time datetime="2024-01-29T11:00:00.000Z" title="发表于 2024-01-29 19:00:00">2024-01-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/28/24/128/" title="4-13 部署博客到阿里云ECS服务器"><img src="/img/r28.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4-13 部署博客到阿里云ECS服务器"/></a><div class="content"><a class="title" href="/2024/01/28/24/128/" title="4-13 部署博客到阿里云ECS服务器">4-13 部署博客到阿里云ECS服务器</a><time datetime="2024-01-28T11:00:00.000Z" title="发表于 2024-01-28 19:00:00">2024-01-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/27/24/127/" title="4-12 配置阿里云ECS云服务器"><img src="/img/r27.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4-12 配置阿里云ECS云服务器"/></a><div class="content"><a class="title" href="/2024/01/27/24/127/" title="4-12 配置阿里云ECS云服务器">4-12 配置阿里云ECS云服务器</a><time datetime="2024-01-27T11:00:00.000Z" title="发表于 2024-01-27 19:00:00">2024-01-27</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/r7.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2024 By 睿清颜</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来的我的个人博客━(*｀∀´*)ノ</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>(() => {
+  const isChatBtn = false
+  const isChatHideShow = false
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = 'T9itjhtGq78bcPAhB'
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

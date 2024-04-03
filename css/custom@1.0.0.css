@@ -1,0 +1,90 @@
+/* 文章页H1-H6图标样式效果 */
+h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
+    -webkit-animation: ccc 3s linear infinite ;
+    animation: ccc 3s linear infinite ;
+}
+
+
+@-webkit-keyframes ccc {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(-1turn);
+        transform: rotate(-1turn)
+    }
+}
+@keyframes ccc {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(-1turn);
+        transform: rotate(-1turn)
+    }
+}
+
+#content-inner.layout h1::before {
+    color: #ff6699; /* 粉红色 */
+    margin-left: -1.25rem;
+    font-size: 1.7rem; /* 调整为 1.5rem */
+    margin-top: -0.08rem; /* 减小间距为 -0.08rem */
+}
+
+#content-inner.layout h2::before {
+    color: #ffd700; /* 金色 */
+    margin-left: -1.15rem;
+    font-size: 1.6rem; /* 保持为 1.5rem */
+    margin-top: -0.08rem; /* 保持为 -0.08rem */
+}
+
+#content-inner.layout h3::before {
+    color: #66cc99; /* 青色 */
+    margin-left: -1.05rem;
+    font-size: 1.5rem; /* 保持为 1.5rem */
+    margin-top: -0.28rem; /* 减小间距为 -0.28rem */
+}
+
+#content-inner.layout h4::before {
+    color: #99cc00; /* 酸橙绿色 */
+    margin-left: -0.95rem;
+    font-size: 1.4rem; /* 保持为 1.5rem */
+    margin-top: -0.28rem; /* 保持为 -0.28rem */
+}
+
+#content-inner.layout h5::before {
+    color: #3399cc; /* 蓝色 */
+    margin-left: -0.85rem;
+    font-size: 1.3rem; /* 保持为 1.5rem */
+    margin-top: -0.08rem; /* 保持为 -0.08rem */
+}
+
+#content-inner.layout h6::before {
+    color: #ff6666; /* 深红色 */
+    margin-left: -0.75rem;
+    font-size: 1.2rem; /* 保持为 1.5rem */
+    margin-top: -0.08rem; /* 保持为 -0.08rem */
+}
+
+
+#content-inner.layout h1:hover, #content-inner.layout h2:hover, #content-inner.layout h3:hover, #content-inner.layout h4:hover, #content-inner.layout h5:hover, #content-inner.layout h6:hover {
+    color: #49b1f5 ;
+}
+#content-inner.layout h1:hover::before, #content-inner.layout h2:hover::before, #content-inner.layout h3:hover::before, #content-inner.layout h4:hover::before, #content-inner.layout h5:hover::before, #content-inner.layout h6:hover::before {
+    color: #49b1f5 ;
+    -webkit-animation: ccc 3.2s linear infinite ;
+    animation: ccc 3.2s linear infinite ;
+}
+
+
+/* 页面设置icon转动速度调整 */
+#rightside_config i.fas.fa-cog.fa-spin {
+    animation: fa-spin 5s linear infinite ;
+}
+
+
+/*#web_bg {*/
+/*    background: var(--card-bg) !important; !* 慎用!important *!*/
+/*}*/
