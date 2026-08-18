@@ -1,0 +1,233 @@
+#guestbook-app {
+    margin-top: 1.5rem;
+}
+
+.guestbook-panel,
+.guestbook-list {
+    border: 1px solid rgba(73, 177, 245, .18);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .72);
+    box-shadow: 0 10px 30px rgba(31, 45, 61, .08);
+    backdrop-filter: blur(10px);
+}
+
+[data-theme=dark] .guestbook-panel,
+[data-theme=dark] .guestbook-list {
+    border-color: rgba(116, 192, 252, .16);
+    background: rgba(26, 27, 29, .74);
+}
+
+.guestbook-panel {
+    padding: 1.15rem;
+}
+
+.guestbook-title {
+    margin: 0 0 .35rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.guestbook-copy {
+    margin: 0 0 1rem;
+    color: var(--font-color);
+    opacity: .76;
+    line-height: 1.8;
+}
+
+.guestbook-form {
+    display: grid;
+    gap: .85rem;
+}
+
+.guestbook-row {
+    display: grid;
+    gap: .4rem;
+}
+
+.guestbook-row label,
+.guestbook-consent {
+    font-size: .95rem;
+    font-weight: 600;
+}
+
+.guestbook-input,
+.guestbook-textarea {
+    width: 100%;
+    border: 1px solid rgba(73, 177, 245, .25);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .86);
+    color: var(--font-color);
+    font: inherit;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s, background .2s;
+}
+
+.guestbook-input {
+    height: 2.7rem;
+    padding: 0 .85rem;
+}
+
+.guestbook-textarea {
+    min-height: 8.5rem;
+    resize: vertical;
+    padding: .75rem .85rem;
+    line-height: 1.7;
+}
+
+[data-theme=dark] .guestbook-input,
+[data-theme=dark] .guestbook-textarea {
+    background: rgba(18, 18, 18, .72);
+}
+
+.guestbook-input:focus,
+.guestbook-textarea:focus {
+    border-color: rgba(73, 177, 245, .8);
+    box-shadow: 0 0 0 3px rgba(73, 177, 245, .14);
+}
+
+.guestbook-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: .55rem;
+    line-height: 1.65;
+}
+
+.guestbook-consent input {
+    margin-top: .35rem;
+}
+
+.guestbook-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .85rem;
+}
+
+.guestbook-submit {
+    min-width: 7.5rem;
+    height: 2.55rem;
+    border: 0;
+    border-radius: 8px;
+    background: #49b1f5;
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    transition: transform .2s, box-shadow .2s, background .2s;
+}
+
+.guestbook-submit:hover {
+    background: #3199df;
+    box-shadow: 0 8px 18px rgba(49, 153, 223, .24);
+    transform: translateY(-1px);
+}
+
+.guestbook-submit:disabled {
+    cursor: not-allowed;
+    opacity: .65;
+    transform: none;
+}
+
+.guestbook-status {
+    min-height: 1.5rem;
+    color: #3199df;
+    font-weight: 600;
+}
+
+.guestbook-status.is-error {
+    color: #e35b5b;
+}
+
+.guestbook-list {
+    margin-top: 1rem;
+    padding: 1.15rem;
+}
+
+.guestbook-list-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .85rem;
+    margin-bottom: .85rem;
+}
+
+.guestbook-list-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.guestbook-refresh {
+    border: 0;
+    background: transparent;
+    color: #49b1f5;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+}
+
+.guestbook-messages {
+    display: grid;
+    gap: .8rem;
+}
+
+.guestbook-message {
+    border-left: 3px solid rgba(73, 177, 245, .55);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .58);
+    padding: .85rem .95rem;
+}
+
+[data-theme=dark] .guestbook-message {
+    background: rgba(18, 18, 18, .46);
+}
+
+.guestbook-message-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-bottom: .45rem;
+}
+
+.guestbook-message-name {
+    font-weight: 800;
+}
+
+.guestbook-message-date {
+    opacity: .58;
+    font-size: .88rem;
+}
+
+.guestbook-message-content,
+.guestbook-reply {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    line-height: 1.8;
+}
+
+.guestbook-reply {
+    margin-top: .65rem;
+    border-radius: 8px;
+    background: rgba(73, 177, 245, .1);
+    padding: .65rem .75rem;
+}
+
+.guestbook-empty {
+    opacity: .65;
+}
+
+.guestbook-hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+@media (max-width: 768px) {
+    .guestbook-panel,
+    .guestbook-list {
+        padding: .95rem;
+    }
+}

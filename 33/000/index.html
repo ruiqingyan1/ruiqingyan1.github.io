@@ -1,0 +1,485 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>似水年华（日记+感悟，记录一些东西） | Ruiqy~</title><meta name="author" content="睿清颜"><meta name="copyright" content="睿清颜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="简单回忆一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="似水年华（日记+感悟，记录一些东西）">
+<meta property="og:url" content="https://ruiqingyan.com/33/000/index.html">
+<meta property="og:site_name" content="Ruiqy~">
+<meta property="og:description" content="简单回忆一下">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ruiqingyan.com/img/rd17.jpg">
+<meta property="article:published_time" content="2023-12-25T10:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-07T07:27:28.304Z">
+<meta property="article:author" content="睿清颜">
+<meta property="article:tag" content="日志">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruiqingyan.com/img/rd17.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://ruiqingyan.com/33/000/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.14.0-b3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>(()=>{
+      const saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+      
+      window.btf = {
+        saveToLocal: saveToLocal,
+        getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+          script.src = url
+          script.async = true
+          script.onerror = reject
+          script.onload = script.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            script.onload = script.onreadystatechange = null
+            resolve()
+          }
+
+          Object.keys(attr).forEach(key => {
+            script.setAttribute(key, attr[key])
+          })
+
+          document.head.appendChild(script)
+        }),
+
+        getCSS: (url, id = false) => new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+          link.rel = 'stylesheet'
+          link.href = url
+          if (id) link.id = id
+          link.onerror = reject
+          link.onload = link.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            link.onload = link.onreadystatechange = null
+            resolve()
+          }
+          document.head.appendChild(link)
+        }),
+
+        addGlobalFn: (key, fn, name = false, parent = window) => {
+          const pjaxEnable = false
+          if (!pjaxEnable && key.startsWith('pjax')) return
+
+          const globalFn = parent.globalFn || {}
+          const keyObj = globalFn[key] || {}
+    
+          if (name && keyObj[name]) return
+    
+          name = name || Object.keys(keyObj).length
+          keyObj[name] = fn
+          globalFn[key] = keyObj
+          parent.globalFn = globalFn
+        }
+      }
+    
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+      
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })()</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300,"highlightFullpage":true,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '似水年华（日记+感悟，记录一些东西）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-06-07 15:27:28'
+}</script><link rel="stylesheet" href="/css/font/iconfont.css"><link rel="stylesheet" href="/css/custom@1.0.1.css?v=1.0.8"><link rel="stylesheet" href="/css/color@1.0.0.css"><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">327</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">285</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua00"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua01"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/study-docs/"><i class="fa-fw fas fa-book-open"></i><span> 知识库</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw fas fa-calendar-check"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-flower3"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/12/000/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 项目实践</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li><li><a class="site-page child" href="/26/AI/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/33/000/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/rd17.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruiqy~"><img class="site-icon" src="/img/avatar.jpg" alt="Logo"/><span class="site-name">Ruiqy~</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua00"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua01"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/study-docs/"><i class="fa-fw fas fa-book-open"></i><span> 知识库</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw fas fa-calendar-check"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-flower3"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/12/000/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 项目实践</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li><li><a class="site-page child" href="/26/AI/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/33/000/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">似水年华（日记+感悟，记录一些东西）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-25T10:00:00.000Z" title="发表于 2023-12-25 18:00:00">2023-12-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-07T07:27:28.304Z" title="更新于 2026-06-07 15:27:28">2026-06-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%97%A5%E5%BF%97/">日志</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="似水年华（日记+感悟，记录一些东西）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note info icon-padding flat"><i class="note-icon falt"></i><p>博客汇总看看这里<a href="/11/000/">🌃Summary And Schedule🌠</a></p>
+<p>友人帐<a href="/42/000">（友链与互访入口）</a></p>
+</div>
+
+
+
+
+
+
+
+
+
+<h2 id="🗺-Diary（日记-感悟）"><a href="#🗺-Diary（日记-感悟）" class="headerlink" title="🗺 Diary（日记 + 感悟）"></a>🗺 Diary（日记 + 感悟）</h2><div class="tabs" id="diary"><ul class="nav-tabs"><button type="button" class="tab  active" data-href="diary-1">🌻 2019 年</button><button type="button" class="tab " data-href="diary-2">🌻 2020 年</button><button type="button" class="tab " data-href="diary-3">🌻 2021 年</button><button type="button" class="tab " data-href="diary-4">🌻 2022 年</button><button type="button" class="tab " data-href="diary-5">🌻 2023 年</button><button type="button" class="tab " data-href="diary-6">🌻 2024 年</button></ul><div class="tab-contents"><div class="tab-item-content active" id="diary-1"><div class="timeline orange"><div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'><p>🌻 2019 年 </p>
+</div></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>2-15</p>
+</div></div><div class='timeline-item-content'><p>早读去文科班，看到郭郭，未见贾某（有某种执念）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>2-18</p>
+</div></div><div class='timeline-item-content'><p>哔哩哔哩ID：筵笙の小小云，听到当姐姐要承担责任（要对自己和身边的人负责）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>2-19</p>
+</div></div><div class='timeline-item-content'><p>和奶奶去开封庙会，逛了好几个地方（日常不喜欢拥挤）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>2-23</p>
+</div></div><div class='timeline-item-content'><p>坐大巴回家在新北站排长队买票（自己有手机，但是没什么用）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>3-16</p>
+</div></div><div class='timeline-item-content'><p>姥奶去世，不喜欢那种氛围（我死后务必直接火化）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>4-5</p>
+</div></div><div class='timeline-item-content'><p>被作业帮网课和闻道一对一洗脑了（感觉在学校呆不下去，能逆天改命）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>7-18</p>
+</div></div><div class='timeline-item-content'><p>收到一封共勉信（有趣的灵魂，加油一起考浙大，送了一个浙大书例）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>7-20</p>
+</div></div><div class='timeline-item-content'><p>收到一封表白信（父母都是政府工作人员，从小到大想要什么就有什么）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>8-4</p>
+</div></div><div class='timeline-item-content'><p>聂某得字真豪看（想练字，一拖再拖）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>8-17</p>
+</div></div><div class='timeline-item-content'><p>头脑风暴，为自己的内向烦恼（希望自己可以主动一点）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>8-28</p>
+</div></div><div class='timeline-item-content'><p>三年前令她开心的云（未恋爱，喜欢各种好看的云）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>9-4</p>
+</div></div><div class='timeline-item-content'><p>被美术生告白++（我的心里只有看书做题）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>9-20</p>
+</div></div><div class='timeline-item-content'><p>心情不好，坐130公交去旧校看了看</p>
+<p>遇到声音好好听的人（我声控）</p>
+<p>主动和几个老奶奶聊天（她说看到年轻人就开心）</p>
+<p>遇到好几个可爱的小女孩（想养女儿）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>10-18</p>
+</div></div><div class='timeline-item-content'><p>买了亿点零食送同学（德芙、鱿鱼，讨好型人格）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>10-19</p>
+</div></div><div class='timeline-item-content'><p>下午运动会跑1.5km，没经验中午吃多了，跑完吐了（运动前注意饮食）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>10-24</p>
+</div></div><div class='timeline-item-content'><p>梦回母校，被洗脑之后在家学习网课，感觉每天都很充实（现在看像智障）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>12-2</p>
+</div></div><div class='timeline-item-content'><p>去医院看姑爷，我感觉没什么好看的（主看人，次看病，他知道你来了就好）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>12-16</p>
+</div></div><div class='timeline-item-content'><p>被人追+告白（我只爱学习）</p>
+</div></div></div></div><div class="tab-item-content" id="diary-2"><div class="timeline blue"><div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'><p>🌻 2020 年 </p>
+</div></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>1-1</p>
+</div></div><div class='timeline-item-content'><p>高考誓师剪了光头（现在看来多少有点精神问题）</p>
+<p>自己一个人去商场买了个红帽子+一双鞋（第一次自己一个人逛商场）</p>
+<p>妈妈说要提高生活品质（爱妈妈，人超好）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>1-3</p>
+</div></div><div class='timeline-item-content'><p>做别人的车去北站，然后一个很脑残的设计被交警留下罚款（1周就拆了）</p>
+<p>没赶上车，call爸爸上车了、call老师晚点到（回忆一下，烦老师日常）</p>
+<p>送了两个本子给同学，《五年日记zcx》《手账zym》（内心的你）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>1-14</p>
+</div></div><div class='timeline-item-content'><p>你要学会拒绝别人，晚上去跟她说话，拉开他们两个人</p>
+<p>“我非常非常不开心，这是第一，然后，第二，我以后不想再跟你说话了”</p>
+<p>（像小孩子，自己确实小孩子）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>1-18</p>
+</div></div><div class='timeline-item-content'><p>去uupark买芒果，“这个是你哥爱吃的”（有种时光易逝人易老的感觉）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>1-19</p>
+</div></div><div class='timeline-item-content'><p>心情不好的妈妈和我大吵一架，坐130去旧校逛了一圈，回家路上遇到爸爸（烦）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>1-25</p>
+</div></div><div class='timeline-item-content'><p> 大年初一收手机，藏到床底下（当父母好难）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>4-13</p>
+</div></div><div class='timeline-item-content'><p> 胆经+晨跑+引体+俯卧撑（你对别人的小恩小惠毫无作用，除了你认为的好感）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>4-16</p>
+</div></div><div class='timeline-item-content'><p>你会喜欢很多人，也会渐渐失去很多自己喜欢的人（不要去轻易的喜欢一个人）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>4-17</p>
+</div></div><div class='timeline-item-content'><p>想着不该想的人，做着不该做的事（向前走，放下一些事情）</p>
+<p>打电话给gj，那个时候老侯训了jxf，我不知道（瞬间对侯主任印象超差）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>4-18</p>
+</div></div><div class='timeline-item-content'><p>（有点恋爱脑准备专心备考）</p>
+<p>1、从现在开始我们之间再无任何关系</p>
+<p>2、（请你）把我送你的东西都扔掉</p>
+<p>3、我没有做任何对不起你的事情</p>
+<p>4、前天给你写的东西当我没写过</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>4-20</p>
+</div></div><div class='timeline-item-content'><p>立了一点flag，觉得高考决定自己的后半生（被洗脑++）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>4-24</p>
+</div></div><div class='timeline-item-content'><p>不缺钱，但想占小便宜被骗（pdd-103rmb，这种心理迟早吃亏）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>4-25</p>
+</div></div><div class='timeline-item-content'><p>（要分清“欣赏”“喜欢”“爱情”，下面是一些flag）</p>
+<p>1、除了每日的exercise，你是否可以每天读20min书？</p>
+<p>2、每天入睡前想想自己最幸福的事，这有助于你提高睡眠质量；每次大考前想想自己最幸福的事情，这有助于你超常发挥</p>
+<p>3、最不幸的人，根本没机会诉说他们的不幸</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>4-26</p>
+</div></div><div class='timeline-item-content'><p>觉得对不起父母，阿巴阿巴（被洗脑++）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>5-2</p>
+</div></div><div class='timeline-item-content'><p><mark class="hl-label pink">化学老师：一个大侠开始行走江湖，发现自己的基本功不行，可是敌人已经来了，再回去练习？在战战斗中成长！！！</mark> </p>
+<p><mark class="hl-label red">【补习班只是为了赚钱，他们的目的不是帮你】</mark> </p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>5-13</p>
+</div></div><div class='timeline-item-content'><p>学而不思则罔，思而不学则殆（<mark class="hl-label red">要有从思到说的过程</mark> ）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>5-17</p>
+</div></div><div class='timeline-item-content'><p>梦：</p>
+<p>1、如何温柔又不失礼仪的拒绝告白 </p>
+<p>2、 知道是梦所以多重复记忆一下的你（现实中好懒）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>6-8</p>
+</div></div><div class='timeline-item-content'><p> 如果不是疫情，也许这就是你的结局….那么你后悔吗？</p>
+<p>加油吧！革命尚未成功，也为结束，你还有机会</p>
+<p>（高考数学感觉10分钟写完了，发会呆，今年高考好简单）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>8-11</p>
+</div></div><div class='timeline-item-content'><p>虽然还是不知道为什么学习，但是现在所有的任务不只有学习吗？（希望自己可以主动一点）</p>
+</div></div></div></div><div class="tab-item-content" id="diary-3"><div class="timeline pink"><div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'><p>🌻 2021 年 </p>
+</div></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>有空再看看</p>
+</div></div><div class='timeline-item-content'><p>很忙，记录的本子找不到了</p>
+</div></div></div></div><div class="tab-item-content" id="diary-4"><div class="timeline orange"><div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'><p>🌻 2022 年 </p>
+</div></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>9-13</p>
+</div></div><div class='timeline-item-content'><p>问前已知答案，问是为了权威的认可（认同感，比如看病？）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>9-17</p>
+</div></div><div class='timeline-item-content'><p>清晰认识自己，接受自己，才能改变自己</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>9-18</p>
+</div></div><div class='timeline-item-content'><p>竞选班长失败（感觉当班长要亲和力，而非利益计划，不要太正式）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>10-5</p>
+</div></div><div class='timeline-item-content'><p>不写日志，不知道自己这么摆烂（要坚持写日志）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>10-21</p>
+</div></div><div class='timeline-item-content'><p>《进步本》真的很重要</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>12-21</p>
+</div></div><div class='timeline-item-content'><p>平凡的一生，不存在什么意义，也没什么意义</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>12-22</p>
+</div></div><div class='timeline-item-content'><p>梦：English 高考模拟 有能力写完单没写完</p>
+<p>①犯困</p>
+<p>②能力不足</p>
+<p>③知识掌握</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>12-23</p>
+</div></div><div class='timeline-item-content'><p>所有赌狗都没有好下场 上头——&gt; 游戏x小说x短视频x</p>
+</div></div></div></div><div class="tab-item-content" id="diary-5"><div class="timeline blue"><div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'><p>🌻 2023 年 </p>
+</div></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>1-1</p>
+</div></div><div class='timeline-item-content'><p>喉腔溃疡（Covid-19） 点滴+药 </p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>1-3</p>
+</div></div><div class='timeline-item-content'><p>病好了（感觉带病学习纯忽悠？那种状态能睁眼都不错了）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>1-6</p>
+</div></div><div class='timeline-item-content'><p>把去年父亲节送爸爸的txd丢了，又买了一个，下次请你注意</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>1-10</p>
+</div></div><div class='timeline-item-content'><p>妈妈和我说：我们之间确实有代沟，但是我们不要为此生气，或者说强行改变对方，慢慢接受就好</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>1-12</p>
+</div></div><div class='timeline-item-content'><p>姥爷去世（好烦小孩）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>1-12</p>
+</div></div><div class='timeline-item-content'><p>姥爷去世（我一定要火化）</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>1-17</p>
+</div></div><div class='timeline-item-content'><p>有早起跑步哎！！ 以后每天更Blog</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>1-22</p>
+</div></div><div class='timeline-item-content'><p>大年初一 写信，基本上都在学习？</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>2-27</p>
+</div></div><div class='timeline-item-content'><p>对未来有了一些畅享，写了Blog，系统学一下感觉未来可期</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>12-20</p>
+</div></div><div class='timeline-item-content'><p>那些看似不起波澜的日复一日，会在某一天让你看到坚持的意义</p>
+</div></div></div></div><div class="tab-item-content" id="diary-6"><div class="timeline pink"><div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'><p>🌻 2024 年 </p>
+</div></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>有空再写</p>
+</div></div><div class='timeline-item-content'><p>好多事情，有空整理</p>
+<p>考研经验：</p>
+<p>1、能省则省？（淘宝x 游戏x）</p>
+<p>2、爱好（周&#x2F;次）</p>
+<p>3、网课x（云盘 + 书v）</p>
+<p>4、固定作息</p>
+<p>5、不胡思乱想</p>
+<p>6、研友？看自己状态</p>
+<p>7、图书馆固定位置</p>
+</div></div></div></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com">睿清颜</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com/33/000/">https://ruiqingyan.com/33/000/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ruiqingyan.com" target="_blank">Ruiqy~</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%97%A5%E5%BF%97/">日志</a></div><div class="post_share"><div class="social-share" data-image="/img/rd17.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/32/000/" title="运动养生"><img class="cover" src="/img/rd13.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">运动养生</div></div></a></div><div class="next-post pull-right"><a href="/41/000/" title="留言板"><img class="cover" src="/img/rd15.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">留言板</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">睿清颜</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">327</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">285</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%97%BA-Diary%EF%BC%88%E6%97%A5%E8%AE%B0-%E6%84%9F%E6%82%9F%EF%BC%89"><span class="toc-text">🗺 Diary（日记 + 感悟）</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/11/insight-kezhouqiujian/" title="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常"><img src="/img/rd20.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常"/></a><div class="content"><a class="title" href="/11/insight-kezhouqiujian/" title="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常">2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常</a><time datetime="2026-08-17T12:00:00.000Z" title="发表于 2026-08-17 20:00:00">2026-08-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/018/" title="018、反汇编代码的重建与编译"><img src="/img/rd19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="018、反汇编代码的重建与编译"/></a><div class="content"><a class="title" href="/31/cpp-reverse/018/" title="018、反汇编代码的重建与编译">018、反汇编代码的重建与编译</a><time datetime="2026-08-14T00:18:00.000Z" title="发表于 2026-08-14 08:18:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/017/" title="017、WannaCry 勒索病毒的防御性分析"><img src="/img/rd18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="017、WannaCry 勒索病毒的防御性分析"/></a><div class="content"><a class="title" href="/31/cpp-reverse/017/" title="017、WannaCry 勒索病毒的防御性分析">017、WannaCry 勒索病毒的防御性分析</a><time datetime="2026-08-14T00:17:00.000Z" title="发表于 2026-08-14 08:17:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/016/" title="016、远控木马的防御性逆向分析"><img src="/img/rd17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="016、远控木马的防御性逆向分析"/></a><div class="content"><a class="title" href="/31/cpp-reverse/016/" title="016、远控木马的防御性逆向分析">016、远控木马的防御性逆向分析</a><time datetime="2026-08-14T00:16:00.000Z" title="发表于 2026-08-14 08:16:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/015/" title="015、OllyDbg 的工作原理"><img src="/img/rd16.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="015、OllyDbg 的工作原理"/></a><div class="content"><a class="title" href="/31/cpp-reverse/015/" title="015、OllyDbg 的工作原理">015、OllyDbg 的工作原理</a><time datetime="2026-08-14T00:15:00.000Z" title="发表于 2026-08-14 08:15:00">2026-08-14</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/rd17.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By 睿清颜</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.mps.gov.cn/#/query/webSearch?code=44040402000233"><img class="icp-icon" src="/img/beian.png"><span>粤公网安备44040402000233号 </span></a>    </a> <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn"><span>     粤ICP备2024216057号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.14.0-b3"></script><script src="/js/main.js?v=4.14.0-b3"></script><script src="/js/tw_cn.js?v=4.14.0-b3"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'ams'
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="/js/pagination-jump@1.0.0.js?v=1.0.0"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>(() => {
+  const isChatBtn = false
+  const isChatHideShow = false
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = 'T9itjhtGq78bcPAhB'
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.14.0-b3"></script></div></div>
+    <script id="yearlyNotesTabs" data-pjax>
+    (() => {
+      function openYearlyNote () {
+        const match = window.location.hash.match(/^#year-(2021|2022|2023|2024)$/)
+        if (!match) return
+
+        const tabNumber = Number(match[1]) - 2018
+        const button = document.querySelector(
+          '#diary .nav-tabs .tab[data-href="diary-' + tabNumber + '"]'
+        )
+        if (!button) return
+
+        button.dispatchEvent(new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          view: window
+        }))
+        window.requestAnimationFrame(() => {
+          document.getElementById('diary')?.scrollIntoView({ block: 'start' })
+        })
+      }
+
+      const scheduleYearlyNote = () => window.setTimeout(openYearlyNote, 0)
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', scheduleYearlyNote, { once: true })
+      } else {
+        scheduleYearlyNote()
+      }
+      window.addEventListener('hashchange', scheduleYearlyNote)
+    })()
+    </script></body></html>

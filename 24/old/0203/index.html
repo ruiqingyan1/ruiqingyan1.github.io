@@ -1,0 +1,524 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>0203、Windows 零基础逆向教程（三）：攻防篇 | Ruiqy~</title><meta name="author" content="睿清颜"><meta name="copyright" content="睿清颜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Windows 零基础逆向攻防篇笔记入口，按视频目录整理注入原理、线程&#x2F;APC&#x2F;早鸟、ShellCode、进程伪装、Hook、ETW&#x2F;WMI 和反调试检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="0203、Windows 零基础逆向教程（三）：攻防篇">
+<meta property="og:url" content="https://ruiqingyan.com/24/old/0203/index.html">
+<meta property="og:site_name" content="Ruiqy~">
+<meta property="og:description" content="Windows 零基础逆向攻防篇笔记入口，按视频目录整理注入原理、线程&#x2F;APC&#x2F;早鸟、ShellCode、进程伪装、Hook、ETW&#x2F;WMI 和反调试检测">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ruiqingyan.com/img/rd10.jpg">
+<meta property="article:published_time" content="2026-07-06T05:29:00.000Z">
+<meta property="article:modified_time" content="2026-07-07T13:25:00.000Z">
+<meta property="article:author" content="睿清颜">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="Windows逆向">
+<meta property="article:tag" content="攻防">
+<meta property="article:tag" content="注入">
+<meta property="article:tag" content="Hook">
+<meta property="article:tag" content="反调试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruiqingyan.com/img/rd10.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://ruiqingyan.com/24/old/0203/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.14.0-b3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>(()=>{
+      const saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+      
+      window.btf = {
+        saveToLocal: saveToLocal,
+        getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+          script.src = url
+          script.async = true
+          script.onerror = reject
+          script.onload = script.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            script.onload = script.onreadystatechange = null
+            resolve()
+          }
+
+          Object.keys(attr).forEach(key => {
+            script.setAttribute(key, attr[key])
+          })
+
+          document.head.appendChild(script)
+        }),
+
+        getCSS: (url, id = false) => new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+          link.rel = 'stylesheet'
+          link.href = url
+          if (id) link.id = id
+          link.onerror = reject
+          link.onload = link.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            link.onload = link.onreadystatechange = null
+            resolve()
+          }
+          document.head.appendChild(link)
+        }),
+
+        addGlobalFn: (key, fn, name = false, parent = window) => {
+          const pjaxEnable = false
+          if (!pjaxEnable && key.startsWith('pjax')) return
+
+          const globalFn = parent.globalFn || {}
+          const keyObj = globalFn[key] || {}
+    
+          if (name && keyObj[name]) return
+    
+          name = name || Object.keys(keyObj).length
+          keyObj[name] = fn
+          globalFn[key] = keyObj
+          parent.globalFn = globalFn
+        }
+      }
+    
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+      
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })()</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300,"highlightFullpage":true,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '0203、Windows 零基础逆向教程（三）：攻防篇',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-07-07 21:25:00'
+}</script><link rel="stylesheet" href="/css/font/iconfont.css"><link rel="stylesheet" href="/css/custom@1.0.1.css?v=1.0.8"><link rel="stylesheet" href="/css/color@1.0.0.css"><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">327</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">285</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua00"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua01"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/study-docs/"><i class="fa-fw fas fa-book-open"></i><span> 知识库</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw fas fa-calendar-check"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-flower3"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/12/000/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 项目实践</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li><li><a class="site-page child" href="/26/AI/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/33/000/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/rd10.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruiqy~"><img class="site-icon" src="/img/avatar.jpg" alt="Logo"/><span class="site-name">Ruiqy~</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua00"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua01"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/study-docs/"><i class="fa-fw fas fa-book-open"></i><span> 知识库</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw fas fa-calendar-check"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-flower3"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/12/000/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 项目实践</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li><li><a class="site-page child" href="/26/AI/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/33/000/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">0203、Windows 零基础逆向教程（三）：攻防篇</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-07-06T05:29:00.000Z" title="发表于 2026-07-06 13:29:00">2026-07-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-07T13:25:00.000Z" title="更新于 2026-07-07 21:25:00">2026-07-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/Windows%E9%80%86%E5%90%91/">Windows逆向</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="0203、Windows 零基础逆向教程（三）：攻防篇"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note info flat"><p>返回：<a href="/24/old/0200/">Windows 逆向总目录</a> · <a href="/24/old/000/">网络安全学习主页</a></p>
+</div>
+
+<p>攻防篇是 Windows 逆向里最容易“看起来很酷、实际很危险”的一部分。这里的整理原则很明确：只做合法授权环境下的原理学习、行为识别、调试复盘和防护理解，不把笔记写成未授权利用流程。</p>
+<p>这部分内容可以当成“理解攻击技术如何留下痕迹”的路线。知道它们大致怎么发生，才能知道日志、内存、模块、线程、句柄、异常、Hook 和反调试检测应该看哪里。</p>
+<h2 id="1、学习定位"><a href="#1、学习定位" class="headerlink" title="1、学习定位"></a>1、学习定位</h2><table>
+<thead>
+<tr>
+<th align="center">线索</th>
+<th align="left">目标</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">注入与加载</td>
+<td align="left">理解跨进程代码执行、模块加载和 PE 修复相关概念</td>
+</tr>
+<tr>
+<td align="center">ShellCode</td>
+<td align="left">理解位置无关代码、API 解析、字符串处理和二进制提取的风险点</td>
+</tr>
+<tr>
+<td align="center">进程伪装</td>
+<td align="left">理解进程映像、节对象、PEB、文件对象和检测视角</td>
+</tr>
+<tr>
+<td align="center">Hook</td>
+<td align="left">理解 IAT、Inline、VTable、VEH、硬件断点等 Hook 的原理和检测点</td>
+</tr>
+<tr>
+<td align="center">监控与检测</td>
+<td align="left">通过 ETW、WMI、调试事件和进程&#x2F;线程信息观察行为</td>
+</tr>
+<tr>
+<td align="center">反调试</td>
+<td align="left">理解调试标志、断点、异常、对象查询等检测方向</td>
+</tr>
+</tbody></table>
+<div class="note danger flat"><p>本篇不记录可直接用于未授权入侵、持久化、绕过检测或隐蔽执行的操作步骤。后续所有小结都以授权实验、检测分析和防护复盘为边界。</p>
+</div>
+
+<h2 id="2、章节目录"><a href="#2、章节目录" class="headerlink" title="2、章节目录"></a>2、章节目录</h2><p>这里按视频目录实际拆开。每个编号对应一个相对独立的小结页面，方便后续按学习进度继续补实验记录、截图和个人复盘。</p>
+<table>
+<thead>
+<tr>
+<th align="center">编号</th>
+<th align="center">视频范围</th>
+<th align="center">内容范围</th>
+<th align="left">主要内容</th>
+<th align="center">笔记</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0223</td>
+<td align="center">01.0 - 01.9</td>
+<td align="center">前置、注入概念与控制台框架</td>
+<td align="left">攻防篇前置要求、应用层注入概念、PE 加载关系、控制台交互框架和输入校验</td>
+<td align="center"><a href="/24/old/0223/">0223</a></td>
+</tr>
+<tr>
+<td align="center">0224</td>
+<td align="center">02.0 - 02.3</td>
+<td align="center">远程线程注入</td>
+<td align="left">远程线程注入思路、通用代码框架、执行过程、跨进程调试和行为观察点</td>
+<td align="center"><a href="/24/old/0224/">0224</a></td>
+</tr>
+<tr>
+<td align="center">0225</td>
+<td align="center">02.4 - 02.9</td>
+<td align="center">劫持线程与 APC</td>
+<td align="left">线程上下文、执行流切换、APC 调用触发机制、用户层 APC 队列和线程类注入汇总</td>
+<td align="center"><a href="/24/old/0225/">0225</a></td>
+</tr>
+<tr>
+<td align="center">0226</td>
+<td align="center">03.0 - 03.4</td>
+<td align="center">早鸟注入与全局注册</td>
+<td align="left">挂起进程、早鸟执行、AppInit_DLLs、注册表配置、键值验证和检测思路</td>
+<td align="center"><a href="/24/old/0226/">0226</a></td>
+</tr>
+<tr>
+<td align="center">0227</td>
+<td align="center">03.5 - 03.9</td>
+<td align="center">全局 Hook 与内存映射</td>
+<td align="left">Windows Hook、跨进程消息回调、窗口线程、共享内存映射和对应行为痕迹</td>
+<td align="center"><a href="/24/old/0227/">0227</a></td>
+</tr>
+<tr>
+<td align="center">0228</td>
+<td align="center">04.0 - 04.4</td>
+<td align="center">内存映射与 ShellCode 承载</td>
+<td align="left">ShellCode 构建、压缩、修正、通用执行思路、无申请附加执行方案的原理边界</td>
+<td align="center"><a href="/24/old/0228/">0228</a></td>
+</tr>
+<tr>
+<td align="center">0229</td>
+<td align="center">04.5 - 05.1</td>
+<td align="center">系统调用与权限边界</td>
+<td align="left">API 调用路线、系统调用过滤、ntdll 跳板、APC 唤醒、会话隔离、访问令牌和高阶远程线程</td>
+<td align="center"><a href="/24/old/0229/">0229</a></td>
+</tr>
+<tr>
+<td align="center">0230</td>
+<td align="center">05.2 - 05.9</td>
+<td align="center">x64 ShellCode 基础</td>
+<td align="left">x64 ShellCode、模块定位、PE 解析、字符串匹配、远程执行测试、通用框架和哈希匹配</td>
+<td align="center"><a href="/24/old/0230/">0230</a></td>
+</tr>
+<tr>
+<td align="center">0231</td>
+<td align="center">06.0 - 07.2</td>
+<td align="center">ShellCode 提取与执行框架</td>
+<td align="left">编译器布局、语法平坦化、生成提取、硬编码转储、本地&#x2F;远程执行环境和项目完结复盘</td>
+<td align="center"><a href="/24/old/0231/">0231</a></td>
+</tr>
+<tr>
+<td align="center">0232</td>
+<td align="center">07.3 - 08.5</td>
+<td align="center">进程伪装与隐藏</td>
+<td align="left">Process Hollowing、NT 函数、文件对象、节对象、PEB 信息、数据保护、代码结构优化和检测视角</td>
+<td align="center"><a href="/24/old/0232/">0232</a></td>
+</tr>
+<tr>
+<td align="center">0233</td>
+<td align="center">08.6 - 09.1</td>
+<td align="center">反射式 DLL 加载</td>
+<td align="left">ReflectiveDLL、导出函数执行、模块头回溯、哈希匹配、映像拉伸、导入表和重定位修复</td>
+<td align="center"><a href="/24/old/0233/">0233</a></td>
+</tr>
+<tr>
+<td align="center">0234</td>
+<td align="center">09.2 - 10.0</td>
+<td align="center">特征码搜索</td>
+<td align="left">硬编码格式、可变量、通配符、Pattern 封装、文件结构扫描、匹配结果写回和效率测试</td>
+<td align="center"><a href="/24/old/0234/">0234</a></td>
+</tr>
+<tr>
+<td align="center">0235</td>
+<td align="center">10.1 - 10.5</td>
+<td align="center">Hook 基础与 IAT Hook</td>
+<td align="left">Hook 分类、IAT Hook 与 PE 关联、API 拦截测试、安装卸载、检测手法和双向监听</td>
+<td align="center"><a href="/24/old/0235/">0235</a></td>
+</tr>
+<tr>
+<td align="center">0236</td>
+<td align="center">10.6 - 11.4</td>
+<td align="center">Inline Hook 框架</td>
+<td align="left">Inline Hook 底层逻辑、参数拦截、模板化框架、指令完整性、边界对齐、中转函数和卸载处理</td>
+<td align="center"><a href="/24/old/0236/">0236</a></td>
+</tr>
+<tr>
+<td align="center">0237</td>
+<td align="center">11.5 - 12.4</td>
+<td align="center">x64 Hook 与指令解析</td>
+<td align="left">x64 跳转方案、环境保护、Stub 保存、寄存器参数、MinHook、自旋锁、HDE 反汇编和 SIB 寻址</td>
+<td align="center"><a href="/24/old/0237/">0237</a></td>
+</tr>
+<tr>
+<td align="center">0238</td>
+<td align="center">12.5 - 13.1</td>
+<td align="center">反汇编引擎</td>
+<td align="left">Capstone、用户输入结构、数据转换与安全检查、格式输出、硬编码反汇编、双版本兼容和 XEDParse</td>
+<td align="center"><a href="/24/old/0238/">0238</a></td>
+</tr>
+<tr>
+<td align="center">0239</td>
+<td align="center">13.2 - 13.5</td>
+<td align="center">VTable、VEH 与断点类 Hook</td>
+<td align="left">VTable Hook、VEH 异常注册、硬件断点、瞬时执行类 Hook 的原理和检测边界</td>
+<td align="center"><a href="/24/old/0239/">0239</a></td>
+</tr>
+<tr>
+<td align="center">0240</td>
+<td align="center">13.6 - 14.3</td>
+<td align="center">ETW 事件跟踪</td>
+<td align="left">Event Tracing for Windows、日志管理、主线程交互、事件初始化、资源释放、进程事件监听和 opcode 过滤</td>
+<td align="center"><a href="/24/old/0240/">0240</a></td>
+</tr>
+<tr>
+<td align="center">0241</td>
+<td align="center">14.4 - 14.7</td>
+<td align="center">WMI 事件监控</td>
+<td align="left">WMI、COM 查询、<code>QueryInterface</code>、<code>CoCreateInstance</code>、连接命名空间和进程创建事件监听</td>
+<td align="center"><a href="/24/old/0241/">0241</a></td>
+</tr>
+<tr>
+<td align="center">0242</td>
+<td align="center">14.8 - 15.3</td>
+<td align="center">反调试机制总览</td>
+<td align="left">调试器开发、调试器附加、调试对象、被调试进程关联、调试消息派遣和应用层检测方向</td>
+<td align="center"><a href="/24/old/0242/">0242</a></td>
+</tr>
+<tr>
+<td align="center">0243</td>
+<td align="center">15.4 - 15.9</td>
+<td align="center">调试标志位反调试</td>
+<td align="left">BeingDebugged、DebugPort、NtGlobalFlag、Heap Flag 等调试标志相关检测与防护复盘</td>
+<td align="center"><a href="/24/old/0243/">0243</a></td>
+</tr>
+<tr>
+<td align="center">0244</td>
+<td align="center">16.0 - 16.3</td>
+<td align="center">断点类反调试</td>
+<td align="left">硬件断点、软件断点、内存断点、动态监测和断点异常行为观察</td>
+<td align="center"><a href="/24/old/0244/">0244</a></td>
+</tr>
+<tr>
+<td align="center">0245</td>
+<td align="center">16.4 - 16.9</td>
+<td align="center">异常与对象查询反调试</td>
+<td align="left">异常过滤、Interrupt、Trap Flag、Guard Page、调试对象查询和防护侧验证</td>
+<td align="center"><a href="/24/old/0245/">0245</a></td>
+</tr>
+</tbody></table>
+<h2 id="3、复盘重点"><a href="#3、复盘重点" class="headerlink" title="3、复盘重点"></a>3、复盘重点</h2><table>
+<thead>
+<tr>
+<th align="center">方向</th>
+<th align="left">复盘重点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">行为链路</td>
+<td align="left">一个行为从用户输入、进程选择、内存变化到执行触发，大致经过哪些阶段</td>
+</tr>
+<tr>
+<td align="center">系统痕迹</td>
+<td align="left">进程、线程、模块、句柄、内存页属性、异常和日志会留下哪些可观察点</td>
+</tr>
+<tr>
+<td align="center">PE 关系</td>
+<td align="left">注入、反射加载、ShellCode 和 Hook 都会反复用到 PE 结构和地址换算</td>
+</tr>
+<tr>
+<td align="center">防护视角</td>
+<td align="left">不只看“能不能实现”，更要看“怎么发现、怎么限制、怎么复盘”</td>
+</tr>
+<tr>
+<td align="center">安全边界</td>
+<td align="left">所有实验都限定在自写程序、课程样本和授权环境内</td>
+</tr>
+</tbody></table>
+<h2 id="4、整理方式"><a href="#4、整理方式" class="headerlink" title="4、整理方式"></a>4、整理方式</h2><p>每一篇小结按下面顺序写：</p>
+<ol>
+<li>这一块解决什么问题。</li>
+<li>正常系统机制是什么。</li>
+<li>攻防技术利用了哪一个机制边界。</li>
+<li>调试或日志中可以观察什么。</li>
+<li>防护和复盘时应该检查什么。</li>
+</ol>
+<p>攻防篇后面的内容会很长，但核心不是追求“招式数量”，而是把 Windows 用户态程序执行、加载、调试、监控和异常处理这些底层机制串起来。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com">睿清颜</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com/24/old/0203/">https://ruiqingyan.com/24/old/0203/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ruiqingyan.com" target="_blank">Ruiqy~</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><a class="post-meta__tags" href="/tags/Windows%E9%80%86%E5%90%91/">Windows逆向</a><a class="post-meta__tags" href="/tags/%E6%94%BB%E9%98%B2/">攻防</a><a class="post-meta__tags" href="/tags/%E6%B3%A8%E5%85%A5/">注入</a><a class="post-meta__tags" href="/tags/Hook/">Hook</a><a class="post-meta__tags" href="/tags/%E5%8F%8D%E8%B0%83%E8%AF%95/">反调试</a></div><div class="post_share"><div class="social-share" data-image="/img/rd10.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/24/old/0202/" title="0202、Windows 零基础逆向教程（二）：提升篇"><img class="cover" src="/img/rd10.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">0202、Windows 零基础逆向教程（二）：提升篇</div></div></a></div><div class="next-post pull-right"><a href="/24/old/0105/" title="0105、安全开发篇（一）：类型转换与运算符"><img class="cover" src="/img/rd10.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">0105、安全开发篇（一）：类型转换与运算符</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/24/old/0224/" title="0224、Windows 逆向攻防：远程线程注入"><img class="cover" src="/img/rd10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-07</div><div class="title">0224、Windows 逆向攻防：远程线程注入</div></div></a></div><div><a href="/24/old/0223/" title="0223、Windows 逆向攻防：前置、注入概念与控制台框架"><img class="cover" src="/img/rd10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-07</div><div class="title">0223、Windows 逆向攻防：前置、注入概念与控制台框架</div></div></a></div><div><a href="/24/old/0226/" title="0226、Windows 逆向攻防：早鸟注入与全局注册"><img class="cover" src="/img/rd10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-07</div><div class="title">0226、Windows 逆向攻防：早鸟注入与全局注册</div></div></a></div><div><a href="/24/old/0227/" title="0227、Windows 逆向攻防：全局 Hook 与内存映射"><img class="cover" src="/img/rd10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-07</div><div class="title">0227、Windows 逆向攻防：全局 Hook 与内存映射</div></div></a></div><div><a href="/24/old/0235/" title="0235、Windows 逆向攻防：Hook 基础与 IAT Hook"><img class="cover" src="/img/rd10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-07</div><div class="title">0235、Windows 逆向攻防：Hook 基础与 IAT Hook</div></div></a></div><div><a href="/24/old/0236/" title="0236、Windows 逆向攻防：Inline Hook 框架"><img class="cover" src="/img/rd10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-07</div><div class="title">0236、Windows 逆向攻防：Inline Hook 框架</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">睿清颜</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">327</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">285</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%AD%A6%E4%B9%A0%E5%AE%9A%E4%BD%8D"><span class="toc-text">1、学习定位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E7%AB%A0%E8%8A%82%E7%9B%AE%E5%BD%95"><span class="toc-text">2、章节目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%A4%8D%E7%9B%98%E9%87%8D%E7%82%B9"><span class="toc-text">3、复盘重点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-text">4、整理方式</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/11/insight-kezhouqiujian/" title="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常"><img src="/img/rd20.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常"/></a><div class="content"><a class="title" href="/11/insight-kezhouqiujian/" title="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常">2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常</a><time datetime="2026-08-17T12:00:00.000Z" title="发表于 2026-08-17 20:00:00">2026-08-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/018/" title="018、反汇编代码的重建与编译"><img src="/img/rd19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="018、反汇编代码的重建与编译"/></a><div class="content"><a class="title" href="/31/cpp-reverse/018/" title="018、反汇编代码的重建与编译">018、反汇编代码的重建与编译</a><time datetime="2026-08-14T00:18:00.000Z" title="发表于 2026-08-14 08:18:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/017/" title="017、WannaCry 勒索病毒的防御性分析"><img src="/img/rd18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="017、WannaCry 勒索病毒的防御性分析"/></a><div class="content"><a class="title" href="/31/cpp-reverse/017/" title="017、WannaCry 勒索病毒的防御性分析">017、WannaCry 勒索病毒的防御性分析</a><time datetime="2026-08-14T00:17:00.000Z" title="发表于 2026-08-14 08:17:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/016/" title="016、远控木马的防御性逆向分析"><img src="/img/rd17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="016、远控木马的防御性逆向分析"/></a><div class="content"><a class="title" href="/31/cpp-reverse/016/" title="016、远控木马的防御性逆向分析">016、远控木马的防御性逆向分析</a><time datetime="2026-08-14T00:16:00.000Z" title="发表于 2026-08-14 08:16:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/015/" title="015、OllyDbg 的工作原理"><img src="/img/rd16.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="015、OllyDbg 的工作原理"/></a><div class="content"><a class="title" href="/31/cpp-reverse/015/" title="015、OllyDbg 的工作原理">015、OllyDbg 的工作原理</a><time datetime="2026-08-14T00:15:00.000Z" title="发表于 2026-08-14 08:15:00">2026-08-14</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/rd10.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By 睿清颜</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.mps.gov.cn/#/query/webSearch?code=44040402000233"><img class="icp-icon" src="/img/beian.png"><span>粤公网安备44040402000233号 </span></a>    </a> <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn"><span>     粤ICP备2024216057号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.14.0-b3"></script><script src="/js/main.js?v=4.14.0-b3"></script><script src="/js/tw_cn.js?v=4.14.0-b3"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'ams'
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="/js/pagination-jump@1.0.0.js?v=1.0.0"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>(() => {
+  const isChatBtn = false
+  const isChatHideShow = false
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = 'T9itjhtGq78bcPAhB'
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.14.0-b3"></script></div></div></body></html>

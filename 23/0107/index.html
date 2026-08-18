@@ -1,0 +1,688 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Chap7 欧拉图与哈密顿图 | Ruiqy~</title><meta name="author" content="睿清颜"><meta name="copyright" content="睿清颜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="北大离散数学 Chap 7 欧拉通路、欧拉回路、Fleury 算法、哈密顿通路、哈密顿回路、Ore 与 Dirac 条件、竞赛图和习题答案">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chap7 欧拉图与哈密顿图">
+<meta property="og:url" content="https://ruiqingyan.com/23/0107/index.html">
+<meta property="og:site_name" content="Ruiqy~">
+<meta property="og:description" content="北大离散数学 Chap 7 欧拉通路、欧拉回路、Fleury 算法、哈密顿通路、哈密顿回路、Ore 与 Dirac 条件、竞赛图和习题答案">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ruiqingyan.com/img/rd8.jpg">
+<meta property="article:published_time" content="2023-12-19T16:17:00.000Z">
+<meta property="article:modified_time" content="2026-06-07T20:45:00.000Z">
+<meta property="article:author" content="睿清颜">
+<meta property="article:tag" content="本科课程">
+<meta property="article:tag" content="疾风计划">
+<meta property="article:tag" content="离散数学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruiqingyan.com/img/rd8.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://ruiqingyan.com/23/0107/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.14.0-b3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>(()=>{
+      const saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+      
+      window.btf = {
+        saveToLocal: saveToLocal,
+        getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+          script.src = url
+          script.async = true
+          script.onerror = reject
+          script.onload = script.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            script.onload = script.onreadystatechange = null
+            resolve()
+          }
+
+          Object.keys(attr).forEach(key => {
+            script.setAttribute(key, attr[key])
+          })
+
+          document.head.appendChild(script)
+        }),
+
+        getCSS: (url, id = false) => new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+          link.rel = 'stylesheet'
+          link.href = url
+          if (id) link.id = id
+          link.onerror = reject
+          link.onload = link.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            link.onload = link.onreadystatechange = null
+            resolve()
+          }
+          document.head.appendChild(link)
+        }),
+
+        addGlobalFn: (key, fn, name = false, parent = window) => {
+          const pjaxEnable = false
+          if (!pjaxEnable && key.startsWith('pjax')) return
+
+          const globalFn = parent.globalFn || {}
+          const keyObj = globalFn[key] || {}
+    
+          if (name && keyObj[name]) return
+    
+          name = name || Object.keys(keyObj).length
+          keyObj[name] = fn
+          globalFn[key] = keyObj
+          parent.globalFn = globalFn
+        }
+      }
+    
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+      
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })()</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300,"highlightFullpage":true,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Chap7 欧拉图与哈密顿图',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-06-08 04:45:00'
+}</script><link rel="stylesheet" href="/css/font/iconfont.css"><link rel="stylesheet" href="/css/custom@1.0.1.css?v=1.0.8"><link rel="stylesheet" href="/css/color@1.0.0.css"><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">327</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">285</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua00"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua01"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/study-docs/"><i class="fa-fw fas fa-book-open"></i><span> 知识库</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw fas fa-calendar-check"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-flower3"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/12/000/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 项目实践</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li><li><a class="site-page child" href="/26/AI/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/33/000/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/rd8.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruiqy~"><img class="site-icon" src="/img/avatar.jpg" alt="Logo"/><span class="site-name">Ruiqy~</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua00"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua01"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/study-docs/"><i class="fa-fw fas fa-book-open"></i><span> 知识库</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw fas fa-calendar-check"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-flower3"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/12/000/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 项目实践</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li><li><a class="site-page child" href="/26/AI/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/33/000/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Chap7 欧拉图与哈密顿图</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T16:17:00.000Z" title="发表于 2023-12-20 00:17:00">2023-12-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-07T20:45:00.000Z" title="更新于 2026-06-08 04:45:00">2026-06-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/1%E3%80%81%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/">1、离散数学</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A%E4%B8%93%E4%B8%9A%E5%9F%BA%E7%A1%80%E8%AF%BE/">第一阶段：专业基础课</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Chap7 欧拉图与哈密顿图"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note info flat"><p>返回：<a href="/23/0100/">0100 离散数学课程总目录</a> · 上一章：<a href="/23/0106/">0106 图的基本概念、通路回路与连通性</a> · 下一章：<a href="/23/0108/">0108 树</a></p>
+</div>
+
+<h2 id="1、资料来源与学习目标"><a href="#1、资料来源与学习目标" class="headerlink" title="1、资料来源与学习目标"></a>1、资料来源与学习目标</h2><p>本章对应北大离散数学刘田老师“集合论与图论”第七章。Auto_Tutor 中整理到的资料包括：</p>
+<table>
+<thead>
+<tr>
+<th align="center">资料</th>
+<th align="left">内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">7.1 欧拉图</td>
+<td align="left">欧拉通路、欧拉回路、欧拉图、半欧拉图、有向欧拉图、Fleury 算法、逐步插入回路算法</td>
+</tr>
+<tr>
+<td align="center">7.2 哈密顿图</td>
+<td align="left">哈密顿通路、哈密顿回路、哈密顿图、必要条件、Ore 条件、Dirac 条件、竞赛图</td>
+</tr>
+<tr>
+<td align="center">007 习题与答案</td>
+<td align="left">习题 8.4、8.7、8.13，重点考察任意行遍点、哈密顿必要条件和半哈密顿充分条件</td>
+</tr>
+</tbody></table>
+<div class="note success flat"><p>本章的核心目标：区分<span style="background-color:#ffd6e7; color:#9d174d; font-weight:600;">欧拉</span>与<span style="background-color:#ffd6e7; color:#9d174d; font-weight:600;">哈密顿</span>。欧拉关注“每条边恰好走一次”，判定容易；哈密顿关注“每个顶点恰好经过一次”，判定困难，更多依赖必要条件和充分条件。</p>
+</div>
+
+<h2 id="2、颜色标注"><a href="#2、颜色标注" class="headerlink" title="2、颜色标注"></a>2、颜色标注</h2><table>
+<thead>
+<tr>
+<th align="center">颜色</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><span style="background-color:#ffd6e7; color:#9d174d; font-weight:600;">粉色</span></td>
+<td align="left">必背、必会证明、后续章节反复使用</td>
+</tr>
+<tr>
+<td align="center"><span style="color:#2563eb; font-weight:600;">蓝色</span></td>
+<td align="left">核心术语和定义</td>
+</tr>
+<tr>
+<td align="center"><span style="color:#f97316; font-weight:600;">橙色</span></td>
+<td align="left">易错点、边界条件</td>
+</tr>
+<tr>
+<td align="center"><span style="color:#16a34a; font-weight:600;">绿色</span></td>
+<td align="left">理解提示和后续连接</td>
+</tr>
+</tbody></table>
+<h2 id="3、章节主线"><a href="#3、章节主线" class="headerlink" title="3、章节主线"></a>3、章节主线</h2><table>
+<thead>
+<tr>
+<th align="center">模块</th>
+<th align="left">本章要会什么</th>
+<th align="left">后续连接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">欧拉图</td>
+<td align="left">会用度数判定欧拉图、半欧拉图</td>
+<td align="left">一笔画、边遍历</td>
+</tr>
+<tr>
+<td align="center">有向欧拉图</td>
+<td align="left">会用入度&#x2F;出度判定</td>
+<td align="left">有向网络遍历</td>
+</tr>
+<tr>
+<td align="center">Fleury 算法</td>
+<td align="left">知道“除非别无选择，否则不走桥”</td>
+<td align="left">构造欧拉回路</td>
+</tr>
+<tr>
+<td align="center">哈密顿图</td>
+<td align="left">会区分哈密顿通路、回路、半哈密顿图</td>
+<td align="left">旅行、路径覆盖</td>
+</tr>
+<tr>
+<td align="center">必要条件</td>
+<td align="left">会用 <code>p(G-V1)</code> 反证非哈密顿</td>
+<td align="left">习题 8.7</td>
+</tr>
+<tr>
+<td align="center">充分条件</td>
+<td align="left">会用 Ore、Dirac 条件判定哈密顿</td>
+<td align="left">图存在性证明</td>
+</tr>
+<tr>
+<td align="center">竞赛图</td>
+<td align="left">知道竞赛图一定半哈密顿，强连通竞赛图哈密顿</td>
+<td align="left">有向图应用</td>
+</tr>
+</tbody></table>
+<h2 id="4、欧拉图"><a href="#4、欧拉图" class="headerlink" title="4、欧拉图"></a>4、欧拉图</h2><h3 id="4-1-基本定义"><a href="#4-1-基本定义" class="headerlink" title="4.1 基本定义"></a>4.1 基本定义</h3><p>欧拉通路：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">经过图中所有边的简单通路。</span><br></pre></td></tr></table></figure>
+
+<p>半欧拉图：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有欧拉通路的图。</span><br></pre></td></tr></table></figure>
+
+<p>欧拉回路：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">经过图中所有边的简单回路。</span><br></pre></td></tr></table></figure>
+
+<p>欧拉图：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有欧拉回路的图。</span><br></pre></td></tr></table></figure>
+
+<div class="note warning flat"><p>欧拉问题看的是<span style="color:#f97316; font-weight:600;">边</span>：每条边恰好走一次；顶点可以重复经过。</p>
+</div>
+
+<h3 id="4-2-无向欧拉图的充要条件"><a href="#4-2-无向欧拉图的充要条件" class="headerlink" title="4.2 无向欧拉图的充要条件"></a>4.2 无向欧拉图的充要条件</h3><p>定理 8.1：设 <code>G</code> 是无向连通图，则以下三件事等价：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(1) G 是欧拉图。</span><br><span class="line">(2) G 中所有顶点都是偶数度。</span><br><span class="line">(3) G 是若干个边不交的圈的并。</span><br></pre></td></tr></table></figure>
+
+<p>证明思路：</p>
+<table>
+<thead>
+<tr>
+<th align="center">方向</th>
+<th align="left">思路</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>(1)⇒(2)</code></td>
+<td align="left">欧拉回路每进入一个顶点，就必须再离开，贡献成对出现</td>
+</tr>
+<tr>
+<td align="center"><code>(2)⇒(3)</code></td>
+<td align="left">在偶度连通图中找圈，删去圈边后各点仍为偶度；对每个连通分支重复</td>
+</tr>
+<tr>
+<td align="center"><code>(3)⇒(1)</code></td>
+<td align="left">有公共点但边不交的回路可以在交点处拼接</td>
+</tr>
+</tbody></table>
+<div class="note primary flat"><p>“连通 + 全偶度”是无向欧拉图最核心的判定。若忽略连通性，两个互不相交的圈每个点也是偶度，但整体没有一条欧拉回路能走完所有边。</p>
+</div>
+
+<h3 id="4-3-无向半欧拉图的充要条件"><a href="#4-3-无向半欧拉图的充要条件" class="headerlink" title="4.3 无向半欧拉图的充要条件"></a>4.3 无向半欧拉图的充要条件</h3><p>定理 8.2：设 <code>G</code> 是无向连通图，则：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G 是半欧拉图 ⇔ G 中恰有 2 个奇度顶点。</span><br></pre></td></tr></table></figure>
+
+<p>更完整地说：</p>
+<table>
+<thead>
+<tr>
+<th align="center">情况</th>
+<th align="left">结论</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">奇度顶点 <code>0</code> 个</td>
+<td align="left">有欧拉回路，是欧拉图</td>
+</tr>
+<tr>
+<td align="center">奇度顶点 <code>2</code> 个</td>
+<td align="left">有欧拉通路，是半欧拉图；欧拉通路从一个奇度点出发，到另一个奇度点结束</td>
+</tr>
+<tr>
+<td align="center">奇度顶点超过 <code>2</code> 个</td>
+<td align="left">不是半欧拉图</td>
+</tr>
+</tbody></table>
+<div class="note success flat"><p>一笔画口诀：没有奇点就能“回到起点”；两个奇点就能“从一个奇点画到另一个奇点”。</p>
+</div>
+
+<h3 id="4-4-有向欧拉图的充要条件"><a href="#4-4-有向欧拉图的充要条件" class="headerlink" title="4.4 有向欧拉图的充要条件"></a>4.4 有向欧拉图的充要条件</h3><p>定理 8.3：设 <code>G</code> 是有向连通图，则：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">G 是欧拉图</span><br><span class="line">⇔ ∀v∈V(G), d^+(v)=d^-(v)</span><br><span class="line">⇔ G 是若干个边不交有向圈的并。</span><br></pre></td></tr></table></figure>
+
+<p>这里的“连通”通常按底图连通理解，同时入度出度相等保证每次进入顶点后都能离开。</p>
+<h3 id="4-5-有向半欧拉图的充要条件"><a href="#4-5-有向半欧拉图的充要条件" class="headerlink" title="4.5 有向半欧拉图的充要条件"></a>4.5 有向半欧拉图的充要条件</h3><p>有向图存在欧拉通路但不一定回到起点时，度数条件为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">有一个顶点 s 满足 d^+(s)=d^-(s)+1；</span><br><span class="line">有一个顶点 t 满足 d^-(t)=d^+(t)+1；</span><br><span class="line">其余顶点满足 d^+(v)=d^-(v)。</span><br></pre></td></tr></table></figure>
+
+<p>此时欧拉通路从 <code>s</code> 出发，到 <code>t</code> 结束。</p>
+<div class="note warning flat"><p>课件抽取文字里“有向半欧拉图的充分必要条件”一页把“有向连通图”误抽成了“无向连通图”。这里按有向图结论整理。</p>
+</div>
+
+<h2 id="5、求欧拉回路的算法"><a href="#5、求欧拉回路的算法" class="headerlink" title="5、求欧拉回路的算法"></a>5、求欧拉回路的算法</h2><h3 id="5-1-Fleury-算法"><a href="#5-1-Fleury-算法" class="headerlink" title="5.1 Fleury 算法"></a>5.1 Fleury 算法</h3><p>Fleury 算法也叫避桥法：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">从任意一点开始；</span><br><span class="line">沿着没有走过的边向前走；</span><br><span class="line">在每个顶点，优先选择剩下图中的非桥边；</span><br><span class="line">除非只有唯一一条边，否则不要走桥；</span><br><span class="line">直到得到欧拉回路或宣布失败。</span><br></pre></td></tr></table></figure>
+
+<p>定理 8.5：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设 G 是无向欧拉图，则 Fleury 算法终止时得到的简单通路是欧拉回路。</span><br></pre></td></tr></table></figure>
+
+<p>迭代形式：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">P_0:=v</span><br><span class="line">设 P_i=v_0 e_1 v_1 e_2 ... e_i v_i 已经行遍</span><br><span class="line">令 G_i=G-&#123;e_1,e_2,...,e_i&#125;</span><br><span class="line">选择与 v_i 关联的下一条边 e_&#123;i+1&#125;</span><br><span class="line">除非别无选择，否则 e_&#123;i+1&#125; 不是 G_i 中的桥</span><br><span class="line">若 G_i 仍有边，则继续；否则停止</span><br></pre></td></tr></table></figure>
+
+<div class="note primary flat"><p>Fleury 的直觉是：桥一旦走掉，就可能把剩余未走边隔在另一边，所以尽量晚走桥。</p>
+</div>
+
+<h3 id="5-2-逐步插入回路算法"><a href="#5-2-逐步插入回路算法" class="headerlink" title="5.2 逐步插入回路算法"></a>5.2 逐步插入回路算法</h3><p>思路：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">先找一个简单回路；</span><br><span class="line">再在已有回路上找一个仍有未用边的顶点；</span><br><span class="line">从该顶点出发找新的简单回路；</span><br><span class="line">把新回路插入旧回路；</span><br><span class="line">重复直到所有边都被用完。</span><br></pre></td></tr></table></figure>
+
+<p>这个算法正好对应“欧拉图 &#x3D; 若干个边不交圈的并”的证明。</p>
+<h2 id="6、哈密顿图"><a href="#6、哈密顿图" class="headerlink" title="6、哈密顿图"></a>6、哈密顿图</h2><h3 id="6-1-基本定义"><a href="#6-1-基本定义" class="headerlink" title="6.1 基本定义"></a>6.1 基本定义</h3><p>哈密顿通路：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">经过图中所有顶点的初级通路。</span><br></pre></td></tr></table></figure>
+
+<p>半哈密顿图：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有哈密顿通路的图。</span><br></pre></td></tr></table></figure>
+
+<p>哈密顿回路：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">经过图中所有顶点的初级回路。</span><br></pre></td></tr></table></figure>
+
+<p>哈密顿图：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有哈密顿回路的图。</span><br></pre></td></tr></table></figure>
+
+<div class="note warning flat"><p>哈密顿问题看的是<span style="color:#f97316; font-weight:600;">顶点</span>：每个顶点恰好经过一次；不要求经过所有边。</p>
+</div>
+
+<p>欧拉与哈密顿对比：</p>
+<table>
+<thead>
+<tr>
+<th align="center">项目</th>
+<th align="left">欧拉</th>
+<th align="left">哈密顿</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">核心对象</td>
+<td align="left">边</td>
+<td align="left">顶点</td>
+</tr>
+<tr>
+<td align="center">通路要求</td>
+<td align="left">经过所有边</td>
+<td align="left">经过所有顶点</td>
+</tr>
+<tr>
+<td align="center">顶点是否可重复</td>
+<td align="left">可以</td>
+<td align="left">不可以</td>
+</tr>
+<tr>
+<td align="center">边是否可遗漏</td>
+<td align="left">不可以</td>
+<td align="left">可以</td>
+</tr>
+<tr>
+<td align="center">判定难度</td>
+<td align="left">有漂亮充要条件</td>
+<td align="left">一般很难</td>
+</tr>
+</tbody></table>
+<h3 id="6-2-哈密顿图的必要条件"><a href="#6-2-哈密顿图的必要条件" class="headerlink" title="6.2 哈密顿图的必要条件"></a>6.2 哈密顿图的必要条件</h3><p>定理 8.6：设 <code>G=&lt;V,E&gt;</code> 是无向哈密顿图，则对 <code>V</code> 的任意非空真子集 <code>V_1</code> 有：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p(G-V_1) ≤ |V_1|</span><br></pre></td></tr></table></figure>
+
+<p>证明直觉：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">哈密顿回路 C 是 G 的生成子图。</span><br><span class="line">从一个圈里删掉 |V_1| 个顶点，最多把圈切成 |V_1| 段。</span><br><span class="line">G 的边只会让连通分支更少，不会更多。</span><br></pre></td></tr></table></figure>
+
+<p>所以：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p(G-V_1) ≤ p(C-V_1) ≤ |V_1|</span><br></pre></td></tr></table></figure>
+
+<div class="note primary flat"><p>这个定理常用于反证：只要找到某个 <code>V_1</code>，使 <code>p(G-V_1)&gt;|V_1|</code>，就能说明 <code>G</code> 不是哈密顿图。</p>
+</div>
+
+<h3 id="6-3-半哈密顿图的必要条件"><a href="#6-3-半哈密顿图的必要条件" class="headerlink" title="6.3 半哈密顿图的必要条件"></a>6.3 半哈密顿图的必要条件</h3><p>定理 8.7：设 <code>G=&lt;V,E&gt;</code> 是无向半哈密顿图，则对 <code>V</code> 的任意非空真子集 <code>V_1</code> 有：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p(G-V_1) ≤ |V_1|+1</span><br></pre></td></tr></table></figure>
+
+<p>直觉：哈密顿通路是一条“线”，删掉 <code>k</code> 个顶点，最多切成 <code>k+1</code> 段。</p>
+<h3 id="6-4-必要条件不是充分条件"><a href="#6-4-必要条件不是充分条件" class="headerlink" title="6.4 必要条件不是充分条件"></a>6.4 必要条件不是充分条件</h3><p>Petersen 图满足：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">∀V_1≠∅, p(G-V_1)≤|V_1|</span><br></pre></td></tr></table></figure>
+
+<p>但 Petersen 图不是哈密顿图，只是半哈密顿图。</p>
+<p>因此：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p(G-V_1)≤|V_1|</span><br></pre></td></tr></table></figure>
+
+<p>只是哈密顿图的必要条件，不是充分条件。</p>
+<h2 id="7、哈密顿图的充分条件"><a href="#7、哈密顿图的充分条件" class="headerlink" title="7、哈密顿图的充分条件"></a>7、哈密顿图的充分条件</h2><h3 id="7-1-半哈密顿图的-Ore-型条件"><a href="#7-1-半哈密顿图的-Ore-型条件" class="headerlink" title="7.1 半哈密顿图的 Ore 型条件"></a>7.1 半哈密顿图的 Ore 型条件</h3><p>定理：设 <code>G</code> 是 <code>n≥2</code> 阶无向简单图，若对 <code>G</code> 中任意不相邻顶点 <code>u,v</code> 都有：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d(u)+d(v)≥n-1</span><br></pre></td></tr></table></figure>
+
+<p>则 <code>G</code> 是半哈密顿图。</p>
+<p>证明主线：</p>
+<ol>
+<li>由度数条件推出 <code>G</code> 连通。</li>
+<li>取一条极大路径 <code>Γ=v_0v_1...v_k</code>。</li>
+<li>若路径没有包含所有顶点，则用度数条件找到交叉连接，把极大路径变成一个圈。</li>
+<li>连通性保证圈外还有顶点可以接进来，得到更长路径，矛盾。</li>
+<li>因此极大路径已经包含所有顶点，是哈密顿通路。</li>
+</ol>
+<h3 id="7-2-Ore-定理"><a href="#7-2-Ore-定理" class="headerlink" title="7.2 Ore 定理"></a>7.2 Ore 定理</h3><p>推论 1：设 <code>G</code> 是 <code>n≥3</code> 阶无向简单图，若对任意不相邻顶点 <code>u,v</code> 都有：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d(u)+d(v)≥n</span><br></pre></td></tr></table></figure>
+
+<p>则 <code>G</code> 是哈密顿图。</p>
+<p>这通常称为 Ore 定理。</p>
+<h3 id="7-3-Dirac-定理"><a href="#7-3-Dirac-定理" class="headerlink" title="7.3 Dirac 定理"></a>7.3 Dirac 定理</h3><p>推论 2：设 <code>G</code> 是 <code>n≥3</code> 阶无向简单图，若对任意顶点 <code>u</code> 都有：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d(u)≥n/2</span><br></pre></td></tr></table></figure>
+
+<p>则 <code>G</code> 是哈密顿图。</p>
+<p>因为任意不相邻顶点 <code>u,v</code> 都满足：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d(u)+d(v)≥n/2+n/2=n</span><br></pre></td></tr></table></figure>
+
+<p>所以由 Ore 定理得到哈密顿图。</p>
+<div class="note success flat"><p>Dirac 是更容易检查的条件；Ore 更强、更灵活。二者都是充分条件，不是必要条件。</p>
+</div>
+
+<h3 id="7-4-加边定理"><a href="#7-4-加边定理" class="headerlink" title="7.4 加边定理"></a>7.4 加边定理</h3><p>定理 8.8：设 <code>u,v</code> 是 <code>n</code> 阶无向简单图 <code>G</code> 中两个不相邻顶点，且：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d(u)+d(v)≥n</span><br></pre></td></tr></table></figure>
+
+<p>则：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G 是哈密顿图 ⇔ G+(u,v) 是哈密顿图。</span><br></pre></td></tr></table></figure>
+
+<p>含义：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在度数和足够大的不相邻顶点之间加边，不改变“是否哈密顿”。</span><br></pre></td></tr></table></figure>
+
+<p>这是闭包思想的基础。</p>
+<h2 id="8、有向图与竞赛图"><a href="#8、有向图与竞赛图" class="headerlink" title="8、有向图与竞赛图"></a>8、有向图与竞赛图</h2><h3 id="8-1-竞赛图一定半哈密顿"><a href="#8-1-竞赛图一定半哈密顿" class="headerlink" title="8.1 竞赛图一定半哈密顿"></a>8.1 竞赛图一定半哈密顿</h3><p>定理 8.9：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设 D 是 n≥2 阶竞赛图，则 D 是半哈密顿图。</span><br></pre></td></tr></table></figure>
+
+<p>证明可用插入法：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">先对较小竞赛图取一条哈密顿通路；</span><br><span class="line">加入新顶点 v；</span><br><span class="line">沿通路寻找第一个满足 v→v_i 或 v_i→v 的位置；</span><br><span class="line">把 v 插入合适位置，仍得到一条经过所有顶点的有向通路。</span><br></pre></td></tr></table></figure>
+
+<p>推论：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">若 n 阶有向图 D 含 n 阶竞赛图作为子图，则 D 是半哈密顿图。</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-2-强连通竞赛图是哈密顿图"><a href="#8-2-强连通竞赛图是哈密顿图" class="headerlink" title="8.2 强连通竞赛图是哈密顿图"></a>8.2 强连通竞赛图是哈密顿图</h3><p>定理 8.10：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">强连通的竞赛图是哈密顿图。</span><br></pre></td></tr></table></figure>
+
+<p>证明主线：</p>
+<ol>
+<li>强连通竞赛图中存在长度为 <code>3</code> 的有向圈。</li>
+<li>若已有长度为 <code>k</code> 的有向圈 <code>C</code>，且 <code>k&lt;n</code>，则可把圈外某个顶点插入 <code>C</code>，得到长度为 <code>k+1</code> 的有向圈。</li>
+<li>不断插入，直到得到长度为 <code>n</code> 的有向圈，即哈密顿回路。</li>
+</ol>
+<p>关键插入情形：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">若存在 v∉C 以及相邻位置 v_&#123;i-1&#125;,v_i，</span><br><span class="line">使 v_&#123;i-1&#125;→v 且 v→v_i，</span><br><span class="line">则可把 v 插入这条边之间。</span><br></pre></td></tr></table></figure>
+
+<p>若没有这种直接插入位置，课件把圈外顶点分成：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">V_1=&#123;v∈V(D-C) | 对所有 u∈V(C), u→v&#125;</span><br><span class="line">V_2=&#123;v∈V(D-C) | 对所有 u∈V(C), v→u&#125;</span><br></pre></td></tr></table></figure>
+
+<p>强连通性保证存在 <code>s∈V_1</code>、<code>t∈V_2</code> 且 <code>s→t</code>，于是仍可把 <code>s,t</code> 接入圈，扩成更长圈。</p>
+<p>推论：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">若 n 阶有向图 D 含 n 阶强连通竞赛图作为子图，则 D 是哈密顿图。</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-3-完全图中的边不重哈密顿回路"><a href="#8-3-完全图中的边不重哈密顿回路" class="headerlink" title="8.3 完全图中的边不重哈密顿回路"></a>8.3 完全图中的边不重哈密顿回路</h3><p>定理 8.11：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">完全图 K_&#123;2k+1&#125; 中同时有 k 条边不重的哈密顿回路，</span><br><span class="line">并且这些哈密顿回路覆盖 K_&#123;2k+1&#125; 的所有边。</span><br></pre></td></tr></table></figure>
+
+<p>推论：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">完全图 K_&#123;2k&#125; 中同时有 k-1 条边不重的哈密顿回路；</span><br><span class="line">除此之外，剩下 k 条彼此不相邻的边。</span><br></pre></td></tr></table></figure>
+
+<p>这部分可理解为完全图的边分解：奇阶完全图可以完全分解成若干条哈密顿回路；偶阶完全图会剩下一组完美匹配。</p>
+<h2 id="9、习题与答案"><a href="#9、习题与答案" class="headerlink" title="9、习题与答案"></a>9、习题与答案</h2><h3 id="习题-8-4：任意行遍点的判定"><a href="#习题-8-4：任意行遍点的判定" class="headerlink" title="习题 8.4：任意行遍点的判定"></a>习题 8.4：任意行遍点的判定</h3><p>题目：设 <code>G</code> 为欧拉图，<code>v0∈V(G)</code>。若从 <code>v0</code> 开始行遍，无论行遍到哪个顶点，只要未经过的边就可以行遍，最后行遍所有边回到 <code>v0</code>，即得 <code>G</code> 中一条欧拉回路，则称 <code>v0</code> 是可以任意行遍的。证明：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v0 是可以任意行遍的 ⇔ G-v0 无圈。</span><br></pre></td></tr></table></figure>
+
+<p>证明 <code>⇒</code>：反证。若 <code>G-v0</code> 含圈，设该圈为 <code>C&#39;</code>，则 <code>v0</code> 不在 <code>C&#39;</code> 上。令：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G&#x27;=G-E(C&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>删除一个圈上的所有边不会改变各顶点度数的奇偶性，因此 <code>G&#39;</code> 中仍无奇度顶点。</p>
+<p>若 <code>G&#39;</code> 连通，则 <code>G&#39;</code> 仍是欧拉图。因为 <code>v0</code> 可以任意行遍，可以先从 <code>v0</code> 出发行遍 <code>G&#39;</code> 中所有边，并回到 <code>v0</code>。但此时 <code>C&#39;</code> 上的边还没有行遍，且 <code>v0</code> 不在 <code>C&#39;</code> 上，无法再从 <code>v0</code> 接入 <code>C&#39;</code>，矛盾。</p>
+<p>若 <code>G&#39;</code> 不连通，设连通分支为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G_1,G_2,...,G_k, k≥2</span><br></pre></td></tr></table></figure>
+
+<p>且 <code>v0∈G_1</code>。可以先行遍 <code>G_1</code> 中的欧拉回路并回到 <code>v0</code>，但由于不连通，无法行遍其他分支以及 <code>C&#39;</code> 中的边，也与“可以任意行遍”矛盾。</p>
+<p>所以 <code>G-v0</code> 无圈。</p>
+<p>证明 <code>⇐</code>：由定理 8.1，欧拉图 <code>G</code> 可以分解为若干个边不重的圈的并：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G=C_1∪C_2∪...∪C_k</span><br></pre></td></tr></table></figure>
+
+<p>因为 <code>G-v0</code> 无圈，所以 <code>G</code> 中每个圈都必须经过 <code>v0</code>。从 <code>v0</code> 出发时，随意走完某个经过 <code>v0</code> 的圈都会回到 <code>v0</code>；再继续走另一个经过 <code>v0</code> 的圈。反复进行，直到所有圈都走完，就得到一条从 <code>v0</code> 出发又回到 <code>v0</code> 的欧拉回路。</p>
+<p>因此 <code>v0</code> 是可以任意行遍的。</p>
+<h3 id="习题-8-7：两个图都不是哈密顿图"><a href="#习题-8-7：两个图都不是哈密顿图" class="headerlink" title="习题 8.7：两个图都不是哈密顿图"></a>习题 8.7：两个图都不是哈密顿图</h3><p>题目：证明原题图中的两个图 <code>(a)</code>、<code>(b)</code> 都不是哈密顿图。</p>
+<p>证明思路：使用哈密顿图必要条件：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">若 G 是哈密顿图，则对任意非空真子集 V1，</span><br><span class="line">p(G-V1)≤|V1|。</span><br></pre></td></tr></table></figure>
+
+<p>对图 <code>(a)</code>，按原图标号取：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">V1=&#123;a,b,c,d,e&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由图可见：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p(G-V1)=7&gt;|V1|=5</span><br></pre></td></tr></table></figure>
+
+<p>违反定理 8.6，因此图 <code>(a)</code> 不是哈密顿图。</p>
+<p>对图 <code>(b)</code>，按原图标号取：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">V1=&#123;a,b,c,d,e,f&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由图可见：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p(G-V1)=7&gt;|V1|=6</span><br></pre></td></tr></table></figure>
+
+<p>也违反定理 8.6，因此图 <code>(b)</code> 不是哈密顿图。</p>
+<h3 id="习题-8-13：认识关系中的排队问题"><a href="#习题-8-13：认识关系中的排队问题" class="headerlink" title="习题 8.13：认识关系中的排队问题"></a>习题 8.13：认识关系中的排队问题</h3><p>题目：今有 <code>n</code> 个人，已知他们中任何二人合起来认识其余的 <code>n-2</code> 人。证明：当 <code>n≥3</code> 时，这 <code>n</code> 个人能排成一列，使得中间任何人都认识两旁的人。</p>
+<p>证明：构造无向简单图：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">G=&lt;V,E&gt;</span><br><span class="line">V=&#123;v | v 为 n 人之一&#125;</span><br><span class="line">E=&#123;(u,v) | u≠v 且 u 与 v 相互认识&#125;</span><br></pre></td></tr></table></figure>
+
+<p>题目要证明的排队方式，等价于证明 <code>G</code> 中存在哈密顿通路。</p>
+<p>任取两个不同顶点 <code>v_i,v_j</code>。</p>
+<p>若 <code>v_i</code> 与 <code>v_j</code> 认识，则二人合起来认识其余 <code>n-2</code> 人，而且二人彼此也认识，所以：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d(v_i)+d(v_j) ≥ (n-2)+2 = n</span><br></pre></td></tr></table></figure>
+
+<p>若 <code>v_i</code> 与 <code>v_j</code> 不认识，则对任意第三人 <code>v_k</code>：</p>
+<ol>
+<li>由 <code>v_i</code> 与 <code>v_k</code> 合起来认识其余人，必须认识 <code>v_j</code>；但 <code>v_i</code> 不认识 <code>v_j</code>，所以 <code>v_k</code> 认识 <code>v_j</code>。</li>
+<li>同理由 <code>v_j</code> 与 <code>v_k</code> 合起来认识其余人，可得 <code>v_k</code> 认识 <code>v_i</code>。</li>
+</ol>
+<p>因此除了 <code>v_i,v_j</code> 彼此不认识外，他们都认识其余 <code>n-2</code> 个人：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d(v_i)+d(v_j) ≥ 2(n-2)</span><br></pre></td></tr></table></figure>
+
+<p>当 <code>n≥3</code> 时：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2(n-2)≥n-1</span><br></pre></td></tr></table></figure>
+
+<p>所以任意不相邻顶点都满足：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d(u)+d(v)≥n-1</span><br></pre></td></tr></table></figure>
+
+<p>由半哈密顿图充分条件，<code>G</code> 中存在哈密顿通路。于是这 <code>n</code> 个人能排成一列，使得中间任何人都认识两旁的人。</p>
+<p>补充：当 <code>n≥4</code> 时：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2(n-2)≥n</span><br></pre></td></tr></table></figure>
+
+<p>由 Ore 定理还可得到 <code>G</code> 是哈密顿图，即这些人甚至可以围成一圈，使每个人都认识两旁的人。</p>
+<h2 id="10、复盘清单"><a href="#10、复盘清单" class="headerlink" title="10、复盘清单"></a>10、复盘清单</h2><ol>
+<li>欧拉通路经过所有边；哈密顿通路经过所有顶点。</li>
+<li>无向欧拉图判定：连通且所有顶点偶度。</li>
+<li>无向半欧拉图判定：连通且恰有两个奇度顶点。</li>
+<li>有向欧拉图判定：连通且每点入度等于出度。</li>
+<li>有向半欧拉图判定：一个起点出度比入度多 1，一个终点入度比出度多 1，其余点入度等于出度。</li>
+<li>Fleury 算法：除非别无选择，否则不走桥。</li>
+<li>哈密顿图必要条件：<code>p(G-V1)≤|V1|</code>。</li>
+<li>半哈密顿图必要条件：<code>p(G-V1)≤|V1|+1</code>。</li>
+<li>半哈密顿充分条件：不相邻点度数和至少 <code>n-1</code>。</li>
+<li>Ore 定理：不相邻点度数和至少 <code>n</code>，则哈密顿。</li>
+<li>Dirac 定理：每个顶点度数至少 <code>n/2</code>，则哈密顿。</li>
+<li>竞赛图一定半哈密顿；强连通竞赛图一定哈密顿。</li>
+</ol>
+<h2 id="11、下一步"><a href="#11、下一步" class="headerlink" title="11、下一步"></a>11、下一步</h2><p>第八章进入树。复习第七章时，先把“欧拉看边、哈密顿看点”这条分界线记牢，再分别记住欧拉的充要条件和哈密顿的必要&#x2F;充分条件。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com">睿清颜</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com/23/0107/">https://ruiqingyan.com/23/0107/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ruiqingyan.com" target="_blank">Ruiqy~</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><a class="post-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><a class="post-meta__tags" href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/">离散数学</a></div><div class="post_share"><div class="social-share" data-image="/img/rd8.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/23/0106/" title="Chap6 图的基本概念、通路回路与连通性"><img class="cover" src="/img/rd8.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Chap6 图的基本概念、通路回路与连通性</div></div></a></div><div class="next-post pull-right"><a href="/23/0108/" title="Chap8 树"><img class="cover" src="/img/rd8.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Chap8 树</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/23/0100/" title="0100、离散数学：课程总目录"><img class="cover" src="/img/rd8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-20</div><div class="title">0100、离散数学：课程总目录</div></div></a></div><div><a href="/23/0101/" title="Chap1 集合论课程引言、预备知识与集合基本概念"><img class="cover" src="/img/rd8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-20</div><div class="title">Chap1 集合论课程引言、预备知识与集合基本概念</div></div></a></div><div><a href="/23/0103/" title="Chap3 函数与集合论习题课"><img class="cover" src="/img/rd8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-20</div><div class="title">Chap3 函数与集合论习题课</div></div></a></div><div><a href="/23/0104/" title="Chap4 自然数的定义与性质"><img class="cover" src="/img/rd8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-20</div><div class="title">Chap4 自然数的定义与性质</div></div></a></div><div><a href="/23/0105/" title="Chap5 等势、基数、序数与集合论公理"><img class="cover" src="/img/rd8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-20</div><div class="title">Chap5 等势、基数、序数与集合论公理</div></div></a></div><div><a href="/23/0102/" title="Chap2 关系、有序对、闭包、等价关系与序关系"><img class="cover" src="/img/rd8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-20</div><div class="title">Chap2 关系、有序对、闭包、等价关系与序关系</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">睿清颜</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">327</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">285</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E8%B5%84%E6%96%99%E6%9D%A5%E6%BA%90%E4%B8%8E%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87"><span class="toc-text">1、资料来源与学习目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E9%A2%9C%E8%89%B2%E6%A0%87%E6%B3%A8"><span class="toc-text">2、颜色标注</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E7%AB%A0%E8%8A%82%E4%B8%BB%E7%BA%BF"><span class="toc-text">3、章节主线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%AC%A7%E6%8B%89%E5%9B%BE"><span class="toc-text">4、欧拉图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89"><span class="toc-text">4.1 基本定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%97%A0%E5%90%91%E6%AC%A7%E6%8B%89%E5%9B%BE%E7%9A%84%E5%85%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="toc-text">4.2 无向欧拉图的充要条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E6%97%A0%E5%90%91%E5%8D%8A%E6%AC%A7%E6%8B%89%E5%9B%BE%E7%9A%84%E5%85%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="toc-text">4.3 无向半欧拉图的充要条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E6%9C%89%E5%90%91%E6%AC%A7%E6%8B%89%E5%9B%BE%E7%9A%84%E5%85%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="toc-text">4.4 有向欧拉图的充要条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E6%9C%89%E5%90%91%E5%8D%8A%E6%AC%A7%E6%8B%89%E5%9B%BE%E7%9A%84%E5%85%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="toc-text">4.5 有向半欧拉图的充要条件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E6%B1%82%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF%E7%9A%84%E7%AE%97%E6%B3%95"><span class="toc-text">5、求欧拉回路的算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-Fleury-%E7%AE%97%E6%B3%95"><span class="toc-text">5.1 Fleury 算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E9%80%90%E6%AD%A5%E6%8F%92%E5%85%A5%E5%9B%9E%E8%B7%AF%E7%AE%97%E6%B3%95"><span class="toc-text">5.2 逐步插入回路算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81%E5%93%88%E5%AF%86%E9%A1%BF%E5%9B%BE"><span class="toc-text">6、哈密顿图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89"><span class="toc-text">6.1 基本定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E5%93%88%E5%AF%86%E9%A1%BF%E5%9B%BE%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="toc-text">6.2 哈密顿图的必要条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E5%8D%8A%E5%93%88%E5%AF%86%E9%A1%BF%E5%9B%BE%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="toc-text">6.3 半哈密顿图的必要条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6%E4%B8%8D%E6%98%AF%E5%85%85%E5%88%86%E6%9D%A1%E4%BB%B6"><span class="toc-text">6.4 必要条件不是充分条件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81%E5%93%88%E5%AF%86%E9%A1%BF%E5%9B%BE%E7%9A%84%E5%85%85%E5%88%86%E6%9D%A1%E4%BB%B6"><span class="toc-text">7、哈密顿图的充分条件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E5%8D%8A%E5%93%88%E5%AF%86%E9%A1%BF%E5%9B%BE%E7%9A%84-Ore-%E5%9E%8B%E6%9D%A1%E4%BB%B6"><span class="toc-text">7.1 半哈密顿图的 Ore 型条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-Ore-%E5%AE%9A%E7%90%86"><span class="toc-text">7.2 Ore 定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-Dirac-%E5%AE%9A%E7%90%86"><span class="toc-text">7.3 Dirac 定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-%E5%8A%A0%E8%BE%B9%E5%AE%9A%E7%90%86"><span class="toc-text">7.4 加边定理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8%E3%80%81%E6%9C%89%E5%90%91%E5%9B%BE%E4%B8%8E%E7%AB%9E%E8%B5%9B%E5%9B%BE"><span class="toc-text">8、有向图与竞赛图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E7%AB%9E%E8%B5%9B%E5%9B%BE%E4%B8%80%E5%AE%9A%E5%8D%8A%E5%93%88%E5%AF%86%E9%A1%BF"><span class="toc-text">8.1 竞赛图一定半哈密顿</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E5%BC%BA%E8%BF%9E%E9%80%9A%E7%AB%9E%E8%B5%9B%E5%9B%BE%E6%98%AF%E5%93%88%E5%AF%86%E9%A1%BF%E5%9B%BE"><span class="toc-text">8.2 强连通竞赛图是哈密顿图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-%E5%AE%8C%E5%85%A8%E5%9B%BE%E4%B8%AD%E7%9A%84%E8%BE%B9%E4%B8%8D%E9%87%8D%E5%93%88%E5%AF%86%E9%A1%BF%E5%9B%9E%E8%B7%AF"><span class="toc-text">8.3 完全图中的边不重哈密顿回路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9%E3%80%81%E4%B9%A0%E9%A2%98%E4%B8%8E%E7%AD%94%E6%A1%88"><span class="toc-text">9、习题与答案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98-8-4%EF%BC%9A%E4%BB%BB%E6%84%8F%E8%A1%8C%E9%81%8D%E7%82%B9%E7%9A%84%E5%88%A4%E5%AE%9A"><span class="toc-text">习题 8.4：任意行遍点的判定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98-8-7%EF%BC%9A%E4%B8%A4%E4%B8%AA%E5%9B%BE%E9%83%BD%E4%B8%8D%E6%98%AF%E5%93%88%E5%AF%86%E9%A1%BF%E5%9B%BE"><span class="toc-text">习题 8.7：两个图都不是哈密顿图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98-8-13%EF%BC%9A%E8%AE%A4%E8%AF%86%E5%85%B3%E7%B3%BB%E4%B8%AD%E7%9A%84%E6%8E%92%E9%98%9F%E9%97%AE%E9%A2%98"><span class="toc-text">习题 8.13：认识关系中的排队问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10%E3%80%81%E5%A4%8D%E7%9B%98%E6%B8%85%E5%8D%95"><span class="toc-text">10、复盘清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11%E3%80%81%E4%B8%8B%E4%B8%80%E6%AD%A5"><span class="toc-text">11、下一步</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/11/insight-kezhouqiujian/" title="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常"><img src="/img/rd20.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常"/></a><div class="content"><a class="title" href="/11/insight-kezhouqiujian/" title="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常">2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常</a><time datetime="2026-08-17T12:00:00.000Z" title="发表于 2026-08-17 20:00:00">2026-08-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/018/" title="018、反汇编代码的重建与编译"><img src="/img/rd19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="018、反汇编代码的重建与编译"/></a><div class="content"><a class="title" href="/31/cpp-reverse/018/" title="018、反汇编代码的重建与编译">018、反汇编代码的重建与编译</a><time datetime="2026-08-14T00:18:00.000Z" title="发表于 2026-08-14 08:18:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/017/" title="017、WannaCry 勒索病毒的防御性分析"><img src="/img/rd18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="017、WannaCry 勒索病毒的防御性分析"/></a><div class="content"><a class="title" href="/31/cpp-reverse/017/" title="017、WannaCry 勒索病毒的防御性分析">017、WannaCry 勒索病毒的防御性分析</a><time datetime="2026-08-14T00:17:00.000Z" title="发表于 2026-08-14 08:17:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/016/" title="016、远控木马的防御性逆向分析"><img src="/img/rd17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="016、远控木马的防御性逆向分析"/></a><div class="content"><a class="title" href="/31/cpp-reverse/016/" title="016、远控木马的防御性逆向分析">016、远控木马的防御性逆向分析</a><time datetime="2026-08-14T00:16:00.000Z" title="发表于 2026-08-14 08:16:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/015/" title="015、OllyDbg 的工作原理"><img src="/img/rd16.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="015、OllyDbg 的工作原理"/></a><div class="content"><a class="title" href="/31/cpp-reverse/015/" title="015、OllyDbg 的工作原理">015、OllyDbg 的工作原理</a><time datetime="2026-08-14T00:15:00.000Z" title="发表于 2026-08-14 08:15:00">2026-08-14</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/rd8.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By 睿清颜</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.mps.gov.cn/#/query/webSearch?code=44040402000233"><img class="icp-icon" src="/img/beian.png"><span>粤公网安备44040402000233号 </span></a>    </a> <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn"><span>     粤ICP备2024216057号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.14.0-b3"></script><script src="/js/main.js?v=4.14.0-b3"></script><script src="/js/tw_cn.js?v=4.14.0-b3"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'ams'
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="/js/pagination-jump@1.0.0.js?v=1.0.0"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>(() => {
+  const isChatBtn = false
+  const isChatHideShow = false
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = 'T9itjhtGq78bcPAhB'
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.14.0-b3"></script></div></div></body></html>

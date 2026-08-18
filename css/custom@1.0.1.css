@@ -1,0 +1,561 @@
+/* 文章页H1-H6图标样式效果 */
+h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
+    -webkit-animation: ccc 3s linear infinite ;
+    animation: ccc 3s linear infinite ;
+}
+
+
+@-webkit-keyframes ccc {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(-1turn);
+        transform: rotate(-1turn)
+    }
+}
+@keyframes ccc {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(-1turn);
+        transform: rotate(-1turn)
+    }
+}
+
+#content-inner.layout h1::before {
+    color: #ff6699; /* 粉红色 */
+    margin-left: -1.25rem;
+    font-size: 1.7rem; /* 调整为 1.5rem */
+    margin-top: -0.08rem; /* 减小间距为 -0.08rem */
+}
+
+#content-inner.layout h2::before {
+    color: #ffd700; /* 金色 */
+    margin-left: -1.15rem;
+    font-size: 1.6rem; /* 保持为 1.5rem */
+    margin-top: -0.08rem; /* 保持为 -0.08rem */
+}
+
+#content-inner.layout h3::before {
+    color: #66cc99; /* 青色 */
+    margin-left: -1.05rem;
+    font-size: 1.5rem; /* 保持为 1.5rem */
+    margin-top: -0.28rem; /* 减小间距为 -0.28rem */
+}
+
+#content-inner.layout h4::before {
+    color: #99cc00; /* 酸橙绿色 */
+    margin-left: -0.95rem;
+    font-size: 1.4rem; /* 保持为 1.5rem */
+    margin-top: -0.28rem; /* 保持为 -0.28rem */
+}
+
+#content-inner.layout h5::before {
+    color: #3399cc; /* 蓝色 */
+    margin-left: -0.85rem;
+    font-size: 1.3rem; /* 保持为 1.5rem */
+    margin-top: -0.08rem; /* 保持为 -0.08rem */
+}
+
+#content-inner.layout h6::before {
+    color: #ff6666; /* 深红色 */
+    margin-left: -0.75rem;
+    font-size: 1.2rem; /* 保持为 1.5rem */
+    margin-top: -0.08rem; /* 保持为 -0.08rem */
+}
+
+
+#content-inner.layout h1:hover, #content-inner.layout h2:hover, #content-inner.layout h3:hover, #content-inner.layout h4:hover, #content-inner.layout h5:hover, #content-inner.layout h6:hover {
+    color: #49b1f5 ;
+}
+#content-inner.layout h1:hover::before, #content-inner.layout h2:hover::before, #content-inner.layout h3:hover::before, #content-inner.layout h4:hover::before, #content-inner.layout h5:hover::before, #content-inner.layout h6:hover::before {
+    color: #49b1f5 ;
+    -webkit-animation: ccc 3.2s linear infinite ;
+    animation: ccc 3.2s linear infinite ;
+}
+
+
+/* 页面设置icon转动速度调整 */
+#rightside_config i.fas.fa-cog.fa-spin {
+    animation: fa-spin 5s linear infinite ;
+}
+
+
+/* 网站主体背景：给正文两侧和卡片间隙增加一层淡背景 */
+html body {
+    background: transparent !important;
+}
+
+#web_bg {
+    z-index: -1 !important;
+    background:
+        linear-gradient(rgba(255, 255, 255, .56), rgba(255, 255, 255, .68)),
+        url('/img/rd1.jpg') center center / cover fixed no-repeat !important;
+}
+
+[data-theme=dark] #web_bg {
+    background:
+        linear-gradient(rgba(0, 0, 0, .62), rgba(0, 0, 0, .72)),
+        url('/img/rd1.jpg') center center / cover fixed no-repeat !important;
+}
+
+/* 侧栏作者卡片只保留个人信息与站点统计。 */
+#aside-content .card-info .card-info-social-icons {
+    display: none;
+}
+
+/* GitHub 风格的年度文章发布日历。 */
+#posts-calendar.github-posts-calendar {
+    --gh-cell-gap: 2px;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 1rem;
+    padding: 0;
+    color: #1f2328;
+}
+
+.gh-calendar-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.gh-calendar-panel {
+    min-width: 0;
+    flex: 1;
+}
+
+.gh-calendar-summary {
+    margin: 0 0 6px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.gh-calendar-frame {
+    padding: 12px 12px 9px;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, .72);
+}
+
+.gh-calendar-scroll {
+    width: 100%;
+    overflow: hidden;
+}
+
+.gh-calendar-chart {
+    width: 100%;
+    min-width: 0;
+}
+
+.gh-calendar-months {
+    display: grid;
+    grid-template-columns: repeat(var(--gh-week-count), minmax(0, 1fr));
+    column-gap: var(--gh-cell-gap);
+    margin-left: 36px;
+    min-height: 17px;
+    font-size: 10px;
+    line-height: 14px;
+    white-space: nowrap;
+}
+
+.gh-calendar-months span {
+    overflow: visible;
+}
+
+.gh-calendar-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.gh-calendar-weekdays {
+    display: grid;
+    flex: 0 0 30px;
+    grid-template-rows: repeat(7, 1fr);
+    row-gap: var(--gh-cell-gap);
+    color: #57606a;
+    font-size: 9px;
+    line-height: 1;
+    text-align: right;
+}
+
+.gh-calendar-grid {
+    display: grid;
+    min-width: 0;
+    flex: 1;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(var(--gh-week-count), minmax(0, 1fr));
+    grid-template-rows: repeat(7, auto);
+    gap: var(--gh-cell-gap);
+}
+
+.gh-calendar-cell {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    border: 1px solid rgba(27, 31, 36, .06);
+    border-radius: 2px;
+}
+
+.gh-level {
+    box-sizing: border-box;
+    width: 9px;
+    height: 9px;
+    border: 1px solid rgba(27, 31, 36, .06);
+    border-radius: 2px;
+}
+
+.gh-calendar-cell.is-outside {
+    visibility: hidden;
+}
+
+.gh-level-0 {
+    background: #ebedf0;
+}
+
+.gh-level-1 {
+    background: #d8efad;
+}
+
+.gh-level-2 {
+    background: #a9dc8a;
+}
+
+.gh-level-3 {
+    background: #69b978;
+}
+
+.gh-level-4 {
+    background: #438b62;
+}
+
+.gh-calendar-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    margin-top: 8px;
+    color: #57606a;
+    font-size: 12px;
+}
+
+.gh-calendar-notes {
+    display: grid;
+    grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+    gap: 18px;
+    margin-top: 13px;
+    padding: 12px 2px 0;
+    border-top: 1px solid rgba(208, 215, 222, .85);
+}
+
+.gh-quick-links {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 8px 14px;
+    flex-wrap: wrap;
+}
+
+.gh-quick-links a {
+    color: #0969da;
+    font-size: 12px;
+    line-height: 1.55;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.gh-quick-links a:hover {
+    text-decoration: underline;
+}
+
+.gh-notes-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.gh-notes-heading h3 {
+    margin: 0;
+    color: #1f2328;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.gh-notes-heading span {
+    color: #656d76;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.gh-yearly-links,
+.gh-focus-links,
+.gh-note-links {
+    display: flex;
+    align-items: center;
+    gap: 7px 12px;
+    flex-wrap: wrap;
+}
+
+.gh-yearly-links a,
+.gh-focus-links a,
+.gh-note-links a {
+    color: #0969da;
+    font-size: 11px;
+    line-height: 1.5;
+    text-decoration: none;
+}
+
+.gh-yearly-links a:hover,
+.gh-focus-links a:hover,
+.gh-note-links a:hover {
+    text-decoration: underline;
+}
+
+.gh-this-year-copy,
+.gh-note-copy {
+    margin: 0 0 7px;
+    color: #57606a;
+    font-size: 11px;
+    line-height: 1.55;
+}
+
+.gh-calendar-years {
+    display: flex;
+    width: 76px;
+    flex: 0 0 76px;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 26px;
+}
+
+.gh-calendar-years button {
+    width: 100%;
+    padding: 6px 10px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #57606a;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.gh-calendar-years button:hover {
+    background: rgba(208, 215, 222, .45);
+    color: #1f2328;
+}
+
+.gh-calendar-years button.is-active {
+    background: #0969da;
+    color: #fff;
+    font-weight: 600;
+}
+
+[data-theme=dark] #posts-calendar.github-posts-calendar {
+    color: #e6edf3;
+}
+
+[data-theme=dark] .gh-calendar-frame {
+    border-color: #30363d;
+    background: rgba(13, 17, 23, .68);
+}
+
+[data-theme=dark] .gh-calendar-weekdays,
+[data-theme=dark] .gh-calendar-footer,
+[data-theme=dark] .gh-calendar-years button,
+[data-theme=dark] .gh-notes-heading span,
+[data-theme=dark] .gh-this-year-copy,
+[data-theme=dark] .gh-note-copy {
+    color: #8b949e;
+}
+
+[data-theme=dark] .gh-calendar-notes {
+    border-top-color: #30363d;
+}
+
+[data-theme=dark] .gh-notes-heading h3 {
+    color: #e6edf3;
+}
+
+[data-theme=dark] .gh-yearly-links a,
+[data-theme=dark] .gh-focus-links a,
+[data-theme=dark] .gh-note-links a,
+[data-theme=dark] .gh-quick-links a {
+    color: #58a6ff;
+}
+
+[data-theme=dark] .gh-level-0 {
+    background: #21262d;
+}
+
+[data-theme=dark] .gh-level-1 {
+    background: #0e4429;
+}
+
+[data-theme=dark] .gh-level-2 {
+    background: #006d32;
+}
+
+[data-theme=dark] .gh-level-3 {
+    background: #26a641;
+}
+
+[data-theme=dark] .gh-level-4 {
+    background: #39d353;
+}
+
+/* 文章列表分页的指定页跳转。 */
+#pagination:not(.pagination-post) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+#pagination:not(.pagination-post) .pagination-jump {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 20px;
+    color: rgba(76, 86, 106, .82);
+    font-size: 12px;
+    line-height: 1;
+}
+
+#pagination .pagination-jump input {
+    box-sizing: border-box;
+    width: 35px;
+    height: 35px;
+    padding: 0 3px;
+    border: 1px solid rgba(133, 144, 158, .45);
+    border-radius: 8px;
+    outline: none;
+    background: rgba(255, 255, 255, .7);
+    color: var(--font-color);
+    font-size: 14px;
+    line-height: 35px;
+    text-align: center;
+    appearance: textfield;
+}
+
+#pagination .pagination-jump input::-webkit-inner-spin-button,
+#pagination .pagination-jump input::-webkit-outer-spin-button {
+    margin: 0;
+    appearance: none;
+}
+
+#pagination .pagination-jump input:focus {
+    border-color: var(--btn-bg);
+    box-shadow: 0 0 0 2px rgba(0, 188, 212, .12);
+}
+
+#pagination .pagination-jump button {
+    display: inline-grid;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    place-items: center;
+    background: var(--btn-bg);
+    color: var(--btn-color);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#pagination .pagination-jump button:hover {
+    background: var(--btn-hover-color);
+}
+
+[data-theme=dark] #pagination .pagination-jump input {
+    border-color: rgba(139, 148, 158, .45);
+    background: rgba(13, 17, 23, .55);
+}
+
+[data-theme=dark] #pagination:not(.pagination-post) .pagination-jump {
+    color: rgba(201, 209, 217, .76);
+}
+
+a.site-page[href="/study-docs/"] > i.fa-book-open::before {
+    content: "📚";
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+    font-weight: 400;
+}
+
+a.site-page[href="/daily/"] > i.fa-calendar-check::before {
+    content: "✓";
+    font-family: inherit;
+    font-weight: 800;
+}
+
+@media (max-width: 900px) {
+    .gh-calendar-layout {
+        flex-direction: column-reverse;
+    }
+
+    .gh-calendar-panel {
+        width: 100%;
+    }
+
+    .gh-calendar-years {
+        width: 100%;
+        flex: none;
+        flex-direction: row;
+        gap: 6px;
+        flex-wrap: wrap;
+        overflow: hidden;
+        padding-top: 0;
+    }
+
+    .gh-calendar-years button {
+        width: auto;
+        min-width: 58px;
+        text-align: center;
+    }
+
+    .gh-calendar-frame {
+        padding: 10px 8px 8px;
+    }
+
+    .gh-calendar-months {
+        margin-left: 31px;
+        font-size: 8px;
+    }
+
+    .gh-calendar-body {
+        gap: 4px;
+    }
+
+    .gh-calendar-weekdays {
+        flex-basis: 27px;
+        font-size: 8px;
+    }
+
+    .gh-calendar-notes {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+}
+
+@media (max-width: 520px) {
+    #pagination:not(.pagination-post) {
+        gap: 0 8px;
+    }
+
+    #pagination:not(.pagination-post) .pagination-jump {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+}

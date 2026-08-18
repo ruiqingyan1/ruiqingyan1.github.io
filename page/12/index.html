@@ -1,0 +1,658 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Ruiqy~ - 远赴人间惊鸿宴，一睹人间盛世颜</title><meta name="author" content="睿清颜"><meta name="copyright" content="睿清颜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="远赴人间惊鸿宴，一睹人间盛世颜">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ruiqy~">
+<meta property="og:url" content="https://ruiqingyan.com/page/12/index.html">
+<meta property="og:site_name" content="Ruiqy~">
+<meta property="og:description" content="远赴人间惊鸿宴，一睹人间盛世颜">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ruiqingyan.com/img/avatar.jpg">
+<meta property="article:author" content="睿清颜">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruiqingyan.com/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://ruiqingyan.com/page/12/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.14.0-b3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>(()=>{
+      const saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+      
+      window.btf = {
+        saveToLocal: saveToLocal,
+        getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+          script.src = url
+          script.async = true
+          script.onerror = reject
+          script.onload = script.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            script.onload = script.onreadystatechange = null
+            resolve()
+          }
+
+          Object.keys(attr).forEach(key => {
+            script.setAttribute(key, attr[key])
+          })
+
+          document.head.appendChild(script)
+        }),
+
+        getCSS: (url, id = false) => new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+          link.rel = 'stylesheet'
+          link.href = url
+          if (id) link.id = id
+          link.onerror = reject
+          link.onload = link.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            link.onload = link.onreadystatechange = null
+            resolve()
+          }
+          document.head.appendChild(link)
+        }),
+
+        addGlobalFn: (key, fn, name = false, parent = window) => {
+          const pjaxEnable = false
+          if (!pjaxEnable && key.startsWith('pjax')) return
+
+          const globalFn = parent.globalFn || {}
+          const keyObj = globalFn[key] || {}
+    
+          if (name && keyObj[name]) return
+    
+          name = name || Object.keys(keyObj).length
+          keyObj[name] = fn
+          globalFn[key] = keyObj
+          parent.globalFn = globalFn
+        }
+      }
+    
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+      
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })()</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300,"highlightFullpage":true,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Ruiqy~',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2026-08-19 00:20:39'
+}</script><link rel="stylesheet" href="/css/font/iconfont.css"><link rel="stylesheet" href="/css/custom@1.0.1.css?v=1.0.8"><link rel="stylesheet" href="/css/color@1.0.0.css"><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">327</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">285</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua00"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua01"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/study-docs/"><i class="fa-fw fas fa-book-open"></i><span> 知识库</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw fas fa-calendar-check"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-flower3"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/12/000/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 项目实践</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li><li><a class="site-page child" href="/26/AI/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/33/000/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/bg1.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruiqy~"><img class="site-icon" src="/img/avatar.jpg" alt="Logo"/><span class="site-name">Ruiqy~</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua00"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua01"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/study-docs/"><i class="fa-fw fas fa-book-open"></i><span> 知识库</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw fas fa-calendar-check"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-flower3"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/12/000/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 项目实践</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li><li><a class="site-page child" href="/26/AI/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/33/000/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Ruiqy~</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/24/old/0100/" title="0100、Ferry 学院安全开发：总目录"><img class="post-bg" src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="0100、Ferry 学院安全开发：总目录"></a></div><div class="recent-post-info"><a class="article-title" href="/24/old/0100/" title="0100、Ferry 学院安全开发：总目录">0100、Ferry 学院安全开发：总目录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-07-06T05:21:00.000Z" title="发表于 2026-07-06 13:21:00">2026-07-06</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-07T14:30:00.000Z" title="更新于 2026-07-07 22:30:00">2026-07-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/Ferry%E5%AD%A6%E9%99%A2%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/">Ferry学院安全开发</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/C/">C++</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/">安全开发</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/C/">C</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Ferry%E5%AD%A6%E9%99%A2/">Ferry学院</a></span></div><div class="content">返回：网络安全学习主页
+
+
+1、学习定位Ferry 学院安全开发这一条线先补 C&#x2F;C++ 与 Windows 平台开发基础。它不是单纯刷语法，而是为后面的逆向、调试、内存分析、漏洞理解和安全工具开发打底。
+2、分篇目录
+
+
+编号
+分篇
+主要内容
+笔记入口
+
+
+
+01
+安全开发篇（一）：C&#x2F;C++ 基础入门
+C 语言基础、数据类型、控制流、数组、字符串、结构体、指针、函数
+0101
+
+
+02
+安全开发篇（二）：C&#x2F;C++ 进阶提升
+函数栈、调用约定、指针进阶、文件读写、内存管理、项目练习
+0110
+
+
+03
+安全开发篇（三）：C++ 面向对象基础
+命名空间、引用、new&#x2F;delete、类与对象、构造析构、继承、多态、项目设计
+0115
+
+
+04
+安全开发篇（四）：C++ 泛型编程详解
+函数模板、类模板、STL、string、vector、deque、list、set、map、异常处理
+0122
+
+
+3、编号结构
+
+
+范围
+内容
+
+
+
+0100
+Ferry 学院安全开发总目录
+
+
+0101
+安全开发篇（一）汇总
+
+
+0102 ~ 0109
+安全开发篇 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/11/insight-vibingcoding/" title="2026.06.28 读《巴别塔那么高，我们能爬得上去吗？》有感"><img class="post-bg" src="/img/rd3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2026.06.28 读《巴别塔那么高，我们能爬得上去吗？》有感"></a></div><div class="recent-post-info"><a class="article-title" href="/11/insight-vibingcoding/" title="2026.06.28 读《巴别塔那么高，我们能爬得上去吗？》有感">2026.06.28 读《巴别塔那么高，我们能爬得上去吗？》有感</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-28T08:00:00.000Z" title="发表于 2026-06-28 16:00:00">2026-06-28</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-28T08:00:00.000Z" title="更新于 2026-06-28 16:00:00">2026-06-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%97%A5%E5%B8%B8/">日常</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%97%A5%E5%B8%B8/">日常</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%97%A5%E5%B8%B8%E6%84%9F%E6%82%9F/">日常感悟</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/AI/">AI</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%BC%96%E7%A8%8B/">编程</a></span></div><div class="content">返回：🌠 Summary And Schedule。
+原文：AleXJokeR《巴别塔那么高，我们能爬得上去吗？》。这篇不是全文转载，只按自己的理解做一次读后整理。
+
+
+读这篇文章时，我最强烈的感受不是“AI 又变强了”，而是编程这件事的重心正在移动。
+以前写程序，很多成就感来自把一个具体问题硬啃下来：一个报错、一段环境配置、一个页面、一个接口、一个算法题。那时候代码本身有很强的门槛，很多东西不会就是不会，需要搜索、试错、调试，甚至卡很久。
+现在不一样了。AI 把很多细节压得很薄，原来需要反复查资料的东西，现在只要问题描述清楚，很快就能得到一个可运行的起点。写代码的痛苦没有完全消失，但它被重新分配了：语法和样板变轻了，想法、判断和表达变重了。
+
+
+1、真正让人兴奋的不是代码本身我觉得这篇文章最打动我的地方，是它把“写代码”重新放回了“创造”里。
+代码当然重要，但代码不是终点。一个程序之所以让人开心，不是因为它有多少行，也不是因为用了多复杂的框架，而是因为它把一个原本不存在的东西带到了现实里。
+也许昨天只是脑子里一个模糊想法：我想整理笔记、我想自动生成页面、我想做一个学习计划、我想把博 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/11/working/" title="工作经验备忘"><img class="post-bg" src="/img/11/working-summary.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="工作经验备忘"></a></div><div class="recent-post-info"><a class="article-title" href="/11/working/" title="工作经验备忘">工作经验备忘</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-08T09:55:00.000Z" title="发表于 2026-06-08 17:55:00">2026-06-08</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-08T09:55:00.000Z" title="更新于 2026-06-08 17:55:00">2026-06-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%97%A5%E5%B8%B8/">日常</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%97%A5%E5%B8%B8/">日常</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%B7%A5%E4%BD%9C%E7%BB%8F%E9%AA%8C/">工作经验</a></span></div><div class="content">返回：🌠 Summary And Schedule。
+
+
+这只是我和认识朋友的工作小结汇总，不代表具体行业内容。求职时要结合城市、岗位、合同、薪资结构和自身情况判断，最终还是要自己去实践和核实。
+
+
+总览图
+核心判断求职时不要只看岗位名称和招聘话术，要拆开看四件事：
+
+这份工作真正做什么：技术、服务、运营、销售、外呼、推广，还是杂活包装。
+薪资怎么来：固定底薪、绩效、提成、补贴、试用期工资、加班费和扣罚规则。
+合同和成本是什么：三方、劳动合同、劳务合同、外包关系、押金、设备费、培训费、租车费。
+长期能留下什么：技能、作品、证书、行业经验、人脉，还是只留下疲惫和风险。
+
+
+
+1、准备阶段
+明确目标 ：职业发展、工作内容、工资、通勤和休息要先排优先级。工作不是用来证明自己的，而是要支撑生活和成长。
+准备简历 ：非专业性强的岗位也要认真写简历。哪怕只是普通工作，也要把经历、责任心、沟通能力和稳定性表达清楚。
+调研公司 ：看公司是否长期招聘同类岗位、是否频繁加班欠薪、评价是否异常，不要只看招聘软件上的包装。
+了解行情 ：先知道本地普通岗位工资区间，别被“高薪”“轻松”“无经验”吸走。
+
+
+
+ ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/21/s04/" title="S04、网络安全自动化分析平台"><img class="post-bg" src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="S04、网络安全自动化分析平台"></a></div><div class="recent-post-info"><a class="article-title" href="/21/s04/" title="S04、网络安全自动化分析平台">S04、网络安全自动化分析平台</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-07T10:44:00.000Z" title="发表于 2026-06-07 18:44:00">2026-06-07</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-07T10:45:00.000Z" title="更新于 2026-06-07 18:45:00">2026-06-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B5/">项目实践</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</a></span></div><div class="content">本项目为考研结束后的计划项目，目前尚未开始。后续将结合前三个项目的实践数据，尝试完成安全信息聚合、分析流程编排和报告自动生成。
+返回项目实践总览
+
+
+项目计划
+
+
+项目
+内容
+
+
+
+项目编号
+S04
+
+
+项目方向
+网络安全与自动化
+
+
+计划内容
+安全工具编排、威胁情报聚合、事件分析与报告生成
+
+
+预期成果
+可运行平台、自动化流程、演示页面与项目文档
+
+
+当前状态
+计划中，考研后启动
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/21/s03/" title="S03、主机安全监控与应急响应"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="S03、主机安全监控与应急响应"></a></div><div class="recent-post-info"><a class="article-title" href="/21/s03/" title="S03、主机安全监控与应急响应">S03、主机安全监控与应急响应</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-07T10:43:00.000Z" title="发表于 2026-06-07 18:43:00">2026-06-07</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-07T10:45:00.000Z" title="更新于 2026-06-07 18:45:00">2026-06-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B5/">项目实践</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</a></span></div><div class="content">本项目为考研结束后的计划项目，目前尚未开始。后续将在自建 Linux 实验环境中完成日志采集、安全监控、事件分析和应急响应记录。
+返回项目实践总览
+
+
+项目计划
+
+
+项目
+内容
+
+
+
+项目编号
+S03
+
+
+项目方向
+主机安全与应急响应
+
+
+计划工具
+Linux、Wazuh、ELK
+
+
+预期成果
+监控面板、事件时间线、溯源过程与应急报告
+
+
+当前状态
+计划中，考研后启动
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/21/s02/" title="S02、网络流量分析与入侵检测"><img class="post-bg" src="/img/r183.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="S02、网络流量分析与入侵检测"></a></div><div class="recent-post-info"><a class="article-title" href="/21/s02/" title="S02、网络流量分析与入侵检测">S02、网络流量分析与入侵检测</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-07T10:42:00.000Z" title="发表于 2026-06-07 18:42:00">2026-06-07</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-07T10:45:00.000Z" title="更新于 2026-06-07 18:45:00">2026-06-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B5/">项目实践</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B/">入侵检测</a></span></div><div class="content">本项目为考研结束后的计划项目，目前尚未开始。后续将在自建实验网络中完成流量采集、协议分析、检测规则编写和异常告警验证。
+返回项目实践总览
+
+
+项目计划
+
+
+项目
+内容
+
+
+
+项目编号
+S02
+
+
+项目方向
+网络流量分析与入侵检测
+
+
+计划工具
+Wireshark、Zeek、Suricata、Python
+
+
+预期成果
+检测规则、流量样本、告警记录与分析报告
+
+
+当前状态
+计划中，考研后启动
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/21/s01/" title="S01、Web 应用安全审计与安全开发"><img class="post-bg" src="/img/rd6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="S01、Web 应用安全审计与安全开发"></a></div><div class="recent-post-info"><a class="article-title" href="/21/s01/" title="S01、Web 应用安全审计与安全开发">S01、Web 应用安全审计与安全开发</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-07T10:41:00.000Z" title="发表于 2026-06-07 18:41:00">2026-06-07</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-07T10:45:00.000Z" title="更新于 2026-06-07 18:45:00">2026-06-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B5/">项目实践</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Web%E5%AE%89%E5%85%A8/">Web安全</a></span></div><div class="content">本项目为考研结束后的计划项目，目前尚未开始。后续将围绕合法自建靶场开展漏洞复现、安全审计与修复实践，用于复试项目展示。
+返回项目实践总览
+
+
+项目计划
+
+
+项目
+内容
+
+
+
+项目编号
+S01
+
+
+项目方向
+Web 应用安全
+
+
+计划内容
+OWASP Top 10、代码审计、漏洞验证与安全修复
+
+
+预期成果
+漏洞审计报告、修复前后对比、自建演示环境
+
+
+当前状态
+计划中，考研后启动
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/24/old/000/" title="网络安全学习主页"><img class="post-bg" src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网络安全学习主页"></a></div><div class="recent-post-info"><a class="article-title" href="/24/old/000/" title="网络安全学习主页">网络安全学习主页</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-06T04:00:00.000Z" title="发表于 2026-06-06 12:00:00">2026-06-06</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-06T05:20:00.000Z" title="更新于 2026-07-06 13:20:00">2026-07-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Cybersecurity/">Cybersecurity</a></span></div><div class="content">这里作为网络安全方向的主页，先建立两个长期学习项目入口：Ferry 学院安全开发 与 Windows 逆向。本页只做目录和进度索引，具体小节后续按学习进程单独开页面整理。
+
+
+1、项目总览
+
+
+编号
+项目
+入口
+主要内容
+当前状态
+
+
+
+0100
+安全开发
+安全开发篇
+C&#x2F;C++ 基础、指针与内存、面向对象、泛型编程、安全视角下的开发基础
+建立目录
+
+
+0200
+Windows 逆向
+Windows 逆向
+汇编、寄存器、堆栈、PE 结构、调试、注入、ShellCode、反调试
+建立目录
+
+
+2、编号规则
+
+
+编号
+含义
+
+
+
+000
+网络安全主页，放全部项目入口和总说明
+
+
+0100
+Ferry 学院安全开发总目录
+
+
+0101～0199
+安全开发每个分篇或小节笔记
+
+
+0200
+Windows 逆向总目录
+
+
+0201～0299
+Windows 逆向每个分篇或小节笔记
+
+
+3、整理方式后续每个小节按同一套格式整理：
+
+本节解决什么问题。
+需要掌握的关键词和前置知识。
+课程中的核心流程、代码或图示。
+和网络安全、逆向分析、漏洞理解或安全开发的关系。
+学完后自己的复盘、问题和后 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/24/005/" title="005、数据—整数存储"><img class="post-bg" src="/img/r450.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="005、数据—整数存储"></a></div><div class="recent-post-info"><a class="article-title" href="/24/005/" title="005、数据—整数存储">005、数据—整数存储</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-09-06T01:00:00.000Z" title="发表于 2025-09-06 09:00:00">2025-09-06</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-09-06T01:00:00.000Z" title="更新于 2025-09-06 09:00:00">2025-09-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/Windows%E9%80%86%E5%90%91/">Windows逆向</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Windows%E9%80%86%E5%90%91/">Windows逆向</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA/">数据表示</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%95%B4%E6%95%B0/">整数</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%A1%A5%E7%A0%81/">补码</a></span></div><div class="content">返回：网络安全知识库 · 上一节：数据：存储宽度 · 下一节：调试器基础与反汇编阅读
+
+
+🎨 颜色标记说明
+粉色：特别重要、主线必掌握、优先复盘的内容。
+蓝色：核心概念、术语、分类名。
+橙色：需要关注的边界、易错点、注意事项。
+绿色：解释类内容、帮助理解知识点。
+
+
+
+
+
+整数类型
+1 Byte &#x3D; 8 Bit &#x3D; 256 种状态
+
+
+无符号数：0 ~ 255，有符号数：-128 ~ 127
+
+
+0x7F &#x3D; 127，0x80 &#x3D; -128，0xFF &#x3D; -1
+
+
+
+
+类型
+二进制范围（Bit 7 ~ Bit 0）
+十进制范围
+十六进制范围
+说明
+
+
+
+无符号数 unsigned char
+0000 0000 ~ 1111 1111
+0 ~ 255
+0x00 ~ 0xFF
+全部 256 个数都表示非负数
+
+
+有符号数 signed char（正数）
+0000 0000 ~ 0111 1111
+0 ~ 127
+0x00 ~ 0x7F
+最高位 Bit 7 为 0，表示正数或 0
+
+
+有符号数 signed char（负数）
+1000 00 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/24/004/" title="004、数据—存储宽度"><img class="post-bg" src="/img/r277.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="004、数据—存储宽度"></a></div><div class="recent-post-info"><a class="article-title" href="/24/004/" title="004、数据—存储宽度">004、数据—存储宽度</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-09-05T01:00:00.000Z" title="发表于 2025-09-05 09:00:00">2025-09-05</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-09-05T01:00:00.000Z" title="更新于 2025-09-05 09:00:00">2025-09-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/Windows%E9%80%86%E5%90%91/">Windows逆向</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Windows%E9%80%86%E5%90%91/">Windows逆向</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%AE%BD%E5%BA%A6/">数据宽度</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%86%85%E5%AD%98/">内存</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E6%88%AA%E6%96%AD/">数据截断</a></span></div><div class="content">返回：网络安全知识库 · 上一节：基础：进制 · 下一节：数据：整数存储
+
+
+🎨 颜色标记说明
+粉色：特别重要、主线必掌握、优先复盘的内容。
+蓝色：核心概念、术语、分类名。
+橙色：需要关注的边界、易错点、注意事项。
+绿色：解释类内容、帮助理解知识点。
+
+
+
+
+
+数据宽度
+计算机存储数据是有 数据宽度（Data Width） 限制的
+
+
+常见的数据宽度有 8 位、16 位、32 位、64 位。
+
+BIN
+0 1010 1110 1010 1010 1110 1011 1010 1010 0000
+
+
+
+最高有效位（MSB） 和 最低有效位（LSB） 都是基于当前数据宽度而言的。
+
+
+最低有效位（LSB） 始终是最右侧的一位，可以唯一确定；
+最高有效位（MSB） 会随着数据宽度的不同而发生变化。
+
+内存宽度
+内存中最小的存储单位是 字节（Byte）。
+
+
+1 Byte &#x3D; 8 Bit（1 字节 &#x3D; 8 位）。
+
+
+内存宽度表示数据占用的位数，常见有 8 位、16 位、32 位、64 位。
+
+
+
+
+宽度
+位数（Bit）
+表示范围
+
+
+
+字节（Byte）
+8
+0x00 ～ ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/11/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#content-inner">10</a><a class="page-number" href="/page/11/#content-inner">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/#content-inner">13</a><a class="page-number" href="/page/14/#content-inner">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/#content-inner">33</a><a class="extend next" rel="next" href="/page/13/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div>
+        <form class="pagination-jump" data-current="12" data-total="33">
+          <label for="pagination-jump-input">跳至</label>
+          <input
+            id="pagination-jump-input"
+            name="page"
+            type="number"
+            min="1"
+            max="33"
+            value="12"
+            inputmode="numeric"
+            aria-label="输入要跳转的页码"
+          >
+          <span>页</span>
+          <button type="submit" title="跳转到指定页" aria-label="跳转到指定页">
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </form></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">睿清颜</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">327</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">285</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/11/insight-kezhouqiujian/" title="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常"><img src="/img/rd20.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常"/></a><div class="content"><a class="title" href="/11/insight-kezhouqiujian/" title="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常">2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常</a><time datetime="2026-08-17T12:00:00.000Z" title="发表于 2026-08-17 20:00:00">2026-08-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/018/" title="018、反汇编代码的重建与编译"><img src="/img/rd19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="018、反汇编代码的重建与编译"/></a><div class="content"><a class="title" href="/31/cpp-reverse/018/" title="018、反汇编代码的重建与编译">018、反汇编代码的重建与编译</a><time datetime="2026-08-14T00:18:00.000Z" title="发表于 2026-08-14 08:18:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/017/" title="017、WannaCry 勒索病毒的防御性分析"><img src="/img/rd18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="017、WannaCry 勒索病毒的防御性分析"/></a><div class="content"><a class="title" href="/31/cpp-reverse/017/" title="017、WannaCry 勒索病毒的防御性分析">017、WannaCry 勒索病毒的防御性分析</a><time datetime="2026-08-14T00:17:00.000Z" title="发表于 2026-08-14 08:17:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/016/" title="016、远控木马的防御性逆向分析"><img src="/img/rd17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="016、远控木马的防御性逆向分析"/></a><div class="content"><a class="title" href="/31/cpp-reverse/016/" title="016、远控木马的防御性逆向分析">016、远控木马的防御性逆向分析</a><time datetime="2026-08-14T00:16:00.000Z" title="发表于 2026-08-14 08:16:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/015/" title="015、OllyDbg 的工作原理"><img src="/img/rd16.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="015、OllyDbg 的工作原理"/></a><div class="content"><a class="title" href="/31/cpp-reverse/015/" title="015、OllyDbg 的工作原理">015、OllyDbg 的工作原理</a><time datetime="2026-08-14T00:15:00.000Z" title="发表于 2026-08-14 08:15:00">2026-08-14</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">AI学习笔记</span><span class="card-category-list-count">1</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Python%E5%9F%BA%E7%A1%80/"><span class="card-category-list-name">Python基础</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"><span class="card-category-list-name">人工智能</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/"><span class="card-category-list-name">兴趣课</span><span class="card-category-list-count">34</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/Blog%E5%85%A8%E7%A8%8B%E6%90%AD%E5%BB%BA/"><span class="card-category-list-name">Blog全程搭建</span><span class="card-category-list-count">33</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%83%B3%E6%B3%95/"><span class="card-category-list-name">想法</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%97%A5%E5%B8%B8/"><span class="card-category-list-name">日常</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%97%A5%E5%BF%97/"><span class="card-category-list-name">日志</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E5%B8%B8%E9%87%8F/" style="font-size: 1.1em; color: #999">常量</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" style="font-size: 1.1em; color: #999">快速排序</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%BA%93/" style="font-size: 1.1em; color: #999">知识库</a> <a href="/tags/%E4%BA%BA%E6%96%87/" style="font-size: 1.1em; color: #999">人文</a> <a href="/tags/%E6%A0%88%E5%B1%95%E5%BC%80/" style="font-size: 1.1em; color: #999">栈展开</a> <a href="/tags/Huffman/" style="font-size: 1.1em; color: #999">Huffman</a> <a href="/tags/%E8%B0%83%E8%AF%95%E5%99%A8/" style="font-size: 1.21em; color: #999ea4">调试器</a> <a href="/tags/throw/" style="font-size: 1.1em; color: #999">throw</a> <a href="/tags/%E6%96%87%E4%BB%B6%E6%B5%81/" style="font-size: 1.1em; color: #999">文件流</a> <a href="/tags/CPU/" style="font-size: 1.16em; color: #999b9e">CPU</a> <a href="/tags/%E5%8F%98%E9%87%8F%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 1.1em; color: #999">变量生命周期</a> <a href="/tags/PEiD/" style="font-size: 1.1em; color: #999">PEiD</a> <a href="/tags/%E5%88%86%E6%94%AF/" style="font-size: 1.1em; color: #999">分支</a> <a href="/tags/%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/" style="font-size: 1.1em; color: #999">优先级队列</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 1.1em; color: #999">编程</a> <a href="/tags/%E5%A4%9A%E6%80%81/" style="font-size: 1.21em; color: #999ea4">多态</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" style="font-size: 1.1em; color: #999">二叉搜索树</a> <a href="/tags/DebugAPI/" style="font-size: 1.1em; color: #999">DebugAPI</a> <a href="/tags/B%E6%A0%91/" style="font-size: 1.1em; color: #999">B树</a> <a href="/tags/%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/" style="font-size: 1.16em; color: #999b9e">泛型编程</a> <a href="/tags/ETW/" style="font-size: 1.1em; color: #999">ETW</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 1.33em; color: #99a2af">日常</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 1.16em; color: #999b9e">排序</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA/" style="font-size: 1.27em; color: #99a0a9">数据表示</a> <a href="/tags/const/" style="font-size: 1.1em; color: #999">const</a> <a href="/tags/%E4%B8%B2%E8%A1%8C%E5%8C%96/" style="font-size: 1.1em; color: #999">串行化</a> <a href="/tags/%E7%A8%B3%E5%AE%9A%E5%8C%B9%E9%85%8D/" style="font-size: 1.1em; color: #999">稳定匹配</a> <a href="/tags/OllyDbg/" style="font-size: 1.1em; color: #999">OllyDbg</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 1.44em; color: #99a7ba">读书笔记</a> <a href="/tags/%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" style="font-size: 1.1em; color: #999">泛型程序设计</a> <a href="/tags/NP%E5%AE%8C%E5%85%A8%E6%80%A7/" style="font-size: 1.1em; color: #999">NP完全性</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" style="font-size: 1.5em; color: #99a9bf">网络安全</a> <a href="/tags/%E7%89%B9%E5%BE%81%E8%AF%86%E5%88%AB/" style="font-size: 1.1em; color: #999">特征识别</a> <a href="/tags/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" style="font-size: 1.1em; color: #999">亲密关系</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" style="font-size: 1.1em; color: #999">计算机系统</a> <a href="/tags/408/" style="font-size: 1.39em; color: #99a4b4">408</a> <a href="/tags/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/" style="font-size: 1.1em; color: #999">算法分析</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 1.1em; color: #999">位运算</a> <a href="/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/" style="font-size: 1.21em; color: #999ea4">反汇编</a> <a href="/tags/PEB/" style="font-size: 1.1em; color: #999">PEB</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/08/"><span class="card-archive-list-date">八月 2026</span><span class="card-archive-list-count">20</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/07/"><span class="card-archive-list-date">七月 2026</span><span class="card-archive-list-count">88</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/06/"><span class="card-archive-list-date">六月 2026</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/09/"><span class="card-archive-list-date">九月 2025</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/08/"><span class="card-archive-list-date">八月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">七月 2025</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/06/"><span class="card-archive-list-date">六月 2025</span><span class="card-archive-list-count">32</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/05/"><span class="card-archive-list-date">五月 2025</span><span class="card-archive-list-count">3</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">327</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-12-31T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">491.3k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-08-18T16:20:37.998Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/bg1.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By 睿清颜</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.mps.gov.cn/#/query/webSearch?code=44040402000233"><img class="icp-icon" src="/img/beian.png"><span>粤公网安备44040402000233号 </span></a>    </a> <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn"><span>     粤ICP备2024216057号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.14.0-b3"></script><script src="/js/main.js?v=4.14.0-b3"></script><script src="/js/tw_cn.js?v=4.14.0-b3"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: (str) => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, {"typeSpeed":150,"backSpeed":35,"backDelay":3000,"loop":true}))
+  },
+  run: (subtitleType) => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+btf.addGlobalFn('pjaxSend', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init(["落日沉溺于橘色的海，晚风沦陷于赤诚的爱。","山茶花读不懂白玫瑰，北山的风吹不到南山尾。","倘若南风知我意，莫将晩霞落黄昏。","我本无意惹惊鸿，奈何惊鸿入我心。","我将玫瑰藏于身后，风起花落，从此鲜花赠自己，纵马踏花向自由。","树木在森林中相依偎而生长，星辰在银河中因辉映而璀璨。","辞暮尔尔，烟火年年。","慢品人间烟火色，闲观万事岁月长。","一半烟火以谋生，一半诗意以谋爱。","山海自有归期，风雨自有相逢。","星光不问赶路人，时光不负有心人。","且行且忘且随风，且行且看且从容。","我于窗中窥伤鹤，恰如仰头见春台。","努力的过程本就是孤岛，但最后抵达的一定是充满生机的彼岸。永远不要因为一些，不值得的事和人而颓废。","山高水远，怕什么来不及，慌什么到不了，天顺其自然，地顺其性，人顺其变，一切都是刚刚好。","我见众生皆草木，唯有见你是青山。","日出有盼，日落有思，平平安安，所遇皆甜。","毕竟几人真得鹿，不知终日梦为鱼。","在心里种花，人生才不会荒芜。","市井长巷，聚拢来是烟火，摊开是人间。","流水不争先，争的是滔滔不绝。","浮云吹作雪，世味煮成茶。","远赴人间惊鸿宴，一睹人间盛世颜。","花开堪折直须折，莫待无花空折枝。","人生只似风前絮,欢也零星,悲也零星,都作连江点点萍。"])
+  } else {
+    document.getElementById("subtitle").textContent = "落日沉溺于橘色的海，晚风沦陷于赤诚的爱。"
+  }
+}
+typedJSFn.run(subtitleType)</script></div><script src="/js/pagination-jump@1.0.0.js?v=1.0.0"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>(() => {
+  const isChatBtn = false
+  const isChatHideShow = false
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = 'T9itjhtGq78bcPAhB'
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.14.0-b3"></script></div></div></body></html>

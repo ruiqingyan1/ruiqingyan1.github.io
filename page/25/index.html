@@ -1,0 +1,820 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Ruiqy~ - 远赴人间惊鸿宴，一睹人间盛世颜</title><meta name="author" content="睿清颜"><meta name="copyright" content="睿清颜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="远赴人间惊鸿宴，一睹人间盛世颜">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ruiqy~">
+<meta property="og:url" content="https://ruiqingyan.com/page/25/index.html">
+<meta property="og:site_name" content="Ruiqy~">
+<meta property="og:description" content="远赴人间惊鸿宴，一睹人间盛世颜">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ruiqingyan.com/img/avatar.jpg">
+<meta property="article:author" content="睿清颜">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruiqingyan.com/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://ruiqingyan.com/page/25/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.14.0-b3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>(()=>{
+      const saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+      
+      window.btf = {
+        saveToLocal: saveToLocal,
+        getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+          script.src = url
+          script.async = true
+          script.onerror = reject
+          script.onload = script.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            script.onload = script.onreadystatechange = null
+            resolve()
+          }
+
+          Object.keys(attr).forEach(key => {
+            script.setAttribute(key, attr[key])
+          })
+
+          document.head.appendChild(script)
+        }),
+
+        getCSS: (url, id = false) => new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+          link.rel = 'stylesheet'
+          link.href = url
+          if (id) link.id = id
+          link.onerror = reject
+          link.onload = link.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            link.onload = link.onreadystatechange = null
+            resolve()
+          }
+          document.head.appendChild(link)
+        }),
+
+        addGlobalFn: (key, fn, name = false, parent = window) => {
+          const pjaxEnable = false
+          if (!pjaxEnable && key.startsWith('pjax')) return
+
+          const globalFn = parent.globalFn || {}
+          const keyObj = globalFn[key] || {}
+    
+          if (name && keyObj[name]) return
+    
+          name = name || Object.keys(keyObj).length
+          keyObj[name] = fn
+          globalFn[key] = keyObj
+          parent.globalFn = globalFn
+        }
+      }
+    
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+      
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })()</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300,"highlightFullpage":true,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Ruiqy~',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2026-08-19 00:20:39'
+}</script><link rel="stylesheet" href="/css/font/iconfont.css"><link rel="stylesheet" href="/css/custom@1.0.1.css?v=1.0.8"><link rel="stylesheet" href="/css/color@1.0.0.css"><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">327</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">285</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua00"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua01"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/study-docs/"><i class="fa-fw fas fa-book-open"></i><span> 知识库</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw fas fa-calendar-check"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-flower3"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/12/000/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 项目实践</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li><li><a class="site-page child" href="/26/AI/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/33/000/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/bg1.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruiqy~"><img class="site-icon" src="/img/avatar.jpg" alt="Logo"/><span class="site-name">Ruiqy~</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-hua00"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua01"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/study-docs/"><i class="fa-fw fas fa-book-open"></i><span> 知识库</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw fas fa-calendar-check"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-flower3"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/12/000/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 项目实践</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li><li><a class="site-page child" href="/26/AI/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/33/000/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Ruiqy~</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/23/2200/" title="2200、编译原理：读书汇总"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2200、编译原理：读书汇总"></a></div><div class="recent-post-info"><a class="article-title" href="/23/2200/" title="2200、编译原理：读书汇总">2200、编译原理：读书汇总</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T17:06:00.000Z" title="发表于 2023-12-20 01:06:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-07T16:10:00.000Z" title="更新于 2026-06-08 00:10:00">2026-06-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/22%E3%80%81%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">22、编译原理</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E5%85%AD%E9%98%B6%E6%AE%B5%EF%BC%9A%E7%BB%8F%E5%85%B8%E8%AF%BB%E7%89%A9/">第六阶段：经典读物</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a></span></div><div class="content">返回：本科课程：疾风计划
+
+
+1、读物定位经典编译原理读物适合作为长期参考。这里先保留阅读入口，后续可以围绕程序分析、静态检查、代码生成和自动化工具理解逐步补。
+2、阅读目录
+
+
+模块
+内容
+复盘重点
+
+
+
+前端
+词法、语法、语义
+理解源码结构
+
+
+中间表示
+IR、控制流、数据流
+连接分析和优化
+
+
+优化
+局部优化、全局优化
+理解程序变换
+
+
+运行时
+栈帧、作用域、内存管理
+连接系统底层
+
+
+后端
+指令选择、寄存器分配、代码生成
+理解目标代码
+
+
+3、后续补充后面补章节导读、示例代码、静态分析工具和安全审计中的应用。
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/23/2100/" title="2100、操作系统：精髓与设计原理：读书汇总"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2100、操作系统：精髓与设计原理：读书汇总"></a></div><div class="recent-post-info"><a class="article-title" href="/23/2100/" title="2100、操作系统：精髓与设计原理：读书汇总">2100、操作系统：精髓与设计原理：读书汇总</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T17:05:00.000Z" title="发表于 2023-12-20 01:05:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-07T16:10:00.000Z" title="更新于 2026-06-08 00:10:00">2026-06-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/21%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%9A%E7%B2%BE%E9%AB%93%E4%B8%8E%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86/">21、操作系统：精髓与设计原理</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E5%85%AD%E9%98%B6%E6%AE%B5%EF%BC%9A%E7%BB%8F%E5%85%B8%E8%AF%BB%E7%89%A9/">第六阶段：经典读物</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a></span></div><div class="content">返回：本科课程：疾风计划
+
+
+1、读物定位这本书适合在操作系统课程之后继续扩展。复盘时重点关注进程、内存、调度、文件系统、安全和分布式基础，并把概念落到 Linux 使用和系统实验里。
+2、阅读目录
+
+
+模块
+内容
+复盘重点
+
+
+
+进程与线程
+调度、同步、互斥、死锁
+连接并发问题
+
+
+内存管理
+分页、分段、虚拟内存
+理解地址空间
+
+
+文件系统
+文件、目录、磁盘管理
+连接权限和日志
+
+
+安全保护
+访问控制、认证、安全机制
+服务网安方向
+
+
+分布式基础
+通信、同步、容错
+为后续系统项目留入口
+
+
+3、后续补充后面补章节摘记、概念图、Linux 实验对应关系和安全专题。
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/23/2000/" title="2000、计算机组成与体系：读书汇总"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2000、计算机组成与体系：读书汇总"></a></div><div class="recent-post-info"><a class="article-title" href="/23/2000/" title="2000、计算机组成与体系：读书汇总">2000、计算机组成与体系：读书汇总</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T17:04:00.000Z" title="发表于 2023-12-20 01:04:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-07T16:10:00.000Z" title="更新于 2026-06-08 00:10:00">2026-06-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/20%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E4%BD%93%E7%B3%BB/">20、计算机组成与体系</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E5%85%AD%E9%98%B6%E6%AE%B5%EF%BC%9A%E7%BB%8F%E5%85%B8%E8%AF%BB%E7%89%A9/">第六阶段：经典读物</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a></span></div><div class="content">返回：本科课程：疾风计划
+
+
+1、读物定位这部分用于在计算机组成原理之后继续补体系结构视角。重点理解指令系统、流水线、存储层次、I&#x2F;O 和性能，而不是只停留在考试计算题。
+2、阅读目录
+
+
+模块
+内容
+复盘重点
+
+
+
+指令系统
+指令格式、寻址、ISA
+理解软硬件接口
+
+
+处理器
+数据通路、控制器、流水线
+理解 CPU 如何执行
+
+
+存储系统
+Cache、主存、虚拟存储
+连接性能与系统设计
+
+
+I&#x2F;O 系统
+总线、中断、DMA
+理解外设协作
+
+
+性能分析
+CPI、并行、局部性
+建立性能表达
+
+
+3、后续补充后面补结构图、例题、性能分析和它与 CSAPP 的对应关系。
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/23/1900/" title="1900、算法导论：读书汇总"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1900、算法导论：读书汇总"></a></div><div class="recent-post-info"><a class="article-title" href="/23/1900/" title="1900、算法导论：读书汇总">1900、算法导论：读书汇总</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T17:03:00.000Z" title="发表于 2023-12-20 01:03:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-07T16:10:00.000Z" title="更新于 2026-06-08 00:10:00">2026-06-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/19%E3%80%81%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/">19、算法导论</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E5%85%AD%E9%98%B6%E6%AE%B5%EF%BC%9A%E7%BB%8F%E5%85%B8%E8%AF%BB%E7%89%A9/">第六阶段：经典读物</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a></span></div><div class="content">返回：本科课程：疾风计划
+
+
+1、读物定位算法导论适合作为算法体系的长期参考书。短期不必通读，先围绕常见算法范式、复杂度证明、图算法和动态规划做专题式复盘。
+2、阅读目录
+
+
+模块
+内容
+复盘重点
+
+
+
+基础
+复杂度、递归、排序
+建立分析语言
+
+
+数据结构
+堆、散列表、树
+连接数据结构课程
+
+
+设计范式
+分治、动态规划、贪心
+沉淀解题框架
+
+
+图算法
+BFS、DFS、最短路、网络流
+服务复杂关系建模
+
+
+高级专题
+NP 完全、近似算法
+建立边界意识
+
+
+3、后续补充后面补专题笔记、证明思路、伪代码和对应题目。
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/23/1800/" title="1800、CSAPP：读书汇总"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1800、CSAPP：读书汇总"></a></div><div class="recent-post-info"><a class="article-title" href="/23/1800/" title="1800、CSAPP：读书汇总">1800、CSAPP：读书汇总</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T17:02:00.000Z" title="发表于 2023-12-20 01:02:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-07T16:10:00.000Z" title="更新于 2026-06-08 00:10:00">2026-06-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/18%E3%80%81CSAPP/">18、CSAPP</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E5%85%AD%E9%98%B6%E6%AE%B5%EF%BC%9A%E7%BB%8F%E5%85%B8%E8%AF%BB%E7%89%A9/">第六阶段：经典读物</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a></span></div><div class="content">返回：本科课程：疾风计划
+
+
+1、读物定位CSAPP 适合把 C 语言、汇编、组成原理、操作系统和系统编程串起来。对后续安全方向来说，程序表示、内存、链接、异常控制流和并发都很重要。
+2、阅读目录
+
+
+模块
+内容
+复盘重点
+
+
+
+程序表示
+信息表示、机器级程序
+理解代码和机器指令
+
+
+体系结构
+处理器、流水线、优化
+连接组成原理
+
+
+存储层次
+Cache、内存、局部性
+理解性能和内存行为
+
+
+链接与加载
+目标文件、符号、动态链接
+服务程序分析
+
+
+异常与并发
+进程、信号、线程、并发
+连接操作系统和安全
+
+
+3、后续补充后面补章节摘记、实验记录、关键代码和它与 Linux&#x2F;安全实验的对应关系。
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/23/0506/" title="Chap6 I/O 设备及其接口"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chap6 I/O 设备及其接口"></a></div><div class="recent-post-info"><a class="article-title" href="/23/0506/" title="Chap6 I/O 设备及其接口">Chap6 I/O 设备及其接口</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T16:59:00.000Z" title="发表于 2023-12-20 00:59:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-07T16:56:00.000Z" title="更新于 2026-07-08 00:56:00">2026-07-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/5%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">5、计算机组成原理</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A408-%E4%B8%BB%E5%B9%B2%E5%85%A5%E9%97%A8/">第二阶段：408 主干入门</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%BA%AA%E7%A6%84%E5%B9%B3/">纪禄平</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/I-O%E8%AE%BE%E5%A4%87/">I/O设备</a></span></div><div class="content">返回：0500 计算机组成原理总目录 · 上一章：0505 Chap5 总线与 I&#x2F;O 子系统
+
+
+1、学习目标本章从具体设备角度看 I&#x2F;O：键盘如何输入，显示器如何输出图像，打印设备如何把电子信息变成纸面信息。相比前一章偏控制模式，本章更偏设备原理和接口适配。
+
+
+
+模块
+要掌握的内容
+
+
+
+I&#x2F;O 设备
+输入、输出、外存、通信设备
+
+
+接口任务
+数据缓冲、格式转换、状态反馈
+
+
+键盘
+按键矩阵、扫描、编码、去抖
+
+
+显示器
+CRT、LCD、像素、刷新、显存
+
+
+打印设备
+击打式、喷墨、激光
+
+
+系统联系
+设备、接口、总线、中断、DMA 的协作
+
+
+2、I&#x2F;O 设备分类
+
+
+类型
+例子
+
+
+
+输入设备
+键盘、鼠标、扫描仪、摄像头
+
+
+输出设备
+显示器、打印机、音箱
+
+
+外存设备
+磁盘、SSD、U 盘、光盘
+
+
+通信设备
+网卡、蓝牙、串口、无线模块
+
+
+设备差异很大，所以主机通常不直接控制具体硬件细节，而是通过接口和控制器统一访问。
+3、设备接口的基本任务接口需要解决：
+
+速度匹配：外设慢，CPU 快。
+格式转换：串行&#x2F;并行、模拟&#x ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/23/0505/" title="Chap5 总线与 I/O 子系统"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chap5 总线与 I/O 子系统"></a></div><div class="recent-post-info"><a class="article-title" href="/23/0505/" title="Chap5 总线与 I/O 子系统">Chap5 总线与 I/O 子系统</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T16:58:00.000Z" title="发表于 2023-12-20 00:58:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-07T16:55:00.000Z" title="更新于 2026-07-08 00:55:00">2026-07-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/5%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">5、计算机组成原理</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A408-%E4%B8%BB%E5%B9%B2%E5%85%A5%E9%97%A8/">第二阶段：408 主干入门</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%BA%AA%E7%A6%84%E5%B9%B3/">纪禄平</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%80%BB%E7%BA%BF/">总线</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/I-O/">I/O</a></span></div><div class="content">返回：0500 计算机组成原理总目录 · 上一章：0504 Chap4 存储子系统 · 下一章：0506 Chap6 I&#x2F;O 设备及其接口
+
+
+1、学习目标I&#x2F;O 子系统解决 CPU、主存和外部设备之间速度、格式、控制方式不一致的问题。总线负责连接，接口负责适配，控制模式负责决定数据如何传送。
+
+
+
+模块
+要掌握的内容
+
+
+
+I&#x2F;O 子系统
+主机与外设的信息交换
+
+
+总线
+数据线、地址线、控制线
+
+
+接口
+数据缓冲、状态、控制、地址译码
+
+
+PIO
+CPU 直接控制传送
+
+
+中断
+外设主动请求 CPU 服务
+
+
+DMA
+外设和内存直接传送
+
+
+IOP&#x2F;PPU
+更独立的 I&#x2F;O 处理能力
+
+
+2、I&#x2F;O 子系统概述外设和主机的差异：
+
+
+
+差异
+说明
+
+
+
+速度差异
+外设通常远慢于 CPU
+
+
+数据格式差异
+外设可能是串行、模拟、块设备等
+
+
+控制方式差异
+外设需要状态检测和时序控制
+
+
+错误处理
+外设可能忙、失败、中断、超时
+
+
+接口的作用就是在 CPU&#x2F;主存和外设之间做缓冲、控制和格式转换。
+3、总线总线是一组共享 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/23/0504/" title="Chap4 存储子系统"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chap4 存储子系统"></a></div><div class="recent-post-info"><a class="article-title" href="/23/0504/" title="Chap4 存储子系统">Chap4 存储子系统</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T16:57:00.000Z" title="发表于 2023-12-20 00:57:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-07T16:54:00.000Z" title="更新于 2026-07-08 00:54:00">2026-07-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/5%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">5、计算机组成原理</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A408-%E4%B8%BB%E5%B9%B2%E5%85%A5%E9%97%A8/">第二阶段：408 主干入门</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%BA%AA%E7%A6%84%E5%B9%B3/">纪禄平</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/">存储系统</a></span></div><div class="content">返回：0500 计算机组成原理总目录 · 上一章：0503 Chap3 CPU 子系统 · 下一章：0505 Chap5 总线与 I&#x2F;O 子系统
+
+
+1、学习目标存储子系统解决两个矛盾：CPU 很快而存储器相对慢，容量需求很大而高速存储很贵。存储层次结构就是在速度、容量和成本之间做折中。
+
+
+
+模块
+要掌握的内容
+
+
+
+存储层次
+寄存器、Cache、主存、辅存
+
+
+半导体存储
+SRAM、DRAM、ROM、Flash
+
+
+主存组织
+位扩展、字扩展、地址译码
+
+
+外存
+磁盘、光盘、固态存储
+
+
+性能改进
+Cache、虚拟存储、并行存储、联想存储
+
+
+2、存储层次结构典型层次：
+1寄存器 -&gt; Cache -&gt; 主存 -&gt; SSD/磁盘 -&gt; 远程存储
+
+
+
+
+层次
+速度
+容量
+成本
+
+
+
+寄存器
+最快
+最小
+最高
+
+
+Cache
+很快
+较小
+高
+
+
+主存
+中等
+较大
+中
+
+
+外存
+慢
+很大
+低
+
+
+核心思想：利用局部性，让 CPU 大部分时间访问靠近自己的高速小容量存储。
+3、局部性原理
+
+
+局部性
+含义
+例子
+
+
+
+时间局部性
+最近访问过的数据，很可能很 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/23/0503/" title="Chap3 CPU 子系统"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chap3 CPU 子系统"></a></div><div class="recent-post-info"><a class="article-title" href="/23/0503/" title="Chap3 CPU 子系统">Chap3 CPU 子系统</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T16:56:00.000Z" title="发表于 2023-12-20 00:56:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-07T16:53:00.000Z" title="更新于 2026-07-08 00:53:00">2026-07-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/5%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">5、计算机组成原理</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A408-%E4%B8%BB%E5%B9%B2%E5%85%A5%E9%97%A8/">第二阶段：408 主干入门</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%BA%AA%E7%A6%84%E5%B9%B3/">纪禄平</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/CPU/">CPU</a></span></div><div class="content">返回：0500 计算机组成原理总目录 · 上一章：0502 Chap2 数据的表示、运算与校验 · 下一章：0504 Chap4 存储子系统
+
+
+1、学习目标CPU 子系统解释一条指令如何被取出、译码、执行并写回结果。本章是组成原理的中轴：数据表示告诉 CPU 算什么，存储系统告诉 CPU 从哪里取，I&#x2F;O 告诉 CPU 如何和外设协作。
+
+
+
+模块
+要掌握的内容
+
+
+
+CPU 结构
+数据通路、控制器、寄存器、ALU
+
+
+指令系统
+指令格式、操作码、地址码、CISC&#x2F;RISC
+
+
+寻址方式
+立即、直接、间接、寄存器、基址、变址、相对
+
+
+运算器
+加法器、进位逻辑、ALU 组织
+
+
+处理器设计
+MIPS32 单周期数据通路和控制信号
+
+
+性能提升
+流水线、超标量、SMT、多核
+
+
+2、CPU 基本结构CPU 的核心部件：
+
+
+
+部件
+功能
+
+
+
+PC
+保存下一条指令地址
+
+
+IR
+保存当前指令
+
+
+寄存器组
+保存操作数、地址和中间结果
+
+
+ALU
+执行算术逻辑运算
+
+
+控制器
+根据指令产生控制信号
+
+
+数据通路
+连接各部件的数据流路径
+
+
+指令执行基本流程：
+1取指  ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/23/0502/" title="Chap2 数据的表示、运算与校验"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chap2 数据的表示、运算与校验"></a></div><div class="recent-post-info"><a class="article-title" href="/23/0502/" title="Chap2 数据的表示、运算与校验">Chap2 数据的表示、运算与校验</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T16:55:00.000Z" title="发表于 2023-12-20 00:55:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-07T16:52:00.000Z" title="更新于 2026-07-08 00:52:00">2026-07-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/5%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">5、计算机组成原理</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A408-%E4%B8%BB%E5%B9%B2%E5%85%A5%E9%97%A8/">第二阶段：408 主干入门</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA/">数据表示</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%BA%AA%E7%A6%84%E5%B9%B3/">纪禄平</a></span></div><div class="content">返回：0500 计算机组成原理总目录 · 上一章：0501 Chap1 计算机系统概述 · 下一章：0503 Chap3 CPU 子系统
+
+
+1、学习目标机器只能直接处理二进制。本章要解决：整数、负数、小数、字符、错误检测在机器里如何表示，以及这些表示会如何影响运算结果。
+
+
+
+模块
+要掌握的内容
+
+
+
+数制
+二进制、八进制、十六进制和转换
+
+
+整数表示
+原码、反码、补码、移码
+
+
+定点&#x2F;浮点
+定点小数、IEEE 754 浮点数
+
+
+字符编码
+ASCII、汉字编码、Unicode 直觉
+
+
+基本运算
+加减乘除、移位、溢出
+
+
+数据校验
+奇偶校验、海明码、CRC
+
+
+2、数制与位权二进制数：
+1(1011.01)_2 = 1*2^3 + 0*2^2 + 1*2^1 + 1*2^0 + 0*2^-1 + 1*2^-2
+
+常见换算：
+
+
+
+进制
+特点
+
+
+
+二进制
+机器内部表示
+
+
+八进制
+3 位二进制对应 1 位八进制
+
+
+十六进制
+4 位二进制对应 1 位十六进制
+
+
+十进制
+人类常用
+
+
+十六进制很适合读机器数据，因为一个字节正好是两位十六进制。
+3、原码、反码、补码、移码设 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/24/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/#content-inner">23</a><a class="page-number" href="/page/24/#content-inner">24</a><span class="page-number current">25</span><a class="page-number" href="/page/26/#content-inner">26</a><a class="page-number" href="/page/27/#content-inner">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/#content-inner">33</a><a class="extend next" rel="next" href="/page/26/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div>
+        <form class="pagination-jump" data-current="25" data-total="33">
+          <label for="pagination-jump-input">跳至</label>
+          <input
+            id="pagination-jump-input"
+            name="page"
+            type="number"
+            min="1"
+            max="33"
+            value="25"
+            inputmode="numeric"
+            aria-label="输入要跳转的页码"
+          >
+          <span>页</span>
+          <button type="submit" title="跳转到指定页" aria-label="跳转到指定页">
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </form></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">睿清颜</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">327</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">285</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/11/insight-kezhouqiujian/" title="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常"><img src="/img/rd20.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常"/></a><div class="content"><a class="title" href="/11/insight-kezhouqiujian/" title="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常">2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常</a><time datetime="2026-08-17T12:00:00.000Z" title="发表于 2026-08-17 20:00:00">2026-08-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/018/" title="018、反汇编代码的重建与编译"><img src="/img/rd19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="018、反汇编代码的重建与编译"/></a><div class="content"><a class="title" href="/31/cpp-reverse/018/" title="018、反汇编代码的重建与编译">018、反汇编代码的重建与编译</a><time datetime="2026-08-14T00:18:00.000Z" title="发表于 2026-08-14 08:18:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/017/" title="017、WannaCry 勒索病毒的防御性分析"><img src="/img/rd18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="017、WannaCry 勒索病毒的防御性分析"/></a><div class="content"><a class="title" href="/31/cpp-reverse/017/" title="017、WannaCry 勒索病毒的防御性分析">017、WannaCry 勒索病毒的防御性分析</a><time datetime="2026-08-14T00:17:00.000Z" title="发表于 2026-08-14 08:17:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/016/" title="016、远控木马的防御性逆向分析"><img src="/img/rd17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="016、远控木马的防御性逆向分析"/></a><div class="content"><a class="title" href="/31/cpp-reverse/016/" title="016、远控木马的防御性逆向分析">016、远控木马的防御性逆向分析</a><time datetime="2026-08-14T00:16:00.000Z" title="发表于 2026-08-14 08:16:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/015/" title="015、OllyDbg 的工作原理"><img src="/img/rd16.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="015、OllyDbg 的工作原理"/></a><div class="content"><a class="title" href="/31/cpp-reverse/015/" title="015、OllyDbg 的工作原理">015、OllyDbg 的工作原理</a><time datetime="2026-08-14T00:15:00.000Z" title="发表于 2026-08-14 08:15:00">2026-08-14</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">AI学习笔记</span><span class="card-category-list-count">1</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Python%E5%9F%BA%E7%A1%80/"><span class="card-category-list-name">Python基础</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"><span class="card-category-list-name">人工智能</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/"><span class="card-category-list-name">兴趣课</span><span class="card-category-list-count">34</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/Blog%E5%85%A8%E7%A8%8B%E6%90%AD%E5%BB%BA/"><span class="card-category-list-name">Blog全程搭建</span><span class="card-category-list-count">33</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%83%B3%E6%B3%95/"><span class="card-category-list-name">想法</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%97%A5%E5%B8%B8/"><span class="card-category-list-name">日常</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%97%A5%E5%BF%97/"><span class="card-category-list-name">日志</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E5%B8%B8%E9%87%8F/" style="font-size: 1.1em; color: #999">常量</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" style="font-size: 1.1em; color: #999">快速排序</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%BA%93/" style="font-size: 1.1em; color: #999">知识库</a> <a href="/tags/%E4%BA%BA%E6%96%87/" style="font-size: 1.1em; color: #999">人文</a> <a href="/tags/%E6%A0%88%E5%B1%95%E5%BC%80/" style="font-size: 1.1em; color: #999">栈展开</a> <a href="/tags/Huffman/" style="font-size: 1.1em; color: #999">Huffman</a> <a href="/tags/%E8%B0%83%E8%AF%95%E5%99%A8/" style="font-size: 1.21em; color: #999ea4">调试器</a> <a href="/tags/throw/" style="font-size: 1.1em; color: #999">throw</a> <a href="/tags/%E6%96%87%E4%BB%B6%E6%B5%81/" style="font-size: 1.1em; color: #999">文件流</a> <a href="/tags/CPU/" style="font-size: 1.16em; color: #999b9e">CPU</a> <a href="/tags/%E5%8F%98%E9%87%8F%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 1.1em; color: #999">变量生命周期</a> <a href="/tags/PEiD/" style="font-size: 1.1em; color: #999">PEiD</a> <a href="/tags/%E5%88%86%E6%94%AF/" style="font-size: 1.1em; color: #999">分支</a> <a href="/tags/%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/" style="font-size: 1.1em; color: #999">优先级队列</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 1.1em; color: #999">编程</a> <a href="/tags/%E5%A4%9A%E6%80%81/" style="font-size: 1.21em; color: #999ea4">多态</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" style="font-size: 1.1em; color: #999">二叉搜索树</a> <a href="/tags/DebugAPI/" style="font-size: 1.1em; color: #999">DebugAPI</a> <a href="/tags/B%E6%A0%91/" style="font-size: 1.1em; color: #999">B树</a> <a href="/tags/%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/" style="font-size: 1.16em; color: #999b9e">泛型编程</a> <a href="/tags/ETW/" style="font-size: 1.1em; color: #999">ETW</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 1.33em; color: #99a2af">日常</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 1.16em; color: #999b9e">排序</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA/" style="font-size: 1.27em; color: #99a0a9">数据表示</a> <a href="/tags/const/" style="font-size: 1.1em; color: #999">const</a> <a href="/tags/%E4%B8%B2%E8%A1%8C%E5%8C%96/" style="font-size: 1.1em; color: #999">串行化</a> <a href="/tags/%E7%A8%B3%E5%AE%9A%E5%8C%B9%E9%85%8D/" style="font-size: 1.1em; color: #999">稳定匹配</a> <a href="/tags/OllyDbg/" style="font-size: 1.1em; color: #999">OllyDbg</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 1.44em; color: #99a7ba">读书笔记</a> <a href="/tags/%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" style="font-size: 1.1em; color: #999">泛型程序设计</a> <a href="/tags/NP%E5%AE%8C%E5%85%A8%E6%80%A7/" style="font-size: 1.1em; color: #999">NP完全性</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" style="font-size: 1.5em; color: #99a9bf">网络安全</a> <a href="/tags/%E7%89%B9%E5%BE%81%E8%AF%86%E5%88%AB/" style="font-size: 1.1em; color: #999">特征识别</a> <a href="/tags/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" style="font-size: 1.1em; color: #999">亲密关系</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" style="font-size: 1.1em; color: #999">计算机系统</a> <a href="/tags/408/" style="font-size: 1.39em; color: #99a4b4">408</a> <a href="/tags/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/" style="font-size: 1.1em; color: #999">算法分析</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 1.1em; color: #999">位运算</a> <a href="/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/" style="font-size: 1.21em; color: #999ea4">反汇编</a> <a href="/tags/PEB/" style="font-size: 1.1em; color: #999">PEB</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/08/"><span class="card-archive-list-date">八月 2026</span><span class="card-archive-list-count">20</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/07/"><span class="card-archive-list-date">七月 2026</span><span class="card-archive-list-count">88</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/06/"><span class="card-archive-list-date">六月 2026</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/09/"><span class="card-archive-list-date">九月 2025</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/08/"><span class="card-archive-list-date">八月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">七月 2025</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/06/"><span class="card-archive-list-date">六月 2025</span><span class="card-archive-list-count">32</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/05/"><span class="card-archive-list-date">五月 2025</span><span class="card-archive-list-count">3</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">327</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-12-31T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">491.3k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-08-18T16:20:37.998Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/bg1.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By 睿清颜</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.mps.gov.cn/#/query/webSearch?code=44040402000233"><img class="icp-icon" src="/img/beian.png"><span>粤公网安备44040402000233号 </span></a>    </a> <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn"><span>     粤ICP备2024216057号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.14.0-b3"></script><script src="/js/main.js?v=4.14.0-b3"></script><script src="/js/tw_cn.js?v=4.14.0-b3"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: (str) => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, {"typeSpeed":150,"backSpeed":35,"backDelay":3000,"loop":true}))
+  },
+  run: (subtitleType) => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+btf.addGlobalFn('pjaxSend', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init(["落日沉溺于橘色的海，晚风沦陷于赤诚的爱。","山茶花读不懂白玫瑰，北山的风吹不到南山尾。","倘若南风知我意，莫将晩霞落黄昏。","我本无意惹惊鸿，奈何惊鸿入我心。","我将玫瑰藏于身后，风起花落，从此鲜花赠自己，纵马踏花向自由。","树木在森林中相依偎而生长，星辰在银河中因辉映而璀璨。","辞暮尔尔，烟火年年。","慢品人间烟火色，闲观万事岁月长。","一半烟火以谋生，一半诗意以谋爱。","山海自有归期，风雨自有相逢。","星光不问赶路人，时光不负有心人。","且行且忘且随风，且行且看且从容。","我于窗中窥伤鹤，恰如仰头见春台。","努力的过程本就是孤岛，但最后抵达的一定是充满生机的彼岸。永远不要因为一些，不值得的事和人而颓废。","山高水远，怕什么来不及，慌什么到不了，天顺其自然，地顺其性，人顺其变，一切都是刚刚好。","我见众生皆草木，唯有见你是青山。","日出有盼，日落有思，平平安安，所遇皆甜。","毕竟几人真得鹿，不知终日梦为鱼。","在心里种花，人生才不会荒芜。","市井长巷，聚拢来是烟火，摊开是人间。","流水不争先，争的是滔滔不绝。","浮云吹作雪，世味煮成茶。","远赴人间惊鸿宴，一睹人间盛世颜。","花开堪折直须折，莫待无花空折枝。","人生只似风前絮,欢也零星,悲也零星,都作连江点点萍。"])
+  } else {
+    document.getElementById("subtitle").textContent = "落日沉溺于橘色的海，晚风沦陷于赤诚的爱。"
+  }
+}
+typedJSFn.run(subtitleType)</script></div><script src="/js/pagination-jump@1.0.0.js?v=1.0.0"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>(() => {
+  const isChatBtn = false
+  const isChatHideShow = false
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = 'T9itjhtGq78bcPAhB'
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.14.0-b3"></script></div></div></body></html>
