@@ -348,6 +348,27 @@ textarea:focus-visible {
   color: var(--daily-blue);
 }
 
+.doki-ui-icon {
+  display: block;
+  width: 17px;
+  height: 17px;
+  object-fit: contain;
+  pointer-events: none;
+  transition: filter .16s ease, transform .16s ease;
+}
+
+.task-icon-button .doki-ui-icon,
+.plan-task-select-button .doki-ui-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.add-button .doki-ui-icon {
+  width: 21px;
+  height: 21px;
+  margin: auto;
+}
+
 .task-icon-button.is-danger:hover {
   background: var(--daily-coral-soft);
   color: var(--daily-coral);
@@ -1244,6 +1265,11 @@ body {
   font-size: 18px;
 }
 
+.rail-button .doki-ui-icon {
+  width: 22px;
+  height: 22px;
+}
+
 .rail-button:hover {
   background: #f1f4f3;
   color: var(--daily-text);
@@ -1463,6 +1489,18 @@ body {
   font-size: 19px;
 }
 
+.daily-heading h1 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+
+.daily-heading h1 .doki-ui-icon {
+  width: 24px;
+  height: 24px;
+}
+
 .icon-button,
 .task-icon-button,
 .timer-icon-button,
@@ -1626,6 +1664,7 @@ body {
 }
 
 .inbox-item {
+  position: relative;
   grid-template-columns: 30px 24px minmax(0, 1fr) auto;
   min-height: 48px;
   padding: 8px 2px;
@@ -1721,6 +1760,16 @@ body {
 .plan-directory-heading {
   justify-content: space-between;
   gap: 10px;
+  margin: -6px -8px 13px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: background .16s ease, box-shadow .16s ease;
+}
+
+.plan-directory-heading:hover,
+.plan-directory-heading:focus-within {
+  background: var(--doki-hover, rgba(139, 109, 194, .10));
+  box-shadow: inset 0 0 0 1px rgba(139, 109, 194, .06);
 }
 
 .plan-directory-heading-actions {
@@ -1731,6 +1780,18 @@ body {
   width: 34px;
   height: 34px;
   padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(4px) scale(.94);
+  transition: opacity .16s ease, transform .16s ease, background .16s ease;
+}
+
+.plan-directory-heading:hover .plan-directory-add-button,
+.plan-directory-heading:focus-within .plan-directory-add-button,
+.plan-directory-add-button:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0) scale(1);
 }
 
 .plan-group-block {
@@ -1739,8 +1800,9 @@ body {
 
 .plan-group-item {
   display: grid;
+  position: relative;
   min-width: 0;
-  grid-template-columns: 14px 28px minmax(0, 1fr) auto auto;
+  grid-template-columns: 14px 28px minmax(0, 1fr) auto;
   align-items: center;
   gap: 6px;
   min-height: 44px;
@@ -1748,19 +1810,26 @@ body {
   border-radius: 6px;
   color: #46514c;
   cursor: pointer;
+  transition: background .16s ease, box-shadow .16s ease, color .16s ease;
 }
 
 .plan-group-item.is-direct {
-  grid-template-columns: 28px minmax(0, 1fr) auto auto;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
 }
 
 .plan-group-item:hover {
-  background: #f5f7f6;
+  background: var(--doki-hover, rgba(139, 109, 194, .10));
+  box-shadow: inset 0 0 0 1px rgba(139, 109, 194, .05);
 }
 
 .plan-group-item.is-active {
-  background: #edf3ff;
+  background: var(--daily-blue-soft, #edf3ff);
   color: #315fbd;
+}
+
+.plan-group-item.is-active:hover {
+  background: var(--doki-hover, #e2ebff);
+  box-shadow: inset 0 0 0 1px rgba(76, 120, 221, .12);
 }
 
 .plan-group-icon {
@@ -1769,9 +1838,29 @@ body {
 }
 
 .plan-group-toggle {
+  display: grid;
+  width: 14px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
   color: #87928d;
   font-size: 10px;
-  text-align: center;
+  cursor: pointer;
+  place-items: center;
+}
+
+.plan-group-toggle:hover,
+.plan-group-toggle:focus-visible,
+.plan-project-toggle:hover,
+.plan-project-toggle:focus-visible {
+  color: #6f53a7;
+  outline: 0;
+}
+
+.plan-directory-toggle-icon {
+  width: 12px;
+  height: 12px;
 }
 
 .plan-group-name {
@@ -1787,22 +1876,6 @@ body {
   font-size: 11px;
 }
 
-.plan-group-actions,
-.plan-project-actions {
-  display: flex;
-  align-items: center;
-  gap: 1px;
-  opacity: 1;
-  transition: opacity .16s ease;
-}
-
-.plan-group-item:hover .plan-group-actions,
-.plan-group-item.is-active .plan-group-actions,
-.plan-project-item:hover .plan-project-actions,
-.plan-project-item.is-active .plan-project-actions {
-  opacity: 1;
-}
-
 .plan-project-list {
   display: grid;
   gap: 2px;
@@ -1813,8 +1886,9 @@ body {
 
 .plan-project-item {
   display: grid;
+  position: relative;
   min-width: 0;
-  grid-template-columns: 24px minmax(0, 1fr) auto auto;
+  grid-template-columns: 14px 22px minmax(0, 1fr) auto;
   align-items: center;
   gap: 5px;
   min-height: 38px;
@@ -1823,16 +1897,40 @@ body {
   border-radius: 5px;
   color: #5e6964;
   cursor: pointer;
+  transition: background .16s ease, box-shadow .16s ease, color .16s ease;
+}
+
+.plan-project-toggle {
+  display: grid;
+  width: 14px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #8d9792;
+  font-size: 9px;
+  cursor: pointer;
+  place-items: center;
+}
+
+.plan-project-toggle.is-empty {
+  cursor: default;
 }
 
 .plan-project-item:hover {
-  background: #f6f8f7;
+  background: var(--doki-hover, rgba(139, 109, 194, .10));
+  box-shadow: inset 0 0 0 1px rgba(139, 109, 194, .05);
 }
 
 .plan-project-item.is-active {
   border-left-color: #4c78dd;
-  background: #f0f5ff;
+  background: var(--daily-blue-soft, #f0f5ff);
   color: #315fbd;
+}
+
+.plan-project-item.is-active:hover {
+  background: var(--doki-hover, #e4edff);
+  box-shadow: inset 0 0 0 1px rgba(76, 120, 221, .10);
 }
 
 .plan-project-icon {
@@ -1870,8 +1968,9 @@ body {
 
 .plan-section-tree-item {
   display: grid;
+  position: relative;
   min-width: 0;
-  grid-template-columns: 20px minmax(0, 1fr) auto auto;
+  grid-template-columns: 20px minmax(0, 1fr) auto;
   align-items: center;
   gap: 5px;
   min-height: 32px;
@@ -1880,16 +1979,76 @@ body {
   border-radius: 5px;
   color: #727c77;
   cursor: pointer;
+  transition: background .16s ease, box-shadow .16s ease, color .16s ease;
 }
 
-.plan-section-tree-item:hover,
-.plan-section-tree-item.is-active {
-  background: #f5f1ff;
+.plan-section-tree-item:hover {
+  background: var(--doki-hover, rgba(139, 109, 194, .11));
+  box-shadow: inset 0 0 0 1px rgba(139, 109, 194, .06);
   color: #6f53a7;
 }
 
 .plan-section-tree-item.is-active {
   border-left-color: #8b6dc2;
+  background: rgba(139, 109, 194, .10);
+  color: #6f53a7;
+}
+
+.plan-section-tree-item.is-active:hover {
+  background: var(--doki-hover, #ece4fa);
+  box-shadow: inset 0 0 0 1px rgba(139, 109, 194, .12);
+}
+
+@media (hover: none) {
+  .plan-directory-add-button {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+}
+
+.plan-order-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 1px 2px;
+  border-radius: 7px;
+  background: rgba(139, 109, 194, .1);
+}
+
+.plan-order-controls .task-icon-button {
+  width: 26px;
+  height: 26px;
+  color: #7d5fb3;
+}
+
+.plan-order-controls .task-icon-button:hover:not(:disabled) {
+  background: #e8def7;
+  color: #65439f;
+}
+
+.plan-order-controls .task-icon-button:disabled {
+  opacity: .25;
+  cursor: default;
+}
+
+.plan-order-toggle.is-active {
+  background: #8b6dc2;
+  color: #fff;
+}
+
+.plan-project-item.is-order-editing,
+.plan-section-tree-item.is-order-editing,
+.inbox-item.is-order-editing {
+  background: rgba(245, 241, 255, .72);
+}
+
+.plan-project-item.is-order-editing {
+  grid-template-columns: 14px 22px minmax(0, 1fr) auto auto;
+}
+
+.plan-section-tree-item.is-order-editing {
+  grid-template-columns: 20px minmax(0, 1fr) auto auto;
 }
 
 .plan-section-tree-icon {
@@ -1916,9 +2075,77 @@ body {
   padding: 6px 8px;
 }
 
-.plan-section-tree-actions {
-  display: inline-flex;
-  gap: 1px;
+.plan-directory-context-menu {
+  position: fixed;
+  z-index: 120;
+  display: grid;
+  width: 148px;
+  gap: 3px;
+  padding: 8px;
+  border: 1px solid rgba(129, 111, 158, .12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .98);
+  box-shadow: 0 18px 45px rgba(55, 45, 72, .22);
+  backdrop-filter: blur(16px);
+}
+
+.plan-directory-context-menu[hidden] {
+  display: none;
+}
+
+.plan-directory-context-action {
+  display: grid;
+  min-height: 38px;
+  grid-template-columns: 24px minmax(0, 1fr);
+  align-items: center;
+  gap: 7px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #4b514e;
+  font-size: 13px;
+  font-weight: 650;
+  text-align: left;
+  cursor: pointer;
+}
+
+.plan-directory-context-action i {
+  color: #8b6dc2;
+  text-align: center;
+}
+
+.plan-directory-context-action .doki-ui-icon {
+  width: 18px;
+  height: 18px;
+  justify-self: center;
+}
+
+.plan-directory-context-action:hover,
+.plan-directory-context-action:focus-visible {
+  background: var(--doki-hover, rgba(139, 109, 194, .11));
+  color: #68469e;
+  outline: 0;
+}
+
+.plan-directory-context-action.is-danger {
+  color: #c35962;
+}
+
+.plan-directory-context-action.is-danger i {
+  color: #d36a73;
+}
+
+.plan-directory-context-action:disabled {
+  cursor: not-allowed;
+  opacity: .38;
+}
+
+.plan-group-item.is-context-target,
+.plan-project-item.is-context-target,
+.plan-section-tree-item.is-context-target {
+  background: var(--doki-hover, rgba(139, 109, 194, .13));
+  box-shadow: inset 0 0 0 1px rgba(139, 109, 194, .12);
 }
 
 .plan-library-panel {
@@ -1930,11 +2157,30 @@ body {
   overflow-y: auto;
 }
 
+.plan-library-panel > .quick-form {
+  margin-top: 0;
+}
+
 .plan-library-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+}
+
+.plan-library-heading-actions {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 7px;
+}
+
+.plan-task-order-toggle {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ded2ef;
+  background: #faf7ff;
+  color: #7d5fb3;
 }
 
 .plan-library-header h2 {
@@ -2062,6 +2308,13 @@ body {
   background: rgba(226, 237, 255, .74);
 }
 
+.plan-library-panel .inbox-item {
+  grid-template-columns: 32px 24px minmax(0, 1fr) auto;
+  gap: 7px;
+  padding-right: 7px;
+  padding-left: 14px;
+}
+
 .plan-task-select-button {
   display: inline-grid;
   width: 25px;
@@ -2083,7 +2336,49 @@ body {
 }
 
 .inbox-item-text {
-  cursor: pointer;
+  overflow: hidden;
+  cursor: default;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.plan-task-row-actions {
+  gap: 1px;
+}
+
+.plan-task-row-actions .task-icon-button {
+  width: 27px;
+  height: 27px;
+}
+
+.plan-task-row-action.is-fixed {
+  background: rgba(177, 111, 147, .14);
+  color: #a65f87;
+}
+
+.plan-task-row-action.has-note {
+  background: rgba(76, 120, 221, .11);
+  color: #5b78bd;
+}
+
+.plan-task-row-action.is-fixed:hover,
+.plan-task-row-action.has-note:hover {
+  color: #fff;
+}
+
+.plan-task-row-action.is-fixed:hover {
+  background: #b16f93;
+}
+
+.plan-task-row-action.has-note:hover {
+  background: #6685cb;
+}
+
+.plan-task-row-action:hover .doki-ui-icon,
+.plan-task-select-button:hover .doki-ui-icon,
+.plan-task-select-button.is-active .doki-ui-icon {
+  filter: saturate(1.14) brightness(1.06);
+  transform: scale(1.08);
 }
 
 .plan-task-duration-badge {
@@ -2220,6 +2515,48 @@ body {
   font-size: 11px;
 }
 
+.plan-task-action-dialog {
+  width: min(520px, calc(100vw - 28px));
+  max-width: 520px;
+}
+
+.plan-task-action-form {
+  display: grid;
+  gap: 16px;
+}
+
+.plan-task-action-field {
+  display: grid;
+  gap: 8px;
+  color: var(--daily-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.plan-task-action-field[hidden] {
+  display: none;
+}
+
+.plan-task-action-field textarea {
+  min-height: 230px;
+  padding: 12px 14px;
+  border: 1px solid #e3e9e6;
+  border-radius: 8px;
+  background: #fafbfb;
+  color: var(--daily-text);
+  font: inherit;
+  font-weight: 500;
+  line-height: 1.7;
+  resize: vertical;
+}
+
+.plan-task-action-field textarea:focus {
+  border-color: #aac0ef;
+  background: #fff;
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(76, 120, 221, .09);
+}
+
 .plan-completion-history {
   margin-top: 20px;
   padding-top: 16px;
@@ -2258,12 +2595,18 @@ body {
 
 .plan-directory-dialog {
   width: min(680px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
 }
 
 .plan-directory-fields {
   display: grid;
-  grid-template-columns: 210px minmax(0, 1fr);
+  grid-template-columns: 58px minmax(0, 1fr);
   gap: 12px;
+}
+
+.plan-directory-form.is-name-only .plan-directory-fields {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .plan-directory-fields label {
@@ -2284,17 +2627,15 @@ body {
 
 .plan-directory-icon-choice {
   display: grid;
-  width: 100%;
+  width: 46px;
   height: 46px;
-  grid-template-columns: 46px minmax(0, 1fr) 20px;
+  grid-template-columns: 1fr;
   align-items: center;
-  gap: 9px;
-  padding: 0 10px 0 0;
+  padding: 0;
   border: 1px solid #dce4e0;
   border-radius: 7px;
   background: #fbfcfc;
   color: var(--daily-text);
-  text-align: left;
   cursor: pointer;
   transition: border-color .15s ease, box-shadow .15s ease;
 }
@@ -2308,41 +2649,41 @@ body {
 .plan-directory-icon-preview {
   display: grid;
   height: 44px;
-  border-right: 1px solid #e5ebe8;
-  border-radius: 6px 0 0 6px;
+  border-radius: 6px;
   background: linear-gradient(145deg, #f7edff, #fff2f7);
   font-size: 25px;
   place-items: center;
 }
 
-.plan-directory-icon-choice-copy {
+.plan-icon-image {
+  display: block;
+  width: 1em;
+  height: 1em;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.plan-directory-icon-preview .plan-icon-image {
+  width: 29px;
+  height: 29px;
+}
+
+.plan-group-icon,
+.plan-project-icon,
+.plan-section-tree-icon {
   display: grid;
-  min-width: 0;
-  gap: 1px;
+  place-items: center;
 }
 
-.plan-directory-icon-choice-copy strong {
-  color: #4c5953;
-  font-size: 12px;
+.plan-group-icon .plan-icon-image {
+  width: 22px;
+  height: 22px;
 }
 
-.plan-directory-icon-choice-copy small {
-  overflow: hidden;
-  color: #96a09b;
-  font-size: 10px;
-  font-weight: 500;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.plan-directory-icon-choice > i {
-  color: #9ba6a1;
-  font-size: 11px;
-  transition: transform .15s ease;
-}
-
-.plan-directory-icon-choice.is-open > i {
-  transform: rotate(180deg);
+.plan-project-icon .plan-icon-image,
+.plan-section-tree-icon .plan-icon-image {
+  width: 18px;
+  height: 18px;
 }
 
 .plan-icon-picker {
@@ -2382,8 +2723,12 @@ body {
 }
 
 .plan-icon-tab {
+  display: inline-flex;
   min-width: 74px;
   height: 32px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   padding: 0 12px;
   border: 1px solid #dde5e1;
   border-radius: 999px;
@@ -2392,6 +2737,11 @@ body {
   font-size: 11px;
   font-weight: 700;
   cursor: pointer;
+}
+
+.plan-icon-tab .plan-icon-image {
+  width: 17px;
+  height: 17px;
 }
 
 .plan-icon-tab:hover,
@@ -2406,6 +2756,11 @@ body {
   min-height: 94px;
   grid-template-columns: repeat(8, minmax(38px, 1fr));
   gap: 7px;
+}
+
+.plan-icon-options.is-paginated {
+  min-height: 293px;
+  align-content: start;
 }
 
 .plan-icon-option {
@@ -2436,6 +2791,59 @@ body {
   border-color: #8ba9e8;
   background: #eaf2ff;
   box-shadow: inset 0 0 0 1px rgba(91, 127, 205, .18);
+}
+
+.plan-icon-option .plan-icon-image {
+  width: 28px;
+  height: 28px;
+}
+
+.plan-icon-pagination {
+  display: flex;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.plan-icon-pagination[hidden] {
+  display: none;
+}
+
+.plan-icon-page {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid #dce4e0;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, .82);
+  color: #7b8580;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  place-items: center;
+  transition: border-color .15s ease, background .15s ease, color .15s ease, transform .15s ease;
+}
+
+.plan-icon-page:hover,
+.plan-icon-page:focus-visible {
+  border-color: #aebfe8;
+  color: #4d70bd;
+  outline: 0;
+  transform: translateY(-1px);
+}
+
+.plan-icon-page.is-active {
+  border-color: #8ba9e8;
+  background: #eaf2ff;
+  color: #376fc4;
+}
+
+.plan-icon-page:disabled {
+  cursor: default;
+  opacity: .35;
+  transform: none;
 }
 
 .plan-icon-description {
@@ -3228,12 +3636,118 @@ body[data-daily-page="home"] .day-bottom-grid {
 }
 
 body[data-daily-page="plan"] .daily-layout {
-  grid-template-columns: 300px 440px minmax(380px, 1fr);
+  grid-template-columns: 300px var(--plan-library-width, 440px) 12px minmax(380px, 1fr);
 }
 
 body[data-daily-page="plan"] .plan-directory-panel,
 body[data-daily-page="plan"] .inbox-panel {
   display: block;
+}
+
+body[data-daily-page="plan"] .plan-library-panel {
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  border-right: 0;
+}
+
+.plan-column-resizer {
+  display: none;
+}
+
+@media (min-width: 1181px) {
+  body[data-daily-page="plan"] .plan-column-resizer {
+    display: flex;
+    position: relative;
+    min-width: 12px;
+    align-items: flex-start;
+    justify-content: center;
+    background: rgba(255, 255, 255, .82);
+    cursor: col-resize;
+    touch-action: none;
+  }
+
+  body[data-daily-page="plan"] .plan-column-resizer::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: #e3e9e6;
+    content: "";
+    transform: translateX(-50%);
+    transition: width .16s ease, background .16s ease, box-shadow .16s ease;
+  }
+
+  body[data-daily-page="plan"] .plan-column-resizer:hover::before,
+  body[data-daily-page="plan"] .plan-column-resizer:focus-visible::before,
+  body.is-plan-library-resizing .plan-column-resizer::before {
+    width: 3px;
+    background: #9a7bca;
+    box-shadow: 0 0 0 3px rgba(139, 109, 194, .09);
+  }
+
+  .plan-column-collapse {
+    display: grid;
+    position: sticky;
+    z-index: 2;
+    top: 88px;
+    width: 24px;
+    height: 38px;
+    flex: 0 0 24px;
+    margin-top: 18px;
+    padding: 0;
+    border: 1px solid #ddd2ed;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .98);
+    color: #8062b2;
+    box-shadow: 0 6px 18px rgba(74, 53, 105, .12);
+    cursor: pointer;
+    place-items: center;
+    transform: scale(.88);
+    opacity: .5;
+    transition: opacity .16s ease, transform .16s ease, background .16s ease, color .16s ease;
+  }
+
+  .plan-column-resizer:hover .plan-column-collapse,
+  .plan-column-collapse:focus-visible,
+  body.is-plan-library-collapsed .plan-column-collapse {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .plan-column-collapse:hover,
+  .plan-column-collapse:focus-visible {
+    background: #8b6dc2;
+    color: #fff;
+    outline: 0;
+  }
+
+  body.is-plan-library-resizing,
+  body.is-plan-library-resizing * {
+    cursor: col-resize !important;
+    user-select: none !important;
+  }
+
+  body[data-daily-page="plan"].is-plan-library-collapsed .daily-layout {
+    grid-template-columns: 300px 0 26px minmax(380px, 1fr);
+  }
+
+  body[data-daily-page="plan"].is-plan-library-collapsed .plan-library-panel {
+    overflow: hidden;
+    min-width: 0;
+    padding-right: 0;
+    padding-left: 0;
+    border-right: 0;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  body[data-daily-page="plan"].is-plan-library-collapsed .plan-column-resizer {
+    min-width: 26px;
+    cursor: default;
+  }
 }
 
 body[data-daily-page="plan"] .date-nav,
@@ -3250,7 +3764,7 @@ body[data-daily-page="plan"] .memo-section {
 }
 
 body[data-daily-page="plan"] .day-panel {
-  border-left: 1px solid #e3e9e6;
+  border-left: 0;
   transition: background-color .16s ease, box-shadow .16s ease;
 }
 
@@ -4151,6 +4665,11 @@ body[data-daily-page="plan"] .daily-summary-section {
   font-size: 14px;
 }
 
+.auth-button .doki-ui-icon {
+  width: 20px;
+  height: 20px;
+}
+
 .auth-button.is-authenticated {
   border-color: #b9d8c9;
   background: var(--daily-green-soft);
@@ -4723,6 +5242,12 @@ body[data-authenticated="false"] input:disabled {
   color: var(--daily-blue);
 }
 
+.quadrant-toolbar h3 .doki-ui-icon,
+.plan-directory-heading h2 .doki-ui-icon {
+  width: 20px;
+  height: 20px;
+}
+
 .quadrant-toolbar > div > span {
   color: var(--daily-muted);
   font-size: 11px;
@@ -5226,7 +5751,7 @@ body[data-authenticated="false"] input:disabled {
 
 @media (max-width: 1450px) {
   body[data-daily-page="plan"] .daily-layout {
-    grid-template-columns: 300px 440px minmax(380px, 1fr);
+    grid-template-columns: 300px var(--plan-library-width, 440px) 12px minmax(380px, 1fr);
   }
 }
 
@@ -5968,17 +6493,17 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
         <img src="/img/avatar.jpg" alt="Ruiqy~">
       </a>
       <nav class="rail-nav">
-        <a class="rail-button" href="/daily/" title="每日首页" aria-label="每日首页"><i class="fa-solid fa-square-check"></i></a><a class="rail-button is-active" href="/daily/plan/" title="计划与任务" aria-label="计划与任务"><i class="fa-solid fa-inbox"></i></a><a class="rail-button" href="/daily/focus/" title="每周复盘" aria-label="每周复盘"><i class="fa-solid fa-calendar-check"></i></a><a class="rail-button" href="/daily/notes/" data-private-nav title="备忘录" aria-label="备忘录"><i class="fa-solid fa-note-sticky"></i></a>
+        <a class="rail-button" href="/daily/" title="每日首页" aria-label="每日首页"><img class="doki-ui-icon" src="/daily/doki-icons/check.svg" alt="" aria-hidden="true"></a><a class="rail-button is-active" href="/daily/plan/" title="计划与任务" aria-label="计划与任务"><img class="doki-ui-icon" src="/daily/doki-icons/todo.svg" alt="" aria-hidden="true"></a><a class="rail-button" href="/daily/focus/" title="每周复盘" aria-label="每周复盘"><img class="doki-ui-icon" src="/daily/doki-icons/history.svg" alt="" aria-hidden="true"></a><a class="rail-button" href="/daily/notes/" data-private-nav title="备忘录" aria-label="备忘录"><img class="doki-ui-icon" src="/daily/doki-icons/file_heart.svg" alt="" aria-hidden="true"></a>
       </nav>
       <nav class="rail-tools">
         <button class="rail-button" type="button" data-utility-open="alerts" title="未完成提醒" aria-label="未完成提醒">
-          <i class="fa-solid fa-bell"></i><span class="rail-badge" data-alert-badge hidden>0</span>
+          <img class="doki-ui-icon" src="/daily/doki-icons/notifications.svg" alt="" aria-hidden="true"><span class="rail-badge" data-alert-badge hidden>0</span>
         </button>
         <button class="rail-button" type="button" data-utility-open="trash" title="垃圾桶" aria-label="垃圾桶">
-          <i class="fa-solid fa-trash-can"></i><span class="rail-badge" data-trash-badge hidden>0</span>
+          <img class="doki-ui-icon" src="/daily/doki-icons/trash.svg" alt="" aria-hidden="true"><span class="rail-badge" data-trash-badge hidden>0</span>
         </button>
-        <a class="rail-button" href="/docs/" title="读书笔记" aria-label="读书笔记"><i class="fa-solid fa-book-open"></i></a>
-        <a class="rail-button" href="/" title="首页" aria-label="首页"><i class="fa-solid fa-house"></i></a>
+        <a class="rail-button" href="/docs/" title="读书笔记" aria-label="读书笔记"><img class="doki-ui-icon" src="/daily/doki-icons/library.svg" alt="" aria-hidden="true"></a>
+        <a class="rail-button" href="/" title="首页" aria-label="首页"><img class="doki-ui-icon" src="/daily/doki-icons/light_house.svg" alt="" aria-hidden="true"></a>
       </nav>
     </aside>
     <header class="daily-header">
@@ -5990,13 +6515,13 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
         </span>
       </a>
       <div class="daily-heading">
-        <h1><i class="fa-solid fa-list-check" aria-hidden="true"></i>计划与任务</h1>
+        <h1><img class="doki-ui-icon" src="/daily/doki-icons/todo.svg" alt="" aria-hidden="true">计划与任务</h1>
         <p>收集 · 安排 · 完成</p>
       </div>
-      <nav class="mobile-page-nav" aria-label="每日打卡页面导航"><a class="rail-button" href="/daily/" title="每日首页" aria-label="每日首页"><i class="fa-solid fa-square-check"></i></a><a class="rail-button is-active" href="/daily/plan/" title="计划与任务" aria-label="计划与任务"><i class="fa-solid fa-inbox"></i></a><a class="rail-button" href="/daily/focus/" title="每周复盘" aria-label="每周复盘"><i class="fa-solid fa-calendar-check"></i></a><a class="rail-button" href="/daily/notes/" data-private-nav title="备忘录" aria-label="备忘录"><i class="fa-solid fa-note-sticky"></i></a></nav>
+      <nav class="mobile-page-nav" aria-label="每日打卡页面导航"><a class="rail-button" href="/daily/" title="每日首页" aria-label="每日首页"><img class="doki-ui-icon" src="/daily/doki-icons/check.svg" alt="" aria-hidden="true"></a><a class="rail-button is-active" href="/daily/plan/" title="计划与任务" aria-label="计划与任务"><img class="doki-ui-icon" src="/daily/doki-icons/todo.svg" alt="" aria-hidden="true"></a><a class="rail-button" href="/daily/focus/" title="每周复盘" aria-label="每周复盘"><img class="doki-ui-icon" src="/daily/doki-icons/history.svg" alt="" aria-hidden="true"></a><a class="rail-button" href="/daily/notes/" data-private-nav title="备忘录" aria-label="备忘录"><img class="doki-ui-icon" src="/daily/doki-icons/file_heart.svg" alt="" aria-hidden="true"></a></nav>
       <div class="daily-header-actions" role="toolbar" aria-label="账号管理">
         <button class="auth-button" type="button" data-auth-button title="输入密码并授信设备" aria-label="输入密码并授信设备">
-          <i class="fa-solid fa-lock"></i>
+          <img class="doki-ui-icon" src="/daily/doki-icons/locked.svg" alt="" aria-hidden="true">
         </button>
         <button class="icon-button" type="button" data-export title="导出计划数据" aria-label="导出计划数据" hidden><i class="fa-solid fa-download"></i></button>
         <button class="icon-button" type="button" data-import title="导入计划数据" aria-label="导入计划数据" hidden><i class="fa-solid fa-upload"></i></button>
@@ -6117,43 +6642,27 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
 
       <aside class="daily-panel plan-directory-panel" id="daily-plan-directory">
         <div class="panel-title-row plan-directory-heading">
-          <h2><i class="fa-solid fa-folder-tree" aria-hidden="true"></i>任务目录</h2>
+          <h2><img class="doki-ui-icon" src="/daily/doki-icons/structure.svg" alt="" aria-hidden="true">任务目录</h2>
           <div class="plan-directory-heading-actions">
             <span class="panel-count" data-plan-group-count>0</span>
-            <button class="add-button plan-directory-add-button" type="button" data-plan-directory-add title="新建一级目录" aria-label="新建一级目录"><i class="fa-solid fa-plus"></i></button>
+            <button class="add-button plan-directory-add-button" type="button" data-plan-directory-add title="新建一级目录" aria-label="新建一级目录"><img class="doki-ui-icon" src="/daily/doki-icons/add.svg" alt="" aria-hidden="true"></button>
           </div>
         </div>
         <ul class="plan-group-list" data-plan-group-list></ul>
       </aside>
 
       <section class="daily-panel inbox-panel plan-library-panel" id="daily-plan">
-        <div class="panel-title-row">
-          <h2 data-plan-group-heading><i class="fa-solid fa-folder-open" aria-hidden="true"></i>默认清单</h2>
-          <span class="panel-count" data-inbox-count>0</span>
-        </div>
         <form class="quick-form" data-inbox-form>
           <input type="text" maxlength="160" data-inbox-input placeholder="新建 1h 任务项" autocomplete="off" aria-label="新增当前计划任务">
-          <button class="add-button" type="submit" title="新建任务项" aria-label="新建任务项"><i class="fa-solid fa-plus"></i></button>
-          <label class="plan-quick-options"><input type="checkbox" data-inbox-fixed><span><i class="fa-solid fa-thumbtack"></i>固定任务，可反复加入今日</span></label>
+          <button class="add-button" type="submit" title="新建任务项" aria-label="新建任务项"><img class="doki-ui-icon" src="/daily/doki-icons/add.svg" alt="" aria-hidden="true"></button>
         </form>
         <ul class="inbox-list" data-inbox-list></ul>
-        <section class="plan-task-detail" data-plan-task-detail hidden>
-          <header class="plan-task-detail-header">
-            <h3><i class="fa-solid fa-align-left" aria-hidden="true"></i>任务详情</h3>
-            <button class="task-icon-button" type="button" data-plan-detail-close title="收起详情" aria-label="收起任务详情"><i class="fa-solid fa-xmark"></i></button>
-          </header>
-          <input class="plan-task-title" type="text" maxlength="160" data-plan-task-title aria-label="任务标题">
-          <select class="plan-task-subgroup" data-plan-task-subgroup aria-label="任务所属二级分组"></select>
-          <select class="plan-task-section" data-plan-task-section aria-label="任务所属大方向"></select>
-          <label class="plan-task-fixed-toggle"><input type="checkbox" data-plan-task-fixed><span><i class="fa-solid fa-thumbtack"></i>固定任务：每次复制 1h 到今日，目录原任务不会自动删除</span></label>
-          <textarea class="plan-task-note" maxlength="6000" data-plan-task-note placeholder="记录目标、资料、步骤、注意事项或阶段进展……" aria-label="任务备注"></textarea>
-          <div class="plan-task-detail-actions">
-            <span class="plan-task-detail-status" data-plan-task-status>内容自动保存</span>
-            <button class="plan-schedule-button" type="button" data-plan-task-schedule><i class="fa-solid fa-arrow-right"></i>加入今日任务</button>
-          </div>
-        </section>
         <div class="inbox-footer">选择目录查看任务；点击左侧圆形按钮加入今天，也可以拖到右侧今日任务</div>
       </section>
+
+      <div class="plan-column-resizer" data-plan-column-resizer role="separator" aria-label="调整任务列表宽度" aria-orientation="vertical" aria-valuemin="280" aria-valuemax="720" aria-valuenow="440" tabindex="0" title="左右拖动调整任务列表宽度；双击可折叠">
+        <button class="plan-column-collapse" type="button" data-plan-column-collapse title="隐藏任务列表" aria-label="隐藏任务列表"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+      </div>
 
       <section class="daily-panel day-panel" id="daily-today">
         <header class="day-toolbar">
@@ -6177,12 +6686,12 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
         <div class="day-content">
           <div class="quadrant-toolbar">
             <div>
-              <h3><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i>四象限</h3>
+              <h3><img class="doki-ui-icon" src="/daily/doki-icons/layout.svg" alt="" aria-hidden="true">四象限</h3>
               <span>点击彩色圆点可调整任务象限</span>
             </div>
             <div class="quadrant-toolbar-actions">
               <span class="panel-count" data-task-count>0</span>
-              <button class="add-button quadrant-add-button" type="button" data-task-create-open title="添加任务" aria-label="添加任务"><i class="fa-solid fa-plus"></i></button>
+              <button class="add-button quadrant-add-button" type="button" data-task-create-open title="添加任务" aria-label="添加任务"><img class="doki-ui-icon" src="/daily/doki-icons/add.svg" alt="" aria-hidden="true"></button>
             </div>
           </div>
 
@@ -6315,14 +6824,15 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     </div>
     <img class="daily-doki-sticker" src="/daily/doki/emilia_light.png" alt="" aria-hidden="true" data-doki-sticker>
   </div>
+  <div class="plan-directory-context-menu" data-plan-directory-context-menu role="menu" aria-label="目录操作" hidden></div>
   <div class="task-detail-modal task-create-modal plan-directory-modal" data-plan-directory-modal hidden>
     <section class="task-detail-dialog task-create-dialog plan-directory-dialog" role="dialog" aria-modal="true" aria-labelledby="plan-directory-title">
       <header class="task-create-header">
         <div>
           <span class="task-create-icon"><i class="fa-solid fa-folder-plus"></i></span>
           <div>
-            <h2 id="plan-directory-title" data-plan-directory-title>新建一级目录</h2>
-            <p>目录用于整理方向，二级项目用于承载具体目标</p>
+            <h2 id="plan-directory-title" data-plan-directory-title>添加任务目录</h2>
+            <p data-plan-directory-subtitle>左侧选择图标，右侧填写名称</p>
           </div>
         </div>
         <button class="task-detail-close" type="button" data-plan-directory-close title="关闭" aria-label="关闭目录窗口"><i class="fa-solid fa-xmark"></i></button>
@@ -6333,12 +6843,10 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
         <input type="hidden" data-plan-directory-project-id>
         <input type="hidden" data-plan-directory-section-id>
         <div class="plan-directory-fields">
-          <label class="plan-directory-icon-field">
+          <label class="plan-directory-icon-field" data-plan-directory-icon-field>
             <span>图标</span>
             <button class="plan-directory-icon-choice" type="button" data-plan-directory-icon-choice aria-label="点击选择目录图标" aria-expanded="false" aria-controls="plan-directory-icon-picker">
               <span class="plan-directory-icon-preview" data-plan-directory-icon-preview>📁</span>
-              <span class="plan-directory-icon-choice-copy"><strong>当前图标</strong><small data-plan-directory-icon-current>从下方选择 Emoji</small></span>
-              <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
             </button>
             <input type="hidden" data-plan-directory-icon>
           </label>
@@ -6347,13 +6855,15 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
             <input class="task-detail-title" type="text" maxlength="40" data-plan-directory-name placeholder="输入目录名称" autocomplete="off" required aria-label="目录名称">
           </label>
         </div>
-        <section class="plan-icon-picker" id="plan-directory-icon-picker" data-plan-directory-icon-picker aria-label="Emoji 图标选择器" hidden>
+        <!-- Doki Theme Icons by Unthrottled: https://github.com/doki-theme/doki-theme-icons (CC BY 4.0) -->
+        <section class="plan-icon-picker" id="plan-directory-icon-picker" data-plan-directory-icon-picker aria-label="目录图标选择器" hidden>
           <header class="plan-icon-picker-header">
-            <strong><i class="fa-regular fa-face-smile" aria-hidden="true"></i> 选择 Emoji</strong>
+            <strong><i class="fa-regular fa-face-smile" aria-hidden="true"></i> 选择图标</strong>
             <span>鼠标悬停或键盘聚焦可查看寓意</span>
           </header>
-          <div class="plan-icon-tabs" role="tablist" aria-label="Emoji 分类" data-plan-directory-icon-tabs></div>
-          <div class="plan-icon-options" role="group" aria-label="Emoji 选项" data-plan-directory-icon-options></div>
+          <div class="plan-icon-tabs" role="tablist" aria-label="图标分类" data-plan-directory-icon-tabs></div>
+          <div class="plan-icon-options" role="group" aria-label="图标选项" data-plan-directory-icon-options></div>
+          <nav class="plan-icon-pagination" aria-label="Doki 图标分页" data-plan-directory-icon-pages hidden></nav>
           <p class="plan-icon-description" aria-live="polite" data-plan-directory-icon-description>将鼠标放在图标上，即可查看它的名称和寓意。</p>
         </section>
         <footer class="task-create-actions plan-directory-actions">
@@ -6361,6 +6871,34 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
           <span class="plan-directory-action-spacer"></span>
           <button class="task-create-cancel" type="button" data-plan-directory-close>取消</button>
           <button class="task-create-submit" type="submit"><i class="fa-solid fa-check"></i>保存</button>
+        </footer>
+      </form>
+    </section>
+  </div>
+  <div class="task-detail-modal task-create-modal" data-plan-task-action-modal hidden>
+    <section class="task-detail-dialog task-create-dialog plan-task-action-dialog" role="dialog" aria-modal="true" aria-labelledby="plan-task-action-title">
+      <header class="task-create-header">
+        <div>
+          <span class="task-create-icon"><img class="doki-ui-icon" src="/daily/doki-icons/edit.svg" alt="" aria-hidden="true" data-plan-task-action-icon></span>
+          <div>
+            <h2 id="plan-task-action-title" data-plan-task-action-title>编辑任务</h2>
+            <p data-plan-task-action-subtitle>只修改任务名称</p>
+          </div>
+        </div>
+        <button class="task-detail-close" type="button" data-plan-task-action-close title="关闭" aria-label="关闭任务编辑窗口"><i class="fa-solid fa-xmark"></i></button>
+      </header>
+      <form class="plan-task-action-form" data-plan-task-action-form>
+        <label class="plan-task-action-field" data-plan-task-action-name-field>
+          <span>任务名称</span>
+          <input class="task-detail-title" type="text" maxlength="160" data-plan-task-action-name autocomplete="off" aria-label="任务名称">
+        </label>
+        <label class="plan-task-action-field" data-plan-task-action-note-field hidden>
+          <span>任务便签</span>
+          <textarea maxlength="6000" data-plan-task-action-note placeholder="记录资料、步骤、注意事项或阶段进展……" aria-label="任务便签"></textarea>
+        </label>
+        <footer class="task-create-actions">
+          <button class="task-create-cancel" type="button" data-plan-task-action-close>取消</button>
+          <button class="task-create-submit" type="submit" data-plan-task-action-submit><i class="fa-solid fa-check"></i>保存</button>
         </footer>
       </form>
     </section>
@@ -6494,6 +7032,8 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
   var ROUTINE_TIMER_KEY = 'ruiqy.daily.routine.timer.v1'
   var DOKI_THEME_KEY = 'ruiqy.daily.doki-theme.v1'
   var DOKI_STICKER_POSITION_KEY = 'ruiqy.daily.doki-sticker-position.v1'
+  var PLAN_NAVIGATION_KEY = 'ruiqy.daily.plan-navigation.v1'
+  var PLAN_LIBRARY_LAYOUT_KEY = 'ruiqy.daily.plan-library-layout.v1'
   var DOKI_THEMES = {
     'emilia-light': { tone: 'light', sticker: '/daily/doki/emilia_light.png' },
     'beatrice': { tone: 'light', sticker: '/daily/doki/beatrice.png' },
@@ -6539,33 +7079,152 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
   var DEFAULT_PLAN_GROUP_ID = 'plan-main'
   var LEGACY_PLAN_GROUP_ID = 'plan-default'
   var PLAN_GROUP_PRESETS = [
-    { id: 'plan-main', key: 'main', icon: '🎓', index: '1', name: '主线任务' },
-    { id: 'plan-side', key: 'side', icon: '💐', index: '2', name: '支线任务' },
-    { id: 'plan-habit', key: 'habit', icon: '🌄', index: '3', name: '习惯打卡' },
-    { id: 'plan-wish', key: 'wish', icon: '🏡', index: '4', name: '心愿小记' }
+    { id: 'plan-main', key: 'main', icon: 'doki:folder-library', index: '1', name: '主线任务' },
+    { id: 'plan-side', key: 'side', icon: 'doki:folder-heart', index: '2', name: '支线任务' },
+    { id: 'plan-habit', key: 'habit', icon: 'doki:check', index: '3', name: '习惯打卡' },
+    { id: 'plan-wish', key: 'wish', icon: 'doki:heart', index: '4', name: '心愿小记' }
   ]
   var PLAN_PROJECT_PRESETS = [
-    { id: 'project-exam-11408', groupId: 'plan-main', icon: '📚', name: '考研 11857' },
-    { id: 'project-cs-course', groupId: 'plan-main', icon: '🖥️', name: '计科课程' },
-    { id: 'project-ml-engineer', groupId: 'plan-main', icon: '🧮', name: '算法工程师（机器学习方向）' }
+    { id: 'project-exam-11408', groupId: 'plan-main', icon: 'doki:folder-library', name: '考研 11857' },
+    { id: 'project-cs-course', groupId: 'plan-main', icon: 'doki:folder_test', name: '计科课程' },
+    { id: 'project-ml-engineer', groupId: 'plan-main', icon: 'doki:folder_db_solid', name: '算法工程师（机器学习方向）' }
   ]
   var PLAN_SECTION_PRESETS = [
-    { id: 'section-exam-math', subgroupId: 'project-exam-11408', icon: '➗', name: '高数' },
-    { id: 'section-exam-cybersecurity', subgroupId: 'project-exam-11408', icon: '🛡️', name: '网安' },
-    { id: 'section-exam-english', subgroupId: 'project-exam-11408', icon: '🗣️', name: '英语' },
-    { id: 'section-exam-politics', subgroupId: 'project-exam-11408', icon: '📕', name: '政治' },
-    { id: 'section-exam-408', subgroupId: 'project-exam-11408', icon: '💻', name: '计算机 408' },
-    { id: 'section-cs-foundation', subgroupId: 'project-cs-course', icon: '📘', name: '专业基础' },
-    { id: 'section-cs-system', subgroupId: 'project-cs-course', icon: '⚙️', name: '系统与工程' },
-    { id: 'section-ml-algorithm', subgroupId: 'project-ml-engineer', icon: '🌻', name: '数据结构与算法' },
-    { id: 'section-ml-foundation', subgroupId: 'project-ml-engineer', icon: '🌺', name: '机器学习基础' },
-    { id: 'section-ml-project', subgroupId: 'project-ml-engineer', icon: '🧪', name: '项目实践' }
+    { id: 'section-exam-math', subgroupId: 'project-exam-11408', icon: 'doki:graph', name: '高数' },
+    { id: 'section-exam-cybersecurity', subgroupId: 'project-exam-11408', icon: 'doki:locked', name: '网安' },
+    { id: 'section-exam-english', subgroupId: 'project-exam-11408', icon: 'doki:bookmark', name: '英语' },
+    { id: 'section-exam-politics', subgroupId: 'project-exam-11408', icon: 'doki:file', name: '政治' },
+    { id: 'section-exam-408', subgroupId: 'project-exam-11408', icon: 'doki:terminal', name: '计算机 408' },
+    { id: 'section-cs-foundation', subgroupId: 'project-cs-course', icon: 'doki:dependencies', name: '专业基础' },
+    { id: 'section-cs-system', subgroupId: 'project-cs-course', icon: 'doki:settings', name: '系统与工程' },
+    { id: 'section-ml-algorithm', subgroupId: 'project-ml-engineer', icon: 'doki:network_graph', name: '数据结构与算法' },
+    { id: 'section-ml-foundation', subgroupId: 'project-ml-engineer', icon: 'doki:dna', name: '机器学习基础' },
+    { id: 'section-ml-project', subgroupId: 'project-ml-engineer', icon: 'doki:build', name: '项目实践' }
   ]
   var PLAN_TASK_PRESETS = [
     { id: 'task-exam-math-1h', text: '高数 1h', sectionId: 'section-exam-math', focusTag: '➗ 数学' },
     { id: 'task-exam-cybersecurity-1h', text: '网安 1h', sectionId: 'section-exam-cybersecurity', focusTag: '🛡️ 网安' },
     { id: 'task-exam-english-1h', text: '英语 1h', sectionId: 'section-exam-english', focusTag: '🗣️ 英语' }
   ]
+  var DOKI_ICON_FILES = ["add.svg","angle_braces.svg","arrow_bottom_left.svg","arrow_right.svg","arrow_upper_right.svg","avatar.svg","bean.svg","boat.svg","bookmark.svg","bow.svg","breakpoint.svg","build_close.svg","build.svg","check.svg","cheemsburbger.svg","cherry.svg","chevron_down.svg","chevron_left.svg","chevron_right.svg","chevron_up.svg","circle.svg","clear_text.svg","close.svg","cloud_outline.svg","cloud.svg","collapse_all.svg","comma_glyph.svg","commit_horizontal.svg","commit_vertical.svg","config.svg","copy.svg","coverage.svg","cowfee_build.svg","cowfee.svg","css.svg","cupcake_refresh.svg","cupcake.svg","curly_braces.svg","db_solid.svg","db.svg","debug.svg","dependencies.svg","disabled_breakpoint.svg","dna.svg","docker.svg","doki_icon_logo.svg","doki_icon_settings.svg","doki_icon.svg","dual_chevrons.svg","dual_panels_refresh.svg","dual_panels.svg","edit.svg","ellipsis_horizontal.svg","ellipsis_vertical.svg","error_circle.svg","evaluate_expression_kotlin.svg","evaluate_expression.svg","excludedFolder.svg","expand_all.svg","file_close.svg","file_config.svg","file_edit.svg","file_heart.svg","file_kotlin.svg","file.svg","filter.svg","flash_star.svg","folder_cowfee.svg","folder_db_solid.svg","folder_heart.svg","folder_hex_stack_glyph.svg","folder_library.svg","folder_settings.svg","folder_test.svg","folder.svg","force_step_into.svg","game_kun.svg","ghost.svg","graph.svg","group.svg","heart.svg","help.svg","hex_glyph_duex.svg","hex_heart_glyph.svg","hex_outline_glyph.svg","hex_stack_glyph.svg","hidden_toolbar.svg","hide.svg","history.svg","hollow_square_circle_glyph.svg","ice_cream.svg","image.svg","info_circle.svg","intertwine.svg","jar.svg","jest.svg","key.svg","kotlin.svg","layout_dual_chevrons.svg","layout.svg","library.svg","light_house.svg","lightning_bolt.svg","link.svg","linked_angle_braces.svg","locate.svg","locked.svg","mamsnrhbr_chehfde.svg","neko_glyph_kotlin.svg","neko_glyph.svg","network_graph.svg","no_view.svg","notifications_heart.svg","notifications.svg","npm.svg","open.svg","optical_glyph.svg","outline_circle_glyph_kotlin.svg","outline_circle_glyph.svg","outline_rectangle_glyph.svg","outline_square_glyph.svg","package.svg","partial_hex_glyph_kotlin.svg","partial_hex_glyph.svg","partial_ring_glyph.svg","partial_triangle_glyph.svg","pause.svg","pin.svg","play_solid.svg","play.svg","plugin.svg","pretzel_refresh.svg","pretzel.svg","printer.svg","profile.svg","project_glyph.svg","pull_request.svg","python.svg","rating_0.svg","rating_1.svg","rating_2.svg","rating_3.svg","rating_4.svg","rating.svg","re_run.svg","rectangle_triangle_circle_glyph.svg","recursion.svg","refresh.svg","restart.svg","resume.svg","revert.svg","rip_outline.svg","rip_play_solid.svg","rip.svg","scratches.svg","scroll_to_end.svg","search_left.svg","search_right.svg","services.svg","settings.svg","skull.svg","soft_wrap.svg","solid_doki_glyph.svg","solid_trapezoid_glyph.svg","solid_triangle_glyph.svg","space_glyph.svg","spiral_glyph_kotlin.svg","spiral_glyph.svg","square_braces.svg","square_star_glyph.svg","star_bar_glyph.svg","star_outline_glyph.svg","star_outline.svg","star_pentagon_glyph.svg","star_ring_glyph.svg","star.svg","step_into.svg","step_out.svg","step_over.svg","stop_solid.svg","stop.svg","structure.svg","subtract.svg","tab.svg","tada_view_filled.svg","tada.svg","tag.svg","terminal_solid.svg","terminal.svg","test_outline_view_filled.svg","test_outline.svg","test.svg","todo.svg","trash.svg","trigram.svg","unlocked.svg","update.svg","vcs_solid.svg","vcs.svg","view_filled.svg","view.svg","warning_circle_filled.svg","warning_circle.svg","warning_triangle.svg","watch.svg"]
+  var DOKI_ICON_PAGE_SIZE = 48
+  var DOKI_ICON_NAME_OVERRIDES = {
+    add: '添加',
+    avatar: '头像',
+    boat: '小船',
+    bookmark: '书签',
+    bow: '蝴蝶结',
+    build: '构建',
+    check: '完成',
+    cheemsburbger: '汉堡',
+    cherry: '樱桃',
+    cloud: '云朵',
+    config: '配置',
+    copy: '复制',
+    cowfee: '咖啡',
+    cupcake: '纸杯蛋糕',
+    db: '数据库',
+    debug: '调试',
+    dependencies: '依赖',
+    docker: 'Docker',
+    doki_icon: 'Doki',
+    doki_icon_logo: 'Doki 标志',
+    edit: '编辑',
+    file: '文件',
+    file_heart: '爱心文件',
+    filter: '筛选',
+    flash_star: '闪光星',
+    folder: '文件夹',
+    folder_heart: '爱心文件夹',
+    folder_library: '书库文件夹',
+    game_kun: '游戏',
+    ghost: '幽灵',
+    graph: '图表',
+    heart: '爱心',
+    ice_cream: '冰淇淋',
+    image: '图片',
+    library: '书库',
+    light_house: '灯塔',
+    locked: '锁定',
+    neko_glyph: '猫咪',
+    notifications: '通知',
+    pause: '暂停',
+    play: '播放',
+    profile: '个人资料',
+    project_glyph: '项目',
+    search_left: '向左搜索',
+    search_right: '向右搜索',
+    settings: '设置',
+    star: '星星',
+    stop: '停止',
+    tag: '标签',
+    terminal: '终端',
+    todo: '待办',
+    trash: '垃圾桶',
+    unlocked: '解锁',
+    update: '更新',
+    view: '查看',
+    warning_circle: '警告'
+  }
+  var DOKI_ICON_TOKEN_OVERRIDES = {
+    doki_icon: 'doki:doki',
+    folder_heart: 'doki:folder-heart',
+    folder_library: 'doki:folder-library',
+    ice_cream: 'doki:ice-cream',
+    light_house: 'doki:lighthouse',
+    neko_glyph: 'doki:neko',
+    game_kun: 'doki:game',
+    cheemsburbger: 'doki:burger',
+    flash_star: 'doki:flash-star'
+  }
+
+  function dokiIconName(stem) {
+    if (DOKI_ICON_NAME_OVERRIDES[stem]) return DOKI_ICON_NAME_OVERRIDES[stem]
+    return stem
+      .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+      .replace(/_/g, ' ')
+      .replace(/\b\w/g, function (character) { return character.toUpperCase() })
+  }
+
+  function dokiIconItem(asset) {
+    var stem = asset.replace(/\.svg$/i, '')
+    var name = dokiIconName(stem)
+    return {
+      emoji: DOKI_ICON_TOKEN_OVERRIDES[stem] || ('doki:' + stem),
+      asset: asset,
+      name: name,
+      meaning: 'Doki Theme 彩色图标 · ' + name
+    }
+  }
+
+  function planPresetIcon(entity, kind) {
+    var source = kind === 'group' ? PLAN_GROUP_PRESETS : kind === 'project' ? PLAN_PROJECT_PRESETS : PLAN_SECTION_PRESETS
+    var preset = source.find(function (entry) { return entry.id === entity.id })
+    return preset ? preset.icon : ''
+  }
+
+  function migratePlanIconToDoki(entity, kind) {
+    var clean = entity && typeof entity.icon === 'string' ? entity.icon.trim() : ''
+    if (clean.indexOf('doki:') === 0) return clean
+    var presetIcon = planPresetIcon(entity || {}, kind)
+    if (presetIcon) return presetIcon
+    var label = ((entity && entity.name) || '').toLowerCase()
+    if (/网安|网络|安全|密码|防护|firewall/.test(label)) return 'doki:locked'
+    if (/算法|数据结构|图论|机器学习|人工智能|数学|高数/.test(label)) return 'doki:graph'
+    if (/计算机|计科|编程|代码|开发|系统|工程/.test(label)) return 'doki:terminal'
+    if (/英语|语言|阅读|读书|考研|课程|学习|知识/.test(label)) return kind === 'group' ? 'doki:folder-library' : 'doki:library'
+    if (/习惯|打卡|日常|计划|待办/.test(label)) return 'doki:check'
+    if (/心愿|愿望|目标|梦想|收藏/.test(label)) return 'doki:heart'
+    if (/美食|饮食|咖啡|餐/.test(label)) return 'doki:cowfee'
+    if (/购物|快递|物品|清单/.test(label)) return 'doki:package'
+    if (/图片|相册|摄影/.test(label)) return 'doki:image'
+    if (/便签|备忘|记录|笔记/.test(label)) return 'doki:file_heart'
+    if (/项目|实践|实验/.test(label)) return 'doki:build'
+    if (kind === 'group') return 'doki:folder-heart'
+    if (kind === 'project') return 'doki:project_glyph'
+    return 'doki:todo'
+  }
+
   var PLAN_ICON_GROUPS = [
     {
       id: 'flower',
@@ -6583,7 +7242,11 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
         { emoji: '🌹', name: '玫瑰或月季', meaning: '浪漫' },
         { emoji: '🌷', name: '郁金香', meaning: '友情、珍贵' },
         { emoji: '🌻', name: '向日葵', meaning: '光辉、高傲' },
-        { emoji: '🥀', name: '枯萎花朵', meaning: '“我枯了”谐音“我哭了”，可与💔一起使用' }
+        { emoji: '🥀', name: '枯萎花朵', meaning: '“我枯了”谐音“我哭了”，可与💔一起使用' },
+        { emoji: '🪻', name: '风信子', meaning: '温柔、宁静与新生' },
+        { emoji: '🌱', name: '幼苗', meaning: '开始、成长' },
+        { emoji: '🍀', name: '四叶草', meaning: '幸运与希望' },
+        { emoji: '🌿', name: '香草', meaning: '清新、自然' }
       ]
     },
     {
@@ -6600,7 +7263,15 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
         { emoji: '🎍', name: '门松', meaning: '长寿' },
         { emoji: '🎀', name: '蝴蝶结', meaning: '可爱、少女' },
         { emoji: '🎁', name: '礼物', meaning: '祝福、惊喜' },
-        { emoji: '🎗️', name: '丝带', meaning: '团体、平安归来' }
+        { emoji: '🎗️', name: '丝带', meaning: '团体、平安归来' },
+        { emoji: '🎯', name: '靶心', meaning: '目标、专注' },
+        { emoji: '🏆', name: '奖杯', meaning: '成果、胜利' },
+        { emoji: '🎨', name: '调色盘', meaning: '创作、灵感' },
+        { emoji: '🎵', name: '音符', meaning: '音乐、节奏' },
+        { emoji: '🎮', name: '游戏手柄', meaning: '游戏、放松' },
+        { emoji: '📚', name: '书籍', meaning: '阅读、学习' },
+        { emoji: '🧩', name: '拼图', meaning: '思考、解决问题' },
+        { emoji: '🚀', name: '火箭', meaning: '启动、快速前进' }
       ]
     },
     {
@@ -6623,21 +7294,92 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
         { emoji: '🌄', name: '清晨山间日出', meaning: '山间的新一天' },
         { emoji: '🌅', name: '海上日出', meaning: '海平面、金太阳、橘红天' },
         { emoji: '🌆', name: '城市黄昏', meaning: '橘色天空、一日末尾' },
-        { emoji: '🌇', name: '日落', meaning: '红色天空' }
+        { emoji: '🌇', name: '日落', meaning: '红色天空' },
+        { emoji: '🌈', name: '彩虹', meaning: '雨过天晴、好心情' },
+        { emoji: '🌙', name: '弯月', meaning: '夜晚、安静' },
+        { emoji: '⭐', name: '星星', meaning: '闪耀、愿望' },
+        { emoji: '☀️', name: '太阳', meaning: '晴朗、能量' },
+        { emoji: '🌊', name: '海浪', meaning: '流动、力量' },
+        { emoji: '🌲', name: '常青树', meaning: '森林、坚韧' },
+        { emoji: '⛰️', name: '山峰', meaning: '远方、攀登' },
+        { emoji: '❄️', name: '雪花', meaning: '冬日、纯净' }
       ]
+    },
+    {
+      id: 'doki',
+      label: 'Doki',
+      icon: 'doki:doki',
+      items: DOKI_ICON_FILES.map(dokiIconItem)
     }
   ]
   var USEFUL_LINKS_MEMO_KEY = 'useful-links-v1'
+
+  function planNavigationIdMap(values) {
+    var result = Object.create(null)
+    ;(Array.isArray(values) ? values : []).forEach(function (id) {
+      if (typeof id === 'string' && id) result[id] = true
+    })
+    return result
+  }
+
+  function planNavigationLookup(value) {
+    var result = Object.create(null)
+    if (!value || typeof value !== 'object') return result
+    Object.keys(value).forEach(function (id) {
+      if (typeof value[id] === 'string' && value[id]) result[id] = value[id]
+    })
+    return result
+  }
+
+  function loadPlanNavigation() {
+    try {
+      var parsed = JSON.parse(localStorage.getItem(PLAN_NAVIGATION_KEY))
+      return parsed && typeof parsed === 'object' ? parsed : null
+    } catch (error) {
+      return null
+    }
+  }
+
   var state = loadState()
+  var storedPlanNavigation = loadPlanNavigation()
   var selectedDate = todayKey()
   var calendarAnchor = todayKey()
   var weeklyAnchor = startOfWeek(todayKey())
-  var selectedPlanGroupId = state.planGroups && state.planGroups.length
-    ? state.planGroups[0].id
-    : DEFAULT_PLAN_GROUP_ID
-  var selectedPlanSubgroupId = (state.planSubgroups.find(function (subgroup) { return subgroup.groupId === selectedPlanGroupId }) || {}).id || ''
-  var selectedPlanSectionId = ''
+  var storedPlanGroup = storedPlanNavigation && state.planGroups.find(function (group) { return group.id === storedPlanNavigation.groupId })
+  var selectedPlanGroupId = storedPlanGroup
+    ? storedPlanGroup.id
+    : state.planGroups && state.planGroups.length
+      ? state.planGroups[0].id
+      : DEFAULT_PLAN_GROUP_ID
+  var lastPlanProjectByGroup = planNavigationLookup(storedPlanNavigation && storedPlanNavigation.projectByGroup)
+  var lastPlanSectionByProject = planNavigationLookup(storedPlanNavigation && storedPlanNavigation.sectionByProject)
+  var storedPlanProjectId = storedPlanNavigation && storedPlanNavigation.projectId
+    ? storedPlanNavigation.projectId
+    : lastPlanProjectByGroup[selectedPlanGroupId]
+  var storedPlanProject = state.planSubgroups.find(function (subgroup) {
+    return subgroup.id === storedPlanProjectId && subgroup.groupId === selectedPlanGroupId
+  })
+  var selectedPlanSubgroupId = storedPlanProject
+    ? storedPlanProject.id
+    : (state.planSubgroups.filter(function (subgroup) { return subgroup.groupId === selectedPlanGroupId }).sort(comparePlanOrder)[0] || {}).id || ''
+  var storedPlanSectionId = storedPlanNavigation && storedPlanNavigation.sectionId
+    ? storedPlanNavigation.sectionId
+    : lastPlanSectionByProject[selectedPlanSubgroupId]
+  var storedPlanSection = state.planSections.find(function (section) {
+    return section.id === storedPlanSectionId && section.subgroupId === selectedPlanSubgroupId
+  })
+  var selectedPlanSectionId = storedPlanSection
+    ? storedPlanSection.id
+    : (state.planSections.filter(function (section) { return section.subgroupId === selectedPlanSubgroupId }).sort(comparePlanOrder)[0] || {}).id || ''
+  var expandedPlanGroups = planNavigationIdMap(storedPlanNavigation && storedPlanNavigation.expandedGroupIds)
+  var expandedPlanProjects = planNavigationIdMap(storedPlanNavigation && storedPlanNavigation.expandedProjectIds)
+  if (!storedPlanNavigation) {
+    if (selectedPlanGroupId) expandedPlanGroups[selectedPlanGroupId] = true
+    if (selectedPlanSubgroupId) expandedPlanProjects[selectedPlanSubgroupId] = true
+  }
   var selectedPlanTaskId = null
+  var planTaskActionTaskId = null
+  var planTaskActionMode = 'edit'
   var selectedDailyTaskId = null
   var selectedRoutineId = null
   var selectedTaskDetailId = null
@@ -6654,7 +7396,13 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
   var routineHandle = null
   var toastHandle = null
   var remoteSaveHandle = null
-  var activePlanIconGroup = PLAN_ICON_GROUPS[0].id
+  var projectOrderGroupId = ''
+  var sectionOrderProjectId = ''
+  var planTaskOrderEditing = false
+  var activePlanIconGroup = 'doki'
+  var activePlanIconPage = 0
+  var planDirectoryContextTarget = null
+  var planLibraryLayout = { width: 440, collapsed: false }
   var authState = { authenticated: IS_LOCAL_PREVIEW, trusted: IS_LOCAL_PREVIEW, trustDays: null, csrf: null, available: true }
   var authCheckHandle = null
   var authCheckInFlight = null
@@ -6667,6 +7415,7 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
   var planGroupList = document.querySelector('[data-plan-group-list]')
   var planGroupCount = document.querySelector('[data-plan-group-count]')
   var planGroupHeading = document.querySelector('[data-plan-group-heading]')
+  var planTaskOrderToggle = document.querySelector('[data-plan-task-order-toggle]')
   var planDirectoryAdd = document.querySelector('[data-plan-directory-add]')
   var planDirectoryModal = document.querySelector('[data-plan-directory-modal]')
   var planDirectoryForm = document.querySelector('[data-plan-directory-form]')
@@ -6675,16 +7424,23 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
   var planDirectoryProjectId = document.querySelector('[data-plan-directory-project-id]')
   var planDirectorySectionId = document.querySelector('[data-plan-directory-section-id]')
   var planDirectoryTitle = document.querySelector('[data-plan-directory-title]')
+  var planDirectorySubtitle = document.querySelector('[data-plan-directory-subtitle]')
   var planDirectoryName = document.querySelector('[data-plan-directory-name]')
+  var planDirectoryIconField = document.querySelector('[data-plan-directory-icon-field]')
   var planDirectoryIcon = document.querySelector('[data-plan-directory-icon]')
   var planDirectoryIconChoice = document.querySelector('[data-plan-directory-icon-choice]')
   var planDirectoryIconPreview = document.querySelector('[data-plan-directory-icon-preview]')
-  var planDirectoryIconCurrent = document.querySelector('[data-plan-directory-icon-current]')
   var planDirectoryIconPicker = document.querySelector('[data-plan-directory-icon-picker]')
   var planDirectoryIconTabs = document.querySelector('[data-plan-directory-icon-tabs]')
   var planDirectoryIconOptions = document.querySelector('[data-plan-directory-icon-options]')
+  var planDirectoryIconPages = document.querySelector('[data-plan-directory-icon-pages]')
   var planDirectoryIconDescription = document.querySelector('[data-plan-directory-icon-description]')
   var planDirectoryDelete = document.querySelector('[data-plan-directory-delete]')
+  var planDirectoryContextMenu = document.querySelector('[data-plan-directory-context-menu]')
+  var dailyLayout = document.querySelector('.daily-layout')
+  var planLibraryPanel = document.querySelector('.plan-library-panel')
+  var planLibraryResizer = document.querySelector('[data-plan-column-resizer]')
+  var planLibraryCollapse = document.querySelector('[data-plan-column-collapse]')
   var planTaskDetail = document.querySelector('[data-plan-task-detail]')
   var planTaskTitle = document.querySelector('[data-plan-task-title]')
   var planTaskSubgroup = document.querySelector('[data-plan-task-subgroup]')
@@ -6693,6 +7449,16 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
   var planTaskNote = document.querySelector('[data-plan-task-note]')
   var planTaskStatus = document.querySelector('[data-plan-task-status]')
   var planTaskSchedule = document.querySelector('[data-plan-task-schedule]')
+  var planTaskActionModal = document.querySelector('[data-plan-task-action-modal]')
+  var planTaskActionForm = document.querySelector('[data-plan-task-action-form]')
+  var planTaskActionTitle = document.querySelector('[data-plan-task-action-title]')
+  var planTaskActionSubtitle = document.querySelector('[data-plan-task-action-subtitle]')
+  var planTaskActionIcon = document.querySelector('[data-plan-task-action-icon]')
+  var planTaskActionNameField = document.querySelector('[data-plan-task-action-name-field]')
+  var planTaskActionName = document.querySelector('[data-plan-task-action-name]')
+  var planTaskActionNoteField = document.querySelector('[data-plan-task-action-note-field]')
+  var planTaskActionNote = document.querySelector('[data-plan-task-action-note]')
+  var planTaskActionSubmit = document.querySelector('[data-plan-task-action-submit]')
   var taskCreateButton = document.querySelector('[data-task-create-open]')
   var taskCreateModal = document.querySelector('[data-task-create-modal]')
   var taskCreateForm = document.querySelector('[data-task-create-form]')
@@ -6907,22 +7673,23 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
 
   function blankState() {
     return {
-      version: 16,
-      planGroups: PLAN_GROUP_PRESETS.map(function (preset) {
-        return { id: preset.id, name: preset.name, icon: preset.icon, systemKey: preset.key, createdAt: Date.now() }
+      version: 19,
+      planGroups: PLAN_GROUP_PRESETS.map(function (preset, index) {
+        return { id: preset.id, name: preset.name, icon: preset.icon, systemKey: preset.key, sortOrder: index, createdAt: Date.now() }
       }),
-      planSubgroups: PLAN_PROJECT_PRESETS.map(function (preset) {
-        return { id: preset.id, groupId: preset.groupId, name: preset.name, icon: preset.icon, seeded: true, createdAt: Date.now() }
+      planSubgroups: PLAN_PROJECT_PRESETS.map(function (preset, index) {
+        return { id: preset.id, groupId: preset.groupId, name: preset.name, icon: preset.icon, seeded: true, sortOrder: index, createdAt: Date.now() }
       }),
-      planSections: PLAN_SECTION_PRESETS.map(function (preset) {
-        return { id: preset.id, subgroupId: preset.subgroupId, name: preset.name, icon: preset.icon, seeded: true, createdAt: Date.now() }
+      planSections: PLAN_SECTION_PRESETS.map(function (preset, index) {
+        return { id: preset.id, subgroupId: preset.subgroupId, name: preset.name, icon: preset.icon, seeded: true, sortOrder: index, createdAt: Date.now() }
       }),
+      deletedPlanGroupIds: [],
       deletedPlanProjectIds: [],
       deletedPlanSectionIds: [],
       deletedPlanTaskIds: [],
       planCompletionHistory: [],
       utilityRead: { alertKeys: [], trashIds: [] },
-      inbox: ROUTINES.map(function (routine) {
+      inbox: ROUTINES.map(function (routine, index) {
         return {
           id: 'routine-plan-' + routine.id,
           text: routine.emoji + ' ' + routine.label,
@@ -6934,9 +7701,10 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
           focusTag: '🌱 日常',
           fixed: true,
           targetMinutes: routine.targetMinutes,
+          sortOrder: index,
           createdAt: Date.now()
         }
-      }).concat(PLAN_TASK_PRESETS.map(function (preset) {
+      }).concat(PLAN_TASK_PRESETS.map(function (preset, index) {
         return {
           id: preset.id,
           text: preset.text,
@@ -6948,6 +7716,7 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
           focusTag: preset.focusTag,
           fixed: true,
           targetMinutes: 60,
+          sortOrder: index,
           seeded: true,
           createdAt: Date.now()
         }
@@ -7027,10 +7796,14 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
 
   function normalizePlanState(value) {
     var previousVersion = Number(value.version) || 0
+    if (!Array.isArray(value.deletedPlanGroupIds)) value.deletedPlanGroupIds = []
+    if (!Array.isArray(value.deletedPlanProjectIds)) value.deletedPlanProjectIds = []
+    if (!Array.isArray(value.deletedPlanSectionIds)) value.deletedPlanSectionIds = []
+    if (!Array.isArray(value.deletedPlanTaskIds)) value.deletedPlanTaskIds = []
     if (!Array.isArray(value.inbox)) value.inbox = []
     value.inbox = value.inbox.filter(function (item) {
-      return item && typeof item === 'object'
-    }).map(function (item) {
+      return item && typeof item === 'object' && value.deletedPlanTaskIds.indexOf(item.id) < 0
+    }).map(function (item, index) {
       item.id = typeof item.id === 'string' && item.id ? item.id : uid()
       item.text = typeof item.text === 'string' && item.text.trim() ? item.text.trim().slice(0, 160) : '未命名任务'
       item.groupId = typeof item.groupId === 'string' ? item.groupId : ''
@@ -7042,6 +7815,7 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       item.fixed = Boolean(item.fixed)
       item.targetMinutes = Math.max(1, Number(item.targetMinutes) || 60)
       item.priority = normalizePriority(item.priority)
+      item.sortOrder = Number.isFinite(Number(item.sortOrder)) ? Number(item.sortOrder) : index
       item.createdAt = normalizedTimestamp(item.createdAt, Date.now())
       return item
     })
@@ -7051,9 +7825,6 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     if (!Array.isArray(value.planGroups)) value.planGroups = []
     if (!Array.isArray(value.planSubgroups)) value.planSubgroups = []
     if (!Array.isArray(value.planSections)) value.planSections = []
-    if (!Array.isArray(value.deletedPlanProjectIds)) value.deletedPlanProjectIds = []
-    if (!Array.isArray(value.deletedPlanSectionIds)) value.deletedPlanSectionIds = []
-    if (!Array.isArray(value.deletedPlanTaskIds)) value.deletedPlanTaskIds = []
     if (!Array.isArray(value.planCompletionHistory)) value.planCompletionHistory = []
     if (!value.utilityRead || typeof value.utilityRead !== 'object') value.utilityRead = {}
     if (!Array.isArray(value.utilityRead.alertKeys)) value.utilityRead.alertKeys = []
@@ -7082,9 +7853,11 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     })
     value.planGroups = value.planGroups.filter(function (group) {
       return group && typeof group.id === 'string' && typeof group.name === 'string' && group.name.trim()
-    }).map(function (group) {
+        && value.deletedPlanGroupIds.indexOf(group.id) < 0
+    }).map(function (group, index) {
       group.name = group.name.trim().slice(0, 40)
-      group.icon = typeof group.icon === 'string' && group.icon.trim() ? group.icon.trim().slice(0, 8) : '📁'
+      group.icon = typeof group.icon === 'string' && group.icon.trim() ? group.icon.trim().slice(0, 64) : 'doki:folder-heart'
+      group.sortOrder = Number.isFinite(Number(group.sortOrder)) ? Number(group.sortOrder) : index
       if (!Number.isFinite(Number(group.createdAt))) group.createdAt = Date.now()
       return group
     })
@@ -7106,39 +7879,43 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       }
     }
 
-    PLAN_GROUP_PRESETS.forEach(function (preset) {
+    PLAN_GROUP_PRESETS.forEach(function (preset, presetIndex) {
+      if (value.deletedPlanGroupIds.indexOf(preset.id) >= 0) return
       var group = value.planGroups.find(function (entry) { return entry.id === preset.id })
       if (!group) {
-        group = { id: preset.id, name: preset.name, icon: preset.icon, systemKey: preset.key, createdAt: Date.now() }
+        group = { id: preset.id, name: preset.name, icon: preset.icon, systemKey: preset.key, sortOrder: presetIndex, createdAt: Date.now() }
         value.planGroups.push(group)
       }
       if (!group.name) group.name = preset.name
       if (!group.icon || group.icon === '📁') group.icon = preset.icon
       group.systemKey = preset.key
     })
-    value.planGroups = PLAN_GROUP_PRESETS.map(function (preset) {
-      return value.planGroups.find(function (group) { return group.id === preset.id })
-    }).concat(value.planGroups.filter(function (group) {
-      return !PLAN_GROUP_PRESETS.some(function (preset) { return preset.id === group.id })
-    }))
-
+    if (!value.planGroups.length) {
+      removeDeletedPlanId(value.deletedPlanGroupIds, DEFAULT_PLAN_GROUP_ID)
+      var requiredGroup = PLAN_GROUP_PRESETS[0]
+      value.planGroups.push({ id: requiredGroup.id, name: requiredGroup.name, icon: requiredGroup.icon, systemKey: requiredGroup.key, sortOrder: 0, createdAt: Date.now() })
+    }
     var validIds = new Set(value.planGroups.map(function (group) { return group.id }))
+    var fallbackGroupId = validIds.has(DEFAULT_PLAN_GROUP_ID) ? DEFAULT_PLAN_GROUP_ID : value.planGroups[0].id
     value.inbox.forEach(function (item) {
-      if (!validIds.has(item.groupId)) item.groupId = DEFAULT_PLAN_GROUP_ID
+      if (!validIds.has(item.groupId)) item.groupId = fallbackGroupId
     })
     value.planSubgroups = value.planSubgroups.filter(function (subgroup) {
       return subgroup && typeof subgroup.id === 'string' && typeof subgroup.name === 'string' && subgroup.name.trim() && validIds.has(subgroup.groupId)
-    }).map(function (subgroup) {
+        && value.deletedPlanProjectIds.indexOf(subgroup.id) < 0
+    }).map(function (subgroup, index) {
       subgroup.name = subgroup.name.trim().slice(0, 40)
-      subgroup.icon = typeof subgroup.icon === 'string' ? subgroup.icon.slice(0, 8) : '📁'
+      subgroup.icon = typeof subgroup.icon === 'string' && subgroup.icon.trim() ? subgroup.icon.trim().slice(0, 64) : 'doki:project_glyph'
+      subgroup.sortOrder = Number.isFinite(Number(subgroup.sortOrder)) ? Number(subgroup.sortOrder) : index
       if (!Number.isFinite(Number(subgroup.createdAt))) subgroup.createdAt = Date.now()
       return subgroup
     })
-    PLAN_PROJECT_PRESETS.forEach(function (preset) {
+    PLAN_PROJECT_PRESETS.forEach(function (preset, presetIndex) {
       if (value.deletedPlanProjectIds.indexOf(preset.id) >= 0) return
+      if (!validIds.has(preset.groupId)) return
       var subgroup = value.planSubgroups.find(function (entry) { return entry.id === preset.id })
       if (!subgroup) {
-        subgroup = { id: preset.id, groupId: preset.groupId, name: preset.name, icon: preset.icon, seeded: true, createdAt: Date.now() }
+        subgroup = { id: preset.id, groupId: preset.groupId, name: preset.name, icon: preset.icon, seeded: true, sortOrder: presetIndex, createdAt: Date.now() }
         value.planSubgroups.push(subgroup)
       }
       subgroup.groupId = preset.groupId
@@ -7150,12 +7927,6 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
         if (!subgroup.icon) subgroup.icon = preset.icon
       }
     })
-    value.planSubgroups = PLAN_PROJECT_PRESETS.map(function (preset) {
-      return value.planSubgroups.find(function (subgroup) { return subgroup.id === preset.id })
-    }).filter(Boolean).concat(value.planSubgroups.filter(function (subgroup) {
-      return !PLAN_PROJECT_PRESETS.some(function (preset) { return preset.id === subgroup.id })
-    }))
-
     value.planGroups.forEach(function (group) {
       if (group.id === 'plan-habit' || group.id === 'plan-wish') {
         value.inbox.forEach(function (item) {
@@ -7163,48 +7934,26 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
           item.subgroupId = ''
           item.sectionId = ''
         })
-        return
       }
-      var hasUngroupedTasks = value.inbox.some(function (item) {
-        return item.groupId === group.id && !value.planSubgroups.some(function (subgroup) {
-          return subgroup.id === item.subgroupId && subgroup.groupId === group.id
-        })
-      })
-      if (!hasUngroupedTasks) return
-      var fallbackId = 'project-inbox-' + group.id
-      if (!value.planSubgroups.some(function (subgroup) { return subgroup.id === fallbackId })) {
-        value.planSubgroups.push({
-          id: fallbackId,
-          groupId: group.id,
-          name: '待整理任务',
-          icon: '📥',
-          migrated: true,
-          createdAt: Date.now()
-        })
-      }
-      value.inbox.forEach(function (item) {
-        if (item.groupId !== group.id) return
-        var validProject = value.planSubgroups.some(function (subgroup) {
-          return subgroup.id === item.subgroupId && subgroup.groupId === group.id
-        })
-        if (!validProject) item.subgroupId = fallbackId
-      })
     })
 
     var validSubgroupIds = new Set(value.planSubgroups.map(function (subgroup) { return subgroup.id }))
     value.planSections = value.planSections.filter(function (section) {
       return section && typeof section.id === 'string' && typeof section.name === 'string' && section.name.trim() && validSubgroupIds.has(section.subgroupId)
-    }).map(function (section) {
+        && value.deletedPlanSectionIds.indexOf(section.id) < 0
+    }).map(function (section, index) {
       section.name = section.name.trim().slice(0, 40)
-      section.icon = typeof section.icon === 'string' ? section.icon.slice(0, 8) : '📋'
+      section.icon = typeof section.icon === 'string' && section.icon.trim() ? section.icon.trim().slice(0, 64) : 'doki:todo'
+      section.sortOrder = Number.isFinite(Number(section.sortOrder)) ? Number(section.sortOrder) : index
       if (!Number.isFinite(Number(section.createdAt))) section.createdAt = Date.now()
       return section
     })
-    PLAN_SECTION_PRESETS.forEach(function (preset) {
+    PLAN_SECTION_PRESETS.forEach(function (preset, presetIndex) {
       if (value.deletedPlanSectionIds.indexOf(preset.id) >= 0) return
+      if (!validSubgroupIds.has(preset.subgroupId)) return
       var section = value.planSections.find(function (entry) { return entry.id === preset.id })
       if (!section) {
-        section = { id: preset.id, subgroupId: preset.subgroupId, name: preset.name, icon: preset.icon, seeded: true, createdAt: Date.now() }
+        section = { id: preset.id, subgroupId: preset.subgroupId, name: preset.name, icon: preset.icon, seeded: true, sortOrder: presetIndex, createdAt: Date.now() }
         value.planSections.push(section)
       }
       section.subgroupId = preset.subgroupId
@@ -7213,14 +7962,9 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
         section.icon = preset.icon
       }
     })
-    value.planSections = PLAN_SECTION_PRESETS.map(function (preset) {
-      return value.planSections.find(function (section) { return section.id === preset.id })
-    }).filter(Boolean).concat(value.planSections.filter(function (section) {
-      return !PLAN_SECTION_PRESETS.some(function (preset) { return preset.id === section.id })
-    }))
-
-    PLAN_TASK_PRESETS.forEach(function (preset) {
+    PLAN_TASK_PRESETS.forEach(function (preset, presetIndex) {
       if (value.deletedPlanTaskIds.indexOf(preset.id) >= 0) return
+      if (!validIds.has('plan-main') || !validSubgroupIds.has('project-exam-11408') || !value.planSections.some(function (section) { return section.id === preset.sectionId })) return
       var task = value.inbox.find(function (item) { return item.id === preset.id })
       if (!task) {
         task = {
@@ -7234,6 +7978,7 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
           focusTag: preset.focusTag,
           fixed: true,
           targetMinutes: 60,
+          sortOrder: presetIndex,
           seeded: true,
           createdAt: Date.now()
         }
@@ -7250,23 +7995,9 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       }
     })
 
-    value.planSubgroups.forEach(function (subgroup) {
-      var unsectioned = value.inbox.filter(function (item) {
-        return item.subgroupId === subgroup.id && !item.sectionId
-      })
-      if (!unsectioned.length) return
-      var fallbackId = 'section-inbox-' + subgroup.id
-      var fallback = value.planSections.find(function (section) { return section.id === fallbackId })
-      if (!fallback) {
-        fallback = { id: fallbackId, subgroupId: subgroup.id, name: '待细分', icon: '📥', migrated: true, createdAt: Date.now() }
-        value.planSections.push(fallback)
-      }
-      unsectioned.forEach(function (item) { item.sectionId = fallback.id })
-    })
-
     var validSectionIds = new Set(value.planSections.map(function (section) { return section.id }))
     value.inbox.forEach(function (item) {
-      if (!validIds.has(item.groupId)) item.groupId = DEFAULT_PLAN_GROUP_ID
+      if (!validIds.has(item.groupId)) item.groupId = fallbackGroupId
       if (!validSubgroupIds.has(item.subgroupId)) item.subgroupId = ''
       if (item.subgroupId) {
         var subgroup = value.planSubgroups.find(function (entry) { return entry.id === item.subgroupId })
@@ -7285,8 +8016,9 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       item.targetMinutes = Math.max(1, Number(item.targetMinutes) || 60)
       item.priority = normalizePriority(item.priority)
     })
-    ROUTINES.forEach(function (routine) {
+    ROUTINES.forEach(function (routine, routineIndex) {
       var id = 'routine-plan-' + routine.id
+      if (!validIds.has('plan-habit') || value.deletedPlanTaskIds.indexOf(id) >= 0) return
       var routineTask = value.inbox.find(function (item) { return item.id === id })
       if (!routineTask) {
         value.inbox.push({
@@ -7300,6 +8032,7 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
           focusTag: '🌱 日常',
           fixed: true,
           targetMinutes: routine.targetMinutes,
+          sortOrder: routineIndex,
           createdAt: Date.now()
         })
         return
@@ -7313,8 +8046,13 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       routineTask.fixed = true
       routineTask.targetMinutes = routine.targetMinutes
     })
+    if (previousVersion < 19) {
+      value.planGroups.forEach(function (group) { group.icon = migratePlanIconToDoki(group, 'group') })
+      value.planSubgroups.forEach(function (project) { project.icon = migratePlanIconToDoki(project, 'project') })
+      value.planSections.forEach(function (section) { section.icon = migratePlanIconToDoki(section, 'section') })
+    }
     normalizeMemoState(value, previousVersion)
-    value.version = 16
+    value.version = 19
     return value
   }
 
@@ -7351,6 +8089,42 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
   function saveState() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
     if (authState.authenticated) scheduleRemoteSave()
+  }
+
+  function savePlanNavigation() {
+    try {
+      var validGroups = Object.create(null)
+      var validProjects = Object.create(null)
+      var validSections = Object.create(null)
+      state.planGroups.forEach(function (group) { validGroups[group.id] = true })
+      state.planSubgroups.forEach(function (project) { validProjects[project.id] = true })
+      state.planSections.forEach(function (section) { validSections[section.id] = true })
+      var projectByGroup = {}
+      Object.keys(lastPlanProjectByGroup).forEach(function (groupId) {
+        var projectId = lastPlanProjectByGroup[groupId]
+        if (validGroups[groupId] && validProjects[projectId]) projectByGroup[groupId] = projectId
+      })
+      var sectionByProject = {}
+      Object.keys(lastPlanSectionByProject).forEach(function (projectId) {
+        var sectionId = lastPlanSectionByProject[projectId]
+        if (validProjects[projectId] && validSections[sectionId]) sectionByProject[projectId] = sectionId
+      })
+      localStorage.setItem(PLAN_NAVIGATION_KEY, JSON.stringify({
+        groupId: selectedPlanGroupId || '',
+        projectId: selectedPlanSubgroupId || '',
+        sectionId: selectedPlanSectionId || '',
+        expandedGroupIds: Object.keys(expandedPlanGroups).filter(function (id) { return expandedPlanGroups[id] && validGroups[id] }),
+        expandedProjectIds: Object.keys(expandedPlanProjects).filter(function (id) { return expandedPlanProjects[id] && validProjects[id] }),
+        projectByGroup: projectByGroup,
+        sectionByProject: sectionByProject
+      }))
+    } catch (error) {}
+  }
+
+  function rememberPlanNavigationSelection() {
+    if (selectedPlanGroupId && selectedPlanSubgroupId) lastPlanProjectByGroup[selectedPlanGroupId] = selectedPlanSubgroupId
+    if (selectedPlanSubgroupId && selectedPlanSectionId) lastPlanSectionByProject[selectedPlanSubgroupId] = selectedPlanSectionId
+    savePlanNavigation()
   }
 
   function apiRequest(path, options) {
@@ -7452,8 +8226,8 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       authButton.hidden = authState.authenticated
       authButton.classList.toggle('is-authenticated', authState.authenticated)
       authButton.innerHTML = authState.authenticated
-        ? '<i class="fa-solid fa-lock-open"></i>'
-        : '<i class="fa-solid fa-lock"></i>'
+        ? '<img class="doki-ui-icon" src="/daily/doki-icons/unlocked.svg" alt="" aria-hidden="true">'
+        : '<img class="doki-ui-icon" src="/daily/doki-icons/locked.svg" alt="" aria-hidden="true">'
       authButton.title = authState.authenticated
         ? '设备已授信 ' + (authState.trustDays || 1) + ' 天，点击退出'
         : '输入密码并授信设备'
@@ -7637,6 +8411,7 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     merged.planCompletionHistory = mergeEntityLists(remote.planCompletionHistory, local.planCompletionHistory, false)
     merged.memoFolders = mergeEntityLists(remote.memoFolders, local.memoFolders, false)
     merged.memos = mergeEntityLists(remote.memos, local.memos, true)
+    merged.deletedPlanGroupIds = mergeUniqueValues(remote.deletedPlanGroupIds, local.deletedPlanGroupIds)
     merged.deletedPlanProjectIds = mergeUniqueValues(remote.deletedPlanProjectIds, local.deletedPlanProjectIds)
     merged.deletedPlanSectionIds = mergeUniqueValues(remote.deletedPlanSectionIds, local.deletedPlanSectionIds)
     merged.deletedPlanTaskIds = mergeUniqueValues(remote.deletedPlanTaskIds, local.deletedPlanTaskIds)
@@ -8225,8 +9000,16 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     var button = document.createElement('button')
     button.type = 'button'
     button.className = className || 'task-icon-button'
-    var icon = document.createElement('i')
-    icon.className = 'fa-solid ' + iconName
+    var icon
+    if (typeof iconName === 'string' && iconName.indexOf('doki:') === 0) {
+      icon = document.createElement('img')
+      icon.className = 'doki-ui-icon'
+      icon.src = '/daily/doki-icons/' + iconName.slice(5) + '.svg'
+      icon.alt = ''
+    } else {
+      icon = document.createElement('i')
+      icon.className = 'fa-solid ' + iconName
+    }
     icon.setAttribute('aria-hidden', 'true')
     button.appendChild(icon)
     button.title = title
@@ -8244,6 +9027,123 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     }, 2300)
   }
 
+  function planLibraryWidthLimit() {
+    var available = window.innerWidth - 68 - 300 - 12 - 380
+    return Math.max(280, Math.min(720, available))
+  }
+
+  function clampPlanLibraryWidth(value) {
+    return Math.round(Math.max(280, Math.min(planLibraryWidthLimit(), Number(value) || 440)))
+  }
+
+  function loadPlanLibraryLayout() {
+    try {
+      var stored = JSON.parse(localStorage.getItem(PLAN_LIBRARY_LAYOUT_KEY))
+      if (!stored || typeof stored !== 'object') return { width: 440, collapsed: false }
+      return { width: clampPlanLibraryWidth(stored.width), collapsed: Boolean(stored.collapsed) }
+    } catch (error) {
+      return { width: 440, collapsed: false }
+    }
+  }
+
+  function savePlanLibraryLayout() {
+    try {
+      localStorage.setItem(PLAN_LIBRARY_LAYOUT_KEY, JSON.stringify(planLibraryLayout))
+    } catch (error) {}
+  }
+
+  function applyPlanLibraryLayout(shouldSave) {
+    if (!dailyLayout || !planLibraryResizer) return
+    planLibraryLayout.width = clampPlanLibraryWidth(planLibraryLayout.width)
+    dailyLayout.style.setProperty('--plan-library-width', planLibraryLayout.width + 'px')
+    document.body.classList.toggle('is-plan-library-collapsed', planLibraryLayout.collapsed)
+    planLibraryResizer.setAttribute('aria-valuemax', String(planLibraryWidthLimit()))
+    planLibraryResizer.setAttribute('aria-valuenow', String(planLibraryLayout.width))
+    planLibraryResizer.setAttribute('aria-valuetext', planLibraryLayout.collapsed ? '任务列表已隐藏' : '任务列表宽度 ' + planLibraryLayout.width + ' 像素')
+    if (planLibraryCollapse) {
+      var actionLabel = planLibraryLayout.collapsed ? '显示任务列表' : '隐藏任务列表'
+      planLibraryCollapse.title = actionLabel
+      planLibraryCollapse.setAttribute('aria-label', actionLabel)
+      planLibraryCollapse.setAttribute('aria-expanded', planLibraryLayout.collapsed ? 'false' : 'true')
+      planLibraryCollapse.innerHTML = '<i class="fa-solid ' + (planLibraryLayout.collapsed ? 'fa-chevron-right' : 'fa-chevron-left') + '" aria-hidden="true"></i>'
+    }
+    if (shouldSave) savePlanLibraryLayout()
+  }
+
+  function togglePlanLibraryCollapsed() {
+    if (!planLibraryResizer || window.innerWidth <= 1180) return
+    planLibraryLayout.collapsed = !planLibraryLayout.collapsed
+    applyPlanLibraryLayout(true)
+    showToast(planLibraryLayout.collapsed ? '任务列表已隐藏' : '任务列表已恢复')
+  }
+
+  function initializePlanLibraryResizer() {
+    if (!planLibraryResizer || !planLibraryPanel || !dailyLayout) return
+    planLibraryLayout = loadPlanLibraryLayout()
+    applyPlanLibraryLayout(false)
+    var dragPointerId = null
+    var dragStartX = 0
+    var dragStartWidth = planLibraryLayout.width
+
+    planLibraryResizer.addEventListener('pointerdown', function (event) {
+      if (event.target === planLibraryCollapse || planLibraryCollapse && planLibraryCollapse.contains(event.target)) return
+      if (event.button !== 0 || planLibraryLayout.collapsed || window.innerWidth <= 1180) return
+      event.preventDefault()
+      dragPointerId = event.pointerId
+      dragStartX = event.clientX
+      dragStartWidth = planLibraryPanel.getBoundingClientRect().width
+      planLibraryResizer.setPointerCapture(event.pointerId)
+      document.body.classList.add('is-plan-library-resizing')
+    })
+
+    planLibraryResizer.addEventListener('pointermove', function (event) {
+      if (dragPointerId !== event.pointerId) return
+      planLibraryLayout.width = clampPlanLibraryWidth(dragStartWidth + event.clientX - dragStartX)
+      applyPlanLibraryLayout(false)
+    })
+
+    function finishPlanLibraryResize(event) {
+      if (dragPointerId !== event.pointerId) return
+      dragPointerId = null
+      document.body.classList.remove('is-plan-library-resizing')
+      if (planLibraryResizer.hasPointerCapture(event.pointerId)) planLibraryResizer.releasePointerCapture(event.pointerId)
+      applyPlanLibraryLayout(true)
+    }
+
+    planLibraryResizer.addEventListener('pointerup', finishPlanLibraryResize)
+    planLibraryResizer.addEventListener('pointercancel', finishPlanLibraryResize)
+    planLibraryResizer.addEventListener('dblclick', function (event) {
+      if (event.target === planLibraryCollapse || planLibraryCollapse && planLibraryCollapse.contains(event.target)) return
+      event.preventDefault()
+      togglePlanLibraryCollapsed()
+    })
+    planLibraryResizer.addEventListener('keydown', function (event) {
+      if (event.target !== planLibraryResizer || window.innerWidth <= 1180) return
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault()
+        togglePlanLibraryCollapsed()
+        return
+      }
+      var nextWidth = planLibraryLayout.width
+      if (event.key === 'ArrowLeft') nextWidth -= event.shiftKey ? 60 : 20
+      else if (event.key === 'ArrowRight') nextWidth += event.shiftKey ? 60 : 20
+      else if (event.key === 'Home') nextWidth = 280
+      else if (event.key === 'End') nextWidth = planLibraryWidthLimit()
+      else return
+      event.preventDefault()
+      if (planLibraryLayout.collapsed) planLibraryLayout.collapsed = false
+      planLibraryLayout.width = clampPlanLibraryWidth(nextWidth)
+      applyPlanLibraryLayout(true)
+    })
+    if (planLibraryCollapse) planLibraryCollapse.addEventListener('click', function (event) {
+      event.stopPropagation()
+      togglePlanLibraryCollapsed()
+    })
+    window.addEventListener('resize', function () {
+      applyPlanLibraryLayout(false)
+    })
+  }
+
   function askEdit(current) {
     if (!canEdit()) return null
     var next = window.prompt('修改任务', current)
@@ -8254,11 +9154,12 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
 
   function sendToTrash(item) {
     if (!item || !item.text) return
-    state.trash.unshift({
+    var source = item.source === 'day' ? 'day' : item.source === 'plan-directory' ? 'plan-directory' : 'inbox'
+    var record = {
       id: uid(),
       text: item.text,
       priority: normalizePriority(item.priority),
-      source: item.source === 'day' ? 'day' : 'inbox',
+      source: source,
       dayKey: item.dayKey || null,
       groupId: item.groupId || null,
       subgroupId: item.subgroupId || null,
@@ -8266,6 +9167,36 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       note: typeof item.note === 'string' ? item.note : '',
       createdAt: Number(item.createdAt) || Date.now(),
       deletedAt: Date.now()
+    }
+    if (item.taskData && typeof item.taskData === 'object') record.taskData = JSON.parse(JSON.stringify(item.taskData))
+    if (source === 'plan-directory') {
+      record.directoryType = item.directoryType
+      record.directoryData = JSON.parse(JSON.stringify(item.directoryData || {}))
+    }
+    state.trash.unshift(record)
+  }
+
+  function removeDeletedPlanId(list, id) {
+    var index = list.indexOf(id)
+    if (index >= 0) list.splice(index, 1)
+  }
+
+  function rememberDeletedPlanItems(items, tombstones) {
+    items.forEach(function (item) {
+      if (item && item.id && tombstones.indexOf(item.id) < 0) tombstones.push(item.id)
+    })
+  }
+
+  function sendPlanDirectoryToTrash(type, directory, data) {
+    var typeLabel = type === 'group' ? '一级目录' : type === 'project' ? '二级目录' : '三级目录'
+    sendToTrash({
+      text: planIconPlainText(directory.icon, '📁') + ' ' + directory.name,
+      priority: 'green',
+      source: 'plan-directory',
+      directoryType: type,
+      directoryData: data,
+      note: typeLabel + '及其下属内容',
+      createdAt: directory.createdAt
     })
   }
 
@@ -8380,7 +9311,7 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
 
   function renderTrashList() {
     utilityTitle.innerHTML = '<i class="fa-solid fa-trash-can"></i>垃圾桶'
-    utilitySummary.textContent = state.trash.length + ' 项未完成删除记录'
+    utilitySummary.textContent = state.trash.length + ' 项删除记录'
     utilityList.textContent = ''
 
     if (!state.trash.length) {
@@ -8397,7 +9328,11 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       var text = document.createElement('strong')
       text.textContent = item.text
       copy.appendChild(text)
-      var source = item.source === 'day' && item.dayKey ? fullDateLabel(item.dayKey) : '计划栏'
+      var source = item.source === 'day' && item.dayKey
+        ? fullDateLabel(item.dayKey)
+        : item.source === 'plan-directory'
+          ? item.directoryType === 'project' ? '二级目录' : item.directoryType === 'section' ? '三级目录' : '一级目录'
+          : '计划栏'
       var deletedAt = new Date(Number(item.deletedAt) || Date.now())
       copy.appendChild(utilityMeta(source + ' · ' + (deletedAt.getMonth() + 1) + '月' + deletedAt.getDate() + '日删除'))
 
@@ -8488,11 +9423,143 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     showToast('已移到今天：' + task.text)
   }
 
+  function availablePlanId(collection, preferredId) {
+    if (!collection.some(function (entry) { return entry.id === preferredId })) return preferredId
+    return uid()
+  }
+
+  function restorePlanTaskSnapshot(snapshot, location) {
+    var restored = JSON.parse(JSON.stringify(snapshot || {}))
+    var originalId = restored.id
+    restored.id = availablePlanId(state.inbox, restored.id || uid())
+    restored.groupId = location.groupId || ''
+    restored.subgroupId = location.subgroupId || ''
+    restored.sectionId = location.sectionId || ''
+    restored.createdAt = Number(restored.createdAt) || Date.now()
+    restored.priority = normalizePriority(restored.priority)
+    if (originalId) removeDeletedPlanId(state.deletedPlanTaskIds, originalId)
+    state.inbox.push(restored)
+    return restored
+  }
+
+  function restorePlanDirectory(item) {
+    var data = item.directoryData || {}
+    if (item.directoryType === 'section' && data.section) {
+      var parentProject = state.planSubgroups.find(function (entry) { return entry.id === data.section.subgroupId }) || currentPlanSubgroup() || state.planSubgroups[0]
+      if (!parentProject) {
+        showToast('请先建立一个二级目录，再恢复这条记录')
+        return false
+      }
+      var section = JSON.parse(JSON.stringify(data.section))
+      var originalSectionId = section.id
+      section.id = availablePlanId(state.planSections, section.id || uid())
+      section.subgroupId = parentProject.id
+      section.seeded = false
+      removeDeletedPlanId(state.deletedPlanSectionIds, originalSectionId)
+      state.planSections.push(section)
+      ;(data.tasks || []).forEach(function (task) {
+        restorePlanTaskSnapshot(task, { groupId: parentProject.groupId, subgroupId: parentProject.id, sectionId: section.id })
+      })
+      selectedPlanGroupId = parentProject.groupId
+      selectedPlanSubgroupId = parentProject.id
+      selectedPlanSectionId = section.id
+      return true
+    }
+
+    if (item.directoryType === 'project' && data.project) {
+      var parentGroup = state.planGroups.find(function (entry) { return entry.id === data.project.groupId && planGroupSupportsProjects(entry) }) || state.planGroups.find(planGroupSupportsProjects)
+      if (!parentGroup) {
+        showToast('请先建立一个一级目录，再恢复这条记录')
+        return false
+      }
+      var project = JSON.parse(JSON.stringify(data.project))
+      var originalProjectId = project.id
+      project.id = availablePlanId(state.planSubgroups, project.id || uid())
+      project.groupId = parentGroup.id
+      project.seeded = false
+      removeDeletedPlanId(state.deletedPlanProjectIds, originalProjectId)
+      state.planSubgroups.push(project)
+      var restoredSections = {}
+      ;(data.sections || []).forEach(function (snapshot) {
+        var restoredSection = JSON.parse(JSON.stringify(snapshot))
+        var originalId = restoredSection.id
+        restoredSection.id = availablePlanId(state.planSections, restoredSection.id || uid())
+        restoredSection.subgroupId = project.id
+        restoredSection.seeded = false
+        removeDeletedPlanId(state.deletedPlanSectionIds, originalId)
+        restoredSections[originalId] = restoredSection.id
+        state.planSections.push(restoredSection)
+      })
+      ;(data.tasks || []).forEach(function (task) {
+        restorePlanTaskSnapshot(task, {
+          groupId: parentGroup.id,
+          subgroupId: project.id,
+          sectionId: restoredSections[task.sectionId] || ''
+        })
+      })
+      selectedPlanGroupId = parentGroup.id
+      selectedPlanSubgroupId = project.id
+      var firstRestoredSection = state.planSections.find(function (entry) { return entry.subgroupId === project.id })
+      selectedPlanSectionId = firstRestoredSection ? firstRestoredSection.id : ''
+      return true
+    }
+
+    if (item.directoryType === 'group' && data.group) {
+      var group = JSON.parse(JSON.stringify(data.group))
+      var originalGroupId = group.id
+      group.id = availablePlanId(state.planGroups, group.id || uid())
+      group.systemKey = ''
+      removeDeletedPlanId(state.deletedPlanGroupIds, originalGroupId)
+      state.planGroups.push(group)
+      var restoredProjects = {}
+      ;(data.projects || []).forEach(function (snapshot) {
+        var restoredProject = JSON.parse(JSON.stringify(snapshot))
+        var originalId = restoredProject.id
+        restoredProject.id = availablePlanId(state.planSubgroups, restoredProject.id || uid())
+        restoredProject.groupId = group.id
+        restoredProject.seeded = false
+        removeDeletedPlanId(state.deletedPlanProjectIds, originalId)
+        restoredProjects[originalId] = restoredProject.id
+        state.planSubgroups.push(restoredProject)
+      })
+      var restoredGroupSections = {}
+      ;(data.sections || []).forEach(function (snapshot) {
+        var restoredSection = JSON.parse(JSON.stringify(snapshot))
+        var originalId = restoredSection.id
+        var restoredProjectId = restoredProjects[restoredSection.subgroupId]
+        if (!restoredProjectId) return
+        restoredSection.id = availablePlanId(state.planSections, restoredSection.id || uid())
+        restoredSection.subgroupId = restoredProjectId
+        restoredSection.seeded = false
+        removeDeletedPlanId(state.deletedPlanSectionIds, originalId)
+        restoredGroupSections[originalId] = restoredSection.id
+        state.planSections.push(restoredSection)
+      })
+      ;(data.tasks || []).forEach(function (task) {
+        restorePlanTaskSnapshot(task, {
+          groupId: group.id,
+          subgroupId: restoredProjects[task.subgroupId] || '',
+          sectionId: restoredGroupSections[task.sectionId] || ''
+        })
+      })
+      selectedPlanGroupId = group.id
+      var firstRestoredProject = state.planSubgroups.find(function (entry) { return entry.groupId === group.id })
+      selectedPlanSubgroupId = firstRestoredProject ? firstRestoredProject.id : ''
+      selectedPlanSectionId = ''
+      return true
+    }
+    return false
+  }
+
   function restoreTrash(id) {
     var index = state.trash.findIndex(function (item) { return item.id === id })
     if (index < 0) return
-    var item = state.trash.splice(index, 1)[0]
-    if (item.source === 'day' && item.dayKey) {
+    var item = state.trash[index]
+    if (item.source === 'plan-directory') {
+      if (!restorePlanDirectory(item)) return
+      state.trash.splice(index, 1)
+    } else if (item.source === 'day' && item.dayKey) {
+      state.trash.splice(index, 1)
       ensureDay(item.dayKey).tasks.push({
         id: uid(),
         text: item.text,
@@ -8503,23 +9570,29 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
         completedAt: null
       })
     } else {
+      state.trash.splice(index, 1)
       normalizePlanState(state)
       var restoredGroupId = state.planGroups.some(function (group) { return group.id === item.groupId }) ? item.groupId : state.planGroups[0].id
       var restoredSubgroupId = state.planSubgroups.some(function (subgroup) {
         return subgroup.id === item.subgroupId && subgroup.groupId === restoredGroupId
       }) ? item.subgroupId : ''
-      state.inbox.unshift({
+      var restoredSectionId = state.planSections.some(function (section) {
+          return section.id === item.sectionId && section.subgroupId === restoredSubgroupId
+        }) ? item.sectionId : ''
+      var taskSnapshot = item.taskData || {
         id: uid(),
         text: item.text,
-        priority: normalizePriority(item.priority),
+        priority: item.priority,
+        note: item.note,
+        createdAt: item.createdAt
+      }
+      var restoredTask = restorePlanTaskSnapshot(taskSnapshot, {
         groupId: restoredGroupId,
         subgroupId: restoredSubgroupId,
-        sectionId: state.planSections.some(function (section) {
-          return section.id === item.sectionId && section.subgroupId === restoredSubgroupId
-        }) ? item.sectionId : '',
-        note: item.note || '',
-        createdAt: Date.now()
+        sectionId: restoredSectionId
       })
+      state.inbox.splice(state.inbox.indexOf(restoredTask), 1)
+      state.inbox.unshift(restoredTask)
     }
     saveState()
     renderAll()
@@ -8556,10 +9629,14 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     }
     var subgroup = state.planSubgroups.find(function (entry) { return entry.id === selectedPlanSubgroupId })
     if (!subgroup || subgroup.groupId !== group.id) {
-      subgroup = state.planSubgroups.find(function (entry) { return entry.groupId === group.id }) || null
+      var rememberedProjectId = lastPlanProjectByGroup[group.id]
+      subgroup = state.planSubgroups.find(function (entry) {
+        return entry.id === rememberedProjectId && entry.groupId === group.id
+      }) || state.planSubgroups.filter(function (entry) { return entry.groupId === group.id }).sort(comparePlanOrder)[0] || null
       selectedPlanSubgroupId = subgroup ? subgroup.id : ''
       selectedPlanSectionId = ''
     }
+    if (subgroup) lastPlanProjectByGroup[group.id] = subgroup.id
     return subgroup
   }
 
@@ -8568,9 +9645,13 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     if (!subgroup) return null
     var section = state.planSections.find(function (entry) { return entry.id === selectedPlanSectionId })
     if (!section || section.subgroupId !== subgroup.id) {
-      section = state.planSections.find(function (entry) { return entry.subgroupId === subgroup.id }) || null
+      var rememberedSectionId = lastPlanSectionByProject[subgroup.id]
+      section = state.planSections.find(function (entry) {
+        return entry.id === rememberedSectionId && entry.subgroupId === subgroup.id
+      }) || state.planSections.filter(function (entry) { return entry.subgroupId === subgroup.id }).sort(comparePlanOrder)[0] || null
       selectedPlanSectionId = section ? section.id : ''
     }
+    if (section) lastPlanSectionByProject[subgroup.id] = section.id
     return section
   }
 
@@ -8580,6 +9661,69 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
 
   function planGroupSupportsProjects(group) {
     return Boolean(group && group.id !== 'plan-habit' && group.id !== 'plan-wish')
+  }
+
+  function planGroupDisplayName(group) {
+    var preset = planGroupPreset(group)
+    if (!preset) return group.name
+    return preset.index + '、' + group.name
+  }
+
+  function movePlanItem(collection, siblings, item, direction) {
+    var siblingIndex = siblings.findIndex(function (entry) { return entry.id === item.id })
+    var nextIndex = siblingIndex + direction
+    if (siblingIndex < 0 || nextIndex < 0 || nextIndex >= siblings.length) return false
+    var ordered = siblings.slice()
+    var moved = ordered.splice(siblingIndex, 1)[0]
+    ordered.splice(nextIndex, 0, moved)
+    ordered.forEach(function (entry, index) { entry.sortOrder = index })
+    return true
+  }
+
+  function comparePlanOrder(left, right) {
+    var leftOrder = Number.isFinite(Number(left.sortOrder)) ? Number(left.sortOrder) : Number(left.createdAt) || 0
+    var rightOrder = Number.isFinite(Number(right.sortOrder)) ? Number(right.sortOrder) : Number(right.createdAt) || 0
+    if (leftOrder !== rightOrder) return leftOrder - rightOrder
+    return (Number(left.createdAt) || 0) - (Number(right.createdAt) || 0)
+  }
+
+  function nextPlanSortOrder(items) {
+    if (!items.length) return 0
+    return Math.max.apply(null, items.map(function (entry) {
+      return Number.isFinite(Number(entry.sortOrder)) ? Number(entry.sortOrder) : 0
+    })) + 1
+  }
+
+  function firstPlanSortOrder(items) {
+    if (!items.length) return 0
+    return Math.min.apply(null, items.map(function (entry) {
+      return Number.isFinite(Number(entry.sortOrder)) ? Number(entry.sortOrder) : 0
+    })) - 1
+  }
+
+  function createPlanOrderControls(collection, siblings, item, renderAfterMove) {
+    var controls = document.createElement('span')
+    controls.className = 'plan-order-controls'
+    var index = siblings.findIndex(function (entry) { return entry.id === item.id })
+    var up = createButton('doki:chevron_up', '上移“' + (item.name || item.text) + '”', 'task-icon-button', function (event) {
+      event.stopPropagation()
+      if (!canEdit() || !movePlanItem(collection, siblings, item, -1)) return
+      saveState()
+      renderAfterMove()
+      showToast('顺序已保存')
+    })
+    var down = createButton('doki:chevron_down', '下移“' + (item.name || item.text) + '”', 'task-icon-button', function (event) {
+      event.stopPropagation()
+      if (!canEdit() || !movePlanItem(collection, siblings, item, 1)) return
+      saveState()
+      renderAfterMove()
+      showToast('顺序已保存')
+    })
+    up.disabled = index <= 0
+    down.disabled = index < 0 || index >= siblings.length - 1
+    controls.appendChild(up)
+    controls.appendChild(down)
+    return controls
   }
 
   function findPlanIconSelection(emoji) {
@@ -8593,8 +9737,34 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     return match
   }
 
+  function renderPlanIcon(element, icon, fallback) {
+    if (!element) return
+    var clean = (icon || fallback || '📁').trim()
+    var selected = findPlanIconSelection(clean)
+    element.textContent = ''
+    if (selected && selected.item.asset) {
+      var image = document.createElement('img')
+      image.className = 'plan-icon-image'
+      image.src = '/daily/doki-icons/' + selected.item.asset
+      image.alt = ''
+      image.setAttribute('aria-hidden', 'true')
+      element.appendChild(image)
+      return
+    }
+    element.textContent = clean || fallback || '📁'
+  }
+
+  function planIconDisplayText(item) {
+    return item && item.asset ? 'Doki · ' + item.name : ((item && item.emoji ? item.emoji + ' ' : '') + (item ? item.name : ''))
+  }
+
+  function planIconPlainText(icon, fallback) {
+    var selected = findPlanIconSelection(icon)
+    return selected && selected.item.asset ? '✦' : (icon || fallback || '📁')
+  }
+
   function planIconAccessibleLabel(item) {
-    return item.emoji + ' ' + item.name + '：' + item.meaning
+    return planIconDisplayText(item) + '：' + item.meaning
   }
 
   function setPlanIconPickerOpen(open) {
@@ -8610,19 +9780,22 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     planDirectoryIconDescription.textContent = ''
     var title = document.createElement('strong')
     if (item) {
-      title.textContent = item.emoji + ' ' + item.name
+      title.textContent = planIconDisplayText(item)
       planDirectoryIconDescription.appendChild(title)
       planDirectoryIconDescription.appendChild(document.createTextNode('— ' + item.meaning))
       return
     }
-    title.textContent = (planDirectoryIcon && planDirectoryIcon.value ? planDirectoryIcon.value : '📁') + ' 当前图标'
+    var currentSelection = findPlanIconSelection(planDirectoryIcon && planDirectoryIcon.value)
+    title.textContent = currentSelection ? planIconDisplayText(currentSelection.item) : ((planDirectoryIcon && planDirectoryIcon.value ? planDirectoryIcon.value : '📁') + ' 当前图标')
     planDirectoryIconDescription.appendChild(title)
-    planDirectoryIconDescription.appendChild(document.createTextNode('— 可以从上方分类中选择新的 Emoji。'))
+    planDirectoryIconDescription.appendChild(document.createTextNode('— 可以从上方分类中选择新的图标。'))
   }
 
   function renderPlanIconPicker() {
     if (!planDirectoryIconTabs || !planDirectoryIconOptions) return
     var group = PLAN_ICON_GROUPS.find(function (entry) { return entry.id === activePlanIconGroup }) || PLAN_ICON_GROUPS[0]
+    var pageCount = group.id === 'doki' ? Math.ceil(group.items.length / DOKI_ICON_PAGE_SIZE) : 1
+    activePlanIconPage = Math.max(0, Math.min(activePlanIconPage, pageCount - 1))
     activePlanIconGroup = group.id
     planDirectoryIconTabs.textContent = ''
     PLAN_ICON_GROUPS.forEach(function (entry) {
@@ -8632,9 +9805,15 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       tab.className = 'plan-icon-tab' + (active ? ' is-active' : '')
       tab.setAttribute('role', 'tab')
       tab.setAttribute('aria-selected', active ? 'true' : 'false')
-      tab.textContent = entry.icon + ' ' + entry.label
+      var tabIcon = document.createElement('span')
+      renderPlanIcon(tabIcon, entry.icon, '✦')
+      var tabLabel = document.createElement('span')
+      tabLabel.textContent = entry.label
+      tab.appendChild(tabIcon)
+      tab.appendChild(tabLabel)
       tab.addEventListener('click', function () {
         activePlanIconGroup = entry.id
+        activePlanIconPage = 0
         renderPlanIconPicker()
         var selected = findPlanIconSelection(planDirectoryIcon.value)
         showPlanIconDescription(selected ? selected.item : null)
@@ -8643,12 +9822,16 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     })
 
     planDirectoryIconOptions.textContent = ''
-    group.items.forEach(function (item) {
+    planDirectoryIconOptions.classList.toggle('is-paginated', pageCount > 1)
+    var visibleItems = pageCount > 1
+      ? group.items.slice(activePlanIconPage * DOKI_ICON_PAGE_SIZE, (activePlanIconPage + 1) * DOKI_ICON_PAGE_SIZE)
+      : group.items
+    visibleItems.forEach(function (item) {
       var option = document.createElement('button')
       var selected = planDirectoryIcon.value === item.emoji
       option.type = 'button'
       option.className = 'plan-icon-option' + (selected ? ' is-selected' : '')
-      option.textContent = item.emoji
+      renderPlanIcon(option, item.emoji, '✦')
       option.title = planIconAccessibleLabel(item)
       option.setAttribute('aria-label', planIconAccessibleLabel(item))
       option.setAttribute('aria-pressed', selected ? 'true' : 'false')
@@ -8664,8 +9847,7 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       })
       option.addEventListener('click', function () {
         planDirectoryIcon.value = item.emoji
-        planDirectoryIconPreview.textContent = item.emoji
-        planDirectoryIconCurrent.textContent = item.name + ' · 已选择'
+        renderPlanIcon(planDirectoryIconPreview, item.emoji, '📁')
         renderPlanIconPicker()
         showPlanIconDescription(item)
         setPlanIconPickerOpen(false)
@@ -8673,15 +9855,60 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       })
       planDirectoryIconOptions.appendChild(option)
     })
+
+    if (!planDirectoryIconPages) return
+    planDirectoryIconPages.textContent = ''
+    planDirectoryIconPages.hidden = pageCount <= 1
+    if (pageCount <= 1) return
+
+    function appendPageButton(label, page, options) {
+      var settings = options || {}
+      var button = document.createElement('button')
+      var current = page === activePlanIconPage
+      button.type = 'button'
+      button.className = 'plan-icon-page' + (current && !settings.direction ? ' is-active' : '')
+      button.textContent = label
+      button.title = settings.title || ('第 ' + (page + 1) + ' 页')
+      button.setAttribute('aria-label', button.title)
+      if (current && !settings.direction) button.setAttribute('aria-current', 'page')
+      button.disabled = Boolean(settings.disabled)
+      button.addEventListener('click', function () {
+        activePlanIconPage = page
+        renderPlanIconPicker()
+        var selected = findPlanIconSelection(planDirectoryIcon.value)
+        showPlanIconDescription(selected ? selected.item : null)
+      })
+      planDirectoryIconPages.appendChild(button)
+    }
+
+    appendPageButton('‹', Math.max(0, activePlanIconPage - 1), {
+      direction: true,
+      disabled: activePlanIconPage === 0,
+      title: '上一页'
+    })
+    for (var pageIndex = 0; pageIndex < pageCount; pageIndex += 1) {
+      appendPageButton(String(pageIndex + 1), pageIndex)
+    }
+    appendPageButton('›', Math.min(pageCount - 1, activePlanIconPage + 1), {
+      direction: true,
+      disabled: activePlanIconPage === pageCount - 1,
+      title: '下一页'
+    })
   }
 
   function setPlanDirectoryIcon(icon) {
-    var clean = (icon || '📁').trim().slice(0, 8) || '📁'
+    var clean = (icon || '📁').trim().slice(0, 64) || '📁'
     var selected = findPlanIconSelection(clean)
     planDirectoryIcon.value = clean
-    planDirectoryIconPreview.textContent = clean
-    planDirectoryIconCurrent.textContent = selected ? selected.item.name + ' · 已选择' : '从下方选择 Emoji'
-    if (selected) activePlanIconGroup = selected.group.id
+    renderPlanIcon(planDirectoryIconPreview, clean, '📁')
+    if (selected) {
+      activePlanIconGroup = selected.group.id
+      activePlanIconPage = selected.group.id === 'doki'
+        ? Math.floor(selected.group.items.indexOf(selected.item) / DOKI_ICON_PAGE_SIZE)
+        : 0
+    } else {
+      activePlanIconPage = 0
+    }
     renderPlanIconPicker()
     showPlanIconDescription(selected ? selected.item : null)
   }
@@ -8700,22 +9927,212 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     var section = state.planSections.find(function (entry) { return entry.id === sectionId }) || null
     var isGroup = mode === 'group-add' || mode === 'group-edit'
     var isProject = mode === 'project-add' || mode === 'project-edit'
+    var isTaskAdd = mode === 'task-add'
     var isEdit = mode === 'group-edit' || mode === 'project-edit' || mode === 'section-edit'
     planDirectoryMode.value = mode
     planDirectoryGroupId.value = group ? group.id : ''
     planDirectoryProjectId.value = project ? project.id : ''
     planDirectorySectionId.value = section ? section.id : ''
-    planDirectoryTitle.textContent = mode === 'group-add' ? '新建一级目录'
+    planDirectoryTitle.textContent = mode === 'group-add' ? '添加任务目录'
       : mode === 'group-edit' ? '编辑一级目录'
-        : mode === 'project-add' ? '新建二级项目'
-          : mode === 'project-edit' ? '编辑二级项目'
-            : mode === 'section-add' ? '新建大方向' : '编辑大方向'
+        : mode === 'project-add' ? '新建二级目录'
+          : mode === 'project-edit' ? '编辑二级目录'
+            : mode === 'section-add' ? '新建三级目录'
+              : mode === 'section-edit' ? '编辑三级目录' : '新建任务'
+    if (planDirectorySubtitle) {
+      planDirectorySubtitle.textContent = isEdit
+        ? '只修改当前目录的名称'
+        : isTaskAdd
+          ? '在“' + (section ? section.name : project ? project.name : group ? group.name : '当前目录') + '”下添加一个 1h 任务'
+          : '左侧选择图标，右侧填写名称'
+    }
+    planDirectoryForm.classList.toggle('is-name-only', isEdit || isTaskAdd)
+    if (planDirectoryIconField) planDirectoryIconField.hidden = isEdit || isTaskAdd
+    planDirectoryName.placeholder = isTaskAdd ? '输入 1h 任务名称' : '输入目录名称'
     planDirectoryName.value = isEdit ? (isGroup ? group.name : isProject ? project.name : section.name) : ''
-    setPlanDirectoryIcon(isEdit ? ((isGroup ? group.icon : isProject ? project.icon : section.icon) || '📁') : (isGroup ? '📁' : isProject ? '📂' : '📋'))
-    planDirectoryDelete.hidden = !isEdit || (isGroup && Boolean(planGroupPreset(group)))
+    setPlanDirectoryIcon(isEdit
+      ? ((isGroup ? group.icon : isProject ? project.icon : section.icon) || (isGroup ? 'doki:folder-heart' : isProject ? 'doki:project_glyph' : 'doki:todo'))
+      : (isGroup ? 'doki:folder-heart' : isProject ? 'doki:project_glyph' : 'doki:todo'))
+    planDirectoryDelete.hidden = true
     setPlanIconPickerOpen(false)
     planDirectoryModal.hidden = false
     setTimeout(function () { planDirectoryName.focus() }, 0)
+  }
+
+  function closePlanDirectoryContextMenu() {
+    if (!planDirectoryContextMenu) return
+    planDirectoryContextMenu.hidden = true
+    planDirectoryContextMenu.textContent = ''
+    planDirectoryContextTarget = null
+    var highlighted = document.querySelector('.is-context-target')
+    if (highlighted) highlighted.classList.remove('is-context-target')
+  }
+
+  function selectPlanContextTarget(target) {
+    var group = state.planGroups.find(function (entry) { return entry.id === target.groupId }) || null
+    var project = state.planSubgroups.find(function (entry) { return entry.id === target.projectId }) || null
+    var section = state.planSections.find(function (entry) { return entry.id === target.sectionId }) || null
+    if (!group) return null
+    selectedPlanGroupId = group.id
+    if (target.level === 'group') {
+      if (planGroupSupportsProjects(group)) {
+        project = state.planSubgroups.find(function (entry) {
+          return entry.id === lastPlanProjectByGroup[group.id] && entry.groupId === group.id
+        }) || state.planSubgroups.filter(function (entry) { return entry.groupId === group.id }).sort(comparePlanOrder)[0] || null
+        section = project && (state.planSections.find(function (entry) {
+          return entry.id === lastPlanSectionByProject[project.id] && entry.subgroupId === project.id
+        }) || state.planSections.filter(function (entry) { return entry.subgroupId === project.id }).sort(comparePlanOrder)[0]) || null
+      } else {
+        project = null
+        section = null
+      }
+    }
+    if (project) {
+      selectedPlanSubgroupId = project.id
+      lastPlanProjectByGroup[group.id] = project.id
+    } else {
+      selectedPlanSubgroupId = ''
+    }
+    if (section) {
+      selectedPlanSectionId = section.id
+      lastPlanSectionByProject[project.id] = section.id
+    } else {
+      selectedPlanSectionId = ''
+    }
+    if (planGroupSupportsProjects(group)) expandedPlanGroups[group.id] = true
+    if (project && target.level === 'section') expandedPlanProjects[project.id] = true
+    selectedPlanTaskId = null
+    rememberPlanNavigationSelection()
+    return { group: group, project: project, section: section }
+  }
+
+  function planContextSortActive(target) {
+    if (target.level === 'group') {
+      var group = state.planGroups.find(function (entry) { return entry.id === target.groupId })
+      return planGroupSupportsProjects(group)
+        ? projectOrderGroupId === target.groupId
+        : planTaskOrderEditing && selectedPlanGroupId === target.groupId
+    }
+    if (target.level === 'project') return sectionOrderProjectId === target.projectId
+    return planTaskOrderEditing && selectedPlanSectionId === target.sectionId
+  }
+
+  function performPlanContextAction(action, target) {
+    if (!target || !canEdit()) return
+    var wasSorting = planContextSortActive(target)
+    closePlanDirectoryContextMenu()
+    var selected = selectPlanContextTarget(target)
+    if (!selected) return
+
+    if (action === 'new') {
+      if (target.level === 'group' && planGroupSupportsProjects(selected.group)) {
+        openPlanDirectoryModal('project-add', selected.group.id)
+      } else if (target.level === 'project') {
+        openPlanDirectoryModal('section-add', selected.group.id, selected.project.id)
+      } else {
+        openPlanDirectoryModal('task-add', selected.group.id, selected.project ? selected.project.id : '', selected.section ? selected.section.id : '')
+      }
+      return
+    }
+
+    if (action === 'edit') {
+      if (target.level === 'group') openPlanDirectoryModal('group-edit', selected.group.id)
+      if (target.level === 'project') openPlanDirectoryModal('project-edit', selected.group.id, selected.project.id)
+      if (target.level === 'section') openPlanDirectoryModal('section-edit', selected.group.id, selected.project.id, selected.section.id)
+      return
+    }
+
+    if (action === 'sort') {
+      if (target.level === 'group' && planGroupSupportsProjects(selected.group)) {
+        projectOrderGroupId = projectOrderGroupId === selected.group.id ? '' : selected.group.id
+        sectionOrderProjectId = ''
+        planTaskOrderEditing = false
+      } else if (target.level === 'project') {
+        sectionOrderProjectId = sectionOrderProjectId === selected.project.id ? '' : selected.project.id
+        projectOrderGroupId = ''
+        planTaskOrderEditing = false
+        expandedPlanProjects[selected.project.id] = true
+      } else {
+        planTaskOrderEditing = !wasSorting
+        projectOrderGroupId = ''
+        sectionOrderProjectId = ''
+      }
+      renderPlanGroups()
+      renderInbox()
+      showToast(planContextSortActive(target) ? '已进入排序模式；再次右键父目录可完成排序' : '排序已完成')
+      return
+    }
+
+    if (action === 'delete') {
+      if (target.level === 'group') deletePlanGroup(selected.group.id)
+      if (target.level === 'project') deletePlanSubgroup(selected.project.id)
+      if (target.level === 'section') deletePlanSection(selected.section.id)
+    }
+  }
+
+  function openPlanDirectoryContextMenu(target, row, clientX, clientY) {
+    if (!planDirectoryContextMenu || !canEdit()) return
+    closePlanDirectoryContextMenu()
+    planDirectoryContextTarget = target
+    row.classList.add('is-context-target')
+    var sorting = planContextSortActive(target)
+    var actions = [
+      { id: 'new', label: '新建', icon: 'add', title: target.level === 'group' ? '新建下一级内容' : target.level === 'project' ? '新建三级目录' : '新建 1h 任务' },
+      { id: 'edit', label: '编辑', icon: 'edit', title: '编辑名称' },
+      { id: 'sort', label: sorting ? '完成排序' : '排序', icon: sorting ? 'check' : 'dual_chevrons', title: sorting ? '结束当前排序' : '调整下一级内容顺序' },
+      { id: 'delete', label: '删除', icon: 'trash', title: '移入垃圾桶', danger: true }
+    ]
+    actions.forEach(function (action) {
+      var button = document.createElement('button')
+      button.type = 'button'
+      button.className = 'plan-directory-context-action' + (action.danger ? ' is-danger' : '')
+      var actionIcon = document.createElement('img')
+      actionIcon.className = 'doki-ui-icon'
+      actionIcon.src = '/daily/doki-icons/' + action.icon + '.svg'
+      actionIcon.alt = ''
+      actionIcon.setAttribute('aria-hidden', 'true')
+      var actionLabel = document.createElement('span')
+      actionLabel.textContent = action.label
+      button.append(actionIcon, actionLabel)
+      button.title = action.title
+      button.setAttribute('role', 'menuitem')
+      button.disabled = Boolean(action.disabled)
+      button.addEventListener('click', function (event) {
+        event.stopPropagation()
+        performPlanContextAction(action.id, target)
+      })
+      planDirectoryContextMenu.appendChild(button)
+    })
+    planDirectoryContextMenu.style.left = Math.max(8, clientX) + 'px'
+    planDirectoryContextMenu.style.top = Math.max(8, clientY) + 'px'
+    planDirectoryContextMenu.hidden = false
+    requestAnimationFrame(function () {
+      if (planDirectoryContextMenu.hidden) return
+      var rect = planDirectoryContextMenu.getBoundingClientRect()
+      var left = Math.min(Math.max(8, clientX), window.innerWidth - rect.width - 8)
+      var top = Math.min(Math.max(8, clientY), window.innerHeight - rect.height - 8)
+      planDirectoryContextMenu.style.left = left + 'px'
+      planDirectoryContextMenu.style.top = top + 'px'
+      var firstAction = planDirectoryContextMenu.querySelector('button:not(:disabled)')
+      if (firstAction) firstAction.focus()
+    })
+  }
+
+  function bindPlanDirectoryContextMenu(row, target) {
+    row.setAttribute('aria-haspopup', 'menu')
+    row.addEventListener('contextmenu', function (event) {
+      event.preventDefault()
+      event.stopPropagation()
+      openPlanDirectoryContextMenu(target, row, event.clientX, event.clientY)
+    })
+    row.addEventListener('keydown', function (event) {
+      if ((event.shiftKey && event.key === 'F10') || event.key === 'ContextMenu') {
+        event.preventDefault()
+        event.stopPropagation()
+        var rect = row.getBoundingClientRect()
+        openPlanDirectoryContextMenu(target, row, rect.left + Math.min(rect.width - 12, 120), rect.top + Math.min(rect.height - 8, 32))
+      }
+    })
   }
 
   function syncPlanTaskCopies(item) {
@@ -8742,31 +10159,46 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     planGroupCount.textContent = String(state.planGroups.length)
 
     state.planGroups.forEach(function (group) {
+      var groupExpanded = Boolean(expandedPlanGroups[group.id])
       var block = document.createElement('li')
-      block.className = 'plan-group-block' + (group.id === activeGroup.id ? ' is-expanded' : '')
+      block.className = 'plan-group-block' + (groupExpanded ? ' is-expanded' : '')
       var row = document.createElement('div')
       var supportsProjects = planGroupSupportsProjects(group)
+      var editingProjects = projectOrderGroupId === group.id
       row.className = 'plan-group-item' + (group.id === activeGroup.id ? ' is-active' : '') + (supportsProjects ? '' : ' is-direct')
       row.setAttribute('role', 'button')
       row.tabIndex = 0
 
-      var toggle = document.createElement('i')
-      toggle.className = supportsProjects ? 'fa-solid ' + (group.id === activeGroup.id ? 'fa-chevron-down' : 'fa-chevron-right') + ' plan-group-toggle' : 'plan-group-toggle is-empty'
-      toggle.setAttribute('aria-hidden', 'true')
+      var toggle = null
+      if (supportsProjects) {
+        toggle = document.createElement('button')
+        toggle.type = 'button'
+        toggle.className = 'plan-group-toggle'
+        var groupToggleIcon = document.createElement('img')
+        groupToggleIcon.className = 'doki-ui-icon plan-directory-toggle-icon'
+        groupToggleIcon.src = '/daily/doki-icons/' + (groupExpanded ? 'chevron_down.svg' : 'chevron_right.svg')
+        groupToggleIcon.alt = ''
+        groupToggleIcon.setAttribute('aria-hidden', 'true')
+        toggle.appendChild(groupToggleIcon)
+        toggle.title = groupExpanded ? '收起“' + planGroupDisplayName(group) + '”' : '展开“' + planGroupDisplayName(group) + '”'
+        toggle.setAttribute('aria-label', toggle.title)
+        toggle.setAttribute('aria-expanded', groupExpanded ? 'true' : 'false')
+        toggle.addEventListener('click', function (event) {
+          event.stopPropagation()
+          expandedPlanGroups[group.id] = !groupExpanded
+          savePlanNavigation()
+          renderPlanGroups()
+        })
+      }
 
       var preset = planGroupPreset(group)
       var icon = document.createElement('span')
       icon.className = 'plan-group-icon'
-      icon.textContent = group.icon || (preset ? preset.icon : '📁')
+      renderPlanIcon(icon, group.icon, preset ? preset.icon : '📁')
 
       var name = document.createElement('span')
       name.className = 'plan-group-name'
-      name.textContent = preset ? preset.index + '、' + group.name : group.name
-      name.title = '双击编辑目录'
-      name.addEventListener('dblclick', function (event) {
-        event.stopPropagation()
-        openPlanDirectoryModal('group-edit', group.id)
-      })
+      name.textContent = planGroupDisplayName(group)
 
       var count = document.createElement('span')
       count.className = 'plan-group-count'
@@ -8774,47 +10206,39 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
 
       function activate() {
         selectedPlanGroupId = group.id
-        var firstProject = supportsProjects && state.planSubgroups.find(function (subgroup) { return subgroup.groupId === group.id })
-        selectedPlanSubgroupId = firstProject ? firstProject.id : ''
-        selectedPlanSectionId = ''
+        var rememberedProjectId = lastPlanProjectByGroup[group.id]
+        var nextProject = supportsProjects && (state.planSubgroups.find(function (subgroup) {
+          return subgroup.id === rememberedProjectId && subgroup.groupId === group.id
+        }) || state.planSubgroups.filter(function (subgroup) { return subgroup.groupId === group.id }).sort(comparePlanOrder)[0])
+        selectedPlanSubgroupId = nextProject ? nextProject.id : ''
+        var rememberedSectionId = nextProject && lastPlanSectionByProject[nextProject.id]
+        var nextSection = nextProject && (state.planSections.find(function (section) {
+          return section.id === rememberedSectionId && section.subgroupId === nextProject.id
+        }) || state.planSections.filter(function (section) { return section.subgroupId === nextProject.id }).sort(comparePlanOrder)[0])
+        selectedPlanSectionId = nextSection ? nextSection.id : ''
         selectedPlanTaskId = null
+        if (supportsProjects) expandedPlanGroups[group.id] = true
+        rememberPlanNavigationSelection()
         renderPlanGroups()
         renderInbox()
       }
       row.addEventListener('click', activate)
       row.addEventListener('keydown', function (event) {
+        if (event.target !== row) return
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault()
           activate()
         }
       })
-      if (supportsProjects) row.appendChild(toggle)
+      bindPlanDirectoryContextMenu(row, { level: 'group', groupId: group.id })
+      if (toggle) row.appendChild(toggle)
       row.appendChild(icon)
       row.appendChild(name)
       row.appendChild(count)
-      var groupActions = document.createElement('span')
-      groupActions.className = 'plan-group-actions'
-      groupActions.appendChild(createButton('fa-pen', '编辑一级目录', 'task-icon-button', function (event) {
-        event.stopPropagation()
-        openPlanDirectoryModal('group-edit', group.id)
-      }))
-      if (supportsProjects) {
-        groupActions.appendChild(createButton('fa-folder-plus', '新建二级项目', 'task-icon-button', function (event) {
-          event.stopPropagation()
-          openPlanDirectoryModal('project-add', group.id)
-        }))
-      }
-      if (!preset) {
-        groupActions.appendChild(createButton('fa-trash-can', '删除目录', 'task-icon-button is-danger', function (event) {
-          event.stopPropagation()
-          deletePlanGroup(group.id)
-        }))
-      }
-      row.appendChild(groupActions)
       block.appendChild(row)
 
-      if (supportsProjects && group.id === activeGroup.id) {
-        var projects = state.planSubgroups.filter(function (subgroup) { return subgroup.groupId === group.id })
+      if (supportsProjects && groupExpanded) {
+        var projects = state.planSubgroups.filter(function (subgroup) { return subgroup.groupId === group.id }).sort(comparePlanOrder)
         var projectList = document.createElement('ul')
         projectList.className = 'plan-project-list'
         if (!projects.length) {
@@ -8824,13 +10248,38 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
           projectList.appendChild(projectEmpty)
         }
         projects.forEach(function (project) {
+          var sections = state.planSections.filter(function (section) { return section.subgroupId === project.id }).sort(comparePlanOrder)
+          var projectExpanded = Boolean(expandedPlanProjects[project.id]) && sections.length > 0
           var projectRow = document.createElement('li')
-          projectRow.className = 'plan-project-item' + (activeProject && project.id === activeProject.id ? ' is-active' : '')
+          projectRow.className = 'plan-project-item' + (activeProject && project.id === activeProject.id ? ' is-active' : '') + (projectExpanded ? ' is-expanded' : '') + (editingProjects ? ' is-order-editing' : '')
           projectRow.tabIndex = 0
           projectRow.setAttribute('role', 'button')
+          var editingSections = sectionOrderProjectId === project.id
+          var projectToggle = document.createElement(sections.length ? 'button' : 'span')
+          projectToggle.className = 'plan-project-toggle' + (sections.length ? '' : ' is-empty')
+          if (sections.length) {
+            projectToggle.type = 'button'
+            var projectToggleIcon = document.createElement('img')
+            projectToggleIcon.className = 'doki-ui-icon plan-directory-toggle-icon'
+            projectToggleIcon.src = '/daily/doki-icons/' + (projectExpanded ? 'chevron_down.svg' : 'chevron_right.svg')
+            projectToggleIcon.alt = ''
+            projectToggleIcon.setAttribute('aria-hidden', 'true')
+            projectToggle.appendChild(projectToggleIcon)
+            projectToggle.title = projectExpanded ? '收起“' + project.name + '”' : '展开“' + project.name + '”'
+            projectToggle.setAttribute('aria-label', projectToggle.title)
+            projectToggle.setAttribute('aria-expanded', projectExpanded ? 'true' : 'false')
+            projectToggle.addEventListener('click', function (event) {
+              event.stopPropagation()
+              expandedPlanProjects[project.id] = !projectExpanded
+              savePlanNavigation()
+              renderPlanGroups()
+            })
+          } else {
+            projectToggle.setAttribute('aria-hidden', 'true')
+          }
           var projectIcon = document.createElement('span')
           projectIcon.className = 'plan-project-icon'
-          projectIcon.textContent = project.icon || '📁'
+          renderPlanIcon(projectIcon, project.icon, '📁')
           var projectName = document.createElement('span')
           projectName.className = 'plan-project-name'
           projectName.textContent = project.name
@@ -8841,56 +10290,58 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
             if (event) event.stopPropagation()
             selectedPlanGroupId = group.id
             selectedPlanSubgroupId = project.id
-            var firstSection = state.planSections.find(function (section) { return section.subgroupId === project.id })
-            selectedPlanSectionId = firstSection ? firstSection.id : ''
+            var rememberedSectionId = lastPlanSectionByProject[project.id]
+            var nextSection = state.planSections.find(function (section) {
+              return section.id === rememberedSectionId && section.subgroupId === project.id
+            }) || sections[0]
+            selectedPlanSectionId = nextSection ? nextSection.id : ''
             selectedPlanTaskId = null
+            expandedPlanGroups[group.id] = true
+            if (sections.length) expandedPlanProjects[project.id] = true
+            rememberPlanNavigationSelection()
             renderPlanGroups()
             renderInbox()
           }
           projectRow.addEventListener('click', activateProject)
           projectRow.addEventListener('keydown', function (event) {
+            if (event.target !== projectRow) return
             if (event.key === 'Enter' || event.key === ' ') {
               event.preventDefault()
               activateProject(event)
             }
           })
+          bindPlanDirectoryContextMenu(projectRow, { level: 'project', groupId: group.id, projectId: project.id })
+          projectRow.appendChild(projectToggle)
           projectRow.appendChild(projectIcon)
           projectRow.appendChild(projectName)
           projectRow.appendChild(projectCount)
-          var projectActions = document.createElement('span')
-          projectActions.className = 'plan-project-actions'
-          projectActions.appendChild(createButton('fa-pen', '编辑二级项目', 'task-icon-button', function (event) {
-            event.stopPropagation()
-            openPlanDirectoryModal('project-edit', group.id, project.id)
-          }))
-          projectActions.appendChild(createButton('fa-list', '新建大方向', 'task-icon-button', function (event) {
-            event.stopPropagation()
-            openPlanDirectoryModal('section-add', group.id, project.id)
-          }))
-          projectActions.appendChild(createButton('fa-trash-can', '删除二级项目', 'task-icon-button is-danger', function (event) {
-            event.stopPropagation()
-            deletePlanSubgroup(project.id)
-          }))
-          projectRow.appendChild(projectActions)
+          if (editingProjects) {
+            var projectActions = document.createElement('span')
+            projectActions.className = 'plan-project-actions'
+            projectActions.appendChild(createPlanOrderControls(state.planSubgroups, projects, project, function () {
+              renderPlanGroups()
+              renderInbox()
+            }))
+            projectRow.appendChild(projectActions)
+          }
 
-          if (activeProject && project.id === activeProject.id) {
-            var sections = state.planSections.filter(function (section) { return section.subgroupId === project.id })
+          if (projectExpanded) {
             var sectionList = document.createElement('ul')
             sectionList.className = 'plan-section-tree'
             if (!sections.length) {
               var sectionEmpty = document.createElement('li')
               sectionEmpty.className = 'plan-section-tree-empty'
-              sectionEmpty.textContent = '还没有大方向，点击列表图标添加'
+              sectionEmpty.textContent = '还没有三级目录，右键二级目录即可新建'
               sectionList.appendChild(sectionEmpty)
             }
             sections.forEach(function (section) {
               var sectionRow = document.createElement('li')
-              sectionRow.className = 'plan-section-tree-item' + (activeSection && section.id === activeSection.id ? ' is-active' : '')
+              sectionRow.className = 'plan-section-tree-item' + (activeSection && section.id === activeSection.id ? ' is-active' : '') + (editingSections ? ' is-order-editing' : '')
               sectionRow.tabIndex = 0
               sectionRow.setAttribute('role', 'button')
               var sectionIcon = document.createElement('span')
               sectionIcon.className = 'plan-section-tree-icon'
-              sectionIcon.textContent = section.icon || '📋'
+              renderPlanIcon(sectionIcon, section.icon, '📋')
               var sectionName = document.createElement('span')
               sectionName.className = 'plan-section-tree-name'
               sectionName.textContent = section.name
@@ -8903,6 +10354,9 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
                 selectedPlanSubgroupId = project.id
                 selectedPlanSectionId = section.id
                 selectedPlanTaskId = null
+                expandedPlanGroups[group.id] = true
+                expandedPlanProjects[project.id] = true
+                rememberPlanNavigationSelection()
                 renderPlanGroups()
                 renderInbox()
               }
@@ -8913,20 +10367,19 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
                   activateSection(event)
                 }
               })
+              bindPlanDirectoryContextMenu(sectionRow, { level: 'section', groupId: group.id, projectId: project.id, sectionId: section.id })
               sectionRow.appendChild(sectionIcon)
               sectionRow.appendChild(sectionName)
               sectionRow.appendChild(sectionCount)
-              var sectionActions = document.createElement('span')
-              sectionActions.className = 'plan-section-tree-actions'
-              sectionActions.appendChild(createButton('fa-pen', '编辑大方向', 'task-icon-button', function (event) {
-                event.stopPropagation()
-                openPlanDirectoryModal('section-edit', group.id, project.id, section.id)
-              }))
-              sectionActions.appendChild(createButton('fa-trash-can', '删除大方向', 'task-icon-button is-danger', function (event) {
-                event.stopPropagation()
-                deletePlanSection(section.id)
-              }))
-              sectionRow.appendChild(sectionActions)
+              if (editingSections) {
+                var sectionActions = document.createElement('span')
+                sectionActions.className = 'plan-section-tree-actions'
+                sectionActions.appendChild(createPlanOrderControls(state.planSections, sections, section, function () {
+                  renderPlanGroups()
+                  renderInbox()
+                }))
+                sectionRow.appendChild(sectionActions)
+              }
               sectionList.appendChild(sectionRow)
             })
             projectRow.appendChild(sectionList)
@@ -8949,7 +10402,7 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       selectedPlanSubgroupId = ''
       showToast('已切换到同名目录')
     } else {
-      var group = { id: uid(), name: clean, icon: (icon || '📁').trim().slice(0, 8) || '📁', createdAt: Date.now() }
+      var group = { id: uid(), name: clean, icon: (icon || 'doki:folder-heart').trim().slice(0, 64) || 'doki:folder-heart', createdAt: Date.now() }
       state.planGroups.push(group)
       selectedPlanGroupId = group.id
       selectedPlanSubgroupId = ''
@@ -8967,7 +10420,7 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     var clean = (name || '').trim().slice(0, 40)
     if (!clean) return
     group.name = clean
-    group.icon = (icon || group.icon || '📁').trim().slice(0, 8) || '📁'
+    group.icon = (icon || group.icon || 'doki:folder-heart').trim().slice(0, 64) || 'doki:folder-heart'
     saveState()
     renderPlanGroups()
     renderInbox()
@@ -8975,42 +10428,35 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
 
   function deletePlanGroup(id) {
     if (!canEdit()) return
-    var fixedGroup = state.planGroups.find(function (entry) { return entry.id === id })
-    if (fixedGroup && planGroupPreset(fixedGroup)) {
-      showToast('四个一级目录会固定保留')
-      return
-    }
     if (state.planGroups.length <= 1) {
       showToast('至少保留一个任务目录')
       return
     }
     var group = state.planGroups.find(function (entry) { return entry.id === id })
     if (!group) return
-    if (!window.confirm('删除目录“' + group.name + '”？目录中的任务会移动到其他目录。')) return
-    var fallback = state.planGroups.find(function (entry) { return entry.id === 'plan-main' }) || state.planGroups.find(function (entry) { return entry.id !== id })
-    var fallbackProject = null
-    if (planGroupSupportsProjects(fallback)) {
-      fallbackProject = state.planSubgroups.find(function (entry) { return entry.groupId === fallback.id })
-      if (!fallbackProject) {
-        fallbackProject = { id: uid(), groupId: fallback.id, name: '待整理任务', icon: '📥', createdAt: Date.now() }
-        state.planSubgroups.push(fallbackProject)
-      }
-    }
-    state.inbox.forEach(function (item) {
-      if (item.groupId !== id) return
-      item.groupId = fallback.id
-      item.subgroupId = fallbackProject ? fallbackProject.id : ''
-      item.sectionId = ''
-    })
+    var projects = state.planSubgroups.filter(function (entry) { return entry.groupId === id })
+    var projectIds = new Set(projects.map(function (entry) { return entry.id }))
+    var sections = state.planSections.filter(function (entry) { return projectIds.has(entry.subgroupId) })
+    var tasks = state.inbox.filter(function (item) { return item.groupId === id })
+    if (!window.confirm('删除目录“' + group.name + '”？目录及其中 ' + tasks.length + ' 项任务会移入垃圾桶，可随时恢复。')) return
+    sendPlanDirectoryToTrash('group', group, { group: group, projects: projects, sections: sections, tasks: tasks })
+    if (state.deletedPlanGroupIds.indexOf(group.id) < 0) state.deletedPlanGroupIds.push(group.id)
+    rememberDeletedPlanItems(projects, state.deletedPlanProjectIds)
+    rememberDeletedPlanItems(sections, state.deletedPlanSectionIds)
+    rememberDeletedPlanItems(tasks, state.deletedPlanTaskIds)
+    state.inbox = state.inbox.filter(function (item) { return item.groupId !== id })
+    state.planSections = state.planSections.filter(function (section) { return !projectIds.has(section.subgroupId) })
     state.planSubgroups = state.planSubgroups.filter(function (subgroup) { return subgroup.groupId !== id })
     state.planGroups = state.planGroups.filter(function (entry) { return entry.id !== id })
+    var fallback = state.planGroups.find(function (entry) { return entry.id === 'plan-main' }) || state.planGroups[0]
     selectedPlanGroupId = fallback.id
     selectedPlanSubgroupId = ''
+    selectedPlanSectionId = ''
     selectedPlanTaskId = null
     saveState()
     renderPlanGroups()
     renderInbox()
-    showToast('目录已删除，原任务已移入“' + fallback.name + '”')
+    showToast('目录及下属内容已移入垃圾桶')
   }
 
   function addPlanSubgroup(name, icon, groupId) {
@@ -9029,7 +10475,8 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       selectedPlanSubgroupId = existing.id
       showToast('已切换到同名二级项目')
     } else {
-      var subgroup = { id: uid(), groupId: group.id, name: clean, icon: (icon || '📁').trim().slice(0, 8) || '📁', createdAt: Date.now() }
+      var siblingProjects = state.planSubgroups.filter(function (entry) { return entry.groupId === group.id })
+      var subgroup = { id: uid(), groupId: group.id, name: clean, icon: (icon || 'doki:project_glyph').trim().slice(0, 64) || 'doki:project_glyph', sortOrder: nextPlanSortOrder(siblingProjects), createdAt: Date.now() }
       state.planSubgroups.push(subgroup)
       selectedPlanSubgroupId = subgroup.id
       selectedPlanSectionId = ''
@@ -9047,7 +10494,7 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     var clean = (name || '').trim().slice(0, 40)
     if (!clean) return
     subgroup.name = clean
-    subgroup.icon = (icon || subgroup.icon || '📁').trim().slice(0, 8) || '📁'
+    subgroup.icon = (icon || subgroup.icon || 'doki:project_glyph').trim().slice(0, 64) || 'doki:project_glyph'
     subgroup.seeded = false
     saveState()
     renderPlanGroups()
@@ -9058,28 +10505,23 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     if (!canEdit()) return
     var subgroup = state.planSubgroups.find(function (entry) { return entry.id === id })
     if (!subgroup) return
-    if (!window.confirm('删除二级项目“' + subgroup.name + '”？其中的任务会移动到“待整理任务”。')) return
-    var fallbackId = 'project-inbox-' + subgroup.groupId
-    var fallback = state.planSubgroups.find(function (entry) { return entry.id === fallbackId })
-    if (!fallback) {
-      fallback = { id: fallbackId, groupId: subgroup.groupId, name: '待整理任务', icon: '📥', migrated: true, createdAt: Date.now() }
-      state.planSubgroups.push(fallback)
-    }
-    state.inbox.forEach(function (item) {
-      if (item.subgroupId === id) {
-        item.subgroupId = fallback.id
-        item.sectionId = ''
-      }
-    })
+    var sections = state.planSections.filter(function (section) { return section.subgroupId === id })
+    var tasks = state.inbox.filter(function (item) { return item.subgroupId === id })
+    if (!window.confirm('删除二级项目“' + subgroup.name + '”？目录及其中 ' + tasks.length + ' 项任务会移入垃圾桶，可随时恢复。')) return
+    sendPlanDirectoryToTrash('project', subgroup, { project: subgroup, sections: sections, tasks: tasks })
+    rememberDeletedPlanItems([subgroup], state.deletedPlanProjectIds)
+    rememberDeletedPlanItems(sections, state.deletedPlanSectionIds)
+    rememberDeletedPlanItems(tasks, state.deletedPlanTaskIds)
+    state.inbox = state.inbox.filter(function (item) { return item.subgroupId !== id })
     state.planSections = state.planSections.filter(function (section) { return section.subgroupId !== id })
     state.planSubgroups = state.planSubgroups.filter(function (entry) { return entry.id !== id })
-    if (subgroup.seeded && state.deletedPlanProjectIds.indexOf(subgroup.id) < 0) state.deletedPlanProjectIds.push(subgroup.id)
-    if (selectedPlanSubgroupId === id) selectedPlanSubgroupId = fallback.id
+    var fallback = state.planSubgroups.find(function (entry) { return entry.groupId === subgroup.groupId })
+    if (selectedPlanSubgroupId === id) selectedPlanSubgroupId = fallback ? fallback.id : ''
     selectedPlanSectionId = ''
     saveState()
     renderPlanGroups()
     renderInbox()
-    showToast('二级项目已删除，原任务已移入“待整理任务”')
+    showToast('二级目录及下属内容已移入垃圾桶')
   }
 
   function addPlanSection(name, icon, projectId) {
@@ -9098,7 +10540,8 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
         id: uid(),
         subgroupId: project.id,
         name: clean,
-        icon: (icon || '📋').trim().slice(0, 8) || '📋',
+        icon: (icon || 'doki:todo').trim().slice(0, 64) || 'doki:todo',
+        sortOrder: nextPlanSortOrder(state.planSections.filter(function (entry) { return entry.subgroupId === project.id })),
         createdAt: Date.now()
       }
       state.planSections.push(section)
@@ -9118,7 +10561,7 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     var clean = (name || '').trim().slice(0, 40)
     if (!section || !clean) return
     section.name = clean
-    section.icon = (icon || section.icon || '📋').trim().slice(0, 8) || '📋'
+    section.icon = (icon || section.icon || 'doki:todo').trim().slice(0, 64) || 'doki:todo'
     section.seeded = false
     saveState()
     renderPlanGroups()
@@ -9129,95 +10572,27 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     if (!canEdit()) return
     var section = state.planSections.find(function (entry) { return entry.id === id })
     if (!section) return
-    if (!window.confirm('删除大方向“' + section.name + '”？其中的任务会移动到“待细分”。')) return
-    var fallbackId = 'section-inbox-' + section.subgroupId
-    var fallback = state.planSections.find(function (entry) { return entry.id === fallbackId })
-    if (!fallback) {
-      fallback = { id: fallbackId, subgroupId: section.subgroupId, name: '待细分', icon: '📥', migrated: true, createdAt: Date.now() }
-      state.planSections.push(fallback)
-    }
-    state.inbox.forEach(function (item) {
-      if (item.sectionId === id) item.sectionId = fallback.id
-    })
+    var tasks = state.inbox.filter(function (item) { return item.sectionId === id })
+    if (!window.confirm('删除大方向“' + section.name + '”？目录及其中 ' + tasks.length + ' 项任务会移入垃圾桶，可随时恢复。')) return
+    sendPlanDirectoryToTrash('section', section, { section: section, tasks: tasks })
+    rememberDeletedPlanItems([section], state.deletedPlanSectionIds)
+    rememberDeletedPlanItems(tasks, state.deletedPlanTaskIds)
+    state.inbox = state.inbox.filter(function (item) { return item.sectionId !== id })
     state.planSections = state.planSections.filter(function (entry) { return entry.id !== id })
-    if (section.seeded && state.deletedPlanSectionIds.indexOf(section.id) < 0) state.deletedPlanSectionIds.push(section.id)
-    if (selectedPlanSectionId === id) selectedPlanSectionId = fallback.id
+    var fallback = state.planSections.find(function (entry) { return entry.subgroupId === section.subgroupId })
+    if (selectedPlanSectionId === id) selectedPlanSectionId = fallback ? fallback.id : ''
     saveState()
     renderPlanGroups()
     renderInbox()
-    showToast('大方向已删除，原任务已移入“待细分”')
+    showToast('三级目录及下属任务已移入垃圾桶')
   }
 
   function renderPlanTaskDetail() {
-    var item = currentPlanTask()
-    var group = currentPlanGroup()
-    var directGroup = !planGroupSupportsProjects(group)
-    if (!item || item.groupId !== selectedPlanGroupId || (!directGroup && item.subgroupId !== selectedPlanSubgroupId)) {
-      selectedPlanTaskId = null
-      planTaskDetail.hidden = true
-      return
-    }
-    planTaskDetail.hidden = false
-    planTaskTitle.value = item.text
-    planTaskNote.value = item.note || ''
-    planTaskFixed.checked = Boolean(item.fixed)
-    planTaskSubgroup.textContent = ''
-    if (directGroup) {
-      var option = document.createElement('option')
-      option.value = ''
-      option.textContent = '一级目录：' + group.name
-      planTaskSubgroup.appendChild(option)
-    } else {
-      state.planSubgroups.filter(function (subgroup) {
-        return subgroup.groupId === item.groupId
-      }).forEach(function (subgroup) {
-        var option = document.createElement('option')
-        option.value = subgroup.id
-        option.textContent = '二级项目：' + subgroup.name
-        planTaskSubgroup.appendChild(option)
-      })
-    }
-    planTaskSubgroup.value = item.subgroupId || ''
-    planTaskSubgroup.disabled = directGroup || !authState.authenticated
-    planTaskSection.textContent = ''
-    if (directGroup) {
-      var directOption = document.createElement('option')
-      directOption.value = ''
-      directOption.textContent = '无需大方向'
-      planTaskSection.appendChild(directOption)
-    } else {
-      state.planSections.filter(function (section) {
-        return section.subgroupId === item.subgroupId
-      }).forEach(function (section) {
-        var sectionOption = document.createElement('option')
-        sectionOption.value = section.id
-        sectionOption.textContent = '大方向：' + section.name
-        planTaskSection.appendChild(sectionOption)
-      })
-    }
-    planTaskSection.value = item.sectionId || ''
-    planTaskSection.disabled = directGroup || !authState.authenticated
-    var todayCopies = ensureDay(todayKey()).tasks.filter(function (task) { return task.sourcePlanId === item.id })
-    var alreadyToday = todayCopies.length > 0
-    var completedCount = state.planCompletionHistory.filter(function (record) { return record.sourcePlanId === item.id }).length
-    planTaskStatus.textContent = (item.fixed ? '固定任务 · 每次 ' : '单次任务 · 目标 ')
-      + focusDurationLabel((item.targetMinutes || 60) * 60)
-      + (alreadyToday ? ' · 今日已加入 ' + todayCopies.length + ' 次' : '')
-      + (completedCount ? ' · 已完成 ' + completedCount + ' 次' : '')
-    planTaskSchedule.disabled = false
-    planTaskSchedule.innerHTML = item.fixed
-      ? '<i class="fa-solid fa-copy"></i>' + (alreadyToday ? '再次加入今日' : '加入今日任务')
-      : alreadyToday
-      ? '<i class="fa-solid fa-minus"></i>移出今天'
-      : '<i class="fa-solid fa-arrow-right"></i>加入今日任务'
+    if (planTaskDetail) planTaskDetail.hidden = true
   }
 
   function selectPlanTask(id) {
-    selectedPlanTaskId = id
-    renderInbox()
-    setTimeout(function () {
-      if (planTaskDetail && !planTaskDetail.hidden) planTaskNote.focus()
-    }, 0)
+    openPlanTaskActionModal(id, 'note')
   }
 
   function renderInbox() {
@@ -9225,34 +10600,46 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     var directGroup = !planGroupSupportsProjects(group)
     var project = directGroup ? null : currentPlanSubgroup()
     var section = directGroup ? null : currentPlanSection()
+    rememberPlanNavigationSelection()
     var projectHasSections = Boolean(project && state.planSections.some(function (entry) { return entry.subgroupId === project.id }))
     var hasContext = directGroup || Boolean(project && (!projectHasSections || section))
     var items = hasContext ? state.inbox.filter(function (item) {
       return item.groupId === group.id && (directGroup || (item.subgroupId === project.id && (!projectHasSections || item.sectionId === section.id)))
-    }) : []
+    }).sort(comparePlanOrder) : []
     inboxList.textContent = ''
-    inboxCount.textContent = String(items.length)
-    planGroupHeading.textContent = ''
-    var headingIcon = document.createElement('i')
-    headingIcon.className = 'fa-solid fa-folder-open'
-    headingIcon.setAttribute('aria-hidden', 'true')
-    planGroupHeading.appendChild(headingIcon)
-    planGroupHeading.appendChild(document.createTextNode(directGroup
-      ? group.name
-      : project
-        ? project.name + (section ? ' › ' + section.name : '')
-        : group.name + ' · 请选择二级项目'))
+    if (inboxCount) inboxCount.textContent = String(items.length)
+    if (planGroupHeading) {
+      planGroupHeading.textContent = ''
+      var headingIcon = document.createElement('i')
+      headingIcon.className = 'fa-solid fa-folder-open'
+      headingIcon.setAttribute('aria-hidden', 'true')
+      planGroupHeading.appendChild(headingIcon)
+      planGroupHeading.appendChild(document.createTextNode(directGroup
+        ? group.name
+        : project
+          ? project.name + (section ? ' › ' + section.name : '')
+          : group.name + ' · 请选择二级项目'))
+    }
     inboxInput.disabled = !hasContext || !authState.authenticated
     inboxInput.placeholder = hasContext ? '新建 1h 任务项' : '先从左侧选择项目和大方向'
+    if (planTaskOrderToggle) {
+      planTaskOrderToggle.hidden = !hasContext
+      planTaskOrderToggle.disabled = !authState.authenticated || items.length < 2
+      planTaskOrderToggle.classList.toggle('is-active', planTaskOrderEditing)
+      planTaskOrderToggle.innerHTML = '<i class="fa-solid ' + (planTaskOrderEditing ? 'fa-check' : 'fa-pen-to-square') + '"></i>'
+      planTaskOrderToggle.title = planTaskOrderEditing ? '完成任务排序' : '编辑任务顺序'
+      planTaskOrderToggle.setAttribute('aria-label', planTaskOrderToggle.title)
+      planTaskOrderToggle.setAttribute('aria-pressed', planTaskOrderEditing ? 'true' : 'false')
+    }
 
     function createPlanTaskRow(item) {
       item.priority = normalizePriority(item.priority)
       var row = document.createElement('li')
       var alreadyToday = ensureDay(todayKey()).tasks.some(function (task) { return task.sourcePlanId === item.id })
-      row.className = 'inbox-item is-priority-' + item.priority + (item.id === selectedPlanTaskId ? ' is-selected' : '') + (alreadyToday ? ' is-scheduled' : '')
-      row.draggable = authState.authenticated
+      row.className = 'inbox-item is-priority-' + item.priority + (alreadyToday ? ' is-scheduled' : '') + (planTaskOrderEditing ? ' is-order-editing' : '')
+      row.draggable = authState.authenticated && !planTaskOrderEditing
 
-      var selectIcon = item.fixed ? (alreadyToday ? 'fa-copy' : 'fa-plus') : (alreadyToday ? 'fa-check' : 'fa-plus')
+      var selectIcon = item.fixed ? (alreadyToday ? 'doki:copy' : 'doki:add') : (alreadyToday ? 'doki:check' : 'doki:add')
       var selectTitle = item.fixed ? (alreadyToday ? '再次复制到今日任务' : '复制到今日任务') : (alreadyToday ? '移出今日任务' : '加入今日任务')
       var selectButton = createButton(selectIcon, selectTitle, 'plan-task-select-button' + (alreadyToday ? ' is-active' : ''), function (event) {
         event.stopPropagation()
@@ -9266,38 +10653,35 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       var text = document.createElement('span')
       text.className = 'inbox-item-text'
       text.textContent = item.text
-      text.title = '点击查看任务备注'
+      text.title = item.text
       var durationBadge = document.createElement('small')
       durationBadge.className = 'plan-task-duration-badge'
       durationBadge.textContent = focusDurationLabel((item.targetMinutes || 60) * 60)
       text.appendChild(durationBadge)
-      if (item.fixed) {
-        var fixedIndicator = document.createElement('i')
-        fixedIndicator.className = 'fa-solid fa-thumbtack plan-task-fixed-indicator'
-        fixedIndicator.title = '固定任务：可反复加入今日，目录原任务不会自动删除'
-        text.appendChild(fixedIndicator)
-      }
-      if (item.note) {
-        var noteIndicator = document.createElement('i')
-        noteIndicator.className = 'fa-solid fa-note-sticky plan-task-note-indicator'
-        noteIndicator.title = '已有备注'
-        text.appendChild(noteIndicator)
-      }
       var actions = document.createElement('div')
-      actions.className = 'item-actions'
-      actions.appendChild(createButton('fa-pen', '编辑任务', 'task-icon-button', function (event) {
-        event.stopPropagation()
-        selectPlanTask(item.id)
-      }))
-      actions.appendChild(createButton('fa-trash-can', '删除任务', 'task-icon-button is-danger', function (event) {
-        event.stopPropagation()
-        deleteInbox(item.id)
-      }))
-
-      row.addEventListener('click', function (event) {
-        if (event.target.closest('button, input, textarea, select, time')) return
-        selectPlanTask(item.id)
-      })
+      actions.className = 'item-actions plan-task-row-actions'
+      if (planTaskOrderEditing) {
+        actions.appendChild(createPlanOrderControls(state.inbox, items, item, function () {
+          renderInbox()
+        }))
+      } else {
+        actions.appendChild(createButton('doki:pin', item.fixed ? '取消固定任务' : '设为固定任务', 'task-icon-button plan-task-row-action' + (item.fixed ? ' is-fixed' : ''), function (event) {
+          event.stopPropagation()
+          toggleInboxFixed(item.id)
+        }))
+        actions.appendChild(createButton('doki:bookmark', item.note ? '编辑便签' : '添加便签', 'task-icon-button plan-task-row-action' + (item.note ? ' has-note' : ''), function (event) {
+          event.stopPropagation()
+          openPlanTaskActionModal(item.id, 'note')
+        }))
+        actions.appendChild(createButton('doki:edit', '编辑任务名称', 'task-icon-button plan-task-row-action', function (event) {
+          event.stopPropagation()
+          openPlanTaskActionModal(item.id, 'edit')
+        }))
+        actions.appendChild(createButton('doki:trash', '删除任务', 'task-icon-button plan-task-row-action is-danger', function (event) {
+          event.stopPropagation()
+          deleteInbox(item.id)
+        }))
+      }
       row.addEventListener('dragstart', function (event) {
         event.dataTransfer.setData('application/x-plan-task', item.id)
         event.dataTransfer.effectAllowed = 'copy'
@@ -9379,6 +10763,9 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       focusTag: '',
       fixed: Boolean(fixed),
       targetMinutes: 60,
+      sortOrder: firstPlanSortOrder(state.inbox.filter(function (item) {
+        return item.groupId === group.id && item.subgroupId === (project ? project.id : '') && item.sectionId === (section ? section.id : '')
+      })),
       createdAt: Date.now()
     })
     saveState()
@@ -9396,23 +10783,83 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     renderInbox()
   }
 
-  function editInbox(id) {
+  function toggleInboxFixed(id) {
+    if (!canEdit()) return
     var item = state.inbox.find(function (entry) { return entry.id === id })
     if (!item) return
-    var next = askEdit(item.text)
-    if (!next) return
-    item.text = next
+    item.fixed = !item.fixed
     syncPlanTaskCopies(item)
     saveState()
     renderInbox()
+    showToast(item.fixed ? '已设为固定任务，可反复加入今日' : '已改为单次任务')
+  }
+
+  function openPlanTaskActionModal(id, mode) {
+    if (!canEdit() || !planTaskActionModal) return
+    var item = state.inbox.find(function (entry) { return entry.id === id })
+    if (!item) return
+    planTaskActionTaskId = item.id
+    planTaskActionMode = mode === 'note' ? 'note' : 'edit'
+    var isNote = planTaskActionMode === 'note'
+    planTaskActionTitle.textContent = isNote ? '任务便签' : '编辑任务'
+    planTaskActionSubtitle.textContent = isNote ? item.text : '只修改任务名称'
+    planTaskActionIcon.src = '/daily/doki-icons/' + (isNote ? 'bookmark.svg' : 'edit.svg')
+    planTaskActionNameField.hidden = isNote
+    planTaskActionNoteField.hidden = !isNote
+    planTaskActionName.value = item.text
+    planTaskActionNote.value = item.note || ''
+    planTaskActionSubmit.innerHTML = '<img class="doki-ui-icon" src="/daily/doki-icons/check.svg" alt="" aria-hidden="true">保存'
+    planTaskActionModal.hidden = false
+    setTimeout(function () {
+      if (isNote) planTaskActionNote.focus()
+      else {
+        planTaskActionName.focus()
+        planTaskActionName.select()
+      }
+    }, 0)
+  }
+
+  function closePlanTaskActionModal() {
+    if (!planTaskActionModal) return
+    planTaskActionModal.hidden = true
+    planTaskActionTaskId = null
+    if (planTaskActionForm) planTaskActionForm.reset()
+  }
+
+  function submitPlanTaskAction(event) {
+    event.preventDefault()
+    if (!canEdit()) return
+    var item = state.inbox.find(function (entry) { return entry.id === planTaskActionTaskId })
+    if (!item) {
+      closePlanTaskActionModal()
+      return
+    }
+    if (planTaskActionMode === 'note') {
+      item.note = planTaskActionNote.value.slice(0, 6000)
+    } else {
+      var next = planTaskActionName.value.trim().slice(0, 160)
+      if (!next) {
+        planTaskActionName.focus()
+        showToast('请输入任务名称')
+        return
+      }
+      item.text = next
+    }
+    syncPlanTaskCopies(item)
+    saveState()
+    closePlanTaskActionModal()
+    renderPlanGroups()
+    renderInbox()
     renderProjectOptions()
+    renderDay()
+    showToast(planTaskActionMode === 'note' ? '任务便签已保存' : '任务名称已保存')
   }
 
   function deleteInbox(id) {
     var index = state.inbox.findIndex(function (item) { return item.id === id })
     if (index < 0) return
     var item = state.inbox.splice(index, 1)[0]
-    if (item.seeded && state.deletedPlanTaskIds.indexOf(item.id) < 0) state.deletedPlanTaskIds.push(item.id)
+    if (state.deletedPlanTaskIds.indexOf(item.id) < 0) state.deletedPlanTaskIds.push(item.id)
     if (selectedPlanTaskId === item.id) selectedPlanTaskId = null
     sendToTrash({
       text: item.text,
@@ -9422,6 +10869,7 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       subgroupId: item.subgroupId,
       sectionId: item.sectionId,
       note: item.note,
+      taskData: item,
       createdAt: item.createdAt
     })
     saveState()
@@ -9512,8 +10960,7 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     var preferredFound = false
 
     state.planGroups.forEach(function (group) {
-      var preset = planGroupPreset(group)
-      var prefix = (preset ? preset.index + '、' : '') + group.name
+      var prefix = planGroupDisplayName(group)
       if (!planGroupSupportsProjects(group)) {
         var directOption = document.createElement('option')
         directOption.value = JSON.stringify({ groupId: group.id, subgroupId: '', sectionId: '' })
@@ -9522,8 +10969,8 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
         if (directOption.value === preferred) preferredFound = true
         return
       }
-      state.planSubgroups.filter(function (project) { return project.groupId === group.id }).forEach(function (project) {
-        var sections = state.planSections.filter(function (section) { return section.subgroupId === project.id })
+      state.planSubgroups.filter(function (project) { return project.groupId === group.id }).sort(comparePlanOrder).forEach(function (project) {
+        var sections = state.planSections.filter(function (section) { return section.subgroupId === project.id }).sort(comparePlanOrder)
         if (!sections.length) {
           var projectOption = document.createElement('option')
           projectOption.value = JSON.stringify({ groupId: group.id, subgroupId: project.id, sectionId: '' })
@@ -9568,6 +11015,9 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       focusTag: details.focusTag || '',
       fixed: true,
       targetMinutes: 60,
+      sortOrder: firstPlanSortOrder(state.inbox.filter(function (entry) {
+        return entry.groupId === group.id && entry.subgroupId === (project ? project.id : '') && entry.sectionId === (section ? section.id : '')
+      })),
       createdAt: Date.now()
     }
     state.inbox.unshift(item)
@@ -9644,12 +11094,7 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     if (task.sourcePlanId) {
       var planItem = state.inbox.find(function (item) { return item.id === task.sourcePlanId })
       if (planItem) {
-        selectedPlanGroupId = planItem.groupId
-        selectedPlanTaskId = planItem.id
-        renderPlanGroups()
-        renderInbox()
-        planTaskNote.focus()
-        showToast('已打开计划任务备注')
+        openPlanTaskActionModal(planItem.id, 'note')
         return
       }
     }
@@ -9715,6 +11160,9 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
         note: task.note || '',
         fixed: Boolean(task.sourcePlanFixed),
         targetMinutes: Math.max(1, Number(task.targetMinutes) || 60),
+        sortOrder: firstPlanSortOrder(state.inbox.filter(function (item) {
+          return item.groupId === selectedPlanGroupId && item.subgroupId === selectedPlanSubgroupId && item.sectionId === selectedPlanSectionId
+        })),
         createdAt: Date.now()
       })
     }
@@ -10377,19 +11825,19 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       var actions = document.createElement('div')
       actions.className = 'task-actions'
       actions.addEventListener('click', function (event) { event.stopPropagation() })
-      actions.appendChild(createButton('fa-note-sticky', '查看或编辑备注', 'task-icon-button', function (event) {
+      actions.appendChild(createButton('doki:bookmark', '查看或编辑备注', 'task-icon-button', function (event) {
         event.stopPropagation()
         editTaskNote(task.id)
       }))
-      actions.appendChild(createButton('fa-inbox', '放回计划栏', 'task-icon-button', function (event) {
+      actions.appendChild(createButton('doki:folder_library', '放回计划栏', 'task-icon-button', function (event) {
         event.stopPropagation()
         returnToInbox(task.id)
       }))
-      actions.appendChild(createButton('fa-pen', '编辑任务', 'task-icon-button', function (event) {
+      actions.appendChild(createButton('doki:edit', '编辑任务', 'task-icon-button', function (event) {
         event.stopPropagation()
         editTask(task.id)
       }))
-      actions.appendChild(createButton('fa-trash-can', '删除任务', 'task-icon-button is-danger', function (event) {
+      actions.appendChild(createButton('doki:trash', '删除任务', 'task-icon-button is-danger', function (event) {
         event.stopPropagation()
         deleteTask(task.id)
       }))
@@ -11311,10 +12759,16 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     event.preventDefault()
     var text = inboxInput.value.trim()
     if (!text) return
-    addInbox(text, inboxFixed && inboxFixed.checked)
+    addInbox(text, false)
     inboxInput.value = ''
-    if (inboxFixed) inboxFixed.checked = false
     inboxInput.focus()
+  })
+
+  if (planTaskOrderToggle) planTaskOrderToggle.addEventListener('click', function () {
+    if (!canEdit()) return
+    planTaskOrderEditing = !planTaskOrderEditing
+    selectedPlanTaskId = null
+    renderInbox()
   })
 
   if (dayPanel) {
@@ -11356,6 +12810,15 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     if (mode === 'project-edit') editPlanSubgroup(planDirectoryProjectId.value, name, icon)
     if (mode === 'section-add') addPlanSection(name, icon, planDirectoryProjectId.value)
     if (mode === 'section-edit') editPlanSection(planDirectorySectionId.value, name, icon)
+    if (mode === 'task-add') {
+      selectPlanContextTarget({
+        level: planDirectorySectionId.value ? 'section' : 'group',
+        groupId: planDirectoryGroupId.value,
+        projectId: planDirectoryProjectId.value,
+        sectionId: planDirectorySectionId.value
+      })
+      addInbox(name, false)
+    }
     closePlanDirectoryModal()
   })
 
@@ -11380,86 +12843,28 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     })
   }
 
-  planTaskTitle.addEventListener('input', function () {
-    var item = currentPlanTask()
-    if (!item) return
-    item.text = planTaskTitle.value.slice(0, 160)
-    syncPlanTaskCopies(item)
-    planTaskStatus.textContent = '正在自动保存…'
-    saveState()
-    renderPlanGroups()
-    Array.from(inboxList.querySelectorAll('.inbox-item')).forEach(function (row) {
-      if (!row.classList.contains('is-selected')) return
-      var label = row.querySelector('.inbox-item-text')
-      if (label) label.firstChild.textContent = item.text
+  document.addEventListener('pointerdown', function (event) {
+    if (!planDirectoryContextMenu || planDirectoryContextMenu.hidden || planDirectoryContextMenu.contains(event.target)) return
+    closePlanDirectoryContextMenu()
+  })
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && planDirectoryContextMenu && !planDirectoryContextMenu.hidden) closePlanDirectoryContextMenu()
+    if (event.key === 'Escape' && planTaskActionModal && !planTaskActionModal.hidden) closePlanTaskActionModal()
+  })
+
+  document.addEventListener('scroll', closePlanDirectoryContextMenu, true)
+  window.addEventListener('resize', closePlanDirectoryContextMenu)
+
+  if (planTaskActionForm) planTaskActionForm.addEventListener('submit', submitPlanTaskAction)
+  if (planTaskActionModal) {
+    Array.from(document.querySelectorAll('[data-plan-task-action-close]')).forEach(function (button) {
+      button.addEventListener('click', closePlanTaskActionModal)
     })
-    planTaskStatus.textContent = '内容自动保存'
-  })
-
-  planTaskTitle.addEventListener('blur', function () {
-    var item = currentPlanTask()
-    if (!item) return
-    var clean = item.text.trim()
-    if (!clean) clean = '未命名任务'
-    item.text = clean
-    planTaskTitle.value = clean
-    saveState()
-    renderInbox()
-  })
-
-  planTaskNote.addEventListener('input', function () {
-    var item = currentPlanTask()
-    if (!item) return
-    item.note = planTaskNote.value
-    syncPlanTaskCopies(item)
-    planTaskStatus.textContent = '自动保存 · ' + item.note.length + ' 字'
-    saveState()
-  })
-
-  planTaskSubgroup.addEventListener('change', function () {
-    var item = currentPlanTask()
-    if (!item) return
-    item.subgroupId = planTaskSubgroup.value
-    var firstSection = state.planSections.find(function (section) { return section.subgroupId === item.subgroupId })
-    item.sectionId = firstSection ? firstSection.id : ''
-    selectedPlanSubgroupId = item.subgroupId
-    selectedPlanSectionId = item.sectionId
-    saveState()
-    renderPlanGroups()
-    renderInbox()
-    showToast('任务已移动到新的二级项目')
-  })
-
-  planTaskSection.addEventListener('change', function () {
-    var item = currentPlanTask()
-    if (!item) return
-    item.sectionId = planTaskSection.value
-    selectedPlanSectionId = item.sectionId
-    saveState()
-    renderPlanGroups()
-    renderInbox()
-    showToast('任务已移动到新的大方向')
-  })
-
-  planTaskFixed.addEventListener('change', function () {
-    var item = currentPlanTask()
-    if (!item) return
-    item.fixed = planTaskFixed.checked
-    syncPlanTaskCopies(item)
-    saveState()
-    renderInbox()
-    showToast(item.fixed ? '已设为固定任务，可反复加入今日' : '已改为单次任务')
-  })
-
-  planTaskSchedule.addEventListener('click', function () {
-    var item = currentPlanTask()
-    if (item) scheduleInbox(item.id)
-  })
-
-  document.querySelector('[data-plan-detail-close]').addEventListener('click', function () {
-    selectedPlanTaskId = null
-    renderInbox()
-  })
+    planTaskActionModal.addEventListener('click', function (event) {
+      if (event.target === planTaskActionModal) closePlanTaskActionModal()
+    })
+  }
 
   if (taskCreateButton) taskCreateButton.addEventListener('click', openTaskCreate)
   if (taskCreateForm) taskCreateForm.addEventListener('submit', submitTaskCreate)
@@ -11700,6 +13105,10 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
 
   window.addEventListener('storage', function (event) {
     if (event.key === DOKI_THEME_KEY) applyDokiTheme(event.newValue, false)
+    if (event.key === PLAN_LIBRARY_LAYOUT_KEY) {
+      planLibraryLayout = loadPlanLibraryLayout()
+      applyPlanLibraryLayout(false)
+    }
     if (event.key === STORAGE_KEY) {
       state = loadState()
       renderAll()
@@ -11712,6 +13121,8 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     }
   })
   window.addEventListener('beforeunload', function () {
+    savePlanNavigation()
+    savePlanLibraryLayout()
     saveState()
     saveTimer()
     saveRoutineTimer()
@@ -11719,6 +13130,7 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
 
   applyDokiTheme(storedDokiTheme(), false)
   makeDokiStickerDraggable(dokiTools, dokiSticker, DOKI_STICKER_POSITION_KEY)
+  initializePlanLibraryResizer()
   ensureDay(selectedDate)
   if (timer.running) beginTicker()
   else if (timer.remaining <= 0) {

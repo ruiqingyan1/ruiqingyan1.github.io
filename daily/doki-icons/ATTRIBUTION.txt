@@ -1,0 +1,9 @@
+Doki Theme Icons
+
+The SVG files in this directory are selected from:
+https://github.com/doki-theme/doki-theme-icons
+
+Created by Unthrottled and licensed under Creative Commons Attribution 4.0
+International: https://creativecommons.org/licenses/by/4.0/
+
+The icons are bundled locally for the Daily task-directory icon picker.
