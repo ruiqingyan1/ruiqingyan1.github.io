@@ -95,6 +95,7 @@
     },
 
     loadComment: (dom, callback) => {
+      if (!dom || typeof callback !== 'function') return
       if ('IntersectionObserver' in window) {
         const observerItem = new IntersectionObserver((entries) => {
           if (entries[0].isIntersecting) {

@@ -1,0 +1,1101 @@
+<!doctype html>
+<html lang="zh-CN" data-pat-theme="emilia-light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="阿颜的算法学习目录、刷题笔记与 PAT 训练入口">
+  <title>执笔为剑 · 算法学习目录</title>
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <script>
+    try {
+      var savedCodeTheme = localStorage.getItem('ruiqy.daily.doki-theme.v1')
+      var codeThemes = ['emilia-light', 'beatrice', 'echidna', 'inori-light', 'nao-light']
+      if (codeThemes.indexOf(savedCodeTheme) !== -1) document.documentElement.setAttribute('data-pat-theme', savedCodeTheme)
+    } catch (error) {}
+  </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/css/font/iconfont.css">
+  <link rel="stylesheet" href="/css/doki-global-theme@1.0.0.css?v=1.3.5">
+  <link rel="stylesheet" href="/css/shared-blog-header@1.0.0.css?v=1.2.0">
+  <style>
+:root {
+  --code-bg: #f2f5f6;
+  --code-panel: #ffffff;
+  --code-line: #dfe6e8;
+  --code-text: #223039;
+  --code-muted: #73818a;
+  --code-blue: #3478c8;
+  --code-blue-soft: #eaf3fd;
+  --code-coral: #de6753;
+  --code-green: #2e8a66;
+  --code-shadow: 0 14px 34px rgba(32, 52, 64, .09);
+}
+
+:root[data-pat-theme="emilia-light"] {
+  color-scheme: light;
+  --code-bg: #f7effd;
+  --code-panel: rgba(255, 251, 255, .96);
+  --code-line: #e6d8ef;
+  --code-text: #493f50;
+  --code-muted: #897a91;
+  --code-blue: #7d61ad;
+  --code-blue-soft: #eee6fa;
+  --code-green: #248b73;
+  --code-shadow: 0 14px 34px rgba(73, 45, 88, .09);
+}
+
+:root[data-pat-theme="beatrice"] {
+  color-scheme: light;
+  --code-bg: #fff0f7;
+  --code-panel: rgba(255, 250, 253, .96);
+  --code-line: #efd5e2;
+  --code-text: #553f4b;
+  --code-muted: #957886;
+  --code-blue: #c95d94;
+  --code-blue-soft: #fde6f1;
+  --code-green: #288d78;
+  --code-shadow: 0 14px 34px rgba(105, 48, 77, .09);
+}
+
+:root[data-pat-theme="echidna"] {
+  color-scheme: dark;
+  --code-bg: #141216;
+  --code-panel: rgba(25, 23, 28, .97);
+  --code-line: #34363a;
+  --code-text: #f5f2f5;
+  --code-muted: #b7afb8;
+  --code-blue: #75aaab;
+  --code-blue-soft: #28383b;
+  --code-green: #75aaab;
+  --code-shadow: 0 14px 34px rgba(7, 6, 8, .28);
+}
+
+:root[data-pat-theme="inori-light"] {
+  color-scheme: light;
+  --code-bg: #fff1e8;
+  --code-panel: rgba(255, 249, 245, .96);
+  --code-line: #e8b58f;
+  --code-text: #523a31;
+  --code-muted: #947266;
+  --code-blue: #c86442;
+  --code-blue-soft: #f8dfd1;
+  --code-green: #3b8c78;
+  --code-shadow: 0 14px 34px rgba(116, 62, 42, .10);
+}
+
+:root[data-pat-theme="nao-light"] {
+  color-scheme: light;
+  --code-bg: #f2eee7;
+  --code-panel: rgba(255, 253, 249, .96);
+  --code-line: #dce0d6;
+  --code-text: #414a45;
+  --code-muted: #7e8a83;
+  --code-blue: #467fc9;
+  --code-blue-soft: #e6eef9;
+  --code-green: #158f7d;
+  --code-shadow: 0 14px 34px rgba(48, 58, 52, .09);
+}
+
+* { box-sizing: border-box; }
+html { min-width: 320px; scroll-behavior: smooth; }
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--code-text);
+  background: var(--code-bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+a { color: inherit; }
+button, input { font: inherit; }
+button:focus-visible, input:focus-visible, a:focus-visible {
+  outline: 3px solid rgba(52, 120, 200, .22);
+  outline-offset: 3px;
+}
+
+.code-hero {
+  position: relative;
+  z-index: 50;
+  min-height: 64px;
+  overflow: visible;
+  border-bottom: 1px solid var(--code-line);
+  background: var(--code-panel);
+  color: var(--code-text);
+}
+
+.code-hero::after { display: none; }
+
+.code-home-nav,
+.code-hero-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.code-home-nav {
+  display: flex;
+  min-height: 64px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 10px clamp(20px, 4vw, 68px);
+  border-bottom: 0;
+  background: color-mix(in srgb, var(--code-panel) 92%, transparent);
+  backdrop-filter: blur(9px);
+}
+
+.code-brand {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 11px;
+  color: var(--code-text);
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.code-brand img {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--code-line);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.code-home-actions,
+.code-home-menus {
+  display: flex;
+  align-items: center;
+}
+
+.code-home-actions { min-width: 0; gap: 4px; }
+.code-home-menus { gap: 2px; }
+.code-home-menu { position: relative; }
+
+.code-home-link {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  gap: 5px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--code-text);
+  font-size: 13px;
+  font-weight: 650;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.code-home-link:hover,
+.code-home-menu:focus-within > .code-home-link,
+.code-home-menu:hover > .code-home-link {
+  background: var(--code-blue-soft);
+  color: var(--code-blue);
+}
+
+.code-home-link .fa-chevron-down {
+  font-size: 9px;
+  transition: transform .18s ease;
+}
+.code-home-menu:hover .fa-chevron-down,
+.code-home-menu:focus-within .fa-chevron-down { transform: rotate(180deg); }
+
+.code-home-submenu {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  right: 0;
+  display: grid;
+  visibility: hidden;
+  min-width: 154px;
+  gap: 2px;
+  margin: 0;
+  padding: 7px;
+  border: 1px solid var(--code-line);
+  border-radius: 7px;
+  background: var(--code-panel);
+  box-shadow: 0 14px 30px rgba(16, 25, 31, .20);
+  list-style: none;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity .16s ease, transform .16s ease, visibility .16s ease;
+}
+
+.code-home-menu:hover .code-home-submenu,
+.code-home-menu:focus-within .code-home-submenu {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.code-home-submenu a {
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 9px;
+  border-radius: 5px;
+  color: var(--code-text);
+  font-size: 12px;
+  font-weight: 650;
+  text-decoration: none;
+}
+.code-home-submenu a:hover { background: var(--code-blue-soft); color: var(--code-blue); }
+
+.code-menu-toggle {
+  display: none;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--code-text);
+  cursor: pointer;
+}
+
+.code-hero-copy {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 42px 0 46px;
+}
+
+.code-eyebrow {
+  display: block;
+  margin-bottom: 4px;
+  color: rgba(255, 255, 255, .78);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.code-hero h1 {
+  margin: 0;
+  font-size: clamp(34px, 5vw, 54px);
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+
+.code-hero p {
+  max-width: 700px;
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, .84);
+  font-size: 16px;
+}
+
+.code-layout {
+  display: grid;
+  width: min(1420px, calc(100% - 32px));
+  grid-template-columns: 260px minmax(0, 1fr);
+  align-items: start;
+  gap: 22px;
+  margin: 82px auto 54px;
+}
+
+.code-sidebar {
+  position: sticky;
+  top: 18px;
+  overflow: hidden;
+  border: 1px solid var(--code-line);
+  border-radius: 7px;
+  background: var(--code-panel);
+  box-shadow: var(--code-shadow);
+}
+
+.code-search {
+  position: relative;
+  padding: 16px;
+  border-bottom: 1px solid var(--code-line);
+}
+
+.code-search::before {
+  position: absolute;
+  top: 27px;
+  left: 29px;
+  color: var(--code-muted);
+  content: '⌕';
+  font-size: 19px;
+  line-height: 1;
+}
+
+.code-search input {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px 0 36px;
+  border: 1px solid var(--code-line);
+  border-radius: 5px;
+  background: var(--code-bg);
+  color: var(--code-text);
+}
+
+.code-tree { padding: 10px 8px 14px; }
+.code-tree-title {
+  margin: 0;
+  padding: 9px 10px 6px;
+  color: var(--code-muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.code-tree a {
+  display: flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 5px;
+  color: var(--code-text);
+  font-size: 13px;
+  font-weight: 680;
+  text-decoration: none;
+}
+
+.code-tree a:hover,
+.code-tree a.is-active {
+  background: var(--code-blue-soft);
+  color: var(--code-blue);
+}
+
+.code-tree a span:last-child {
+  color: var(--code-muted);
+  font-size: 11px;
+}
+
+.code-main {
+  min-width: 0;
+  padding: 8px 4px 0;
+}
+
+.code-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) repeat(3, 132px);
+  align-items: stretch;
+  border-bottom: 1px solid var(--code-line);
+  background: var(--code-panel);
+}
+
+.code-overview-copy { padding: 24px 28px; }
+.code-overview-copy h2 { margin: 0; font-size: 25px; letter-spacing: 0; }
+.code-overview-copy p { margin: 5px 0 0; color: var(--code-muted); }
+.code-stat {
+  display: grid;
+  place-content: center;
+  padding: 16px;
+  border-left: 1px solid var(--code-line);
+  text-align: center;
+}
+.code-stat > strong { color: var(--code-blue); font-size: 25px; line-height: 1.2; }
+.code-stat > span { margin-top: 3px; color: var(--code-muted); font-size: 12px; }
+
+.code-theme-toggle {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid var(--code-line);
+  border-radius: 6px;
+  background: var(--code-panel);
+  color: var(--code-blue);
+  cursor: pointer;
+}
+.code-theme-toggle:hover,
+.code-theme-toggle.is-open { background: var(--code-blue-soft); }
+.code-theme-toggle i { font-size: 17px; }
+
+.code-theme-menu {
+  position: absolute;
+  z-index: 100;
+  top: auto;
+  right: 0;
+  bottom: calc(100% - 48px);
+  display: grid;
+  width: 232px;
+  gap: 4px;
+  padding: 8px;
+  border: 1px solid var(--code-line);
+  border-radius: 7px;
+  background: var(--code-panel);
+  box-shadow: var(--code-shadow);
+}
+.code-theme-menu[hidden] { display: none; }
+.code-theme-option {
+  display: grid;
+  min-height: 42px;
+  grid-template-columns: 22px minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 8px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--code-text);
+  text-align: left;
+  cursor: pointer;
+}
+.code-theme-option:hover,
+.code-theme-option.is-active { border-color: var(--code-line); background: var(--code-blue-soft); }
+.code-theme-option > span:nth-child(2) { display: grid; min-width: 0; }
+.code-theme-option strong { color: var(--code-text); font-size: 11px; }
+.code-theme-option small { color: var(--code-muted); font-size: 9px; }
+.code-theme-option > span:last-child { color: var(--code-blue); opacity: 0; }
+.code-theme-option.is-active > span:last-child { opacity: 1; }
+.code-theme-swatch {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, .82);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--code-line);
+}
+.code-theme-swatch.emilia-light { background: #a97ec9; }
+.code-theme-swatch.beatrice { background: #e282b2; }
+.code-theme-swatch.echidna { background: #75aaab; }
+.code-theme-swatch.inori-light { background: #c86442; }
+.code-theme-swatch.nao-light { background: #6c9ad4; }
+
+.code-section {
+  padding: 30px 0 6px;
+  border-bottom: 1px solid var(--code-line);
+}
+
+.code-section:last-child { border-bottom: 0; }
+.code-section-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 16px;
+}
+.code-section-header h2 { margin: 0; font-size: 22px; letter-spacing: 0; }
+.code-section-header p { margin: 3px 0 0; color: var(--code-muted); font-size: 13px; }
+.code-section-index { color: #9aa6ac; font-size: 12px; font-weight: 800; }
+
+.route-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.route-item {
+  display: block;
+  min-height: 148px;
+  padding: 18px;
+  border: 1px solid var(--code-line);
+  border-top: 4px solid var(--route-color);
+  border-radius: 6px;
+  background: var(--code-panel);
+  text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.route-item:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(38, 58, 70, .10); }
+
+.route-item header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.route-number { color: var(--route-color); font-size: 12px; font-weight: 850; }
+.route-item h3 { margin: 10px 0 4px; font-size: 16px; }
+.route-item p { margin: 0; color: var(--code-muted); font-size: 12.5px; line-height: 1.6; }
+
+.notes-list {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--code-line);
+  border-radius: 6px;
+  background: var(--code-panel);
+  list-style: none;
+}
+
+.note-row { border-bottom: 1px solid var(--code-line); }
+.note-row:last-child { border-bottom: 0; }
+.note-row[hidden] { display: none; }
+.note-link {
+  display: grid;
+  grid-template-columns: 66px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  min-height: 76px;
+  padding: 13px 18px;
+  text-decoration: none;
+}
+.note-link:hover { background: var(--code-blue-soft); }
+.note-code {
+  display: inline-grid;
+  height: 34px;
+  place-items: center;
+  border-radius: 5px;
+  background: var(--code-blue-soft);
+  color: var(--code-blue);
+  font-size: 12px;
+  font-weight: 850;
+}
+.note-copy { min-width: 0; }
+.note-copy strong { display: block; overflow: hidden; font-size: 15px; text-overflow: ellipsis; white-space: nowrap; }
+.note-copy span { display: block; overflow: hidden; margin-top: 2px; color: var(--code-muted); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.note-meta { color: var(--code-muted); font-size: 12px; white-space: nowrap; }
+.notes-empty { padding: 26px; color: var(--code-muted); text-align: center; }
+
+.exam-grid {
+  display: grid;
+  width: 68%;
+  min-width: 720px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.exam-card {
+  overflow: hidden;
+  border: 1px solid var(--code-line);
+  border-radius: 7px;
+  background: var(--code-panel);
+  box-shadow: 0 10px 26px rgba(38, 58, 70, .06);
+  text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.exam-card:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(38, 58, 70, .12); }
+.exam-visual {
+  position: relative;
+  display: flex;
+  height: 103px;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 13px 15px;
+  background: var(--exam-color);
+  color: #fff;
+}
+.exam-visual::after {
+  position: absolute;
+  right: -17px;
+  bottom: -47px;
+  width: 141px;
+  height: 114px;
+  border: 23px solid rgba(255, 255, 255, .20);
+  content: '';
+  transform: rotate(-12deg);
+}
+.exam-visual strong { position: relative; z-index: 1; font-size: 30px; line-height: 1; }
+.exam-visual span { position: relative; z-index: 1; font-size: 13px; font-weight: 850; }
+.exam-order {
+  position: absolute !important;
+  top: 9px;
+  right: 11px;
+  width: 22px;
+  height: 22px;
+  border: 1px solid rgba(255, 255, 255, .55);
+  border-radius: 50%;
+  font-size: 9px !important;
+  line-height: 20px;
+  text-align: center;
+}
+.exam-body { min-height: 102px; padding: 12px 13px 11px; }
+.exam-level { color: var(--exam-color); font-size: 10px; font-weight: 850; }
+.exam-body h3 { min-height: 35px; margin: 4px 0 12px; font-size: 14px; line-height: 1.4; }
+.exam-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: var(--code-muted); font-size: 10px; }
+.exam-footer strong { color: var(--exam-color); font-size: 10px; }
+
+.code-doki-tools {
+  position: fixed;
+  z-index: 80;
+  right: 24px;
+  bottom: 20px;
+  width: 160px;
+  height: 190px;
+  pointer-events: none;
+}
+.code-doki-tools .code-theme-toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  border-radius: 50%;
+  background: var(--code-panel);
+  box-shadow: var(--code-shadow);
+  pointer-events: auto;
+}
+.code-doki-tools .code-theme-menu { pointer-events: auto; }
+.code-doki-sticker {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  max-width: calc(100% - 24px);
+  max-height: calc(100% - 24px);
+  cursor: grab;
+  filter: drop-shadow(0 10px 18px rgba(25, 22, 34, .18));
+  touch-action: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.code-doki-tools.is-dragging .code-doki-sticker { cursor: grabbing; }
+body[data-pat-theme="inori-light"] .code-doki-tools { width: 196px; height: 210px; }
+
+.code-footer {
+  padding: 24px 20px 34px;
+  color: var(--code-muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+@media (max-width: 1120px) {
+  .code-home-link { padding-inline: 6px; font-size: 12px; }
+  .code-overview { grid-template-columns: minmax(0, 1fr) repeat(3, 96px); }
+  .route-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .exam-grid { width: 100%; min-width: 0; }
+}
+
+@media (max-width: 820px) {
+  .code-home-nav { padding-inline: 18px; }
+  .code-menu-toggle { display: grid; }
+  .code-home-menus {
+    position: absolute;
+    z-index: 30;
+    top: 58px;
+    right: 14px;
+    display: none;
+    width: min(320px, calc(100vw - 28px));
+    max-height: calc(100vh - 78px);
+    align-items: stretch;
+    padding: 8px;
+    border: 1px solid var(--code-line);
+    border-radius: 7px;
+    background: var(--code-panel);
+    box-shadow: 0 16px 34px rgba(16, 25, 31, .28);
+    overflow-y: auto;
+  }
+  .code-home-menus.is-open { display: grid; }
+  .code-home-link { width: 100%; justify-content: flex-start; padding-inline: 10px; }
+  .code-home-menu { display: grid; }
+  .code-home-submenu {
+    position: static;
+    visibility: visible;
+    display: grid;
+    min-width: 0;
+    margin: 0 0 5px 22px;
+    padding: 2px;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    opacity: 1;
+    transform: none;
+  }
+  .code-home-submenu a { color: var(--code-text); }
+  .code-home-submenu a:hover { background: var(--code-blue-soft); color: var(--code-blue); }
+  .code-layout { grid-template-columns: 1fr; }
+  .code-sidebar { position: static; }
+  .code-tree { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .code-tree-title { grid-column: 1 / -1; }
+  .code-overview { grid-template-columns: repeat(3, 1fr); }
+  .code-overview-copy { grid-column: 1 / -1; border-bottom: 1px solid var(--code-line); }
+  .code-stat:first-of-type { border-left: 0; }
+  .exam-grid { width: 100%; min-width: 0; grid-template-columns: 1fr; }
+  .code-doki-tools { width: 118px; height: 146px; }
+  .code-doki-sticker { opacity: .92; }
+  body[data-pat-theme="inori-light"] .code-doki-tools { width: 150px; height: 168px; }
+}
+
+@media (max-width: 560px) {
+  .code-hero { min-height: 64px; }
+  .code-brand span { display: none; }
+  .code-home-actions { gap: 1px; }
+  .code-home-actions > .code-home-link span { display: none; }
+  .code-layout { width: calc(100% - 20px); margin-top: 70px; }
+  .code-main { padding-inline: 0; }
+  .route-grid { grid-template-columns: 1fr; }
+  .code-overview { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .code-overview-copy { padding: 20px; }
+  .code-stat { padding: 12px 6px; }
+  .code-stat > strong { font-size: 21px; }
+  .note-link { grid-template-columns: 52px minmax(0, 1fr); gap: 10px; padding-inline: 12px; }
+  .note-meta { display: none; }
+  .code-section-header { align-items: start; }
+}
+</style>
+</head>
+<body data-pat-theme="emilia-light" data-pat-tone="light">
+  <header id="page-header" class="shared-blog-header" data-shared-blog-header>
+    <nav id="nav" aria-label="博客导航">
+      <span id="blog-info">
+        <a href="/" title="Ruiqy~">
+          <img class="site-icon" src="/img/avatar.jpg" alt="Logo">
+          <span class="site-name">Ruiqy~</span>
+        </a>
+      </span>
+      <div id="menus">
+        <div id="search-button"><button class="site-page social-icon search shared-nav-search" type="button" title="搜索" data-code-search-toggle><i class="fas fa-search fa-fw" aria-hidden="true"></i><span> 搜索</span></button></div>
+        <div class="menus_items"><div class="menus_item">
+    <a class="site-page" href="/archives/">
+      <i class="fa-fw iconfont icon-hua00" aria-hidden="true"></i><span> 时间轴</span>
+    </a>
+  </div><div class="menus_item">
+    <a class="site-page" href="/daily/">
+      <i class="fa-fw iconfont icon-flower3" aria-hidden="true"></i><span> 每日计划</span>
+    </a>
+  </div><div class="menus_item shared-nav-group is-current">
+    <button class="site-page group" type="button" aria-expanded="false" data-shared-nav-group>
+      <i class="fa-fw iconfont icon-hua01" aria-hidden="true"></i><span> 执笔为剑</span><i class="fas fa-chevron-down" aria-hidden="true"></i>
+    </button>
+    <ul class="menus_item_child"><li>
+      <a class="site-page child" href="/11/000/">
+        <i class="fa-fw iconfont icon-huadian-baihe" aria-hidden="true"></i><span> 日常</span>
+      </a>
+    </li><li>
+      <a class="site-page child is-current" href="/code/">
+        <i class="fa-fw iconfont icon-004-marigold" aria-hidden="true"></i><span> 算法</span>
+      </a>
+    </li><li>
+      <a class="site-page child" href="/13/000/">
+        <i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu" aria-hidden="true"></i><span> 英语</span>
+      </a>
+    </li><li>
+      <a class="site-page child" href="/14/000/">
+        <i class="fa-fw iconfont icon-xiaohonghua7" aria-hidden="true"></i><span> 考研</span>
+      </a>
+    </li></ul>
+  </div><div class="menus_item shared-nav-group">
+    <button class="site-page group" type="button" aria-expanded="false" data-shared-nav-group>
+      <i class="fa-fw iconfont icon-huahualanxianhuameiguihua" aria-hidden="true"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down" aria-hidden="true"></i>
+    </button>
+    <ul class="menus_item_child"><li>
+      <a class="site-page child" href="/21/000/">
+        <i class="fa-fw iconfont icon-002-flower-1" aria-hidden="true"></i><span> 项目实践</span>
+      </a>
+    </li><li>
+      <a class="site-page child" href="/23/000/">
+        <i class="fa-fw iconfont icon-sakura-flower" aria-hidden="true"></i><span> 本科课程</span>
+      </a>
+    </li><li>
+      <a class="site-page child" href="/24/000/">
+        <i class="fa-fw iconfont icon-xiaohonghua7" aria-hidden="true"></i><span> 网络安全</span>
+      </a>
+    </li><li>
+      <a class="site-page child" href="/25/000/">
+        <i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua" aria-hidden="true"></i><span> 论文阅读</span>
+      </a>
+    </li><li>
+      <a class="site-page child" href="/26/AI/">
+        <i class="fa-fw iconfont icon-naidonghua" aria-hidden="true"></i><span> 人工智能</span>
+      </a>
+    </li></ul>
+  </div><div class="menus_item shared-nav-group">
+    <button class="site-page group" type="button" aria-expanded="false" data-shared-nav-group>
+      <i class="fa-fw iconfont icon-xiangsufeng_huapen" aria-hidden="true"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down" aria-hidden="true"></i>
+    </button>
+    <ul class="menus_item_child"><li>
+      <a class="site-page child" href="/31/000/">
+        <i class="fa-fw iconfont icon-xiangsufeng_shuji" aria-hidden="true"></i><span> 读书拾贝</span>
+      </a>
+    </li><li>
+      <a class="site-page child" href="/32/000/">
+        <i class="fa-fw iconfont icon-xiangsufeng_huojian" aria-hidden="true"></i><span> 运动养生</span>
+      </a>
+    </li><li>
+      <a class="site-page child" href="/33/000/">
+        <i class="fa-fw iconfont icon-xiangsufeng_xinfeng" aria-hidden="true"></i><span> 似水年华</span>
+      </a>
+    </li></ul>
+  </div><div class="menus_item shared-nav-group">
+    <button class="site-page group" type="button" aria-expanded="false" data-shared-nav-group>
+      <i class="fa-fw iconfont icon-huashu1" aria-hidden="true"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down" aria-hidden="true"></i>
+    </button>
+    <ul class="menus_item_child"><li>
+      <a class="site-page child" href="/41/000/">
+        <i class="fa-fw iconfont icon-flower_23" aria-hidden="true"></i><span> 留言板</span>
+      </a>
+    </li><li>
+      <a class="site-page child" href="/42/000/">
+        <i class="fa-fw iconfont icon-flower_20" aria-hidden="true"></i><span> 友人帐</span>
+      </a>
+    </li><li>
+      <a class="site-page child" href="/43/000/">
+        <i class="fa-fw iconfont icon-flower_25" aria-hidden="true"></i><span> 关于我</span>
+      </a>
+    </li></ul>
+  </div></div>
+        <div id="toggle-menu">
+          <button class="site-page" type="button" aria-label="打开导航菜单" aria-expanded="false" data-shared-nav-toggle>
+            <i class="fas fa-bars fa-fw" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="code-layout">
+    <aside class="code-sidebar">
+      <div class="code-search"><input type="search" placeholder="搜索学习内容" aria-label="搜索学习内容" data-code-search></div>
+      <nav class="code-tree" aria-label="算法学习目录">
+        <p class="code-tree-title">学习目录</p>
+        <a class="is-active" href="#overview"><span>总览</span><span>1</span></a>
+        <p class="code-tree-title">常用入口</p>
+        <a href="/code/pat-basic/"><span>PAT 乙级笔记</span><span>→</span></a>
+        <a href="/code/pat-advanced/"><span>PAT 甲级笔记</span><span>→</span></a>
+        <a href="/code/pat-top/"><span>PAT 顶级笔记</span><span>→</span></a>
+      </nav>
+    </aside>
+
+    <main class="code-main">
+      <section class="code-overview" id="overview">
+        <div class="code-overview-copy"><h2>算法学习目录</h2><p>从编程基础开始，沿着数据结构、刷题练习与专项复盘逐步推进。</p></div>
+        <div class="code-stat"><strong>1</strong><span>篇笔记</span></div>
+        <div class="code-stat"><strong>4</strong><span>学习阶段</span></div>
+        <div class="code-stat"><strong>3</strong><span>PAT 题库</span></div>
+      </section>
+
+      <section class="code-section" id="roadmap">
+        <header class="code-section-header"><div><h2>学习路径</h2><p>按顺序梳理知识，再进入刷题与专项复盘。</p></div><span class="code-section-index">01 / ROADMAP</span></header>
+        <div class="route-grid"><a class="route-item" href="/23/0200/" style="--route-color:#3478c8" data-code-entry data-search="编程基础 郑莉 c++课程，语法、stl、输入输出与程序设计基础。">
+    <header><span class="route-number">01</span><span aria-hidden="true">→</span></header>
+    <h3>编程基础</h3>
+    <p>郑莉 C++课程，语法、STL、输入输出与程序设计基础。</p>
+  </a><a class="route-item" href="/23/0300/" style="--route-color:#2e8a66" data-code-entry data-search="数据结构 邓俊辉数据结构，线性表、栈与队列、树、图及常用算法。">
+    <header><span class="route-number">02</span><span aria-hidden="true">→</span></header>
+    <h3>数据结构</h3>
+    <p>邓俊辉数据结构，线性表、栈与队列、树、图及常用算法。</p>
+  </a><a class="route-item" href="/code/pat-basic/" style="--route-color:#d4872f" data-code-entry data-search="刷题练习 从 pat 乙级开始，按题号训练并持续记录解法。">
+    <header><span class="route-number">03</span><span aria-hidden="true">→</span></header>
+    <h3>刷题练习</h3>
+    <p>从 PAT 乙级开始，按题号训练并持续记录解法。</p>
+  </a><a class="route-item" href="#exams" style="--route-color:#b45f83" data-code-entry data-search="专项复盘 pat 乙级、甲级、top 题库与错题专项复盘。">
+    <header><span class="route-number">04</span><span aria-hidden="true">→</span></header>
+    <h3>专项复盘</h3>
+    <p>PAT 乙级、甲级、Top 题库与错题专项复盘。</p>
+  </a></div>
+      </section>
+
+      <section class="code-section" id="exams">
+        <header class="code-section-header"><div><h2>专项复盘</h2><p>按照基础、进阶、Top 的顺序进入 PAT 训练与阶段复盘。</p></div><span class="code-section-index">02 / REVIEW</span></header>
+        <div class="exam-grid"><a class="exam-card" href="/code/pat-basic/" style="--exam-color:#54afe5" data-code-entry data-search="基础 pat (basic level) practice （中文） pat 题库 专项复盘">
+    <div class="exam-visual"><strong>攀拓</strong><span>PAT</span><span class="exam-order">01</span></div>
+    <div class="exam-body">
+      <span class="exam-level">01 · 基础</span>
+      <h3>PAT (Basic Level) Practice （中文）</h3>
+      <div class="exam-footer"><span>编程题 × 125</span><strong>进入题库 →</strong></div>
+    </div>
+  </a><a class="exam-card" href="/code/pat-advanced/" style="--exam-color:#8a7ce2" data-code-entry data-search="进阶 pat (advanced level) practice pat 题库 专项复盘">
+    <div class="exam-visual"><strong>攀拓</strong><span>PAT</span><span class="exam-order">02</span></div>
+    <div class="exam-body">
+      <span class="exam-level">02 · 进阶</span>
+      <h3>PAT (Advanced Level) Practice</h3>
+      <div class="exam-footer"><span>编程题 × 179</span><strong>进入题库 →</strong></div>
+    </div>
+  </a><a class="exam-card" href="/code/pat-top/" style="--exam-color:#ed9148" data-code-entry data-search="top pat (top level) practice pat 题库 专项复盘">
+    <div class="exam-visual"><strong>攀拓</strong><span>PAT</span><span class="exam-order">03</span></div>
+    <div class="exam-body">
+      <span class="exam-level">03 · Top</span>
+      <h3>PAT (Top Level) Practice</h3>
+      <div class="exam-footer"><span>编程题 × 35</span><strong>进入题库 →</strong></div>
+    </div>
+  </a></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="code-doki-tools" data-code-tools data-code-theme-picker>
+    <button class="code-theme-toggle" type="button" title="切换算法主题" aria-label="切换算法主题" aria-haspopup="menu" aria-expanded="false" data-code-theme-toggle><i class="fas fa-palette" aria-hidden="true"></i></button>
+    <div class="code-theme-menu" role="menu" aria-label="算法页面配色" data-code-theme-menu hidden>
+      <button class="code-theme-option" type="button" role="menuitemradio" aria-checked="true" data-code-theme-option="emilia-light"><span class="code-theme-swatch emilia-light"></span><span><strong>爱蜜莉雅</strong><small>Emilia</small></span><span>✓</span></button>
+      <button class="code-theme-option" type="button" role="menuitemradio" aria-checked="false" data-code-theme-option="beatrice"><span class="code-theme-swatch beatrice"></span><span><strong>碧翠丝</strong><small>Beatrice</small></span><span>✓</span></button>
+      <button class="code-theme-option" type="button" role="menuitemradio" aria-checked="false" data-code-theme-option="echidna"><span class="code-theme-swatch echidna"></span><span><strong>艾姬多娜</strong><small>Echidna</small></span><span>✓</span></button>
+      <button class="code-theme-option" type="button" role="menuitemradio" aria-checked="false" data-code-theme-option="inori-light"><span class="code-theme-swatch inori-light"></span><span><strong>楪祈</strong><small>Yuzuriha Inori</small></span><span>✓</span></button>
+      <button class="code-theme-option" type="button" role="menuitemradio" aria-checked="false" data-code-theme-option="nao-light"><span class="code-theme-swatch nao-light"></span><span><strong>友利奈绪</strong><small>Tomori Nao</small></span><span>✓</span></button>
+    </div>
+    <img class="code-doki-sticker" src="/daily/doki/emilia_light.png" alt="主题角色贴纸" title="拖动贴纸可调整位置" data-code-sticker>
+  </div>
+  <footer class="code-footer">Ruiqy~ · 算法学习与刷题记录</footer>
+  <script>
+(function () {
+  var input = document.querySelector('[data-code-search]')
+  var rows = Array.prototype.slice.call(document.querySelectorAll('[data-code-entry]'))
+  var menuToggle = document.querySelector('[data-code-menu-toggle]')
+  var menuPanel = document.querySelector('[data-code-home-menus]')
+  var searchToggle = document.querySelector('[data-code-search-toggle]')
+  var themePicker = document.querySelector('[data-code-theme-picker]')
+  var themeToggle = document.querySelector('[data-code-theme-toggle]')
+  var themeMenu = document.querySelector('[data-code-theme-menu]')
+  var codeTools = document.querySelector('[data-code-tools]')
+  var codeSticker = document.querySelector('[data-code-sticker]')
+  var THEME_KEY = 'ruiqy.daily.doki-theme.v1'
+  var STICKER_POSITION_KEY = 'ruiqy.code.sticker-position.v1'
+  var THEMES = {
+    'emilia-light': 'light',
+    'beatrice': 'light',
+    'echidna': 'dark',
+    'inori-light': 'light',
+    'nao-light': 'light'
+  }
+  var STICKERS = {
+    'emilia-light': '/daily/doki/emilia_light.png',
+    'beatrice': '/daily/doki/beatrice.png',
+    'echidna': '/daily/doki/echidna_dark.png',
+    'inori-light': '/daily/doki/inori_light.png',
+    'nao-light': '/daily/doki/nao_light.png'
+  }
+
+  function storedTheme () {
+    try {
+      var saved = window.localStorage.getItem(THEME_KEY)
+      return THEMES[saved] ? saved : 'emilia-light'
+    } catch (error) {
+      return 'emilia-light'
+    }
+  }
+
+  function applyTheme (themeId, persist) {
+    var id = THEMES[themeId] ? themeId : 'emilia-light'
+    document.documentElement.setAttribute('data-pat-theme', id)
+    document.body.setAttribute('data-pat-theme', id)
+    document.body.setAttribute('data-pat-tone', THEMES[id])
+    if (codeSticker) codeSticker.src = STICKERS[id]
+    document.querySelectorAll('[data-code-theme-option]').forEach(function (button) {
+      var active = button.getAttribute('data-code-theme-option') === id
+      button.classList.toggle('is-active', active)
+      button.setAttribute('aria-checked', active ? 'true' : 'false')
+    })
+    if (persist) {
+      try { window.localStorage.setItem(THEME_KEY, id) } catch (error) {}
+    }
+  }
+
+  function setThemeMenu (open) {
+    if (!themeMenu || !themeToggle) return
+    themeMenu.hidden = !open
+    themeToggle.classList.toggle('is-open', open)
+    themeToggle.setAttribute('aria-expanded', open ? 'true' : 'false')
+  }
+
+  function makeStickerDraggable (element, handle, storageName) {
+    if (!element || !handle) return
+    var dragging = false
+    var startX = 0
+    var startY = 0
+    var originLeft = 0
+    var originTop = 0
+
+    function clampPosition (left, top) {
+      var rect = element.getBoundingClientRect()
+      return {
+        left: Math.min(Math.max(8, left), Math.max(8, window.innerWidth - rect.width - 8)),
+        top: Math.min(Math.max(8, top), Math.max(8, window.innerHeight - rect.height - 8))
+      }
+    }
+
+    function place (left, top) {
+      var position = clampPosition(left, top)
+      element.style.left = position.left + 'px'
+      element.style.top = position.top + 'px'
+      element.style.right = 'auto'
+      element.style.bottom = 'auto'
+      return position
+    }
+
+    function restorePosition () {
+      try {
+        var saved = JSON.parse(window.localStorage.getItem(storageName) || 'null')
+        if (saved && Number.isFinite(saved.left) && Number.isFinite(saved.top)) place(saved.left, saved.top)
+      } catch (error) {}
+    }
+
+    handle.addEventListener('pointerdown', function (event) {
+      if (event.button !== 0) return
+      var rect = element.getBoundingClientRect()
+      dragging = true
+      startX = event.clientX
+      startY = event.clientY
+      originLeft = rect.left
+      originTop = rect.top
+      element.classList.add('is-dragging')
+      if (handle.setPointerCapture) handle.setPointerCapture(event.pointerId)
+      event.preventDefault()
+    })
+
+    handle.addEventListener('pointermove', function (event) {
+      if (!dragging) return
+      place(originLeft + event.clientX - startX, originTop + event.clientY - startY)
+    })
+
+    function finishDrag (event) {
+      if (!dragging) return
+      dragging = false
+      element.classList.remove('is-dragging')
+      if (handle.hasPointerCapture && handle.hasPointerCapture(event.pointerId)) {
+        handle.releasePointerCapture(event.pointerId)
+      }
+      var rect = element.getBoundingClientRect()
+      var position = place(rect.left, rect.top)
+      try { window.localStorage.setItem(storageName, JSON.stringify(position)) } catch (error) {}
+    }
+
+    handle.addEventListener('pointerup', finishDrag)
+    handle.addEventListener('pointercancel', finishDrag)
+    window.addEventListener('resize', function () {
+      var rect = element.getBoundingClientRect()
+      if (element.style.left) place(rect.left, rect.top)
+    })
+    restorePosition()
+  }
+
+  applyTheme(storedTheme(), false)
+  makeStickerDraggable(codeTools, codeSticker, STICKER_POSITION_KEY)
+
+  if (themeToggle && themeMenu) {
+    themeToggle.addEventListener('click', function (event) {
+      event.stopPropagation()
+      setThemeMenu(themeMenu.hidden)
+    })
+    document.querySelectorAll('[data-code-theme-option]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        applyTheme(button.getAttribute('data-code-theme-option'), true)
+        setThemeMenu(false)
+      })
+    })
+    document.addEventListener('click', function (event) {
+      if (themePicker && !themePicker.contains(event.target)) setThemeMenu(false)
+    })
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') setThemeMenu(false)
+    })
+    window.addEventListener('storage', function (event) {
+      if (event.key === THEME_KEY) applyTheme(event.newValue, false)
+    })
+  }
+
+  if (!input) return
+
+  if (menuToggle && menuPanel) {
+    menuToggle.addEventListener('click', function () {
+      var open = menuPanel.classList.toggle('is-open')
+      menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false')
+    })
+    document.addEventListener('click', function (event) {
+      if (!menuPanel.classList.contains('is-open')) return
+      if (menuPanel.contains(event.target) || menuToggle.contains(event.target)) return
+      menuPanel.classList.remove('is-open')
+      menuToggle.setAttribute('aria-expanded', 'false')
+    })
+  }
+
+  if (searchToggle) {
+    searchToggle.addEventListener('click', function () {
+      input.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      window.setTimeout(function () { input.focus() }, 280)
+    })
+  }
+
+  input.addEventListener('input', function () {
+    var keyword = input.value.trim().toLowerCase()
+    var visible = 0
+    rows.forEach(function (row) {
+      var matched = !keyword || row.getAttribute('data-search').indexOf(keyword) !== -1
+      row.hidden = !matched
+      if (matched) visible += 1
+    })
+  })
+})()
+</script>
+  <script src="/js/shared-blog-header@1.0.0.js?v=1.1.0"></script>
+  <script src="/js/doki-global-theme@1.0.0.js?v=1.1.0"></script>
+</body>
+</html>

@@ -119,5 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   translateInitialization()
-  btf.addGlobalFn('pjaxComplete', translateInitialization, 'translateInitialization')
+  if (window.btf && typeof btf.addGlobalFn === 'function') {
+    btf.addGlobalFn('pjaxComplete', translateInitialization, 'translateInitialization')
+  }
 })

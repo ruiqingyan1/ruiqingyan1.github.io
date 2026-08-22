@@ -487,7 +487,7 @@ html body {
     color: rgba(201, 209, 217, .76);
 }
 
-a.site-page[href="/study-docs/"] > i.fa-book-open::before {
+a.site-page[href="/docs/"] > i.fa-book-open::before {
     content: "📚";
     font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
     font-weight: 400;

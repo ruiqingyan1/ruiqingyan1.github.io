@@ -1,0 +1,591 @@
+:root {
+  --doki-bg: #f7effd;
+  --doki-card: rgba(255, 251, 255, .91);
+  --doki-card-strong: rgba(255, 251, 255, .97);
+  --doki-line: #e6d8ef;
+  --doki-text: #493f50;
+  --doki-muted: #897a91;
+  --doki-accent: #7d61ad;
+  --doki-accent-soft: #eee6fa;
+  --doki-green: #248b73;
+  --doki-overlay-top: rgba(247, 239, 253, .57);
+  --doki-overlay-bottom: rgba(247, 239, 253, .72);
+  --doki-nav: rgba(58, 42, 66, .80);
+  --doki-nav-surface: rgba(255, 251, 255, .78);
+  --doki-nav-text: #493f50;
+  --doki-nav-border: rgba(125, 97, 173, .18);
+  --doki-shadow: 0 12px 30px rgba(73, 45, 88, .10);
+  --doki-wallpaper: url('/daily/doki/backgrounds/emilia_light.png');
+}
+
+:root[data-doki-theme="emilia-light"] {
+  color-scheme: light;
+  --doki-wallpaper: url('/daily/doki/backgrounds/emilia_light.png');
+}
+
+:root[data-doki-theme="beatrice"] {
+  color-scheme: light;
+  --doki-bg: #fff0f7;
+  --doki-card: rgba(255, 250, 253, .91);
+  --doki-card-strong: rgba(255, 250, 253, .97);
+  --doki-line: #efd5e2;
+  --doki-text: #553f4b;
+  --doki-muted: #957886;
+  --doki-accent: #c95d94;
+  --doki-accent-soft: #fde6f1;
+  --doki-green: #288d78;
+  --doki-overlay-top: rgba(255, 240, 247, .57);
+  --doki-overlay-bottom: rgba(255, 240, 247, .73);
+  --doki-nav: rgba(78, 43, 62, .80);
+  --doki-nav-surface: rgba(255, 248, 252, .78);
+  --doki-nav-text: #553f4b;
+  --doki-nav-border: rgba(201, 93, 148, .17);
+  --doki-shadow: 0 12px 30px rgba(105, 48, 77, .10);
+  --doki-wallpaper: url('/daily/doki/backgrounds/beatrice.png');
+}
+
+:root[data-doki-theme="echidna"] {
+  color-scheme: dark;
+  --doki-bg: #141216;
+  --doki-card: rgba(25, 23, 28, .91);
+  --doki-card-strong: rgba(25, 23, 28, .97);
+  --doki-line: #34363a;
+  --doki-text: #f5f2f5;
+  --doki-muted: #b7afb8;
+  --doki-accent: #75aaab;
+  --doki-accent-soft: #28383b;
+  --doki-green: #75aaab;
+  --doki-overlay-top: rgba(20, 18, 22, .73);
+  --doki-overlay-bottom: rgba(20, 18, 22, .87);
+  --doki-nav: rgba(20, 18, 22, .90);
+  --doki-nav-surface: rgba(25, 23, 28, .82);
+  --doki-nav-text: #f5f2f5;
+  --doki-nav-border: rgba(117, 170, 171, .24);
+  --doki-shadow: 0 14px 34px rgba(12, 7, 17, .28);
+  --doki-wallpaper: url('/daily/doki/backgrounds/echidna_dark.png');
+}
+
+:root[data-doki-theme="inori-light"] {
+  color-scheme: light;
+  --doki-bg: #fff1e8;
+  --doki-card: rgba(255, 249, 245, .91);
+  --doki-card-strong: rgba(255, 249, 245, .97);
+  --doki-line: #e8b58f;
+  --doki-text: #523a31;
+  --doki-muted: #947266;
+  --doki-accent: #c86442;
+  --doki-accent-soft: #f8dfd1;
+  --doki-green: #3b8c78;
+  --doki-overlay-top: rgba(255, 241, 232, .58);
+  --doki-overlay-bottom: rgba(255, 241, 232, .76);
+  --doki-nav: rgba(86, 52, 40, .82);
+  --doki-nav-surface: rgba(255, 249, 245, .79);
+  --doki-nav-text: #523a31;
+  --doki-nav-border: rgba(200, 100, 66, .18);
+  --doki-shadow: 0 12px 30px rgba(116, 62, 42, .12);
+  --doki-wallpaper: url('/daily/doki/backgrounds/inori_light.png');
+}
+
+:root[data-doki-theme="nao-light"] {
+  color-scheme: light;
+  --doki-bg: #f2eee7;
+  --doki-card: rgba(255, 253, 249, .91);
+  --doki-card-strong: rgba(255, 253, 249, .97);
+  --doki-line: #dce0d6;
+  --doki-text: #414a45;
+  --doki-muted: #7e8a83;
+  --doki-accent: #467fc9;
+  --doki-accent-soft: #e6eef9;
+  --doki-green: #158f7d;
+  --doki-overlay-top: rgba(242, 238, 231, .58);
+  --doki-overlay-bottom: rgba(242, 238, 231, .74);
+  --doki-nav: rgba(47, 54, 51, .80);
+  --doki-nav-surface: rgba(255, 253, 249, .79);
+  --doki-nav-text: #414a45;
+  --doki-nav-border: rgba(70, 127, 201, .17);
+  --doki-shadow: 0 12px 30px rgba(48, 58, 52, .10);
+  --doki-wallpaper: url('/daily/doki/backgrounds/nao_light.png');
+}
+
+html[data-doki-theme] {
+  --global-bg: var(--doki-bg) !important;
+  --font-color: var(--doki-text) !important;
+  --hr-border: var(--doki-line) !important;
+  --hr-before-color: var(--doki-accent) !important;
+  --search-bg: var(--doki-card-strong) !important;
+  --search-input-color: var(--doki-text) !important;
+  --search-a-color: var(--doki-accent) !important;
+  --tab-border-color: var(--doki-line) !important;
+  --tab-botton-bg: var(--doki-card-strong) !important;
+  --tab-botton-color: var(--doki-text) !important;
+  --tab-button-hover-bg: var(--doki-accent-soft) !important;
+  --tab-button-active-bg: var(--doki-accent-soft) !important;
+  --card-bg: var(--doki-card) !important;
+  --sidebar-bg: var(--doki-card-strong) !important;
+  --btn-hover-color: var(--doki-accent) !important;
+  --btn-color: #fff !important;
+  --btn-bg: var(--doki-accent) !important;
+  --text-bg-hover: var(--doki-accent-soft) !important;
+  --light-grey: var(--doki-muted) !important;
+  --dark-grey: var(--doki-line) !important;
+  --white: var(--doki-card-strong) !important;
+  --text-highlight-color: var(--doki-text) !important;
+  --blockquote-color: var(--doki-text) !important;
+  --blockquote-bg: var(--doki-accent-soft) !important;
+  --reward-pop: var(--doki-card-strong) !important;
+  --toc-link-color: var(--doki-muted) !important;
+  --scrollbar-color: var(--doki-accent) !important;
+  --default-bg-color: var(--doki-accent) !important;
+  --card-box-shadow: var(--doki-shadow) !important;
+  --card-hover-box-shadow: var(--doki-shadow) !important;
+}
+
+html[data-doki-theme] body {
+  color: var(--doki-text);
+  background-color: var(--doki-bg) !important;
+}
+
+html[data-doki-theme] #web_bg {
+  background-image:
+    linear-gradient(var(--doki-overlay-top), var(--doki-overlay-bottom)),
+    var(--doki-wallpaper) !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+}
+
+html[data-doki-theme] #web_bg::before {
+  background: transparent !important;
+}
+
+/* A light translucent surface keeps every navigation state readable over imagery. */
+html[data-doki-theme] #page-header > #nav {
+  border-bottom: 1px solid var(--doki-nav-border) !important;
+  background: var(--doki-nav-surface) !important;
+  box-shadow: 0 5px 18px rgba(45, 31, 49, .10) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(130%) !important;
+  backdrop-filter: blur(14px) saturate(130%) !important;
+}
+
+html[data-doki-theme] #page-header #nav :is(
+  #blog-info > a,
+  #search-button > .site-page,
+  .menus_items > .menus_item > .site-page,
+  #toggle-menu > .site-page
+) {
+  color: var(--doki-nav-text) !important;
+  text-shadow: none !important;
+}
+
+/* Keep the home hero clean: only the navigation at the very top is transparent. */
+html[data-doki-theme] #page-header.full_page:not(.nav-fixed) > #nav {
+  border-bottom-color: transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html[data-doki-theme] #page-header.full_page:not(.nav-fixed) #nav :is(
+  #blog-info > a,
+  #search-button > .site-page,
+  .menus_items > .menus_item > .site-page,
+  #toggle-menu > .site-page
+) {
+  color: #fff !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, .42) !important;
+}
+
+html[data-doki-theme] #page-header.not-top-img:not(.nav-fixed) > #nav {
+  background: var(--doki-nav-surface) !important;
+}
+
+html[data-doki-theme] #page-header.full_page :is(#site-title, #site-subtitle),
+html[data-doki-theme] #page-header:not(.not-top-img) #post-info,
+html[data-doki-theme] #page-header:not(.not-top-img) #post-info * {
+  color: #fff !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, .42);
+}
+
+html[data-doki-theme] :is(
+  #post,
+  #page,
+  #archive,
+  #tag,
+  #category,
+  #recent-posts > .recent-post-item,
+  #aside-content .card-widget,
+  .pagination-post
+) {
+  border-color: var(--doki-line) !important;
+  background: var(--doki-card) !important;
+  box-shadow: var(--doki-shadow) !important;
+}
+
+html[data-doki-theme] :is(
+  #page-header #nav .menus_item_child,
+  #local-search .search-dialog,
+  .search-dialog,
+  #rightside > div > button,
+  #rightside > button
+) {
+  border-color: var(--doki-line) !important;
+  background: var(--doki-card-strong) !important;
+  color: var(--doki-text) !important;
+}
+
+html[data-doki-theme] #footer {
+  background-color: var(--doki-nav) !important;
+}
+
+html[data-doki-theme] :is(a, .article-title, .post-title, .toc-link):hover {
+  color: var(--doki-accent) !important;
+}
+
+html[data-doki-theme] :is(input, textarea, select) {
+  border-color: var(--doki-line);
+  background: var(--doki-card-strong);
+  color: var(--doki-text);
+}
+
+html[data-doki-theme] ::selection {
+  background: var(--doki-accent);
+  color: #fff;
+}
+
+#chat-btn {
+  display: none !important;
+}
+
+.doki-global-tools {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 10008;
+  width: 154px;
+  height: 154px;
+  pointer-events: none;
+}
+
+.daily-doki-tools,
+.code-doki-tools,
+.pat-doki-tools {
+  display: none !important;
+}
+
+.doki-contact-launcher,
+.doki-theme-toggle {
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.doki-theme-glyph {
+  display: block;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.doki-contact-launcher {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 140px;
+  height: 140px;
+  padding: 0;
+  overflow: visible;
+  background: transparent;
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none;
+  transform-origin: right bottom;
+  transition: transform .2s ease, filter .2s ease;
+}
+
+.doki-contact-launcher:hover {
+  transform: none;
+  filter: none;
+}
+
+.doki-global-tools.is-dragging,
+.doki-global-tools.is-dragging .doki-contact-launcher {
+  cursor: grabbing;
+}
+
+.doki-global-tools.is-dragging .doki-contact-launcher {
+  transform: none;
+  filter: drop-shadow(0 10px 12px rgba(22, 27, 34, .18));
+  transition: none;
+}
+
+.doki-contact-launcher:focus-visible,
+.doki-theme-toggle:focus-visible,
+.doki-theme-option:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--doki-accent) 55%, transparent);
+  outline-offset: 3px;
+}
+
+.doki-contact-sticker {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.doki-theme-toggle {
+  position: absolute;
+  top: auto;
+  right: 0;
+  left: auto;
+  bottom: 126px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--doki-line);
+  border-radius: 50%;
+  background: var(--doki-card-strong);
+  color: var(--doki-accent);
+  box-shadow: var(--doki-shadow);
+  font-size: 18px;
+  pointer-events: auto;
+}
+
+.doki-theme-toggle:hover {
+  background: var(--doki-accent-soft);
+}
+
+.doki-theme-menu {
+  position: absolute;
+  right: 0;
+  left: auto;
+  bottom: 174px;
+  display: grid;
+  gap: 4px;
+  width: 218px;
+  padding: 8px;
+  border: 1px solid var(--doki-line);
+  border-radius: 8px;
+  background: var(--doki-card-strong);
+  box-shadow: var(--doki-shadow);
+  color: var(--doki-text);
+  pointer-events: auto;
+}
+
+.doki-theme-menu[hidden] {
+  display: none;
+}
+
+.doki-theme-option {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) 18px;
+  gap: 9px;
+  align-items: center;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--doki-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.doki-theme-option:hover,
+.doki-theme-option.is-active {
+  border-color: var(--doki-line);
+  background: var(--doki-accent-soft);
+}
+
+.doki-theme-option > span:nth-child(2) {
+  display: grid;
+  min-width: 0;
+}
+
+.doki-theme-option strong {
+  color: var(--doki-text);
+  font-size: 12px;
+}
+
+.doki-theme-option small {
+  color: var(--doki-muted);
+  font-size: 10px;
+}
+
+.doki-theme-check {
+  color: var(--doki-accent);
+  opacity: 0;
+}
+
+.doki-theme-option.is-active .doki-theme-check {
+  opacity: 1;
+}
+
+.doki-theme-swatch {
+  width: 17px;
+  height: 17px;
+  border: 2px solid rgba(255, 255, 255, .78);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--doki-line);
+}
+
+.doki-theme-swatch.emilia-light { background: #7d61ad; }
+.doki-theme-swatch.beatrice { background: #d86a9f; }
+.doki-theme-swatch.echidna { background: #75aaab; }
+.doki-theme-swatch.nao-light { background: #5c91cf; }
+.doki-theme-swatch.inori-light { background: #c86442; }
+
+html[data-doki-theme] #page-header:not(.nav-fixed):not(.not-top-img)
+  #nav .menus_item_child :is(a, span, i) {
+  color: var(--doki-text) !important;
+  text-shadow: none !important;
+}
+
+html[data-doki-theme] #page-header:not(.nav-fixed):not(.not-top-img)
+  #nav .menus_item_child li:hover :is(a, span, i) {
+  color: var(--doki-accent) !important;
+}
+
+/* Use the same theme surface as the main page so footer text stays readable. */
+html[data-doki-theme] #footer {
+  border-top: 1px solid var(--doki-line);
+  background: var(--doki-bg) !important;
+  background-image: none !important;
+  box-shadow: 0 -10px 28px rgba(45, 31, 49, .08);
+}
+
+html[data-doki-theme] #footer::before {
+  display: none !important;
+}
+
+html[data-doki-theme] #footer-wrap,
+html[data-doki-theme] #footer-wrap a {
+  color: var(--doki-text) !important;
+  text-shadow: none !important;
+}
+
+html[data-doki-theme] #footer-wrap .copyright {
+  opacity: .82;
+  font-weight: 500;
+}
+
+html[data-doki-theme] #footer-wrap .footer-record {
+  opacity: .88;
+  transition: color .2s ease, opacity .2s ease, transform .2s ease;
+}
+
+html[data-doki-theme] #footer-wrap .footer-record:hover {
+  color: var(--doki-accent) !important;
+  opacity: 1;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+/* Stack the two filing records and give each one its own aligned icon. */
+.footer_custom_text .footer-records {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  max-width: 100%;
+  margin: 9px auto 0;
+}
+
+.footer_custom_text .footer-record {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: max-content;
+  max-width: 100%;
+  text-align: center;
+  line-height: 1.45;
+}
+
+.footer_custom_text .footer-record-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 22px;
+}
+
+.footer_custom_text .footer-record-icon img {
+  display: block;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  object-fit: contain;
+}
+
+.footer_custom_text .footer-record-icon--icp {
+  width: 22px;
+  height: 22px;
+  filter: drop-shadow(0 2px 3px rgba(45, 31, 49, .18));
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  font-size: 20px;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  html[data-doki-theme] #footer-wrap {
+    padding-bottom: 140px;
+  }
+
+  .footer_custom_text .footer-records {
+    align-items: center;
+  }
+
+  .footer_custom_text .footer-record {
+    gap: 5px;
+    font-size: 14px;
+  }
+
+  .footer_custom_text .footer-record-icon {
+    width: 25px;
+  }
+
+  .footer_custom_text .footer-record-icon--icp {
+    width: 22px;
+  }
+
+  .doki-global-tools {
+    right: 10px;
+    bottom: 10px;
+    width: 116px;
+    height: 120px;
+  }
+
+  .doki-contact-launcher {
+    width: 104px;
+    height: 104px;
+  }
+
+  .doki-theme-toggle {
+    right: 0;
+    left: auto;
+    bottom: 90px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .doki-theme-menu {
+    right: 0;
+    left: auto;
+    bottom: 132px;
+    width: min(218px, calc(100vw - 24px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .doki-contact-launcher {
+    transition: none;
+  }
+}

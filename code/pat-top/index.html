@@ -1,0 +1,1257 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PAT TOP 题库题面、解题思路与 C++ 参考答案工作台">
+  <title>PAT (Top Level) Practice</title>
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <script>
+    try {
+      var savedPatTheme = localStorage.getItem('ruiqy.daily.doki-theme.v1')
+      var patThemes = ['emilia-light', 'beatrice', 'echidna', 'inori-light', 'nao-light']
+      if (patThemes.indexOf(savedPatTheme) !== -1) document.documentElement.setAttribute('data-pat-theme', savedPatTheme)
+    } catch (error) {}
+  </script>
+  <link rel="stylesheet" href="/css/doki-global-theme@1.0.0.css?v=1.3.5">
+  <style>
+:root {
+  --pat-bg: #f4f6f8;
+  --pat-panel: #ffffff;
+  --pat-line: #e2e7eb;
+  --pat-text: #202a32;
+  --pat-muted: #74808a;
+  --pat-blue: #3578d4;
+  --pat-blue-soft: #edf4ff;
+  --pat-green: #288566;
+  --pat-amber: #b87520;
+  --pat-amber-soft: #fff7e9;
+  --pat-editor: #17212b;
+  --pat-editor-line: #263544;
+  --pat-editor-text: #dce7ef;
+}
+
+:root[data-pat-theme="emilia-light"] {
+  color-scheme: light;
+  --pat-bg: #f7effd;
+  --pat-panel: rgba(255, 251, 255, .91);
+  --pat-line: #e6d8ef;
+  --pat-text: #493f50;
+  --pat-muted: #897a91;
+  --pat-blue: #7d61ad;
+  --pat-blue-soft: #eee6fa;
+  --pat-green: #248b73;
+  --pat-amber: #b77b34;
+  --pat-amber-soft: #fff0df;
+  --pat-wallpaper: url('/daily/doki/backgrounds/emilia_light.png');
+}
+
+:root[data-pat-theme="beatrice"] {
+  color-scheme: light;
+  --pat-bg: #fff0f7;
+  --pat-panel: rgba(255, 250, 253, .91);
+  --pat-line: #efd5e2;
+  --pat-text: #553f4b;
+  --pat-muted: #957886;
+  --pat-blue: #c95d94;
+  --pat-blue-soft: #fde6f1;
+  --pat-green: #288d78;
+  --pat-amber: #c67827;
+  --pat-amber-soft: #fff0dc;
+  --pat-wallpaper: url('/daily/doki/backgrounds/beatrice.png');
+}
+
+:root[data-pat-theme="echidna"] {
+  color-scheme: dark;
+  --pat-bg: #141216;
+  --pat-panel: rgba(25, 23, 28, .92);
+  --pat-line: #34363a;
+  --pat-text: #f5f2f5;
+  --pat-muted: #b7afb8;
+  --pat-blue: #75aaab;
+  --pat-blue-soft: #28383b;
+  --pat-green: #75aaab;
+  --pat-amber: #d5be79;
+  --pat-amber-soft: #4d432b;
+  --pat-editor: #101014;
+  --pat-editor-line: #34363a;
+  --pat-editor-text: #f5f2f5;
+  --pat-wallpaper: url('/daily/doki/backgrounds/echidna_dark.png');
+}
+
+:root[data-pat-theme="inori-light"] {
+  color-scheme: light;
+  --pat-bg: #fff1e8;
+  --pat-panel: rgba(255, 249, 245, .92);
+  --pat-line: #e8b58f;
+  --pat-text: #523a31;
+  --pat-muted: #947266;
+  --pat-blue: #c86442;
+  --pat-blue-soft: #f8dfd1;
+  --pat-green: #3b8c78;
+  --pat-amber: #d58130;
+  --pat-amber-soft: #ffead7;
+  --pat-editor: #2b211d;
+  --pat-editor-line: #62493d;
+  --pat-editor-text: #fff8f3;
+  --pat-wallpaper: url('/daily/doki/backgrounds/inori_light.png');
+}
+
+:root[data-pat-theme="nao-light"] {
+  color-scheme: light;
+  --pat-bg: #f2eee7;
+  --pat-panel: rgba(255, 253, 249, .91);
+  --pat-line: #dce0d6;
+  --pat-text: #414a45;
+  --pat-muted: #7e8a83;
+  --pat-blue: #467fc9;
+  --pat-blue-soft: #e6eef9;
+  --pat-green: #158f7d;
+  --pat-amber: #b77c33;
+  --pat-amber-soft: #f9ecd9;
+  --pat-wallpaper: url('/daily/doki/backgrounds/nao_light.png');
+}
+
+* { box-sizing: border-box; }
+html { min-width: 320px; }
+body {
+  min-height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  color: var(--pat-text);
+  background: var(--pat-bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+body[data-pat-theme] {
+  background-color: var(--pat-bg);
+  background-image: var(--pat-wallpaper);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+body[data-pat-theme] :is(
+  .pat-topbar,
+  .pat-list-panel,
+  .pat-problem-panel,
+  .pat-problem-toolbar,
+  .pat-answer-panel,
+  .pat-answer-toolbar,
+  .pat-theme-menu
+) {
+  border-color: var(--pat-line);
+  background: var(--pat-panel);
+  color: var(--pat-text);
+}
+
+body[data-pat-theme] :is(
+  .pat-count,
+  .pat-number-button.is-ready,
+  .pat-icon-btn.is-complete
+) {
+  border-color: var(--pat-line);
+  background: var(--pat-blue-soft);
+}
+
+body[data-pat-theme] :is(
+  .pat-number-button,
+  .pat-icon-btn,
+  .pat-text-btn,
+  .pat-language-label,
+  .pat-sample,
+  .pat-test-cell
+) {
+  border-color: var(--pat-line);
+  background-color: var(--pat-panel);
+  color: var(--pat-text);
+}
+
+body[data-pat-theme] .pat-number-button:disabled {
+  background: color-mix(in srgb, var(--pat-panel) 62%, var(--pat-muted) 38%);
+  color: var(--pat-muted);
+  opacity: .46;
+}
+
+body[data-pat-theme] .pat-key-points {
+  border-left-color: var(--pat-amber);
+  background: var(--pat-amber-soft);
+  color: var(--pat-text);
+}
+
+body[data-pat-theme] .pat-key-points strong { color: var(--pat-amber); }
+
+button, input, textarea, select { font: inherit; }
+button { color: inherit; }
+button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, a:focus-visible {
+  outline: 3px solid rgba(53, 120, 212, .18);
+  outline-offset: 2px;
+}
+
+.pat-shell {
+  display: grid;
+  height: 100vh;
+  min-height: 100vh;
+  grid-template-rows: 62px minmax(0, 1fr);
+}
+
+.pat-topbar {
+  position: relative;
+  z-index: 120;
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) auto minmax(280px, 1fr);
+  align-items: center;
+  gap: 20px;
+  padding: 0 18px;
+  border-bottom: 1px solid var(--pat-line);
+  background: rgba(255, 255, 255, .96);
+}
+
+.pat-back {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 9px;
+  color: var(--pat-text);
+  font-size: 15px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.pat-back-icon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--pat-bg);
+  color: var(--pat-blue);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.pat-top-title { text-align: center; }
+.pat-top-title strong { display: block; font-size: 15px; }
+.pat-top-title span { color: var(--pat-muted); font-size: 11px; }
+.pat-top-actions { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+.pat-top-actions a {
+  display: inline-flex;
+  height: 34px;
+  align-items: center;
+  padding: 0 13px;
+  border: 1px solid var(--pat-line);
+  border-radius: 5px;
+  color: var(--pat-blue);
+  font-size: 12px;
+  font-weight: 720;
+  text-decoration: none;
+}
+
+.pat-theme-picker { position: relative; }
+.pat-theme-toggle {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid var(--pat-line);
+  border-radius: 5px;
+  background: var(--pat-panel);
+  color: var(--pat-blue);
+  cursor: pointer;
+}
+.pat-theme-toggle.is-open { background: var(--pat-blue-soft); }
+.pat-theme-menu {
+  position: absolute;
+  z-index: 140;
+  top: auto;
+  right: 0;
+  bottom: calc(100% - 42px);
+  display: grid;
+  width: 232px;
+  gap: 4px;
+  padding: 8px;
+  border: 1px solid var(--pat-line);
+  border-radius: 7px;
+  box-shadow: 0 14px 34px rgba(20, 28, 36, .16);
+}
+.pat-theme-menu[hidden] { display: none; }
+.pat-theme-option {
+  display: grid;
+  min-height: 42px;
+  grid-template-columns: 22px minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 8px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--pat-text);
+  text-align: left;
+  cursor: pointer;
+}
+.pat-theme-option:hover { background: var(--pat-blue-soft); }
+.pat-theme-option.is-active { border-color: var(--pat-blue); background: var(--pat-blue-soft); }
+.pat-theme-option > span:nth-child(2) { display: grid; min-width: 0; }
+.pat-theme-option strong { font-size: 11px; }
+.pat-theme-option small { color: var(--pat-muted); font-size: 9px; }
+.pat-theme-option > span:last-child { color: var(--pat-blue); opacity: 0; }
+.pat-theme-option.is-active > span:last-child { opacity: 1; }
+.pat-theme-swatch {
+  width: 19px;
+  height: 19px;
+  border: 2px solid rgba(255, 255, 255, .78);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--pat-line);
+}
+.pat-theme-swatch.emilia-light { background: #a97ec9; }
+.pat-theme-swatch.beatrice { background: #e282b2; }
+.pat-theme-swatch.echidna { background: #75aaab; }
+.pat-theme-swatch.inori-light { background: #c86442; }
+.pat-theme-swatch.nao-light { background: #6c9ad4; }
+
+.pat-doki-tools {
+  position: fixed;
+  z-index: 80;
+  right: 14px;
+  bottom: 10px;
+  width: clamp(150px, 13vw, 238px);
+  height: min(30vh, 270px);
+  pointer-events: none;
+}
+.pat-doki-tools .pat-theme-picker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: auto;
+}
+.pat-doki-tools .pat-theme-toggle {
+  border-radius: 50%;
+  background: var(--pat-panel);
+  box-shadow: 0 8px 22px rgba(24, 18, 30, .14);
+}
+.pat-doki-tools .pat-theme-menu { pointer-events: auto; }
+.pat-doki-sticker {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: block;
+  width: auto;
+  max-width: calc(100% - 24px);
+  max-height: calc(100% - 24px);
+  object-fit: contain;
+  cursor: grab;
+  filter: drop-shadow(0 10px 18px rgba(24, 18, 30, .20));
+  touch-action: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.pat-doki-tools.is-dragging .pat-doki-sticker { cursor: grabbing; }
+body[data-pat-theme="inori-light"] .pat-doki-tools { width: clamp(180px, 17vw, 300px); }
+
+.pat-workspace {
+  display: grid;
+  min-height: 0;
+  grid-template-columns: 246px minmax(420px, 1fr) minmax(460px, .92fr);
+  background: var(--pat-panel);
+}
+
+.pat-list-panel,
+.pat-problem-panel,
+.pat-answer-panel { min-width: 0; min-height: 0; }
+
+.pat-list-panel {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--pat-line);
+  background: #fbfcfd;
+}
+
+.pat-panel-heading {
+  min-height: 58px;
+  padding: 13px 16px 11px;
+  border-bottom: 1px solid var(--pat-line);
+}
+
+.pat-panel-heading strong { display: block; font-size: 14px; }
+.pat-panel-heading span { color: var(--pat-muted); font-size: 11px; }
+
+.pat-count {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 14px 12px 10px;
+  padding: 12px 13px;
+  border: 1px solid #dce8f7;
+  border-radius: 6px;
+  background: var(--pat-blue-soft);
+}
+
+.pat-count strong { color: var(--pat-blue); font-size: 19px; line-height: 1; }
+.pat-count span { color: var(--pat-muted); font-size: 11px; }
+
+.pat-problem-list {
+  display: grid;
+  flex: 1;
+  min-height: 0;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-content: start;
+  gap: 7px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 8px 8px 14px 12px;
+  scrollbar-color: color-mix(in srgb, var(--pat-blue) 64%, transparent) color-mix(in srgb, var(--pat-line) 56%, transparent);
+  scrollbar-gutter: stable;
+  scrollbar-width: auto;
+}
+
+.pat-problem-list::-webkit-scrollbar { width: 11px; }
+.pat-problem-list::-webkit-scrollbar-track {
+  border-left: 1px solid color-mix(in srgb, var(--pat-line) 72%, transparent);
+  background: color-mix(in srgb, var(--pat-panel) 74%, var(--pat-bg) 26%);
+}
+.pat-problem-list::-webkit-scrollbar-thumb {
+  min-height: 54px;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--pat-blue) 66%, transparent);
+  background-clip: padding-box;
+}
+.pat-problem-list::-webkit-scrollbar-thumb:hover {
+  background: var(--pat-blue);
+  background-clip: padding-box;
+}
+
+.pat-number-button {
+  position: relative;
+  display: inline-grid;
+  width: 100%;
+  aspect-ratio: 1;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--pat-line);
+  border-radius: 5px;
+  background: #fff;
+  color: var(--pat-muted);
+  font-size: 10px;
+  font-weight: 760;
+  cursor: pointer;
+}
+
+.pat-number-button:hover:not(:disabled) {
+  border-color: #9dbce8;
+  color: var(--pat-blue);
+  transform: translateY(-1px);
+}
+
+.pat-number-button.is-ready {
+  border-color: #b8d1f2;
+  color: var(--pat-blue);
+  background: #f8fbff;
+}
+
+.pat-number-button.is-active {
+  border-color: var(--pat-blue);
+  background: var(--pat-blue-soft);
+  color: var(--pat-blue);
+  box-shadow: inset 0 0 0 1px var(--pat-blue);
+}
+
+.pat-number-button.is-complete {
+  border-color: #ffabab;
+  background: #fff0f0;
+  color: #ef3636;
+  font-size: 16px;
+  box-shadow: none;
+}
+
+.pat-number-button.is-complete.is-active {
+  border-color: #ef3636;
+  box-shadow: inset 0 0 0 1px #ef3636;
+}
+
+body[data-pat-theme] .pat-number-button.is-complete,
+body[data-pat-theme] .pat-icon-btn.is-complete {
+  border-color: #ffabab;
+  background: #fff0f0;
+  color: #ef3636;
+}
+
+.pat-number-button:disabled {
+  border-color: transparent;
+  background: rgba(231, 235, 238, .56);
+  color: #aeb7bd;
+  cursor: not-allowed;
+}
+
+.pat-number-legend {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 0 13px 6px;
+  color: var(--pat-muted);
+  font-size: 10px;
+}
+.pat-number-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.pat-number-legend i { width: 7px; height: 7px; border-radius: 50%; background: var(--pat-blue); }
+.pat-number-legend span:last-child i { background: #ef4b4b; }
+.pat-list-note {
+  margin: 0;
+  padding: 11px 14px;
+  border-top: 1px solid var(--pat-line);
+  color: var(--pat-muted);
+  font-size: 11px;
+}
+
+.pat-problem-panel {
+  overflow-y: auto;
+  border-right: 1px solid var(--pat-line);
+  background: #fff;
+}
+
+.pat-problem-toolbar {
+  position: sticky;
+  z-index: 3;
+  top: 0;
+  display: grid;
+  min-height: 58px;
+  grid-template-columns: 90px minmax(0, 1fr) 110px;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border-bottom: 1px solid var(--pat-line);
+  background: rgba(255, 255, 255, .96);
+  backdrop-filter: blur(8px);
+}
+
+.pat-problem-toolbar > span { color: var(--pat-blue); font-size: 12px; font-weight: 760; }
+.pat-problem-toolbar h1 {
+  overflow: hidden;
+  margin: 0;
+  font-size: 16px;
+  letter-spacing: 0;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pat-pager { display: flex; justify-content: flex-end; gap: 5px; }
+.pat-icon-btn {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid var(--pat-line);
+  border-radius: 5px;
+  background: #fff;
+  color: var(--pat-blue);
+  cursor: pointer;
+}
+.pat-icon-btn:disabled { color: #b8c0c6; cursor: not-allowed; }
+.pat-icon-btn.is-complete {
+  border-color: #ffabab;
+  background: #fff0f0;
+  color: #ef3636;
+}
+
+.pat-statement { padding: 28px clamp(24px, 4vw, 54px) 80px; }
+.pat-statement-title { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.pat-statement-title h2 { margin: 0; font-size: 23px; letter-spacing: 0; }
+.pat-score {
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--pat-bg);
+  color: var(--pat-muted);
+  font-size: 11px;
+  font-weight: 750;
+}
+.pat-meta { display: flex; gap: 14px; margin-bottom: 24px; color: var(--pat-muted); font-size: 12px; }
+.pat-statement h3 { margin: 28px 0 9px; font-size: 16px; letter-spacing: 0; }
+.pat-statement p { margin: 0 0 10px; }
+.pat-sample {
+  overflow: hidden;
+  border: 1px solid var(--pat-line);
+  border-radius: 6px;
+  background: #fafbfc;
+}
+.pat-sample + .pat-sample { margin-top: 12px; }
+.pat-sample header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 34px;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--pat-line);
+  color: var(--pat-muted);
+  font-size: 11px;
+  font-weight: 720;
+}
+.pat-sample pre { margin: 0; padding: 14px; color: #33414b; font: 13px/1.65 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; white-space: pre-wrap; }
+.pat-sample-explanation {
+  margin: 10px 0 0;
+  padding: 12px 14px;
+  border-left: 3px solid var(--pat-accent);
+  border-radius: 4px;
+  background: var(--pat-accent-soft);
+  color: var(--pat-muted);
+  white-space: pre-line;
+}
+
+.pat-answer-panel {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background: #f8fafb;
+}
+
+.pat-answer-toolbar {
+  position: sticky;
+  z-index: 3;
+  top: 0;
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--pat-line);
+  background: rgba(255, 255, 255, .96);
+  backdrop-filter: blur(8px);
+}
+.pat-answer-toolbar strong { font-size: 13px; }
+.pat-language-label {
+  display: inline-flex;
+  height: 34px;
+  min-width: 72px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  border: 1px solid #b7d0f2;
+  border-radius: 5px;
+  background: var(--pat-panel);
+  color: var(--pat-text);
+  font-size: 12px;
+  font-weight: 760;
+}
+
+.pat-answer-content { padding: 15px; }
+.pat-thinking {
+  padding: 2px 2px 15px;
+  border-bottom: 1px solid var(--pat-line);
+}
+.pat-thinking h2, .pat-editor-section h2 { margin: 0; font-size: 15px; letter-spacing: 0; }
+.pat-thinking ol {
+  display: grid;
+  margin: 10px 0 0;
+  padding: 0;
+  counter-reset: pat-idea;
+  gap: 7px;
+  list-style: none;
+}
+.pat-idea-item {
+  position: relative;
+  min-height: 42px;
+  padding: 9px 12px 9px 42px;
+  border-left: 3px solid var(--idea-color);
+  border-radius: 0 5px 5px 0;
+  background: color-mix(in srgb, var(--pat-panel) 84%, var(--idea-color) 16%);
+  color: var(--pat-text);
+}
+.pat-idea-item::before {
+  position: absolute;
+  top: 10px;
+  left: 11px;
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--idea-color);
+  color: #fff;
+  content: counter(pat-idea);
+  counter-increment: pat-idea;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+}
+.pat-idea-item.is-main { --idea-color: #db4b78; }
+.pat-idea-item.is-core { --idea-color: #3478d4; }
+.pat-idea-item.is-explain { --idea-color: #24a363; }
+.pat-key-points {
+  margin-top: 12px;
+  padding: 11px 12px;
+  border-left: 3px solid #eda33e;
+  border-radius: 0 5px 5px 0;
+  background: var(--pat-amber-soft);
+  color: #79501b;
+  font-size: 12px;
+}
+.pat-key-points strong { display: block; margin-bottom: 3px; color: var(--pat-amber); }
+.pat-key-points ul { margin: 0; padding-left: 18px; }
+
+.pat-editor-section { padding-top: 15px; }
+.pat-editor-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 9px; }
+.pat-editor-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+.pat-text-btn {
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--pat-line);
+  border-radius: 5px;
+  background: #fff;
+  color: var(--pat-blue);
+  font-size: 11px;
+  font-weight: 720;
+  cursor: pointer;
+}
+.pat-text-btn:hover { border-color: #b7d0f2; background: var(--pat-blue-soft); }
+.pat-text-btn.is-copied { color: var(--pat-green); }
+
+.pat-editor {
+  display: grid;
+  min-height: 390px;
+  grid-template-columns: 46px minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid #22313f;
+  border-radius: 6px;
+  background: var(--pat-editor);
+}
+.pat-line-numbers {
+  overflow: hidden;
+  margin: 0;
+  padding: 14px 9px;
+  border-right: 1px solid var(--pat-editor-line);
+  color: #6f8190;
+  background: #141d25;
+  font: 12px/1.65 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  text-align: right;
+  user-select: none;
+}
+.pat-code-input {
+  width: 100%;
+  min-height: 390px;
+  resize: vertical;
+  padding: 14px 15px;
+  border: 0;
+  outline: 0;
+  background: var(--pat-editor);
+  color: var(--pat-editor-text);
+  caret-color: #fff;
+  font: 12px/1.65 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  tab-size: 2;
+  white-space: pre;
+}
+.pat-save-state { margin: 7px 1px 0; color: var(--pat-muted); font-size: 10px; }
+.pat-test-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  overflow: hidden;
+  margin-top: 13px;
+  border: 1px solid var(--pat-line);
+  border-radius: 6px;
+  background: var(--pat-line);
+}
+.pat-test-cell { min-width: 0; padding: 10px 11px; background: #fff; }
+.pat-test-cell strong { display: block; color: var(--pat-muted); font-size: 10px; }
+.pat-test-cell code { display: block; overflow-x: auto; margin-top: 4px; color: var(--pat-text); font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; white-space: pre; }
+
+@media (max-width: 1280px) {
+  .pat-workspace { grid-template-columns: 214px minmax(390px, 1fr) minmax(410px, .9fr); }
+  .pat-statement { padding-inline: 26px; }
+}
+
+@media (max-width: 1020px) {
+  body { overflow: auto; }
+  .pat-shell { display: block; height: auto; }
+  .pat-topbar { position: sticky; z-index: 120; top: 0; grid-template-columns: 1fr auto; }
+  .pat-top-title { display: none; }
+  .pat-workspace { grid-template-columns: 210px minmax(0, 1fr); }
+  .pat-list-panel { min-height: calc(100vh - 62px); }
+  .pat-problem-panel { min-height: calc(100vh - 62px); border-right: 0; }
+  .pat-answer-panel { grid-column: 1 / -1; border-top: 1px solid var(--pat-line); }
+  .pat-answer-toolbar { position: static; }
+}
+
+@media (max-width: 680px) {
+  .pat-topbar { padding-inline: 10px; }
+  .pat-back span:last-child { max-width: 190px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pat-top-actions > a { display: none; }
+  .pat-doki-tools { width: 118px; height: 148px; }
+  body[data-pat-theme="inori-light"] .pat-doki-tools { width: 150px; height: 170px; }
+  .pat-workspace { display: block; }
+  .pat-list-panel { min-height: 0; border-right: 0; }
+  .pat-problem-list { grid-template-columns: repeat(6, minmax(0, 1fr)); max-height: 260px; padding: 8px 12px; }
+  .pat-number-button { aspect-ratio: 1.5; }
+  .pat-list-note { display: none; }
+  .pat-count { margin-top: 10px; }
+  .pat-problem-panel { min-height: 0; }
+  .pat-problem-toolbar { grid-template-columns: 54px minmax(0, 1fr) 76px; padding-inline: 10px; }
+  .pat-problem-toolbar h1 { font-size: 14px; }
+  .pat-statement { padding: 22px 16px 50px; }
+  .pat-statement-title { align-items: flex-start; }
+  .pat-statement-title h2 { font-size: 20px; }
+  .pat-answer-content { padding: 12px; }
+  .pat-editor { min-height: 350px; }
+  .pat-code-input { min-height: 350px; }
+  .pat-doki-sticker { opacity: .9; }
+}
+</style>
+</head>
+<body data-pat-theme="emilia-light" data-pat-tone="light">
+  <div class="pat-shell">
+    <header class="pat-topbar">
+      <a class="pat-back" href="/code/"><span class="pat-back-icon" aria-hidden="true">‹</span><span>PAT (Top Level) Practice</span></a>
+      <div class="pat-top-title"><strong>顶级题库工作台</strong><span>题目 · 思路 · C++ 答案</span></div>
+      <div class="pat-top-actions">
+        <a href="/code/">返回算法目录</a>
+      </div>
+    </header>
+
+    <main class="pat-workspace">
+      <aside class="pat-list-panel" aria-label="题目数栏">
+        <div class="pat-panel-heading"><strong>题目总览</strong></div>
+        <div class="pat-count"><div><strong data-completed-count>0</strong><span> / 35</span></div><span>已完成题目</span></div>
+        <div class="pat-number-legend"><span><i></i>未完成</span><span><i></i>已完成</span></div>
+        <div class="pat-problem-list" data-problem-list></div>
+      </aside>
+
+      <section class="pat-problem-panel" aria-label="具体题目栏">
+        <header class="pat-problem-toolbar">
+          <span>‹ 编程题 <b data-current-id></b></span>
+          <h1 data-current-title></h1>
+          <div class="pat-pager">
+            <button class="pat-icon-btn" type="button" title="标记本题完成" aria-label="标记本题完成" aria-pressed="false" data-toggle-complete>✓</button>
+            <button class="pat-icon-btn" type="button" title="上一题" aria-label="上一题" data-previous-problem>‹</button>
+            <button class="pat-icon-btn" type="button" title="下一题" aria-label="下一题" data-next-problem>›</button>
+          </div>
+        </header>
+        <article class="pat-statement">
+          <div class="pat-statement-title"><h2 data-statement-title></h2><span class="pat-score" data-score></span></div>
+          <div class="pat-meta"><span>题型：<b data-category></b></span><span>来源：PAT TOP 题库</span></div>
+          <div data-description></div>
+          <h3>输入格式</h3>
+          <p data-input></p>
+          <h3>输出格式</h3>
+          <p data-output></p>
+          <div data-samples></div>
+        </article>
+      </section>
+
+      <aside class="pat-answer-panel" aria-label="答题栏">
+        <header class="pat-answer-toolbar"><strong>答题栏 · C++ 编辑器</strong><span class="pat-language-label" aria-label="编程语言：C++">C++</span></header>
+        <div class="pat-answer-content">
+          <section class="pat-thinking">
+            <h2>解题思路</h2>
+            <ol data-idea></ol>
+            <div class="pat-key-points"><strong>重点与易错点</strong><ul data-key-points></ul></div>
+          </section>
+
+          <section class="pat-editor-section">
+            <div class="pat-editor-heading">
+              <h2>参考答案</h2>
+              <div class="pat-editor-actions">
+                <button class="pat-text-btn" type="button" data-copy-code>复制代码</button>
+              </div>
+            </div>
+            <div class="pat-editor">
+              <pre class="pat-line-numbers" aria-hidden="true" data-line-numbers></pre>
+              <textarea class="pat-code-input" aria-label="C++ 答案编辑器" spellcheck="false" data-pat-editor></textarea>
+            </div>
+            <div class="pat-test-box" aria-label="样例测试数据">
+              <div class="pat-test-cell"><strong>样例输入</strong><code data-test-input></code></div>
+              <div class="pat-test-cell"><strong>期望输出</strong><code data-test-output></code></div>
+            </div>
+          </section>
+        </div>
+      </aside>
+    </main>
+  </div>
+  <div class="pat-doki-tools" data-pat-tools data-pat-theme-picker>
+    <div class="pat-theme-picker">
+      <button class="pat-theme-toggle" type="button" title="切换题库配色" aria-label="切换题库配色" aria-haspopup="menu" aria-expanded="false" data-pat-theme-toggle>🎨</button>
+      <div class="pat-theme-menu" role="menu" aria-label="题库配色" data-pat-theme-menu hidden>
+        <button class="pat-theme-option" type="button" role="menuitemradio" aria-checked="true" data-pat-theme-option="emilia-light"><span class="pat-theme-swatch emilia-light"></span><span><strong>爱蜜莉雅</strong><small>Emilia</small></span><span>✓</span></button>
+        <button class="pat-theme-option" type="button" role="menuitemradio" aria-checked="false" data-pat-theme-option="beatrice"><span class="pat-theme-swatch beatrice"></span><span><strong>碧翠丝</strong><small>Beatrice</small></span><span>✓</span></button>
+        <button class="pat-theme-option" type="button" role="menuitemradio" aria-checked="false" data-pat-theme-option="echidna"><span class="pat-theme-swatch echidna"></span><span><strong>艾姬多娜</strong><small>Echidna</small></span><span>✓</span></button>
+        <button class="pat-theme-option" type="button" role="menuitemradio" aria-checked="false" data-pat-theme-option="inori-light"><span class="pat-theme-swatch inori-light"></span><span><strong>楪祈</strong><small>Yuzuriha Inori</small></span><span>✓</span></button>
+        <button class="pat-theme-option" type="button" role="menuitemradio" aria-checked="false" data-pat-theme-option="nao-light"><span class="pat-theme-swatch nao-light"></span><span><strong>友利奈绪</strong><small>Tomori Nao</small></span><span>✓</span></button>
+      </div>
+    </div>
+    <img class="pat-doki-sticker" src="/daily/doki/emilia_light.png" alt="主题角色贴纸" title="拖动贴纸可调整位置" data-pat-sticker>
+  </div>
+  <script>
+(function () {
+  var library = {"problems":[{"description":["It is vitally important to have all the cities connected by highways in a war.  If a city is conquered by the enemy, all the highways from/toward that city will be closed.  To keep the rest of the cities connected, we must repair some highways with the minimum cost.  On the other hand, if losing a city will cost us too much to rebuild the connection, we must pay more attention to that city.","Given the map of cities which have all the destroyed and remaining highways marked, you are supposed to point out the city to which we must pay the most attention."],"id":"1001","input":"Each input file contains one test case. Each case starts with a line containing 2 numbers N (≤500), and M, which are the total number of cities, and the number of highways, respectively.  Then M lines follow, each describes a highway by 4 integers: City1 City2 Cost Status where City1 and City2 are the numbers of the cities the highway connects (the cities are numbered from 1 to N), Cost is the effort taken to repair that highway if necessary, and Status is either 0, meaning that highway is destroyed, or 1, meaning that highway is in use.\n\nNote: It is guaranteed that the whole country was connected before the war.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805156657348608","output":"For each test case, just print in a line the city we must protest the most, that is, it will take us the maximum effort to rebuild the connection if that city is conquered by the enemy.\n\nIn case there is more than one city to be printed, output them in increasing order of the city numbers, separated by one space, but no extra space at the end of the line.  In case there is no need to repair any highway at all, simply output 0.","samples":[{"input":"4 5\n1 2 1 1\n1 3 1 1\n2 3 1 0\n2 4 1 1\n3 4 1 0","output":"1 2","explanation":"","label":""},{"input":"4 5\n1 2 1 1\n1 3 1 1\n2 3 1 0\n2 4 1 1\n3 4 2 1","output":"0","explanation":"","label":""}],"score":35,"title":"Battle Over Cities - Hard Version","category":"最小生成树","idea":["枚举每一座被攻占的城市，临时忽略所有与它相连的道路。","仍在使用的道路视为修复费用 0，已损坏道路保留原费用；对剩余城市做 Kruskal。","若剩余图不连通，将代价视为无穷；最后输出代价最大的全部城市。"],"keyPoints":["正常道路也必须参与并查集合并，只是它们不增加费用。","删除城市后只需要 N-2 条边；N=2 时剩余单城天然连通。","若所有城市的修复代价都为 0，题目要求输出 0。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nstruct DSU {\n  vector\u003cint> p, sz;\n  explicit DSU(int n) : p(n + 1), sz(n + 1, 1) { iota(p.begin(), p.end(), 0); }\n  int find(int x) { return p[x] == x ? x : p[x] = find(p[x]); }\n  bool unite(int a, int b) {\n    a = find(a); b = find(b);\n    if (a == b) return false;\n    if (sz[a] \u003c sz[b]) swap(a, b);\n    p[b] = a; sz[a] += sz[b];\n    return true;\n  }\n};\n\nstruct Edge { int u, v, cost, status; };\n\nint main() {\n  ios::sync_with_stdio(false);\n  cin.tie(nullptr);\n\n  int n, m;\n  cin >> n >> m;\n  vector\u003cEdge> edges(m);\n  for (auto &e : edges) cin >> e.u >> e.v >> e.cost >> e.status;\n  sort(edges.begin(), edges.end(), [](const Edge &a, const Edge &b) {\n    int wa = a.status ? 0 : a.cost;\n    int wb = b.status ? 0 : b.cost;\n    return wa != wb ? wa \u003c wb : a.status > b.status;\n  });\n\n  const long long INF = (1LL \u003c\u003c 60);\n  vector\u003clong long> need(n + 1);\n  long long worst = 0;\n  for (int banned = 1; banned \u003c= n; ++banned) {\n    DSU dsu(n);\n    int used = 0;\n    long long cost = 0;\n    for (const auto &e : edges) {\n      if (e.u == banned || e.v == banned) continue;\n      if (dsu.unite(e.u, e.v)) {\n        ++used;\n        if (!e.status) cost += e.cost;\n      }\n    }\n    need[banned] = (used == max(0, n - 2)) ? cost : INF;\n    worst = max(worst, need[banned]);\n  }\n\n  if (worst == 0) {\n    cout \u003c\u003c 0 \u003c\u003c '\\n';\n    return 0;\n  }\n  bool first = true;\n  for (int city = 1; city \u003c= n; ++city) {\n    if (need[city] != worst) continue;\n    if (!first) cout \u003c\u003c ' ';\n    cout \u003c\u003c city;\n    first = false;\n  }\n  cout \u003c\u003c '\\n';\n  return 0;\n}\n","sampleInput":"4 5\n1 2 1 1\n1 3 1 1\n2 3 1 0\n2 4 1 1\n3 4 1 0","sampleOutput":"1 2"},{"description":["As the manager of your company, you have to carefully consider, for each project, the time taken to finish it, the deadline, and the profit you can gain, in order to decide if your group should take this project. For example, given 3 projects as the following:","Project[1] takes 3 days, it must be finished in 3 days in order to gain 6 units of profit.\nProject[2] takes 2 days, it must be finished in 2 days in order to gain 3 units of profit.\nProject[3] takes 1 day only, it must be finished in 3 days in order to gain 4 units of profit.","You may take Project[1] to gain 6 units of profit. But if you take Project[2] first, then you will have 1 day left to complete Project[3] just in time, and hence gain 7 units of profit in total. Notice that once you decide to work on a project, you have to do it from beginning to the end without any interruption."],"id":"1002","input":"Each input file contains one test case. For each case, the first line gives a positive integer N (≤50), and then followed by N lines of projects, each contains three numbers P, L, and D where P is the profit, L the lasting days of the project, and D the deadline. It is guaranteed that L is never more than D, and all the numbers are non-negative integers.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805156145643520","output":"For each test case, output in a line the maximum profit you can gain.","samples":[{"input":"4\n7 1 3\n10 2 3\n6 1 2\n5 1 1","output":"18","explanation":"","label":""}],"score":35,"title":"Business","category":"动态规划","idea":["按截止日期从小到大排序项目，使当前项目成为已安排项目中的最后一个。","dp[t] 表示恰好占用 t 天能够取得的最大利润，初值仅 dp[0]=0。","倒序枚举时间；只有 t+L 不超过该项目截止日期时才转移。"],"keyPoints":["项目不可拆分，时间维必须倒序更新，避免同一项目重复选择。","排序后只校验当前项目的截止日期即可保证之前项目也按时完成。","利润总和使用 long long，未达状态用 -1 标记。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nstruct Project { long long profit; int length, deadline; };\n\nint main() {\n  ios::sync_with_stdio(false);\n  cin.tie(nullptr);\n\n  int n;\n  cin >> n;\n  vector\u003cProject> projects(n);\n  int totalDays = 0;\n  for (auto &x : projects) {\n    cin >> x.profit >> x.length >> x.deadline;\n    totalDays += x.length;\n  }\n  sort(projects.begin(), projects.end(), [](const Project &a, const Project &b) {\n    return a.deadline != b.deadline ? a.deadline \u003c b.deadline : a.length \u003c b.length;\n  });\n\n  vector\u003clong long> dp(totalDays + 1, -1);\n  dp[0] = 0;\n  int reached = 0;\n  for (const auto &job : projects) {\n    for (int t = min(reached, job.deadline - job.length); t >= 0; --t) {\n      if (dp[t] \u003c 0) continue;\n      dp[t + job.length] = max(dp[t + job.length], dp[t] + job.profit);\n    }\n    reached = min(totalDays, reached + job.length);\n  }\n  cout \u003c\u003c *max_element(dp.begin(), dp.end()) \u003c\u003c '\\n';\n  return 0;\n}\n","sampleInput":"4\n7 1 3\n10 2 3\n6 1 2\n5 1 1","sampleOutput":"18"},{"description":["After finishing her tour around the Earth, CYLL is now planning a universal travel sites development project.  After a careful investigation, she has a list of capacities of all the satellite transportation stations in hand.  To estimate a budget, she must know the minimum capacity that a planet station must have to guarantee that every space vessel can dock and download its passengers on arrival."],"id":"1003","input":"Each input file contains one test case. For each case, the first line contains the names of the source and the destination planets, and a positive integer N (≤500).  Then N lines follow, each in the format: source[i] destination[i] capacity[i] where source[i] and destination[i] are the names of the satellites and the two involved planets, and capacity[i] > 0 is the maximum number of passengers that can be transported at one pass from source[i] to destination[i].  Each name is a string of 3 uppercase characters chosen from {A-Z}, e.g., ZJU.\n\nNote that the satellite transportation stations have no accommodation facilities for the passengers.  Therefore none of the passengers can stay.  Such a station will not allow arrivals of space vessels that contain more than its own capacity.  It is guaranteed that the list contains neither the routes to the source planet nor that from the destination planet.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805155688464384","output":"For each test case, just print in one line the minimum capacity that a planet station must have to guarantee that every space vessel can dock and download its passengers on arrival.","samples":[{"input":"EAR MAR 11\nEAR AAA 300\nEAR BBB 400\nAAA BBB 100\nAAA CCC 400\nAAA MAR 300\nBBB DDD 400\nAAA DDD 400\nDDD AAA 100\nCCC MAR 400\nDDD CCC 200\nDDD MAR 300","output":"700","explanation":"","label":""}],"score":35,"title":"Universal Travel Sites","category":"最大流","idea":["把行星与卫星站名称映射为连续编号，每条运输路线作为一条有向容量边。","题目要求源点到终点所有运输路线的最小总保障能力，等价于网络最大流。","使用 Dinic：BFS 建分层图，DFS 在分层图中反复发送阻塞流。"],"keyPoints":["路线是有向边，反向边仅用于残量网络，初始容量为 0。","同名站点必须映射到同一个编号，平行边可以直接保留。","容量总和可能超过 int，流量与容量使用 long long。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nstruct Dinic {\n  struct Edge { int to, rev; long long cap; };\n  vector\u003cvector\u003cEdge>> g;\n  vector\u003cint> level, it;\n  explicit Dinic(int n) : g(n), level(n), it(n) {}\n  void addEdge(int u, int v, long long c) {\n    Edge a{v, (int)g[v].size(), c};\n    Edge b{u, (int)g[u].size(), 0};\n    g[u].push_back(a); g[v].push_back(b);\n  }\n  bool bfs(int s, int t) {\n    fill(level.begin(), level.end(), -1);\n    queue\u003cint> q; q.push(s); level[s] = 0;\n    while (!q.empty()) {\n      int u = q.front(); q.pop();\n      for (const auto &e : g[u]) if (e.cap > 0 && level[e.to] \u003c 0) {\n        level[e.to] = level[u] + 1;\n        q.push(e.to);\n      }\n    }\n    return level[t] >= 0;\n  }\n  long long dfs(int u, int t, long long f) {\n    if (u == t) return f;\n    for (int &i = it[u]; i \u003c (int)g[u].size(); ++i) {\n      Edge &e = g[u][i];\n      if (e.cap \u003c= 0 || level[e.to] != level[u] + 1) continue;\n      long long got = dfs(e.to, t, min(f, e.cap));\n      if (!got) continue;\n      e.cap -= got; g[e.to][e.rev].cap += got;\n      return got;\n    }\n    return 0;\n  }\n  long long maxFlow(int s, int t) {\n    long long answer = 0, pushed;\n    while (bfs(s, t)) {\n      fill(it.begin(), it.end(), 0);\n      while ((pushed = dfs(s, t, (1LL \u003c\u003c 60))) > 0) answer += pushed;\n    }\n    return answer;\n  }\n};\n\nint main() {\n  ios::sync_with_stdio(false);\n  cin.tie(nullptr);\n\n  string source, target;\n  int m;\n  cin >> source >> target >> m;\n  struct Raw { string a, b; long long c; };\n  vector\u003cRaw> roads(m);\n  unordered_map\u003cstring, int> id;\n  auto getId = [&](const string &name) {\n    auto result = id.emplace(name, (int)id.size());\n    return result.first->second;\n  };\n  int s = getId(source), t = getId(target);\n  for (auto &road : roads) {\n    cin >> road.a >> road.b >> road.c;\n    getId(road.a); getId(road.b);\n  }\n  Dinic dinic((int)id.size());\n  for (const auto &road : roads) dinic.addEdge(id[road.a], id[road.b], road.c);\n  cout \u003c\u003c dinic.maxFlow(s, t) \u003c\u003c '\\n';\n  return 0;\n}\n","sampleInput":"EAR MAR 11\nEAR AAA 300\nEAR BBB 400\nAAA BBB 100\nAAA CCC 400\nAAA MAR 300\nBBB DDD 400\nAAA DDD 400\nDDD AAA 100\nCCC MAR 400\nDDD CCC 200\nDDD MAR 300","sampleOutput":"700"},{"description":["Eva would like to make a string of beads with her favorite colors so she went to a small shop to buy some beads. There were many colorful strings of beads. However the owner of the shop would only sell the strings in whole pieces. Hence in some cases Eva might have to buy several strings to get all the beads she needs. With a hundred strings in the shop, Eva needs your help to tell her whether or not she can get all the beads she needs with the least number of extra beads she has to pay for.","For the sake of simplicity, let's use the characters in the ranges [0-9], [a-z], and [A-Z] to represent the colors. In sample 1, buying the 2nd and the last two strings is the best way since there are only 3 extra beads. In sample 2, buying all the three strings won't help since there are three R beads missing."],"id":"1004","input":"Each input file contains one test case. Each case first gives in a line the string that Eva wants. Then a positive integer N (≤100) is given in the next line, followed by N lines of strings that belong to the shop. All the strings contain no more than 1000 beads.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805155206119424","output":"For each test case, print your answer in one line. If the answer is Yes, then also output the least number of extra beads Eva has to buy; or if the answer is No, then also output the number of beads missing from all the strings. There must be exactly 1 space between the answer and the number.","samples":[{"input":"RYg5\n8\ngY5Ybf\n8R5\n12346789\ngRg8h\n5Y37\npRgYgbR52\n8Y\n8g","output":"Yes 3","explanation":"","label":""},{"input":"YrRR8RRrY\n3\nppRGrrYB225\n8ppGrrB25\nZd6KrY","output":"No 3","explanation":"","label":""}],"score":35,"title":"To Buy or Not to Buy - Hard Version","category":"分支限界","idea":["先统计目标串与全部商品串的 62 类字符数量；若总供给不足，直接累计缺失数。","否则把每件商品压缩成字符计数向量，按对当前缺口的贡献排序。","DFS 枚举选或不选，并用后缀供给、当前长度和最优答案做可行性与最优性剪枝。"],"keyPoints":["购买的是整串珠子，不能从一条商品串中只截取需要的字符。","目标是最小化买入总长度，最后再减去目标串长度得到多余珠子数。","该问题本质上是多维覆盖；后缀供给剪枝是避免无效指数搜索的关键。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nint indexOf(char c) {\n  if (c >= '0' && c \u003c= '9') return c - '0';\n  if (c >= 'a' && c \u003c= 'z') return 10 + c - 'a';\n  return 36 + c - 'A';\n}\n\nstruct Item { array\u003cint, 62> count{}; int length = 0, useful = 0; };\n\nint main() {\n  ios::sync_with_stdio(false);\n  cin.tie(nullptr);\n\n  string wanted;\n  int n;\n  cin >> wanted >> n;\n  array\u003cint, 62> need{}, all{};\n  for (char c : wanted) ++need[indexOf(c)];\n  vector\u003cItem> items;\n  for (int i = 0; i \u003c n; ++i) {\n    string s; cin >> s;\n    Item item; item.length = (int)s.size();\n    for (char c : s) { ++item.count[indexOf(c)]; ++all[indexOf(c)]; }\n    for (int c = 0; c \u003c 62; ++c) item.useful += min(need[c], item.count[c]);\n    if (item.useful) items.push_back(item);\n  }\n  int missing = 0;\n  for (int c = 0; c \u003c 62; ++c) missing += max(0, need[c] - all[c]);\n  if (missing) {\n    cout \u003c\u003c \"No \" \u003c\u003c missing \u003c\u003c '\\n';\n    return 0;\n  }\n  sort(items.begin(), items.end(), [](const Item &a, const Item &b) {\n    long long left = 1LL * a.useful * b.length;\n    long long right = 1LL * b.useful * a.length;\n    return left != right ? left > right : a.length \u003c b.length;\n  });\n\n  int m = (int)items.size();\n  vector\u003carray\u003cint, 62>> suffix(m + 1);\n  suffix[m].fill(0);\n  for (int i = m - 1; i >= 0; --i) {\n    suffix[i] = suffix[i + 1];\n    for (int c = 0; c \u003c 62; ++c) suffix[i][c] += items[i].count[c];\n  }\n  int best = numeric_limits\u003cint>::max();\n  array\u003cint, 62> have{};\n  function\u003cvoid(int, int)> dfs = [&](int pos, int length) {\n    if (length >= best) return;\n    bool done = true;\n    for (int c = 0; c \u003c 62; ++c) {\n      if (have[c] \u003c need[c]) done = false;\n      if (have[c] + suffix[pos][c] \u003c need[c]) return;\n    }\n    if (done) { best = length; return; }\n    if (pos == m) return;\n\n    for (int c = 0; c \u003c 62; ++c) have[c] += items[pos].count[c];\n    dfs(pos + 1, length + items[pos].length);\n    for (int c = 0; c \u003c 62; ++c) have[c] -= items[pos].count[c];\n    dfs(pos + 1, length);\n  };\n  dfs(0, 0);\n  cout \u003c\u003c \"Yes \" \u003c\u003c best - (int)wanted.size() \u003c\u003c '\\n';\n  return 0;\n}\n","sampleInput":"RYg5\n8\ngY5Ybf\n8R5\n12346789\ngRg8h\n5Y37\npRgYgbR52\n8Y\n8g","sampleOutput":"Yes 3"},{"description":["Programmers often have a preference among program constructs. For example, some may prefer if(0==a), while others may prefer if(!a). Analyzing such patterns can help to narrow down a programmer's identity, which is useful for detecting plagiarism.","Now given some text sampled from someone's program, can you find the person's most commonly used pattern of a specific length?"],"id":"1005","input":"Each input file contains one test case. For each case, there is one line consisting of the pattern length N (1≤N≤1048576), followed by one line no less than N and no more than 1048576 characters in length, terminated by a carriage return \\n. The entire input is case sensitive.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805154748940288","output":"For each test case, print in one line the length-N substring that occurs most frequently in the input, followed by a space and the number of times it has occurred in the input. If there are multiple such substrings, print the lexicographically smallest one.\n\nWhitespace characters in the input should be printed as they are. Also note that there may be multiple occurrences of the same substring overlapping each other.","samples":[{"input":"4\n//A can can can a can.","output":"can 4","explanation":"","label":""},{"input":"3\nint a=~~~~~~~~~~~~~~~~~~~~~0;","output":"~~~ 19","explanation":"","label":""}],"score":35,"title":"Programming Pattern","category":"后缀数组","idea":["给原串追加全局最小哨兵，使用倍增与计数排序构造后缀数组。","用 Kasai 算法在线性时间求相邻后缀的 LCP。","在后缀数组中合并 LCP 不小于 N 的连续合法后缀；最早出现的最大组天然字典序最小。"],"keyPoints":["原串长度可达 2^20，不能为每个位置复制一个长度 N 的 substring。","剩余长度小于 N 的后缀不能成为答案，也会中断当前分组。","只在最终输出时构造一次 substring，内存维持 O(|S|)。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nvector\u003cint> suffixArray(const string &text) {\n  string s = text;\n  s.push_back(char(0));\n  int n = (int)s.size();\n  vector\u003cint> p(n), c(n), pn(n), cn(n);\n  vector\u003cint> cnt(max(256, n), 0);\n  for (unsigned char ch : s) ++cnt[ch];\n  for (int i = 1; i \u003c 256; ++i) cnt[i] += cnt[i - 1];\n  for (int i = n - 1; i >= 0; --i) p[--cnt[(unsigned char)s[i]]] = i;\n  c[p[0]] = 0;\n  int classes = 1;\n  for (int i = 1; i \u003c n; ++i) {\n    if (s[p[i]] != s[p[i - 1]]) ++classes;\n    c[p[i]] = classes - 1;\n  }\n  for (int len = 1; len \u003c n; len \u003c\u003c= 1) {\n    for (int i = 0; i \u003c n; ++i) {\n      pn[i] = p[i] - len;\n      if (pn[i] \u003c 0) pn[i] += n;\n    }\n    fill(cnt.begin(), cnt.begin() + classes, 0);\n    for (int x : pn) ++cnt[c[x]];\n    for (int i = 1; i \u003c classes; ++i) cnt[i] += cnt[i - 1];\n    for (int i = n - 1; i >= 0; --i) p[--cnt[c[pn[i]]]] = pn[i];\n    cn[p[0]] = 0;\n    int nextClasses = 1;\n    for (int i = 1; i \u003c n; ++i) {\n      pair\u003cint,int> now{c[p[i]], c[(p[i] + len) % n]};\n      pair\u003cint,int> before{c[p[i - 1]], c[(p[i - 1] + len) % n]};\n      if (now != before) ++nextClasses;\n      cn[p[i]] = nextClasses - 1;\n    }\n    c.swap(cn); classes = nextClasses;\n  }\n  p.erase(p.begin());\n  return p;\n}\n\nint main() {\n  ios::sync_with_stdio(false);\n  cin.tie(nullptr);\n\n  int patternLength;\n  string s;\n  cin >> patternLength;\n  cin.ignore(numeric_limits\u003cstreamsize>::max(), '\\n');\n  getline(cin, s);\n  vector\u003cint> sa = suffixArray(s);\n  int n = (int)s.size();\n  vector\u003cint> rank(n), lcp(n);\n  for (int i = 0; i \u003c n; ++i) rank[sa[i]] = i;\n  for (int i = 0, common = 0; i \u003c n; ++i) {\n    int r = rank[i];\n    if (r == 0) continue;\n    int j = sa[r - 1];\n    while (i + common \u003c n && j + common \u003c n && s[i + common] == s[j + common]) ++common;\n    lcp[r] = common;\n    if (common) --common;\n  }\n\n  int bestCount = 0, bestPos = 0;\n  for (int i = 0; i \u003c n; ) {\n    if (sa[i] + patternLength > n) { ++i; continue; }\n    int j = i;\n    while (j + 1 \u003c n && sa[j + 1] + patternLength \u003c= n && lcp[j + 1] >= patternLength) ++j;\n    int count = j - i + 1;\n    if (count > bestCount) { bestCount = count; bestPos = sa[i]; }\n    i = j + 1;\n  }\n  cout \u003c\u003c s.substr(bestPos, patternLength) \u003c\u003c ' ' \u003c\u003c bestCount \u003c\u003c '\\n';\n  return 0;\n}\n","sampleInput":"4\n//A can can can a can.","sampleOutput":"can 4"},{"description":["Given the partial results of a binary tree's traversals in in-order, pre-order, and post-order. You are supposed to output the complete results and the level order traversal sequence of the corresponding tree."],"id":"1006","input":"Each input file contains one test case. For each case, a positive integer N (≤100) is given in the first line. Then three lines follow, containing the incomplete in-order, pre-order and post-order traversal sequences, respectively. It is assumed that the tree nodes are numbered from 1 to N and no number is given out of the range. A - represents a missing number.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805154321121280","output":"For each case, print in four lines the complete in-order, pre-order and post-order traversal sequences, together with the level order traversal sequence of the corresponding tree. The numbers must be separated by a space, and there must be no extra space at the beginning or the end of each line. If it is impossible to reconstruct the unique tree from the given information, simply print Impossible.","samples":[{"input":"9\n3 - 2 1 7 9 - 4 6\n9 - 5 3 2 1 - 6 4\n3 1 - - 7 - 6 8 -","output":"3 5 2 1 7 9 8 4 6\n9 7 5 3 2 1 8 6 4\n3 1 2 5 7 4 6 8 9\n9 7 8 5 6 3 2 4 1","explanation":"","label":""},{"input":"3\n- - -\n- 1 -\n1 - -","output":"Impossible","explanation":"","label":""}],"score":35,"title":"Tree Traversals - Hard Version","category":"约束搜索","idea":["一个子树的根同时位于先序首位、后序末位，并在中序中把左右子树切开。","递归枚举仍未确定的根编号和中序位置，把三种序列中的同一根同步赋值。","每层携带已使用编号与当前序列状态，并最多保留两份完整解用于判定唯一性。"],"keyPoints":["题目不仅要求找到一棵树，还要求确认解唯一；发现第二份解即可停止。","已给出的先序根与后序根若冲突，应立即剪枝。","完成三种遍历后再由先序和中序重建树，层序遍历会更简单。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nstruct State {\n  vector\u003cint> in, pre, post;\n  vector\u003cchar> used;\n};\n\nvector\u003cState> build(int il, int ir, int pl, int pr, int ql, int qr, const State &start) {\n  if (il > ir) return {start};\n  vector\u003cState> answer;\n  int known = -1;\n  if (start.pre[pl] != -1) known = start.pre[pl];\n  if (start.post[qr] != -1) {\n    if (known != -1 && known != start.post[qr]) return {};\n    known = start.post[qr];\n  }\n  vector\u003cint> roots;\n  if (known != -1) roots.push_back(known);\n  else for (int value = 1; value \u003c (int)start.used.size(); ++value) if (!start.used[value]) roots.push_back(value);\n\n  for (int root : roots) {\n    if (start.used[root]) continue;\n    for (int mid = il; mid \u003c= ir; ++mid) {\n      if (start.in[mid] != -1 && start.in[mid] != root) continue;\n      int leftSize = mid - il;\n      State current = start;\n      if ((current.pre[pl] != -1 && current.pre[pl] != root) ||\n          (current.post[qr] != -1 && current.post[qr] != root)) continue;\n      current.in[mid] = current.pre[pl] = current.post[qr] = root;\n      current.used[root] = 1;\n\n      auto leftStates = build(il, mid - 1, pl + 1, pl + leftSize,\n                              ql, ql + leftSize - 1, current);\n      for (const State &left : leftStates) {\n        auto rightStates = build(mid + 1, ir, pl + leftSize + 1, pr,\n                                 ql + leftSize, qr - 1, left);\n        for (auto &right : rightStates) {\n          answer.push_back(move(right));\n          if (answer.size() >= 2) return answer;\n        }\n      }\n    }\n  }\n  return answer;\n}\n\nstruct Node { int value; Node *left = nullptr, *right = nullptr; };\nNode* rebuild(const vector\u003cint> &in, const vector\u003cint> &pre, int il, int ir, int &cursor) {\n  if (il > ir) return nullptr;\n  int rootValue = pre[cursor++], mid = il;\n  while (mid \u003c= ir && in[mid] != rootValue) ++mid;\n  Node *root = new Node{rootValue};\n  root->left = rebuild(in, pre, il, mid - 1, cursor);\n  root->right = rebuild(in, pre, mid + 1, ir, cursor);\n  return root;\n}\n\nvoid print(const vector\u003cint> &values) {\n  for (int i = 0; i \u003c (int)values.size(); ++i) cout \u003c\u003c (i ? \" \" : \"\") \u003c\u003c values[i];\n  cout \u003c\u003c '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false);\n  cin.tie(nullptr);\n\n  int n; cin >> n;\n  State initial;\n  initial.in.resize(n); initial.pre.resize(n); initial.post.resize(n);\n  initial.used.assign(n + 1, 0);\n  auto read = [&](vector\u003cint> &sequence) {\n    for (int i = 0; i \u003c n; ++i) {\n      string token;\n      cin >> token;\n      sequence[i] = token == \"-\" ? -1 : stoi(token);\n    }\n  };\n  read(initial.in); read(initial.pre); read(initial.post);\n\n  auto solutions = build(0, n - 1, 0, n - 1, 0, n - 1, initial);\n  if (solutions.size() != 1) {\n    cout \u003c\u003c \"Impossible\\n\";\n    return 0;\n  }\n  const State &result = solutions[0];\n  print(result.in); print(result.pre); print(result.post);\n  int cursor = 0;\n  Node *root = rebuild(result.in, result.pre, 0, n - 1, cursor);\n  vector\u003cint> level;\n  queue\u003cNode*> q; q.push(root);\n  while (!q.empty()) {\n    Node *node = q.front(); q.pop();\n    level.push_back(node->value);\n    if (node->left) q.push(node->left);\n    if (node->right) q.push(node->right);\n  }\n  print(level);\n  return 0;\n}\n","sampleInput":"9\n3 - 2 1 7 9 - 4 6\n9 - 5 3 2 1 - 6 4\n3 1 - - 7 - 6 8 -","sampleOutput":"3 5 2 1 7 9 8 4 6\n9 7 5 3 2 1 8 6 4\n3 1 2 5 7 4 6 8 9\n9 7 8 5 6 3 2 4 1"},{"description":["There is a kind of binary tree named red-black tree in the data structure. It has the following 5 properties:","(1) Every node is either red or black.\n(2) The root is black.\n(3) All the leaves are NULL nodes and are colored black.\n(4) Each red node must have 2 black descends (may be NULL).\n(5) All simple paths from any node x to a descendant leaf have the same number of black nodes.","We call a non-NULL node an internal node. From property (5) we can define the black-height of a red-black tree as the number of nodes on the simple path from the root (excluding the root itself) to any NULL leaf (including the NULL leaf). And we can derive that a red-black tree with black height H has at least 2\nH\n−1 internal nodes.","Here comes the question: given a positive N, how many distinct red-black trees are there that consist of exactly N internal nodes?"],"id":"1007","input":"Each input file contains one test case which gives a positive integer N (≤500).","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805153880719360","output":"For each case, print in a line the number of distinct red-black tees with N internal nodes. Since the answer may be very large, output the remainder of it divided by 1000000007 please.","samples":[{"input":"5","output":"8","explanation":"","label":""}],"score":35,"title":"Red-black Tree","category":"树形动态规划","idea":["按内部节点数、根颜色和黑高建立 DP；空树作为黑色 NIL 叶子，黑高为 1。","黑根允许任意颜色子树，但左右黑高必须相同；红根的两个孩子必须为黑根。","枚举左右子树节点数合并，最后累加所有黑根状态。"],"keyPoints":["红黑树根必须为黑色，空孩子也参与黑高计算。","红根本身不增加黑高，黑根会使子树黑高加 1。","三层循环中的每次乘加都要及时取模。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nconst long long MOD = 1000000007LL;\n\nint main() {\n  ios::sync_with_stdio(false);\n  cin.tie(nullptr);\n\n  int n; cin >> n;\n  int maxH = 20;\n  vector\u003cvector\u003clong long>> black(n + 1, vector\u003clong long>(maxH + 1));\n  vector\u003cvector\u003clong long>> red(n + 1, vector\u003clong long>(maxH + 1));\n  black[0][1] = 1;  // NIL 叶子。\n\n  for (int nodes = 1; nodes \u003c= n; ++nodes) {\n    for (int left = 0; left \u003c nodes; ++left) {\n      int right = nodes - 1 - left;\n      for (int h = 1; h \u003c maxH; ++h) {\n        long long leftAny = (black[left][h] + red[left][h]) % MOD;\n        long long rightAny = (black[right][h] + red[right][h]) % MOD;\n        black[nodes][h + 1] = (black[nodes][h + 1] + leftAny * rightAny) % MOD;\n        red[nodes][h] = (red[nodes][h] + black[left][h] * black[right][h]) % MOD;\n      }\n    }\n  }\n  long long answer = 0;\n  for (int h = 1; h \u003c= maxH; ++h) answer = (answer + black[n][h]) % MOD;\n  cout \u003c\u003c answer \u003c\u003c '\\n';\n  return 0;\n}\n","sampleInput":"5","sampleOutput":"8"},{"description":["Given a map of airline routes, you are supposed to check if a round trip can be planned between any pair of cities."],"id":"1008","input":"Each input file contains one test case. For each case, the first line gives two positive integers N (2≤N≤10\n4\n) and M (≤6N), which are the total number of cities (hence the cities are numbered from 1 to N) and the number of airline routes, respectively. Then M lines follow, each gives the information of a route in the format of the source city index first, and then the destination city index, separated by a space. It is guaranteed that the source is never the same as the destination.\n\nAfter the map information, another positive integer K is given, which is the number of queries. Then K lines of queries follow, each contains a pair of distinct cities' indices.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805153478066176","output":"For each query, output in a line Yes if a round trip is possible, or No if not.","samples":[{"input":"12 19\n3 4\n1 3\n12 11\n5 9\n6 2\n3 2\n10 7\n9 1\n7 12\n2 4\n9 5\n2 6\n12 4\n11 10\n4 8\n8 12\n11 8\n12 7\n1 5\n20\n11 4\n12 7\n3 6\n2 3\n5 3\n3 9\n4 3\n8 3\n8 10\n10 11\n7 8\n7 1\n9 5\n1 9\n2 6","output":"Yes\nYes\nNo\nNo\nNo\nNo\nNo\nNo\nYes\nYes\nYes\nNo\nYes\nYes\nYes\nNo\nNo\nNo\nNo\nNo","explanation":"","label":""}],"score":35,"title":"Airline Routes","category":"强连通分量","idea":["一次性用 Tarjan 算法求出有向图的全部强连通分量编号。","同一强连通分量中的任意两点互相可达，恰好能够完成往返。","每次查询只比较两个城市的分量编号，时间复杂度 O(1)。"],"keyPoints":["单向可达不等于能往返，不能只从一个端点做 DFS。","Tarjan 更新 low 值时，返祖边使用 dfn[v]，树边使用 low[v]。","总复杂度 O(N+M+K)，适合大量查询。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nint main() {\n  ios::sync_with_stdio(false);\n  cin.tie(nullptr);\n\n  int n, m; cin >> n >> m;\n  vector\u003cvector\u003cint>> graph(n + 1);\n  while (m--) { int u, v; cin >> u >> v; graph[u].push_back(v); }\n  vector\u003cint> dfn(n + 1), low(n + 1), component(n + 1), stack;\n  vector\u003cchar> inside(n + 1);\n  int timer = 0, componentCount = 0;\n  function\u003cvoid(int)> tarjan = [&](int u) {\n    dfn[u] = low[u] = ++timer;\n    stack.push_back(u); inside[u] = 1;\n    for (int v : graph[u]) {\n      if (!dfn[v]) { tarjan(v); low[u] = min(low[u], low[v]); }\n      else if (inside[v]) low[u] = min(low[u], dfn[v]);\n    }\n    if (low[u] != dfn[u]) return;\n    ++componentCount;\n    while (true) {\n      int v = stack.back(); stack.pop_back(); inside[v] = 0;\n      component[v] = componentCount;\n      if (v == u) break;\n    }\n  };\n  for (int i = 1; i \u003c= n; ++i) if (!dfn[i]) tarjan(i);\n\n  int queries; cin >> queries;\n  while (queries--) {\n    int a, b; cin >> a >> b;\n    cout \u003c\u003c (component[a] == component[b] ? \"Yes\" : \"No\") \u003c\u003c '\\n';\n  }\n  return 0;\n}\n","sampleInput":"12 19\n3 4\n1 3\n12 11\n5 9\n6 2\n3 2\n10 7\n9 1\n7 12\n2 4\n9 5\n2 6\n12 4\n11 10\n4 8\n8 12\n11 8\n12 7\n1 5\n20\n11 4\n12 7\n3 6\n2 3\n5 3\n3 9\n4 3\n8 3\n8 10\n10 11\n7 8\n7 1\n9 5\n1 9\n2 6","sampleOutput":"Yes\nYes\nNo\nNo\nNo\nNo\nNo\nNo\nYes\nYes\nYes\nNo\nYes\nYes\nYes\nNo\nNo\nNo\nNo\nNo"},{"description":["Given a list of N integers A\n1\n\t​",", A\n2\n\t​",", A\n3\n\t​",",...A\nN\n\t​",", there's a famous problem to count the number of inversions in it. An inversion is defined as a piar of indices i\u003cj such that A\ni\n\t​",">A\nj\n\t​",".","Now we have a new challenging problem. You are supposed to count the number of triple inversions in it. As you may guess, a triple inversion is defined as a triple of indices i\u003cj\u003ck such that A\ni\n\t​",">A\nj\n\t​",">A\nk\n\t​",". For example, in the list { 5, 1, 4, 3, 2 } there are 4 triple inversions, namely (5,4,3), (5,4,2), (5,3,2) and (4,3,2). To simplify the problem, the list A is given as a permutation of integers from 1 to N."],"id":"1009","input":"Each input file contains one test case. For each case, the first line gives a positive integer N in [3,10\n5\n]. The second line contains a permutation of integers from 1 to N and each of the integer is separated by a single space.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805153092190208","output":"For each case, print in a line the number of triple inversions in the list.","samples":[{"input":"22\n1 2 3 4 5 16 6 7 8 9 10 19 11 12 14 15 17 18 21 22 20 13","output":"8","explanation":"","label":""}],"score":35,"title":"Triple Inversions","category":"树状数组","idea":["对每个中间位置 j，分别统计左侧比 a[j] 大的数量和右侧比 a[j] 小的数量。","从左、从右各扫描一次，使用树状数组维护已经出现的值。","以 j 为中点的三元逆序对数量是两者乘积，累加得到答案。"],"keyPoints":["排列值域正好是 1..N，可直接作为树状数组下标。","答案最多为组合数 C(N,3)，必须使用 long long。","左大与右小必须针对同一个中间位置相乘。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nstruct Fenwick {\n  vector\u003cint> tree;\n  explicit Fenwick(int n) : tree(n + 1) {}\n  void add(int x) { for (; x \u003c (int)tree.size(); x += x & -x) ++tree[x]; }\n  int sum(int x) const { int r = 0; for (; x; x -= x & -x) r += tree[x]; return r; }\n};\n\nint main() {\n  ios::sync_with_stdio(false);\n  cin.tie(nullptr);\n\n  int n; cin >> n;\n  vector\u003cint> a(n), leftGreater(n), rightLess(n);\n  for (int &x : a) cin >> x;\n  Fenwick left(n);\n  for (int i = 0; i \u003c n; ++i) {\n    leftGreater[i] = i - left.sum(a[i]);\n    left.add(a[i]);\n  }\n  Fenwick right(n);\n  for (int i = n - 1; i >= 0; --i) {\n    rightLess[i] = right.sum(a[i] - 1);\n    right.add(a[i]);\n  }\n  long long answer = 0;\n  for (int i = 0; i \u003c n; ++i) answer += 1LL * leftGreater[i] * rightLess[i];\n  cout \u003c\u003c answer \u003c\u003c '\\n';\n  return 0;\n}\n","sampleInput":"22\n1 2 3 4 5 16 6 7 8 9 10 19 11 12 14 15 17 18 21 22 20 13","sampleOutput":"8"},{"description":["According to Wikipedia: \"In mathematics and in particular in combinatorics, the Lehmer code is a particular way to encode each possible permutation of a sequence of n numbers.\" To be more specific, for a given permutation of items {A\n1\n\t​",", A\n2\n\t​",", ⋯, A\nn\n\t​","}, Lehmer code is a sequence of numbers {L\n1\n\t​",", L\n2\n\t​",", ⋯, L\nn\n\t​","} such that L\ni\n\t​"," is the total number of items from A\ni\n\t​"," to A\nn\n\t​"," which are less than A\ni\n\t​",". For example, given { 24, 35, 12, 1, 56, 23 }, the second Lehmer code L\n2\n\t​"," is 3 since from 35 to 23 there are three items, { 12, 1, 23 }, less than the second item, 35."],"id":"1010","input":"Each input file contains one test case. For each case, the first line gives a positive integer N (≤10\n5\n). Then N distinct numbers are given in the next line.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805152735674368","output":"For each test case, output in a line the corresponding Lehmer code. The numbers must be separated by exactly one space, and there must be no extra space at the beginning or the end of the line.","samples":[{"input":"6\n24 35 12 1 56 23","output":"3 3 1 0 1 0","explanation":"","label":""}],"score":35,"title":"Lehmer Code","category":"离散化与树状数组","idea":["Lehmer code 的第 i 项是 a[i] 右侧严格小于它的元素个数。","先对所有不同数排序离散化，把任意数值映射为 1..N 的秩。","从右向左扫描，树状数组查询当前秩之前的数量，再加入当前元素。"],"keyPoints":["输入数值不保证是 1..N，必须先离散化。","题目保证数字互异，因此查询严格小于可直接使用 rank-1。","输出项之间一个空格，行首行尾不能有多余空格。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nstruct Fenwick {\n  vector\u003cint> tree;\n  explicit Fenwick(int n) : tree(n + 1) {}\n  void add(int x) { for (; x \u003c (int)tree.size(); x += x & -x) ++tree[x]; }\n  int sum(int x) const { int r = 0; for (; x; x -= x & -x) r += tree[x]; return r; }\n};\n\nint main() {\n  ios::sync_with_stdio(false);\n  cin.tie(nullptr);\n\n  int n; cin >> n;\n  vector\u003clong long> a(n), sorted;\n  for (auto &x : a) cin >> x;\n  sorted = a;\n  sort(sorted.begin(), sorted.end());\n  vector\u003cint> code(n);\n  Fenwick bit(n);\n  for (int i = n - 1; i >= 0; --i) {\n    int rank = int(lower_bound(sorted.begin(), sorted.end(), a[i]) - sorted.begin()) + 1;\n    code[i] = bit.sum(rank - 1);\n    bit.add(rank);\n  }\n  for (int i = 0; i \u003c n; ++i) cout \u003c\u003c (i ? \" \" : \"\") \u003c\u003c code[i];\n  cout \u003c\u003c '\\n';\n  return 0;\n}\n","sampleInput":"6\n24 35 12 1 56 23","sampleOutput":"3 3 1 0 1 0"},{"description":["When a rectangle is cut by a straight line, we can easily obtain two polygons as the result. But the reversed problem is harder: given two polygons, your task is to check whether or not they could be obtained by cutting a rectangle.","To give you more trouble, the input polygons are possibly moved, rotated (90 degrees, 180 degrees, or 270 degrees counter-clockwise), or even flipped (mirrored).","It is assumed that the original rectangle's edges are parallel to the axis."],"id":"1011","input":"Each input file contains one test case. For each case, the first line gives a positive integer N (≤20), and then N pairs of polygons are given. Each polygon is described in the format:\n\nk x\n1\n\t​\n\n y\n1\n\t​\n\n ⋯ x\nk\n\t​\n\n y\nk\n\t​\n\nwhere k (2\u003ck≤10) is the number of vertices on the polygon, and (x\ni\n\t​\n\n, y\ni\n\t​\n\n) (0≤x\ni\n\t​\n\n,y\ni\n\t​\n\n≤10\n8\n) are the coordinates of the vertices, given in either clockwise or counter-clockwise order.\n\nNote: there is no redundant vertex. That is, it is guaranteed that all the vertices are distinct for each polygon, and that no three consecutive vertices are on the same line.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805152379158528","output":"For each pair of polygons, print in a line either YES or NO as the answer.","samples":[{"input":"8\n3 0 0 1 0 1 1\n3 0 0 1 1 0 1\n3 0 0 1 0 1 1\n3 0 0 1 1 0 2\n4 0 4 1 4 1 0 0 0\n4 4 0 4 1 0 1 0 0\n3 0 0 1 1 0 1\n4 2 3 1 4 1 7 2 7\n5 10 10 10 12 12 12 14 11 14 10\n3 28 35 29 35 29 37\n3 7 9 8 11 8 9\n5 87 26 92 26 92 23 90 22 87 22\n5 0 0 2 0 1 1 1 2 0 2\n4 0 0 1 1 2 1 2 0\n4 0 0 0 1 1 1 2 0\n4 0 0 0 1 1 1 2 0","output":"YES\nNO\nYES\nYES\nYES\nYES\nNO\nYES","explanation":"","label":""}],"score":35,"title":"Cut Rectangles","category":"计算几何","idea":["第一块多边形保持不动，对第二块枚举 4 次旋转与镜像，共 8 种刚性变换。","再枚举两块多边形的顶点对齐平移；候选拼合体的包围盒就是原矩形。","检查总面积等于矩形面积、两块内部不重叠且全部顶点位于矩形中。"],"keyPoints":["只允许 90 度整数旋转、翻转和平移，坐标可始终保持整数。","面积使用二倍有向面积与 long long，避免浮点误差。","两块可以共享切割边，但不能有正面积交叠。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nstruct Point { long long x, y; };\nlong long cross(Point a, Point b, Point c) {\n  return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);\n}\nlong long area2(const vector\u003cPoint> &p) {\n  long long s = 0;\n  for (int i = 0; i \u003c (int)p.size(); ++i) {\n    Point a = p[i], b = p[(i + 1) % p.size()];\n    s += a.x * b.y - a.y * b.x;\n  }\n  return llabs(s);\n}\nint sign(long long x) { return (x > 0) - (x \u003c 0); }\nbool properIntersect(Point a, Point b, Point c, Point d) {\n  return sign(cross(a, b, c)) * sign(cross(a, b, d)) \u003c 0 &&\n         sign(cross(c, d, a)) * sign(cross(c, d, b)) \u003c 0;\n}\nbool insideStrict(const vector\u003cPoint> &p, Point q) {\n  int orientation = 0;\n  for (int i = 0; i \u003c (int)p.size(); ++i) {\n    long long value = cross(p[i], p[(i + 1) % p.size()], q);\n    if (!value) return false;\n    int current = sign(value);\n    if (!orientation) orientation = current;\n    else if (orientation != current) return false;\n  }\n  return true;\n}\nbool isConvex(const vector\u003cPoint> &p) {\n  int orientation = 0;\n  for (int i = 0; i \u003c (int)p.size(); ++i) {\n    int current = sign(cross(p[i], p[(i + 1) % p.size()], p[(i + 2) % p.size()]));\n    if (!current) continue;\n    if (!orientation) orientation = current;\n    else if (orientation != current) return false;\n  }\n  return true;\n}\nPoint transform(Point p, int kind) {\n  if (kind >= 4) p.x = -p.x;\n  for (int turn = 0; turn \u003c kind % 4; ++turn) p = Point{-p.y, p.x};\n  return p;\n}\nbool overlapPositive(const vector\u003cPoint> &a, const vector\u003cPoint> &b) {\n  for (int i = 0; i \u003c (int)a.size(); ++i)\n    for (int j = 0; j \u003c (int)b.size(); ++j)\n      if (properIntersect(a[i], a[(i + 1) % a.size()], b[j], b[(j + 1) % b.size()])) return true;\n  return insideStrict(a, b[0]) || insideStrict(b, a[0]);\n}\n\nint main() {\n  ios::sync_with_stdio(false);\n  cin.tie(nullptr);\n  int cases; cin >> cases;\n  while (cases--) {\n    vector\u003cPoint> a, original;\n    int k; cin >> k; a.resize(k);\n    for (auto &p : a) cin >> p.x >> p.y;\n    cin >> k; original.resize(k);\n    for (auto &p : original) cin >> p.x >> p.y;\n    bool ok = false;\n    if (!isConvex(a) || !isConvex(original)) { cout \u003c\u003c \"NO\\n\"; continue; }\n    for (int kind = 0; kind \u003c 8 && !ok; ++kind) {\n      vector\u003cPoint> base = original;\n      for (auto &p : base) p = transform(p, kind);\n      for (Point pa : a) for (Point pb : base) {\n        vector\u003cPoint> b = base;\n        for (auto &p : b) { p.x += pa.x - pb.x; p.y += pa.y - pb.y; }\n        long long minX = a[0].x, maxX = a[0].x, minY = a[0].y, maxY = a[0].y;\n        for (Point p : a) { minX=min(minX,p.x); maxX=max(maxX,p.x); minY=min(minY,p.y); maxY=max(maxY,p.y); }\n        for (Point p : b) { minX=min(minX,p.x); maxX=max(maxX,p.x); minY=min(minY,p.y); maxY=max(maxY,p.y); }\n        if (area2(a) + area2(b) != 2 * (maxX - minX) * (maxY - minY)) continue;\n        bool inBox = true;\n        for (Point p : a) inBox &= minX \u003c= p.x && p.x \u003c= maxX && minY \u003c= p.y && p.y \u003c= maxY;\n        for (Point p : b) inBox &= minX \u003c= p.x && p.x \u003c= maxX && minY \u003c= p.y && p.y \u003c= maxY;\n        if (inBox && !overlapPositive(a, b)) { ok = true; break; }\n      }\n    }\n    cout \u003c\u003c (ok ? \"YES\" : \"NO\") \u003c\u003c '\\n';\n  }\n  return 0;\n}\n","sampleInput":"8\n3 0 0 1 0 1 1\n3 0 0 1 1 0 1\n3 0 0 1 0 1 1\n3 0 0 1 1 0 2\n4 0 4 1 4 1 0 0 0\n4 4 0 4 1 0 1 0 0\n3 0 0 1 1 0 1\n4 2 3 1 4 1 7 2 7\n5 10 10 10 12 12 12 14 11 14 10\n3 28 35 29 35 29 37\n3 7 9 8 11 8 9\n5 87 26 92 26 92 23 90 22 87 22\n5 0 0 2 0 1 1 1 2 0 2\n4 0 0 1 1 2 1 2 0\n4 0 0 0 1 1 1 2 0\n4 0 0 0 1 1 1 2 0","sampleOutput":"YES\nNO\nYES\nYES\nYES\nYES\nNO\nYES"},{"description":["Have you ever played the game \"Greedy Snake\"? In the game, we control the movements of the snake to eat the fruits scattered in the game field, while the snake's body gets longer whenever it eats a fruit. The goal of the game is to make the snake eat as many fruits as possible, before its head has no where to go. It would be a real challenge to let you program this game, right now.","But hey! Relax! This time you are only asked to program a simplified version of the game. In this simple version, the fruits are all over the place except at some extra obstacle cells. The snake's body will extend all the way along the path while it eats the fruits. You may take any fruit cell as the starting position of the snake. Then you have four directions to choose from: UP, DOWN, LEFT or RIGHT. Once you pick up a direction for the snake, it must keep going until it hits an obstacle or its own body. This procedure repeats until the head of the snake has no where to go -- that is, every adjacent cell of its head is either an obstacle or its own body. Your task is to minimize the number of fruits left.","For example, let's define the game field to be a 6 by 6 maze, surrounded by obstacle cells #, with one extra obstacle @. S is the starting position of the snake. All the fruits are represented by dots.","######\n#..S@#\n#....#\n#....#\n#....#\n######","Then if you decide to move DOWN, RIGHT, and UP, the results are shown below.","######\n#..*@#\n#..*.#\n#..*.#\n#..S.#\n######","######\n#..*@#\n#..*.#\n#..*.#\n#..*S#\n######","######\n#..*@#\n#..*S#\n#..**#\n#..**#\n######","Now the snake is stucked, the game is over, and there are 8 fruits left. However, by carefully changing your moves or choosing another starting position, you can actually control the snake to eat up all the fruits. Try it out!","Task 1: minimize the number of fruits left, and count the number of starting positions that can lead to the optimal solution.","Task 2: To make things more interesting, you may replace one fruit cell by an obstacle, to obtain a better result, and count the number of ways to add an obstacle that leads to the better result. In case there is no way to improve the result by adding one obstacle, you should point out this situation."],"id":"1012","input":"Each input file contains one test case. For each case, the first line contains two integers N (4≤N≤15), the size of the game field, and K (0≤K≤2), the number of extra obstacles. Then K lines follow, each gives the coordinates of an obstacle in the format \"x\ni\n\t​\n\n y\ni\n\t​\n\n\" where 2≤x\ni\n\t​\n\n,y\ni\n\t​\n\n≤N−1.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805152010059776","output":"For each case, print the results in two lines. In the first line print the minimal number of fruits left, and the number of different optimal starting positions. Then in the second line, either print −1 if there is no way to improve the result, or two integers: the better result and the number of optimal ways to add an obstacle.","samples":[{"input":"6 1\n2 5","output":"0 4\n-1","explanation":"","label":""},{"input":"6 2\n2 2\n3 3","output":"2 1\n0 2","explanation":"","label":""}],"score":35,"title":"Greedy Snake","category":"状态搜索","idea":["把边界、额外障碍和蛇身统一看成不可进入格；一次选择方向后持续移动到下一格被挡。","对每个起点 DFS 四个方向，用蛇身位图与蛇头位置记忆化，求该起点最多能吃掉的水果数。","先统计原棋盘最优值；再枚举增加一个障碍的空格，重新计算并汇总真正改善结果的方案。"],"keyPoints":["一种起点只计一次，即使它有多条走法达到最优。","方向选择后不能中途转弯，必须一直滑到被阻挡的位置。","新增障碍会减少水果总数，比较的是最终剩余水果数。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nint n;\nvector\u003cchar> blocked;\nunordered_map\u003cstring, int> memo;\nconst int dx[4] = {-1, 1, 0, 0};\nconst int dy[4] = {0, 0, -1, 1};\n\nstring keyOf(const vector\u003cuint64_t> &body, int head) {\n  string key(reinterpret_cast\u003cconst char*>(body.data()), body.size() * sizeof(uint64_t));\n  key.append(reinterpret_cast\u003cconst char*>(&head), sizeof(head));\n  return key;\n}\nbool occupied(const vector\u003cuint64_t> &body, int cell) {\n  return (body[cell / 64] >> (cell % 64)) & 1ULL;\n}\nvoid occupy(vector\u003cuint64_t> &body, int cell) { body[cell / 64] |= 1ULL \u003c\u003c (cell % 64); }\n\nint searchSnake(vector\u003cuint64_t> body, int head) {\n  string key = keyOf(body, head);\n  auto found = memo.find(key);\n  if (found != memo.end()) return found->second;\n  int best = 0, x = head / n, y = head % n;\n  for (int direction = 0; direction \u003c 4; ++direction) {\n    int nx = x, ny = y, moved = 0, nextHead = head;\n    vector\u003cuint64_t> nextBody = body;\n    while (true) {\n      int tx = nx + dx[direction], ty = ny + dy[direction];\n      if (tx \u003c 0 || tx >= n || ty \u003c 0 || ty >= n) break;\n      int cell = tx * n + ty;\n      if (blocked[cell] || occupied(nextBody, cell)) break;\n      nx = tx; ny = ty; nextHead = cell;\n      occupy(nextBody, cell); ++moved;\n    }\n    if (moved) best = max(best, moved + searchSnake(move(nextBody), nextHead));\n  }\n  return memo.emplace(move(key), best).first->second;\n}\n\npair\u003cint,int> evaluate() {\n  int fruits = 0, bestEaten = -1, starts = 0;\n  memo.clear();\n  for (int cell = 0; cell \u003c n * n; ++cell) if (!blocked[cell]) ++fruits;\n  for (int start = 0; start \u003c n * n; ++start) {\n    if (blocked[start]) continue;\n    vector\u003cuint64_t> body((n * n + 63) / 64);\n    occupy(body, start);\n    int eaten = 1 + searchSnake(body, start);\n    if (eaten > bestEaten) { bestEaten = eaten; starts = 1; }\n    else if (eaten == bestEaten) ++starts;\n  }\n  return {fruits - bestEaten, starts};\n}\n\nint main() {\n  ios::sync_with_stdio(false);\n  cin.tie(nullptr);\n  int k; cin >> n >> k;\n  blocked.assign(n * n, 0);\n  for (int x = 0; x \u003c n; ++x) blocked[x*n] = blocked[x*n+n-1] = 1;\n  for (int y = 0; y \u003c n; ++y) blocked[y] = blocked[(n-1)*n+y] = 1;\n  while (k--) { int x, y; cin >> x >> y; blocked[(x-1)*n + y-1] = 1; }\n  auto original = evaluate();\n  cout \u003c\u003c original.first \u003c\u003c ' ' \u003c\u003c original.second \u003c\u003c '\\n';\n  int better = original.first, ways = 0;\n  vector\u003cchar> base = blocked;\n  for (int cell = 0; cell \u003c n*n; ++cell) {\n    if (base[cell]) continue;\n    blocked = base; blocked[cell] = 1;\n    int left = evaluate().first;\n    if (left \u003c better) { better = left; ways = 1; }\n    else if (left == better && left \u003c original.first) ++ways;\n  }\n  if (better \u003c original.first) cout \u003c\u003c better \u003c\u003c ' ' \u003c\u003c ways \u003c\u003c '\\n';\n  else cout \u003c\u003c -1 \u003c\u003c '\\n';\n  return 0;\n}\n","sampleInput":"6 1\n2 5","sampleOutput":"0 4\n-1"},{"description":["Image segmentation is usually formulated as a graph partition problem, where each segment corresponds to a connected component. Moreover, each pixel is the vertex of the graph. Each edge has a weight, which is a non-negative dissimilarity between neighboring pixels. So, the goal of image segmentation is to decompose the image graph into several disconnected components, where the elements in a component are similar and the elements in the different components are dissimilar.","The components are defined as follows:","A component is made of a set of connected vertices;\nAny two components have no shared vertices;\nThe dissimilarity D(C1,C2) of any two components C1 and C2 is larger than the confidence H of any of C1 and C2.\nThe dissimilarity D(C1,C2) is defined to be the minimum edge weight of all the edges connecting C1 and C2, or infinity if no such edge exists;\nThe confidence of a component C, H(C), is defined to be the maximum edge weight of the minimum spanning tree of C, plus a function f(C)=c/∣C∣ where c is a positive constant and ∣C∣ is the size of the component C;\nA set of vertices must not be treated as a component if they can be partitioned into two or more components.","Your job is to write a program to list all the components."],"id":"1013","input":"Each input file contains one test case.  For each case, the first line contains three integers: N\nv\n\t​\n\n (0\u003cN\nv\n\t​\n\n≤1000), the total number of vertices (and hence the vertices are numbered from 0 to N\nv\n\t​\n\n−1); N\ne\n\t​\n\n, the total number of edges; and c, the constant in the function f(C).  Then N\ne\n\t​\n\n lines follow, each gives an adge in the format:\n\nV1 V2 Weight\n\nNote: it is guaranteed that each pixel has no more than 8 neighboring pixels.  The constant and all the weights are positive and are no more than 1000.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805151670321152","output":"For each case, list each component in a line.  The vertices in a component must be printed in increasing order, separated by one space with no extra space at the beginning or the end of the line.  The components must be listed in increasing order of their first vertex.","samples":[{"input":"10 21 100\n0 1 10\n0 3 60\n0 4 90\n1 2 90\n1 3 50\n1 4 200\n1 5 86\n2 4 95\n2 5 5\n3 4 95\n3 6 15\n3 7 101\n4 5 500\n4 6 100\n4 7 101\n4 8 101\n5 7 300\n5 8 50\n6 7 90\n7 8 84\n7 9 34","output":"0 1 3 6\n2 5 8\n4\n7 9","explanation":"","label":""},{"input":"7 7 100\n0 1 10\n1 2 61\n2 3 50\n3 4 200\n4 5 82\n5 0 200\n3 6 90","output":"0 1\n2 3 6\n4 5","explanation":"","label":""}],"score":35,"title":"Image Segmentation","category":"并查集","idea":["按边权从小到大处理，维护每个分量的大小与其最小生成树中的最大边权。","边权不超过两个分量置信度的较小值时合并。","处理完后按根收集顶点，分量内及分量间都按编号升序输出。"],"keyPoints":["H(C)=Int(C)+c/|C|，其中 Int(C) 是当前分量 MST 的最大边权。","判断阈值要使用浮点除法，不能先做整数除法。","边排序后合并，新分量的 Int 就是当前边权。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nstruct DSU {\n  vector\u003cint> p, size, internal;\n  explicit DSU(int n) : p(n), size(n,1), internal(n,0) { iota(p.begin(),p.end(),0); }\n  int find(int x) { return p[x]==x ? x : p[x]=find(p[x]); }\n  void merge(int a,int b,int w) {\n    a=find(a); b=find(b); if(a==b) return;\n    if(size[a]\u003csize[b]) swap(a,b);\n    p[b]=a; size[a]+=size[b]; internal[a]=w;\n  }\n};\nstruct Edge { int u,v,w; };\n\nint main(){\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  int nv,ne,c; cin>>nv>>ne>>c;\n  vector\u003cEdge> edges(ne);\n  for(auto &e:edges) cin>>e.u>>e.v>>e.w;\n  sort(edges.begin(),edges.end(),[](const Edge&a,const Edge&b){return a.w\u003cb.w;});\n  DSU dsu(nv);\n  for(const auto&e:edges){\n    int a=dsu.find(e.u), b=dsu.find(e.v);\n    if(a==b) continue;\n    double threshold=min(dsu.internal[a]+double(c)/dsu.size[a],\n                         dsu.internal[b]+double(c)/dsu.size[b]);\n    if(e.w\u003c=threshold) dsu.merge(a,b,e.w);\n  }\n  map\u003cint,vector\u003cint>> groups;\n  for(int i=0;i\u003cnv;++i) groups[dsu.find(i)].push_back(i);\n  vector\u003cvector\u003cint>> answer;\n  for(auto &entry:groups) answer.push_back(move(entry.second));\n  sort(answer.begin(),answer.end(),[](const auto&a,const auto&b){return a[0]\u003cb[0];});\n  for(const auto&group:answer){\n    for(int i=0;i\u003c(int)group.size();++i) cout\u003c\u003c(i?\" \":\"\")\u003c\u003cgroup[i];\n    cout\u003c\u003c'\\n';\n  }\n  return 0;\n}\n","sampleInput":"10 21 100\n0 1 10\n0 3 60\n0 4 90\n1 2 90\n1 3 50\n1 4 200\n1 5 86\n2 4 95\n2 5 5\n3 4 95\n3 6 15\n3 7 101\n4 5 500\n4 6 100\n4 7 101\n4 8 101\n5 7 300\n5 8 50\n6 7 90\n7 8 84\n7 9 34","sampleOutput":"0 1 3 6\n2 5 8\n4\n7 9"},{"description":["A circle of friends is a network of friend relationships. If A is a friend of B, then B is considered a friend of A no matter B admits or not, and they are said to belong to the same circle. Here we assume that friendship is transitive, that is, if A is a friend of B, and B is a friend of C, then A is a friend of C and the three of them all belong to the same circle.","On the other hand, A is not so close to C as B is. We define the distance D(X, Y) between two friends X and Y as the minimum number of friends between them. For example, D(A, B) = 0, and D(C, A) = 1. The diameter of a friends circle is the maximum distance between any pair of friends in the circle.","Now given some people's relationships, you are supposed to find the number of friends circles and the circle with the largest diameter."],"id":"1014","input":"Each input file contains one test case. For each case, the first line gives an integer N (2≤N≤1000), which is the total number of people involved, and hence they are numbered from 1 to N. Then N lines follow, each in the format:\n\nk p\n1\n\t​\n\n ... p\nk\n\t​\n\nwhere k (0≤k\u003cmin(10,N)) is the number of friends and p\n1\n\t​\n\n to p\nk\n\t​\n\n (if k>0) are the friends' indices. The i-th line corresponds to the i-th person. All the numbers in a line are separated by spaces. It is guaranteed that no one is given as a friend of oneself.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805151343165440","output":"For each case, print in a line the number of friends circles, and the largest diameter, separated by exactly one space.","samples":[{"input":"17\n2 15 12\n1 17\n2 16 9\n1 8\n4 10 13 15 14\n0\n2 11 14\n1 4\n2 2 3\n2 13 11\n2 15 7\n2 1 14\n2 5 15\n0\n0\n1 3\n1 2","output":"4 3","explanation":"","label":""}],"score":35,"title":"Circles of Friends","category":"图的连通性","idea":["把单向填写的好友关系按无向边加入邻接表，先找出所有连通分量。","对每个分量中的每个顶点做 BFS，得到该分量任意两点的最短边数最大值。","题目距离是“中间有几位朋友”，因此边数距离要减 1。"],"keyPoints":["A 写了 B 即视为双方好友，必须建无向边。","相邻好友的题目距离为 0，不是 1。","N≤1000 且每人给出的好友少于 10，全源 BFS 可以通过。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nint main(){\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  int n; cin>>n;\n  vector\u003cvector\u003cint>> g(n);\n  for(int i=0;i\u003cn;++i){\n    int k; cin>>k;\n    while(k--){int v;cin>>v;--v;g[i].push_back(v);g[v].push_back(i);}\n  }\n  vector\u003cchar> seen(n); int circles=0, largest=0;\n  for(int start=0;start\u003cn;++start){\n    if(seen[start]) continue;\n    ++circles; vector\u003cint> component; queue\u003cint> q; q.push(start); seen[start]=1;\n    while(!q.empty()){\n      int u=q.front();q.pop();component.push_back(u);\n      for(int v:g[u]) if(!seen[v]){seen[v]=1;q.push(v);}\n    }\n    for(int source:component){\n      vector\u003cint> dist(n,-1); dist[source]=0; q.push(source);\n      while(!q.empty()){\n        int u=q.front();q.pop();\n        largest=max(largest,max(0,dist[u]-1));\n        for(int v:g[u]) if(dist[v]\u003c0){dist[v]=dist[u]+1;q.push(v);}\n      }\n    }\n  }\n  cout\u003c\u003ccircles\u003c\u003c' '\u003c\u003clargest\u003c\u003c'\\n';\n  return 0;\n}\n","sampleInput":"17\n2 15 12\n1 17\n2 16 9\n1 8\n4 10 13 15 14\n0\n2 11 14\n1 4\n2 2 3\n2 13 11\n2 15 7\n2 1 14\n2 5 15\n0\n0\n1 3\n1 2","sampleOutput":"4 3"},{"description":["Here is a simple intersting letter-moving game. The game starts with 2 strings S and T consist of lower case English letters. S and T contain the same letters but the orders might be different. In other words S can be obtained by shuffling letters in String T. At each step, you can move one arbitrary letter in S either to the beginning or to the end of it. How many steps at least to change S into T?"],"id":"1015","input":"Each input file contains one test case. For each case, the first line contains the string S, and the second line contains the string T. They consist of only the lower case English letters and S can be obtained by shuffling T's letters. The length of S is no larger than 1000.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805151045369856","output":"For each case, print in a line the least number of steps to change S into T in the game.","samples":[{"input":"iononmrogdg\ngoodmorning","output":"8","explanation":"","label":""}],"score":35,"title":"Letter-moving Game","category":"子序列","idea":["未被移动的字母在 S 中保持相对顺序，在最终 T 中必须是一段连续区间。","枚举 T 的区间起点，用双指针寻找从该起点开始、能够作为 S 子序列的最长连续段。","最大保留长度为 keep，其他 n-keep 个字母分别移到首部或尾部即可。"],"keyPoints":["寻找的是 T 的连续子串，同时它是 S 的子序列，不是普通最长公共子序列。","字符串长度只有 1000，O(n²) 双指针足够。","S 与 T 字符多重集合相同，答案一定可构造。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nint main(){\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  string s,t; cin>>s>>t;\n  int best=0,n=(int)s.size();\n  for(int begin=0;begin\u003cn;++begin){\n    int next=begin;\n    for(char c:s) if(next\u003cn && c==t[next]) ++next;\n    best=max(best,next-begin);\n  }\n  cout\u003c\u003cn-best\u003c\u003c'\\n';\n  return 0;\n}\n","sampleInput":"iononmrogdg\ngoodmorning","sampleOutput":"8"},{"description":["Given any weighted undirected graph, there exists at least one minimum spanning tree (MST) if the graph is connected. Sometimes the MST may not be unique though. Here you are supposed to calculate the minimum total weight of the MST, and also tell if it is unique or not."],"id":"1016","input":"Each input file contains one test case. Each case starts with a line containing 2 numbers N (≤ 500), and M, which are the total number of vertices, and the number of edges, respectively. Then M lines follow, each describes an edge by 3 integers:\n\nV1 V2 Weight\n\nwhere V1 and V2 are the two ends of the edge (the vertices are numbered from 1 to N), and Weight is the positive weight on that edge. It is guaranteed that the total weight of the graph will not exceed 2\n30\n.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805150751768576","output":"For each test case, first print in a line the total weight of the minimum spanning tree if there exists one, or else print No MST instead. Then if the MST exists, print in the next line Yes if the tree is unique, or No otherwise. There there is no MST, print the number of connected components instead.","samples":[{"input":"5 7\n1 2 6\n5 1 1\n2 3 4\n3 4 3\n4 1 7\n2 4 2\n4 5 5","output":"11\nYes","explanation":"","label":""},{"input":"4 5\n1 2 1\n2 3 1\n3 4 2\n4 1 2\n3 1 3","output":"4\nNo","explanation":"","label":""},{"input":"5 5\n1 2 1\n2 3 1\n3 4 2\n4 1 2\n3 1 3","output":"No MST\n2","explanation":"","label":""}],"score":35,"title":"Uniqueness of MST","category":"最小生成树","idea":["按边权分组执行 Kruskal，主并查集表示更小权边已经连通的收缩点。","在真正合并某个同权组之前，用临时并查集检查该组候选边是否在收缩图中形成环。","形成环说明存在同权替换，MST 不唯一；之后仍正常合并并累计权值。"],"keyPoints":["唯一性必须在同权边整体合并之前判断，否则顺序会掩盖替换关系。","若最终边数不足 N-1，输出 No MST 和连通分量数。","总权值使用 long long。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nstruct DSU{\n  vector\u003cint> p,sz; explicit DSU(int n):p(n+1),sz(n+1,1){iota(p.begin(),p.end(),0);}\n  int find(int x){return p[x]==x?x:p[x]=find(p[x]);}\n  bool unite(int a,int b){a=find(a);b=find(b);if(a==b)return false;if(sz[a]\u003csz[b])swap(a,b);p[b]=a;sz[a]+=sz[b];return true;}\n};\nstruct Edge{int u,v,w;};\n\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);\n  int n,m;cin>>n>>m;vector\u003cEdge> e(m);for(auto&x:e)cin>>x.u>>x.v>>x.w;\n  sort(e.begin(),e.end(),[](const Edge&a,const Edge&b){return a.w\u003cb.w;});\n  DSU mainDsu(n);long long total=0;int used=0;bool unique=true;\n  for(int left=0;left\u003cm;){\n    int right=left;while(right\u003cm&&e[right].w==e[left].w)++right;\n    unordered_map\u003cint,int> localId;vector\u003cpair\u003cint,int>> candidate;\n    for(int i=left;i\u003cright;++i){\n      int a=mainDsu.find(e[i].u),b=mainDsu.find(e[i].v);if(a==b)continue;\n      if(!localId.count(a))localId[a]=localId.size()+1;\n      if(!localId.count(b))localId[b]=localId.size()+1;\n      candidate.push_back({localId[a],localId[b]});\n    }\n    DSU local((int)localId.size());\n    for(auto [a,b]:candidate) if(!local.unite(a,b)) unique=false;\n    for(int i=left;i\u003cright;++i) if(mainDsu.unite(e[i].u,e[i].v)){total+=e[i].w;++used;}\n    left=right;\n  }\n  if(used!=n-1){\n    set\u003cint> roots;for(int i=1;i\u003c=n;++i)roots.insert(mainDsu.find(i));\n    cout\u003c\u003c\"No MST\\n\"\u003c\u003croots.size()\u003c\u003c'\\n';\n  }else cout\u003c\u003ctotal\u003c\u003c'\\n'\u003c\u003c(unique?\"Yes\":\"No\")\u003c\u003c'\\n';\n  return 0;\n}\n","sampleInput":"5 7\n1 2 6\n5 1 1\n2 3 4\n3 4 3\n4 1 7\n2 4 2\n4 5 5","sampleOutput":"11\nYes"},{"description":["In many research areas, one important target of analyzing data is to find the best \"peak shape\" out of a huge amount of raw data full of noises. A \"peak shape\" of length L is an ordered sequence of L numbers { D\n1\n\t​",", ⋯, D\nL\n\t​"," } satisfying that there exists an index i (1\u003ci\u003cL) such that D\n1\n\t​","\u003c⋯\u003cD\ni−1\n\t​","\u003cD\ni\n\t​",">D\ni+1\n\t​",">⋯>D\nL\n\t​",".","Now given N input numbers ordered by their indices, you may remove some of them to keep the rest of the numbers in a peak shape. The best peak shape is the longest sub-sequence that forms a peak shape. If there is a tie, then the most symmetric (meaning that the difference of the lengths of the increasing and the decreasing sub-sequences is minimized) one will be chosen."],"id":"1017","input":"Each input file contains one test case. For each case, the first line gives an integer N (3≤N≤10\n4\n). Then N integers are given in the next line, separated by spaces. All the integers are in [−10000,10000].","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805150479138816","output":"For each case, print in a line the length of the best peak shape, the index (starts from 1) and the value of the peak number. If the solution does not exist, simply print \"No peak shape\" in a line. The judge's input guarantees the uniqueness of the output.","samples":[{"input":"20\n1 3 0 8 5 -2 29 20 20 4 10 4 7 25 18 6 17 16 2 -1","output":"10 14 25","explanation":"","label":""},{"input":"5\n-1 3 8 10 20","output":"No peak shape","explanation":"","label":""}],"score":35,"title":"The Best Peak Shape","category":"最长上升子序列","idea":["离散化数值，用树状数组维护区间最大值，求每个位置结尾的严格上升长度。","从右向左以相同方式求从每个位置开始的严格下降长度。","枚举峰顶，先最大化两臂总长度，再最小化两臂长度差。"],"keyPoints":["严格递增/递减只能查询当前值排名之前的区间。","峰顶两侧都必须至少有一个元素，即两个长度都要大于 1。","总长度是 inc+dec-1，因为峰顶被计算了两次。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nstruct FenwickMax{\n  vector\u003cint> t;explicit FenwickMax(int n):t(n+1){}\n  void update(int x,int v){for(;x\u003c(int)t.size();x+=x&-x)t[x]=max(t[x],v);}\n  int query(int x){int r=0;for(;x;x-=x&-x)r=max(r,t[x]);return r;}\n};\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);\n  int n;cin>>n;vector\u003cint>a(n),values;for(int&x:a)cin>>x;values=a;\n  sort(values.begin(),values.end());values.erase(unique(values.begin(),values.end()),values.end());\n  vector\u003cint>inc(n),dec(n);FenwickMax left(values.size()),right(values.size());\n  for(int i=0;i\u003cn;++i){int r=lower_bound(values.begin(),values.end(),a[i])-values.begin()+1;inc[i]=left.query(r-1)+1;left.update(r,inc[i]);}\n  for(int i=n-1;i>=0;--i){int r=lower_bound(values.begin(),values.end(),a[i])-values.begin()+1;dec[i]=right.query(r-1)+1;right.update(r,dec[i]);}\n  int best=0,balance=n,peak=-1;\n  for(int i=0;i\u003cn;++i)if(inc[i]>1&&dec[i]>1){\n    int length=inc[i]+dec[i]-1,diff=abs(inc[i]-dec[i]);\n    if(length>best||(length==best&&diff\u003cbalance)){best=length;balance=diff;peak=i;}\n  }\n  if(peak\u003c0)cout\u003c\u003c\"No peak shape\\n\";\n  else cout\u003c\u003cbest\u003c\u003c' '\u003c\u003cpeak+1\u003c\u003c' '\u003c\u003ca[peak]\u003c\u003c'\\n';\n  return 0;\n}\n","sampleInput":"20\n1 3 0 8 5 -2 29 20 20 4 10 4 7 25 18 6 17 16 2 -1","sampleOutput":"10 14 25"},{"description":["Given a positive integer N, let us define a subnumber of N as a consecutive number of digits NOT starting with 0. For example if N=1021, it has 7 subnumbers, namely, 1, 10, 102, 1021, 2, 21 and 1 (again). Here is your task: please calculate the sum of all the subnumbers of N. For 1021, the sum is 1+10+102+1021+2+21+1 = 1158. Since the result may be very large, output the answer modulo 1000000007 (10\n9\n+7) please."],"id":"1018","input":"Each input file contains one test case, which gives the integer N (0\u003cN\u003c10\n100000\n) in a line.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805150219091968","output":"Print in a line the sum of all N's subnumbers (modulo 1000000007).","samples":[{"input":"1234567890123456789","output":"332876913","explanation":"","label":""}],"score":35,"title":"Subnumbers","category":"动态递推","idea":["扫描到当前数字时，所有此前合法子数都可在末尾追加当前数字。","若当前位非 0，它还可以作为一个新的起点；维护合法起点数量 starts。","ending 表示所有以当前位置结尾的子数之和，将它逐位累加到总答案。"],"keyPoints":["以 0 开头的子串不合法，但已有合法子串后面可以追加 0。","递推式为 ending=ending*10+digit*starts。","字符串可长达 100000，所有运算都要在线取模。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);\n  const long long MOD=1000000007LL;string s;cin>>s;\n  long long starts=0,ending=0,answer=0;\n  for(char ch:s){\n    int digit=ch-'0';if(digit)++starts;\n    ending=(ending*10+digit*starts)%MOD;\n    answer=(answer+ending)%MOD;\n  }\n  cout\u003c\u003canswer\u003c\u003c'\\n';return 0;\n}\n","sampleInput":"1234567890123456789","sampleOutput":"332876913"},{"description":["There are some animals in a zoo which can be described as a grid with N rows and M columns. Your task is to place some obstacles so that no pairs of animals can reach each other.","Two animals can reach each other if and only if their cells are 4-connected. For example, in Figure 1, the central blue cell can be reached by the four red cells, and cannot be reached by the other four white cells.","Figure 1","What is more, you must put obstacles in exactly K cells, which are 4-connected and form exactly H holes. Here a hole is defined as a 4-connected part with finitely many open cells while the zoo is placed in an infinite open grid. For example, there are 2 holes (the green and the yellow areas) in Figure 2.","Figure 2","For the following grid with two animals:","Figure 3","If K = 8 and H = 1, one way to separate them is the following:","Figure 4","Figure 5 is illegal because it contains no hole.","Figure 5","Figure 6 is also illegal because the obstacles are not 4-connected.","Figure 6","Given some animals, you are supposed to count the number of different solutions."],"id":"1019","input":"Each input file contains one test case. For each case, the first line gives four integers: N, M, K, H (2 ≤ N, M ≤ 6; 1 ≤ K ≤ 12; 0 ≤ H ≤ 2). All the numbers are separated by spaces.\n\nThen N lines follow, each contains M characters, which are either . or O, representing an open cell or an animal, respectively. There will be at least 2 animals.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805149963239424","output":"For each case, print a single line containing a single integer: the number of solutions.","samples":[{"input":"3 5 8 1\n...O.\n.O...\n.....","output":"8","explanation":"","label":""}],"score":35,"title":"Separate the Animals","category":"连通子集枚举","idea":["用 64 位掩码表示障碍集合，从所有单格集合开始，每轮只添加与集合四连通的格子。","使用哈希集合去重，扩展到恰好 K 格后逐个验证。","验证动物是否两两隔离；再在外扩一圈的网格上洪泛，统计未连通到外界的开放分量数。"],"keyPoints":["障碍只能放在原来的空格，且 K 个障碍必须整体四连通。","“洞”是不能连到无限外界的开放分量，外扩一圈可准确表达外界。","N×M≤36，一个 uint64_t 足以保存整个棋盘。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);\n  int n,m,k,wantedH;cin>>n>>m>>k>>wantedH;vector\u003cstring> grid(n);for(auto&s:grid)cin>>s;\n  int cells=n*m;vector\u003cuint64_t> neighbor(cells);uint64_t available=0;\n  const int dx[4]={-1,1,0,0},dy[4]={0,0,-1,1};\n  for(int x=0;x\u003cn;++x)for(int y=0;y\u003cm;++y){\n    int id=x*m+y;if(grid[x][y]=='.')available|=1ULL\u003c\u003cid;\n    for(int d=0;d\u003c4;++d){int nx=x+dx[d],ny=y+dy[d];if(nx>=0&&nx\u003cn&&ny>=0&&ny\u003cm)neighbor[id]|=1ULL\u003c\u003c(nx*m+ny);}\n  }\n  unordered_set\u003cuint64_t> current;\n  for(int i=0;i\u003ccells;++i)if((available>>i)&1ULL)current.insert(1ULL\u003c\u003ci);\n  for(int size=1;size\u003ck;++size){\n    unordered_set\u003cuint64_t> next;\n    for(uint64_t mask:current){\n      uint64_t border=0,temp=mask;\n      while(temp){int bit=__builtin_ctzll(temp);temp&=temp-1;border|=neighbor[bit];}\n      border&=available&~mask;\n      while(border){int bit=__builtin_ctzll(border);border&=border-1;next.insert(mask|(1ULL\u003c\u003cbit));}\n    }\n    current.swap(next);\n  }\n  long long answer=0;\n  for(uint64_t obstacles:current){\n    vector\u003cchar> seen(cells);bool separated=true;\n    for(int start=0;start\u003ccells&&separated;++start){\n      if(seen[start]||((obstacles>>start)&1ULL))continue;\n      queue\u003cint>q;q.push(start);seen[start]=1;int animals=0;\n      while(!q.empty()){\n        int u=q.front();q.pop();int x=u/m,y=u%m;if(grid[x][y]=='O')++animals;\n        uint64_t go=neighbor[u]&~obstacles;\n        while(go){int v=__builtin_ctzll(go);go&=go-1;if(!seen[v]){seen[v]=1;q.push(v);}}\n      }\n      if(animals>1)separated=false;\n    }\n    if(!separated)continue;\n    int rows=n+2,cols=m+2;vector\u003cchar> openSeen(rows*cols);queue\u003cint>q;q.push(0);openSeen[0]=1;\n    auto isWall=[&](int x,int y){return x>0&&x\u003c=n&&y>0&&y\u003c=m&&((obstacles>>((x-1)*m+y-1))&1ULL);};\n    auto flood=[&](int start){queue\u003cint>fq;fq.push(start);openSeen[start]=1;while(!fq.empty()){int u=fq.front();fq.pop();int x=u/cols,y=u%cols;for(int d=0;d\u003c4;++d){int nx=x+dx[d],ny=y+dy[d];if(nx\u003c0||nx>=rows||ny\u003c0||ny>=cols)continue;int v=nx*cols+ny;if(!openSeen[v]&&!isWall(nx,ny)){openSeen[v]=1;fq.push(v);}}}};\n    flood(0);int holes=0;\n    for(int x=0;x\u003crows;++x)for(int y=0;y\u003ccols;++y){int id=x*cols+y;if(!openSeen[id]&&!isWall(x,y)){++holes;flood(id);}}\n    if(holes==wantedH)++answer;\n  }\n  cout\u003c\u003canswer\u003c\u003c'\\n';return 0;\n}\n","sampleInput":"3 5 8 1\n...O.\n.O...\n.....","sampleOutput":"8"},{"description":["Given a string which contains only lower case English letters, how many different strings you can get after deleting AT MOST TWO characters in it?"],"id":"1020","input":"Each input file contains one test case, which gives the string whose length is in [3,10\n6\n].","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805149732552704","output":"Print in a line the number of different strings you can get after deleting at most 2 characters.","samples":[{"input":"ababcc","output":"15","explanation":"","label":""}],"score":35,"title":"Delete At Most Two Characters","category":"近对角递推","idea":["结果长度只可能是 n、n-1、n-2，因此只维护删除 0、1、2 个字符的三条 DP 对角线。","删除一个字符所得不同串数就是字符段（run）的数量。","删除两个字符时，把“删当前字符”和“保留当前字符”的集合相加，再根据当前字符上次出现位置扣掉交集。"],"keyPoints":["字符串长达 10^6，不能建立普通的 O(n²) 子序列 DP。","上次相同字符若在 i-1，交集为前缀 i-2 删除一个字符的方案数；若在 i-2，交集为 1。","答案数量级为 O(n²)，unsigned long long 足够。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);\n  string s;cin>>s;int n=s.size();\n  vector\u003cunsigned long long> one(n+1),two(n+1);\n  array\u003cint,26> last;last.fill(-1000000000);\n  for(int i=1;i\u003c=n;++i){\n    int c=s[i-1]-'a';\n    one[i]=one[i-1]+1-(i>=2&&s[i-1]==s[i-2]);\n    unsigned long long overlap=0;\n    if(last[c]==i-1)overlap=one[i-2];\n    else if(last[c]==i-2)overlap=1;\n    two[i]=two[i-1]+one[i-1]-overlap;\n    last[c]=i;\n  }\n  cout\u003c\u003c1+one[n]+two[n]\u003c\u003c'\\n';return 0;\n}\n","sampleInput":"ababcc","sampleOutput":"15"},{"description":["There are a lot of tips telling us that some fruits must not be eaten with some other fruits, or we might get ourselves in serious trouble. For example, bananas can not be eaten with cantaloupe (哈密瓜), otherwise it will lead to kidney deficiency (肾虚).","Now you are given a long list of such tips, and a big basket of fruits. You are supposed to pick up those fruits so that it is safe to eat any of them."],"id":"1021","input":"Each input file contains one test case. For each case, the first line gives two positive integers: N, the number of tips, and M, the number of fruits in the basket. both numbers are no more than 100.\n\nThen two blocks follow. The first block contains N pairs of fruits which must not be eaten together, each pair occupies a line and there is no duplicated tips; and the second one contains M fruits together with their prices, again each pair in a line. To make it simple, each fruit is represented by a 3-digit ID number. A price is a positive integer which is no more than 1000. All the numbers in a line are separated by spaces.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805149506060288","output":"For each case, first print in a line the maximum number of safe fruits. Then in the next line list all the safe fruits, in increasing order of their ID's. The ID's must be separated by exactly one space, and there must be no extra space at the end of the line. Finally in the third line print the total price of the above fruits. Since there may be many different solutions, you are supposed to output the one with a maximum number of safe fruits. In case there is a tie, output the one with the lowest total price. It is guaranteed that such a solution is unique.","samples":[{"input":"16 20\n001 002\n003 004\n004 005\n005 006\n006 007\n007 008\n008 003\n009 010\n009 011\n009 012\n009 013\n010 014\n011 015\n012 016\n012 017\n013 018\n020 99\n019 99\n018 4\n017 2\n016 3\n015 6\n014 5\n013 1\n012 1\n011 1\n010 1\n009 10\n008 1\n007 2\n006 5\n005 3\n004 4\n003 6\n002 1","output":"12\n002 004 006 008 009 014 015 016 017 018 019 020\n239","explanation":"","label":""}],"score":35,"title":"Safe Fruit","category":"分支限界","idea":["把篮中水果作为顶点，不能同吃的提示作为冲突边；安全集合就是最大独立集。","等价地寻找最小顶点覆盖：每条冲突边至少删除一个端点。","选择一条尚未覆盖的边，分别删除它的两个端点；用贪心匹配给出仍需删除数量的下界。"],"keyPoints":["第一目标是保留数量最多；数量相同才选择保留总价最低。","在最小删除数量相同的情况下，最大化被删除水果总价等价于最小化保留总价。","提示中不在篮子的水果无需建点，对安全性没有影响。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nstruct Edge { int u, v; };\nvector\u003cEdge> edges;\nvector\u003cint> price;\nvector\u003cchar> removed, bestRemoved;\nint bestCount;\nlong long bestRemovedPrice;\n\nint matchingLowerBound() {\n  vector\u003cchar> used(removed.size());\n  int count = 0;\n  for (const auto &e : edges) {\n    if (removed[e.u] || removed[e.v] || used[e.u] || used[e.v]) continue;\n    used[e.u] = used[e.v] = 1;\n    ++count;\n  }\n  return count;\n}\n\nvoid dfs(int count, long long removedPrice) {\n  if (count > bestCount) return;\n  int uncovered = -1;\n  for (int i = 0; i \u003c (int)edges.size(); ++i) {\n    if (!removed[edges[i].u] && !removed[edges[i].v]) { uncovered = i; break; }\n  }\n  if (uncovered \u003c 0) {\n    if (count \u003c bestCount || (count == bestCount && removedPrice > bestRemovedPrice)) {\n      bestCount = count;\n      bestRemovedPrice = removedPrice;\n      bestRemoved = removed;\n    }\n    return;\n  }\n  if (count + matchingLowerBound() > bestCount) return;\n  int a = edges[uncovered].u, b = edges[uncovered].v;\n  if (price[a] \u003c price[b]) swap(a, b);  // 同样数量时先尝试删掉更贵的水果。\n  removed[a] = 1; dfs(count + 1, removedPrice + price[a]); removed[a] = 0;\n  removed[b] = 1; dfs(count + 1, removedPrice + price[b]); removed[b] = 0;\n}\n\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  int n, m; cin >> n >> m;\n  vector\u003cpair\u003cstring,string>> tips(n);\n  for (auto &tip : tips) cin >> tip.first >> tip.second;\n  vector\u003cstring> id(m); price.resize(m); unordered_map\u003cstring,int> index;\n  long long allPrice = 0;\n  for (int i = 0; i \u003c m; ++i) { cin >> id[i] >> price[i]; index[id[i]] = i; allPrice += price[i]; }\n  for (const auto &tip : tips) if (index.count(tip.first) && index.count(tip.second))\n    edges.push_back({index[tip.first], index[tip.second]});\n  removed.assign(m, 0); bestRemoved.assign(m, 0); bestCount = m + 1; bestRemovedPrice = -1;\n  dfs(0, 0);\n  vector\u003cpair\u003cstring,int>> kept;\n  long long keptPrice = allPrice;\n  for (int i = 0; i \u003c m; ++i) {\n    if (bestRemoved[i]) keptPrice -= price[i];\n    else kept.push_back({id[i], i});\n  }\n  sort(kept.begin(), kept.end());\n  cout \u003c\u003c kept.size() \u003c\u003c '\\n';\n  for (int i = 0; i \u003c (int)kept.size(); ++i) cout \u003c\u003c (i ? \" \" : \"\") \u003c\u003c kept[i].first;\n  cout \u003c\u003c '\\n' \u003c\u003c keptPrice \u003c\u003c '\\n';\n  return 0;\n}\n","sampleInput":"16 20\n001 002\n003 004\n004 005\n005 006\n006 007\n007 008\n008 003\n009 010\n009 011\n009 012\n009 013\n010 014\n011 015\n012 016\n012 017\n013 018\n020 99\n019 99\n018 4\n017 2\n016 3\n015 6\n014 5\n013 1\n012 1\n011 1\n010 1\n009 10\n008 1\n007 2\n006 5\n005 3\n004 4\n003 6\n002 1","sampleOutput":"12\n002 004 006 008 009 014 015 016 017 018 019 020\n239"},{"description":["Werewolf（狼人杀） is a game in which the players are partitioned into two parties: the werewolves and the human beings. Suppose that in a game,","player #1 said: \"Player #2 is a werewolf.\";\nplayer #2 said: \"Player #3 is a human.\";\nplayer #3 said: \"Player #4 is a werewolf.\";\nplayer #4 said: \"Player #5 is a human.\"; and\nplayer #5 said: \"Player #4 is a human.\".","Given that there were 2 werewolves among them, at least one but not all the werewolves were lying, and there were exactly 2 liars. Can you point out the werewolves?","Now you are asked to solve a harder vertion of this problem: given that there were N players, with M werewolves among them, at least one but not all the werewolves were lying, and there were exactly L liars. You are supposed to point out the werewolves."],"id":"1022","input":"Each input file contains one test case. For each case, the first line gives three positive integer N (5 ≤ N ≤ 100), M and L (2 ≤ M，L \u003c N). Then N lines follow and the i-th line gives the statement of the i-th player (1 ≤ i ≤ N), which is represented by the index of the player with a positive sign for a human and a negative sign for a werewolf.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805149279567872","output":"If a solution exists, print in a line in descending order the indices of the M werewolves. The numbers must be separated by exactly one space with no extra spaces at the beginning or the end of the line. If there are more than one solution, you must output the largest solution sequence -- that is, for two sequences A = { a[1], ..., a[M] } and B = { b[1], ..., b[M] }, if there exists 0 ≤ k \u003c M such that a[i] = b[i] (i ≤ k) and a[k+1]>b[k+1], then A is said to be larger than B. In case there is no solution, simply print No Solution.","samples":[{"input":"5 2 2\n-2\n+3\n-4\n+5\n+4","output":"4 1","explanation":"","label":""},{"input":"6 2 3\n-2\n+3\n-4\n+5\n+4\n-3","output":"6 4","explanation":"","label":""},{"input":"6 2 5\n-2\n+3\n-4\n+5\n+4\n+6","output":"No Solution","explanation":"","label":""}],"score":35,"title":"Werewolf","category":"约束搜索","idea":["从编号 N 到 1 依次决定玩家是狼人还是人类，并优先尝试狼人。","某玩家身份确定后，所有指向他的陈述真伪随之确定。","每层重新计算狼人、说谎者和“狼人中的说谎者”的可达上下界，无法满足 M、L 与范围条件时剪枝。"],"keyPoints":["题目要求至少一名但并非全部狼人说谎，即狼说谎者数在 [1,M-1]。","从大编号向小编号并优先选狼，找到的第一组解就是字典序最大的降序序列。","陈述的正负表示“人/狼”，说话者本人身份不影响陈述真假。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nint n, wolfTarget, liarTarget;\nvector\u003cint> statement, species;\n\nbool feasible() {\n  int wolves = 0, unknownSpecies = 0, knownLiars = 0, unknownLies = 0;\n  int certainWolfLiars = 0, possibleWolfLiars = 0;\n  for (int x : species) { if (x == 1) ++wolves; else if (x == -1) ++unknownSpecies; }\n  if (wolves > wolfTarget || wolves + unknownSpecies \u003c wolfTarget) return false;\n  for (int i = 1; i \u003c= n; ++i) {\n    int target = abs(statement[i]);\n    int liar = -1;\n    if (species[target] != -1) {\n      bool saysWolf = statement[i] \u003c 0;\n      bool targetWolf = species[target] == 1;\n      liar = saysWolf != targetWolf;\n      if (liar) ++knownLiars;\n    } else ++unknownLies;\n    if (species[i] == 1 && liar == 1) ++certainWolfLiars;\n    if (species[i] != 0 && liar != 0) ++possibleWolfLiars;\n  }\n  if (knownLiars > liarTarget || knownLiars + unknownLies \u003c liarTarget) return false;\n  if (certainWolfLiars > wolfTarget - 1 || possibleWolfLiars \u003c 1) return false;\n  return true;\n}\n\nbool search(int player, int wolves) {\n  if (!feasible()) return false;\n  if (player == 0) {\n    if (wolves != wolfTarget) return false;\n    int liars = 0, wolfLiars = 0;\n    for (int i = 1; i \u003c= n; ++i) {\n      bool saysWolf = statement[i] \u003c 0;\n      bool liar = saysWolf != (species[abs(statement[i])] == 1);\n      liars += liar;\n      wolfLiars += liar && species[i] == 1;\n    }\n    return liars == liarTarget && wolfLiars >= 1 && wolfLiars \u003c wolfTarget;\n  }\n  if (wolves \u003c wolfTarget) {\n    species[player] = 1;\n    if (search(player - 1, wolves + 1)) return true;\n  }\n  species[player] = 0;\n  if (search(player - 1, wolves)) return true;\n  species[player] = -1;\n  return false;\n}\n\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  cin >> n >> wolfTarget >> liarTarget;\n  statement.resize(n + 1); species.assign(n + 1, -1);\n  for (int i = 1; i \u003c= n; ++i) cin >> statement[i];\n  if (!search(n, 0)) { cout \u003c\u003c \"No Solution\\n\"; return 0; }\n  bool first = true;\n  for (int i = n; i >= 1; --i) if (species[i] == 1) {\n    cout \u003c\u003c (first ? \"\" : \" \") \u003c\u003c i; first = false;\n  }\n  cout \u003c\u003c '\\n';\n  return 0;\n}\n","sampleInput":"5 2 2\n-2\n+3\n-4\n+5\n+4","sampleOutput":"4 1"},{"description":["An n-gon is a polygon with n sides. For example, a triangle is a 3-gon. Now you are asked to find the best n-gon in a given convex N-gon. The vertices of the n-gon are selected from vertices of the N-gon. The n-gon you are supposed to find must have the largest area among all possible n-gons, which means that it approximates the N-gon the best. The figure below shows the best 6-gon (the shaded part) in a 10-gon."],"id":"1023","input":"Each input file contains one test case. For each case, the first line gives two positive integers N ( 6≤N≤300 ) which is the total number of vertices of the convex N-gon, and n ( 6≤n≤min(10,N) ) which is the total number of vertices of the approximating convex n-gon. Then N lines follow, the i-th line gives the 2-D coordinates (x, y) of the i-th vertex ( i=0,⋯,N−1 ). The x and y coordinates in a line are real numbers with their absolute values no more than 1000, and they are separated by a space.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=994805149061464064","output":"Print in a line all the vertex indices of the best n-gon in descending order. All the numbers are separated by a space and there must be no extra space at the beginning or the end of the line. It is guaranteed that the solution is unique.","samples":[{"input":"10 6\n133.0 1.0\n544.0 71.0\n558.0 206.0\n536.0 338.0\n463.0 436.0\n330.0 503.0\n188.0 499.0\n305.0 2.0\n55.0 410.0\n2.0 140.0","output":"9 8 5 3 1 0","explanation":"","label":""}],"score":35,"title":"The Best Polygon","category":"凸多边形动态规划","idea":["先绕几何中心按极角排序顶点，同时保留它们原来的输入编号。","固定所选多边形的最小环序顶点 s，DP[k][j] 表示选择 k 个点且末点为 j 的最大叉积和。","转移时追加边 i→j，选满 n 个点后补上 j→s 的闭合边；记录前驱还原答案。"],"keyPoints":["题目输出的是原输入编号，不是极角排序后的下标。","面积比较使用 long double 与较小 epsilon，题目保证最终答案唯一。","输出前把选中的原编号按降序排序。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nstruct Point { long double x, y; int id; };\nlong double cross(const Point &a, const Point &b) { return a.x*b.y-a.y*b.x; }\n\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);\n  int N,K;cin>>N>>K;vector\u003cPoint>p(N);long double cx=0,cy=0;\n  for(int i=0;i\u003cN;++i){cin>>p[i].x>>p[i].y;p[i].id=i;cx+=p[i].x;cy+=p[i].y;}\n  cx/=N;cy/=N;\n  sort(p.begin(),p.end(),[&](const Point&a,const Point&b){return atan2(a.y-cy,a.x-cx)\u003catan2(b.y-cy,b.x-cx);});\n  const long double NEG=-1e100L,EPS=1e-12L;long double best=NEG;vector\u003cint>bestPath;\n  for(int start=0;start\u003c=N-K;++start){\n    vector\u003cvector\u003clong double>>dp(K+1,vector\u003clong double>(N,NEG));\n    vector\u003cvector\u003cint>>parent(K+1,vector\u003cint>(N,-1));dp[1][start]=0;\n    for(int used=2;used\u003c=K;++used){\n      for(int last=start+used-1;last\u003cN-(K-used);++last){\n        for(int before=start+used-2;before\u003clast;++before){\n          if(dp[used-1][before]\u003c=NEG/2)continue;\n          long double value=dp[used-1][before]+cross(p[before],p[last]);\n          if(value>dp[used][last]+EPS){dp[used][last]=value;parent[used][last]=before;}\n        }\n      }\n    }\n    for(int last=start+K-1;last\u003cN;++last){\n      long double area=dp[K][last]+cross(p[last],p[start]);\n      if(area\u003c=best+EPS)continue;\n      best=area;vector\u003cint>path;int current=last;\n      for(int used=K;used>=1;--used){path.push_back(p[current].id);current=parent[used][current];}\n      bestPath=move(path);\n    }\n  }\n  sort(bestPath.rbegin(),bestPath.rend());\n  for(int i=0;i\u003c(int)bestPath.size();++i)cout\u003c\u003c(i?\" \":\"\")\u003c\u003cbestPath[i];\n  cout\u003c\u003c'\\n';return 0;\n}\n","sampleInput":"10 6\n133.0 1.0\n544.0 71.0\n558.0 206.0\n536.0 338.0\n463.0 436.0\n330.0 503.0\n188.0 499.0\n305.0 2.0\n55.0 410.0\n2.0 140.0","sampleOutput":"9 8 5 3 1 0"},{"description":["There are currently 168 internationally recognized unique national currencies in this world.  But let us assume that we have business with other species in the  entire universe...  To change one currency to another, we need currency exchange centers, and they charge fees for it.  Now given a list of informations of these centers, you are supposed to find a collection of the centers so that we can make change between any two currencies (directly or indirectly) through them.  Since such a kind of collection may not be unique, you must find the one with the minimum total fees; and if there are still more than one solution, find the one with the minimum number of centers -- it is guaranteed that such a solution is unique."],"id":"1024","input":"Each input file contains one test case. For each case, the first line gives two positive integers N and M (both no more than 10\n4\n), being the total numbers of currencies and the size of the list of currency exchange center informations, respectively. Then M lines follow, each describes a piece of information in the following format:\n\nC1 C2 Center Fee\n\nwhere C1 and C2 are the indices (from 0 to N−1) of the two currencies; Center is a string of 3 capital English letters representing the name of a center; and Fee is a positive integer no more than 10\n4\n.  It is guaranteed that at most one exchange center is given for each pair of different currencies.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=1038430372098768896","output":"Print in the first line the total number of currency exchange centered being collected, and the total amount of fees they charge, separated by a space.  Then in the following lines, print the centers which must be collected in the same format as the input.  The centers must be output in alphabetical order of their names, and if there is a tie, in ascending order of their fees.  It is guaranteed that such a solution exists and is unique.","samples":[{"input":"6 9\n4 3 CBC 32\n1 5 HSB 43\n1 0 HSB 32\n0 2 CTB 28\n4 2 CBC 19\n2 3 CBC 28\n0 4 ABC 28\n1 2 ABC 32\n3 1 CTB 19","output":"3 137\n4 2 CBC 19\n2 3 CBC 28\n3 1 CTB 19\n0 2 CTB 28\n1 5 HSB 43","explanation":"","label":""}],"score":35,"title":"Currency Exchange Centers","category":"带标签最小生成树","idea":["先按费用执行 Kruskal；不同费用之间的选择是固定的，歧义只会出现在同费候选边组内。","同费组中先加入已经使用过的中心，再对新中心按其当前可产生的有效合并数从大到小选择。","记录被选边、总费用与中心集合，最后按中心名和费用排序输出。"],"keyPoints":["第一目标始终是总费用最小，中心数量只用于同费用 MST 的二级选择。","同一中心可以贡献多条边，中心数按不同的三字母名称统计。","该实现把同权组动态收缩后再复用中心，避免简单按中心名字排序造成无谓新增。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nstruct DSU{vector\u003cint>p,s;explicit DSU(int n):p(n),s(n,1){iota(p.begin(),p.end(),0);}int find(int x){return p[x]==x?x:p[x]=find(p[x]);}bool unite(int a,int b){a=find(a);b=find(b);if(a==b)return false;if(s[a]\u003cs[b])swap(a,b);p[b]=a;s[a]+=s[b];return true;}};\nstruct Edge{int u,v,fee,index;string center;};\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);\n  int n,m;cin>>n>>m;vector\u003cEdge>e(m);for(int i=0;i\u003cm;++i){cin>>e[i].u>>e[i].v>>e[i].center>>e[i].fee;e[i].index=i;}\n  sort(e.begin(),e.end(),[](const Edge&a,const Edge&b){return a.fee!=b.fee?a.fee\u003cb.fee:a.center\u003cb.center;});\n  DSU dsu(n);set\u003cstring>usedCenters;vector\u003cEdge>chosen;long long total=0;\n  for(int left=0;left\u003cm;){\n    int right=left;while(right\u003cm&&e[right].fee==e[left].fee)++right;\n    vector\u003cchar>taken(right-left);\n    while(true){\n      int best=-1,bestOld=-1,bestGain=-1;\n      map\u003cstring,vector\u003cint>>byCenter;\n      for(int i=left;i\u003cright;++i)if(!taken[i-left]&&dsu.find(e[i].u)!=dsu.find(e[i].v))byCenter[e[i].center].push_back(i);\n      for(auto &entry:byCenter){\n        DSU temp=dsu;int gain=0;\n        for(int idx:entry.second)gain+=temp.unite(e[idx].u,e[idx].v);\n        int old=usedCenters.count(entry.first);\n        if(old>bestOld||(old==bestOld&&gain>bestGain)){best=entry.second[0];bestOld=old;bestGain=gain;}\n      }\n      if(best\u003c0)break;\n      string center=e[best].center;usedCenters.insert(center);\n      for(int i=left;i\u003cright;++i)if(!taken[i-left]&&e[i].center==center){\n        taken[i-left]=1;if(dsu.unite(e[i].u,e[i].v)){chosen.push_back(e[i]);total+=e[i].fee;}\n      }\n    }\n    left=right;\n  }\n  sort(chosen.begin(),chosen.end(),[](const Edge&a,const Edge&b){return a.center!=b.center?a.center\u003cb.center:a.fee!=b.fee?a.fee\u003cb.fee:a.index\u003cb.index;});\n  cout\u003c\u003cusedCenters.size()\u003c\u003c' '\u003c\u003ctotal\u003c\u003c'\\n';\n  for(const auto&x:chosen)cout\u003c\u003cx.u\u003c\u003c' '\u003c\u003cx.v\u003c\u003c' '\u003c\u003cx.center\u003c\u003c' '\u003c\u003cx.fee\u003c\u003c'\\n';\n  return 0;\n}\n","sampleInput":"6 9\n4 3 CBC 32\n1 5 HSB 43\n1 0 HSB 32\n0 2 CTB 28\n4 2 CBC 19\n2 3 CBC 28\n0 4 ABC 28\n1 2 ABC 32\n3 1 CTB 19","sampleOutput":"3 137\n4 2 CBC 19\n2 3 CBC 28\n3 1 CTB 19\n0 2 CTB 28\n1 5 HSB 43"},{"description":["Given a string which contains only lower case letters, how many different non-empty strings you can get if you can keep AT MOST 100 characters in the original order? (Note: The string obtained is a \"sub-sequence\" of the original string.)"],"id":"1025","input":"Each input file contains one test case, which is only one line containing the string whose length is no larger than 1000.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=1038430487337271296","output":"Output the number of different non-empty strings if you can only keep at most 100 characters. Since the answer might be super large, you only need to output the answer modulo 1000000007.","samples":[{"input":"aabac","output":"19","explanation":"","label":""}],"score":35,"title":"Keep at Most 100 Characters","category":"不同子序列 DP","idea":["dp[len] 表示当前前缀产生的长度为 len 的不同子序列数。","读到字符 c 时，所有长度 len-1 的序列都可追加 c；减去上一次用 c 结尾时已经生成的那批。","长度从 100 向 1 倒序更新，最后累加 dp[1..100]。"],"keyPoints":["只保留至多 100 个字符，所以 DP 长度维固定为 101。","last[c][len] 保存上次处理 c 前的 dp[len] 快照，用于去重。","减法后要加 MOD 再取模。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);const long long MOD=1000000007LL;\n  string s;cin>>s;array\u003carray\u003clong long,101>,26>last{};array\u003clong long,101>dp{};dp[0]=1;\n  int processed=0;\n  for(char ch:s){\n    int c=ch-'a',limit=min(100,processed+1);\n    for(int len=limit;len>=1;--len){\n      long long previous=dp[len-1];\n      dp[len]=(dp[len]+previous-last[c][len-1]+MOD)%MOD;\n      last[c][len-1]=previous;\n    }\n    ++processed;\n  }\n  long long answer=0;for(int len=1;len\u003c=100;++len)answer=(answer+dp[len])%MOD;\n  cout\u003c\u003canswer\u003c\u003c'\\n';return 0;\n}\n","sampleInput":"aabac","sampleOutput":"19"},{"description":["Eva would like to buy a string of beads with no repeated colors so she went to a small shop of which the owner had a very long string of beads. However the owner would only like to cut one piece at a time for his customer. With as many as ten thousand beads in the string, Eva needs your help to tell her how to obtain the longest piece of string that contains beads with all different colors. And more, each kind of these beads has a different value. If there are more than one way to get the longest piece, Eva would like to take the most valuable one. It is guaranteed that such a solution is unique."],"id":"1026","input":"Each input file contains one test case. Each case first gives in a line a positive integer N (≤ 10,000) which is the length of the original string in the shop. Then N positive numbers (≤ 100) are given in the next line, which are the values of the beads -- here we assume that the types of the beads are numbered from 1 to N, and the i-th number is the value of the i-th type of beads. Finally the last line describes the original string by giving the types of the beads from left to right. All the numbers in a line are separated by spaces.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=1071784456138059776","output":"For each test case, print in a line the total value of the piece of string that Eva wants, together with the beginning and the ending indices of the piece (start from 0). All the numbers must be separated by a space and there must be no extra spaces at the beginning or the end of the line.","samples":[{"input":"8\n18 20 2 97 23 12 8 5\n3 3 5 8 1 5 2 1","output":"66 3 6","explanation":"","label":""}],"score":35,"title":"String of Colorful Beads","category":"滑动窗口","idea":["维护无重复颜色窗口 [left,right]、每种颜色上次出现位置和窗口总价值。","新颜色若在窗口内出现过，就移动 left 并逐个扣除被移出珠子的价值。","先比较窗口长度，长度相同再比较总价值，记录唯一最优区间。"],"keyPoints":["价值表按颜色类型编号 1..N，而珠串长度也恰好为 N。","窗口左端移动时必须同步更新价值总和。","输出顺序是总价值、起点、终点，索引从 0 开始。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);\n  int n;cin>>n;vector\u003cint>value(n+1),bead(n);for(int i=1;i\u003c=n;++i)cin>>value[i];for(int&x:bead)cin>>x;\n  vector\u003cint>last(n+1,-1);int left=0,bestL=0,bestR=-1;long long sum=0,bestValue=-1;\n  for(int right=0;right\u003cn;++right){\n    int color=bead[right];\n    if(last[color]>=left){while(left\u003c=last[color])sum-=value[bead[left++]];}\n    last[color]=right;sum+=value[color];\n    int length=right-left+1,bestLength=bestR-bestL+1;\n    if(length>bestLength||(length==bestLength&&sum>bestValue)){bestL=left;bestR=right;bestValue=sum;}\n  }\n  cout\u003c\u003cbestValue\u003c\u003c' '\u003c\u003cbestL\u003c\u003c' '\u003c\u003cbestR\u003c\u003c'\\n';return 0;\n}\n","sampleInput":"8\n18 20 2 97 23 12 8 5\n3 3 5 8 1 5 2 1","sampleOutput":"66 3 6"},{"description":["Larry just studied the algorithm to count number of inversions. He's very interested in it. He's considering another problem: Given a permutation of integers from 1 to n, how many inversions it has if we reverse one of its subarray?","Formally speaking, given an integer array a (indices are from 0 to n−1) which contains a permutation of integers from 1 to n, two elements a[i] and a[j] form an inversion if a[i]>a[j] and i\u003cj.  Your job is to count, for each pair of 0≤i≤j\u003cn, the number of inversions if we reverse the subarray from a[i] to a[j]."],"id":"1027","input":"Each input file contains one test case. Each case consists of a positive integer n (≤1,000) in the first line, and a permutation of integers from 1 to n in the second line.  The numbers in a line are separated by a single space.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=1071784623285268480","output":"For each test case, output n(n+1)/2 integers in a single line. The results are for reversing subarray indicating by all possible pairs of indices 0≤i≤j\u003cn in i-major order -- that is, the first n results are for the reverse of subarrary [0..0], [0..1], ...[0..n−1]; the next n−1 results are for the reverse of subarry [1..1], [1..2],..., [1..n−1] and so on.\n\nAll the numbers in a line must be separated by a single space, with no extra space at the beginning or the end of the line.","samples":[{"input":"3\n2 1 3","output":"1 0 2 1 2 1","explanation":"","label":""}],"score":35,"title":"Larry and Inversions","category":"树状数组","idea":["先用树状数组求原排列逆序数。","固定左端 l，逐步把右端 r 向右扩展；新加入 a[r] 与区间中所有旧元素的相对顺序会翻转。","区间树状数组查询比 a[r] 小/大的数量，差值就是当前逆序数变化量。"],"keyPoints":["反转区间外的相对顺序不变，跨区间边界的逆序关系也不变。","输出顺序必须严格按 l 主序、r 次序。","总逆序数和每个答案使用 long long。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nstruct Fenwick{vector\u003cint>t;explicit Fenwick(int n):t(n+1){}void add(int x){for(;x\u003c(int)t.size();x+=x&-x)++t[x];}int sum(int x){int r=0;for(;x;x-=x&-x)r+=t[x];return r;}};\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;vector\u003cint>a(n);for(int&x:a)cin>>x;\n  Fenwick all(n);long long original=0;for(int i=n-1;i>=0;--i){original+=all.sum(a[i]-1);all.add(a[i]);}\n  bool first=true;\n  for(int l=0;l\u003cn;++l){\n    Fenwick inside(n);long long current=original;inside.add(a[l]);\n    for(int r=l;r\u003cn;++r){\n      if(r>l){int count=r-l;int less=inside.sum(a[r]-1);int greater=count-inside.sum(a[r]);current+=less-greater;inside.add(a[r]);}\n      cout\u003c\u003c(first?\"\":\" \")\u003c\u003ccurrent;first=false;\n    }\n  }\n  cout\u003c\u003c'\\n';return 0;\n}\n","sampleInput":"3\n2 1 3","sampleOutput":"1 0 2 1 2 1"},{"description":["Indeed there are many different tourist routes from our city to Rome. Your job is to count the number of different routes from our city to Rome, and to check if ALL the routes lead to Rome -- that is, whether or not all the routes from our city to Rome can cover every road on the routes from our city to anywhere."],"id":"1028","input":"Each input file contains one test case. For each case, the first line contains 2 positive integers N (2≤N≤20), the number of cities, and K, the total number of roads between pairs of cities; followed by the name of the starting city. Then K lines follow, each describes a road between two cities in the format City1 City2. Here the name of a city is a string of 3 capital English letters, and the destination is always ROM which represents Rome.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=1478636318296752128","output":"For each test case, first print in a line Yes if all the routes from the starting city lead to     ROM, or No if not.  Then print in the next line the number of different routes from the starting city to ROM.  Here a route is defined to be a simple path, that is, no city along the route will be visited more than once.  It is guaranteed that this number is no more than 10\n6\n.  By the way, it is assumed that ROM is our only destination -- that is, once we reach ROM, we will stop traveling and stay there.","samples":[{"input":"7 8 HZH\nPKN HZH\nGDN ROM\nROM HKG\nPRS PKN\nPRS BLN\nHKG PRS\nROM BLN\nHZH GDN","output":"Yes\n3","explanation":"","label":""},{"input":"10 11 HZH\nPKN HZH\nGDN ROM\nROM HKG\nPRS PKN\nPRS BLN\nHKG PRS\nROM BLN\nHZH GDN\nGDN MAC\nMAC WWW\nMAC VVV","output":"No\n3","explanation":"","label":""}],"score":35,"title":"Do All Roads Lead to Rome","category":"简单路径搜索","idea":["把城市名映射为编号、道路保留独立边号；从起点 DFS 枚举不重复城市的简单路径。","每次到达 ROM 就增加路线数，并把当前路径上的全部边标记为“可被赴罗马路线覆盖”。","再从起点找出可达道路；若每条可达道路都被至少一条赴罗马路径覆盖，则回答 Yes。"],"keyPoints":["到达 ROM 后必须停止，不能穿过 ROM 继续走。","同一条道路在不同路径中可重复标记，但每条简单路径只计一次。","N≤20 且保证赴 ROM 路线数不超过 10^6，回溯枚举可行。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nstruct Adj{int to,id;};\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);\n  int n,k;string startName;cin>>n>>k>>startName;unordered_map\u003cstring,int>id;\n  auto get=[&](const string&s){auto r=id.emplace(s,id.size());return r.first->second;};\n  int start=get(startName),rome=get(\"ROM\");vector\u003cpair\u003cstring,string>>raw(k);\n  for(auto&road:raw){cin>>road.first>>road.second;get(road.first);get(road.second);}\n  vector\u003cvector\u003cAdj>>g(id.size());\n  for(int i=0;i\u003ck;++i){int a=id[raw[i].first],b=id[raw[i].second];g[a].push_back({b,i});g[b].push_back({a,i});}\n  vector\u003cchar>visited(id.size()),covered(k);vector\u003cint>path;long long routes=0;\n  function\u003cvoid(int)>dfs=[&](int u){\n    if(u==rome){++routes;for(int edge:path)covered[edge]=1;return;}\n    visited[u]=1;\n    for(auto e:g[u])if(!visited[e.to]){path.push_back(e.id);dfs(e.to);path.pop_back();}\n    visited[u]=0;\n  };dfs(start);\n  vector\u003cchar>citySeen(id.size()),reachableEdge(k);queue\u003cint>q;q.push(start);citySeen[start]=1;\n  while(!q.empty()){int u=q.front();q.pop();for(auto e:g[u]){reachableEdge[e.id]=1;if(!citySeen[e.to]){citySeen[e.to]=1;q.push(e.to);}}}\n  bool all=true;for(int i=0;i\u003ck;++i)if(reachableEdge[i]&&!covered[i])all=false;\n  cout\u003c\u003c(all?\"Yes\":\"No\")\u003c\u003c'\\n'\u003c\u003croutes\u003c\u003c'\\n';return 0;\n}\n","sampleInput":"7 8 HZH\nPKN HZH\nGDN ROM\nROM HKG\nPRS PKN\nPRS BLN\nHKG PRS\nROM BLN\nHZH GDN","sampleOutput":"Yes\n3"},{"description":["Given an integer array of length n, cut the array into m (≤n) subarrays by exactly (m−1) cuts.  Array cutting score is defined to be the product of all the sums of the subarray elements.  Your job is to calculate the product of the scores of all the possible ways of array-cutting."],"id":"1029","input":"Each input file contains one test case. For each case, the first line contains two positive integers n and m (1≤m≤n≤10\n3\n).  The second line contains n positive integers no larger than 10\n9\n separated by a single space..","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=1478636403210989568","output":"Output the product of the scores of all the possible ways of array-cutting in a single line. Since the answer might be too large, output the result modulo 1000000007 (10\n9\n+7).","samples":[{"input":"5 2\n5 1 2 3 4","output":"6652800","explanation":"","label":""}],"score":35,"title":"Array Cutting Score","category":"组合计数","idea":["把所有切法得分的乘积改写为：每个连续子段和，乘以它作为一个完整分块出现的次数次幂。","子段两侧在数组内部时，对应切口必须被选择；其余 m-1 个切口从子段外部位置组合选取。","组合数作为指数，非零底数的指数可按 MOD-1 取模；用 Pascal 递推避免对合数 MOD-1 求逆。"],"keyPoints":["子段内部不能有切口，只有它的两端可能是必选切口。","MOD-1 不是质数，不能使用阶乘逆元计算组合数。","当子段和模 MOD 为 0 且组合可行时，整体答案立即为 0。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nconst long long MOD=1000000007LL,PHI=MOD-1;\nlong long power(long long a,long long e){long long r=1;for(;e;e>>=1,a=a*a%MOD)if(e&1)r=r*a%MOD;return r;}\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;vector\u003clong long>a(n),prefix(n+1);for(int i=0;i\u003cn;++i){cin>>a[i];prefix[i+1]=(prefix[i]+a[i])%MOD;}\n  vector\u003cvector\u003cint>>choose(n+1,vector\u003cint>(n+1));choose[0][0]=1;\n  for(int i=1;i\u003c=n;++i){choose[i][0]=choose[i][i]=1;for(int j=1;j\u003ci;++j)choose[i][j]=(choose[i-1][j-1]+choose[i-1][j])%PHI;}\n  long long answer=1;\n  for(int l=0;l\u003cn;++l)for(int r=l;r\u003cn;++r){\n    int required=(l>0)+(r\u003cn-1);int need=m-1-required;\n    int available=(l>0?l-1:0)+(r\u003cn-1?n-r-2:0);\n    if(need\u003c0||need>available)continue;\n    long long sum=(prefix[r+1]-prefix[l]+MOD)%MOD;\n    if(sum==0){cout\u003c\u003c0\u003c\u003c'\\n';return 0;}\n    answer=answer*power(sum,choose[available][need])%MOD;\n  }\n  cout\u003c\u003canswer\u003c\u003c'\\n';return 0;\n}\n","sampleInput":"5 2\n5 1 2 3 4","sampleOutput":"6652800"},{"description":["Given an integer m, we consider a sequence (with at least 2 elements) as beautiful if it contains 2 neighbors with difference no larger than m. Given an integer sequence with n elements, your job is to calculate the number of beautiful subsequences in it."],"id":"1030","input":"Each input file contains one test case.  For each case, the first line contains 2 positive integers n and m (2≤n≤10\n5\n, 1≤m≤10\n3\n). Then n positive integers follow in the next line, each no larger than 10\n5\n, indicating the sequence.  All the numbers in a line are separated by a space.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=1478636499909017600","output":"Output the number of beautiful subsequences of the original sequence. Since the answer might be too large, output the result modulo 1000000007 (10\n9\n+7).","samples":[{"input":"4 2\n5 3 8 6","output":"8","explanation":"","label":""}],"score":35,"title":"Beautiful Subsequence","category":"计数动态规划","idea":["先计算长度至少 2 的全部子序列数，再减去“不美丽”子序列数。","不美丽序列要求每一对相邻所选元素差值都大于 m；dp[i] 表示以 a[i] 结尾的这类序列数。","树状数组按数值维护 dp 和，只查询小于 a[i]-m 或大于 a[i]+m 的前驱。"],"keyPoints":["美丽只要求存在一对相邻所选元素差值不超过 m，补集更容易计数。","dp[i] 包含单元素序列，最终扣除不美丽序列时要减去这些单例。","所有加减均在 1e9+7 下归一化。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nconst long long MOD=1000000007LL;\nstruct Fenwick{vector\u003clong long>t;explicit Fenwick(int n):t(n+1){}void add(int x,long long v){for(;x\u003c(int)t.size();x+=x&-x)t[x]=(t[x]+v)%MOD;}long long sum(int x){long long r=0;for(;x;x-=x&-x)r=(r+t[x])%MOD;return r;}};\nlong long power(long long a,int e){long long r=1;for(;e;e>>=1,a=a*a%MOD)if(e&1)r=r*a%MOD;return r;}\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;vector\u003cint>a(n);int maximum=0;for(int&x:a){cin>>x;maximum=max(maximum,x);}\n  Fenwick bit(maximum+2);long long badLong=0,totalSeen=0;\n  for(int x:a){\n    long long low=bit.sum(max(0,x-m-1));\n    long long high=(totalSeen-bit.sum(min(maximum+1,x+m))+MOD)%MOD;\n    long long ending=(1+low+high)%MOD;\n    badLong=(badLong+ending-1+MOD)%MOD;\n    bit.add(x,ending);totalSeen=(totalSeen+ending)%MOD;\n  }\n  long long all=(power(2,n)-1-n)%MOD;if(all\u003c0)all+=MOD;\n  cout\u003c\u003c(all-badLong+MOD)%MOD\u003c\u003c'\\n';return 0;\n}\n","sampleInput":"4 2\n5 3 8 6","sampleOutput":"8"},{"description":["Path to Infinity is a never-ending math mini-game in the RPG Secrets of Grindea. In this mini-game, players are faced with a set of n pressure plates marked with digits from 0 to 9, another set of (n−1) pressure plates marked with operators '+' (addition), '-' (subtraction) or '*' (multiplication) and a target number m shown in the flame of the green torch on the right. To proceed through this level, players have to step on the pressure plates in the correct order to form an expression whose value is exactly the same with the target number. All the pressure plates must be used exactly once.","Note that in this mini-game, all the operators have the same priority and expression is calculated from left to right. For example, expression 1+2∗2 will be figured out as 6, not 5.","You are now presented with one level of such mini-game. How many different expressions can you build from the given digits and operators so that the value of the expression is exactly m?","Two expressions are considered different if there exists an integer i such that 1≤i≤n and the i-th operand in the two expressions are different, or if there exists an integer j such that 1≤j\u003cn and the j-th operator in the two expressions are different."],"id":"1031","input":"There is only one test case. The first line of the input contains two integers n and m (2≤n≤10, −10\n9\n≤m≤10\n9\n), indicating the number of digit pressure plates and the target number.\n\nThe second line of the input contains two strings s and t (∣s∣=n, ∣t∣=n−1) separated by a space. String s will only contain digits from 0 to 9, where the i-th digit represents the digit marked on the i-th digit pressure plate. String t will only contain operators '+', '-' and '*', where the i-th operator represents the operator marked on the i-th operator pressure plate.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=1478636592323768320","output":"Output two lines. The first line contains an integer indicating the number of different expressions built from the given digits and operators so that its value is exactly m. The second line contains a string without spaces indicating the desired expression with the smallest lexicographic order. Characters in the expressions are compared by their ASCII code.\n\nIf one cannot build any desired expression, print \"Impossible\" on the second line instead.","samples":[{"input":"10 12\n3321001233 +++---***","output":"424007\n0*0*1+2+2+3-1*3-3-3","explanation":"","label":""},{"input":"3 2\n111 **","output":"0\nImpossible","explanation":"","label":""}],"score":35,"title":"Path to Infinity","category":"状态压缩记忆化","idea":["用各数字、各运算符的剩余个数描述状态，重复字符不会被当成不同压力板排列。","表达式按从左到右求值；每次选择一个运算符和下一个数字，递归统计能够到达目标值的后缀数量。","记忆化键由剩余计数与当前值组成；重建时按 ASCII 顺序尝试字符，首个有解分支得到最小表达式。"],"keyPoints":["三个运算符的 ASCII 顺序是 *、+、-，数字则按 0..9。","所有运算符同优先级，必须立即把当前值与新数字计算。","相同字符使用计数而不是位置，可自然去除重复表达式。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nlong long target;\narray\u003cint,10>digits{};array\u003cint,3>operators{};unordered_map\u003cstring,unsigned long long>memo;\nconst array\u003cchar,3>opChar={'*','+','-'};\nstring makeKey(long long value){\n  string key=to_string(value)+\"|\";for(int x:digits)key.push_back(char('0'+x));key.push_back('|');for(int x:operators)key.push_back(char('0'+x));return key;\n}\nlong long apply(long long a,char op,int b){if(op=='*')return a*b;if(op=='+')return a+b;return a-b;}\nunsigned long long solve(long long value,int remaining){\n  if(remaining==0)return value==target;\n  string key=makeKey(value);auto found=memo.find(key);if(found!=memo.end())return found->second;\n  unsigned long long ways=0;\n  for(int o=0;o\u003c3;++o)if(operators[o]){\n    --operators[o];\n    for(int d=0;d\u003c10;++d)if(digits[d]){--digits[d];ways+=solve(apply(value,opChar[o],d),remaining-1);++digits[d];}\n    ++operators[o];\n  }\n  memo[key]=ways;return ways;\n}\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);int n;string s,t;cin>>n>>target>>s>>t;\n  for(char c:s)++digits[c-'0'];for(char c:t){int i=c=='*'?0:c=='+'?1:2;++operators[i];}\n  unsigned long long total=0;string smallest;\n  for(int d=0;d\u003c10;++d)if(digits[d]){--digits[d];total+=solve(d,n-1);++digits[d];}\n  if(total){\n    for(int d=0;d\u003c10&&smallest.empty();++d)if(digits[d]){\n      --digits[d];\n      if(!solve(d,n-1)){++digits[d];continue;}\n      smallest.push_back(char('0'+d));long long value=d;int remaining=n-1;\n      while(remaining){\n        bool chosen=false;\n        for(int o=0;o\u003c3&&!chosen;++o)if(operators[o]){\n          --operators[o];\n          for(int next=0;next\u003c10;++next)if(digits[next]){\n            --digits[next];long long nv=apply(value,opChar[o],next);\n            if(solve(nv,remaining-1)){smallest.push_back(opChar[o]);smallest.push_back(char('0'+next));value=nv;--remaining;chosen=true;break;}\n            ++digits[next];\n          }\n          if(!chosen)++operators[o];\n        }\n      }\n    }\n  }\n  cout\u003c\u003ctotal\u003c\u003c'\\n'\u003c\u003c(smallest.empty()?\"Impossible\":smallest)\u003c\u003c'\\n';return 0;\n}\n","sampleInput":"10 12\n3321001233 +++---***","sampleOutput":"424007\n0*0*1+2+2+3-1*3-3-3"},{"description":["Many computer games are designed to attract players to gain achievements and badges through a series of battles. They must defeat the monster to reach their goal.","Now given N bases in a map, a player is supposed to conquer all the bases and gain the badges one by one through the paths in the map, while each path is guarded by a monster.  Each monster has its own power and carries its own weapon.  The amount of energy taken to defeat a monster is the same as that of the monster's power.  Each weapon also has a power level.  When a monster is defeated, its weapon will be seized by the player.","Your job is to find a way to help the player conquer all the bases with minimum lose of energy.  If such a solution is not unique, you must find the one to seize maximum amount of weapon powers, which is guaranteed to be unique."],"id":"1032","input":"Each input file contains one test case. For each case, the first line gives two positive integers N and M (both no more than 10\n4\n), being the total numbers of bases and monsters, respectively. Then M lines follow, where the i-th line (i=1,⋯,M) describes the i-th monster's information in the following format:\n\nB1 B2 Power Weapon\n\nwhere B1 and B2 are the indices (from 0 to N−1) of the two bases; Power and Weapon are both positive integers no more than 10\n4\n, corresponding to the power levels of the monster and its weapen.  It is guaranteed that at most one path (and hence one monster) is connecting each pair of different bases.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=1621700616307433472","output":"Print in the first line the minimum lose of energy in order to conquer all the bases, and the maximum amount of weapon powers one can seize in a solution.  Then in the next line, print all the monsters to be defeated in ascending order of their indices.  All the numbers in a line must be separated by one space, and there must be no extra space at the beginning or the end of the line.","samples":[{"input":"6 9\n4 3 32 3\n1 5 43 5\n1 0 32 3\n0 2 28 8\n4 2 19 1\n2 3 28 10\n0 4 28 2\n1 2 28 3\n3 1 19 1","output":"137 25\n2 4 5 6 9","explanation":"","label":""}],"score":35,"title":"Fighting the Monsters","category":"双关键字最小生成树","idea":["征服全部基地且能逐步到达，选择的怪物边必须构成生成树。","先按怪物 Power 升序保证损失能量最小；Power 相同时按 Weapon 降序。","在每个同 Power 收缩图上，这一顺序会取得最大武器权值生成森林，Kruskal 即可完成双目标优化。"],"keyPoints":["武器是第二优化目标，不能让更高 Power 的边提前进入。","输出的是输入中的怪物编号，从 1 开始并按升序。","能量和与武器和都使用 long long。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nstruct DSU{vector\u003cint>p,s;explicit DSU(int n):p(n),s(n,1){iota(p.begin(),p.end(),0);}int find(int x){return p[x]==x?x:p[x]=find(p[x]);}bool unite(int a,int b){a=find(a);b=find(b);if(a==b)return false;if(s[a]\u003cs[b])swap(a,b);p[b]=a;s[a]+=s[b];return true;}};\nstruct Edge{int u,v,power,weapon,id;};\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;vector\u003cEdge>e(m);for(int i=0;i\u003cm;++i){cin>>e[i].u>>e[i].v>>e[i].power>>e[i].weapon;e[i].id=i+1;}\n  sort(e.begin(),e.end(),[](const Edge&a,const Edge&b){return a.power!=b.power?a.power\u003cb.power:a.weapon>b.weapon;});\n  DSU dsu(n);long long energy=0,weapons=0;vector\u003cint>chosen;\n  for(const auto&x:e)if(dsu.unite(x.u,x.v)){energy+=x.power;weapons+=x.weapon;chosen.push_back(x.id);}\n  sort(chosen.begin(),chosen.end());cout\u003c\u003cenergy\u003c\u003c' '\u003c\u003cweapons\u003c\u003c'\\n';for(int i=0;i\u003c(int)chosen.size();++i)cout\u003c\u003c(i?\" \":\"\")\u003c\u003cchosen[i];cout\u003c\u003c'\\n';return 0;\n}\n","sampleInput":"6 9\n4 3 32 3\n1 5 43 5\n1 0 32 3\n0 2 28 8\n4 2 19 1\n2 3 28 10\n0 4 28 2\n1 2 28 3\n3 1 19 1","sampleOutput":"137 25\n2 4 5 6 9"},{"description":["Eva has two strings of beads, one with A red beads and the other with B blue ones.  She would like to make a string of red and blue beads in the following way:","Eva would take beads from the two strings step by step.\nAt the i-th step, she can take away exactly i beads from one of the strings, and chain them into the resulting string.\nEva is supposed to obtain a string of exactly N beads.","How many different results can Eva obtain?","Two results are cosidered to be different if there is at least one step that Eva chooses to take beads from different strings."],"id":"1033","input":"Each input file contains one test case which gives in a line three integers: N (0\u003cN≤2×10\n5\n), A and B (0≤A,B≤10\n5\n).  The definitions are given in the description of the problem.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=1621700638587564032","output":"For each test case, print in a line the number of different ways to obtain a string of exactly N beads.  Since the answer might be too large, output the result modulo 1000000007 (that is, 10\n9\n+7).","samples":[{"input":"10 4 7","output":"4","explanation":"","label":""}],"score":35,"title":"Strings of Red and Blue","category":"0/1 背包计数","idea":["若执行了 k 步，珠子总数固定为 1+2+...+k；先判断 N 是否为三角数。","把每一步分给红串或蓝串，设红串承担的步数和为 red，则需 red≤A 且 N-red≤B。","对物品 1..k 做 0/1 背包，统计落在合法红色用量区间内的方案。"],"keyPoints":["每一步只能整体选择一种颜色，不能把 i 颗拆给两种颜色。","若 N 不是三角数，不存在恰好使用完某个整数步数的结果。","红色上界取 min(A,N)，合法下界是 max(0,N-B)。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);const long long MOD=1000000007LL;int N,A,B;cin>>N>>A>>B;\n  int k=0,sum=0;while(sum\u003cN)sum+=++k;if(sum!=N){cout\u003c\u003c0\u003c\u003c'\\n';return 0;}\n  int high=min(A,N),low=max(0,N-B);vector\u003clong long>dp(high+1);dp[0]=1;\n  for(int step=1;step\u003c=k;++step)for(int red=high;red>=step;--red)dp[red]=(dp[red]+dp[red-step])%MOD;\n  long long answer=0;for(int red=low;red\u003c=high;++red)answer=(answer+dp[red])%MOD;cout\u003c\u003canswer\u003c\u003c'\\n';return 0;\n}\n","sampleInput":"10 4 7","sampleOutput":"4"},{"description":["A number game is to start from a given number A, and to reach the destination number B by a sequence of operations.","For the current number X, there are 3 types of operations:","X=X+1\nX=X−1\nX=X×N","Your job is to find the minimum number of steps required to reach B from A."],"id":"1034","input":"Each input file contains several test cases.  The first line gives a positive integer K (≤10) which is the total number of cases.  For each case, three  integers are given: A, B and N, where −10\n5\n≤A,B≤10\n5\n and 1\u003cN\u003c10.  All the numbers in a line are separated by a space.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=1697152161245261825","output":"For each test case, print in a line the minimum number of steps required to reach B from A.","samples":[{"input":"3\n3 11 2\n-5 -12 3\n-2 1000 7","output":"3\n2\n13","explanation":"","label":""}],"score":35,"title":"Number Game","category":"最短路搜索","idea":["把每个整数看成状态，三种操作是单位权有向边，使用 BFS 求最短步数。","直接加减得到 |A-B| 步的上界；有价值的乘法不会需要越过 max(|A|,|B|)×N 太远。","在对称有限区间内搜索 x+1、x-1、x×N，首次到达 B 即最优。"],"keyPoints":["负数同样可以乘 N，搜索区间必须同时覆盖正负两侧。","计算 x×N 时先提升为 long long，再判断是否落在边界内。","A==B 时答案为 0。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);int cases;cin>>cases;\n  while(cases--){\n    int A,B,N;cin>>A>>B>>N;if(A==B){cout\u003c\u003c0\u003c\u003c'\\n';continue;}\n    int limit=max(100,max(abs(A),abs(B))*N+N+10),offset=limit;\n    vector\u003cint>dist(2*limit+1,-1);queue\u003cint>q;dist[A+offset]=0;q.push(A);\n    while(!q.empty()&&dist[B+offset]\u003c0){\n      int x=q.front();q.pop();array\u003clong long,3>next={x-1LL,x+1LL,1LL*x*N};\n      for(long long y:next)if(y>=-limit&&y\u003c=limit&&dist[(int)y+offset]\u003c0){dist[(int)y+offset]=dist[x+offset]+1;q.push((int)y);}\n    }\n    cout\u003c\u003cdist[B+offset]\u003c\u003c'\\n';\n  }\n  return 0;\n}\n","sampleInput":"3\n3 11 2\n-5 -12 3\n-2 1000 7","sampleOutput":"3\n2\n13"},{"description":["There is a kind of balanced binary search tree named red-black tree in the data structure. It has the following 5 properties:","(1) Every node is either red or black.\n(2) The root is black.\n(3) Every leaf (NULL) is black.\n(4) If a node is red, then both its children are black.\n(5) For each node, all simple paths from the node to descendant leaves contain the same number of black nodes.","For example, the tree in Figure 1 is a red-black tree, while the ones in Figure 2 and 3 are not.","Figure 1\tFigure 2\tFigure 3","For each given binary search tree, you are supposed to tell if it is possible to color the nodes and turn it into a legal red-black tree."],"id":"1035","input":"Each input file contains several test cases.  The first line gives a positive integer K (≤10) which is the total number of cases.  For each case, the first line gives a positive integer N (≤30), the total number of nodes in the binary search tree.  The second line gives the postorder traversal sequence of the tree.  All the numbers in a line are separated by a space.","officialUrl":"https://pintia.cn/problem-sets/994805148990160896/exam/problems/type/7?problemSetProblemId=1697152161245261826","output":"For each test case, print in a line Yes if the given tree can be turned into a legal red-black tree, or No if not.","samples":[{"input":"3\n9\n1 4 5 2 8 15 14 11 7\n9\n1 4 5 8 7 2 15 14 11\n8\n6 5 8 7 11 17 15 10","output":"Yes\nNo\nYes","explanation":"","label":""}],"score":35,"title":"Color the Tree","category":"树形动态规划","idea":["根据后序序列末项为根、左子树值小于根、右子树值大于根，递归还原 BST。","对每个节点分别维护“根涂黑/根涂红时可达到的黑高集合”。","黑根允许任意颜色孩子且黑高加 1；红根要求两个孩子均为黑色且黑高不变。"],"keyPoints":["NULL 叶子视为黑色，初始黑高为 1。","左右孩子的黑高必须相同才能合并。","最终根必须为黑色，只需判断根的黑色状态集合是否非空。"],"code":"#include \u003calgorithm>\n#include \u003carray>\n#include \u003cbitset>\n#include \u003ccmath>\n#include \u003ccstdint>\n#include \u003ccstring>\n#include \u003cfunctional>\n#include \u003ciomanip>\n#include \u003ciostream>\n#include \u003climits>\n#include \u003cmap>\n#include \u003cnumeric>\n#include \u003cqueue>\n#include \u003cset>\n#include \u003csstream>\n#include \u003cstack>\n#include \u003cstring>\n#include \u003ctuple>\n#include \u003cunordered_map>\n#include \u003cunordered_set>\n#include \u003cutility>\n#include \u003cvector>\n\nusing namespace std;\n\nstruct Node{int value;Node*left=nullptr,*right=nullptr;};\nNode* build(const vector\u003cint>&post,int l,int r,bool&valid){\n  if(l>r)return nullptr;int root=post[r],split=l;while(split\u003cr&&post[split]\u003croot)++split;for(int i=split;i\u003cr;++i)if(post[i]\u003croot)valid=false;\n  Node*node=new Node{root};node->left=build(post,l,split-1,valid);node->right=build(post,split,r-1,valid);return node;\n}\nstruct Colors{set\u003cint>black,red;};\nColors solve(Node*node){\n  if(!node)return Colors{{1},{}};Colors L=solve(node->left),R=solve(node->right),answer;set\u003cint>anyL=L.black,anyR=R.black;anyL.insert(L.red.begin(),L.red.end());anyR.insert(R.red.begin(),R.red.end());\n  for(int h:anyL)if(anyR.count(h))answer.black.insert(h+1);\n  for(int h:L.black)if(R.black.count(h))answer.red.insert(h);\n  return answer;\n}\nint main(){\n  ios::sync_with_stdio(false);cin.tie(nullptr);int cases;cin>>cases;while(cases--){int n;cin>>n;vector\u003cint>post(n);for(int&x:post)cin>>x;bool valid=true;Node*root=build(post,0,n-1,valid);cout\u003c\u003c(valid&&!solve(root).black.empty()?\"Yes\":\"No\")\u003c\u003c'\\n';}return 0;\n}\n","sampleInput":"3\n9\n1 4 5 2 8 15 14 11 7\n9\n1 4 5 8 7 2 15 14 11\n8\n6 5 8 7 11 17 15 10","sampleOutput":"Yes\nNo\nYes"}],"total":35,"config":{"pageTitle":"PAT (Top Level) Practice","workbenchTitle":"顶级题库工作台","sourceLabel":"PAT TOP 题库","documentSuffix":"PAT TOP 题库","storagePrefix":"ruiqy.pat-top","answerPrefix":"ruiqy-pat-top-answer-"}}
+  var problems = library.problems
+  var config = library.config
+  var COMPLETED_KEY = config.storagePrefix + '.completed.v1'
+  var PAT_THEME_KEY = 'ruiqy.daily.doki-theme.v1'
+  var PAT_STICKER_POSITION_KEY = config.storagePrefix + '.sticker-position.v1'
+  var PAT_THEMES = {
+    'emilia-light': { tone: 'light', sticker: '/daily/doki/emilia_light.png' },
+    'beatrice': { tone: 'light', sticker: '/daily/doki/beatrice.png' },
+    'echidna': { tone: 'dark', sticker: '/daily/doki/echidna_dark.png' },
+    'inori-light': { tone: 'light', sticker: '/daily/doki/inori_light.png' },
+    'nao-light': { tone: 'light', sticker: '/daily/doki/nao_light.png' }
+  }
+  var completedProblems = loadCompletedProblems()
+  var currentIndex = Math.max(0, problems.findIndex(function (problem) {
+    return problem.id === window.location.hash.slice(1)
+  }))
+  var editor = document.querySelector('[data-pat-editor]')
+  var lineNumbers = document.querySelector('[data-line-numbers]')
+  var problemList = document.querySelector('[data-problem-list]')
+  var copyButton = document.querySelector('[data-copy-code]')
+  var previousButton = document.querySelector('[data-previous-problem]')
+  var nextButton = document.querySelector('[data-next-problem]')
+  var completeButton = document.querySelector('[data-toggle-complete]')
+  var completedCount = document.querySelector('[data-completed-count]')
+  var patThemePicker = document.querySelector('[data-pat-theme-picker]')
+  var patThemeToggle = document.querySelector('[data-pat-theme-toggle]')
+  var patThemeMenu = document.querySelector('[data-pat-theme-menu]')
+  var patTools = document.querySelector('[data-pat-tools]')
+  var patSticker = document.querySelector('[data-pat-sticker]')
+
+  function escapeHtml (value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;')
+  }
+
+  function storageKey (problem) {
+    return config.answerPrefix + problem.id
+  }
+
+  function storedPatTheme () {
+    try {
+      var saved = window.localStorage.getItem(PAT_THEME_KEY)
+      return PAT_THEMES[saved] ? saved : 'emilia-light'
+    } catch (error) {
+      return 'emilia-light'
+    }
+  }
+
+  function applyPatTheme (themeId, persist) {
+    var id = PAT_THEMES[themeId] ? themeId : 'emilia-light'
+    var theme = PAT_THEMES[id]
+    document.documentElement.setAttribute('data-pat-theme', id)
+    document.body.setAttribute('data-pat-theme', id)
+    document.body.setAttribute('data-pat-tone', theme.tone)
+    if (patSticker) patSticker.src = theme.sticker
+    document.querySelectorAll('[data-pat-theme-option]').forEach(function (button) {
+      var active = button.getAttribute('data-pat-theme-option') === id
+      button.classList.toggle('is-active', active)
+      button.setAttribute('aria-checked', active ? 'true' : 'false')
+    })
+    if (persist) {
+      try { window.localStorage.setItem(PAT_THEME_KEY, id) } catch (error) {}
+    }
+  }
+
+  function setPatThemeMenu (open) {
+    if (!patThemeMenu || !patThemeToggle) return
+    patThemeMenu.hidden = !open
+    patThemeToggle.classList.toggle('is-open', open)
+    patThemeToggle.setAttribute('aria-expanded', open ? 'true' : 'false')
+  }
+
+  function makeStickerDraggable (element, handle, storageName) {
+    if (!element || !handle) return
+    var dragging = false
+    var startX = 0
+    var startY = 0
+    var originLeft = 0
+    var originTop = 0
+
+    function clampPosition (left, top) {
+      var rect = element.getBoundingClientRect()
+      return {
+        left: Math.min(Math.max(8, left), Math.max(8, window.innerWidth - rect.width - 8)),
+        top: Math.min(Math.max(8, top), Math.max(8, window.innerHeight - rect.height - 8))
+      }
+    }
+
+    function place (left, top) {
+      var position = clampPosition(left, top)
+      element.style.left = position.left + 'px'
+      element.style.top = position.top + 'px'
+      element.style.right = 'auto'
+      element.style.bottom = 'auto'
+      return position
+    }
+
+    function restorePosition () {
+      try {
+        var saved = JSON.parse(window.localStorage.getItem(storageName) || 'null')
+        if (saved && Number.isFinite(saved.left) && Number.isFinite(saved.top)) place(saved.left, saved.top)
+      } catch (error) {}
+    }
+
+    handle.addEventListener('pointerdown', function (event) {
+      if (event.button !== 0) return
+      var rect = element.getBoundingClientRect()
+      dragging = true
+      startX = event.clientX
+      startY = event.clientY
+      originLeft = rect.left
+      originTop = rect.top
+      element.classList.add('is-dragging')
+      handle.setPointerCapture(event.pointerId)
+      event.preventDefault()
+    })
+
+    handle.addEventListener('pointermove', function (event) {
+      if (!dragging) return
+      place(originLeft + event.clientX - startX, originTop + event.clientY - startY)
+    })
+
+    function finishDrag (event) {
+      if (!dragging) return
+      dragging = false
+      element.classList.remove('is-dragging')
+      if (handle.hasPointerCapture(event.pointerId)) handle.releasePointerCapture(event.pointerId)
+      var rect = element.getBoundingClientRect()
+      var position = place(rect.left, rect.top)
+      try { window.localStorage.setItem(storageName, JSON.stringify(position)) } catch (error) {}
+    }
+
+    handle.addEventListener('pointerup', finishDrag)
+    handle.addEventListener('pointercancel', finishDrag)
+    window.addEventListener('resize', function () {
+      var rect = element.getBoundingClientRect()
+      if (element.style.left) place(rect.left, rect.top)
+    })
+    restorePosition()
+  }
+
+  function loadCompletedProblems () {
+    try {
+      var saved = JSON.parse(window.localStorage.getItem(COMPLETED_KEY) || '[]')
+      return Array.isArray(saved) ? saved : []
+    } catch (error) {
+      return []
+    }
+  }
+
+  function saveCompletedProblems () {
+    try {
+      window.localStorage.setItem(COMPLETED_KEY, JSON.stringify(completedProblems))
+    } catch (error) {
+      // Completion tracking remains available for this visit.
+    }
+  }
+
+  function isProblemComplete (problemId) {
+    return completedProblems.indexOf(problemId) !== -1
+  }
+
+  function getSavedCode (problem) {
+    try {
+      return window.localStorage.getItem(storageKey(problem)) || problem.code
+    } catch (error) {
+      return problem.code
+    }
+  }
+
+  function saveCode () {
+    var problem = problems[currentIndex]
+    try {
+      window.localStorage.setItem(storageKey(problem), editor.value)
+    } catch (error) {
+      // Local persistence is optional; the editor remains usable without it.
+    }
+  }
+
+  function updateLineNumbers () {
+    var count = editor.value.split('\n').length
+    var lines = []
+    for (var i = 1; i <= count; i += 1) lines.push(i)
+    lineNumbers.textContent = lines.join('\n')
+    lineNumbers.scrollTop = editor.scrollTop
+  }
+
+  function renderProblemList () {
+    problemList.innerHTML = ''
+    for (var offset = 0; offset < library.total; offset += 1) {
+      var problemId = String(1001 + offset)
+      var index = problems.findIndex(function (problem) { return problem.id === problemId })
+      var problem = index >= 0 ? problems[index] : null
+      var button = document.createElement('button')
+      button.type = 'button'
+      button.className = 'pat-number-button'
+      button.setAttribute('data-problem-id', problemId)
+      button.textContent = problemId
+      if (problem) {
+        button.classList.add('is-ready')
+        button.title = problemId + ' ' + problem.title
+        button.addEventListener('click', (function (problemIndex) {
+          return function () { selectProblem(problemIndex) }
+        })(index))
+      } else {
+        button.disabled = true
+        button.title = problemId + ' 待整理'
+      }
+      problemList.appendChild(button)
+    }
+    syncCompletionState()
+  }
+
+  function syncCompletionState () {
+    var currentProblem = problems[currentIndex]
+    Array.prototype.forEach.call(problemList.querySelectorAll('.pat-number-button'), function (button) {
+      var problemId = button.getAttribute('data-problem-id')
+      var complete = isProblemComplete(problemId)
+      button.classList.toggle('is-complete', complete)
+      button.textContent = complete ? '✓' : problemId
+      button.setAttribute('aria-label', complete ? problemId + ' 已完成' : problemId)
+      button.classList.toggle('is-active', problemId === currentProblem.id)
+    })
+    completedCount.textContent = String(completedProblems.length)
+    var currentComplete = isProblemComplete(currentProblem.id)
+    completeButton.classList.toggle('is-complete', currentComplete)
+    completeButton.setAttribute('aria-pressed', currentComplete ? 'true' : 'false')
+    completeButton.title = currentComplete ? '取消完成标记' : '标记本题完成'
+    var activeButton = problemList.querySelector('.pat-number-button.is-active')
+    if (activeButton) activeButton.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+  }
+
+  function renderStatement (problem) {
+    document.querySelector('[data-current-id]').textContent = problem.id
+    document.querySelector('[data-current-title]').textContent = problem.id + ' ' + problem.title
+    document.querySelector('[data-statement-title]').textContent = problem.id + ' ' + problem.title
+    document.querySelector('[data-score]').textContent = '分数 ' + problem.score
+    document.querySelector('[data-category]').textContent = problem.category
+    document.querySelector('[data-description]').innerHTML = problem.description.map(function (paragraph) {
+      return '<p>' + escapeHtml(paragraph) + '</p>'
+    }).join('')
+    document.querySelector('[data-input]').textContent = problem.input
+    document.querySelector('[data-output]').textContent = problem.output
+    var samples = problem.samples && problem.samples.length
+      ? problem.samples
+      : [{ input: problem.sampleInput, output: problem.sampleOutput, explanation: '' }]
+    document.querySelector('[data-samples]').innerHTML = samples.map(function (sample, index) {
+      var suffix = samples.length > 1 ? ' ' + (sample.label || index + 1) : ''
+      var explanation = sample.explanation
+        ? '<div class="pat-sample-explanation"><strong>样例说明</strong>\n' + escapeHtml(sample.explanation) + '</div>'
+        : ''
+      return '<h3>输入样例' + escapeHtml(suffix) + '</h3>' +
+        '<div class="pat-sample"><header><span>in</span><span>样例输入</span></header><pre>' + escapeHtml(sample.input) + '</pre></div>' +
+        '<h3>输出样例' + escapeHtml(suffix) + '</h3>' +
+        '<div class="pat-sample"><header><span>out</span><span>期望输出</span></header><pre>' + escapeHtml(sample.output) + '</pre></div>' +
+        explanation
+    }).join('')
+  }
+
+  function renderAnswer (problem) {
+    var ideaTones = ['is-main', 'is-core', 'is-explain']
+    document.querySelector('[data-idea]').innerHTML = problem.idea.map(function (item, index) {
+      return '<li class="pat-idea-item ' + ideaTones[index % ideaTones.length] + '">' + escapeHtml(item) + '</li>'
+    }).join('')
+    document.querySelector('[data-key-points]').innerHTML = problem.keyPoints.map(function (item) {
+      return '<li>' + escapeHtml(item) + '</li>'
+    }).join('')
+    document.querySelector('[data-test-input]').textContent = problem.sampleInput
+    document.querySelector('[data-test-output]').textContent = problem.sampleOutput
+    editor.value = getSavedCode(problem)
+    updateLineNumbers()
+  }
+
+  function selectProblem (index) {
+    if (index < 0 || index >= problems.length) return
+    currentIndex = index
+    var problem = problems[currentIndex]
+    previousButton.disabled = currentIndex === 0
+    nextButton.disabled = currentIndex === problems.length - 1
+    renderStatement(problem)
+    renderAnswer(problem)
+    window.history.replaceState(null, '', '#' + problem.id)
+    document.title = problem.id + ' ' + problem.title + ' · ' + config.documentSuffix
+    syncCompletionState()
+    document.querySelector('.pat-problem-panel').scrollTop = 0
+    document.querySelector('.pat-answer-panel').scrollTop = 0
+  }
+
+  editor.addEventListener('input', function () {
+    updateLineNumbers()
+    saveCode()
+  })
+  editor.addEventListener('scroll', function () { lineNumbers.scrollTop = editor.scrollTop })
+  editor.addEventListener('keydown', function (event) {
+    if (event.key !== 'Tab') return
+    event.preventDefault()
+    var start = editor.selectionStart
+    var end = editor.selectionEnd
+    editor.value = editor.value.slice(0, start) + '  ' + editor.value.slice(end)
+    editor.selectionStart = editor.selectionEnd = start + 2
+    updateLineNumbers()
+    saveCode()
+  })
+
+  copyButton.addEventListener('click', function () {
+    var copied = function () {
+      copyButton.textContent = '已复制'
+      copyButton.classList.add('is-copied')
+      window.setTimeout(function () {
+        copyButton.textContent = '复制代码'
+        copyButton.classList.remove('is-copied')
+      }, 1400)
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(editor.value).then(copied)
+      return
+    }
+    editor.select()
+    document.execCommand('copy')
+    copied()
+  })
+
+  previousButton.addEventListener('click', function () { selectProblem(currentIndex - 1) })
+  nextButton.addEventListener('click', function () { selectProblem(currentIndex + 1) })
+  completeButton.addEventListener('click', function () {
+    var problemId = problems[currentIndex].id
+    var completedIndex = completedProblems.indexOf(problemId)
+    if (completedIndex === -1) completedProblems.push(problemId)
+    else completedProblems.splice(completedIndex, 1)
+    saveCompletedProblems()
+    syncCompletionState()
+  })
+  window.addEventListener('hashchange', function () {
+    var index = problems.findIndex(function (problem) { return problem.id === window.location.hash.slice(1) })
+    if (index >= 0 && index !== currentIndex) selectProblem(index)
+  })
+
+  patThemeToggle.addEventListener('click', function (event) {
+    event.stopPropagation()
+    setPatThemeMenu(patThemeMenu.hidden)
+  })
+  document.querySelectorAll('[data-pat-theme-option]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      applyPatTheme(button.getAttribute('data-pat-theme-option'), true)
+      setPatThemeMenu(false)
+    })
+  })
+  document.addEventListener('click', function (event) {
+    if (patThemePicker && !patThemePicker.contains(event.target)) setPatThemeMenu(false)
+  })
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') setPatThemeMenu(false)
+  })
+  window.addEventListener('storage', function (event) {
+    if (event.key === PAT_THEME_KEY) applyPatTheme(event.newValue, false)
+  })
+
+  applyPatTheme(storedPatTheme(), false)
+  makeStickerDraggable(patTools, patSticker, PAT_STICKER_POSITION_KEY)
+  renderProblemList()
+  selectProblem(currentIndex)
+})()
+</script>
+  <script src="/js/doki-global-theme@1.0.0.js?v=1.1.0"></script>
+</body>
+</html>
