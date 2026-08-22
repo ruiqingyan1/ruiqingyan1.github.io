@@ -6501,9 +6501,14 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     'inori-light': { tone: 'light', sticker: '/daily/doki/inori_light.png' },
     'nao-light': { tone: 'light', sticker: '/daily/doki/nao_light.png' }
   }
-  var API_BASE = (location.hostname === '127.0.0.1' || location.hostname === 'localhost')
+  var IS_LOCAL_PREVIEW = location.hostname === '127.0.0.1' || location.hostname === 'localhost' || location.hostname === '[::1]' || location.protocol === 'file:'
+  var API_BASE = IS_LOCAL_PREVIEW
     ? 'http://127.0.0.1:7002'
     : '/api/daily'
+  var AUTH_CACHE_KEY = 'ruiqy.daily.auth.v1'
+  var LOCAL_API_MIGRATION_KEY = 'ruiqy.daily.local-api-migrated.v1'
+  var AUTH_RECHECK_MS = 30 * 60 * 1000
+  var AUTH_RETRY_MS = 5 * 60 * 1000
   var FOCUS_SECONDS = 50 * 60
   var BREAK_SECONDS = 10 * 60
   var STUDY_TAGS = [
@@ -6650,7 +6655,10 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
   var toastHandle = null
   var remoteSaveHandle = null
   var activePlanIconGroup = PLAN_ICON_GROUPS[0].id
-  var authState = { authenticated: false, trusted: false, trustDays: null, csrf: null, available: true }
+  var authState = { authenticated: IS_LOCAL_PREVIEW, trusted: IS_LOCAL_PREVIEW, trustDays: null, csrf: null, available: true }
+  var authCheckHandle = null
+  var authCheckInFlight = null
+  var authInteractionActive = false
 
   var inboxForm = document.querySelector('[data-inbox-form]')
   var inboxInput = document.querySelector('[data-inbox-input]')
@@ -7364,6 +7372,59 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     })
   }
 
+  function readAuthCache() {
+    if (IS_LOCAL_PREVIEW) return null
+    try {
+      var cached = JSON.parse(sessionStorage.getItem(AUTH_CACHE_KEY))
+      if (!cached || !cached.authenticated || !cached.csrf || !Number(cached.checkedAt)) return null
+      return cached
+    } catch (error) {
+      return null
+    }
+  }
+
+  function storeAuthCache() {
+    if (IS_LOCAL_PREVIEW || !authState.authenticated || !authState.csrf) return
+    try {
+      sessionStorage.setItem(AUTH_CACHE_KEY, JSON.stringify({
+        authenticated: true,
+        trusted: Boolean(authState.trusted),
+        trustDays: Number(authState.trustDays) || null,
+        csrf: authState.csrf,
+        checkedAt: Date.now()
+      }))
+    } catch (error) {}
+  }
+
+  function clearAuthCache() {
+    if (IS_LOCAL_PREVIEW) return
+    try {
+      sessionStorage.removeItem(AUTH_CACHE_KEY)
+    } catch (error) {}
+  }
+
+  function applyCachedAuth(cached) {
+    if (!cached) return false
+    authState.authenticated = true
+    authState.trusted = Boolean(cached.trusted)
+    authState.trustDays = Number(cached.trustDays) || null
+    authState.csrf = cached.csrf
+    authState.available = true
+    return true
+  }
+
+  function scheduleAuthCheck(delay) {
+    if (IS_LOCAL_PREVIEW) return
+    clearTimeout(authCheckHandle)
+    authCheckHandle = setTimeout(function () {
+      if (authInteractionActive || document.hidden) {
+        scheduleAuthCheck(60 * 1000)
+        return
+      }
+      initializeAccount({ force: true, silent: true })
+    }, Math.max(1000, Number(delay) || AUTH_RECHECK_MS))
+  }
+
   function hasLocalContent(value) {
     return Boolean(value.inbox.length || value.trash.length || value.memos.length || value.memoFolders.length || Object.keys(value.days).length || Object.keys(value.weeklyNotes).length)
   }
@@ -7372,13 +7433,14 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     clearTimeout(remoteSaveHandle)
     remoteSaveHandle = setTimeout(function () {
       apiRequest('/data', { method: 'PUT', body: JSON.stringify({ state: state }) }).catch(function (error) {
-        if (error.status === 401 || error.status === 403) {
+        if (!IS_LOCAL_PREVIEW && (error.status === 401 || error.status === 403)) {
           authState.authenticated = false
           authState.csrf = null
+          clearAuthCache()
           renderAll()
           showToast('登录已失效，本次内容只保存在当前浏览器')
         } else {
-          showToast('服务器同步失败，本地内容仍已保存')
+          showToast(IS_LOCAL_PREVIEW ? '本地数据服务暂时未连接，内容仍保存在浏览器' : '服务器同步失败，本地内容仍已保存')
         }
       })
     }, 500)
@@ -7428,10 +7490,12 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
 
   function openAuthModal() {
     if (!authModal) return
+    if (IS_LOCAL_PREVIEW) return
     if (!authState.available) {
       showToast('登录服务未启动，当前为只读预览')
       return
     }
+    authInteractionActive = true
     authMessage.textContent = ''
     authModal.hidden = false
     setTimeout(function () { authPassword.focus() }, 0)
@@ -7439,6 +7503,7 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
 
   function closeAuthModal() {
     if (!authModal) return
+    authInteractionActive = false
     authModal.hidden = true
     authForm.reset()
     authMessage.textContent = ''
@@ -7454,6 +7519,9 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       authState.trusted = Boolean(payload.trusted)
       authState.trustDays = Number(payload.trustDays) || trustDays
       authState.csrf = payload.csrf
+      authState.available = true
+      storeAuthCache()
+      scheduleAuthCheck(AUTH_RECHECK_MS)
       closeAuthModal()
       return apiRequest('/data', { method: 'GET' })
     }).then(function (documentData) {
@@ -7474,10 +7542,13 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
   }
 
   function logout() {
+    if (IS_LOCAL_PREVIEW) return Promise.resolve()
     return apiRequest('/logout', { method: 'POST', body: '{}' }).catch(function () {
       return null
     }).then(function () {
       authState = { authenticated: false, trusted: false, trustDays: null, csrf: null, available: true }
+      clearAuthCache()
+      scheduleAuthCheck(AUTH_RECHECK_MS)
       if (timer.running) toggleTimer()
       if (routineTimer) stopRoutine(true)
       renderAll()
@@ -7489,12 +7560,166 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
   }
 
-  function initializeAccount() {
-    return apiRequest('/session', { method: 'GET' }).then(function (payload) {
+  function cloneStateValue(value) {
+    return JSON.parse(JSON.stringify(value))
+  }
+
+  function mergeUniqueValues(left, right) {
+    var seen = Object.create(null)
+    return (Array.isArray(left) ? left : []).concat(Array.isArray(right) ? right : []).filter(function (value) {
+      var key = typeof value === 'string' ? value : JSON.stringify(value)
+      if (seen[key]) return false
+      seen[key] = true
+      return true
+    })
+  }
+
+  function mergeEntityLists(serverItems, browserItems, preferNewestMemo) {
+    var order = []
+    var values = Object.create(null)
+    ;(Array.isArray(serverItems) ? serverItems : []).forEach(function (item) {
+      var key = item && item.id ? String(item.id) : JSON.stringify(item)
+      if (!Object.prototype.hasOwnProperty.call(values, key)) order.push(key)
+      values[key] = cloneStateValue(item)
+    })
+    ;(Array.isArray(browserItems) ? browserItems : []).forEach(function (item) {
+      var key = item && item.id ? String(item.id) : JSON.stringify(item)
+      if (!Object.prototype.hasOwnProperty.call(values, key)) order.push(key)
+      if (preferNewestMemo && values[key] && Number(values[key].updatedAt) > Number(item && item.updatedAt)) return
+      values[key] = cloneStateValue(item)
+    })
+    return order.map(function (key) { return values[key] })
+  }
+
+  function mergeNumberMaps(serverMap, browserMap) {
+    var result = Object.assign({}, serverMap || {})
+    Object.keys(browserMap || {}).forEach(function (key) {
+      result[key] = Math.max(Number(result[key]) || 0, Number(browserMap[key]) || 0)
+    })
+    return result
+  }
+
+  function mergeBooleanMaps(serverMap, browserMap) {
+    var result = Object.assign({}, serverMap || {})
+    Object.keys(browserMap || {}).forEach(function (key) {
+      result[key] = Boolean(result[key] || browserMap[key])
+    })
+    return result
+  }
+
+  function mergeLocalDay(serverDay, browserDay) {
+    var remote = serverDay && typeof serverDay === 'object' ? serverDay : {}
+    var local = browserDay && typeof browserDay === 'object' ? browserDay : {}
+    var result = Object.assign({}, remote, local)
+    result.tasks = mergeEntityLists(remote.tasks, local.tasks, false)
+    result.note = local.note || remote.note || ''
+    result.summary = local.summary || remote.summary || ''
+    result.focusSessions = Math.max(Number(remote.focusSessions) || 0, Number(local.focusSessions) || 0)
+    result.focusSeconds = Math.max(Number(remote.focusSeconds) || 0, Number(local.focusSeconds) || 0)
+    result.focusByProject = mergeNumberMaps(remote.focusByProject, local.focusByProject)
+    result.focusByProjectSeconds = mergeNumberMaps(remote.focusByProjectSeconds, local.focusByProjectSeconds)
+    result.routineSeconds = mergeNumberMaps(remote.routineSeconds, local.routineSeconds)
+    result.routineCompleted = mergeBooleanMaps(remote.routineCompleted, local.routineCompleted)
+    result.routineFocusRecords = mergeUniqueValues(remote.routineFocusRecords, local.routineFocusRecords)
+    return result
+  }
+
+  function mergeLocalBootstrapState(serverState, browserState) {
+    var remote = serverState && typeof serverState === 'object' ? serverState : blankState()
+    var local = browserState && typeof browserState === 'object' ? browserState : blankState()
+    var merged = Object.assign({}, cloneStateValue(remote), cloneStateValue(local))
+    merged.version = Math.max(Number(remote.version) || 0, Number(local.version) || 0)
+    merged.planGroups = mergeEntityLists(remote.planGroups, local.planGroups, false)
+    merged.planSubgroups = mergeEntityLists(remote.planSubgroups, local.planSubgroups, false)
+    merged.planSections = mergeEntityLists(remote.planSections, local.planSections, false)
+    merged.inbox = mergeEntityLists(remote.inbox, local.inbox, false)
+    merged.trash = mergeEntityLists(remote.trash, local.trash, false)
+    merged.planCompletionHistory = mergeEntityLists(remote.planCompletionHistory, local.planCompletionHistory, false)
+    merged.memoFolders = mergeEntityLists(remote.memoFolders, local.memoFolders, false)
+    merged.memos = mergeEntityLists(remote.memos, local.memos, true)
+    merged.deletedPlanProjectIds = mergeUniqueValues(remote.deletedPlanProjectIds, local.deletedPlanProjectIds)
+    merged.deletedPlanSectionIds = mergeUniqueValues(remote.deletedPlanSectionIds, local.deletedPlanSectionIds)
+    merged.deletedPlanTaskIds = mergeUniqueValues(remote.deletedPlanTaskIds, local.deletedPlanTaskIds)
+    merged.utilityRead = {
+      alertKeys: mergeUniqueValues(remote.utilityRead && remote.utilityRead.alertKeys, local.utilityRead && local.utilityRead.alertKeys).slice(-500),
+      trashIds: mergeUniqueValues(remote.utilityRead && remote.utilityRead.trashIds, local.utilityRead && local.utilityRead.trashIds).slice(-500)
+    }
+    merged.weeklyNotes = Object.assign({}, remote.weeklyNotes || {}, local.weeklyNotes || {})
+    merged.days = {}
+    mergeUniqueValues(Object.keys(remote.days || {}), Object.keys(local.days || {})).forEach(function (key) {
+      merged.days[key] = mergeLocalDay(remote.days && remote.days[key], local.days && local.days[key])
+    })
+    return merged
+  }
+
+  function initializeLocalAccount() {
+    authState = { authenticated: true, trusted: true, trustDays: null, csrf: null, available: true }
+    renderAll()
+    return apiRequest('/data', { method: 'GET' }).then(function (documentData) {
+      var apiState = documentData.state && typeof documentData.state === 'object' ? documentData.state : blankState()
+      var migrated = localStorage.getItem(LOCAL_API_MIGRATION_KEY) === '1'
+      if (!migrated) {
+        state = mergeLocalBootstrapState(apiState, state)
+        normalizePlanState(state)
+        saveLocalOnly()
+        renderAll()
+        return apiRequest('/data', { method: 'PUT', body: JSON.stringify({ state: state }) }).then(function () {
+          localStorage.setItem(LOCAL_API_MIGRATION_KEY, '1')
+          showToast('本地浏览器数据已合并到本地 Daily 数据文件')
+        })
+      }
+      if (Number(documentData.revision) > 0) {
+        state = apiState
+        normalizePlanState(state)
+        saveLocalOnly()
+      } else if (hasLocalContent(state)) {
+        scheduleRemoteSave()
+      }
+      renderAll()
+      return null
+    }).catch(function () {
+      authState.available = true
+      authState.authenticated = true
+      renderAll()
+      showToast('本地数据服务暂时未启动，内容仅保存在当前浏览器')
+    })
+  }
+
+  function initializeAccount(options) {
+    var settings = options || {}
+    if (IS_LOCAL_PREVIEW) {
+      return initializeLocalAccount()
+    }
+    if (authCheckInFlight) return authCheckInFlight
+
+    var cached = readAuthCache()
+    if (!settings.force && applyCachedAuth(cached)) {
+      var cacheAge = Math.max(0, Date.now() - Number(cached.checkedAt))
+      renderAll()
+      if (cacheAge < AUTH_RECHECK_MS) {
+        scheduleAuthCheck(AUTH_RECHECK_MS - cacheAge)
+        return Promise.resolve()
+      }
+    }
+    if (authInteractionActive) {
+      scheduleAuthCheck(AUTH_RETRY_MS)
+      return Promise.resolve()
+    }
+
+    var previouslyAuthenticated = authState.authenticated
+    var sessionResolved = false
+    var request = apiRequest('/session', { method: 'GET' }).then(function (payload) {
+      sessionResolved = true
       authState.authenticated = Boolean(payload.authenticated)
       authState.trusted = Boolean(payload.trusted)
       authState.trustDays = Number(payload.trustDays) || null
       authState.csrf = payload.csrf || null
+      authState.available = true
+      if (authState.authenticated) storeAuthCache()
+      else clearAuthCache()
+      if (previouslyAuthenticated && !authState.authenticated) {
+        showToast('登录已到期，请重新授信')
+      }
       return apiRequest('/data', { method: 'GET' })
     }).then(function (documentData) {
       if (documentData.state && typeof documentData.state === 'object') {
@@ -7515,13 +7740,34 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
         }
       }
       renderAll()
+      scheduleAuthCheck(AUTH_RECHECK_MS)
     }).catch(function () {
-      authState.available = false
-      authState.authenticated = false
-      authState.csrf = null
+      if (!sessionResolved && previouslyAuthenticated) {
+        authState.authenticated = true
+        authState.available = true
+      } else if (!sessionResolved) {
+        authState.available = false
+        authState.authenticated = false
+        authState.csrf = null
+        clearAuthCache()
+      }
       renderAll()
-      showToast('本地登录服务未启动，当前为只读预览')
+      if (!settings.silent) {
+        showToast(authState.authenticated
+          ? '授权检查暂时失败，已保留当前登录状态'
+          : '登录服务暂时无法连接，当前为只读预览')
+      }
+      scheduleAuthCheck(AUTH_RETRY_MS)
     })
+
+    authCheckInFlight = request.then(function (value) {
+      authCheckInFlight = null
+      return value
+    }, function (error) {
+      authCheckInFlight = null
+      throw error
+    })
+    return authCheckInFlight
   }
 
   function defaultTimer() {
