@@ -6588,6 +6588,8 @@ html.daily-standalone {
   --daily-webapp-inset-bottom: max(8px, env(safe-area-inset-bottom));
   --daily-webapp-inset-left: max(8px, env(safe-area-inset-left));
   --daily-webapp-radius: clamp(20px, 2.4vw, 28px);
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
   background: var(--daily-bg);
 }
 
@@ -6605,8 +6607,21 @@ html.daily-standalone::after {
   inset: var(--daily-webapp-inset-top) var(--daily-webapp-inset-right) var(--daily-webapp-inset-bottom) var(--daily-webapp-inset-left);
   border-radius: var(--daily-webapp-radius);
   box-shadow:
-    0 0 0 16px var(--daily-bg),
+    0 0 0 100vmax var(--daily-bg),
     inset 0 0 0 1px color-mix(in srgb, var(--daily-line) 82%, transparent);
+  content: '';
+  pointer-events: none;
+}
+
+/* Keep iPad's bottom safe area opaque while the long task page scrolls. */
+html.daily-standalone body::after {
+  position: fixed;
+  z-index: 10000;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: var(--daily-webapp-inset-bottom);
+  background: var(--daily-bg);
   content: '';
   pointer-events: none;
 }
