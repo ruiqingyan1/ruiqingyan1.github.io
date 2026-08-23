@@ -6557,7 +6557,9 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
 
 /* The iPad home-screen version gets a softer app-window silhouette. */
 html.daily-standalone {
-  --daily-webapp-inset-top: max(8px, env(safe-area-inset-top));
+  /* iPad standalone already keeps the page below its status bar. An extra
+     safe-area inset here creates a visible seam before the app header. */
+  --daily-webapp-inset-top: 0px;
   --daily-webapp-inset-right: max(8px, env(safe-area-inset-right));
   --daily-webapp-inset-bottom: max(8px, env(safe-area-inset-bottom));
   --daily-webapp-inset-left: max(8px, env(safe-area-inset-left));
