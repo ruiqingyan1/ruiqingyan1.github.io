@@ -3333,9 +3333,7 @@ body {
   display: grid;
   min-height: 50px;
   grid-template-columns: minmax(96px, 1fr) auto minmax(150px, auto);
-  grid-template-areas:
-    "identity timing actions"
-    "progress progress progress";
+  grid-template-areas: "identity timing actions";
   align-items: center;
   gap: 4px 8px;
   padding: 5px 3px;
@@ -3398,23 +3396,6 @@ body {
 .routine-item.is-active .routine-timing strong,
 .routine-item.is-active .routine-timing small {
   color: var(--daily-green);
-}
-
-.routine-progress {
-  height: 3px;
-  overflow: hidden;
-  grid-area: progress;
-  border-radius: 999px;
-  background: #e7ece9;
-}
-
-.routine-progress span {
-  display: block;
-  width: 0;
-  height: 100%;
-  border-radius: inherit;
-  background: #78a98d;
-  transition: width .2s ease;
 }
 
 .routine-actions {
@@ -5480,11 +5461,9 @@ body[data-authenticated="false"] input:disabled {
 .routine-item {
   min-height: 49px;
   grid-template-columns: 20px minmax(0, 1fr) minmax(106px, auto) 19px;
-  grid-template-areas:
-    "select identity timing check"
-    "progress progress progress progress";
+  grid-template-areas: "select identity timing check";
   gap: 5px 8px;
-  padding: 6px 2px;
+  padding: 6px 4px 6px 14px;
   cursor: pointer;
 }
 
@@ -5561,10 +5540,6 @@ body[data-authenticated="false"] input:disabled {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.routine-progress {
-  grid-area: progress;
 }
 
 .routine-item.is-complete .routine-copy strong {
@@ -5828,8 +5803,7 @@ body[data-authenticated="false"] input:disabled {
     grid-template-columns: 20px minmax(0, 1fr) 19px;
     grid-template-areas:
       "select identity check"
-      "timing timing timing"
-      "progress progress progress";
+      "timing timing timing";
   }
 
   .routine-timing {
@@ -12364,7 +12338,6 @@ html.daily-standalone .focus-column {
         ? sleepTotalMinutes(day) * 60
         : Math.max(0, Number(day.routineSeconds[routine.id]) || 0)
       var targetSeconds = routine.targetMinutes * 60
-      var percent = Math.min(100, Math.round(elapsed / targetSeconds * 100))
       var selected = selectedRoutineId === routine.id || (timer.taskId === routineTaskId(routine.id) && timer.dayKey === selectedDate)
       var reached = elapsed >= targetSeconds
       var complete = Boolean(day.routineCompleted[routine.id])
@@ -12412,12 +12385,6 @@ html.daily-standalone .focus-column {
       identity.appendChild(emoji)
       identity.appendChild(copy)
 
-      var progress = document.createElement('div')
-      progress.className = 'routine-progress'
-      var progressFill = document.createElement('span')
-      progressFill.style.width = percent + '%'
-      progress.appendChild(progressFill)
-
       var timing = document.createElement('button')
       timing.type = 'button'
       timing.className = 'routine-timing'
@@ -12426,9 +12393,9 @@ html.daily-standalone .focus-column {
       var stateLabel = document.createElement('small')
       stateLabel.textContent = routine.id === 'sleep'
         ? '点开调整睡眠结构'
-        : (complete ? '今日完成' : (reached ? '已达标' : percent + '%'))
+        : (complete ? '今日完成' : (reached ? '已达标' : ''))
       timing.appendChild(time)
-      timing.appendChild(stateLabel)
+      if (stateLabel.textContent) timing.appendChild(stateLabel)
       timing.title = routine.id === 'sleep' ? '查看并调整睡眠结构' : '按“时.分”修改实际时间'
       timing.addEventListener('click', function (event) {
         event.stopPropagation()
@@ -12445,7 +12412,6 @@ html.daily-standalone .focus-column {
       item.appendChild(identity)
       item.appendChild(timing)
       item.appendChild(checkbox)
-      item.appendChild(progress)
       routineList.appendChild(item)
     })
 
