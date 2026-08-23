@@ -5,9 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#ffffff">
   <meta name="description" content="轻量的每日计划、学习方向番茄钟、日常习惯计时与备忘记录。">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="阿颜打卡">
   <title>每日计划 | 阿颜的日常打卡</title>
+  <link rel="manifest" href="/daily/manifest.webmanifest">
+  <link rel="apple-touch-icon" sizes="180x180" href="/daily/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/daily/icons/icon-192.png">
   <script>
     (function () {
+      var standalonePreview = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)
+        && new URLSearchParams(location.search).get('standalone-preview') === '1'
+      var standalone = window.navigator.standalone === true
+        || (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)
+        || standalonePreview
+      if (standalone) document.documentElement.classList.add('daily-standalone')
       try {
         var saved = localStorage.getItem('ruiqy.daily.doki-theme.v1')
         var themes = ['emilia-light', 'beatrice', 'echidna', 'inori-light', 'nao-light']
@@ -6565,6 +6578,87 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
 
   .daily-doki-sticker {
     opacity: .86;
+  }
+}
+
+/* The iPad home-screen version gets a softer app-window silhouette. */
+html.daily-standalone {
+  --daily-webapp-inset-top: max(8px, env(safe-area-inset-top));
+  --daily-webapp-inset-right: max(8px, env(safe-area-inset-right));
+  --daily-webapp-inset-bottom: max(8px, env(safe-area-inset-bottom));
+  --daily-webapp-inset-left: max(8px, env(safe-area-inset-left));
+  --daily-webapp-radius: clamp(20px, 2.4vw, 28px);
+  background: var(--daily-bg);
+}
+
+html.daily-standalone body,
+html.daily-standalone body[data-doki-theme] {
+  min-height: 100dvh;
+  padding: var(--daily-webapp-inset-top) var(--daily-webapp-inset-right) var(--daily-webapp-inset-bottom) var(--daily-webapp-inset-left);
+  overflow-x: hidden;
+  background: var(--daily-bg);
+}
+
+html.daily-standalone::after {
+  position: fixed;
+  z-index: 9999;
+  inset: var(--daily-webapp-inset-top) var(--daily-webapp-inset-right) var(--daily-webapp-inset-bottom) var(--daily-webapp-inset-left);
+  border-radius: var(--daily-webapp-radius);
+  box-shadow:
+    0 0 0 16px var(--daily-bg),
+    inset 0 0 0 1px color-mix(in srgb, var(--daily-line) 82%, transparent);
+  content: '';
+  pointer-events: none;
+}
+
+html.daily-standalone .daily-app,
+html.daily-standalone body[data-doki-theme] .daily-app {
+  position: relative;
+  min-height: calc(100dvh - var(--daily-webapp-inset-top) - var(--daily-webapp-inset-bottom));
+  overflow: hidden;
+  overflow: clip;
+  border: 1px solid var(--daily-line);
+  border: 1px solid color-mix(in srgb, var(--daily-line) 82%, transparent);
+  border-radius: var(--daily-webapp-radius);
+  background-color: var(--daily-bg);
+  background-image: var(--doki-wallpaper);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  box-shadow: 0 18px 48px rgba(44, 30, 55, .16);
+}
+
+html.daily-standalone .app-rail {
+  top: var(--daily-webapp-inset-top);
+  bottom: var(--daily-webapp-inset-bottom);
+  left: var(--daily-webapp-inset-left);
+  border-radius: var(--daily-webapp-radius) 0 0 var(--daily-webapp-radius);
+}
+
+html.daily-standalone .daily-header {
+  top: var(--daily-webapp-inset-top);
+  border-radius: 0 var(--daily-webapp-radius) 0 0;
+}
+
+html.daily-standalone .utility-drawer {
+  top: calc(var(--daily-webapp-inset-top) + 68px);
+  bottom: var(--daily-webapp-inset-bottom);
+  left: calc(var(--daily-webapp-inset-left) + 68px);
+}
+
+html.daily-standalone .daily-layout {
+  min-height: calc(100dvh - 68px - var(--daily-webapp-inset-top) - var(--daily-webapp-inset-bottom));
+  border-radius: 0 0 var(--daily-webapp-radius) 0;
+  overflow: hidden;
+}
+
+@media (max-width: 840px) {
+  html.daily-standalone .daily-header {
+    border-radius: var(--daily-webapp-radius) var(--daily-webapp-radius) 0 0;
+  }
+
+  html.daily-standalone .daily-layout {
+    border-radius: 0 0 var(--daily-webapp-radius) var(--daily-webapp-radius);
   }
 }
 </style>

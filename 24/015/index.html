@@ -185,179 +185,174 @@
 <li><span style="color:#16a34a; font-weight:600;">绿色</span>：解释类内容、帮助理解知识点。</li>
 </ul>
 </div>
-
 <div class="note info flat"><p>返回：<a href="/24/000/">网络安全知识库</a> · 上一节：<a href="/24/014/">段定义与程序入口</a> · 下一节：<a href="/24/016/">位运算与操作数</a></p>
 </div>
-
 <h2 id="加法指令"><a href="#加法指令" class="headerlink" title="加法指令"></a>加法指令</h2><h3 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add destination, source</span><br></pre></td></tr></table></figure>
-
 <p><code>ADD</code> 执行普通加法，结果写回目标操作数，并更新 <code>CF、OF、SF、ZF、AF、PF</code> 等状态标志。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov al, 0FFh</span><br><span class="line">add al, 1       ; AL = 00h, CF = 1, ZF = 1</span><br></pre></td></tr></table></figure>
-
 <p>这里按无符号数解释发生进位，所以 <code>CF = 1</code>；按 8 位有符号数解释，<code>-1 + 1 = 0</code>，没有有符号溢出。</p>
 <h3 id="ADC"><a href="#ADC" class="headerlink" title="ADC"></a>ADC</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adc destination, source</span><br></pre></td></tr></table></figure>
-
 <p>实际计算：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">destination = destination + source + CF</span><br></pre></td></tr></table></figure>
-
 <p><code>ADC</code> 用于处理超过寄存器宽度的多精度加法。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">; EDX:EAX + ECX:EBX</span><br><span class="line">add eax, ebx</span><br><span class="line">adc edx, ecx</span><br></pre></td></tr></table></figure>
-
 <p>低 32 位产生的进位通过 CF 传递给高 32 位。</p>
 <h3 id="INC"><a href="#INC" class="headerlink" title="INC"></a>INC</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inc eax</span><br></pre></td></tr></table></figure>
-
 <p><code>INC</code> 把操作数加 1。它会影响多数算术标志，<span style="background-color:#ffd6e7; color:#9d174d; font-weight:600;">但不修改 CF</span>。</p>
 <blockquote>
 <p><span style="color:#f97316; font-weight:600;">因此 INC 不能替代需要传播进位的 ADD。</span></p>
 </blockquote>
 <h2 id="减法指令"><a href="#减法指令" class="headerlink" title="减法指令"></a>减法指令</h2><h3 id="SUB"><a href="#SUB" class="headerlink" title="SUB"></a>SUB</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sub destination, source</span><br></pre></td></tr></table></figure>
-
 <p>实际计算：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">destination = destination - source</span><br></pre></td></tr></table></figure>
-
 <p><code>SUB</code> 会更新 <code>CF、OF、SF、ZF、AF、PF</code>。减法中的 <code>CF</code> 可以理解为无符号借位标志。</p>
 <h3 id="SBB"><a href="#SBB" class="headerlink" title="SBB"></a>SBB</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sbb destination, source</span><br></pre></td></tr></table></figure>
-
 <p>实际计算：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">destination = destination - source - CF</span><br></pre></td></tr></table></figure>
-
 <p>它与 <code>ADC</code> 对应，用于多精度减法：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">; EDX:EAX - ECX:EBX</span><br><span class="line">sub eax, ebx</span><br><span class="line">sbb edx, ecx</span><br></pre></td></tr></table></figure>
-
 <h3 id="DEC"><a href="#DEC" class="headerlink" title="DEC"></a>DEC</h3><p><code>DEC</code> 把操作数减 1，与 <code>INC</code> 一样<span style="background-color:#ffd6e7; color:#9d174d; font-weight:600;">不会修改 CF</span>。</p>
 <h2 id="NEG-与补码"><a href="#NEG-与补码" class="headerlink" title="NEG 与补码"></a>NEG 与补码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">neg eax</span><br></pre></td></tr></table></figure>
-
 <p><code>NEG</code> 计算 <code>0 - EAX</code>，也就是求二进制补码相反数：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按位取反 + 1</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov eax, 5</span><br><span class="line">neg eax         ; EAX = FFFFFFFBh，也就是 -5</span><br></pre></td></tr></table></figure>
-
 <p>若源操作数为 0，<code>CF = 0</code>；只要源操作数非 0，<code>CF = 1</code>。对最小有符号数求负会超出表示范围并置 <code>OF</code>。</p>
 <h2 id="BCD-调整指令"><a href="#BCD-调整指令" class="headerlink" title="BCD 调整指令"></a>BCD 调整指令</h2><p><code>DAA</code> 与 <code>DAS</code> 用于对压缩 BCD 加减结果做十进制调整，主要依赖 <code>AF</code> 和 <code>CF</code>。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">指令</th>
-<th align="left">用途</th>
+<th style="text-align:center">指令</th>
+<th style="text-align:left">用途</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">DAA</td>
-<td align="left">调整加法后的 AL</td>
+<tbody>
+<tr>
+<td style="text-align:center">DAA</td>
+<td style="text-align:left">调整加法后的 AL</td>
 </tr>
 <tr>
-<td align="center">DAS</td>
-<td align="left">调整减法后的 AL</td>
+<td style="text-align:center">DAS</td>
+<td style="text-align:left">调整减法后的 AL</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <blockquote>
 <p><span style="color:#f97316; font-weight:600;">它们属于历史兼容指令，在 64 位模式下不可用。</span>现代逆向中不常见，但遇到老程序、财务编码或刻意混淆时仍要能识别。</p>
 </blockquote>
 <h2 id="无符号乘法-MUL"><a href="#无符号乘法-MUL" class="headerlink" title="无符号乘法 MUL"></a>无符号乘法 MUL</h2><p>单操作数 <code>MUL</code> 使用隐式累加器，结果宽度是操作数宽度的两倍。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">操作数宽度</th>
-<th align="center">被乘数</th>
-<th align="center">结果</th>
+<th style="text-align:center">操作数宽度</th>
+<th style="text-align:center">被乘数</th>
+<th style="text-align:center">结果</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">8 Bit</td>
-<td align="center">AL</td>
-<td align="center">AX</td>
+<tbody>
+<tr>
+<td style="text-align:center">8 Bit</td>
+<td style="text-align:center">AL</td>
+<td style="text-align:center">AX</td>
 </tr>
 <tr>
-<td align="center">16 Bit</td>
-<td align="center">AX</td>
-<td align="center">DX:AX</td>
+<td style="text-align:center">16 Bit</td>
+<td style="text-align:center">AX</td>
+<td style="text-align:center">DX:AX</td>
 </tr>
 <tr>
-<td align="center">32 Bit</td>
-<td align="center">EAX</td>
-<td align="center">EDX:EAX</td>
+<td style="text-align:center">32 Bit</td>
+<td style="text-align:center">EAX</td>
+<td style="text-align:center">EDX:EAX</td>
 </tr>
 <tr>
-<td align="center">64 Bit</td>
-<td align="center">RAX</td>
-<td align="center">RDX:RAX</td>
+<td style="text-align:center">64 Bit</td>
+<td style="text-align:center">RAX</td>
+<td style="text-align:center">RDX:RAX</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov eax, 100000h</span><br><span class="line">mov ecx, 1000h</span><br><span class="line">mul ecx         ; EDX:EAX = EAX * ECX</span><br></pre></td></tr></table></figure>
-
 <p>如果结果高半部分非零，说明结果无法只放进低半部分，<code>CF</code> 和 <code>OF</code> 会置 1。</p>
 <h2 id="有符号乘法-IMUL"><a href="#有符号乘法-IMUL" class="headerlink" title="有符号乘法 IMUL"></a>有符号乘法 IMUL</h2><p><code>IMUL</code> 按有符号数解释操作数，常见三种形式：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">imul ecx                ; EDX:EAX = EAX * ECX</span><br><span class="line">imul eax, ecx           ; EAX = EAX * ECX</span><br><span class="line">imul eax, ecx, 10       ; EAX = ECX * 10</span><br></pre></td></tr></table></figure>
-
 <p>双操作数、三操作数形式只保留目标宽度的低位结果。若舍弃的高位不是低位结果的正常符号扩展，<code>CF</code> 和 <code>OF</code> 会置 1。</p>
 <h2 id="除法-DIV-与-IDIV"><a href="#除法-DIV-与-IDIV" class="headerlink" title="除法 DIV 与 IDIV"></a>除法 DIV 与 IDIV</h2><p>除法也使用隐式被除数和结果寄存器：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">除数宽度</th>
-<th align="center">被除数</th>
-<th align="center">商</th>
-<th align="center">余数</th>
+<th style="text-align:center">除数宽度</th>
+<th style="text-align:center">被除数</th>
+<th style="text-align:center">商</th>
+<th style="text-align:center">余数</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">8 Bit</td>
-<td align="center">AX</td>
-<td align="center">AL</td>
-<td align="center">AH</td>
+<tbody>
+<tr>
+<td style="text-align:center">8 Bit</td>
+<td style="text-align:center">AX</td>
+<td style="text-align:center">AL</td>
+<td style="text-align:center">AH</td>
 </tr>
 <tr>
-<td align="center">16 Bit</td>
-<td align="center">DX:AX</td>
-<td align="center">AX</td>
-<td align="center">DX</td>
+<td style="text-align:center">16 Bit</td>
+<td style="text-align:center">DX:AX</td>
+<td style="text-align:center">AX</td>
+<td style="text-align:center">DX</td>
 </tr>
 <tr>
-<td align="center">32 Bit</td>
-<td align="center">EDX:EAX</td>
-<td align="center">EAX</td>
-<td align="center">EDX</td>
+<td style="text-align:center">32 Bit</td>
+<td style="text-align:center">EDX:EAX</td>
+<td style="text-align:center">EAX</td>
+<td style="text-align:center">EDX</td>
 </tr>
 <tr>
-<td align="center">64 Bit</td>
-<td align="center">RDX:RAX</td>
-<td align="center">RAX</td>
-<td align="center">RDX</td>
+<td style="text-align:center">64 Bit</td>
+<td style="text-align:center">RDX:RAX</td>
+<td style="text-align:center">RAX</td>
+<td style="text-align:center">RDX</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xor edx, edx</span><br><span class="line">mov eax, 100</span><br><span class="line">mov ecx, 7</span><br><span class="line">div ecx         ; EAX = 14, EDX = 2</span><br></pre></td></tr></table></figure>
-
 <p><code>DIV</code> 按无符号数处理；<code>IDIV</code> 按有符号数处理。</p>
 <h2 id="除法前的数据扩展"><a href="#除法前的数据扩展" class="headerlink" title="除法前的数据扩展"></a>除法前的数据扩展</h2><p>无符号除法常把高半部分清零：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xor edx, edx</span><br><span class="line">div ecx</span><br></pre></td></tr></table></figure>
-
 <p>有符号除法需要把低半部分符号扩展到高半部分：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">指令</th>
-<th align="left">扩展</th>
+<th style="text-align:center">指令</th>
+<th style="text-align:left">扩展</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">CBW</td>
-<td align="left">AL -&gt; AX</td>
+<tbody>
+<tr>
+<td style="text-align:center">CBW</td>
+<td style="text-align:left">AL -&gt; AX</td>
 </tr>
 <tr>
-<td align="center">CWD</td>
-<td align="left">AX -&gt; DX:AX</td>
+<td style="text-align:center">CWD</td>
+<td style="text-align:left">AX -&gt; DX:AX</td>
 </tr>
 <tr>
-<td align="center">CDQ</td>
-<td align="left">EAX -&gt; EDX:EAX</td>
+<td style="text-align:center">CDQ</td>
+<td style="text-align:left">EAX -&gt; EDX:EAX</td>
 </tr>
 <tr>
-<td align="center">CQO</td>
-<td align="left">RAX -&gt; RDX:RAX</td>
+<td style="text-align:center">CQO</td>
+<td style="text-align:left">RAX -&gt; RDX:RAX</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mov eax, -100</span><br><span class="line">cdq</span><br><span class="line">mov ecx, 7</span><br><span class="line">idiv ecx</span><br></pre></td></tr></table></figure>
-
 <h2 id="除法异常"><a href="#除法异常" class="headerlink" title="除法异常"></a>除法异常</h2><p>以下情况会触发除法错误异常 <code>#DE</code>：</p>
 <ul>
 <li>除数为 0；</li>
@@ -366,67 +361,75 @@
 <blockquote>
 <p><span style="background-color:#ffd6e7; color:#9d174d; font-weight:600;">除法溢出不是通过 CF 或 OF 报告，而是直接触发异常。</span></p>
 </blockquote>
-<h2 id="标志位速记"><a href="#标志位速记" class="headerlink" title="标志位速记"></a>标志位速记</h2><table>
+<h2 id="标志位速记"><a href="#标志位速记" class="headerlink" title="标志位速记"></a>标志位速记</h2><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">指令</th>
-<th align="left">关键点</th>
+<th style="text-align:left">指令</th>
+<th style="text-align:left">关键点</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">ADD&#x2F;SUB</td>
-<td align="left">正常更新算术标志</td>
+<tbody>
+<tr>
+<td style="text-align:left">ADD/SUB</td>
+<td style="text-align:left">正常更新算术标志</td>
 </tr>
 <tr>
-<td align="left">ADC&#x2F;SBB</td>
-<td align="left">额外使用 CF 传播进位或借位</td>
+<td style="text-align:left">ADC/SBB</td>
+<td style="text-align:left">额外使用 CF 传播进位或借位</td>
 </tr>
 <tr>
-<td align="left">INC&#x2F;DEC</td>
-<td align="left">不修改 CF</td>
+<td style="text-align:left">INC/DEC</td>
+<td style="text-align:left">不修改 CF</td>
 </tr>
 <tr>
-<td align="left">NEG</td>
-<td align="left">计算补码相反数</td>
+<td style="text-align:left">NEG</td>
+<td style="text-align:left">计算补码相反数</td>
 </tr>
 <tr>
-<td align="left">MUL&#x2F;IMUL</td>
-<td align="left">关注隐式结果寄存器与 CF&#x2F;OF</td>
+<td style="text-align:left">MUL/IMUL</td>
+<td style="text-align:left">关注隐式结果寄存器与 CF/OF</td>
 </tr>
 <tr>
-<td align="left">DIV&#x2F;IDIV</td>
-<td align="left">关注高低寄存器、扩展与 <code>#DE</code></td>
+<td style="text-align:left">DIV/IDIV</td>
+<td style="text-align:left">关注高低寄存器、扩展与 <code>#DE</code></td>
 </tr>
-</tbody></table>
-<h2 id="学习检查清单"><a href="#学习检查清单" class="headerlink" title="学习检查清单"></a>学习检查清单</h2><table>
+</tbody>
+</table>
+</div>
+<h2 id="学习检查清单"><a href="#学习检查清单" class="headerlink" title="学习检查清单"></a>学习检查清单</h2><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">检查项</th>
-<th align="center">状态</th>
+<th style="text-align:left">检查项</th>
+<th style="text-align:center">状态</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">能用 ADC&#x2F;SBB 完成高低位进位传递</td>
-<td align="center">待复盘</td>
+<tbody>
+<tr>
+<td style="text-align:left">能用 ADC/SBB 完成高低位进位传递</td>
+<td style="text-align:center">待复盘</td>
 </tr>
 <tr>
-<td align="left">记得 INC&#x2F;DEC 不修改 CF</td>
-<td align="center">待复盘</td>
+<td style="text-align:left">记得 INC/DEC 不修改 CF</td>
+<td style="text-align:center">待复盘</td>
 </tr>
 <tr>
-<td align="left">能写出 MUL、DIV 的隐式寄存器组合</td>
-<td align="center">待复盘</td>
+<td style="text-align:left">能写出 MUL、DIV 的隐式寄存器组合</td>
+<td style="text-align:center">待复盘</td>
 </tr>
 <tr>
-<td align="left">能区分无符号清零与有符号 CDQ 扩展</td>
-<td align="center">待复盘</td>
+<td style="text-align:left">能区分无符号清零与有符号 CDQ 扩展</td>
+<td style="text-align:center">待复盘</td>
 </tr>
 <tr>
-<td align="left">知道除零与商溢出会触发 <code>#DE</code></td>
-<td align="center">待复盘</td>
+<td style="text-align:left">知道除零与商溢出会触发 <code>#DE</code></td>
+<td style="text-align:center">待复盘</td>
 </tr>
-</tbody></table>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com">睿清颜</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com/24/015/">https://ruiqingyan.com/24/015/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ruiqingyan.com" target="_blank">Ruiqy~</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><a class="post-meta__tags" href="/tags/Windows%E9%80%86%E5%90%91/">Windows逆向</a><a class="post-meta__tags" href="/tags/%E6%B1%87%E7%BC%96/">汇编</a><a class="post-meta__tags" href="/tags/%E6%8C%87%E4%BB%A4/">指令</a></div><div class="post_share"><div class="social-share" data-image="/img/r16.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/24/014/" title="014、框架—段定义与程序入口"><img class="cover" src="/img/r15.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">014、框架—段定义与程序入口</div></div></a></div><div class="next-post pull-right"><a href="/24/016/" title="016、指令—位运算与操作数"><img class="cover" src="/img/r17.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">016、指令—位运算与操作数</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/24/old/0206/" title="0206、Windows 逆向入门：汇编框架与基础指令"><img class="cover" src="/img/rd10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-07</div><div class="title">0206、Windows 逆向入门：汇编框架与基础指令</div></div></a></div><div><a href="/24/001/" title="001、基础—汇编环境"><img class="cover" src="/img/rm28.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-01</div><div class="title">001、基础—汇编环境</div></div></a></div><div><a href="/24/014/" title="014、框架—段定义与程序入口"><img class="cover" src="/img/r15.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-10</div><div class="title">014、框架—段定义与程序入口</div></div></a></div><div><a href="/24/013/" title="013、框架—C 语言与汇编程序框架"><img class="cover" src="/img/r14.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-10</div><div class="title">013、框架—C 语言与汇编程序框架</div></div></a></div><div><a href="/24/017/" title="017、堆栈—线程栈与 PUSH&#x2F;POP"><img class="cover" src="/img/r18.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-10</div><div class="title">017、堆栈—线程栈与 PUSH&#x2F;POP</div></div></a></div><div><a href="/24/016/" title="016、指令—位运算与操作数"><img class="cover" src="/img/r17.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-10</div><div class="title">016、指令—位运算与操作数</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">睿清颜</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">327</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">285</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8E%A8-%E9%A2%9C%E8%89%B2%E6%A0%87%E8%AE%B0%E8%AF%B4%E6%98%8E"><span class="toc-text">🎨 颜色标记说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="toc-text">加法指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ADD"><span class="toc-text">ADD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ADC"><span class="toc-text">ADC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#INC"><span class="toc-text">INC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%8F%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="toc-text">减法指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SUB"><span class="toc-text">SUB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SBB"><span class="toc-text">SBB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DEC"><span class="toc-text">DEC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NEG-%E4%B8%8E%E8%A1%A5%E7%A0%81"><span class="toc-text">NEG 与补码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BCD-%E8%B0%83%E6%95%B4%E6%8C%87%E4%BB%A4"><span class="toc-text">BCD 调整指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E4%B9%98%E6%B3%95-MUL"><span class="toc-text">无符号乘法 MUL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E4%B9%98%E6%B3%95-IMUL"><span class="toc-text">有符号乘法 IMUL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%A4%E6%B3%95-DIV-%E4%B8%8E-IDIV"><span class="toc-text">除法 DIV 与 IDIV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%A4%E6%B3%95%E5%89%8D%E7%9A%84%E6%95%B0%E6%8D%AE%E6%89%A9%E5%B1%95"><span class="toc-text">除法前的数据扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%A4%E6%B3%95%E5%BC%82%E5%B8%B8"><span class="toc-text">除法异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E5%BF%97%E4%BD%8D%E9%80%9F%E8%AE%B0"><span class="toc-text">标志位速记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95"><span class="toc-text">学习检查清单</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/11/insight-kezhouqiujian/" title="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常"><img src="/img/rd20.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常"/></a><div class="content"><a class="title" href="/11/insight-kezhouqiujian/" title="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常">2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常</a><time datetime="2026-08-17T12:00:00.000Z" title="发表于 2026-08-17 20:00:00">2026-08-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/018/" title="018、反汇编代码的重建与编译"><img src="/img/rd19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="018、反汇编代码的重建与编译"/></a><div class="content"><a class="title" href="/31/cpp-reverse/018/" title="018、反汇编代码的重建与编译">018、反汇编代码的重建与编译</a><time datetime="2026-08-14T00:18:00.000Z" title="发表于 2026-08-14 08:18:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/017/" title="017、WannaCry 勒索病毒的防御性分析"><img src="/img/rd18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="017、WannaCry 勒索病毒的防御性分析"/></a><div class="content"><a class="title" href="/31/cpp-reverse/017/" title="017、WannaCry 勒索病毒的防御性分析">017、WannaCry 勒索病毒的防御性分析</a><time datetime="2026-08-14T00:17:00.000Z" title="发表于 2026-08-14 08:17:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/016/" title="016、远控木马的防御性逆向分析"><img src="/img/rd17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="016、远控木马的防御性逆向分析"/></a><div class="content"><a class="title" href="/31/cpp-reverse/016/" title="016、远控木马的防御性逆向分析">016、远控木马的防御性逆向分析</a><time datetime="2026-08-14T00:16:00.000Z" title="发表于 2026-08-14 08:16:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/015/" title="015、OllyDbg 的工作原理"><img src="/img/rd16.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="015、OllyDbg 的工作原理"/></a><div class="content"><a class="title" href="/31/cpp-reverse/015/" title="015、OllyDbg 的工作原理">015、OllyDbg 的工作原理</a><time datetime="2026-08-14T00:15:00.000Z" title="发表于 2026-08-14 08:15:00">2026-08-14</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/r16.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2026 By 睿清颜</div><div class="footer_custom_text"><div class="footer-records">
+</tbody>
+</table>
+</div>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com">睿清颜</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com/24/015/">https://ruiqingyan.com/24/015/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ruiqingyan.com" target="_blank">Ruiqy~</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><a class="post-meta__tags" href="/tags/Windows%E9%80%86%E5%90%91/">Windows逆向</a><a class="post-meta__tags" href="/tags/%E6%B1%87%E7%BC%96/">汇编</a><a class="post-meta__tags" href="/tags/%E6%8C%87%E4%BB%A4/">指令</a></div><div class="post_share"><div class="social-share" data-image="/img/r16.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/24/014/" title="014、框架—段定义与程序入口"><img class="cover" src="/img/r15.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">014、框架—段定义与程序入口</div></div></a></div><div class="next-post pull-right"><a href="/24/016/" title="016、指令—位运算与操作数"><img class="cover" src="/img/r17.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">016、指令—位运算与操作数</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/24/old/0206/" title="0206、Windows 逆向入门：汇编框架与基础指令"><img class="cover" src="/img/rd10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-07</div><div class="title">0206、Windows 逆向入门：汇编框架与基础指令</div></div></a></div><div><a href="/24/002/" title="002、基础—概念—机器语言 &amp; 汇编语言 &amp; 高级语言"><img class="cover" src="/img/r439.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-03</div><div class="title">002、基础—概念—机器语言 &amp; 汇编语言 &amp; 高级语言</div></div></a></div><div><a href="/24/001/" title="001、基础—汇编环境"><img class="cover" src="/img/rm28.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-01</div><div class="title">001、基础—汇编环境</div></div></a></div><div><a href="/24/014/" title="014、框架—段定义与程序入口"><img class="cover" src="/img/r15.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-10</div><div class="title">014、框架—段定义与程序入口</div></div></a></div><div><a href="/24/013/" title="013、框架—C 语言与汇编程序框架"><img class="cover" src="/img/r14.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-10</div><div class="title">013、框架—C 语言与汇编程序框架</div></div></a></div><div><a href="/24/016/" title="016、指令—位运算与操作数"><img class="cover" src="/img/r17.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-10</div><div class="title">016、指令—位运算与操作数</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">睿清颜</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">327</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">285</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8E%A8-%E9%A2%9C%E8%89%B2%E6%A0%87%E8%AE%B0%E8%AF%B4%E6%98%8E"><span class="toc-text">🎨 颜色标记说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="toc-text">加法指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ADD"><span class="toc-text">ADD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ADC"><span class="toc-text">ADC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#INC"><span class="toc-text">INC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%8F%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="toc-text">减法指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SUB"><span class="toc-text">SUB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SBB"><span class="toc-text">SBB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DEC"><span class="toc-text">DEC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NEG-%E4%B8%8E%E8%A1%A5%E7%A0%81"><span class="toc-text">NEG 与补码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BCD-%E8%B0%83%E6%95%B4%E6%8C%87%E4%BB%A4"><span class="toc-text">BCD 调整指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E4%B9%98%E6%B3%95-MUL"><span class="toc-text">无符号乘法 MUL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E4%B9%98%E6%B3%95-IMUL"><span class="toc-text">有符号乘法 IMUL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%A4%E6%B3%95-DIV-%E4%B8%8E-IDIV"><span class="toc-text">除法 DIV 与 IDIV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%A4%E6%B3%95%E5%89%8D%E7%9A%84%E6%95%B0%E6%8D%AE%E6%89%A9%E5%B1%95"><span class="toc-text">除法前的数据扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%A4%E6%B3%95%E5%BC%82%E5%B8%B8"><span class="toc-text">除法异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E5%BF%97%E4%BD%8D%E9%80%9F%E8%AE%B0"><span class="toc-text">标志位速记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95"><span class="toc-text">学习检查清单</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/11/insight-kezhouqiujian/" title="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常"><img src="/img/rd20.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常"/></a><div class="content"><a class="title" href="/11/insight-kezhouqiujian/" title="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常">2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常</a><time datetime="2026-08-17T12:00:00.000Z" title="发表于 2026-08-17 20:00:00">2026-08-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/018/" title="018、反汇编代码的重建与编译"><img src="/img/rd19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="018、反汇编代码的重建与编译"/></a><div class="content"><a class="title" href="/31/cpp-reverse/018/" title="018、反汇编代码的重建与编译">018、反汇编代码的重建与编译</a><time datetime="2026-08-14T00:18:00.000Z" title="发表于 2026-08-14 08:18:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/017/" title="017、WannaCry 勒索病毒的防御性分析"><img src="/img/rd18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="017、WannaCry 勒索病毒的防御性分析"/></a><div class="content"><a class="title" href="/31/cpp-reverse/017/" title="017、WannaCry 勒索病毒的防御性分析">017、WannaCry 勒索病毒的防御性分析</a><time datetime="2026-08-14T00:17:00.000Z" title="发表于 2026-08-14 08:17:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/016/" title="016、远控木马的防御性逆向分析"><img src="/img/rd17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="016、远控木马的防御性逆向分析"/></a><div class="content"><a class="title" href="/31/cpp-reverse/016/" title="016、远控木马的防御性逆向分析">016、远控木马的防御性逆向分析</a><time datetime="2026-08-14T00:16:00.000Z" title="发表于 2026-08-14 08:16:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/015/" title="015、OllyDbg 的工作原理"><img src="/img/rd16.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="015、OllyDbg 的工作原理"/></a><div class="content"><a class="title" href="/31/cpp-reverse/015/" title="015、OllyDbg 的工作原理">015、OllyDbg 的工作原理</a><time datetime="2026-08-14T00:15:00.000Z" title="发表于 2026-08-14 08:15:00">2026-08-14</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/r16.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2026 By 睿清颜</div><div class="footer_custom_text"><div class="footer-records">
   <a class="footer-record" href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">
     <span class="footer-record-icon footer-record-icon--icp" aria-hidden="true">🌏</span>
     <span>粤ICP备2024216057号</span>

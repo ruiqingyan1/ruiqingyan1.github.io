@@ -1,0 +1,26 @@
+{
+  "id": "/daily/",
+  "name": "阿颜的日常打卡",
+  "short_name": "阿颜打卡",
+  "description": "每日计划、学习方向番茄钟、日常习惯计时与备忘记录。",
+  "lang": "zh-CN",
+  "start_url": "/daily/",
+  "scope": "/daily/",
+  "display": "standalone",
+  "background_color": "#fffafc",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/daily/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/daily/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
