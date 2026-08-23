@@ -6667,6 +6667,15 @@ html.daily-standalone .daily-layout {
   overflow: hidden;
 }
 
+/* The iPad app uses one page scrollbar; the right column expands in full. */
+html.daily-standalone .focus-column {
+  position: static;
+  top: auto;
+  max-height: none;
+  overflow: visible;
+  align-self: start;
+}
+
 @media (max-width: 840px) {
   html.daily-standalone .daily-header {
     border-radius: var(--daily-webapp-radius) var(--daily-webapp-radius) 0 0;
