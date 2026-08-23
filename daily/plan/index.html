@@ -4801,9 +4801,14 @@ body[data-authenticated="false"] input:disabled {
 }
 
 .task-item {
+  position: relative;
   grid-template-columns: 22px 24px minmax(0, 1fr) auto auto 20px;
   gap: 8px;
   cursor: pointer;
+}
+
+.task-item.has-open-menu {
+  z-index: 40;
 }
 
 .task-item.is-selected-focus {
@@ -4851,9 +4856,11 @@ body[data-authenticated="false"] input:disabled {
 }
 
 .task-detail-trigger > span {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow: visible;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  text-overflow: clip;
+  white-space: normal;
 }
 
 .task-detail-trigger small {
@@ -4862,6 +4869,82 @@ body[data-authenticated="false"] input:disabled {
   font-size: 10px;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.task-actions {
+  position: relative;
+  overflow: visible;
+}
+
+.task-actions .task-icon-button.task-overflow-toggle {
+  display: grid;
+  border: 1px solid transparent;
+  place-items: center;
+}
+
+.task-actions.is-open .task-overflow-toggle {
+  border-color: rgba(111, 79, 169, .16);
+  background: var(--doki-hover, rgba(139, 109, 194, .12));
+}
+
+.task-overflow-toggle .doki-ui-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.task-overflow-menu {
+  position: absolute;
+  z-index: 80;
+  top: calc(100% + 6px);
+  right: 0;
+  display: grid;
+  width: 148px;
+  gap: 3px;
+  padding: 7px;
+  border: 1px solid rgba(129, 111, 158, .13);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .98);
+  box-shadow: 0 16px 38px rgba(55, 45, 72, .20);
+  backdrop-filter: blur(16px);
+}
+
+.task-overflow-menu[hidden] {
+  display: none;
+}
+
+.task-overflow-action {
+  display: grid;
+  width: 100%;
+  min-height: 36px;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--daily-text);
+  font-size: 12px;
+  font-weight: 650;
+  text-align: left;
+  cursor: pointer;
+}
+
+.task-overflow-action .doki-ui-icon {
+  width: 17px;
+  height: 17px;
+  justify-self: center;
+}
+
+.task-overflow-action:hover,
+.task-overflow-action:focus-visible {
+  background: var(--doki-hover, rgba(139, 109, 194, .11));
+  color: #68469e;
+  outline: 0;
+}
+
+.task-overflow-action.is-danger {
+  color: #c35962;
 }
 
 .task-copy {
@@ -5321,7 +5404,7 @@ body[data-authenticated="false"] input:disabled {
 }
 
 .quadrant-task-list .task-item {
-  grid-template-columns: 20px 22px minmax(0, 1fr) auto auto 19px;
+  grid-template-columns: 20px 22px minmax(0, 1fr) auto 28px 19px;
   gap: 5px;
   min-height: 45px;
   padding: 6px 4px 6px 14px;
@@ -5334,7 +5417,7 @@ body[data-authenticated="false"] input:disabled {
 }
 
 .quadrant-task-list .task-actions {
-  opacity: .45;
+  opacity: .66;
   transition: opacity .15s ease;
 }
 
@@ -9018,6 +9101,19 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     return button
   }
 
+  function closeTaskActionMenus(except) {
+    document.querySelectorAll('.task-actions.is-open').forEach(function (actions) {
+      if (actions === except) return
+      actions.classList.remove('is-open')
+      var menu = actions.querySelector('.task-overflow-menu')
+      var toggle = actions.querySelector('.task-overflow-toggle')
+      if (menu) menu.hidden = true
+      if (toggle) toggle.setAttribute('aria-expanded', 'false')
+      var row = actions.closest('.task-item')
+      if (row) row.classList.remove('has-open-menu')
+    })
+  }
+
   function showToast(message) {
     toast.textContent = message
     toast.classList.add('is-visible')
@@ -11796,13 +11892,6 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       var title = document.createElement('span')
       title.textContent = task.text
       text.appendChild(title)
-      var meta = document.createElement('small')
-      var targetDurationLabel = Number(task.targetMinutes || 60) === 60
-        ? '1h'
-        : focusDurationLabel((task.targetMinutes || 60) * 60)
-      meta.textContent = (task.focusTag || '未设标签') + ' · ' + targetDurationLabel
-        + (task.sourcePlanFixed ? ' · 固定' : '')
-      text.appendChild(meta)
       text.title = selected ? '点击取消选择' : '点击选择并绑定番茄钟'
       if (task.note) {
         var taskNoteIndicator = document.createElement('i')
@@ -11825,22 +11914,44 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
       var actions = document.createElement('div')
       actions.className = 'task-actions'
       actions.addEventListener('click', function (event) { event.stopPropagation() })
-      actions.appendChild(createButton('doki:bookmark', '查看或编辑备注', 'task-icon-button', function (event) {
+      var actionMenu = document.createElement('div')
+      actionMenu.className = 'task-overflow-menu'
+      actionMenu.setAttribute('role', 'menu')
+      actionMenu.setAttribute('aria-label', task.text + '的操作')
+      actionMenu.hidden = true
+
+      function setTaskActionMenuOpen(open) {
+        if (open) closeTaskActionMenus(actions)
+        actions.classList.toggle('is-open', open)
+        row.classList.toggle('has-open-menu', open)
+        actionMenu.hidden = !open
+        actionToggle.setAttribute('aria-expanded', String(open))
+      }
+
+      function appendTaskAction(icon, label, danger, handler) {
+        var button = createButton(icon, label, 'task-overflow-action' + (danger ? ' is-danger' : ''), function (event) {
+          event.stopPropagation()
+          setTaskActionMenuOpen(false)
+          handler()
+        })
+        button.setAttribute('role', 'menuitem')
+        var labelNode = document.createElement('span')
+        labelNode.textContent = label
+        button.appendChild(labelNode)
+        actionMenu.appendChild(button)
+      }
+
+      var actionToggle = createButton('doki:ellipsis_horizontal', '更多操作', 'task-icon-button task-overflow-toggle', function (event) {
         event.stopPropagation()
-        editTaskNote(task.id)
-      }))
-      actions.appendChild(createButton('doki:folder_library', '放回计划栏', 'task-icon-button', function (event) {
-        event.stopPropagation()
-        returnToInbox(task.id)
-      }))
-      actions.appendChild(createButton('doki:edit', '编辑任务', 'task-icon-button', function (event) {
-        event.stopPropagation()
-        editTask(task.id)
-      }))
-      actions.appendChild(createButton('doki:trash', '删除任务', 'task-icon-button is-danger', function (event) {
-        event.stopPropagation()
-        deleteTask(task.id)
-      }))
+        setTaskActionMenuOpen(!actions.classList.contains('is-open'))
+      })
+      actionToggle.setAttribute('aria-haspopup', 'menu')
+      actionToggle.setAttribute('aria-expanded', 'false')
+      appendTaskAction('doki:bookmark', '备注', false, function () { editTaskNote(task.id) })
+      appendTaskAction('doki:folder_library', '放回计划栏', false, function () { returnToInbox(task.id) })
+      appendTaskAction('doki:edit', '编辑任务', false, function () { editTask(task.id) })
+      appendTaskAction('doki:trash', '删除任务', true, function () { deleteTask(task.id) })
+      actions.append(actionToggle, actionMenu)
 
       row.addEventListener('click', function (event) {
         if (event.target.closest('.task-time-button, .task-actions, .task-checkbox, .priority-button, .task-select-button')) return
@@ -12848,8 +12959,14 @@ body[data-doki-theme="inori-light"] .daily-doki-tools {
     closePlanDirectoryContextMenu()
   })
 
+  document.addEventListener('pointerdown', function (event) {
+    if (event.target.closest('.task-actions')) return
+    closeTaskActionMenus()
+  })
+
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape' && planDirectoryContextMenu && !planDirectoryContextMenu.hidden) closePlanDirectoryContextMenu()
+    if (event.key === 'Escape') closeTaskActionMenus()
     if (event.key === 'Escape' && planTaskActionModal && !planTaskActionModal.hidden) closePlanTaskActionModal()
   })
 
