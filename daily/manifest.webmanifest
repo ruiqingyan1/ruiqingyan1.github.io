@@ -7,8 +7,27 @@
   "start_url": "/daily/",
   "scope": "/daily/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "any",
   "background_color": "#fffafc",
   "theme_color": "#ffffff",
+  "shortcuts": [
+    {
+      "name": "今日计划",
+      "short_name": "今日计划",
+      "url": "/daily/"
+    },
+    {
+      "name": "任务计划",
+      "short_name": "任务",
+      "url": "/daily/plan/"
+    },
+    {
+      "name": "备忘录",
+      "short_name": "备忘",
+      "url": "/daily/notes/"
+    }
+  ],
   "icons": [
     {
       "src": "/daily/icons/icon-192.png",

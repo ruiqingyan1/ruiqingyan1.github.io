@@ -1293,6 +1293,29 @@ body {
   color: #4777dd;
 }
 
+.install-rail-button,
+.install-rail-button:hover,
+.install-rail-button:focus,
+.install-rail-button:focus-visible,
+.install-rail-button:active,
+.install-rail-button.is-installed,
+.install-rail-button.is-syncing {
+  border-color: transparent;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.install-rail-button.is-syncing .doki-ui-icon {
+  animation: daily-sync-pulse .85s ease-in-out infinite alternate;
+}
+
+@keyframes daily-sync-pulse {
+  from { opacity: .45; transform: scale(.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 .rail-badge {
   position: absolute;
   top: 2px;
@@ -1467,6 +1490,648 @@ body {
 
 .utility-empty span {
   font-size: 12px;
+}
+
+.workspace-drawer {
+  position: fixed;
+  z-index: 46;
+  top: 68px;
+  right: auto;
+  bottom: 0;
+  left: 68px;
+  display: flex;
+  width: min(620px, calc(100vw - 68px));
+  flex-direction: column;
+  border-right: 1px solid var(--daily-line);
+  background: color-mix(in srgb, var(--daily-panel-solid) 97%, transparent);
+  box-shadow: 18px 0 42px rgba(35, 51, 44, .13);
+  backdrop-filter: blur(18px);
+}
+
+.workspace-drawer[hidden] {
+  display: none;
+}
+
+.workspace-drawer.is-points {
+  right: 0;
+  left: auto;
+  width: min(680px, calc(100vw - 68px));
+  border-right: 0;
+  border-left: 1px solid var(--daily-line);
+  box-shadow: -18px 0 42px rgba(35, 51, 44, .13);
+}
+
+.workspace-drawer-header {
+  display: flex;
+  min-height: 72px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px 12px;
+  border-bottom: 1px solid var(--daily-line);
+}
+
+.workspace-drawer-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 21px;
+}
+
+.workspace-drawer-header h2 i {
+  width: 23px;
+  color: var(--daily-blue);
+  text-align: center;
+}
+
+.workspace-drawer-header p {
+  margin: 4px 0 0;
+  color: var(--daily-muted);
+  font-size: 12px;
+}
+
+.workspace-drawer-body {
+  min-height: 0;
+  overflow-y: auto;
+  padding: 14px 16px 30px;
+}
+
+.workspace-pane {
+  display: grid;
+  gap: 10px;
+}
+
+.workspace-pane[hidden] {
+  display: none;
+}
+
+.schedule-intro-card,
+.schedule-overview-card,
+.points-intro-card,
+.points-note-card {
+  border: 1px solid var(--daily-line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--daily-panel-solid) 91%, var(--daily-blue-soft));
+}
+
+.schedule-intro-card,
+.points-intro-card,
+.points-note-card {
+  padding: 14px;
+}
+
+.schedule-intro-card {
+  padding: 0 2px 2px;
+  border: 0;
+  background: transparent;
+}
+
+.schedule-intro-card label,
+.points-policy-block label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--daily-text);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.workspace-textarea {
+  width: 100%;
+  min-height: 76px;
+  resize: vertical;
+  padding: 11px 12px;
+  border: 1px solid color-mix(in srgb, var(--daily-line) 86%, var(--daily-blue));
+  border-radius: 8px;
+  outline: 0;
+  background: color-mix(in srgb, var(--daily-panel-solid) 94%, transparent);
+  color: var(--daily-text);
+  line-height: 1.75;
+}
+
+.schedule-intro-card .workspace-textarea,
+.schedule-overview-row .workspace-textarea,
+.schedule-section-editor .workspace-textarea {
+  field-sizing: content;
+}
+
+.schedule-intro-card .workspace-textarea {
+  min-height: 54px;
+  resize: none;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.schedule-reference-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-top: 9px;
+}
+
+.schedule-reference-links > span {
+  color: var(--daily-muted);
+  font-size: 11.5px;
+  font-weight: 750;
+}
+
+.schedule-reference-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 27px;
+  padding: 4px 9px;
+  border: 1px solid color-mix(in srgb, var(--daily-line) 82%, var(--daily-blue));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--daily-blue-soft) 62%, var(--daily-panel-solid));
+  color: color-mix(in srgb, var(--daily-blue) 88%, var(--daily-text));
+  font-size: 11.5px;
+  font-weight: 750;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: border-color .18s ease, background .18s ease, transform .18s ease;
+}
+
+.schedule-reference-links a:hover {
+  border-color: color-mix(in srgb, var(--daily-blue) 58%, var(--daily-line));
+  background: color-mix(in srgb, var(--daily-blue-soft) 84%, var(--daily-panel-solid));
+  transform: translateY(-1px);
+}
+
+.schedule-reference-links a i {
+  font-size: 9px;
+  opacity: .72;
+}
+
+.workspace-textarea:focus {
+  border-color: color-mix(in srgb, var(--daily-blue) 60%, var(--daily-line));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--daily-blue-soft) 74%, transparent);
+}
+
+.schedule-overview-card {
+  display: grid;
+  gap: 7px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.schedule-overview-row {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  align-items: stretch;
+  gap: 6px;
+  padding: 7px;
+  border: 1px solid var(--daily-line);
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--daily-panel-solid) 95%, transparent);
+}
+
+.schedule-overview-row strong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 7px;
+  border-radius: 7px;
+  background: var(--daily-blue-soft);
+  color: var(--daily-blue);
+  font-size: 12px;
+  text-align: center;
+}
+
+.schedule-overview-row:nth-child(2) strong {
+  background: var(--daily-coral-soft);
+  color: var(--daily-coral);
+}
+
+.schedule-overview-row:nth-child(3) strong {
+  background: color-mix(in srgb, var(--daily-green-soft) 86%, transparent);
+  color: var(--daily-green);
+}
+
+.schedule-overview-row .workspace-textarea {
+  min-height: 38px;
+  resize: none;
+  padding: 4px 7px;
+  border-color: transparent;
+  background: transparent;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+.schedule-section {
+  overflow: hidden;
+  border: 1px solid var(--daily-line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--daily-panel-solid) 95%, transparent);
+}
+
+.schedule-section summary {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  list-style: none;
+  background: color-mix(in srgb, var(--daily-panel-solid) 94%, var(--daily-blue-soft));
+  color: var(--daily-text);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 720;
+}
+
+.schedule-section summary::-webkit-details-marker {
+  display: none;
+}
+
+.schedule-section summary::before {
+  content: '\25B6';
+  color: var(--daily-blue);
+  font-size: 10px;
+  transform: rotate(0deg);
+  transition: transform .16s ease;
+}
+
+.schedule-section[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.schedule-section:nth-of-type(2) summary {
+  background: color-mix(in srgb, var(--daily-panel-solid) 94%, var(--daily-amber-soft));
+}
+
+.schedule-section:nth-of-type(3) summary {
+  background: color-mix(in srgb, var(--daily-panel-solid) 94%, var(--daily-green-soft));
+}
+
+.schedule-section:nth-of-type(4) summary {
+  background: color-mix(in srgb, var(--daily-panel-solid) 96%, var(--daily-blue-soft));
+}
+
+.schedule-section-editor {
+  padding: 10px;
+}
+
+.schedule-section-editor .workspace-textarea {
+  min-height: 54px;
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+
+.workspace-save-hint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--daily-muted);
+  font-size: 11px;
+}
+
+.workspace-save-hint strong {
+  color: var(--daily-green);
+  font-weight: 700;
+}
+
+.points-draft-badge {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--daily-amber-soft);
+  color: var(--daily-amber);
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.points-intro-card h3,
+.points-note-card h3 {
+  margin: 0 0 5px;
+  font-size: 16px;
+}
+
+.points-intro-card p,
+.points-note-card p {
+  margin: 0;
+  color: var(--daily-muted);
+  font-size: 12px;
+}
+
+.points-policy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.points-policy-block {
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid var(--daily-line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--daily-panel-solid) 94%, transparent);
+}
+
+.points-policy-block .workspace-textarea {
+  min-height: 170px;
+}
+
+.points-policy-block.is-wide {
+  grid-column: 1 / -1;
+}
+
+.points-policy-block.is-wide .workspace-textarea {
+  min-height: 104px;
+}
+
+.points-view-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  padding: 4px;
+  border: 1px solid var(--daily-line);
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--daily-blue-soft) 66%, var(--daily-panel-solid));
+}
+
+.points-view-tab {
+  min-height: 38px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--daily-muted);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.points-view-tab.is-active {
+  background: var(--daily-panel-solid);
+  color: var(--daily-text);
+  box-shadow: 0 5px 14px rgba(44, 59, 52, .08);
+}
+
+.points-view-pane {
+  display: grid;
+  gap: 12px;
+}
+
+.points-view-pane[hidden] {
+  display: none;
+}
+
+.points-shop-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.points-shop-stat {
+  display: grid;
+  gap: 5px;
+  padding: 15px;
+  border: 1px solid var(--daily-line);
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--daily-panel-solid) 90%, var(--daily-blue-soft));
+}
+
+.points-shop-stat span {
+  color: var(--daily-muted);
+  font-size: 12px;
+}
+
+.points-shop-stat strong {
+  color: var(--daily-blue);
+  font-size: 28px;
+  line-height: 1;
+}
+
+.points-reward-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.points-reward-card {
+  display: grid;
+  min-width: 0;
+  gap: 11px;
+  padding: 15px;
+  border: 1px solid var(--daily-line);
+  border-radius: 12px;
+  background: var(--daily-panel-solid);
+}
+
+.points-reward-card header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.points-reward-card h3,
+.points-redemption-card h3 {
+  margin: 0;
+  color: var(--daily-text);
+  font-size: 15px;
+}
+
+.points-reward-card p {
+  min-height: 38px;
+  margin: 0;
+  color: var(--daily-muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.points-reward-cost {
+  flex: none;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--daily-blue-soft);
+  color: var(--daily-blue);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.points-redeem-button {
+  min-height: 34px;
+  border: 1px solid color-mix(in srgb, var(--daily-blue) 46%, var(--daily-line));
+  border-radius: 8px;
+  background: var(--daily-blue-soft);
+  color: var(--daily-blue);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.points-redeem-button:disabled {
+  cursor: not-allowed;
+  opacity: .48;
+}
+
+.points-redemption-card {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid var(--daily-line);
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--daily-panel-solid) 94%, transparent);
+}
+
+.points-redemption-list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.points-redemption-list li,
+.points-redemption-empty {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--daily-muted);
+  font-size: 12px;
+}
+
+.points-redemption-list strong {
+  color: var(--daily-text);
+}
+
+.points-wallet-panel {
+  display: grid;
+  padding: 0;
+  overflow: hidden;
+}
+
+.points-wallet-trigger {
+  display: grid;
+  width: 100%;
+  padding: 14px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.points-wallet-trigger:hover,
+.points-wallet-trigger.is-active {
+  background: color-mix(in srgb, var(--daily-blue-soft) 46%, transparent);
+}
+
+.points-wallet-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.points-wallet-stat {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid var(--daily-line);
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--daily-panel-solid) 90%, var(--daily-blue-soft));
+}
+
+.points-wallet-stat span {
+  color: var(--daily-muted);
+  font-size: 11px;
+}
+
+.points-wallet-stat strong {
+  color: var(--daily-blue);
+  font-size: 23px;
+  line-height: 1;
+}
+
+.points-header-button {
+  display: inline-flex;
+  min-width: 128px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 14px;
+  border: 1px solid var(--daily-line);
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--daily-panel-solid) 92%, var(--daily-blue-soft));
+  color: var(--daily-text);
+  cursor: pointer;
+}
+
+.points-header-button i {
+  color: var(--daily-blue);
+}
+
+.points-header-button strong,
+.points-header-button small {
+  display: block;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.points-header-button strong {
+  font-size: 13px;
+}
+
+.points-header-button small {
+  margin-top: 2px;
+  color: var(--daily-muted);
+  font-size: 10px;
+}
+
+.points-header-button:hover,
+.points-header-button.is-active {
+  border-color: color-mix(in srgb, var(--daily-blue) 48%, var(--daily-line));
+  background: var(--daily-blue-soft);
+}
+
+.points-score-button {
+  min-width: 132px;
+  padding: 0 12px;
+}
+
+.points-header-score-grid {
+  display: grid;
+  min-width: 66px;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+}
+
+.points-header-score {
+  display: grid;
+  gap: 1px;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.points-header-score + .points-header-score {
+  border-left: 1px solid var(--daily-line);
+}
+
+.points-header-score small,
+.points-header-score strong {
+  text-align: center;
+}
+
+.points-header-score small {
+  margin: 0;
+  color: var(--daily-muted);
+  font-size: 9px;
+}
+
+.points-header-score strong {
+  color: var(--daily-blue);
+  font-size: 17px;
+  line-height: 1;
+}
+
+.schedule-header-button {
+  display: none;
 }
 
 .daily-header {
@@ -4779,6 +5444,123 @@ body[data-daily-page="plan"] .daily-summary-section {
   font-size: 12px;
 }
 
+.install-dialog {
+  width: min(100%, 430px);
+  padding: 22px;
+}
+
+.install-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.install-dialog-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.install-dialog-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  border-radius: 9px;
+  background: var(--daily-green-soft);
+  place-items: center;
+}
+
+.install-dialog-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.install-dialog h2 {
+  margin: 0 0 4px;
+  color: var(--daily-text);
+  font-size: 20px;
+}
+
+.install-dialog-heading p,
+.install-guidance {
+  margin: 0;
+  color: var(--daily-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.install-benefits {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.install-benefit {
+  min-width: 0;
+  padding: 12px 8px;
+  border: 1px solid #e1e8e4;
+  border-radius: 8px;
+  background: #f8faf9;
+  text-align: center;
+}
+
+.install-benefit i {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--daily-green);
+  font-size: 17px;
+}
+
+.install-benefit strong {
+  display: block;
+  color: var(--daily-text);
+  font-size: 12px;
+}
+
+.install-guidance {
+  min-height: 54px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--daily-green-soft);
+}
+
+.install-actions {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.install-save-action,
+.install-confirm {
+  height: 42px;
+  border-radius: 7px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.install-save-action {
+  border: 1px solid color-mix(in srgb, var(--daily-green) 45%, var(--daily-line));
+  background: var(--daily-panel-solid);
+  color: var(--daily-green);
+}
+
+.install-confirm {
+  border: 0;
+  background: var(--daily-green);
+  color: #fff;
+}
+
+.install-save-action:disabled,
+.install-confirm:disabled {
+  cursor: wait;
+  opacity: .66;
+}
+
 body[data-authenticated="false"] .edit-locked {
   opacity: .58;
 }
@@ -5882,6 +6664,20 @@ body[data-authenticated="false"] input:disabled {
     width: 100%;
   }
 
+  .workspace-drawer {
+    top: 60px;
+    right: auto;
+    left: 0;
+    width: 100%;
+  }
+
+  .workspace-drawer.is-points {
+    right: 0;
+    left: 0;
+    width: 100%;
+    border-left: 0;
+  }
+
   .daily-header {
     margin-left: 0;
   }
@@ -5892,6 +6688,44 @@ body[data-authenticated="false"] input:disabled {
 
   .daily-header {
     grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .points-header-button {
+    min-width: 42px;
+    width: 42px;
+    padding: 0;
+  }
+
+  .points-score-button {
+    min-width: 118px;
+    width: 118px;
+    padding: 0 8px;
+  }
+
+  .points-header-score {
+    padding: 0 6px;
+  }
+
+  .points-header-score small {
+    display: block;
+    font-size: 8px;
+  }
+
+  .points-header-score strong {
+    display: block;
+    font-size: 15px;
+  }
+
+  .schedule-header-button {
+    display: inline-flex;
+  }
+
+  .points-header-button span {
+    display: none;
+  }
+
+  .points-reward-list {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .mobile-page-nav {
@@ -6016,6 +6850,23 @@ body[data-authenticated="false"] input:disabled {
 
   .daily-brand-copy span {
     display: none;
+  }
+
+  .workspace-drawer-body {
+    padding: 14px 12px 28px;
+  }
+
+  .schedule-overview-row,
+  .points-policy-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .schedule-overview-row strong {
+    width: fit-content;
+  }
+
+  .points-policy-block.is-wide {
+    grid-column: auto;
   }
 
   .memo-editor-toolbar {
@@ -6637,6 +7488,12 @@ html.daily-standalone .utility-drawer {
   left: calc(var(--daily-webapp-inset-left) + 68px);
 }
 
+html.daily-standalone .workspace-drawer {
+  top: calc(var(--daily-webapp-inset-top) + 68px);
+  right: var(--daily-webapp-inset-right);
+  bottom: var(--daily-webapp-inset-bottom);
+}
+
 html.daily-standalone .daily-layout {
   min-height: calc(100dvh - 68px - var(--daily-webapp-inset-top) - var(--daily-webapp-inset-bottom));
   border-radius: 0 0 var(--daily-webapp-radius) 0;
@@ -6673,13 +7530,18 @@ html.daily-standalone .focus-column {
         <a class="rail-button" href="/daily/" title="每日首页" aria-label="每日首页"><img class="doki-ui-icon" src="/daily/doki-icons/check.svg" alt="" aria-hidden="true"></a><a class="rail-button is-active" href="/daily/plan/" title="计划与任务" aria-label="计划与任务"><img class="doki-ui-icon" src="/daily/doki-icons/todo.svg" alt="" aria-hidden="true"></a><a class="rail-button" href="/daily/focus/" title="每周复盘" aria-label="每周复盘"><img class="doki-ui-icon" src="/daily/doki-icons/history.svg" alt="" aria-hidden="true"></a><a class="rail-button" href="/daily/notes/" data-private-nav title="备忘录" aria-label="备忘录"><img class="doki-ui-icon" src="/daily/doki-icons/file_heart.svg" alt="" aria-hidden="true"></a>
       </nav>
       <nav class="rail-tools">
+        <button class="rail-button" type="button" data-workspace-open="schedule" title="日程安排" aria-label="打开日程安排">
+          <img class="doki-ui-icon" src="/daily/doki-icons/library.svg" alt="" aria-hidden="true">
+        </button>
         <button class="rail-button" type="button" data-utility-open="alerts" title="未完成提醒" aria-label="未完成提醒">
           <img class="doki-ui-icon" src="/daily/doki-icons/notifications.svg" alt="" aria-hidden="true"><span class="rail-badge" data-alert-badge hidden>0</span>
         </button>
         <button class="rail-button" type="button" data-utility-open="trash" title="垃圾桶" aria-label="垃圾桶">
           <img class="doki-ui-icon" src="/daily/doki-icons/trash.svg" alt="" aria-hidden="true"><span class="rail-badge" data-trash-badge hidden>0</span>
         </button>
-        <a class="rail-button" href="/docs/" title="读书笔记" aria-label="读书笔记"><img class="doki-ui-icon" src="/daily/doki-icons/library.svg" alt="" aria-hidden="true"></a>
+        <button class="rail-button install-rail-button" type="button" data-install-app title="同步 Daily 到本地" aria-label="同步 Daily 页面到本地">
+          <img class="doki-ui-icon" src="/daily/doki-icons/cloud_outline.svg" alt="" aria-hidden="true">
+        </button>
         <a class="rail-button" href="/" title="首页" aria-label="首页"><img class="doki-ui-icon" src="/daily/doki-icons/light_house.svg" alt="" aria-hidden="true"></a>
       </nav>
     </aside>
@@ -6697,6 +7559,16 @@ html.daily-standalone .focus-column {
       </div>
       <nav class="mobile-page-nav" aria-label="每日打卡页面导航"><a class="rail-button" href="/daily/" title="每日首页" aria-label="每日首页"><img class="doki-ui-icon" src="/daily/doki-icons/check.svg" alt="" aria-hidden="true"></a><a class="rail-button is-active" href="/daily/plan/" title="计划与任务" aria-label="计划与任务"><img class="doki-ui-icon" src="/daily/doki-icons/todo.svg" alt="" aria-hidden="true"></a><a class="rail-button" href="/daily/focus/" title="每周复盘" aria-label="每周复盘"><img class="doki-ui-icon" src="/daily/doki-icons/history.svg" alt="" aria-hidden="true"></a><a class="rail-button" href="/daily/notes/" data-private-nav title="备忘录" aria-label="备忘录"><img class="doki-ui-icon" src="/daily/doki-icons/file_heart.svg" alt="" aria-hidden="true"></a></nav>
       <div class="daily-header-actions" role="toolbar" aria-label="账号管理">
+        <button class="points-header-button points-score-button" type="button" data-workspace-open="points" data-points-view="shop" title="查看积分商城和积分章程" aria-label="累计积分，点击查看积分商城和积分章程">
+          <i class="fa-solid fa-gem" aria-hidden="true"></i>
+          <div class="points-header-score-grid" aria-hidden="true">
+            <div class="points-header-score"><small>累计积分</small><strong data-points-total>0</strong></div>
+          </div>
+        </button>
+        <button class="points-header-button schedule-header-button" type="button" data-workspace-open="schedule" title="打开日程安排" aria-label="打开日程安排">
+          <img class="doki-ui-icon" src="/daily/doki-icons/library.svg" alt="" aria-hidden="true">
+          <span><strong>日程安排</strong><small>查看与编辑</small></span>
+        </button>
         <button class="auth-button" type="button" data-auth-button title="输入密码并授信设备" aria-label="输入密码并授信设备">
           <img class="doki-ui-icon" src="/daily/doki-icons/locked.svg" alt="" aria-hidden="true">
         </button>
@@ -6715,6 +7587,125 @@ html.daily-standalone .focus-column {
         <button class="utility-close" type="button" data-utility-close title="关闭" aria-label="关闭侧栏"><i class="fa-solid fa-xmark"></i></button>
       </header>
       <div class="utility-list" data-utility-list></div>
+    </aside>
+
+    <aside class="workspace-drawer" data-workspace-drawer hidden aria-live="polite">
+      <header class="workspace-drawer-header">
+        <div>
+          <h2 data-workspace-title><i class="fa-solid fa-calendar-days" aria-hidden="true"></i>日程安排</h2>
+          <p data-workspace-summary>日常节奏、学习分块与晚间复盘</p>
+        </div>
+        <button class="utility-close" type="button" data-workspace-close title="关闭" aria-label="关闭侧栏"><i class="fa-solid fa-xmark"></i></button>
+      </header>
+      <div class="workspace-drawer-body">
+        <section class="workspace-pane" data-workspace-pane="schedule">
+          <div class="schedule-intro-card">
+            <label for="schedule-intro">安排说明</label>
+            <textarea class="workspace-textarea" id="schedule-intro" data-schedule-field="intro" maxlength="5000"></textarea>
+            <nav class="schedule-reference-links" aria-label="日程安排参考资料">
+              <span>参考资料</span>
+              <a href="/11/PDCA/" target="_blank" rel="noopener">PDCA <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+              <a href="/11/LM/" target="_blank" rel="noopener">烧水学习法 <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+              <a href="/31/001Sleep/" target="_blank" rel="noopener">睡眠革命 <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+              <a href="/31/002Exercise/" target="_blank" rel="noopener">囚徒健身 <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+              <a href="/31/003Eat/" target="_blank" rel="noopener">饮食的迷思 <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+            </nav>
+          </div>
+          <div class="schedule-overview-card" aria-label="作息安排概览">
+            <div class="schedule-overview-row">
+              <strong>睡觉安排</strong>
+              <textarea class="workspace-textarea" data-schedule-field="overview.sleep" maxlength="5000"></textarea>
+            </div>
+            <div class="schedule-overview-row">
+              <strong>运动安排</strong>
+              <textarea class="workspace-textarea" data-schedule-field="overview.exercise" maxlength="5000"></textarea>
+            </div>
+            <div class="schedule-overview-row">
+              <strong>学习安排</strong>
+              <textarea class="workspace-textarea" data-schedule-field="overview.study" maxlength="5000"></textarea>
+            </div>
+          </div>
+          <details class="schedule-section">
+            <summary>1、每天 5:40 起床晨跑 or 早读 + 早饭 + 复盘（8 点前完成）</summary>
+            <div class="schedule-section-editor">
+              <textarea class="workspace-textarea" data-schedule-section="morning" maxlength="12000"></textarea>
+            </div>
+          </details>
+          <details class="schedule-section">
+            <summary>2、每天四大节课学习专业相关知识（一周摸一天鱼）</summary>
+            <div class="schedule-section-editor">
+              <textarea class="workspace-textarea" data-schedule-section="study" maxlength="12000"></textarea>
+            </div>
+          </details>
+          <details class="schedule-section">
+            <summary>3、每天一大节课学习提升自己的课</summary>
+            <div class="schedule-section-editor">
+              <textarea class="workspace-textarea" data-schedule-section="growth" maxlength="12000"></textarea>
+            </div>
+          </details>
+          <details class="schedule-section">
+            <summary>4、每晚 21:00 复盘当天 + 准备睡觉</summary>
+            <div class="schedule-section-editor">
+              <textarea class="workspace-textarea" data-schedule-section="review" maxlength="12000"></textarea>
+            </div>
+          </details>
+          <div class="workspace-save-hint"><span>可直接修改文字和编号格式</span><strong data-schedule-save-status>已自动保存</strong></div>
+        </section>
+
+        <section class="workspace-pane" data-workspace-pane="points" hidden>
+          <div class="points-view-tabs" role="tablist" aria-label="积分功能">
+            <button class="points-view-tab is-active" type="button" data-points-view-tab="shop" role="tab">积分商城</button>
+            <button class="points-view-tab" type="button" data-points-view-tab="policy" role="tab">积分章程</button>
+          </div>
+
+          <section class="points-view-pane" data-points-view-pane="shop">
+            <div class="points-shop-summary" aria-label="积分概览">
+              <div class="points-shop-stat"><span>本周积分</span><strong data-points-week>0</strong></div>
+              <div class="points-shop-stat"><span>可用累计积分</span><strong data-points-total>0</strong></div>
+            </div>
+            <div class="points-intro-card">
+              <h3>把持续行动换成真正喜欢的生活</h3>
+              <p>积分可以兑换真实生活里的放松和期待。兑换只使用现有积分，不会形成负分。</p>
+            </div>
+            <div class="points-reward-list" data-points-reward-list></div>
+            <div class="points-redemption-card">
+              <h3>最近兑换</h3>
+              <ul class="points-redemption-list" data-points-redemption-list></ul>
+            </div>
+          </section>
+
+          <section class="points-view-pane" data-points-view-pane="policy" hidden>
+            <span class="points-draft-badge"><i class="fa-solid fa-flask" aria-hidden="true"></i>积分系统试行版 · 2026-08-24 起</span>
+            <div class="points-intro-card">
+              <h3>当前实际生效的自动计分规则</h3>
+              <p>启用时旧积分已清零。系统自动统计任务、日常打卡和 50 分钟专注轮；工作日日常漏项在次日扣分，账户始终以 0 为下限。</p>
+            </div>
+            <div class="points-policy-grid">
+              <div class="points-policy-block">
+                <label for="points-weekday">日常加分</label>
+                <textarea class="workspace-textarea" id="points-weekday" data-policy-field="weekday" maxlength="12000"></textarea>
+              </div>
+              <div class="points-policy-block">
+                <label for="points-deductions">漏项扣分与保底</label>
+                <textarea class="workspace-textarea" id="points-deductions" data-policy-field="deductions" maxlength="12000"></textarea>
+              </div>
+              <div class="points-policy-block">
+                <label for="points-weekend">周末与休息</label>
+                <textarea class="workspace-textarea" id="points-weekend" data-policy-field="weekend" maxlength="12000"></textarea>
+              </div>
+              <div class="points-policy-block">
+                <label for="points-weekly">每周结算</label>
+                <textarea class="workspace-textarea" id="points-weekly" data-policy-field="weekly" maxlength="12000"></textarea>
+              </div>
+              <div class="points-policy-block is-wide">
+                <label for="points-note">规划备注</label>
+                <textarea class="workspace-textarea" id="points-note" data-policy-field="note" maxlength="5000"></textarea>
+              </div>
+            </div>
+            <div class="workspace-save-hint"><span>章程可继续按实际运行情况调整</span><strong data-policy-save-status>已自动保存</strong></div>
+          </section>
+        </section>
+      </div>
     </aside>
 
     <main class="daily-layout">
@@ -7199,18 +8190,44 @@ html.daily-standalone .focus-column {
       </form>
     </section>
   </div>
+  <div class="auth-modal" data-install-modal hidden>
+    <section class="auth-dialog install-dialog" role="dialog" aria-modal="true" aria-labelledby="daily-install-title">
+      <header class="install-dialog-header">
+        <div class="install-dialog-heading">
+          <span class="install-dialog-icon"><img class="doki-ui-icon" src="/daily/doki-icons/package.svg" alt="" aria-hidden="true"></span>
+          <div>
+            <h2 id="daily-install-title">下载到本地</h2>
+            <p>安装后直接从桌面打开，常用页面会预先保存在本机。</p>
+          </div>
+        </div>
+        <button class="auth-close" type="button" data-install-close title="关闭" aria-label="关闭安装说明"><i class="fa-solid fa-xmark"></i></button>
+      </header>
+      <div class="install-benefits" aria-label="本地应用优势">
+        <div class="install-benefit"><i class="fa-solid fa-bolt"></i><strong>打开更快</strong></div>
+        <div class="install-benefit"><i class="fa-solid fa-hard-drive"></i><strong>本地保存</strong></div>
+        <div class="install-benefit"><i class="fa-solid fa-rotate"></i><strong>自动同步</strong></div>
+      </div>
+      <p class="install-guidance" data-install-guidance></p>
+      <div class="install-actions">
+        <button class="install-save-action" type="button" data-install-save>保存网页到本地</button>
+        <button class="install-confirm" type="button" data-install-action>安装到桌面</button>
+      </div>
+    </section>
+  </div>
   <div class="toast" role="status" aria-live="polite" data-toast></div>
   <script>
 (function () {
   'use strict'
 
   var STORAGE_KEY = 'ruiqy.daily.v1'
+  var PENDING_SYNC_KEY = 'ruiqy.daily.pending-sync.v1'
   var TIMER_KEY = 'ruiqy.daily.timer.v1'
   var ROUTINE_TIMER_KEY = 'ruiqy.daily.routine.timer.v1'
   var DOKI_THEME_KEY = 'ruiqy.daily.doki-theme.v1'
   var DOKI_STICKER_POSITION_KEY = 'ruiqy.daily.doki-sticker-position.v1'
   var PLAN_NAVIGATION_KEY = 'ruiqy.daily.plan-navigation.v1'
   var PLAN_LIBRARY_LAYOUT_KEY = 'ruiqy.daily.plan-library-layout.v1'
+  var DAILY_OFFLINE_SYNC_KEY = 'ruiqy.daily.offline-sync-date.v1'
   var DOKI_THEMES = {
     'emilia-light': { tone: 'light', sticker: '/daily/doki/emilia_light.png' },
     'beatrice': { tone: 'light', sticker: '/daily/doki/beatrice.png' },
@@ -7245,6 +8262,61 @@ html.daily-standalone .focus-column {
     { id: 'calligraphy', emoji: '🖋️', label: '练字', targetMinutes: 30 },
     { id: 'meditation', emoji: '🪷', label: '冥想', targetMinutes: 30 },
     { id: 'sleep', emoji: '🛌', label: '睡眠', targetMinutes: 8.5 * 60 }
+  ]
+  var DEFAULT_SCHEDULE = {
+    intro: '🌺 所有安排主要参考个人习惯、PDCA、烧水学习法、《睡眠革命》、《囚徒健身》、《饮食的迷思》等内容。',
+    overview: {
+      sleep: '周 35+ 睡眠周期，22:05 睡，5:40 起（5 个睡眠周期）；看情况午休 40min（1 个可控睡眠周期）。',
+      exercise: '日均 1h，每日晨跑 5km + 自重训练（单杠、俯卧撑等），每周三次帕梅拉或练腹（Keep 一周六节）。',
+      study: '日均 10h，具体按照实际情况和自己的学习能力安排。周末主要复盘，不新学太多内容，多复盘。'
+    },
+    sections: [
+      {
+        id: 'morning',
+        title: '1、每天 5:40 起床晨跑 or 早读 + 早饭 + 复盘（8 点前完成）',
+        content: '1. 前一天晚上冲一杯咖啡，早起先喝咖啡。\n2. 早起先简单洗漱（洗脸），运动和早饭后再全面洗漱（洗脸、刷牙、护肤等）。\n3. 简单洗漱后晨跑 5km + 单杠类自重训练。\n4. 边散步边简单复盘前些天的内容，之后吃早饭。'
+      },
+      {
+        id: 'study',
+        title: '2、每天四大节课学习专业相关知识（一周摸一天鱼）',
+        content: '1. 上午两节课数学为主。\n2. 下午一节英语，一节计算机相关的。'
+      },
+      {
+        id: 'growth',
+        title: '3、每天一大节课学习提升自己的课',
+        content: '1. 自我提升类：比如学礼仪文化、声乐唱歌、养花练体等。\n2. 开心娱乐类：找感兴趣的游戏玩一会儿。'
+      },
+      {
+        id: 'review',
+        title: '4、每晚 21:00 复盘当天 + 准备睡觉',
+        content: '1. 给 AW 充电，冲一杯咖啡。\n2. 按照实际情况简单复盘，内容包括运动、日程、日志等。'
+      }
+    ],
+    updatedAt: 0
+  }
+  var DEFAULT_POINTS_POLICY = {
+    weekday: '工作日（周一至周五）\n• 完成 1 项日常任务：+2 分，每日最多 +12 分\n• 完成 1 项四象限任务：+3 分，每日最多 +15 分\n• 完成 1 个 50 分钟专注轮：+2 分，每日最多 +10 分\n• 08:00 前完成晨间安排：+3 分\n• 22:00 前完成晚间复盘：+3 分\n• 当日计划完成率 100%：额外 +5 分',
+    deductions: '未完成与扣分（仅工作日）\n• 计划中的必做日常未完成：每项 -2 分\n• 重要且紧急任务逾期：每项 -5 分\n• 当天完全没有记录且未请假：-8 分\n• 单日扣分下限建议为 -10 分，避免一次失误破坏长期积极性',
+    weekend: '周末与休息\n• 周六、周日默认休息，不因未完成日常而扣分\n• 主动学习、运动或完成周复盘仍可加分\n• 周末奖励建议每日最多 +10 分\n• 生病、旅行或事先登记的休息日按周末规则处理',
+    weekly: '每周结算\n• 工作日 5 天均有有效记录：+10 分\n• 完成一次周复盘：+8 分\n• 达成每周专注目标：+12 分\n• 建议等级：0–39 待调整；40–69 稳定；70–99 优秀；100+ 可兑换奖励',
+    note: '这是第一版章程草案，先重视持续性，再逐步调整分值。建议连续运行 2 周后，根据实际完成难度校准加分、扣分和奖励门槛。',
+    updatedAt: 0
+  }
+  var POINTS_TRIAL_START_KEY = '2026-08-24'
+  var POINTS_STATE_VERSION = 24
+  DEFAULT_POINTS_POLICY = {
+    weekday: '正式试行计分（2026-08-24 起）\n• 完成 1 项四象限任务：+3 分，每日最多 +15 分\n• 当日已安排的四象限任务全部完成：额外 +5 分\n• 完成 1 项日常任务：+2 分，每日最多 +12 分\n• 6 项日常任务全部完成：额外 +5 分\n• 完成 1 个完整的 50 分钟专注轮：+2 分，每日最多 +10 分',
+    deductions: '日常漏项与保底规则\n• 工作日每有 1 项日常任务未完成：-2 分\n• 漏项扣分在次日结算，当天进行中不会提前扣分\n• 四象限任务未完成不额外扣分，只失去对应加分与全完成奖励\n• 本周积分和累计积分都以 0 为下限，不会显示负分',
+    weekend: '周末与休息\n• 周六、周日默认休息，未完成日常不扣分\n• 周末主动完成日常、计划或专注轮，仍按正常标准加分\n• 兑换“休息一天”只扣除已有积分，不会让积分变成负数',
+    weekly: '积分结算方式\n• 本周积分：本周每日加分减去已结算的日常漏项扣分\n• 累计积分：2026-08-24 起的净积分减去奖励兑换积分\n• 每日约可通过任务、日常和专注获得最高 47 分\n• 兑换后保留奖励名称、消耗分值和日期；积分最低为 0',
+    note: '试行版于 2026-08-24（周一）正式启用，启用时旧积分已清零。先运行两周：奖励真实完成，漏项适度扣分，但始终保留 0 分下限，避免形成负债式压力。',
+    updatedAt: 0
+  }
+  var POINT_REWARDS = [
+    { id: 'wesley', icon: 'fa-burger', label: '吃好吃的', cost: 60, note: '可选：魏斯理汉堡、火锅、烤肉、寿司，或当天真正想吃的一顿饭。' },
+    { id: 'rest-half-day', icon: 'fa-mug-hot', label: '休息半天', cost: 60, note: '兑换半天完整休息时间，不安排必须完成的学习和日常任务。' },
+    { id: 'outing', icon: 'fa-person-walking-luggage', label: '出去玩', cost: 120, note: '安排一次完整的外出游玩或期待已久的活动。' },
+    { id: 'rest-day', icon: 'fa-bed', label: '休息一天', cost: 120, note: '兑换一整天休息时间，不安排必须完成的日常任务。' }
   ]
   var PRIORITY_ORDER = ['pink', 'blue', 'yellow', 'green']
   var PRIORITY_LABELS = {
@@ -7573,6 +8645,7 @@ html.daily-standalone .focus-column {
   var routineHandle = null
   var toastHandle = null
   var remoteSaveHandle = null
+  var deferredInstallPrompt = null
   var projectOrderGroupId = ''
   var sectionOrderProjectId = ''
   var planTaskOrderEditing = false
@@ -7697,6 +8770,15 @@ html.daily-standalone .focus-column {
   var utilityList = document.querySelector('[data-utility-list]')
   var alertBadge = document.querySelector('[data-alert-badge]')
   var trashBadge = document.querySelector('[data-trash-badge]')
+  var workspaceDrawer = document.querySelector('[data-workspace-drawer]')
+  var workspaceTitle = document.querySelector('[data-workspace-title]')
+  var workspaceSummary = document.querySelector('[data-workspace-summary]')
+  var scheduleSaveStatus = document.querySelector('[data-schedule-save-status]')
+  var policySaveStatus = document.querySelector('[data-policy-save-status]')
+  var pointsWeekValue = document.querySelectorAll('[data-points-week]')
+  var pointsTotalValue = document.querySelectorAll('[data-points-total]')
+  var pointsRewardList = document.querySelector('[data-points-reward-list]')
+  var pointsRedemptionList = document.querySelector('[data-points-redemption-list]')
   var authButton = document.querySelector('[data-auth-button]')
   var dokiThemePicker = document.querySelector('[data-doki-picker]')
   var dokiThemeToggle = document.querySelector('[data-doki-toggle]')
@@ -7707,6 +8789,11 @@ html.daily-standalone .focus-column {
   var authForm = document.querySelector('[data-auth-form]')
   var authPassword = document.querySelector('[data-auth-password]')
   var authMessage = document.querySelector('[data-auth-message]')
+  var installButton = document.querySelector('[data-install-app]')
+  var installModal = document.querySelector('[data-install-modal]')
+  var installAction = document.querySelector('[data-install-action]')
+  var installSave = document.querySelector('[data-install-save]')
+  var installGuidance = document.querySelector('[data-install-guidance]')
   var memoList = document.querySelector('[data-memo-list]')
   var memoCount = document.querySelector('[data-memo-count]')
   var memoCreateButton = document.querySelector('[data-memo-create]')
@@ -7739,6 +8826,8 @@ html.daily-standalone .focus-column {
   var durationEditInput = document.querySelector('[data-duration-edit-input]')
   var editingRoutineId = null
   var activeUtility = null
+  var activeWorkspace = null
+  var activePointsView = 'shop'
 
   function storedDokiTheme() {
     try {
@@ -7848,9 +8937,17 @@ html.daily-standalone .focus-column {
     restorePosition()
   }
 
+  function defaultScheduleState() {
+    return JSON.parse(JSON.stringify(DEFAULT_SCHEDULE))
+  }
+
+  function defaultPointsPolicy() {
+    return JSON.parse(JSON.stringify(DEFAULT_POINTS_POLICY))
+  }
+
   function blankState() {
     return {
-      version: 19,
+      version: POINTS_STATE_VERSION,
       planGroups: PLAN_GROUP_PRESETS.map(function (preset, index) {
         return { id: preset.id, name: preset.name, icon: preset.icon, systemKey: preset.key, sortOrder: index, createdAt: Date.now() }
       }),
@@ -7866,6 +8963,15 @@ html.daily-standalone .focus-column {
       deletedPlanTaskIds: [],
       planCompletionHistory: [],
       utilityRead: { alertKeys: [], trashIds: [] },
+      schedule: defaultScheduleState(),
+      pointsPolicy: defaultPointsPolicy(),
+      pointsWallet: {
+        startKey: POINTS_TRIAL_START_KEY,
+        startedAt: Date.parse('2026-08-24T00:00:00+08:00'),
+        baselineEarned: 0,
+        redemptions: [],
+        updatedAt: 0
+      },
       inbox: ROUTINES.map(function (routine, index) {
         return {
           id: 'routine-plan-' + routine.id,
@@ -7903,6 +9009,58 @@ html.daily-standalone .focus-column {
       weeklyNotes: {},
       memoFolders: [],
       memos: []
+    }
+  }
+
+  function normalizeWorkspaceState(value) {
+    var schedule = value.schedule && typeof value.schedule === 'object' ? value.schedule : {}
+    var overview = schedule.overview && typeof schedule.overview === 'object' ? schedule.overview : {}
+    var existingSections = Array.isArray(schedule.sections) ? schedule.sections : []
+    value.schedule = {
+      intro: typeof schedule.intro === 'string' ? schedule.intro.slice(0, 5000) : DEFAULT_SCHEDULE.intro,
+      overview: {
+        sleep: typeof overview.sleep === 'string' ? overview.sleep.slice(0, 5000) : DEFAULT_SCHEDULE.overview.sleep,
+        exercise: typeof overview.exercise === 'string' ? overview.exercise.slice(0, 5000) : DEFAULT_SCHEDULE.overview.exercise,
+        study: typeof overview.study === 'string' ? overview.study.slice(0, 5000) : DEFAULT_SCHEDULE.overview.study
+      },
+      sections: DEFAULT_SCHEDULE.sections.map(function (preset) {
+        var existing = existingSections.find(function (section) { return section && section.id === preset.id }) || {}
+        return {
+          id: preset.id,
+          title: typeof existing.title === 'string' && existing.title.trim() ? existing.title.trim().slice(0, 200) : preset.title,
+          content: typeof existing.content === 'string' ? existing.content.slice(0, 12000) : preset.content
+        }
+      }),
+      updatedAt: Math.max(0, Number(schedule.updatedAt) || 0)
+    }
+
+    var policy = value.pointsPolicy && typeof value.pointsPolicy === 'object' ? value.pointsPolicy : {}
+    value.pointsPolicy = {
+      weekday: typeof policy.weekday === 'string' ? policy.weekday.slice(0, 12000) : DEFAULT_POINTS_POLICY.weekday,
+      deductions: typeof policy.deductions === 'string' ? policy.deductions.slice(0, 12000) : DEFAULT_POINTS_POLICY.deductions,
+      weekend: typeof policy.weekend === 'string' ? policy.weekend.slice(0, 12000) : DEFAULT_POINTS_POLICY.weekend,
+      weekly: typeof policy.weekly === 'string' ? policy.weekly.slice(0, 12000) : DEFAULT_POINTS_POLICY.weekly,
+      note: typeof policy.note === 'string' ? policy.note.slice(0, 5000) : DEFAULT_POINTS_POLICY.note,
+      updatedAt: Math.max(0, Number(policy.updatedAt) || 0)
+    }
+
+    var wallet = value.pointsWallet && typeof value.pointsWallet === 'object' ? value.pointsWallet : {}
+    value.pointsWallet = {
+      startKey: /^\d{4}-\d{2}-\d{2}$/.test(wallet.startKey) ? wallet.startKey : POINTS_TRIAL_START_KEY,
+      startedAt: Math.max(0, Number(wallet.startedAt) || 0),
+      baselineEarned: Math.max(0, Math.round(Number(wallet.baselineEarned) || 0)),
+      redemptions: (Array.isArray(wallet.redemptions) ? wallet.redemptions : []).filter(function (entry) {
+        return entry && typeof entry === 'object' && typeof entry.id === 'string' && typeof entry.rewardId === 'string'
+      }).map(function (entry) {
+        return {
+          id: entry.id.slice(0, 120),
+          rewardId: entry.rewardId.slice(0, 80),
+          label: typeof entry.label === 'string' ? entry.label.slice(0, 120) : '',
+          cost: Math.max(0, Math.round(Number(entry.cost) || 0)),
+          createdAt: Math.max(0, Number(entry.createdAt) || 0)
+        }
+      }).slice(-500),
+      updatedAt: Math.max(0, Number(wallet.updatedAt) || 0)
     }
   }
 
@@ -8229,7 +9387,25 @@ html.daily-standalone .focus-column {
       value.planSections.forEach(function (section) { section.icon = migratePlanIconToDoki(section, 'section') })
     }
     normalizeMemoState(value, previousVersion)
-    value.version = 19
+    normalizeWorkspaceState(value)
+    if (previousVersion < 22) {
+      var baselineEarned = Object.keys(value.days || {}).reduce(function (sum, key) {
+        if (key < POINTS_TRIAL_START_KEY) return sum
+        return sum + earnedPointsForDay(value.days[key], key)
+      }, 0)
+      value.pointsWallet = {
+        startKey: POINTS_TRIAL_START_KEY,
+        startedAt: Date.now(),
+        baselineEarned: Math.max(0, baselineEarned),
+        redemptions: [],
+        updatedAt: Date.now()
+      }
+    }
+    if (previousVersion < POINTS_STATE_VERSION) {
+      value.pointsPolicy = defaultPointsPolicy()
+      value.pointsPolicy.updatedAt = Date.now()
+    }
+    value.version = POINTS_STATE_VERSION
     return value
   }
 
@@ -8265,7 +9441,25 @@ html.daily-standalone .focus-column {
 
   function saveState() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
-    if (authState.authenticated) scheduleRemoteSave()
+    if (authState.authenticated) {
+      setPendingSync(true)
+      scheduleRemoteSave()
+    }
+  }
+
+  function setPendingSync(pending) {
+    try {
+      if (pending) localStorage.setItem(PENDING_SYNC_KEY, String(Date.now()))
+      else localStorage.removeItem(PENDING_SYNC_KEY)
+    } catch (error) {}
+  }
+
+  function hasPendingSync() {
+    try {
+      return Boolean(localStorage.getItem(PENDING_SYNC_KEY))
+    } catch (error) {
+      return false
+    }
   }
 
   function savePlanNavigation() {
@@ -8381,9 +9575,12 @@ html.daily-standalone .focus-column {
   }
 
   function scheduleRemoteSave() {
+    setPendingSync(true)
     clearTimeout(remoteSaveHandle)
     remoteSaveHandle = setTimeout(function () {
-      apiRequest('/data', { method: 'PUT', body: JSON.stringify({ state: state }) }).catch(function (error) {
+      apiRequest('/data', { method: 'PUT', body: JSON.stringify({ state: state }) }).then(function () {
+        setPendingSync(false)
+      }).catch(function (error) {
         if (!IS_LOCAL_PREVIEW && (error.status === 401 || error.status === 403)) {
           authState.authenticated = false
           authState.csrf = null
@@ -8419,7 +9616,8 @@ html.daily-standalone .focus-column {
       '.task-detail-dialog input', '.task-detail-dialog textarea', '.task-detail-dialog select', '.task-detail-dialog button',
       '.quadrant-add-button',
       '.memo-create-button', '.memo-folder-form input', '.memo-folder-form button', '.memo-folder-action',
-      '.memo-folder-select', '.memo-title-input', '.memo-content-input', '.memo-delete-button'
+      '.memo-folder-select', '.memo-title-input', '.memo-content-input', '.memo-delete-button',
+      '.workspace-textarea', '.points-redeem-button'
     ].join(',')
     document.querySelectorAll(selector).forEach(function (control) {
       if (!authState.authenticated) {
@@ -8476,13 +9674,18 @@ html.daily-standalone .focus-column {
       closeAuthModal()
       return apiRequest('/data', { method: 'GET' })
     }).then(function (documentData) {
-      if (documentData.revision === 0 && hasLocalContent(state)) {
+      if (hasPendingSync()) {
+        scheduleRemoteSave()
+        showToast('已登录，本地变更正在同步到服务器')
+      } else if (documentData.revision === 0 && hasLocalContent(state)) {
         scheduleRemoteSave()
         showToast('已登录，本机已有内容将同步到服务器')
       } else if (documentData.state && typeof documentData.state === 'object') {
+        var serverVersionBeforeMigration = Number(documentData.state.version) || 0
         state = documentData.state
         normalizePlanState(state)
         saveLocalOnly()
+        if (serverVersionBeforeMigration < POINTS_STATE_VERSION) scheduleRemoteSave()
         showToast('已登录，服务器内容已同步')
       }
       renderAll()
@@ -8597,6 +9800,34 @@ html.daily-standalone .focus-column {
       trashIds: mergeUniqueValues(remote.utilityRead && remote.utilityRead.trashIds, local.utilityRead && local.utilityRead.trashIds).slice(-500)
     }
     merged.weeklyNotes = Object.assign({}, remote.weeklyNotes || {}, local.weeklyNotes || {})
+    merged.schedule = Number(remote.schedule && remote.schedule.updatedAt) > Number(local.schedule && local.schedule.updatedAt)
+      ? cloneStateValue(remote.schedule)
+      : cloneStateValue(local.schedule || remote.schedule || DEFAULT_SCHEDULE)
+    merged.pointsPolicy = Number(remote.pointsPolicy && remote.pointsPolicy.updatedAt) > Number(local.pointsPolicy && local.pointsPolicy.updatedAt)
+      ? cloneStateValue(remote.pointsPolicy)
+      : cloneStateValue(local.pointsPolicy || remote.pointsPolicy || DEFAULT_POINTS_POLICY)
+    merged.pointsWallet = {
+      startKey: (local.pointsWallet && local.pointsWallet.startKey)
+        || (remote.pointsWallet && remote.pointsWallet.startKey)
+        || POINTS_TRIAL_START_KEY,
+      startedAt: Math.max(
+        Number(remote.pointsWallet && remote.pointsWallet.startedAt) || 0,
+        Number(local.pointsWallet && local.pointsWallet.startedAt) || 0
+      ),
+      baselineEarned: Math.max(
+        Number(remote.pointsWallet && remote.pointsWallet.baselineEarned) || 0,
+        Number(local.pointsWallet && local.pointsWallet.baselineEarned) || 0
+      ),
+      redemptions: mergeEntityLists(
+        remote.pointsWallet && remote.pointsWallet.redemptions,
+        local.pointsWallet && local.pointsWallet.redemptions,
+        false
+      ),
+      updatedAt: Math.max(
+        Number(remote.pointsWallet && remote.pointsWallet.updatedAt) || 0,
+        Number(local.pointsWallet && local.pointsWallet.updatedAt) || 0
+      )
+    }
     merged.days = {}
     mergeUniqueValues(Object.keys(remote.days || {}), Object.keys(local.days || {})).forEach(function (key) {
       merged.days[key] = mergeLocalDay(remote.days && remote.days[key], local.days && local.days[key])
@@ -8609,6 +9840,7 @@ html.daily-standalone .focus-column {
     renderAll()
     return apiRequest('/data', { method: 'GET' }).then(function (documentData) {
       var apiState = documentData.state && typeof documentData.state === 'object' ? documentData.state : blankState()
+      var apiStateVersionBeforeMigration = Number(apiState.version) || 0
       var migrated = localStorage.getItem(LOCAL_API_MIGRATION_KEY) === '1'
       if (!migrated) {
         state = mergeLocalBootstrapState(apiState, state)
@@ -8616,14 +9848,18 @@ html.daily-standalone .focus-column {
         saveLocalOnly()
         renderAll()
         return apiRequest('/data', { method: 'PUT', body: JSON.stringify({ state: state }) }).then(function () {
+          setPendingSync(false)
           localStorage.setItem(LOCAL_API_MIGRATION_KEY, '1')
           showToast('本地浏览器数据已合并到本地 Daily 数据文件')
         })
       }
-      if (Number(documentData.revision) > 0) {
+      if (hasPendingSync()) {
+        scheduleRemoteSave()
+      } else if (Number(documentData.revision) > 0) {
         state = apiState
         normalizePlanState(state)
         saveLocalOnly()
+        if (apiStateVersionBeforeMigration < POINTS_STATE_VERSION) scheduleRemoteSave()
       } else if (hasLocalContent(state)) {
         scheduleRemoteSave()
       }
@@ -8675,8 +9911,11 @@ html.daily-standalone .focus-column {
       return apiRequest('/data', { method: 'GET' })
     }).then(function (documentData) {
       if (documentData.state && typeof documentData.state === 'object') {
+        var serverVersionBeforeMigration = Number(documentData.state.version) || 0
         var localState = state
-        if (documentData.privateFieldsRedacted) {
+        if (authState.authenticated && hasPendingSync()) {
+          scheduleRemoteSave()
+        } else if (documentData.privateFieldsRedacted) {
           var localMemos = Array.isArray(localState.memos) ? localState.memos : []
           var localMemoFolders = Array.isArray(localState.memoFolders) ? localState.memoFolders : []
           state = documentData.state
@@ -8690,6 +9929,7 @@ html.daily-standalone .focus-column {
         } else if (authState.authenticated && hasLocalContent(localState)) {
           scheduleRemoteSave()
         }
+        if (authState.authenticated && serverVersionBeforeMigration < POINTS_STATE_VERSION) scheduleRemoteSave()
       }
       renderAll()
       scheduleAuthCheck(AUTH_RECHECK_MS)
@@ -9217,6 +10457,185 @@ html.daily-standalone .focus-column {
     }, 2300)
   }
 
+  function isStandaloneMode() {
+    return window.navigator.standalone === true
+      || Boolean(window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)
+  }
+
+  function isAppleMobile() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent)
+      || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+  }
+
+  function isSafariBrowser() {
+    return /Safari/.test(navigator.userAgent) && !/Chrome|Chromium|CriOS|Edg|OPR|Firefox|FxiOS/.test(navigator.userAgent)
+  }
+
+  function dailyOfflineSyncDate() {
+    var date = new Date()
+    return date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0')
+  }
+
+  function hasSyncedDailyOfflineToday() {
+    try {
+      return localStorage.getItem(DAILY_OFFLINE_SYNC_KEY) === dailyOfflineSyncDate()
+    } catch (error) {
+      return false
+    }
+  }
+
+  function rememberDailyOfflineSync() {
+    try {
+      localStorage.setItem(DAILY_OFFLINE_SYNC_KEY, dailyOfflineSyncDate())
+    } catch (error) {}
+  }
+
+  function updateInstallButton() {
+    if (!installButton) return
+    var syncedToday = hasSyncedDailyOfflineToday()
+    installButton.hidden = syncedToday
+    installButton.classList.toggle('is-installed', syncedToday)
+    installButton.title = syncedToday ? '今日已同步，点击重新同步' : '同步 Daily 到本地'
+    installButton.setAttribute('aria-label', syncedToday ? '今日已同步，重新同步 Daily 页面' : '同步 Daily 页面到本地')
+  }
+
+  function waitForDailyServiceWorker(registration) {
+    var worker = registration.installing || registration.waiting || registration.active
+    if (!worker) return navigator.serviceWorker.ready.then(function (readyRegistration) { return readyRegistration.active })
+    if (worker.state === 'activated') return Promise.resolve(worker)
+    return new Promise(function (resolve, reject) {
+      var timeout = window.setTimeout(function () { reject(new Error('service worker activation timeout')) }, 30000)
+      worker.addEventListener('statechange', function () {
+        if (worker.state === 'activated') {
+          window.clearTimeout(timeout)
+          resolve(worker)
+        } else if (worker.state === 'redundant') {
+          window.clearTimeout(timeout)
+          reject(new Error('service worker became redundant'))
+        }
+      })
+    })
+  }
+
+  function requestDailyOfflineSync(worker) {
+    return new Promise(function (resolve, reject) {
+      var channel = new MessageChannel()
+      var timeout = window.setTimeout(function () {
+        channel.port1.close()
+        reject(new Error('daily offline sync timeout'))
+      }, 90000)
+      channel.port1.onmessage = function (event) {
+        window.clearTimeout(timeout)
+        channel.port1.close()
+        if (event.data && event.data.ok) resolve(event.data)
+        else reject(new Error(event.data && event.data.message ? event.data.message : 'daily offline sync failed'))
+      }
+      worker.postMessage({ type: 'RUIQY_DAILY_SYNC' }, [channel.port2])
+    })
+  }
+
+  function syncDailyOffline() {
+    if (!installButton || installButton.classList.contains('is-syncing')) return
+    if (!('serviceWorker' in navigator) || location.protocol === 'file:') {
+      showToast('当前浏览器不支持 Daily 本地同步')
+      return
+    }
+    installButton.classList.add('is-syncing')
+    installButton.disabled = true
+    installButton.setAttribute('aria-busy', 'true')
+    installButton.title = '正在同步 Daily…'
+    showToast('正在检查更新并同步到本地…')
+    navigator.serviceWorker.register('/daily/sw.js', { scope: '/daily/' })
+      .then(function (registration) {
+        return registration.update().catch(function () { return registration })
+      })
+      .then(waitForDailyServiceWorker)
+      .then(requestDailyOfflineSync)
+      .then(function () {
+        rememberDailyOfflineSync()
+        showToast('Daily 已同步到本地，今天可直接快速打开')
+        updateInstallButton()
+      })
+      .catch(function (error) {
+        if (window.console && console.warn) console.warn('[Daily offline sync]', error && error.message ? error.message : error)
+        showToast('本地同步失败，请联网后重试')
+      })
+      .finally(function () {
+        installButton.classList.remove('is-syncing')
+        installButton.disabled = false
+        installButton.removeAttribute('aria-busy')
+        updateInstallButton()
+      })
+  }
+
+  function closeInstallModal() {
+    if (installModal) installModal.hidden = true
+  }
+
+  function openInstallGuidance() {
+    if (!installModal || !installGuidance || !installAction) return
+    if (isAppleMobile()) {
+      installGuidance.innerHTML = '点击浏览器底部或顶部的 <strong>分享</strong>，再选择 <strong>添加到主屏幕</strong>。'
+      installAction.textContent = '复制安装步骤'
+    } else if (isSafariBrowser()) {
+      installGuidance.innerHTML = '在 Safari 菜单中选择 <strong>文件 → 添加到程序坞</strong>，之后可像普通应用一样打开。'
+      installAction.textContent = '复制安装步骤'
+    } else if (deferredInstallPrompt) {
+      installGuidance.innerHTML = '浏览器已准备好安装。点击下方 <strong>安装到桌面</strong>，即可像普通应用一样打开。'
+      installAction.textContent = '安装到桌面'
+    } else {
+      installGuidance.innerHTML = '打开浏览器菜单，选择 <strong>安装应用</strong> 或 <strong>创建快捷方式</strong>。安装后仍会在线同步数据。'
+      installAction.textContent = '复制安装步骤'
+    }
+    installModal.hidden = false
+  }
+
+  function requestAppInstall() {
+    if (isStandaloneMode()) {
+      showToast('每日计划已经下载到本地，可直接从桌面打开')
+      return
+    }
+    openInstallGuidance()
+  }
+
+  function runAppInstallAction() {
+    if (!deferredInstallPrompt) {
+      var guidanceText = isAppleMobile()
+        ? '点击浏览器的分享按钮，再选择“添加到主屏幕”。'
+        : (isSafariBrowser()
+          ? '在 Safari 菜单中选择“文件 → 添加到程序坞”。'
+          : '打开浏览器菜单，选择“安装应用”或“创建快捷方式”。')
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(guidanceText).then(function () {
+          showToast('安装步骤已复制')
+        }).catch(function () {
+          showToast(guidanceText)
+        })
+      } else {
+        showToast(guidanceText)
+      }
+      return
+    }
+    deferredInstallPrompt.prompt()
+    deferredInstallPrompt.userChoice.then(function (choice) {
+      if (choice && choice.outcome === 'accepted') showToast('正在下载到本地…')
+      deferredInstallPrompt = null
+      closeInstallModal()
+      updateInstallButton()
+    })
+  }
+
+  function saveDailyPagesOffline() {
+    syncDailyOffline()
+  }
+
+  function registerDailyServiceWorker() {
+    if (!('serviceWorker' in navigator) || location.protocol === 'file:') return
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/daily/sw.js', { scope: '/daily/' }).catch(function () {})
+    })
+  }
+
   function planLibraryWidthLimit() {
     var available = window.innerWidth - 68 - 300 - 12 - 380
     return Math.max(280, Math.min(720, available))
@@ -9548,7 +10967,243 @@ html.daily-standalone .focus-column {
     else renderTrashList()
   }
 
+  function scheduleFieldValue(path) {
+    if (path === 'intro') return state.schedule.intro
+    if (path.indexOf('overview.') === 0) return state.schedule.overview[path.slice(9)] || ''
+    return ''
+  }
+
+  function setScheduleField(path, value) {
+    if (path === 'intro') state.schedule.intro = value
+    if (path.indexOf('overview.') === 0) state.schedule.overview[path.slice(9)] = value
+    state.schedule.updatedAt = Date.now()
+  }
+
+  function earnedPointsForDay(day, dayKey) {
+    day = day && typeof day === 'object' ? day : {}
+    var tasks = Array.isArray(day.tasks) ? day.tasks : []
+    var completedTasks = tasks.filter(function (task) { return Boolean(task.done) }).length
+    var completedMap = day.routineCompleted && typeof day.routineCompleted === 'object' ? day.routineCompleted : {}
+    var secondsMap = day.routineSeconds && typeof day.routineSeconds === 'object' ? day.routineSeconds : {}
+    var completedRoutines = ROUTINES.filter(function (routine) {
+      return Boolean(completedMap[routine.id])
+        || Math.max(0, Number(secondsMap[routine.id]) || 0) >= routine.targetMinutes * 60
+    }).length
+    var focusSeconds = Number.isFinite(Number(day.focusSeconds))
+      ? Math.max(0, Number(day.focusSeconds) || 0)
+      : Math.max(0, Number(day.focusSessions) || 0) * FOCUS_SECONDS
+    var focusRounds = Math.floor(focusSeconds / FOCUS_SECONDS)
+    var points = Math.min(completedTasks * 3, 15)
+      + Math.min(completedRoutines * 2, 12)
+      + Math.min(focusRounds * 2, 10)
+    if (tasks.length && completedTasks === tasks.length) points += 5
+    if (completedRoutines === ROUTINES.length) points += 5
+    var isPastDay = typeof dayKey === 'string' && dayKey < todayKey()
+    var date = typeof dayKey === 'string' ? parseDate(dayKey) : null
+    var isWeekend = date && (date.getDay() === 0 || date.getDay() === 6)
+    if (isPastDay && !isWeekend) points -= (ROUTINES.length - completedRoutines) * 2
+    return points
+  }
+
+  function pointsSummary() {
+    normalizeWorkspaceState(state)
+    var startKey = state.pointsWallet.startKey || POINTS_TRIAL_START_KEY
+    var baselineEarned = Math.max(0, Number(state.pointsWallet.baselineEarned) || 0)
+    var weekStart = startOfWeek(todayKey())
+    var weekEnd = shiftDate(weekStart, 6)
+    var rawWeek = 0
+    var rawEarned = 0
+    var lastKey = todayKey()
+    for (var key = startKey; key <= lastKey; key = shiftDate(key, 1)) {
+      var value = earnedPointsForDay(state.days[key], key)
+      rawEarned += value
+      if (key >= weekStart && key <= weekEnd) rawWeek += value
+    }
+    var baselineInCurrentWeek = startKey >= weekStart && startKey <= weekEnd ? baselineEarned : 0
+    var week = Math.max(0, rawWeek - baselineInCurrentWeek)
+    var earned = Math.max(0, rawEarned - baselineEarned)
+    var spent = state.pointsWallet.redemptions.reduce(function (sum, entry) {
+      return sum + Math.max(0, Number(entry.cost) || 0)
+    }, 0)
+    return { week: week, earned: earned, spent: spent, total: Math.max(0, earned - spent) }
+  }
+
+  function renderPointsWallet() {
+    if (!state.pointsWallet) normalizeWorkspaceState(state)
+    var summary = pointsSummary()
+    pointsWeekValue.forEach(function (element) { element.textContent = String(summary.week) })
+    pointsTotalValue.forEach(function (element) { element.textContent = String(summary.total) })
+
+    if (pointsRewardList) {
+      pointsRewardList.textContent = ''
+      POINT_REWARDS.forEach(function (reward) {
+        var card = document.createElement('article')
+        card.className = 'points-reward-card'
+        var header = document.createElement('header')
+        var title = document.createElement('h3')
+        var icon = document.createElement('i')
+        icon.className = 'fa-solid ' + reward.icon
+        icon.setAttribute('aria-hidden', 'true')
+        title.appendChild(icon)
+        title.appendChild(document.createTextNode(' ' + reward.label))
+        var cost = document.createElement('span')
+        cost.className = 'points-reward-cost'
+        cost.textContent = reward.cost + ' 分'
+        header.appendChild(title)
+        header.appendChild(cost)
+        var note = document.createElement('p')
+        note.textContent = reward.note
+        var button = document.createElement('button')
+        button.className = 'points-redeem-button'
+        button.type = 'button'
+        button.textContent = summary.total >= reward.cost ? '兑换奖励' : '还差 ' + (reward.cost - summary.total) + ' 分'
+        button.disabled = !authState.authenticated || summary.total < reward.cost
+        button.addEventListener('click', function () { redeemPointsReward(reward.id) })
+        card.appendChild(header)
+        card.appendChild(note)
+        card.appendChild(button)
+        pointsRewardList.appendChild(card)
+      })
+    }
+
+    if (pointsRedemptionList) {
+      pointsRedemptionList.textContent = ''
+      var redemptions = state.pointsWallet.redemptions.slice().sort(function (a, b) {
+        return Number(b.createdAt) - Number(a.createdAt)
+      }).slice(0, 8)
+      if (!redemptions.length) {
+        var empty = document.createElement('li')
+        empty.className = 'points-redemption-empty'
+        empty.textContent = '暂时没有兑换记录，先把喜欢的奖励存起来。'
+        pointsRedemptionList.appendChild(empty)
+      } else {
+        redemptions.forEach(function (entry) {
+          var item = document.createElement('li')
+          var label = document.createElement('strong')
+          label.textContent = entry.label || '已兑换奖励'
+          var meta = document.createElement('span')
+          var date = entry.createdAt ? new Date(entry.createdAt).toLocaleDateString('zh-CN') : ''
+          meta.textContent = '-' + entry.cost + ' 分' + (date ? ' · ' + date : '')
+          item.appendChild(label)
+          item.appendChild(meta)
+          pointsRedemptionList.appendChild(item)
+        })
+      }
+    }
+  }
+
+  function redeemPointsReward(rewardId) {
+    if (!canEdit()) return
+    var reward = POINT_REWARDS.find(function (entry) { return entry.id === rewardId })
+    if (!reward) return
+    var summary = pointsSummary()
+    if (summary.total < reward.cost) {
+      showToast('积分还不够，再完成一些计划吧')
+      return
+    }
+    if (!window.confirm('使用 ' + reward.cost + ' 分兑换“' + reward.label + '”吗？')) return
+    state.pointsWallet.redemptions.push({
+      id: uid(),
+      rewardId: reward.id,
+      label: reward.label,
+      cost: reward.cost,
+      createdAt: Date.now()
+    })
+    state.pointsWallet.updatedAt = Date.now()
+    saveState()
+    renderPointsWallet()
+    showToast('已兑换：' + reward.label)
+  }
+
+  function setPointsView(view) {
+    activePointsView = view === 'policy' ? 'policy' : 'shop'
+    document.querySelectorAll('[data-points-view-tab]').forEach(function (button) {
+      button.classList.toggle('is-active', button.getAttribute('data-points-view-tab') === activePointsView)
+    })
+    document.querySelectorAll('[data-points-view-pane]').forEach(function (pane) {
+      pane.hidden = pane.getAttribute('data-points-view-pane') !== activePointsView
+    })
+    if (activeWorkspace === 'points' && workspaceTitle) {
+      workspaceTitle.innerHTML = activePointsView === 'policy'
+        ? '<i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>积分章程'
+        : '<i class="fa-solid fa-gift" aria-hidden="true"></i>积分商城'
+    }
+    if (activeWorkspace === 'points' && workspaceSummary) {
+      workspaceSummary.textContent = activePointsView === 'policy'
+        ? '2026-08-24 起试行 · 有奖有扣 · 最低 0 分'
+        : '把持续行动兑换成真正喜欢的生活奖励'
+    }
+  }
+
+  function renderWorkspaceEditors() {
+    if (!workspaceDrawer) return
+    normalizeWorkspaceState(state)
+    document.querySelectorAll('[data-schedule-field]').forEach(function (field) {
+      if (document.activeElement !== field) field.value = scheduleFieldValue(field.getAttribute('data-schedule-field'))
+    })
+    document.querySelectorAll('[data-schedule-section]').forEach(function (field) {
+      var id = field.getAttribute('data-schedule-section')
+      var section = state.schedule.sections.find(function (entry) { return entry.id === id })
+      if (document.activeElement !== field) field.value = section ? section.content : ''
+    })
+    document.querySelectorAll('[data-policy-field]').forEach(function (field) {
+      var key = field.getAttribute('data-policy-field')
+      if (document.activeElement !== field) field.value = state.pointsPolicy[key] || ''
+    })
+    document.querySelectorAll('[data-workspace-pane]').forEach(function (pane) {
+      pane.hidden = pane.getAttribute('data-workspace-pane') !== activeWorkspace
+    })
+    setPointsView(activePointsView)
+    renderPointsWallet()
+    if (scheduleSaveStatus) scheduleSaveStatus.textContent = '已自动保存'
+    if (policySaveStatus) policySaveStatus.textContent = '已自动保存'
+  }
+
+  function showWorkspaceSaveStatus(element) {
+    if (!element) return
+    element.textContent = '正在保存…'
+    setTimeout(function () {
+      element.textContent = '已自动保存'
+    }, 650)
+  }
+
+  function openWorkspace(mode, pointsView) {
+    if (!workspaceDrawer) return
+    activeWorkspace = mode === 'points' ? 'points' : 'schedule'
+    if (activeWorkspace === 'points') activePointsView = pointsView === 'policy' ? 'policy' : 'shop'
+    closeUtility()
+    workspaceDrawer.hidden = false
+    workspaceDrawer.classList.toggle('is-points', activeWorkspace === 'points')
+    if (workspaceTitle) {
+      workspaceTitle.innerHTML = activeWorkspace === 'points'
+        ? '<i class="fa-solid fa-gem" aria-hidden="true"></i>积分中心'
+        : '<i class="fa-solid fa-calendar-days" aria-hidden="true"></i>日程安排'
+    }
+    if (workspaceSummary) {
+      workspaceSummary.textContent = activeWorkspace === 'points'
+        ? '积分商城与积分章程'
+        : '日常节奏、学习分块与晚间复盘'
+    }
+    document.querySelectorAll('[data-workspace-open]').forEach(function (button) {
+      button.classList.toggle('is-active', button.getAttribute('data-workspace-open') === activeWorkspace)
+    })
+    renderWorkspaceEditors()
+    applyAccessMode()
+  }
+
+  function closeWorkspace() {
+    activeWorkspace = null
+    if (workspaceDrawer) {
+      workspaceDrawer.hidden = true
+      workspaceDrawer.classList.remove('is-points')
+    }
+    document.querySelectorAll('[data-workspace-open]').forEach(function (button) {
+      button.classList.remove('is-active')
+    })
+  }
+
   function openUtility(mode) {
+    closeWorkspace()
     activeUtility = mode === 'trash' ? 'trash' : 'alerts'
     markUtilityRead(activeUtility)
     utilityDrawer.hidden = false
@@ -11312,6 +12967,7 @@ html.daily-standalone .focus-column {
     saveState()
     renderDay()
     renderCalendar()
+    renderPointsWallet()
   }
 
   function deleteTask(id) {
@@ -11836,6 +13492,7 @@ html.daily-standalone .focus-column {
     syncPlanCompletionRecord(task, selectedDate)
     saveState()
     renderDay()
+    renderPointsWallet()
     renderWeeklySummary()
     showToast('已按实际情况改为 ' + focusDurationLabel(nextSeconds))
   }
@@ -12457,6 +14114,7 @@ html.daily-standalone .focus-column {
     saveState()
     renderRoutines(day)
     renderWeeklySummary()
+    renderPointsWallet()
     closeDurationEdit()
     showToast(routine.emoji + ' ' + routine.label + '已改为 ' + focusDurationLabel(day.routineSeconds[routine.id]))
   }
@@ -12510,6 +14168,7 @@ html.daily-standalone .focus-column {
     saveState()
     renderRoutines(day)
     renderWeeklySummary()
+    renderPointsWallet()
     closeSleepDetails()
     showToast('🛌 睡眠结构已保存，共 ' + focusDurationLabel(day.routineSeconds.sleep))
   }
@@ -12536,6 +14195,7 @@ html.daily-standalone .focus-column {
     saveRoutineTimer()
     stopRoutineTicker()
     renderRoutines(ensureDay(selectedDate))
+    renderPointsWallet()
     if (!silent && finished) showToast(finished.emoji + ' ' + finished.label + '本次记录 ' + formatRoutineTime(elapsed))
   }
 
@@ -12557,6 +14217,7 @@ html.daily-standalone .focus-column {
     delete day.routineCompleted[id]
     saveState()
     renderRoutines(day)
+    renderPointsWallet()
     showToast(routine.emoji + ' ' + routine.label + '今日计时已重置')
   }
 
@@ -12576,6 +14237,7 @@ html.daily-standalone .focus-column {
     saveState()
     renderDay()
     renderTimer()
+    renderPointsWallet()
     showToast(routine.emoji + ' ' + routine.label + (complete ? '已完成今日打卡' : '已取消完成状态'))
   }
 
@@ -12834,6 +14496,7 @@ html.daily-standalone .focus-column {
     renderCalendar()
     renderWeeklySummary()
     renderTimer()
+    renderPointsWallet()
     if (autoFinished) startTimer()
   }
 
@@ -12949,6 +14612,7 @@ html.daily-standalone .focus-column {
     renderCalendar()
     renderTimer()
     renderUtilityPanel()
+    renderWorkspaceEditors()
     applyAccessMode()
   }
 
@@ -13210,6 +14874,50 @@ html.daily-standalone .focus-column {
     })
   })
   document.querySelector('[data-utility-close]').addEventListener('click', closeUtility)
+  document.querySelectorAll('[data-workspace-open]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var mode = button.getAttribute('data-workspace-open')
+      var pointsView = button.getAttribute('data-points-view') || 'shop'
+      if (activeWorkspace === mode && (mode !== 'points' || activePointsView === pointsView)) closeWorkspace()
+      else openWorkspace(mode, pointsView)
+    })
+  })
+  document.querySelectorAll('[data-points-view-tab]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      setPointsView(button.getAttribute('data-points-view-tab'))
+      applyAccessMode()
+    })
+  })
+  if (workspaceDrawer) {
+    document.querySelector('[data-workspace-close]').addEventListener('click', closeWorkspace)
+    document.querySelectorAll('[data-schedule-field]').forEach(function (field) {
+      field.addEventListener('input', function () {
+        setScheduleField(field.getAttribute('data-schedule-field'), field.value)
+        saveState()
+        showWorkspaceSaveStatus(scheduleSaveStatus)
+      })
+    })
+    document.querySelectorAll('[data-schedule-section]').forEach(function (field) {
+      field.addEventListener('input', function () {
+        var id = field.getAttribute('data-schedule-section')
+        var section = state.schedule.sections.find(function (entry) { return entry.id === id })
+        if (!section) return
+        section.content = field.value
+        state.schedule.updatedAt = Date.now()
+        saveState()
+        showWorkspaceSaveStatus(scheduleSaveStatus)
+      })
+    })
+    document.querySelectorAll('[data-policy-field]').forEach(function (field) {
+      field.addEventListener('input', function () {
+        var key = field.getAttribute('data-policy-field')
+        state.pointsPolicy[key] = field.value
+        state.pointsPolicy.updatedAt = Date.now()
+        saveState()
+        showWorkspaceSaveStatus(policySaveStatus)
+      })
+    })
+  }
   if (dokiThemeToggle) {
     dokiThemeToggle.addEventListener('click', function (event) {
       event.stopPropagation()
@@ -13227,11 +14935,13 @@ html.daily-standalone .focus-column {
   })
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape' && activeUtility) closeUtility()
+    if (event.key === 'Escape' && activeWorkspace) closeWorkspace()
     if (event.key === 'Escape') setDokiMenu(false)
     if (event.key === 'Escape' && taskCreateModal && !taskCreateModal.hidden) closeTaskCreate()
     if (event.key === 'Escape' && taskDetailModal && !taskDetailModal.hidden) closeTaskDetail()
     if (event.key === 'Escape' && sleepDetailModal && !sleepDetailModal.hidden) closeSleepDetails()
     if (event.key === 'Escape' && durationEditModal && !durationEditModal.hidden) closeDurationEdit()
+    if (event.key === 'Escape' && installModal && !installModal.hidden) closeInstallModal()
   })
   if (taskDetailModal) {
     document.querySelector('[data-task-detail-close]').addEventListener('click', closeTaskDetail)
@@ -13306,8 +15016,44 @@ html.daily-standalone .focus-column {
     login(password, trustDays).catch(function () {})
   })
 
+  if (installButton) installButton.addEventListener('click', syncDailyOffline)
+  if (installAction) installAction.addEventListener('click', runAppInstallAction)
+  if (installSave) installSave.addEventListener('click', saveDailyPagesOffline)
+  if (installModal) {
+    var installClose = installModal.querySelector('[data-install-close]')
+    if (installClose) installClose.addEventListener('click', closeInstallModal)
+    installModal.addEventListener('click', function (event) {
+      if (event.target === installModal) closeInstallModal()
+    })
+  }
+
+  window.addEventListener('beforeinstallprompt', function (event) {
+    event.preventDefault()
+    deferredInstallPrompt = event
+    updateInstallButton()
+  })
+  window.addEventListener('appinstalled', function () {
+    deferredInstallPrompt = null
+    closeInstallModal()
+    updateInstallButton()
+    showToast('已下载到本地，之后可从桌面直接打开')
+  })
+  window.addEventListener('online', function () {
+    if (authState.authenticated && hasPendingSync()) {
+      scheduleRemoteSave()
+      showToast('网络已恢复，正在补同步本地内容')
+    }
+  })
+  window.addEventListener('offline', function () {
+    showToast('已切换为本地模式，内容会在联网后自动同步')
+  })
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) updateInstallButton()
+  })
+
   window.addEventListener('storage', function (event) {
     if (event.key === DOKI_THEME_KEY) applyDokiTheme(event.newValue, false)
+    if (event.key === DAILY_OFFLINE_SYNC_KEY) updateInstallButton()
     if (event.key === PLAN_LIBRARY_LAYOUT_KEY) {
       planLibraryLayout = loadPlanLibraryLayout()
       applyPlanLibraryLayout(false)
@@ -13332,6 +15078,8 @@ html.daily-standalone .focus-column {
   })
 
   applyDokiTheme(storedDokiTheme(), false)
+  updateInstallButton()
+  registerDailyServiceWorker()
   makeDokiStickerDraggable(dokiTools, dokiSticker, DOKI_STICKER_POSITION_KEY)
   initializePlanLibraryResizer()
   ensureDay(selectedDate)

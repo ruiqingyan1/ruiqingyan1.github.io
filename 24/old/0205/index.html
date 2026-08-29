@@ -10,9 +10,9 @@
 <meta property="article:modified_time" content="2026-07-07T14:50:00.000Z">
 <meta property="article:author" content="睿清颜">
 <meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="内存">
 <meta property="article:tag" content="Windows逆向">
 <meta property="article:tag" content="寄存器">
-<meta property="article:tag" content="内存">
 <meta property="article:tag" content="EFLAGS">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://ruiqingyan.com/img/rd10.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://ruiqingyan.com/24/old/0205/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.14.0-b3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>(()=>{
@@ -179,328 +179,300 @@
   isHighlightShrink: false,
   isToc: true,
   postUpdate: '2026-07-07 22:50:00'
-}</script><link rel="stylesheet" href="/css/font/iconfont.css"><link rel="stylesheet" href="/css/custom@1.0.1.css?v=1.0.8"><link rel="stylesheet" href="/css/color@1.0.0.css"><script src="/js/doki-global-theme@1.0.0.js?v=1.2.0"></script><link rel="stylesheet" href="/css/doki-global-theme@1.0.0.css?v=1.3.5"><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">327</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">285</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua00"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw iconfont icon-flower3"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-hua01"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 项目实践</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li><li><a class="site-page child" href="/26/AI/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/33/000/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/rd10.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruiqy~"><img class="site-icon" src="/img/avatar.jpg" alt="Logo"/><span class="site-name">Ruiqy~</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua00"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw iconfont icon-flower3"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-hua01"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 项目实践</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li><li><a class="site-page child" href="/26/AI/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/33/000/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">0205、Windows 逆向入门：寄存器、标志位与内存基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-07-07T14:50:00.000Z" title="发表于 2026-07-07 22:50:00">2026-07-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-07T14:50:00.000Z" title="更新于 2026-07-07 22:50:00">2026-07-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/Windows%E9%80%86%E5%90%91/">Windows逆向</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="0205、Windows 逆向入门：寄存器、标志位与内存基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note info flat"><p>返回：<a href="/24/old/0201/">Windows 逆向入门篇</a> · <a href="/24/old/0200/">Windows 逆向总目录</a></p>
+}</script><link rel="stylesheet" href="/css/font/iconfont.css"><link rel="stylesheet" href="/css/custom@1.0.1.css?v=1.0.8"><link rel="stylesheet" href="/css/color@1.0.0.css"><script src="/js/doki-global-theme@1.0.0.js?v=1.2.0"></script><link rel="stylesheet" href="/css/doki-global-theme@1.0.0.css?v=1.3.5"><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">318</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">281</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua00"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw iconfont icon-flower3"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-hua01"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 项目实践</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li><li><a class="site-page child" href="/26/AI/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/33/000/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/rd10.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruiqy~"><img class="site-icon" src="/img/avatar.jpg" alt="Logo"/><span class="site-name">Ruiqy~</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua00"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw iconfont icon-flower3"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-hua01"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-002-flower-1"></i><span> 项目实践</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li><li><a class="site-page child" href="/26/AI/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li><li><a class="site-page child" href="/33/000/"><i class="fa-fw iconfont icon-xiangsufeng_xinfeng"></i><span> 似水年华</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">0205、Windows 逆向入门：寄存器、标志位与内存基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-07-07T14:50:00.000Z" title="发表于 2026-07-07 22:50:00">2026-07-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-07T14:50:00.000Z" title="更新于 2026-07-07 22:50:00">2026-07-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/Windows%E9%80%86%E5%90%91/">Windows逆向</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="0205、Windows 逆向入门：寄存器、标志位与内存基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note info flat"><p>返回：<a href="/24/old/0201/">Windows 逆向入门篇</a> · <a href="/24/old/0200/">Windows 逆向总目录</a></p>
 </div>
+
 <p>这一部分开始真正进入 CPU 状态：寄存器保存当前执行环境，标志位保存运算结果特征，内存保存代码和数据。逆向时看懂这三类信息，就能知道程序“现在执行到哪里、刚才算出了什么、接下来会跳到哪里”。</p>
-<h2 id="1、内容范围"><a href="#1、内容范围" class="headerlink" title="1、内容范围"></a>1、内容范围</h2><div class="table-container">
-<table>
+<h2 id="1、内容范围"><a href="#1、内容范围" class="headerlink" title="1、内容范围"></a>1、内容范围</h2><table>
 <thead>
 <tr>
-<th style="text-align:center">小节</th>
-<th style="text-align:left">内容</th>
-<th style="text-align:left">复盘点</th>
+<th align="center">小节</th>
+<th align="left">内容</th>
+<th align="left">复盘点</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">02.5</td>
-<td style="text-align:left">寄存器</td>
-<td style="text-align:left">通用寄存器、段寄存器、指令指针寄存器</td>
+<tbody><tr>
+<td align="center">02.5</td>
+<td align="left">寄存器</td>
+<td align="left">通用寄存器、段寄存器、指令指针寄存器</td>
 </tr>
 <tr>
-<td style="text-align:center">02.6</td>
-<td style="text-align:left">通用寄存器对应关系</td>
-<td style="text-align:left"><code>EAX/AX/AH/AL</code>、<code>RAX/EAX/AX/AL</code> 的包含关系</td>
+<td align="center">02.6</td>
+<td align="left">通用寄存器对应关系</td>
+<td align="left"><code>EAX/AX/AH/AL</code>、<code>RAX/EAX/AX/AL</code> 的包含关系</td>
 </tr>
 <tr>
-<td style="text-align:center">02.7</td>
-<td style="text-align:left">寄存器包含关系测试</td>
-<td style="text-align:left">修改低位寄存器对高位的影响</td>
+<td align="center">02.7</td>
+<td align="left">寄存器包含关系测试</td>
+<td align="left">修改低位寄存器对高位的影响</td>
 </tr>
 <tr>
-<td style="text-align:center">02.8</td>
-<td style="text-align:left">段寄存器特性</td>
-<td style="text-align:left"><code>CS/DS/SS/ES/FS/GS</code> 的基本用途</td>
+<td align="center">02.8</td>
+<td align="left">段寄存器特性</td>
+<td align="left"><code>CS/DS/SS/ES/FS/GS</code> 的基本用途</td>
 </tr>
 <tr>
-<td style="text-align:center">02.9</td>
-<td style="text-align:left">指令指针寄存器</td>
-<td style="text-align:left"><code>EIP/RIP</code> 保存下一条指令地址</td>
+<td align="center">02.9</td>
+<td align="left">指令指针寄存器</td>
+<td align="left"><code>EIP/RIP</code> 保存下一条指令地址</td>
 </tr>
 <tr>
-<td style="text-align:center">03.0 - 03.8</td>
-<td style="text-align:left">标志寄存器</td>
-<td style="text-align:left">CF、PF、AF、ZF、SF、DF、OF 与 EFLAGS</td>
+<td align="center">03.0 - 03.8</td>
+<td align="left">标志寄存器</td>
+<td align="left">CF、PF、AF、ZF、SF、DF、OF 与 EFLAGS</td>
 </tr>
 <tr>
-<td style="text-align:center">03.9 - 04.4</td>
-<td style="text-align:left">内存基础</td>
-<td style="text-align:left">内存特性、内存管理、端序、读写和寻址</td>
+<td align="center">03.9 - 04.4</td>
+<td align="left">内存基础</td>
+<td align="left">内存特性、内存管理、端序、读写和寻址</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h2 id="2、通用寄存器"><a href="#2、通用寄存器" class="headerlink" title="2、通用寄存器"></a>2、通用寄存器</h2><p>寄存器是 CPU 内部速度最快的小容量存储区域。入门阶段先掌握常见用途，不必一开始背完整架构手册。</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">x86</th>
-<th style="text-align:left">常见用途</th>
-<th style="text-align:center">x64 对应</th>
+<th align="center">x86</th>
+<th align="left">常见用途</th>
+<th align="center">x64 对应</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>EAX</code></td>
-<td style="text-align:left">运算结果、返回值</td>
-<td style="text-align:center"><code>RAX</code></td>
+<tbody><tr>
+<td align="center"><code>EAX</code></td>
+<td align="left">运算结果、返回值</td>
+<td align="center"><code>RAX</code></td>
 </tr>
 <tr>
-<td style="text-align:center"><code>EBX</code></td>
-<td style="text-align:left">通用保存</td>
-<td style="text-align:center"><code>RBX</code></td>
+<td align="center"><code>EBX</code></td>
+<td align="left">通用保存</td>
+<td align="center"><code>RBX</code></td>
 </tr>
 <tr>
-<td style="text-align:center"><code>ECX</code></td>
-<td style="text-align:left">计数、循环、参数</td>
-<td style="text-align:center"><code>RCX</code></td>
+<td align="center"><code>ECX</code></td>
+<td align="left">计数、循环、参数</td>
+<td align="center"><code>RCX</code></td>
 </tr>
 <tr>
-<td style="text-align:center"><code>EDX</code></td>
-<td style="text-align:left">扩展运算、参数</td>
-<td style="text-align:center"><code>RDX</code></td>
+<td align="center"><code>EDX</code></td>
+<td align="left">扩展运算、参数</td>
+<td align="center"><code>RDX</code></td>
 </tr>
 <tr>
-<td style="text-align:center"><code>ESI</code></td>
-<td style="text-align:left">源地址、字符串操作</td>
-<td style="text-align:center"><code>RSI</code></td>
+<td align="center"><code>ESI</code></td>
+<td align="left">源地址、字符串操作</td>
+<td align="center"><code>RSI</code></td>
 </tr>
 <tr>
-<td style="text-align:center"><code>EDI</code></td>
-<td style="text-align:left">目的地址、字符串操作</td>
-<td style="text-align:center"><code>RDI</code></td>
+<td align="center"><code>EDI</code></td>
+<td align="left">目的地址、字符串操作</td>
+<td align="center"><code>RDI</code></td>
 </tr>
 <tr>
-<td style="text-align:center"><code>ESP</code></td>
-<td style="text-align:left">栈顶指针</td>
-<td style="text-align:center"><code>RSP</code></td>
+<td align="center"><code>ESP</code></td>
+<td align="left">栈顶指针</td>
+<td align="center"><code>RSP</code></td>
 </tr>
 <tr>
-<td style="text-align:center"><code>EBP</code></td>
-<td style="text-align:left">栈帧基址</td>
-<td style="text-align:center"><code>RBP</code></td>
+<td align="center"><code>EBP</code></td>
+<td align="left">栈帧基址</td>
+<td align="center"><code>RBP</code></td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>调试时最常看的是 <code>EIP/RIP</code>、<code>ESP/RSP</code>、<code>EBP/RBP</code> 和返回值寄存器。</p>
 <h2 id="3、寄存器包含关系"><a href="#3、寄存器包含关系" class="headerlink" title="3、寄存器包含关系"></a>3、寄存器包含关系</h2><p>同一个寄存器可以按不同宽度访问。</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RAX</span><br><span class="line">└── EAX</span><br><span class="line">    └── AX</span><br><span class="line">        ├── AH</span><br><span class="line">        └── AL</span><br></pre></td></tr></table></figure>
+
 <p>复盘时要注意：修改 <code>AL</code> 只影响最低 8 位；修改 <code>EAX</code> 在 x64 下通常会把 <code>RAX</code> 高 32 位清零。这类细节会影响反汇编理解。</p>
 <h2 id="4、段寄存器"><a href="#4、段寄存器" class="headerlink" title="4、段寄存器"></a>4、段寄存器</h2><p>段寄存器在现代 Windows 用户态里不需要天天手算，但 <code>FS/GS</code> 很重要，因为它们常用于访问线程环境块或进程环境相关数据。</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">寄存器</th>
-<th style="text-align:left">入门理解</th>
+<th align="center">寄存器</th>
+<th align="left">入门理解</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>CS</code></td>
-<td style="text-align:left">代码段</td>
+<tbody><tr>
+<td align="center"><code>CS</code></td>
+<td align="left">代码段</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>SS</code></td>
-<td style="text-align:left">栈段</td>
+<td align="center"><code>SS</code></td>
+<td align="left">栈段</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>DS/ES</code></td>
-<td style="text-align:left">数据段</td>
+<td align="center"><code>DS/ES</code></td>
+<td align="left">数据段</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>FS/GS</code></td>
-<td style="text-align:left">线程/系统相关结构常见入口</td>
+<td align="center"><code>FS/GS</code></td>
+<td align="left">线程&#x2F;系统相关结构常见入口</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>后面看 PEB、TEB、反调试和 x64 系统结构时，会再次遇到 <code>FS/GS</code>。</p>
 <h2 id="5、指令指针寄存器"><a href="#5、指令指针寄存器" class="headerlink" title="5、指令指针寄存器"></a>5、指令指针寄存器</h2><p><code>EIP/RIP</code> 指向下一条要执行的指令。普通代码不能直接像修改普通变量那样写 <code>EIP</code>，但跳转、调用、返回、异常处理都会改变它。</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">行为</th>
-<th style="text-align:left">对 EIP/RIP 的影响</th>
+<th align="center">行为</th>
+<th align="left">对 EIP&#x2F;RIP 的影响</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">顺序执行</td>
-<td style="text-align:left">指向下一条指令</td>
+<tbody><tr>
+<td align="center">顺序执行</td>
+<td align="left">指向下一条指令</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>jmp</code></td>
-<td style="text-align:left">跳到目标地址</td>
+<td align="center"><code>jmp</code></td>
+<td align="left">跳到目标地址</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>call</code></td>
-<td style="text-align:left">保存返回地址后跳到函数</td>
+<td align="center"><code>call</code></td>
+<td align="left">保存返回地址后跳到函数</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>ret</code></td>
-<td style="text-align:left">从栈中取返回地址</td>
+<td align="center"><code>ret</code></td>
+<td align="left">从栈中取返回地址</td>
 </tr>
 <tr>
-<td style="text-align:center">异常</td>
-<td style="text-align:left">进入异常处理流程</td>
+<td align="center">异常</td>
+<td align="left">进入异常处理流程</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h2 id="6、EFLAGS-与常见标志位"><a href="#6、EFLAGS-与常见标志位" class="headerlink" title="6、EFLAGS 与常见标志位"></a>6、EFLAGS 与常见标志位</h2><p>标志位是 CPU 对上一次运算结果的记录，条件跳转经常依赖它。</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">标志</th>
-<th style="text-align:left">名称</th>
-<th style="text-align:left">常见含义</th>
+<th align="center">标志</th>
+<th align="left">名称</th>
+<th align="left">常见含义</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>CF</code></td>
-<td style="text-align:left">Carry Flag</td>
-<td style="text-align:left">无符号进位/借位</td>
+<tbody><tr>
+<td align="center"><code>CF</code></td>
+<td align="left">Carry Flag</td>
+<td align="left">无符号进位&#x2F;借位</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>PF</code></td>
-<td style="text-align:left">Parity Flag</td>
-<td style="text-align:left">低 8 位 1 的个数是否为偶数</td>
+<td align="center"><code>PF</code></td>
+<td align="left">Parity Flag</td>
+<td align="left">低 8 位 1 的个数是否为偶数</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>AF</code></td>
-<td style="text-align:left">Auxiliary Carry</td>
-<td style="text-align:left">BCD 或低半字节进位相关</td>
+<td align="center"><code>AF</code></td>
+<td align="left">Auxiliary Carry</td>
+<td align="left">BCD 或低半字节进位相关</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>ZF</code></td>
-<td style="text-align:left">Zero Flag</td>
-<td style="text-align:left">运算结果是否为 0</td>
+<td align="center"><code>ZF</code></td>
+<td align="left">Zero Flag</td>
+<td align="left">运算结果是否为 0</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>SF</code></td>
-<td style="text-align:left">Sign Flag</td>
-<td style="text-align:left">结果最高位是否为 1</td>
+<td align="center"><code>SF</code></td>
+<td align="left">Sign Flag</td>
+<td align="left">结果最高位是否为 1</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>DF</code></td>
-<td style="text-align:left">Direction Flag</td>
-<td style="text-align:left">字符串指令方向</td>
+<td align="center"><code>DF</code></td>
+<td align="left">Direction Flag</td>
+<td align="left">字符串指令方向</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>OF</code></td>
-<td style="text-align:left">Overflow Flag</td>
-<td style="text-align:left">有符号溢出</td>
+<td align="center"><code>OF</code></td>
+<td align="left">Overflow Flag</td>
+<td align="left">有符号溢出</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>条件跳转的本质：先比较或测试，再根据标志位决定跳不跳。</p>
 <h2 id="7、内存特性"><a href="#7、内存特性" class="headerlink" title="7、内存特性"></a>7、内存特性</h2><p>内存要同时看地址、内容、权限和所属区域。</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">维度</th>
-<th style="text-align:left">复盘问题</th>
+<th align="center">维度</th>
+<th align="left">复盘问题</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">地址</td>
-<td style="text-align:left">当前访问的是哪里</td>
+<tbody><tr>
+<td align="center">地址</td>
+<td align="left">当前访问的是哪里</td>
 </tr>
 <tr>
-<td style="text-align:center">内容</td>
-<td style="text-align:left">这一段字节代表数据还是指令</td>
+<td align="center">内容</td>
+<td align="left">这一段字节代表数据还是指令</td>
 </tr>
 <tr>
-<td style="text-align:center">权限</td>
-<td style="text-align:left">可读、可写、可执行吗</td>
+<td align="center">权限</td>
+<td align="left">可读、可写、可执行吗</td>
 </tr>
 <tr>
-<td style="text-align:center">区域</td>
-<td style="text-align:left">栈、堆、模块、映射还是私有内存</td>
+<td align="center">区域</td>
+<td align="left">栈、堆、模块、映射还是私有内存</td>
 </tr>
 <tr>
-<td style="text-align:center">生命周期</td>
-<td style="text-align:left">这块内存什么时候有效</td>
+<td align="center">生命周期</td>
+<td align="left">这块内存什么时候有效</td>
 </tr>
-</tbody>
-</table>
-</div>
-<h2 id="8、端序与内存读写"><a href="#8、端序与内存读写" class="headerlink" title="8、端序与内存读写"></a>8、端序与内存读写</h2><p>Windows x86/x64 常见小端序：低位字节存低地址。</p>
+</tbody></table>
+<h2 id="8、端序与内存读写"><a href="#8、端序与内存读写" class="headerlink" title="8、端序与内存读写"></a>8、端序与内存读写</h2><p>Windows x86&#x2F;x64 常见小端序：低位字节存低地址。</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">数值：0x12345678</span><br><span class="line">内存：78 56 34 12</span><br></pre></td></tr></table></figure>
+
 <p>逆向时看到字节序列，必须先确认它是按什么宽度、什么端序解释。</p>
 <h2 id="9、内存寻址"><a href="#9、内存寻址" class="headerlink" title="9、内存寻址"></a>9、内存寻址</h2><p>常见寻址形式：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov eax, [ebp-4]</span><br><span class="line">mov eax, [esi+ecx*4]</span><br><span class="line">mov eax, [base+index*scale+disp]</span><br></pre></td></tr></table></figure>
-<div class="table-container">
+
 <table>
 <thead>
 <tr>
-<th style="text-align:center">部分</th>
-<th style="text-align:left">含义</th>
+<th align="center">部分</th>
+<th align="left">含义</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">base</td>
-<td style="text-align:left">基址寄存器</td>
+<tbody><tr>
+<td align="center">base</td>
+<td align="left">基址寄存器</td>
 </tr>
 <tr>
-<td style="text-align:center">index</td>
-<td style="text-align:left">索引寄存器</td>
+<td align="center">index</td>
+<td align="left">索引寄存器</td>
 </tr>
 <tr>
-<td style="text-align:center">scale</td>
-<td style="text-align:left">1、2、4、8 等比例</td>
+<td align="center">scale</td>
+<td align="left">1、2、4、8 等比例</td>
 </tr>
 <tr>
-<td style="text-align:center">disp</td>
-<td style="text-align:left">固定偏移</td>
+<td align="center">disp</td>
+<td align="left">固定偏移</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>数组、结构体、对象成员、本地变量都会落到这些寻址形式里。</p>
-<h2 id="10、学习检查清单"><a href="#10、学习检查清单" class="headerlink" title="10、学习检查清单"></a>10、学习检查清单</h2><div class="table-container">
-<table>
+<h2 id="10、学习检查清单"><a href="#10、学习检查清单" class="headerlink" title="10、学习检查清单"></a>10、学习检查清单</h2><table>
 <thead>
 <tr>
-<th style="text-align:left">检查项</th>
-<th style="text-align:center">状态</th>
+<th align="left">检查项</th>
+<th align="center">状态</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:left">能说出 <code>EAX/ESP/EBP/EIP</code> 的常见用途</td>
-<td style="text-align:center">待复盘</td>
+<tbody><tr>
+<td align="left">能说出 <code>EAX/ESP/EBP/EIP</code> 的常见用途</td>
+<td align="center">待复盘</td>
 </tr>
 <tr>
-<td style="text-align:left">能解释 <code>ZF/CF/SF/OF</code> 对条件跳转的影响</td>
-<td style="text-align:center">待复盘</td>
+<td align="left">能解释 <code>ZF/CF/SF/OF</code> 对条件跳转的影响</td>
+<td align="center">待复盘</td>
 </tr>
 <tr>
-<td style="text-align:left">能看懂小端序整数在内存中的排列</td>
-<td style="text-align:center">待复盘</td>
+<td align="left">能看懂小端序整数在内存中的排列</td>
+<td align="center">待复盘</td>
 </tr>
 <tr>
-<td style="text-align:left">能根据 <code>[base+index*scale+disp]</code> 推测数组或结构体访问</td>
-<td style="text-align:center">待复盘</td>
+<td align="left">能根据 <code>[base+index*scale+disp]</code> 推测数组或结构体访问</td>
+<td align="center">待复盘</td>
 </tr>
 <tr>
-<td style="text-align:left">能在调试器里同时观察寄存器、标志位和内存窗口</td>
-<td style="text-align:center">待复盘</td>
+<td align="left">能在调试器里同时观察寄存器、标志位和内存窗口</td>
+<td align="center">待复盘</td>
 </tr>
-</tbody>
-</table>
-</div>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com">睿清颜</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com/24/old/0205/">https://ruiqingyan.com/24/old/0205/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ruiqingyan.com" target="_blank">Ruiqy~</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><a class="post-meta__tags" href="/tags/Windows%E9%80%86%E5%90%91/">Windows逆向</a><a class="post-meta__tags" href="/tags/%E5%AF%84%E5%AD%98%E5%99%A8/">寄存器</a><a class="post-meta__tags" href="/tags/%E5%86%85%E5%AD%98/">内存</a><a class="post-meta__tags" href="/tags/EFLAGS/">EFLAGS</a></div><div class="post_share"><div class="social-share" data-image="/img/rd10.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/24/old/0207/" title="0207、Windows 逆向入门：堆栈、CALL/RET 与函数逆向"><img class="cover" src="/img/rd10.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">0207、Windows 逆向入门：堆栈、CALL/RET 与函数逆向</div></div></a></div><div class="next-post pull-right"><a href="/24/old/0215/" title="0215、Windows 逆向入门：调试器项目"><img class="cover" src="/img/rd10.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">0215、Windows 逆向入门：调试器项目</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/24/007/" title="007、存储—通用寄存器"><img class="cover" src="/img/rm55.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-10</div><div class="title">007、存储—通用寄存器</div></div></a></div><div><a href="/24/004/" title="004、数据—存储宽度"><img class="cover" src="/img/r277.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-05</div><div class="title">004、数据—存储宽度</div></div></a></div><div><a href="/24/009/" title="009、存储—标志寄存器"><img class="cover" src="/img/r420.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-10</div><div class="title">009、存储—标志寄存器</div></div></a></div><div><a href="/24/010/" title="010、内存—内存特性"><img class="cover" src="/img/r11.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-10</div><div class="title">010、内存—内存特性</div></div></a></div><div><a href="/24/012/" title="012、内存—内存读写与寻址"><img class="cover" src="/img/r13.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-10</div><div class="title">012、内存—内存读写与寻址</div></div></a></div><div><a href="/24/011/" title="011、内存—内存管理与端序"><img class="cover" src="/img/r12.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-10</div><div class="title">011、内存—内存管理与端序</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">睿清颜</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">327</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">285</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%86%85%E5%AE%B9%E8%8C%83%E5%9B%B4"><span class="toc-text">1、内容范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">2、通用寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%AF%84%E5%AD%98%E5%99%A8%E5%8C%85%E5%90%AB%E5%85%B3%E7%B3%BB"><span class="toc-text">3、寄存器包含关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">4、段寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E6%8C%87%E4%BB%A4%E6%8C%87%E9%92%88%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">5、指令指针寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81EFLAGS-%E4%B8%8E%E5%B8%B8%E8%A7%81%E6%A0%87%E5%BF%97%E4%BD%8D"><span class="toc-text">6、EFLAGS 与常见标志位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81%E5%86%85%E5%AD%98%E7%89%B9%E6%80%A7"><span class="toc-text">7、内存特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8%E3%80%81%E7%AB%AF%E5%BA%8F%E4%B8%8E%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99"><span class="toc-text">8、端序与内存读写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9%E3%80%81%E5%86%85%E5%AD%98%E5%AF%BB%E5%9D%80"><span class="toc-text">9、内存寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10%E3%80%81%E5%AD%A6%E4%B9%A0%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95"><span class="toc-text">10、学习检查清单</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/11/insight-kezhouqiujian/" title="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常"><img src="/img/rd20.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常"/></a><div class="content"><a class="title" href="/11/insight-kezhouqiujian/" title="2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常">2026.08.17 刻舟求剑：我们都在用静止的记忆对抗流动的无常</a><time datetime="2026-08-17T12:00:00.000Z" title="发表于 2026-08-17 20:00:00">2026-08-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/018/" title="018、反汇编代码的重建与编译"><img src="/img/rd19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="018、反汇编代码的重建与编译"/></a><div class="content"><a class="title" href="/31/cpp-reverse/018/" title="018、反汇编代码的重建与编译">018、反汇编代码的重建与编译</a><time datetime="2026-08-14T00:18:00.000Z" title="发表于 2026-08-14 08:18:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/017/" title="017、WannaCry 勒索病毒的防御性分析"><img src="/img/rd18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="017、WannaCry 勒索病毒的防御性分析"/></a><div class="content"><a class="title" href="/31/cpp-reverse/017/" title="017、WannaCry 勒索病毒的防御性分析">017、WannaCry 勒索病毒的防御性分析</a><time datetime="2026-08-14T00:17:00.000Z" title="发表于 2026-08-14 08:17:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/016/" title="016、远控木马的防御性逆向分析"><img src="/img/rd17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="016、远控木马的防御性逆向分析"/></a><div class="content"><a class="title" href="/31/cpp-reverse/016/" title="016、远控木马的防御性逆向分析">016、远控木马的防御性逆向分析</a><time datetime="2026-08-14T00:16:00.000Z" title="发表于 2026-08-14 08:16:00">2026-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/31/cpp-reverse/015/" title="015、OllyDbg 的工作原理"><img src="/img/rd16.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="015、OllyDbg 的工作原理"/></a><div class="content"><a class="title" href="/31/cpp-reverse/015/" title="015、OllyDbg 的工作原理">015、OllyDbg 的工作原理</a><time datetime="2026-08-14T00:15:00.000Z" title="发表于 2026-08-14 08:15:00">2026-08-14</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/rd10.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2026 By 睿清颜</div><div class="footer_custom_text"><div class="footer-records">
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com">睿清颜</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com/24/old/0205/">https://ruiqingyan.com/24/old/0205/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ruiqingyan.com" target="_blank">Ruiqy~</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a><a class="post-meta__tags" href="/tags/%E5%86%85%E5%AD%98/">内存</a><a class="post-meta__tags" href="/tags/Windows%E9%80%86%E5%90%91/">Windows逆向</a><a class="post-meta__tags" href="/tags/%E5%AF%84%E5%AD%98%E5%99%A8/">寄存器</a><a class="post-meta__tags" href="/tags/EFLAGS/">EFLAGS</a></div><div class="post_share"><div class="social-share" data-image="/img/rd10.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/24/old/0208/" title="0208、Windows 逆向入门：DBG/IDA 与函数结构分析"><img class="cover" src="/img/rd10.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">0208、Windows 逆向入门：DBG/IDA 与函数结构分析</div></div></a></div><div class="next-post pull-right"><a href="/24/old/0214/" title="0214、Windows 逆向入门：x64 基础与系统机制"><img class="cover" src="/img/rd10.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">0214、Windows 逆向入门：x64 基础与系统机制</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/24/old/0228/" title="0228、Windows 逆向攻防：内存映射与 ShellCode 承载"><img class="cover" src="/img/rd10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-07</div><div class="title">0228、Windows 逆向攻防：内存映射与 ShellCode 承载</div></div></a></div><div><a href="/24/old/0109/" title="0109、安全开发篇（一）：指针与函数入门"><img class="cover" src="/img/rd10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-06</div><div class="title">0109、安全开发篇（一）：指针与函数入门</div></div></a></div><div><a href="/24/old/0113/" title="0113、安全开发篇（二）：内存管理与指针限定"><img class="cover" src="/img/rd10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-07</div><div class="title">0113、安全开发篇（二）：内存管理与指针限定</div></div></a></div><div><a href="/24/old/0200/" title="0200、Windows 逆向：总目录"><img class="cover" src="/img/rd10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-06</div><div class="title">0200、Windows 逆向：总目录</div></div></a></div><div><a href="/24/old/0201/" title="0201、Windows 零基础逆向教程（一）：入门篇"><img class="cover" src="/img/rd10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-06</div><div class="title">0201、Windows 零基础逆向教程（一）：入门篇</div></div></a></div><div><a href="/24/old/0202/" title="0202、Windows 零基础逆向教程（二）：提升篇"><img class="cover" src="/img/rd10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-06</div><div class="title">0202、Windows 零基础逆向教程（二）：提升篇</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">睿清颜</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">318</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">281</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%86%85%E5%AE%B9%E8%8C%83%E5%9B%B4"><span class="toc-text">1、内容范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">2、通用寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%AF%84%E5%AD%98%E5%99%A8%E5%8C%85%E5%90%AB%E5%85%B3%E7%B3%BB"><span class="toc-text">3、寄存器包含关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">4、段寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E6%8C%87%E4%BB%A4%E6%8C%87%E9%92%88%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">5、指令指针寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81EFLAGS-%E4%B8%8E%E5%B8%B8%E8%A7%81%E6%A0%87%E5%BF%97%E4%BD%8D"><span class="toc-text">6、EFLAGS 与常见标志位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81%E5%86%85%E5%AD%98%E7%89%B9%E6%80%A7"><span class="toc-text">7、内存特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8%E3%80%81%E7%AB%AF%E5%BA%8F%E4%B8%8E%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99"><span class="toc-text">8、端序与内存读写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9%E3%80%81%E5%86%85%E5%AD%98%E5%AF%BB%E5%9D%80"><span class="toc-text">9、内存寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10%E3%80%81%E5%AD%A6%E4%B9%A0%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95"><span class="toc-text">10、学习检查清单</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/24/010/" title="010、安全开发篇（一）：语法规范风格"><img src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="010、安全开发篇（一）：语法规范风格"/></a><div class="content"><a class="title" href="/24/010/" title="010、安全开发篇（一）：语法规范风格">010、安全开发篇（一）：语法规范风格</a><time datetime="2026-08-28T08:40:00.000Z" title="发表于 2026-08-28 16:40:00">2026-08-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/24/009/" title="009、安全开发篇（一）：控制台指令"><img src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="009、安全开发篇（一）：控制台指令"/></a><div class="content"><a class="title" href="/24/009/" title="009、安全开发篇（一）：控制台指令">009、安全开发篇（一）：控制台指令</a><time datetime="2026-08-28T08:39:00.000Z" title="发表于 2026-08-28 16:39:00">2026-08-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/24/008/" title="008、安全开发篇（一）：函数调用过程"><img src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="008、安全开发篇（一）：函数调用过程"/></a><div class="content"><a class="title" href="/24/008/" title="008、安全开发篇（一）：函数调用过程">008、安全开发篇（一）：函数调用过程</a><time datetime="2026-08-28T08:38:00.000Z" title="发表于 2026-08-28 16:38:00">2026-08-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/24/007/" title="007、安全开发篇（一）：程序入口点"><img src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="007、安全开发篇（一）：程序入口点"/></a><div class="content"><a class="title" href="/24/007/" title="007、安全开发篇（一）：程序入口点">007、安全开发篇（一）：程序入口点</a><time datetime="2026-08-28T08:37:00.000Z" title="发表于 2026-08-28 16:37:00">2026-08-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/24/006/" title="006、安全开发篇（一）：include 预处理指令"><img src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="006、安全开发篇（一）：include 预处理指令"/></a><div class="content"><a class="title" href="/24/006/" title="006、安全开发篇（一）：include 预处理指令">006、安全开发篇（一）：include 预处理指令</a><time datetime="2026-08-28T08:36:00.000Z" title="发表于 2026-08-28 16:36:00">2026-08-28</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/rd10.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2026 By 睿清颜</div><div class="footer_custom_text"><div class="footer-records">
   <a class="footer-record" href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">
     <span class="footer-record-icon footer-record-icon--icp" aria-hidden="true">🌏</span>
     <span>粤ICP备2024216057号</span>
