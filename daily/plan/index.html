@@ -7539,8 +7539,8 @@ html.daily-standalone .focus-column {
         <button class="rail-button" type="button" data-utility-open="trash" title="垃圾桶" aria-label="垃圾桶">
           <img class="doki-ui-icon" src="/daily/doki-icons/trash.svg" alt="" aria-hidden="true"><span class="rail-badge" data-trash-badge hidden>0</span>
         </button>
-        <button class="rail-button install-rail-button" type="button" data-install-app title="同步 Daily 到本地" aria-label="同步 Daily 页面到本地">
-          <img class="doki-ui-icon" src="/daily/doki-icons/cloud_outline.svg" alt="" aria-hidden="true">
+        <button class="rail-button install-rail-button" type="button" data-install-app title="下载 Daily 离线资源包" aria-label="下载 Daily 离线资源包到本地">
+          <img class="doki-ui-icon" src="/daily/doki-icons/folder.svg" alt="" aria-hidden="true">
         </button>
         <a class="rail-button" href="/" title="首页" aria-label="首页"><img class="doki-ui-icon" src="/daily/doki-icons/light_house.svg" alt="" aria-hidden="true"></a>
       </nav>
@@ -8227,7 +8227,9 @@ html.daily-standalone .focus-column {
   var DOKI_STICKER_POSITION_KEY = 'ruiqy.daily.doki-sticker-position.v1'
   var PLAN_NAVIGATION_KEY = 'ruiqy.daily.plan-navigation.v1'
   var PLAN_LIBRARY_LAYOUT_KEY = 'ruiqy.daily.plan-library-layout.v1'
-  var DAILY_OFFLINE_SYNC_KEY = 'ruiqy.daily.offline-sync-date.v1'
+  var DAILY_OFFLINE_PACKAGE_KEY = 'ruiqy.daily.offline-package-version.v1'
+  var DAILY_OFFLINE_PACKAGE_VERSION = 'daily-v1'
+  var LEGACY_DAILY_OFFLINE_SYNC_KEY = 'ruiqy.daily.offline-sync-date.v1'
   var DOKI_THEMES = {
     'emilia-light': { tone: 'light', sticker: '/daily/doki/emilia_light.png' },
     'beatrice': { tone: 'light', sticker: '/daily/doki/beatrice.png' },
@@ -10471,32 +10473,36 @@ html.daily-standalone .focus-column {
     return /Safari/.test(navigator.userAgent) && !/Chrome|Chromium|CriOS|Edg|OPR|Firefox|FxiOS/.test(navigator.userAgent)
   }
 
-  function dailyOfflineSyncDate() {
-    var date = new Date()
-    return date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0')
-  }
-
-  function hasSyncedDailyOfflineToday() {
+  function hasCurrentDailyOfflinePackage() {
     try {
-      return localStorage.getItem(DAILY_OFFLINE_SYNC_KEY) === dailyOfflineSyncDate()
+      var installedVersion = localStorage.getItem(DAILY_OFFLINE_PACKAGE_KEY)
+      if (installedVersion === DAILY_OFFLINE_PACKAGE_VERSION) return true
+
+      // Migrate devices that already completed the previous daily download once.
+      // Future major offline-package releases only need to bump DAILY_OFFLINE_PACKAGE_VERSION.
+      if (!installedVersion && localStorage.getItem(LEGACY_DAILY_OFFLINE_SYNC_KEY)) {
+        localStorage.setItem(DAILY_OFFLINE_PACKAGE_KEY, DAILY_OFFLINE_PACKAGE_VERSION)
+        return true
+      }
+      return false
     } catch (error) {
       return false
     }
   }
 
-  function rememberDailyOfflineSync() {
+  function rememberDailyOfflinePackage() {
     try {
-      localStorage.setItem(DAILY_OFFLINE_SYNC_KEY, dailyOfflineSyncDate())
+      localStorage.setItem(DAILY_OFFLINE_PACKAGE_KEY, DAILY_OFFLINE_PACKAGE_VERSION)
     } catch (error) {}
   }
 
   function updateInstallButton() {
     if (!installButton) return
-    var syncedToday = hasSyncedDailyOfflineToday()
-    installButton.hidden = syncedToday
-    installButton.classList.toggle('is-installed', syncedToday)
-    installButton.title = syncedToday ? '今日已同步，点击重新同步' : '同步 Daily 到本地'
-    installButton.setAttribute('aria-label', syncedToday ? '今日已同步，重新同步 Daily 页面' : '同步 Daily 页面到本地')
+    var hasOfflinePackage = hasCurrentDailyOfflinePackage()
+    installButton.hidden = hasOfflinePackage
+    installButton.classList.toggle('is-installed', hasOfflinePackage)
+    installButton.title = hasOfflinePackage ? '当前离线资源包已下载' : '下载 Daily 离线资源包'
+    installButton.setAttribute('aria-label', hasOfflinePackage ? '当前 Daily 离线资源包已下载' : '下载 Daily 离线资源包到本地')
   }
 
   function waitForDailyServiceWorker(registration) {
@@ -10552,8 +10558,8 @@ html.daily-standalone .focus-column {
       .then(waitForDailyServiceWorker)
       .then(requestDailyOfflineSync)
       .then(function () {
-        rememberDailyOfflineSync()
-        showToast('Daily 已同步到本地，今天可直接快速打开')
+        rememberDailyOfflinePackage()
+        showToast('Daily 离线资源包已下载，本版本可直接快速打开')
         updateInstallButton()
       })
       .catch(function (error) {
@@ -15053,7 +15059,7 @@ html.daily-standalone .focus-column {
 
   window.addEventListener('storage', function (event) {
     if (event.key === DOKI_THEME_KEY) applyDokiTheme(event.newValue, false)
-    if (event.key === DAILY_OFFLINE_SYNC_KEY) updateInstallButton()
+    if (event.key === DAILY_OFFLINE_PACKAGE_KEY || event.key === LEGACY_DAILY_OFFLINE_SYNC_KEY) updateInstallButton()
     if (event.key === PLAN_LIBRARY_LAYOUT_KEY) {
       planLibraryLayout = loadPlanLibraryLayout()
       applyPlanLibraryLayout(false)

@@ -24,7 +24,7 @@ const APP_SHELL = [
   '/daily/doki-icons/library.svg',
   '/daily/doki-icons/notifications.svg',
   '/daily/doki-icons/trash.svg',
-  '/daily/doki-icons/cloud_outline.svg',
+  '/daily/doki-icons/folder.svg',
   '/daily/doki-icons/light_house.svg',
   '/daily/doki-icons/locked.svg',
   '/daily/doki-icons/unlocked.svg'
