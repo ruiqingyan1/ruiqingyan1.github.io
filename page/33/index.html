@@ -1,0 +1,760 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Ruiqy~ - 远赴人间惊鸿宴，一睹人间盛世颜</title><meta name="author" content="睿清颜"><meta name="copyright" content="睿清颜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="远赴人间惊鸿宴，一睹人间盛世颜">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ruiqy~">
+<meta property="og:url" content="https://ruiqingyan.com/page/33/index.html">
+<meta property="og:site_name" content="Ruiqy~">
+<meta property="og:description" content="远赴人间惊鸿宴，一睹人间盛世颜">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ruiqingyan.com/img/avatar.jpg">
+<meta property="article:author" content="睿清颜">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruiqingyan.com/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://ruiqingyan.com/page/33/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.14.0-b3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>(()=>{
+      const saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+      
+      window.btf = {
+        saveToLocal: saveToLocal,
+        getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+          script.src = url
+          script.async = true
+          script.onerror = reject
+          script.onload = script.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            script.onload = script.onreadystatechange = null
+            resolve()
+          }
+
+          Object.keys(attr).forEach(key => {
+            script.setAttribute(key, attr[key])
+          })
+
+          document.head.appendChild(script)
+        }),
+
+        getCSS: (url, id = false) => new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+          link.rel = 'stylesheet'
+          link.href = url
+          if (id) link.id = id
+          link.onerror = reject
+          link.onload = link.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            link.onload = link.onreadystatechange = null
+            resolve()
+          }
+          document.head.appendChild(link)
+        }),
+
+        addGlobalFn: (key, fn, name = false, parent = window) => {
+          const pjaxEnable = false
+          if (!pjaxEnable && key.startsWith('pjax')) return
+
+          const globalFn = parent.globalFn || {}
+          const keyObj = globalFn[key] || {}
+    
+          if (name && keyObj[name]) return
+    
+          name = name || Object.keys(keyObj).length
+          keyObj[name] = fn
+          globalFn[key] = keyObj
+          parent.globalFn = globalFn
+        }
+      }
+    
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+      
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })()</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300,"highlightFullpage":true,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Ruiqy~',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2026-10-10 07:08:18'
+}</script><link rel="stylesheet" href="/css/font/iconfont.css"><link rel="stylesheet" href="/css/custom@1.0.1.css?v=1.0.8"><link rel="stylesheet" href="/css/color@1.0.0.css"><script src="/js/doki-global-theme@1.0.0.js?v=1.2.0"></script><link rel="stylesheet" href="/css/doki-global-theme@1.0.0.css?v=1.3.5"><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">396</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">292</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">60</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua00"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw iconfont icon-flower3"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-hua01"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-flower3"></i><span> 兴趣课程</span></a></li><li><a class="site-page child" href="/22/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/bg1.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruiqy~"><img class="site-icon" src="/img/avatar.jpg" alt="Logo"/><span class="site-name">Ruiqy~</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua00"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw iconfont icon-flower3"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-hua01"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-flower3"></i><span> 兴趣课程</span></a></li><li><a class="site-page child" href="/22/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Ruiqy~</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/22/1700/" title="1700、Linux 内核分析与应用：课程汇总"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1700、Linux 内核分析与应用：课程汇总"></a></div><div class="recent-post-info"><a class="article-title" href="/22/1700/" title="1700、Linux 内核分析与应用：课程汇总">1700、Linux 内核分析与应用：课程汇总</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T16:54:00.000Z" title="发表于 2023-12-20 00:54:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-07T16:10:00.000Z" title="更新于 2026-06-08 00:10:00">2026-06-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/17%E3%80%81Linux-%E5%86%85%E6%A0%B8%E5%88%86%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/">17、Linux 内核分析与应用</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E4%BA%94%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%B7%A5%E7%A8%8B%E4%B8%8E%E7%BD%91%E7%BB%9C/">第五阶段：工程与网络</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a></span></div><div class="content">返回：本科课程：疾风计划
+
+
+1、课程定位Linux 是后续网络安全、服务部署和系统实验的核心环境。这里先整理使用、权限、进程、文件系统和内核基础，后面再逐步补实验。
+2、学习目录
+
+
+模块
+内容
+复盘重点
+
+
+
+Linux 基础
+Shell、文件、目录、权限
+先把环境用熟
+
+
+进程管理
+进程、线程、调度、信号
+连接操作系统课程
+
+
+文件系统
+VFS、inode、挂载、日志
+理解文件与权限
+
+
+内核模块
+模块编译、加载、卸载
+建立内核实验入口
+
+
+安全与服务
+用户、日志、网络服务、防火墙
+服务网安实验环境
+
+
+3、后续补充后面补命令笔记、实验步骤、内核模块代码、服务部署记录和安全加固清单。
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/22/0411/" title="Chap11 随机算法"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chap11 随机算法"></a></div><div class="recent-post-info"><a class="article-title" href="/22/0411/" title="Chap11 随机算法">Chap11 随机算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T16:53:00.000Z" title="发表于 2023-12-20 00:53:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-07T16:41:00.000Z" title="更新于 2026-07-08 00:41:00">2026-07-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/4%E3%80%81%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">4、算法设计与分析</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A408-%E4%B8%BB%E5%B9%B2%E5%85%A5%E9%97%A8/">第二阶段：408 主干入门</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">算法设计与分析</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%8E%8B%E6%8C%AF%E6%B3%A2/">王振波</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95/">随机算法</a></span></div><div class="content">返回：0400 算法设计与分析总目录 · 上一章：0410 Chap10 局部搜索
+
+
+1、学习目标随机算法把随机性作为算法设计工具。它不是“碰运气”，而是用概率分析证明算法在期望意义或高概率意义下表现良好。
+
+
+
+模块
+要掌握的内容
+
+
+
+随机化思想
+随机选择、打乱输入、随机试验
+
+
+期望分析
+指示变量、期望线性性
+
+
+算法类型
+Las Vegas、Monte Carlo
+
+
+典型问题
+竞争解决、MAX 3-SAT
+
+
+概率界
+Markov、Chebyshev、Chernoff 直觉
+
+
+2、为什么使用随机性随机化常用于：
+
+避免最坏输入卡死固定策略。
+简化算法设计。
+在复杂问题上获得期望或高概率保证。
+打散冲突，如哈希、负载分配、快速排序轴点。
+
+随机快速排序就是典型例子：最坏情况仍可能发生，但随机选轴点让期望复杂度变好。
+3、Las Vegas 与 Monte Carlo
+
+
+类型
+正确性
+运行时间
+
+
+
+Las Vegas
+总是正确
+运行时间随机
+
+
+Monte Carlo
+可能小概率错误
+运行时间通常固定或可控
+
+
+例：
+
+
+
+算法
+类型
+
+
+
+随机快速排序
+Las Vega ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/22/1600/" title="1600、计算机网络：课程汇总"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1600、计算机网络：课程汇总"></a></div><div class="recent-post-info"><a class="article-title" href="/22/1600/" title="1600、计算机网络：课程汇总">1600、计算机网络：课程汇总</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T16:53:00.000Z" title="发表于 2023-12-20 00:53:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-07T16:10:00.000Z" title="更新于 2026-06-08 00:10:00">2026-06-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/16%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">16、计算机网络</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E4%BA%94%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%B7%A5%E7%A8%8B%E4%B8%8E%E7%BD%91%E7%BB%9C/">第五阶段：工程与网络</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a></span></div><div class="content">返回：本科课程：疾风计划
+
+
+1、课程定位计算机网络是网络安全方向的底座。复盘时不能只背协议名，要能把分层模型、传输过程、抓包结果和安全问题对应起来。
+2、学习目录
+
+
+模块
+内容
+复盘重点
+
+
+
+网络分层
+OSI、TCP&#x2F;IP、封装与解封装
+建立协议栈视角
+
+
+应用层
+HTTP、DNS、SMTP、Web 基础
+连接 Web 与安全分析
+
+
+传输层
+TCP、UDP、可靠传输、拥塞控制
+理解连接和流量
+
+
+网络层
+IP、路由、ICMP、NAT
+理解寻址和转发
+
+
+链路层
+以太网、ARP、局域网
+连接抓包和局域网实验
+
+
+3、后续补充后面补抓包实验、协议图、常见安全问题、408 题型和网安项目中的使用场景。
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/22/0410/" title="Chap10 局部搜索"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chap10 局部搜索"></a></div><div class="recent-post-info"><a class="article-title" href="/22/0410/" title="Chap10 局部搜索">Chap10 局部搜索</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T16:52:00.000Z" title="发表于 2023-12-20 00:52:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-07T16:40:00.000Z" title="更新于 2026-07-08 00:40:00">2026-07-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/4%E3%80%81%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">4、算法设计与分析</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A408-%E4%B8%BB%E5%B9%B2%E5%85%A5%E9%97%A8/">第二阶段：408 主干入门</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">算法设计与分析</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%8E%8B%E6%8C%AF%E6%B3%A2/">王振波</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%B1%80%E9%83%A8%E6%90%9C%E7%B4%A2/">局部搜索</a></span></div><div class="content">返回：0400 算法设计与分析总目录 · 上一章：0409 Chap9 近似算法 · 下一章：0411 Chap11 随机算法
+
+
+1、学习目标局部搜索不从全局一次性构造答案，而是从一个可行解出发，通过局部修改不断改进。它适合解空间巨大、精确算法困难、但局部改进容易定义的问题。
+
+
+
+模块
+要掌握的内容
+
+
+
+解空间
+可行解、邻域、目标函数
+
+
+局部最优
+邻域内无法继续改进
+
+
+最大割
+翻转顶点、改进割边数
+
+
+终止性
+目标函数单调改善
+
+
+博弈连接
+Nash 均衡、稳定性代价
+
+
+2、局部搜索框架1234从任意可行解 S 开始while 存在邻居 S&#x27; 比 S 更好:    S = S&#x27;return S
+
+要定义三件事：
+
+
+
+项目
+含义
+
+
+
+可行解
+什么样的解合法
+
+
+邻域
+一步可以改成哪些解
+
+
+改进规则
+什么叫更好
+
+
+局部搜索的优点是简单、通用；缺点是可能停在局部最优，而不是全局最优。
+3、优化地形可以把所有可行解想象成山地地形：
+123点 = 一个可行解高度 = 目标函数值边 = 两个解互为邻居
+
+最大化问题中，局部搜索像爬山：只要附近有更高的点就走过 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/22/1500/" title="1500、软件工程：课程汇总"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1500、软件工程：课程汇总"></a></div><div class="recent-post-info"><a class="article-title" href="/22/1500/" title="1500、软件工程：课程汇总">1500、软件工程：课程汇总</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T16:52:00.000Z" title="发表于 2023-12-20 00:52:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-07T16:10:00.000Z" title="更新于 2026-06-08 00:10:00">2026-06-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/15%E3%80%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">15、软件工程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E4%BA%94%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%B7%A5%E7%A8%8B%E4%B8%8E%E7%BD%91%E7%BB%9C/">第五阶段：工程与网络</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a></span></div><div class="content">返回：本科课程：疾风计划
+
+
+1、课程定位软件工程用来把项目从“能运行”整理成“能说明、能维护、能展示”。它适合后续梳理课程设计、毕业设计和网络安全项目。
+2、学习目录
+
+
+模块
+内容
+复盘重点
+
+
+
+需求分析
+用户、场景、功能、约束
+说明项目为什么做
+
+
+系统设计
+架构、模块、接口、数据流
+说明项目怎么组织
+
+
+实现管理
+代码规范、版本管理、协作
+让项目可维护
+
+
+测试与质量
+单元测试、集成测试、缺陷记录
+让结果可信
+
+
+文档表达
+README、报告、演示、复盘
+服务复试和作品集
+
+
+3、后续补充后面补项目模板、文档模板、需求表、测试用例和课程设计复盘方式。
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/22/0409/" title="Chap9 近似算法"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chap9 近似算法"></a></div><div class="recent-post-info"><a class="article-title" href="/22/0409/" title="Chap9 近似算法">Chap9 近似算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T16:51:00.000Z" title="发表于 2023-12-20 00:51:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-07T16:39:00.000Z" title="更新于 2026-07-08 00:39:00">2026-07-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/4%E3%80%81%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">4、算法设计与分析</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A408-%E4%B8%BB%E5%B9%B2%E5%85%A5%E9%97%A8/">第二阶段：408 主干入门</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">算法设计与分析</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%8E%8B%E6%8C%AF%E6%B3%A2/">王振波</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%BF%91%E4%BC%BC%E7%AE%97%E6%B3%95/">近似算法</a></span></div><div class="content">返回：0400 算法设计与分析总目录 · 上一章：0408 Chap8 NP 与计算困难性 · 下一章：0410 Chap10 局部搜索
+
+
+1、学习目标当问题很可能不存在通用多项式精确算法时，近似算法尝试在可接受时间内给出有保证的近似解。
+
+
+
+模块
+要掌握的内容
+
+
+
+近似比
+解的质量保证
+
+
+下界
+用来比较算法结果有多差
+
+
+负载均衡
+list scheduling
+
+
+中心选择
+farthest-first traversal
+
+
+顶点覆盖
+定价法、线性规划松弛
+
+
+背包
+FPTAS 直觉
+
+
+2、近似比最小化问题中，算法 A 的近似比为 α，表示：
+1cost(A) &lt;= α * OPT
+
+最大化问题中常写成：
+1value(A) &gt;= OPT / α
+
+其中 OPT 是最优解。近似算法的价值在于：即使不是最优，也知道离最优不会太远。
+3、下界的重要性很多近似证明不是直接知道 OPT，而是找一个容易计算的下界 LB：
+1LB &lt;= OPT
+
+如果能证明：
+1cost(A) &lt;= α * LB
+
+就有：
+1cost(A) &lt;= α * OPT
+
+所 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/22/0408/" title="Chap8 NP 与计算困难性"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chap8 NP 与计算困难性"></a></div><div class="recent-post-info"><a class="article-title" href="/22/0408/" title="Chap8 NP 与计算困难性">Chap8 NP 与计算困难性</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T16:50:00.000Z" title="发表于 2023-12-20 00:50:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-07T16:38:00.000Z" title="更新于 2026-07-08 00:38:00">2026-07-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/4%E3%80%81%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">4、算法设计与分析</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A408-%E4%B8%BB%E5%B9%B2%E5%85%A5%E9%97%A8/">第二阶段：408 主干入门</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">算法设计与分析</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%8E%8B%E6%8C%AF%E6%B3%A2/">王振波</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/NP%E5%AE%8C%E5%85%A8%E6%80%A7/">NP完全性</a></span></div><div class="content">返回：0400 算法设计与分析总目录 · 上一章：0407 Chap7 网络流 · 下一章：0409 Chap9 近似算法
+
+
+1、学习目标前面几章都在寻找高效算法，本章开始问另一个问题：如果一直找不到高效算法，是不是问题本身就很难？
+
+
+
+模块
+要掌握的内容
+
+
+
+P
+多项式时间可解问题
+
+
+NP
+给定证书后可在多项式时间验证
+
+
+规约
+用一个问题求解另一个问题
+
+
+NP 完全
+NP 中最难的一批问题
+
+
+NP 困难
+至少和 NP 完全问题一样难
+
+
+证明方法
+从已知 NP 完全问题多项式规约
+
+
+2、判定问题复杂性理论通常先讨论判定问题，也就是答案为 yes&#x2F;no 的问题。
+优化问题：
+1求最短 Hamilton 回路长度
+
+判定版本：
+1是否存在长度不超过 K 的 Hamilton 回路？
+
+很多优化问题可以转成判定问题来讨论难度。
+3、P 与 NP
+
+
+类
+含义
+
+
+
+P
+能在多项式时间内求解
+
+
+NP
+给定一个候选解，能在多项式时间内验证
+
+
+例子：
+1SAT：给定布尔公式，是否存在赋值使公式为真？
+
+如果有人给出一组赋值，我们可以快速检查公式是否为真，所以 SAT ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/22/0407/" title="Chap7 网络流"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chap7 网络流"></a></div><div class="recent-post-info"><a class="article-title" href="/22/0407/" title="Chap7 网络流">Chap7 网络流</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T16:49:00.000Z" title="发表于 2023-12-20 00:49:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-07T16:37:00.000Z" title="更新于 2026-07-08 00:37:00">2026-07-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/4%E3%80%81%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">4、算法设计与分析</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A408-%E4%B8%BB%E5%B9%B2%E5%85%A5%E9%97%A8/">第二阶段：408 主干入门</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">算法设计与分析</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%8E%8B%E6%8C%AF%E6%B3%A2/">王振波</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/">网络流</a></span></div><div class="content">返回：0400 算法设计与分析总目录 · 上一章：0406 Chap6 动态规划 · 下一章：0408 Chap8 NP 与计算困难性
+
+
+1、学习目标网络流用图来描述“从源点向汇点运输资源”的问题。它看起来像运输问题，实际能统一解决匹配、割、任务分配、项目选择等很多模型。
+
+
+
+模块
+要掌握的内容
+
+
+
+流网络
+源点、汇点、容量、流量
+
+
+约束
+容量约束、流量守恒
+
+
+残量网络
+还能增广多少，能否反悔
+
+
+算法
+Ford-Fulkerson、Edmonds-Karp
+
+
+定理
+最大流最小割
+
+
+应用
+二分图匹配
+
+
+2、流网络一个流网络包含：
+1234G = (V, E)s = sourcet = sinkc(e) = capacity
+
+合法流 f 满足：
+
+
+
+约束
+含义
+
+
+
+容量约束
+0 &lt;= f(e) &lt;= c(e)
+
+
+流量守恒
+除 s、t 外，流入等于流出
+
+
+流值
+从源点流出的总量，等于流入汇点的总量
+
+
+3、割一个 s-t 割把顶点分成两组：
+1234S 包含 sT 包含 tS ∪ T = VS ∩ T = 空
+
+割容量是所有从 S 指向 T 的边容量之 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/22/0406/" title="Chap6 动态规划"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chap6 动态规划"></a></div><div class="recent-post-info"><a class="article-title" href="/22/0406/" title="Chap6 动态规划">Chap6 动态规划</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T16:48:00.000Z" title="发表于 2023-12-20 00:48:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-07T16:36:00.000Z" title="更新于 2026-07-08 00:36:00">2026-07-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/4%E3%80%81%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">4、算法设计与分析</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A408-%E4%B8%BB%E5%B9%B2%E5%85%A5%E9%97%A8/">第二阶段：408 主干入门</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">算法设计与分析</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%8E%8B%E6%8C%AF%E6%B3%A2/">王振波</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a></span></div><div class="content">返回：0400 算法设计与分析总目录 · 上一章：0405 Chap5 分治策略 · 下一章：0407 Chap7 网络流
+
+
+1、学习目标动态规划适合有重叠子问题和最优子结构的问题。它不是“背公式”，而是学会定义状态，把未来选择压缩成表格里的信息。
+
+
+
+模块
+要掌握的内容
+
+
+
+DP 框架
+状态、转移、初始化、顺序、答案
+
+
+一维 DP
+加权区间调度
+
+
+二维 DP
+背包、序列比对
+
+
+区间 DP
+RNA 二级结构
+
+
+图上 DP
+DAG 最短路、Bellman-Ford 思想
+
+
+2、动态规划五步
+定义状态：dp[i] 或 dp[i][j] 表示什么。
+写转移：最后一步从哪里来。
+初始化：空集、边界、不可达状态。
+确定顺序：保证转移依赖已计算。
+还原答案：只要值，还是要路径。
+
+写 DP 最常见的错误是状态定义含糊。状态定义不清楚，转移式一定会乱。
+3、加权区间调度给定若干区间，每个区间有权重，选择互不重叠的区间使权重最大。
+先按结束时间排序，令：
+12p(j) = 与区间 j 不冲突且结束最晚的区间编号dp[j] = 前 j 个区间能取得的最大权重
+
+转移：
+1dp[j] =  ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/22/0405/" title="Chap5 分治策略"><img class="post-bg" src="/img/rd8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chap5 分治策略"></a></div><div class="recent-post-info"><a class="article-title" href="/22/0405/" title="Chap5 分治策略">Chap5 分治策略</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T16:47:00.000Z" title="发表于 2023-12-20 00:47:00">2023-12-20</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-07T16:35:00.000Z" title="更新于 2026-07-08 00:35:00">2026-07-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/4%E3%80%81%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">4、算法设计与分析</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A408-%E4%B8%BB%E5%B9%B2%E5%85%A5%E9%97%A8/">第二阶段：408 主干入门</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">算法设计与分析</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%8E%8B%E6%8C%AF%E6%B3%A2/">王振波</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%88%86%E6%B2%BB/">分治</a></span></div><div class="content">返回：0400 算法设计与分析总目录 · 上一章：0404 Chap4 贪心算法 · 下一章：0406 Chap6 动态规划
+
+
+1、学习目标分治把大问题拆成若干规模更小的同类问题，分别求解后再合并。它的关键是：拆分要降低规模，合并不能太贵。
+
+
+
+模块
+要掌握的内容
+
+
+
+分治框架
+divide、conquer、combine
+
+
+复杂度分析
+递推式、递归树
+
+
+典型算法
+归并排序、快速排序、逆序数
+
+
+几何问题
+最近点对
+
+
+高阶算法
+大整数乘法、矩阵乘法、FFT
+
+
+2、分治框架123456Solve(P):    if P 足够小:        直接求解    split P into P1, P2, ...    分别求解子问题    合并子问题答案
+
+复杂度常写为：
+1T(n) = aT(n/b) + f(n)
+
+其中 a 是子问题个数，n/b 是子问题规模，f(n) 是拆分和合并代价。
+3、归并排序归并排序：
+
+把数组分成两半。
+分别排序。
+合并两个有序数组。
+
+递推式：
+1T(n) = 2T(n/2) + O(n)
+
+复杂度 O(n log n)，空间 O(n)，稳定 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/32/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/#content-inner">31</a><a class="page-number" href="/page/32/#content-inner">32</a><span class="page-number current">33</span><a class="page-number" href="/page/34/#content-inner">34</a><a class="page-number" href="/page/35/#content-inner">35</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/#content-inner">40</a><a class="extend next" rel="next" href="/page/34/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div>
+        <form class="pagination-jump" data-current="33" data-total="40">
+          <label for="pagination-jump-input">跳至</label>
+          <input
+            id="pagination-jump-input"
+            name="page"
+            type="number"
+            min="1"
+            max="40"
+            value="33"
+            inputmode="numeric"
+            aria-label="输入要跳转的页码"
+          >
+          <span>页</span>
+          <button type="submit" title="跳转到指定页" aria-label="跳转到指定页">
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </form></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">睿清颜</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">396</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">292</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">60</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/24/9001/" title="9001、R0 内核安全防御专题：R0Guard 笔记目录"><img src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="9001、R0 内核安全防御专题：R0Guard 笔记目录"/></a><div class="content"><a class="title" href="/24/9001/" title="9001、R0 内核安全防御专题：R0Guard 笔记目录">9001、R0 内核安全防御专题：R0Guard 笔记目录</a><time datetime="2026-09-12T13:30:00.000Z" title="发表于 2026-09-12 21:30:00">2026-09-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/24/9000/" title="9000、三个月网络安全路线：Ferry 优先与 R0Guard 防御专项"><img src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="9000、三个月网络安全路线：Ferry 优先与 R0Guard 防御专项"/></a><div class="content"><a class="title" href="/24/9000/" title="9000、三个月网络安全路线：Ferry 优先与 R0Guard 防御专项">9000、三个月网络安全路线：Ferry 优先与 R0Guard 防御专项</a><time datetime="2026-09-12T13:30:00.000Z" title="发表于 2026-09-12 21:30:00">2026-09-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/24/9002/" title="9002、Rootkit 检测与内存取证报告模板"><img src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="9002、Rootkit 检测与内存取证报告模板"/></a><div class="content"><a class="title" href="/24/9002/" title="9002、Rootkit 检测与内存取证报告模板">9002、Rootkit 检测与内存取证报告模板</a><time datetime="2026-09-12T13:30:00.000Z" title="发表于 2026-09-12 21:30:00">2026-09-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/24/010/" title="010、安全开发篇（一）：语法规范风格"><img src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="010、安全开发篇（一）：语法规范风格"/></a><div class="content"><a class="title" href="/24/010/" title="010、安全开发篇（一）：语法规范风格">010、安全开发篇（一）：语法规范风格</a><time datetime="2026-08-28T08:40:00.000Z" title="发表于 2026-08-28 16:40:00">2026-08-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/24/009/" title="009、安全开发篇（一）：控制台指令"><img src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="009、安全开发篇（一）：控制台指令"/></a><div class="content"><a class="title" href="/24/009/" title="009、安全开发篇（一）：控制台指令">009、安全开发篇（一）：控制台指令</a><time datetime="2026-08-28T08:39:00.000Z" title="发表于 2026-08-28 16:39:00">2026-08-28</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">AI学习笔记</span><span class="card-category-list-count">1</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Python%E5%9F%BA%E7%A1%80/"><span class="card-category-list-name">Python基础</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"><span class="card-category-list-name">人工智能</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/"><span class="card-category-list-name">兴趣课</span><span class="card-category-list-count">34</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%85%B4%E8%B6%A3%E8%AF%BE/Blog%E5%85%A8%E7%A8%8B%E6%90%AD%E5%BB%BA/"><span class="card-category-list-name">Blog全程搭建</span><span class="card-category-list-count">33</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%83%B3%E6%B3%95/"><span class="card-category-list-name">想法</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%97%A5%E5%B8%B8/"><span class="card-category-list-name">日常</span><span class="card-category-list-count">9</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%97%A5%E5%B8%B8/%E5%B7%A5%E4%BD%9C%E7%BB%8F%E9%AA%8C/"><span class="card-category-list-name">工作经验</span><span class="card-category-list-count">1</span></a></li></ul></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" style="font-size: 1.15em; color: #999b9e">程序设计</a> <a href="/tags/%E7%BB%A7%E6%89%BF/" style="font-size: 1.2em; color: #999da3">继承</a> <a href="/tags/%E7%BA%AA%E7%A6%84%E5%B9%B3/" style="font-size: 1.35em; color: #99a3b1">纪禄平</a> <a href="/tags/%E6%B3%A8%E5%86%8C%E8%A1%A8/" style="font-size: 1.15em; color: #999b9e">注册表</a> <a href="/tags/MASM/" style="font-size: 1.2em; color: #999da3">MASM</a> <a href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/" style="font-size: 1.1em; color: #999">迭代器</a> <a href="/tags/%E7%BC%93%E5%86%B2%E5%8C%BA/" style="font-size: 1.15em; color: #999b9e">缓冲区</a> <a href="/tags/%E5%BF%83%E7%90%86%E5%AD%A6/" style="font-size: 1.1em; color: #999">心理学</a> <a href="/tags/%E5%87%BD%E6%95%B0/" style="font-size: 1.4em; color: #99a5b6">函数</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" style="font-size: 1.15em; color: #999b9e">字符编码</a> <a href="/tags/Visual-Studio/" style="font-size: 1.15em; color: #999b9e">Visual Studio</a> <a href="/tags/%E5%A0%86/" style="font-size: 1.1em; color: #999">堆</a> <a href="/tags/%E7%AC%A6%E5%8F%B7/" style="font-size: 1.15em; color: #999b9e">符号</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 1.15em; color: #999b9e">线程</a> <a href="/tags/Web%E5%AE%89%E5%85%A8/" style="font-size: 1.1em; color: #999">Web安全</a> <a href="/tags/%E6%B4%BE%E7%94%9F/" style="font-size: 1.1em; color: #999">派生</a> <a href="/tags/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/" style="font-size: 1.5em; color: #99a9bf">安全开发</a> <a href="/tags/%E6%8E%A7%E5%88%B6%E5%8F%B0/" style="font-size: 1.1em; color: #999">控制台</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 1.1em; color: #999">容器</a> <a href="/tags/%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" style="font-size: 1.1em; color: #999">复制构造函数</a> <a href="/tags/Schedule-Summary/" style="font-size: 1.1em; color: #999">Schedule & Summary</a> <a href="/tags/%E4%B8%B2%E8%A1%8C%E5%8C%96/" style="font-size: 1.1em; color: #999">串行化</a> <a href="/tags/%E5%8F%98%E9%87%8F%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 1.1em; color: #999">变量生命周期</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E6%84%9F%E6%82%9F/" style="font-size: 1.3em; color: #99a1ac">日常感悟</a> <a href="/tags/switch/" style="font-size: 1.1em; color: #999">switch</a> <a href="/tags/%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/" style="font-size: 1.15em; color: #999b9e">加载机制</a> <a href="/tags/%E9%A2%84%E5%A4%84%E7%90%86/" style="font-size: 1.1em; color: #999">预处理</a> <a href="/tags/%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 1.1em; color: #999">表达式</a> <a href="/tags/RVA/" style="font-size: 1.15em; color: #999b9e">RVA</a> <a href="/tags/Python/" style="font-size: 1.1em; color: #999">Python</a> <a href="/tags/%E8%99%9A%E5%9F%BA%E7%B1%BB/" style="font-size: 1.1em; color: #999">虚基类</a> <a href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" style="font-size: 1.1em; color: #999">运算符重载</a> <a href="/tags/%E5%8F%98%E9%87%8F/" style="font-size: 1.15em; color: #999b9e">变量</a> <a href="/tags/this%E6%8C%87%E9%92%88/" style="font-size: 1.1em; color: #999">this指针</a> <a href="/tags/%E8%99%9A%E5%87%BD%E6%95%B0/" style="font-size: 1.15em; color: #999b9e">虚函数</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 1.15em; color: #999b9e">二叉树</a> <a href="/tags/%E6%95%B0%E6%8D%AE/" style="font-size: 1.15em; color: #999b9e">数据</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E6%8B%BE%E8%B4%9D/" style="font-size: 1.45em; color: #99a7ba">读书拾贝</a> <a href="/tags/%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/" style="font-size: 1.25em; color: #999fa7">内存布局</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 1.1em; color: #999">数据类型</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/09/"><span class="card-archive-list-date">九月 2026</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/08/"><span class="card-archive-list-date">八月 2026</span><span class="card-archive-list-count">31</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/07/"><span class="card-archive-list-date">七月 2026</span><span class="card-archive-list-count">149</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/06/"><span class="card-archive-list-date">六月 2026</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/08/"><span class="card-archive-list-date">八月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">七月 2025</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/06/"><span class="card-archive-list-date">六月 2025</span><span class="card-archive-list-count">32</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/05/"><span class="card-archive-list-date">五月 2025</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">396</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-01-01T00:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">597.8k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-10-09T23:08:17.031Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/bg1.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By 睿清颜</div><div class="footer_custom_text"><div class="footer-records">
+  <a class="footer-record" href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">
+    <span class="footer-record-icon footer-record-icon--icp" aria-hidden="true">🌏</span>
+    <span>粤ICP备2024216057号</span>
+  </a>
+  <a class="footer-record" href="https://beian.mps.gov.cn/#/query/webSearch?code=44040402000233" target="_blank" rel="noopener noreferrer">
+    <span class="footer-record-icon" aria-hidden="true"><img src="/img/beian.png" alt=""></span>
+    <span>粤公网安备44040402000233号</span>
+  </a>
+</div>
+</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.14.0-b3"></script><script src="/js/main.js?v=4.14.0-b3"></script><script src="/js/tw_cn.js?v=4.14.0-b3"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: (str) => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, {"typeSpeed":150,"backSpeed":35,"backDelay":3000,"loop":true}))
+  },
+  run: (subtitleType) => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+btf.addGlobalFn('pjaxSend', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init(["落日沉溺于橘色的海，晚风沦陷于赤诚的爱。","山茶花读不懂白玫瑰，北山的风吹不到南山尾。","倘若南风知我意，莫将晩霞落黄昏。","我本无意惹惊鸿，奈何惊鸿入我心。","我将玫瑰藏于身后，风起花落，从此鲜花赠自己，纵马踏花向自由。","树木在森林中相依偎而生长，星辰在银河中因辉映而璀璨。","辞暮尔尔，烟火年年。","慢品人间烟火色，闲观万事岁月长。","一半烟火以谋生，一半诗意以谋爱。","山海自有归期，风雨自有相逢。","星光不问赶路人，时光不负有心人。","且行且忘且随风，且行且看且从容。","我于窗中窥伤鹤，恰如仰头见春台。","努力的过程本就是孤岛，但最后抵达的一定是充满生机的彼岸。永远不要因为一些，不值得的事和人而颓废。","山高水远，怕什么来不及，慌什么到不了，天顺其自然，地顺其性，人顺其变，一切都是刚刚好。","我见众生皆草木，唯有见你是青山。","日出有盼，日落有思，平平安安，所遇皆甜。","毕竟几人真得鹿，不知终日梦为鱼。","在心里种花，人生才不会荒芜。","市井长巷，聚拢来是烟火，摊开是人间。","流水不争先，争的是滔滔不绝。","浮云吹作雪，世味煮成茶。","远赴人间惊鸿宴，一睹人间盛世颜。","花开堪折直须折，莫待无花空折枝。","人生只似风前絮,欢也零星,悲也零星,都作连江点点萍。"])
+  } else {
+    document.getElementById("subtitle").textContent = "落日沉溺于橘色的海，晚风沦陷于赤诚的爱。"
+  }
+}
+typedJSFn.run(subtitleType)</script></div><script src="/js/pagination-jump@1.0.0.js?v=1.0.0"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.14.0-b3"></script></div></div></body></html>

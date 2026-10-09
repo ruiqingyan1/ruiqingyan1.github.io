@@ -1,0 +1,643 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Chap20 计数原则、排列组合与组合恒等式 | Ruiqy~</title><meta name="author" content="睿清颜"><meta name="copyright" content="睿清颜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="北大离散数学 Chap 20 加法法则、乘法法则、排列组合、二项式定理、多项式定理、非降路径与习题二十一答案">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chap20 计数原则、排列组合与组合恒等式">
+<meta property="og:url" content="https://ruiqingyan.com/22/0120/index.html">
+<meta property="og:site_name" content="Ruiqy~">
+<meta property="og:description" content="北大离散数学 Chap 20 加法法则、乘法法则、排列组合、二项式定理、多项式定理、非降路径与习题二十一答案">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ruiqingyan.com/img/rd8.jpg">
+<meta property="article:published_time" content="2023-12-19T16:30:00.000Z">
+<meta property="article:modified_time" content="2026-06-08T02:01:00.000Z">
+<meta property="article:author" content="睿清颜">
+<meta property="article:tag" content="本科课程">
+<meta property="article:tag" content="疾风计划">
+<meta property="article:tag" content="离散数学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruiqingyan.com/img/rd8.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://ruiqingyan.com/22/0120/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.14.0-b3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>(()=>{
+      const saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+      
+      window.btf = {
+        saveToLocal: saveToLocal,
+        getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+          script.src = url
+          script.async = true
+          script.onerror = reject
+          script.onload = script.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            script.onload = script.onreadystatechange = null
+            resolve()
+          }
+
+          Object.keys(attr).forEach(key => {
+            script.setAttribute(key, attr[key])
+          })
+
+          document.head.appendChild(script)
+        }),
+
+        getCSS: (url, id = false) => new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+          link.rel = 'stylesheet'
+          link.href = url
+          if (id) link.id = id
+          link.onerror = reject
+          link.onload = link.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            link.onload = link.onreadystatechange = null
+            resolve()
+          }
+          document.head.appendChild(link)
+        }),
+
+        addGlobalFn: (key, fn, name = false, parent = window) => {
+          const pjaxEnable = false
+          if (!pjaxEnable && key.startsWith('pjax')) return
+
+          const globalFn = parent.globalFn || {}
+          const keyObj = globalFn[key] || {}
+    
+          if (name && keyObj[name]) return
+    
+          name = name || Object.keys(keyObj).length
+          keyObj[name] = fn
+          globalFn[key] = keyObj
+          parent.globalFn = globalFn
+        }
+      }
+    
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+      
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })()</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300,"highlightFullpage":true,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Chap20 计数原则、排列组合与组合恒等式',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-06-08 10:01:00'
+}</script><link rel="stylesheet" href="/css/font/iconfont.css"><link rel="stylesheet" href="/css/custom@1.0.1.css?v=1.0.8"><link rel="stylesheet" href="/css/color@1.0.0.css"><script src="/js/doki-global-theme@1.0.0.js?v=1.2.0"></script><link rel="stylesheet" href="/css/doki-global-theme@1.0.0.css?v=1.3.5"><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">396</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">292</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">60</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua00"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw iconfont icon-flower3"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-hua01"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-flower3"></i><span> 兴趣课程</span></a></li><li><a class="site-page child" href="/22/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/rd8.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruiqy~"><img class="site-icon" src="/img/avatar.jpg" alt="Logo"/><span class="site-name">Ruiqy~</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-hua00"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/daily/"><i class="fa-fw iconfont icon-flower3"></i><span> 每日计划</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-hua01"></i><span> 执笔为剑</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/11/000/"><i class="fa-fw iconfont icon-huadian-baihe"></i><span> 日常</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw iconfont icon-004-marigold"></i><span> 算法</span></a></li><li><a class="site-page child" href="/13/000/"><i class="fa-fw iconfont icon-a-meiguihuahuahuaduozhiwu"></i><span> 英语</span></a></li><li><a class="site-page child" href="/14/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 考研</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huahualanxianhuameiguihua"></i><span> 积箧盈藏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/21/000/"><i class="fa-fw iconfont icon-flower3"></i><span> 兴趣课程</span></a></li><li><a class="site-page child" href="/22/000/"><i class="fa-fw iconfont icon-sakura-flower"></i><span> 本科课程</span></a></li><li><a class="site-page child" href="/23/000/"><i class="fa-fw iconfont icon-naidonghua"></i><span> 人工智能</span></a></li><li><a class="site-page child" href="/24/000/"><i class="fa-fw iconfont icon-xiaohonghua7"></i><span> 网络安全</span></a></li><li><a class="site-page child" href="/25/000/"><i class="fa-fw iconfont icon-huajiaoshuixianhuameiguihua"></i><span> 论文阅读</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-xiangsufeng_huapen"></i><span> 雪泥鸿迹</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/31/000/"><i class="fa-fw iconfont icon-xiangsufeng_shuji"></i><span> 读书拾贝</span></a></li><li><a class="site-page child" href="/32/000/"><i class="fa-fw iconfont icon-xiangsufeng_huojian"></i><span> 运动养生</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw iconfont icon-huashu1"></i><span> 雁素鱼笺</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/41/000/"><i class="fa-fw iconfont icon-flower_23"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/42/000/"><i class="fa-fw iconfont icon-flower_20"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/43/000/"><i class="fa-fw iconfont icon-flower_25"></i><span> 关于我</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Chap20 计数原则、排列组合与组合恒等式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-19T16:30:00.000Z" title="发表于 2023-12-20 00:30:00">2023-12-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-08T02:01:00.000Z" title="更新于 2026-06-08 10:01:00">2026-06-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/1%E3%80%81%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/">1、离散数学</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A%E4%B8%93%E4%B8%9A%E5%9F%BA%E7%A1%80%E8%AF%BE/">第一阶段：专业基础课</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>19分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Chap20 计数原则、排列组合与组合恒等式"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note info flat"><p>返回：<a href="/22/0100/">0100 离散数学课程总目录</a> · 上一章：<a href="/22/0119/">0119 组合数学引言、鸽巢原理与 Ramsey 定理</a> · 下一章：<a href="/22/0121/">0121 递推方程与生成函数</a></p>
+</div>
+
+<h2 id="1、学习目标"><a href="#1、学习目标" class="headerlink" title="1、学习目标"></a>1、学习目标</h2><p>本章是组合计数的基础工具箱。核心不是背一堆公式，而是先分清：<span style="background-color:#dcfce7; color:#166534; font-weight:600;">分类还是分步、有序还是无序、重复还是不重复、盒子是否有区别、限制是否有上界</span>。</p>
+<p>主线：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">加法法则：互斥分类。</span><br><span class="line">乘法法则：连续分步。</span><br><span class="line">排列组合：有序/无序，不重复选取。</span><br><span class="line">多重集：对象允许重复。</span><br><span class="line">二项式定理：处理组合数、展开式系数和求和。</span><br><span class="line">多项式定理：处理多类对象分配与多项式系数。</span><br><span class="line">非降路径：用格路模型证明组合恒等式。</span><br></pre></td></tr></table></figure>
+
+<div class="note warning flat"><p>本站页面编号是 <code>0120</code>，但课件与习题内部称为“第二十一章&#x2F;习题二十一”。下面答案按教材题号写成 <code>21.1-21.47</code>。</p>
+</div>
+
+<h2 id="2、两个计数原则"><a href="#2、两个计数原则" class="headerlink" title="2、两个计数原则"></a>2、两个计数原则</h2><h3 id="加法法则"><a href="#加法法则" class="headerlink" title="加法法则"></a>加法法则</h3><p>若完成一件事可以分成互不重叠的 <code>k</code> 类，第 <code>i</code> 类有 <code>n_i</code> 种方法，则总数为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n1+n2+...+nk</span><br></pre></td></tr></table></figure>
+
+<p>适用关键词：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">或者、分类、按情况讨论、互斥。</span><br></pre></td></tr></table></figure>
+
+<h3 id="乘法法则"><a href="#乘法法则" class="headerlink" title="乘法法则"></a>乘法法则</h3><p>若完成一件事要依次做 <code>k</code> 步，第 <code>i</code> 步有 <code>n_i</code> 种方法，则总数为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n1*n2*...*nk</span><br></pre></td></tr></table></figure>
+
+<p>适用关键词：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先...再...、分步、每一步独立选择。</span><br></pre></td></tr></table></figure>
+
+<p>典型例子：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1400 = 2^3 * 5^2 * 7</span><br><span class="line">正因子形如 2^i 5^j 7^k</span><br><span class="line">其中 0&lt;=i&lt;=3, 0&lt;=j&lt;=2, 0&lt;=k&lt;=1</span><br><span class="line">所以正因子个数为 (3+1)(2+1)(1+1)=24。</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、排列组合模型"><a href="#3、排列组合模型" class="headerlink" title="3、排列组合模型"></a>3、排列组合模型</h2><p>设从 <code>n</code> 元集合中选 <code>r</code> 个元素。</p>
+<table>
+<thead>
+<tr>
+<th align="left">模型</th>
+<th align="left">公式</th>
+<th align="left">识别方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">集合排列</td>
+<td align="left"><code>P(n,r)=n!/(n-r)!</code></td>
+<td align="left">有序，不重复</td>
+</tr>
+<tr>
+<td align="left">集合组合</td>
+<td align="left"><code>C(n,r)=P(n,r)/r!=n!/(r!(n-r)!)</code></td>
+<td align="left">无序，不重复</td>
+</tr>
+<tr>
+<td align="left">可重复有序选择</td>
+<td align="left"><code>n^r</code></td>
+<td align="left">每个位置独立选择</td>
+</tr>
+<tr>
+<td align="left">多重集 r 组合</td>
+<td align="left"><code>C(k+r-1,r)</code></td>
+<td align="left"><code>k</code> 类元素，无序，允许重复</td>
+</tr>
+<tr>
+<td align="left">r 环排列</td>
+<td align="left"><code>P(n,r)/r=n!/(r(n-r)!)</code></td>
+<td align="left">选 <code>r</code> 个排成环，旋转视为相同</td>
+</tr>
+</tbody></table>
+<p>常用等式：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C(n,r)=C(n,n-r)</span><br><span class="line">C(n,r)=C(n-1,r)+C(n-1,r-1)</span><br><span class="line">k*C(n,k)=n*C(n-1,k-1)</span><br><span class="line">(n-k)*C(n,k)=n*C(n-1,k)</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、多重集排列与组合"><a href="#4、多重集排列与组合" class="headerlink" title="4、多重集排列与组合"></a>4、多重集排列与组合</h2><p>多重集写作：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">S=&#123;n1*a1, n2*a2, ..., nk*ak&#125;</span><br></pre></td></tr></table></figure>
+
+<p>若总数：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n=n1+n2+...+nk</span><br></pre></td></tr></table></figure>
+
+<p>全排列数为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n!/(n1! n2! ... nk!)</span><br></pre></td></tr></table></figure>
+
+<p>若每类元素数量足够多，<code>k</code> 类元素取 <code>r</code> 个做无序组合，则等价于非负整数解：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x1+x2+...+xk=r</span><br></pre></td></tr></table></figure>
+
+<p>方案数为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C(k+r-1,r)</span><br></pre></td></tr></table></figure>
+
+<p>放球模型：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">r 个相同球放入 n 个不同盒子，允许空盒：</span><br><span class="line">C(n+r-1,r)</span><br><span class="line"></span><br><span class="line">r 个相同球放入 n 个不同盒子，不允许空盒：</span><br><span class="line">C(r-1,n-1)</span><br><span class="line"></span><br><span class="line">r 个相同球放入 n 个不同盒子，每盒至少 q 个：</span><br><span class="line">C(r-nq+n-1,n-1)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、二项式定理与组合恒等式"><a href="#5、二项式定理与组合恒等式" class="headerlink" title="5、二项式定理与组合恒等式"></a>5、二项式定理与组合恒等式</h2><p>二项式定理：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(x+y)^n = sum_&#123;k=0&#125;^n C(n,k) x^(n-k) y^k</span><br></pre></td></tr></table></figure>
+
+<p>常用形式：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(1+x)^n = sum_&#123;k=0&#125;^n C(n,k)x^k</span><br></pre></td></tr></table></figure>
+
+<p>常用求和：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sum_&#123;k=0&#125;^n C(n,k)=2^n</span><br><span class="line">sum_&#123;k=0&#125;^n (-1)^k C(n,k)=0</span><br><span class="line">sum_&#123;k=0&#125;^n k*C(n,k)=n*2^(n-1)</span><br><span class="line">sum_&#123;k=0&#125;^n (k+1)*C(n,k)=2^(n-1)(n+2)</span><br><span class="line">sum_&#123;k=0&#125;^n C(n,k)r^k=(1+r)^n</span><br></pre></td></tr></table></figure>
+
+<p>Vandermonde 恒等式：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum_&#123;k=0&#125;^r C(m,k)C(n,r-k)=C(m+n,r)</span><br></pre></td></tr></table></figure>
+
+<p>组合恒等式证明常用方法：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 公式代入；</span><br><span class="line">2. 二项式定理，必要时令 x=1、x=-1、x=2；</span><br><span class="line">3. 求导或积分；</span><br><span class="line">4. 组合解释：两边计数同一个集合；</span><br><span class="line">5. 非降路径模型。</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、多项式定理"><a href="#6、多项式定理" class="headerlink" title="6、多项式定理"></a>6、多项式定理</h2><p>多项式定理：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(x1+x2+...+xt)^n</span><br><span class="line">= sum n!/(n1!n2!...nt!) * x1^n1*x2^n2*...*xt^nt</span><br></pre></td></tr></table></figure>
+
+<p>其中求和遍历所有非负整数解：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n1+n2+...+nt=n</span><br></pre></td></tr></table></figure>
+
+<p>多项式系数：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C(n; n1,n2,...,nt)=n!/(n1!n2!...nt!)</span><br></pre></td></tr></table></figure>
+
+<p>组合含义：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. n 个不同球放入 t 个不同盒子，第 i 个盒子恰好 n_i 个球。</span><br><span class="line">2. n 元集划分成 t 个有序子集，第 i 个子集恰好 n_i 个元素。</span><br><span class="line">3. 多重集 &#123;n1*a1,...,nt*at&#125; 的全排列数。</span><br></pre></td></tr></table></figure>
+
+<p>展开式不同项数：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C(n+t-1,n)</span><br></pre></td></tr></table></figure>
+
+<p>展开式所有系数之和：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t^n</span><br></pre></td></tr></table></figure>
+
+<h2 id="7、非降路径模型"><a href="#7、非降路径模型" class="headerlink" title="7、非降路径模型"></a>7、非降路径模型</h2><p>从 <code>(0,0)</code> 到 <code>(a,b)</code> 的非降路径，只允许向右和向上走，路径数为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C(a+b,a)=C(a+b,b)</span><br></pre></td></tr></table></figure>
+
+<p>常见用法：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 按必经点分类，证明卷积恒等式。</span><br><span class="line">2. 按首次穿越/反射路径，计算不过对角线的路径数。</span><br><span class="line">3. 把组合数求和转成终点固定、经过点变化的路径计数。</span><br></pre></td></tr></table></figure>
+
+<h2 id="8、习题二十一答案速查"><a href="#8、习题二十一答案速查" class="headerlink" title="8、习题二十一答案速查"></a>8、习题二十一答案速查</h2><h3 id="21-1、5-道工序排列"><a href="#21-1、5-道工序排列" class="headerlink" title="21.1、5 道工序排列"></a>21.1、5 道工序排列</h3><p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(1) P(5,5)=120</span><br><span class="line">(2) 某工序必须先加工：P(4,4)=24</span><br><span class="line">(3) 某工序不能最后加工：P(5,5)-P(4,4)=96</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-2、100-件产品抽-3-件"><a href="#21-2、100-件产品抽-3-件" class="headerlink" title="21.2、100 件产品抽 3 件"></a>21.2、100 件产品抽 3 件</h3><p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(1) C(100,3)=161700</span><br><span class="line">(2) 恰有 1 件次品：C(2,1)C(98,2)=9506</span><br><span class="line">(3) 至少 1 件次品：C(100,3)-C(98,3)=9604</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-3、纪念章和纪念册赠送"><a href="#21-3、纪念章和纪念册赠送" class="headerlink" title="21.3、纪念章和纪念册赠送"></a>21.3、纪念章和纪念册赠送</h3><p>10 位同学每人得一件。</p>
+<p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(1) 纪念章和纪念册都不同：P(10,10)=10!</span><br><span class="line">(2) 4 枚章相同、6 本册相同：C(10,4)=210</span><br></pre></td></tr></table></figure>
+
+<p>第二问只需选出哪 4 位同学拿纪念章。</p>
+<h3 id="21-4、从-1-到-100-选两个数"><a href="#21-4、从-1-到-100-选两个数" class="headerlink" title="21.4、从 1 到 100 选两个数"></a>21.4、从 1 到 100 选两个数</h3><p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(1) 差恰好为 7：93</span><br><span class="line">(2) 差不超过 7：sum_&#123;r=1&#125;^7 (100-r)=672</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-5、8-x-8-棋盘选相邻方格"><a href="#21-5、8-x-8-棋盘选相邻方格" class="headerlink" title="21.5、8 x 8 棋盘选相邻方格"></a>21.5、8 x 8 棋盘选相邻方格</h3><p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">横向相邻：8*7=56</span><br><span class="line">纵向相邻：8*7=56</span><br><span class="line">总数：112</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-6、字母排列"><a href="#21-6、字母排列" class="headerlink" title="21.6、字母排列"></a>21.6、字母排列</h3><p>排列 <code>a,b,c,d,e,f</code>。</p>
+<p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(1) b 紧跟在 e 左边：把 eb 看作一个整体，5!=120</span><br><span class="line">(2) b 在 e 左边：6!/2=360</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-7、两排座位"><a href="#21-7、两排座位" class="headerlink" title="21.7、两排座位"></a>21.7、两排座位</h3><p>两排各 8 个座位，14 个学生；其中 5 人总坐前排，4 人总坐后排。</p>
+<p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C(8,5)*5!*C(8,4)*4!*C(7,5)*5!</span><br></pre></td></tr></table></figure>
+
+<p>解释：先安排指定前排 5 人，再安排指定后排 4 人，剩下 5 人坐剩余 7 个座位。</p>
+<h3 id="21-8、红皮书与黑皮书"><a href="#21-8、红皮书与黑皮书" class="headerlink" title="21.8、红皮书与黑皮书"></a>21.8、红皮书与黑皮书</h3><p>9 本不同的书，4 本红皮，5 本黑皮。</p>
+<p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(1) 任意排列：9!</span><br><span class="line">(2) 黑皮书都相邻：5!*5!</span><br><span class="line">(3) 黑皮相邻且红皮相邻：2*5!*4!</span><br><span class="line">(4) 黑皮和红皮相间：5!*4!</span><br></pre></td></tr></table></figure>
+
+<p>第四问因为黑皮书多 1 本，排列形状只能是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">黑 红 黑 红 黑 红 黑 红 黑</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-9、24-卷百科全书选-5-卷不相继"><a href="#21-9、24-卷百科全书选-5-卷不相继" class="headerlink" title="21.9、24 卷百科全书选 5 卷不相继"></a>21.9、24 卷百科全书选 5 卷不相继</h3><p>设选出的卷号：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i1&lt;i2&lt;...&lt;i5</span><br></pre></td></tr></table></figure>
+
+<p>且相邻选中卷号不连续。令：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kj=ij-j+1</span><br></pre></td></tr></table></figure>
+
+<p>则转成从 <code>&#123;1,2,...,20&#125;</code> 中选 5 个。</p>
+<p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C(20,5)</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-10、圆排列"><a href="#21-10、圆排列" class="headerlink" title="21.10、圆排列"></a>21.10、圆排列</h3><p>从 <code>&#123;1,2,...,n&#125;</code> 中任选 <code>m</code> 个排成圆圈。</p>
+<p>线排列数：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P(n,m)=n!/(n-m)!</span><br></pre></td></tr></table></figure>
+
+<p>同一个圆排列对应 <code>m</code> 个线排列，因此：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n!/(m*(n-m)!)</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-11、最大元素分类"><a href="#21-11、最大元素分类" class="headerlink" title="21.11、最大元素分类"></a>21.11、最大元素分类</h3><p>考虑 <code>&#123;1,2,...,n+1&#125;</code> 的非空子集。</p>
+<p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(1) 最大元素恰好为 j 的非空子集数为 2^(j-1)。</span><br><span class="line">(2) 1+2+2^2+...+2^m = 2^(m+1)-1。</span><br></pre></td></tr></table></figure>
+
+<p>证明思路：最大元素为 <code>j</code> 时，<code>j</code> 必选，<code>1..j-1</code> 可任意选。</p>
+<h3 id="21-12、汽车安全与防污染试验"><a href="#21-12、汽车安全与防污染试验" class="headerlink" title="21.12、汽车安全与防污染试验"></a>21.12、汽车安全与防污染试验</h3><p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(1) C(200,30)*C(200,30)</span><br><span class="line">(2) 正好 5 辆同时做两种试验：</span><br><span class="line">    C(200,5)*C(195,25)*C(170,25)</span><br></pre></td></tr></table></figure>
+
+<p>第二问：先选重叠的 5 辆，再选只做安全的 25 辆，最后选只做防污染的 25 辆。</p>
+<h3 id="21-13、15-名运动员分成-3-组"><a href="#21-13、15-名运动员分成-3-组" class="headerlink" title="21.13、15 名运动员分成 3 组"></a>21.13、15 名运动员分成 3 组</h3><p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(1) 分配到有名称的 A,B,C 三组：</span><br><span class="line">    C(15,5)C(10,5)C(5,5)</span><br><span class="line"></span><br><span class="line">(2) 分成 3 个无名称小组：</span><br><span class="line">    C(15,5)C(10,5)C(5,5)/3!</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-14、选-8-名代表"><a href="#21-14、选-8-名代表" class="headerlink" title="21.14、选 8 名代表"></a>21.14、选 8 名代表</h3><p>三年级和四年级各 50 人；每个年级 25 男、25 女。选 8 人，要求 4 女、3 名低年级。</p>
+<p>按低年级女生人数分类，答案可写为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">N = 2*C(25,3)*C(25,1)*C(25,4)</span><br><span class="line">    + 2*C(25,2)^2*C(25,1)*C(25,3)</span><br></pre></td></tr></table></figure>
+
+<p>也就是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">N = 50*C(25,3)*(C(25,4)+C(25,2)^2)</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-15、从-1-到-1000-选-3-个数，和被-4-整除"><a href="#21-15、从-1-到-1000-选-3-个数，和被-4-整除" class="headerlink" title="21.15、从 1 到 1000 选 3 个数，和被 4 整除"></a>21.15、从 1 到 1000 选 3 个数，和被 4 整除</h3><p>按模 4 余数分类，每类各 250 个。</p>
+<p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C(250,3)+3*C(250,2)*C(250,1)+C(250,1)^3</span><br><span class="line">= 41541750</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-16、扑克牌选-5-张"><a href="#21-16、扑克牌选-5-张" class="headerlink" title="21.16、扑克牌选 5 张"></a>21.16、扑克牌选 5 张</h3><p>从去掉大小王的 52 张牌中选 5 张。</p>
+<p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(1) 没有 A 但有 2 张 K：</span><br><span class="line">    C(4,2)*C(44,3)</span><br><span class="line"></span><br><span class="line">(2) 有红桃 A，其他 4 张牌是顺子：</span><br><span class="line">    11*4^4 - 4^3 - 4^3 = 2688</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-17、有序三元组与平方和"><a href="#21-17、有序三元组与平方和" class="headerlink" title="21.17、有序三元组与平方和"></a>21.17、有序三元组与平方和</h3><p>设 <code>S=&#123;1,2,...,n+1&#125;</code>，选择有序三元组 <code>&lt;x,y,z&gt;</code>，要求 <code>z&gt;x</code> 且 <code>z&gt;y</code>。</p>
+<p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(1) 若 z=k+1，则 x,y 各有 k 种选择，共 k^2 个。</span><br><span class="line">(2) 按 x=y、x&lt;y、x&gt;y 分成 A,B,C：</span><br><span class="line">    |A|=C(n+1,2)</span><br><span class="line">    |B|=|C|=C(n+1,3)</span><br><span class="line">(3) 1^2+2^2+...+n^2 = C(n+1,2)+2*C(n+1,3)</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-18、多重集各种大小子集总数"><a href="#21-18、多重集各种大小子集总数" class="headerlink" title="21.18、多重集各种大小子集总数"></a>21.18、多重集各种大小子集总数</h3><p>若：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">S=&#123;n1*a1, n2*a2, ..., nk*ak&#125;</span><br></pre></td></tr></table></figure>
+
+<p>选择 <code>ai</code> 的个数可以是 <code>0..ni</code>，所以子集总数为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(n1+1)(n2+1)...(nk+1)</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-19、部分元素无限重的-r-组合"><a href="#21-19、部分元素无限重的-r-组合" class="headerlink" title="21.19、部分元素无限重的 r 组合"></a>21.19、部分元素无限重的 r 组合</h3><p>设：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">S=&#123;1*a1,...,1*at, infinity*a_&#123;t+1&#125;,...,infinity*ak&#125;</span><br></pre></td></tr></table></figure>
+
+<p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum_&#123;i=0&#125;^r C(t,i)*C(k-t+r-i-1,r-i)</span><br></pre></td></tr></table></figure>
+
+<p>含义：先从前 <code>t</code> 个只能取 0&#x2F;1 次的元素中选 <code>i</code> 个，再从后 <code>k-t</code> 个无限重元素中取 <code>r-i</code> 个。</p>
+<h3 id="21-20、红黄白球排列"><a href="#21-20、红黄白球排列" class="headerlink" title="21.20、红黄白球排列"></a>21.20、红黄白球排列</h3><p>红球 4 个，黄球 3 个，白球 3 个，排成直线。</p>
+<p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10!/(4!*3!*3!)</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-21、0-1-2-排列且相邻不同"><a href="#21-21、0-1-2-排列且相邻不同" class="headerlink" title="21.21、0&#x2F;1&#x2F;2 排列且相邻不同"></a>21.21、0&#x2F;1&#x2F;2 排列且相邻不同</h3><p>从 <code>&#123;infinity*0, infinity*1, infinity*2&#125;</code> 中取 <code>n</code> 个数作排列，要求相邻位置不同。</p>
+<p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第 1 位有 3 种选法；</span><br><span class="line">后面每位不能等于前一位，各有 2 种。</span><br><span class="line"></span><br><span class="line">总数：3*2^(n-1)</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-22、非降数字正整数"><a href="#21-22、非降数字正整数" class="headerlink" title="21.22、非降数字正整数"></a>21.22、非降数字正整数</h3><p>小于 <code>10^n</code> 且各位数字从左到右非降的正整数个数：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C(n+9,9)-1</span><br></pre></td></tr></table></figure>
+
+<p>解释：等价于从 <code>&#123;infinity*0,...,infinity*9&#125;</code> 中取 <code>n</code> 个数字后按非降排列，排除全 0。</p>
+<h3 id="21-23、22-本书分给-5-个学生"><a href="#21-23、22-本书分给-5-个学生" class="headerlink" title="21.23、22 本书分给 5 个学生"></a>21.23、22 本书分给 5 个学生</h3><p>其中 2 名学生各得 5 本，另外 3 名各得 4 本。</p>
+<p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C(5,2)*C(22,5)*C(17,5)*C(12,4)*C(8,4)*C(4,4)</span><br></pre></td></tr></table></figure>
+
+<p>最后 <code>C(4,4)=1</code> 可省略。</p>
+<h3 id="21-24、相同球放入不同盒"><a href="#21-24、相同球放入不同盒" class="headerlink" title="21.24、相同球放入不同盒"></a>21.24、相同球放入不同盒</h3><p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(1) r 只相同球放入 n 个不同盒子，无空盒：</span><br><span class="line">    C(r-1,n-1)</span><br><span class="line"></span><br><span class="line">(2) 每盒至少 q 个：</span><br><span class="line">    C(r-nq+n-1,n-1)</span><br></pre></td></tr></table></figure>
+
+<p>第二问令 <code>yi=xi-q</code>，转成：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y1+...+yn = r-nq, yi&gt;=0</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-25、多重集的-3-排列和-3-组合"><a href="#21-25、多重集的-3-排列和-3-组合" class="headerlink" title="21.25、多重集的 3 排列和 3 组合"></a>21.25、多重集的 3 排列和 3 组合</h3><p>多重集：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;2*a,1*b,3*c&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所有 3 组合：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;a,a,b&#125;, &#123;a,a,c&#125;, &#123;a,b,c&#125;, &#123;a,c,c&#125;, &#123;b,c,c&#125;, &#123;c,c,c&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所有 3 排列：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">aab, aba, baa,</span><br><span class="line">aac, aca, caa,</span><br><span class="line">abc, acb, bac, bca, cab, cba,</span><br><span class="line">acc, cac, cca,</span><br><span class="line">bcc, cbc, ccb,</span><br><span class="line">ccc</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-26、由-1-1-2-3-3-4-组成的-4-位数"><a href="#21-26、由-1-1-2-3-3-4-组成的-4-位数" class="headerlink" title="21.26、由 1,1,2,3,3,4 组成的 4 位数"></a>21.26、由 1,1,2,3,3,4 组成的 4 位数</h3><p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">102</span><br></pre></td></tr></table></figure>
+
+<p>按 4 组合分类：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">6 类形如 &#123;重复,重复,单,单&#125;，各有 4!/2! 种；</span><br><span class="line">1 类 &#123;1,2,3,4&#125;，有 4! 种；</span><br><span class="line">1 类 &#123;1,1,3,3&#125;，有 4!/(2!2!) 种。</span><br><span class="line"></span><br><span class="line">6*12+24+6=102</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-27、展开-2x-y-7"><a href="#21-27、展开-2x-y-7" class="headerlink" title="21.27、展开 (2x-y)^7"></a>21.27、展开 <code>(2x-y)^7</code></h3><p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(2x-y)^7</span><br><span class="line">= 128x^7 - 448x^6y + 672x^5y^2 - 560x^4y^3</span><br><span class="line">  + 280x^3y^4 - 84x^2y^5 + 14xy^6 - y^7</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-28、-3x-2y-18-的系数"><a href="#21-28、-3x-2y-18-的系数" class="headerlink" title="21.28、(3x-2y)^18 的系数"></a>21.28、<code>(3x-2y)^18</code> 的系数</h3><p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x^5 y^13 的系数：</span><br><span class="line">-C(18,5)*3^5*2^13</span><br><span class="line"></span><br><span class="line">x^8 y^9 的系数：</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+
+<p>第二个为 0，因为 <code>x^8y^9</code> 总次数是 17，不可能出现在 18 次齐次展开式中。</p>
+<h3 id="21-29、证明-sum-C-n-k-2-k-3-n"><a href="#21-29、证明-sum-C-n-k-2-k-3-n" class="headerlink" title="21.29、证明 sum C(n,k)2^k=3^n"></a>21.29、证明 <code>sum C(n,k)2^k=3^n</code></h3><p>由二项式定理：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(1+2)^n = sum_&#123;k=0&#125;^n C(n,k)2^k = 3^n</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-30、证明交错二项式和"><a href="#21-30、证明交错二项式和" class="headerlink" title="21.30、证明交错二项式和"></a>21.30、证明交错二项式和</h3><p>结论：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum_&#123;k=0&#125;^n (-1)^k C(n,k)3^(n-k)=2^n</span><br></pre></td></tr></table></figure>
+
+<p>由：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(3-1)^n = sum_&#123;k=0&#125;^n C(n,k)3^(n-k)(-1)^k</span><br></pre></td></tr></table></figure>
+
+<p>即可。</p>
+<h3 id="21-31、组合恒等式四题"><a href="#21-31、组合恒等式四题" class="headerlink" title="21.31、组合恒等式四题"></a>21.31、组合恒等式四题</h3><p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(1) sum_&#123;k=1&#125;^&#123;n+1&#125; (1/k)*C(n,k-1)</span><br><span class="line">    = (2^(n+1)-1)/(n+1)</span><br><span class="line"></span><br><span class="line">(2) sum_&#123;k=0&#125;^n (k+1)*C(n,k)</span><br><span class="line">    = 2^(n-1)(n+2)</span><br><span class="line"></span><br><span class="line">(3) sum_&#123;k=0&#125;^n (2^(k+1)/(k+1))*C(n,k)</span><br><span class="line">    = (3^(n+1)-1)/(n+1)</span><br><span class="line"></span><br><span class="line">(4) sum_&#123;k=1&#125;^n (-1)^(k-1)*(1/k)*C(n,k)</span><br><span class="line">    = 1+1/2+...+1/n</span><br></pre></td></tr></table></figure>
+
+<p>证明方法：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(1)(3)：对 (1+x)^n 积分，再取 x=1 或 x=2。</span><br><span class="line">(2)：拆成 sum k*C(n,k)+sum C(n,k)。</span><br><span class="line">(4)：用归纳法，或由 32(2) 递推推出。</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-32、求和三题"><a href="#21-32、求和三题" class="headerlink" title="21.32、求和三题"></a>21.32、求和三题</h3><p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(1) sum_&#123;k=0&#125;^n C(n,k) r^k = (1+r)^n</span><br><span class="line"></span><br><span class="line">(2) sum_&#123;k=0&#125;^n (-1)^k * C(n,k)/(k+1) = 1/(n+1)</span><br><span class="line"></span><br><span class="line">(3) sum_&#123;k=0&#125;^n C(2n-k,n-k) = C(2n+1,n)</span><br></pre></td></tr></table></figure>
+
+<p>第三问令 <code>j=n-k</code>，变成：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum_&#123;j=0&#125;^n C(n+j,j)=C(2n+1,n)</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-33、带分母的交错和"><a href="#21-33、带分母的交错和" class="headerlink" title="21.33、带分母的交错和"></a>21.33、带分母的交错和</h3><p>要证：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sum_&#123;k=0&#125;^n (-1)^k * C(n,k)/(m+k+1)</span><br><span class="line">= n!m!/(n+m+1)!</span><br></pre></td></tr></table></figure>
+
+<p>证明方法：对 <code>m</code> 归纳，或把：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1/(m+k+1)</span><br></pre></td></tr></table></figure>
+
+<p>看成积分中的指数项，利用二项式展开。</p>
+<h3 id="21-34、乘积型求和"><a href="#21-34、乘积型求和" class="headerlink" title="21.34、乘积型求和"></a>21.34、乘积型求和</h3><p>结论：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sum_&#123;k=0&#125;^&#123;n-1&#125; C(n,k)*C(n,k+1)</span><br><span class="line">= (2n)!/((n-1)!(n+1)!)</span><br></pre></td></tr></table></figure>
+
+<p>等价写法：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C(2n,n-1)</span><br></pre></td></tr></table></figure>
+
+<p>可用 Vandermonde 恒等式证明。</p>
+<h3 id="21-35、交错分母和"><a href="#21-35、交错分母和" class="headerlink" title="21.35、交错分母和"></a>21.35、交错分母和</h3><p>结论：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sum_&#123;k=1&#125;^n (-1)^(k-1)*C(n,k)/(k+1)</span><br><span class="line">= n/(n+1)</span><br></pre></td></tr></table></figure>
+
+<p>由 32(2)：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum_&#123;k=0&#125;^n (-1)^k*C(n,k)/(k+1)=1/(n+1)</span><br></pre></td></tr></table></figure>
+
+<p>移去 <code>k=0</code> 项即可。</p>
+<h3 id="21-36、平方权重求和"><a href="#21-36、平方权重求和" class="headerlink" title="21.36、平方权重求和"></a>21.36、平方权重求和</h3><p>结论：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sum_&#123;k=2&#125;^&#123;n-1&#125; (n-k)^2*C(n-1,n-k)</span><br><span class="line">= n(n-1)2^(n-3) - (n-1)^2</span><br></pre></td></tr></table></figure>
+
+<p>证明使用教材公式：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sum k*C(n,k)=n2^(n-1)</span><br><span class="line">sum k^2*C(n,k)=n(n+1)2^(n-2)</span><br></pre></td></tr></table></figure>
+
+<p>并做变量替换。</p>
+<h3 id="21-37、两类求和"><a href="#21-37、两类求和" class="headerlink" title="21.37、两类求和"></a>21.37、两类求和</h3><p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(1) sum_&#123;k=0&#125;^m C(n-k,m-k)=C(n+1,m)</span><br><span class="line"></span><br><span class="line">(2) sum_&#123;k=0&#125;^m C(u,k)C(v,m-k)=C(u+v,m)</span><br></pre></td></tr></table></figure>
+
+<p>第二问就是 Vandermonde 恒等式。</p>
+<h3 id="21-38、展开-x1-x2-x3-4"><a href="#21-38、展开-x1-x2-x3-4" class="headerlink" title="21.38、展开 (x1+x2+x3)^4"></a>21.38、展开 <code>(x1+x2+x3)^4</code></h3><p>用多项式定理：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(x1+x2+x3)^4</span><br><span class="line">= x1^4+x2^4+x3^4</span><br><span class="line"> +4*(x1^3x2+x1^3x3+x2^3x1+x2^3x3+x3^3x1+x3^3x2)</span><br><span class="line"> +6*(x1^2x2^2+x1^2x3^2+x2^2x3^2)</span><br><span class="line"> +12*(x1^2x2x3+x2^2x1x3+x3^2x1x2)</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-39、确定多项式系数"><a href="#21-39、确定多项式系数" class="headerlink" title="21.39、确定多项式系数"></a>21.39、确定多项式系数</h3><p>求：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(x1-x2+2x3-2x4)^8</span><br></pre></td></tr></table></figure>
+
+<p>中：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x1^2 x2^3 x3 x4^2</span><br></pre></td></tr></table></figure>
+
+<p>项的系数。</p>
+<p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">8!/(2!3!1!2!) * 1^2 * (-1)^3 * 2^1 * (-2)^2</span><br><span class="line">= -13440</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-40、多项式系数交错和"><a href="#21-40、多项式系数交错和" class="headerlink" title="21.40、多项式系数交错和"></a>21.40、多项式系数交错和</h3><p>第一问：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum (-1)^(a+b) * C(n; a,b,c,d)=0</span><br></pre></td></tr></table></figure>
+
+<p>其中求和遍历：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a+b+c+d=n</span><br></pre></td></tr></table></figure>
+
+<p>证明：这是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(-x1-x2+x3+x4)^n</span><br></pre></td></tr></table></figure>
+
+<p>令：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x1=x2=x3=x4=1</span><br></pre></td></tr></table></figure>
+
+<p>时的所有系数和，即：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(-1-1+1+1)^n=0</span><br></pre></td></tr></table></figure>
+
+<p>一般化：若有偶数个变量，一半取负一半取正，则：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum (-1)^(r1+...+rk)*C(n;r1,...,r_&#123;2k&#125;)=0</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r1+...+r_&#123;2k&#125;=n</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-41、证明-C-2p-p-模-p-余-2"><a href="#21-41、证明-C-2p-p-模-p-余-2" class="headerlink" title="21.41、证明 C(2p,p) 模 p 余 2"></a>21.41、证明 <code>C(2p,p)</code> 模 p 余 2</h3><p>设 <code>p</code> 是奇素数。利用：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C(2p,p)=sum_&#123;k=0&#125;^p C(p,k)C(p,p-k)</span><br></pre></td></tr></table></figure>
+
+<p>当 <code>0&lt;k&lt;p</code> 时：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p | C(p,k)</span><br></pre></td></tr></table></figure>
+
+<p>所以中间项都被 <code>p</code> 整除，只剩两端：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C(p,0)C(p,p)+C(p,p)C(p,0)=2</span><br></pre></td></tr></table></figure>
+
+<p>因此 <code>C(2p,p)</code> 被 <code>p</code> 除的余数为 <code>2</code>。</p>
+<h3 id="21-42、不同球放入不同盒"><a href="#21-42、不同球放入不同盒" class="headerlink" title="21.42、不同球放入不同盒"></a>21.42、不同球放入不同盒</h3><p>把 <code>n</code> 个有区别的球放入 <code>t</code> 个有区别的盒子，第 <code>i</code> 个盒子恰好 <code>n_i</code> 个球。</p>
+<p>答案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C(n; n1,n2,...,nt)=n!/(n1!n2!...nt!)</span><br></pre></td></tr></table></figure>
+
+<p>证明：先选盒 1 的 <code>n1</code> 个球，再选盒 2 的 <code>n2</code> 个球，依次使用乘法法则。</p>
+<h3 id="21-43、n-元集划分成有序子集"><a href="#21-43、n-元集划分成有序子集" class="headerlink" title="21.43、n 元集划分成有序子集"></a>21.43、n 元集划分成有序子集</h3><p>把 <code>n</code> 元集划分成 <code>t</code> 个有序子集，允许空子集，且第 <code>i</code> 个子集有 <code>n_i</code> 个元素。</p>
+<p>答案同 21.42：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C(n; n1,n2,...,nt)</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-44、多项式系数与-Fermat-小定理"><a href="#21-44、多项式系数与-Fermat-小定理" class="headerlink" title="21.44、多项式系数与 Fermat 小定理"></a>21.44、多项式系数与 Fermat 小定理</h3><p>第一问：若 <code>p</code> 为素数，且多项式系数：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C(p; n1,n2,...,nt) != 1</span><br></pre></td></tr></table></figure>
+
+<p>则：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p | C(p; n1,n2,...,nt)</span><br></pre></td></tr></table></figure>
+
+<p>原因：若系数不等于 1，则所有 <code>n_i&lt;p</code>，分母的阶乘不含因子 <code>p</code>，而分子含一个因子 <code>p</code>。</p>
+<p>第二问：把：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n^p</span><br></pre></td></tr></table></figure>
+
+<p>写成：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(1+1+...+1)^p</span><br></pre></td></tr></table></figure>
+
+<p>展开。除了 <code>n</code> 个系数为 1 的纯项外，其余项系数都被 <code>p</code> 整除，所以：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p | (n^p-n)</span><br></pre></td></tr></table></figure>
+
+<p>这就是 Fermat 小定理。</p>
+<h3 id="21-45、用非降路径证明三条恒等式"><a href="#21-45、用非降路径证明三条恒等式" class="headerlink" title="21.45、用非降路径证明三条恒等式"></a>21.45、用非降路径证明三条恒等式</h3><p>三条恒等式：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(1) sum_&#123;k=0&#125;^r C(m,k)C(n,r-k)=C(m+n,r)</span><br><span class="line"></span><br><span class="line">(2) sum_&#123;l=0&#125;^n C(l+k,k)=C(n+k+1,k+1)</span><br><span class="line"></span><br><span class="line">(3) sum_&#123;l=0&#125;^k C(n+l,l)=C(n+k+1,k)</span><br></pre></td></tr></table></figure>
+
+<p>证明思路：把等式右边看成从 <code>(0,0)</code> 到某个终点的非降路径总数；左边按路径经过的某条竖线或横线上的点分类。</p>
+<h3 id="21-46、非降路径证明卷积"><a href="#21-46、非降路径证明卷积" class="headerlink" title="21.46、非降路径证明卷积"></a>21.46、非降路径证明卷积</h3><p>要证：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum_&#123;k=0&#125;^m C(n-k,m-k)C(r+k,k)=C(n+r+1,m)</span><br></pre></td></tr></table></figure>
+
+<p>路径解释：右边计数从：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(0,0) 到 (n+r+1-m,m)</span><br></pre></td></tr></table></figure>
+
+<p>的非降路径。左边按路径经过：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(r,k) -&gt; (r+1,k)</span><br></pre></td></tr></table></figure>
+
+<p>这一横向步骤的位置分类。</p>
+<h3 id="21-47、不过直线-y-x-的非降路径"><a href="#21-47、不过直线-y-x-的非降路径" class="headerlink" title="21.47、不过直线 y&#x3D;x 的非降路径"></a>21.47、不过直线 y&#x3D;x 的非降路径</h3><p>从 <code>(0,0)</code> 到 <code>(n,n)</code> 的非降路径总数：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C(2n,n)</span><br></pre></td></tr></table></figure>
+
+<p>用反射法，穿过对角线的一侧路径数为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C(2n,n-1)</span><br></pre></td></tr></table></figure>
+
+<p>答案中上下两侧都计入，因此不过对角线的非降路径数为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2*(C(2n,n)-C(2n,n-1))</span><br><span class="line">= 2/(n+1)*C(2n,n)</span><br></pre></td></tr></table></figure>
+
+<h2 id="9、复盘清单"><a href="#9、复盘清单" class="headerlink" title="9、复盘清单"></a>9、复盘清单</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 看到“或者”先想加法法则，看到“先后”先想乘法法则。</span><br><span class="line">2. 先判断有序/无序，再判断重复/不重复。</span><br><span class="line">3. 分组题先问：组是否有名称？若无名称，通常要除以组的排列数。</span><br><span class="line">4. 相同球放不同盒，优先转成整数解。</span><br><span class="line">5. 二项式求和常用 x=1、x=-1、x=2、求导、积分。</span><br><span class="line">6. 多项式系数就是多类分配和多重集全排列。</span><br><span class="line">7. 非降路径题先找终点，再按必经点或反射路径分类。</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com">睿清颜</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://ruiqingyan.com/22/0120/">https://ruiqingyan.com/22/0120/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ruiqingyan.com" target="_blank">Ruiqy~</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/">本科课程</a><a class="post-meta__tags" href="/tags/%E7%96%BE%E9%A3%8E%E8%AE%A1%E5%88%92/">疾风计划</a><a class="post-meta__tags" href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/">离散数学</a></div><div class="post_share"><div class="social-share" data-image="/img/rd8.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/22/0119/" title="Chap19 组合数学引言、鸽巢原理与 Ramsey 定理"><img class="cover" src="/img/rd8.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Chap19 组合数学引言、鸽巢原理与 Ramsey 定理</div></div></a></div><div class="next-post pull-right"><a href="/22/0301/" title="Chap1 绪论与算法分析"><img class="cover" src="/img/rd8.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Chap1 绪论与算法分析</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/22/0101/" title="Chap1 集合论课程引言、预备知识与集合基本概念"><img class="cover" src="/img/rd8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-20</div><div class="title">Chap1 集合论课程引言、预备知识与集合基本概念</div></div></a></div><div><a href="/22/0100/" title="0100、离散数学：课程总目录"><img class="cover" src="/img/rd8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-20</div><div class="title">0100、离散数学：课程总目录</div></div></a></div><div><a href="/22/0103/" title="Chap3 函数与集合论习题课"><img class="cover" src="/img/rd8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-20</div><div class="title">Chap3 函数与集合论习题课</div></div></a></div><div><a href="/22/0104/" title="Chap4 自然数的定义与性质"><img class="cover" src="/img/rd8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-20</div><div class="title">Chap4 自然数的定义与性质</div></div></a></div><div><a href="/22/0106/" title="Chap6 图的基本概念、通路回路与连通性"><img class="cover" src="/img/rd8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-20</div><div class="title">Chap6 图的基本概念、通路回路与连通性</div></div></a></div><div><a href="/22/0109/" title="Chap9 图的矩阵表示"><img class="cover" src="/img/rd8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-20</div><div class="title">Chap9 图的矩阵表示</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">睿清颜</div><div class="author-info__description">远赴人间惊鸿宴，一睹人间盛世颜</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">396</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">292</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">60</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ruiqingyan1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ruiqingyan1@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/44712000?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili" style="color: #ff69b4;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87"><span class="toc-text">1、学习目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E4%B8%A4%E4%B8%AA%E8%AE%A1%E6%95%B0%E5%8E%9F%E5%88%99"><span class="toc-text">2、两个计数原则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E6%B3%95%E6%B3%95%E5%88%99"><span class="toc-text">加法法则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%98%E6%B3%95%E6%B3%95%E5%88%99"><span class="toc-text">乘法法则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88%E6%A8%A1%E5%9E%8B"><span class="toc-text">3、排列组合模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E5%A4%9A%E9%87%8D%E9%9B%86%E6%8E%92%E5%88%97%E4%B8%8E%E7%BB%84%E5%90%88"><span class="toc-text">4、多重集排列与组合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86%E4%B8%8E%E7%BB%84%E5%90%88%E6%81%92%E7%AD%89%E5%BC%8F"><span class="toc-text">5、二项式定理与组合恒等式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86"><span class="toc-text">6、多项式定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81%E9%9D%9E%E9%99%8D%E8%B7%AF%E5%BE%84%E6%A8%A1%E5%9E%8B"><span class="toc-text">7、非降路径模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8%E3%80%81%E4%B9%A0%E9%A2%98%E4%BA%8C%E5%8D%81%E4%B8%80%E7%AD%94%E6%A1%88%E9%80%9F%E6%9F%A5"><span class="toc-text">8、习题二十一答案速查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#21-1%E3%80%815-%E9%81%93%E5%B7%A5%E5%BA%8F%E6%8E%92%E5%88%97"><span class="toc-text">21.1、5 道工序排列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-2%E3%80%81100-%E4%BB%B6%E4%BA%A7%E5%93%81%E6%8A%BD-3-%E4%BB%B6"><span class="toc-text">21.2、100 件产品抽 3 件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-3%E3%80%81%E7%BA%AA%E5%BF%B5%E7%AB%A0%E5%92%8C%E7%BA%AA%E5%BF%B5%E5%86%8C%E8%B5%A0%E9%80%81"><span class="toc-text">21.3、纪念章和纪念册赠送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-4%E3%80%81%E4%BB%8E-1-%E5%88%B0-100-%E9%80%89%E4%B8%A4%E4%B8%AA%E6%95%B0"><span class="toc-text">21.4、从 1 到 100 选两个数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-5%E3%80%818-x-8-%E6%A3%8B%E7%9B%98%E9%80%89%E7%9B%B8%E9%82%BB%E6%96%B9%E6%A0%BC"><span class="toc-text">21.5、8 x 8 棋盘选相邻方格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-6%E3%80%81%E5%AD%97%E6%AF%8D%E6%8E%92%E5%88%97"><span class="toc-text">21.6、字母排列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-7%E3%80%81%E4%B8%A4%E6%8E%92%E5%BA%A7%E4%BD%8D"><span class="toc-text">21.7、两排座位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-8%E3%80%81%E7%BA%A2%E7%9A%AE%E4%B9%A6%E4%B8%8E%E9%BB%91%E7%9A%AE%E4%B9%A6"><span class="toc-text">21.8、红皮书与黑皮书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-9%E3%80%8124-%E5%8D%B7%E7%99%BE%E7%A7%91%E5%85%A8%E4%B9%A6%E9%80%89-5-%E5%8D%B7%E4%B8%8D%E7%9B%B8%E7%BB%A7"><span class="toc-text">21.9、24 卷百科全书选 5 卷不相继</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-10%E3%80%81%E5%9C%86%E6%8E%92%E5%88%97"><span class="toc-text">21.10、圆排列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-11%E3%80%81%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0%E5%88%86%E7%B1%BB"><span class="toc-text">21.11、最大元素分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-12%E3%80%81%E6%B1%BD%E8%BD%A6%E5%AE%89%E5%85%A8%E4%B8%8E%E9%98%B2%E6%B1%A1%E6%9F%93%E8%AF%95%E9%AA%8C"><span class="toc-text">21.12、汽车安全与防污染试验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-13%E3%80%8115-%E5%90%8D%E8%BF%90%E5%8A%A8%E5%91%98%E5%88%86%E6%88%90-3-%E7%BB%84"><span class="toc-text">21.13、15 名运动员分成 3 组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-14%E3%80%81%E9%80%89-8-%E5%90%8D%E4%BB%A3%E8%A1%A8"><span class="toc-text">21.14、选 8 名代表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-15%E3%80%81%E4%BB%8E-1-%E5%88%B0-1000-%E9%80%89-3-%E4%B8%AA%E6%95%B0%EF%BC%8C%E5%92%8C%E8%A2%AB-4-%E6%95%B4%E9%99%A4"><span class="toc-text">21.15、从 1 到 1000 选 3 个数，和被 4 整除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-16%E3%80%81%E6%89%91%E5%85%8B%E7%89%8C%E9%80%89-5-%E5%BC%A0"><span class="toc-text">21.16、扑克牌选 5 张</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-17%E3%80%81%E6%9C%89%E5%BA%8F%E4%B8%89%E5%85%83%E7%BB%84%E4%B8%8E%E5%B9%B3%E6%96%B9%E5%92%8C"><span class="toc-text">21.17、有序三元组与平方和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-18%E3%80%81%E5%A4%9A%E9%87%8D%E9%9B%86%E5%90%84%E7%A7%8D%E5%A4%A7%E5%B0%8F%E5%AD%90%E9%9B%86%E6%80%BB%E6%95%B0"><span class="toc-text">21.18、多重集各种大小子集总数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-19%E3%80%81%E9%83%A8%E5%88%86%E5%85%83%E7%B4%A0%E6%97%A0%E9%99%90%E9%87%8D%E7%9A%84-r-%E7%BB%84%E5%90%88"><span class="toc-text">21.19、部分元素无限重的 r 组合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-20%E3%80%81%E7%BA%A2%E9%BB%84%E7%99%BD%E7%90%83%E6%8E%92%E5%88%97"><span class="toc-text">21.20、红黄白球排列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-21%E3%80%810-1-2-%E6%8E%92%E5%88%97%E4%B8%94%E7%9B%B8%E9%82%BB%E4%B8%8D%E5%90%8C"><span class="toc-text">21.21、0&#x2F;1&#x2F;2 排列且相邻不同</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-22%E3%80%81%E9%9D%9E%E9%99%8D%E6%95%B0%E5%AD%97%E6%AD%A3%E6%95%B4%E6%95%B0"><span class="toc-text">21.22、非降数字正整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-23%E3%80%8122-%E6%9C%AC%E4%B9%A6%E5%88%86%E7%BB%99-5-%E4%B8%AA%E5%AD%A6%E7%94%9F"><span class="toc-text">21.23、22 本书分给 5 个学生</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-24%E3%80%81%E7%9B%B8%E5%90%8C%E7%90%83%E6%94%BE%E5%85%A5%E4%B8%8D%E5%90%8C%E7%9B%92"><span class="toc-text">21.24、相同球放入不同盒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-25%E3%80%81%E5%A4%9A%E9%87%8D%E9%9B%86%E7%9A%84-3-%E6%8E%92%E5%88%97%E5%92%8C-3-%E7%BB%84%E5%90%88"><span class="toc-text">21.25、多重集的 3 排列和 3 组合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-26%E3%80%81%E7%94%B1-1-1-2-3-3-4-%E7%BB%84%E6%88%90%E7%9A%84-4-%E4%BD%8D%E6%95%B0"><span class="toc-text">21.26、由 1,1,2,3,3,4 组成的 4 位数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-27%E3%80%81%E5%B1%95%E5%BC%80-2x-y-7"><span class="toc-text">21.27、展开 (2x-y)^7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-28%E3%80%81-3x-2y-18-%E7%9A%84%E7%B3%BB%E6%95%B0"><span class="toc-text">21.28、(3x-2y)^18 的系数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-29%E3%80%81%E8%AF%81%E6%98%8E-sum-C-n-k-2-k-3-n"><span class="toc-text">21.29、证明 sum C(n,k)2^k&#x3D;3^n</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-30%E3%80%81%E8%AF%81%E6%98%8E%E4%BA%A4%E9%94%99%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%92%8C"><span class="toc-text">21.30、证明交错二项式和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-31%E3%80%81%E7%BB%84%E5%90%88%E6%81%92%E7%AD%89%E5%BC%8F%E5%9B%9B%E9%A2%98"><span class="toc-text">21.31、组合恒等式四题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-32%E3%80%81%E6%B1%82%E5%92%8C%E4%B8%89%E9%A2%98"><span class="toc-text">21.32、求和三题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-33%E3%80%81%E5%B8%A6%E5%88%86%E6%AF%8D%E7%9A%84%E4%BA%A4%E9%94%99%E5%92%8C"><span class="toc-text">21.33、带分母的交错和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-34%E3%80%81%E4%B9%98%E7%A7%AF%E5%9E%8B%E6%B1%82%E5%92%8C"><span class="toc-text">21.34、乘积型求和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-35%E3%80%81%E4%BA%A4%E9%94%99%E5%88%86%E6%AF%8D%E5%92%8C"><span class="toc-text">21.35、交错分母和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-36%E3%80%81%E5%B9%B3%E6%96%B9%E6%9D%83%E9%87%8D%E6%B1%82%E5%92%8C"><span class="toc-text">21.36、平方权重求和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-37%E3%80%81%E4%B8%A4%E7%B1%BB%E6%B1%82%E5%92%8C"><span class="toc-text">21.37、两类求和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-38%E3%80%81%E5%B1%95%E5%BC%80-x1-x2-x3-4"><span class="toc-text">21.38、展开 (x1+x2+x3)^4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-39%E3%80%81%E7%A1%AE%E5%AE%9A%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%B3%BB%E6%95%B0"><span class="toc-text">21.39、确定多项式系数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-40%E3%80%81%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%B3%BB%E6%95%B0%E4%BA%A4%E9%94%99%E5%92%8C"><span class="toc-text">21.40、多项式系数交错和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-41%E3%80%81%E8%AF%81%E6%98%8E-C-2p-p-%E6%A8%A1-p-%E4%BD%99-2"><span class="toc-text">21.41、证明 C(2p,p) 模 p 余 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-42%E3%80%81%E4%B8%8D%E5%90%8C%E7%90%83%E6%94%BE%E5%85%A5%E4%B8%8D%E5%90%8C%E7%9B%92"><span class="toc-text">21.42、不同球放入不同盒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-43%E3%80%81n-%E5%85%83%E9%9B%86%E5%88%92%E5%88%86%E6%88%90%E6%9C%89%E5%BA%8F%E5%AD%90%E9%9B%86"><span class="toc-text">21.43、n 元集划分成有序子集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-44%E3%80%81%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%B3%BB%E6%95%B0%E4%B8%8E-Fermat-%E5%B0%8F%E5%AE%9A%E7%90%86"><span class="toc-text">21.44、多项式系数与 Fermat 小定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-45%E3%80%81%E7%94%A8%E9%9D%9E%E9%99%8D%E8%B7%AF%E5%BE%84%E8%AF%81%E6%98%8E%E4%B8%89%E6%9D%A1%E6%81%92%E7%AD%89%E5%BC%8F"><span class="toc-text">21.45、用非降路径证明三条恒等式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-46%E3%80%81%E9%9D%9E%E9%99%8D%E8%B7%AF%E5%BE%84%E8%AF%81%E6%98%8E%E5%8D%B7%E7%A7%AF"><span class="toc-text">21.46、非降路径证明卷积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-47%E3%80%81%E4%B8%8D%E8%BF%87%E7%9B%B4%E7%BA%BF-y-x-%E7%9A%84%E9%9D%9E%E9%99%8D%E8%B7%AF%E5%BE%84"><span class="toc-text">21.47、不过直线 y&#x3D;x 的非降路径</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9%E3%80%81%E5%A4%8D%E7%9B%98%E6%B8%85%E5%8D%95"><span class="toc-text">9、复盘清单</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/24/9001/" title="9001、R0 内核安全防御专题：R0Guard 笔记目录"><img src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="9001、R0 内核安全防御专题：R0Guard 笔记目录"/></a><div class="content"><a class="title" href="/24/9001/" title="9001、R0 内核安全防御专题：R0Guard 笔记目录">9001、R0 内核安全防御专题：R0Guard 笔记目录</a><time datetime="2026-09-12T13:30:00.000Z" title="发表于 2026-09-12 21:30:00">2026-09-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/24/9000/" title="9000、三个月网络安全路线：Ferry 优先与 R0Guard 防御专项"><img src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="9000、三个月网络安全路线：Ferry 优先与 R0Guard 防御专项"/></a><div class="content"><a class="title" href="/24/9000/" title="9000、三个月网络安全路线：Ferry 优先与 R0Guard 防御专项">9000、三个月网络安全路线：Ferry 优先与 R0Guard 防御专项</a><time datetime="2026-09-12T13:30:00.000Z" title="发表于 2026-09-12 21:30:00">2026-09-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/24/9002/" title="9002、Rootkit 检测与内存取证报告模板"><img src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="9002、Rootkit 检测与内存取证报告模板"/></a><div class="content"><a class="title" href="/24/9002/" title="9002、Rootkit 检测与内存取证报告模板">9002、Rootkit 检测与内存取证报告模板</a><time datetime="2026-09-12T13:30:00.000Z" title="发表于 2026-09-12 21:30:00">2026-09-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/24/010/" title="010、安全开发篇（一）：语法规范风格"><img src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="010、安全开发篇（一）：语法规范风格"/></a><div class="content"><a class="title" href="/24/010/" title="010、安全开发篇（一）：语法规范风格">010、安全开发篇（一）：语法规范风格</a><time datetime="2026-08-28T08:40:00.000Z" title="发表于 2026-08-28 16:40:00">2026-08-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/24/009/" title="009、安全开发篇（一）：控制台指令"><img src="/img/rd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="009、安全开发篇（一）：控制台指令"/></a><div class="content"><a class="title" href="/24/009/" title="009、安全开发篇（一）：控制台指令">009、安全开发篇（一）：控制台指令</a><time datetime="2026-08-28T08:39:00.000Z" title="发表于 2026-08-28 16:39:00">2026-08-28</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/rd8.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By 睿清颜</div><div class="footer_custom_text"><div class="footer-records">
+  <a class="footer-record" href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">
+    <span class="footer-record-icon footer-record-icon--icp" aria-hidden="true">🌏</span>
+    <span>粤ICP备2024216057号</span>
+  </a>
+  <a class="footer-record" href="https://beian.mps.gov.cn/#/query/webSearch?code=44040402000233" target="_blank" rel="noopener noreferrer">
+    <span class="footer-record-icon" aria-hidden="true"><img src="/img/beian.png" alt=""></span>
+    <span>粤公网安备44040402000233号</span>
+  </a>
+</div>
+</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.14.0-b3"></script><script src="/js/main.js?v=4.14.0-b3"></script><script src="/js/tw_cn.js?v=4.14.0-b3"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'ams'
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="/js/pagination-jump@1.0.0.js?v=1.0.0"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.14.0-b3"></script></div></div></body></html>

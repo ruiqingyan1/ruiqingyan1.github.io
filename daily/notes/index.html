@@ -180,6 +180,73 @@ textarea:focus-visible {
   display: none;
 }
 
+.daily-templates-dialog {
+  width: min(640px, calc(100vw - 32px));
+}
+
+.daily-templates-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 20px;
+}
+
+.daily-template-card {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  min-height: 92px;
+  padding: 16px;
+  border: 1px solid var(--daily-line);
+  border-radius: 12px;
+  background: var(--daily-panel-solid);
+  color: var(--daily-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.daily-template-card:hover,
+.daily-template-card:focus-visible {
+  border-color: var(--daily-blue);
+  background: var(--daily-blue-soft);
+}
+
+.daily-template-card strong {
+  max-width: calc(100% - 66px);
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+
+.daily-template-card small { color: var(--daily-muted); }
+.daily-template-card.is-added { border-color: var(--daily-green); background: var(--daily-green-soft); }
+.daily-template-status { position: absolute; top: 17px; right: 12px; color: var(--daily-blue); font-size: 12px; }
+.daily-template-card.is-added .daily-template-status { color: var(--daily-green); }
+
+.daily-template-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 90px auto;
+  align-items: end;
+  gap: 10px;
+  padding: 0 20px 20px;
+}
+
+.daily-template-form label { display: grid; gap: 8px; color: var(--daily-muted); font-size: 12px; }
+.daily-template-form input { width: 100%; min-height: 44px; padding: 10px; border: 1px solid var(--daily-line); border-radius: 8px; background: var(--daily-panel-solid); color: var(--daily-text); }
+.daily-template-form button { min-height: 44px; }
+.daily-templates-footer { display: flex; justify-content: space-between; gap: 10px; padding: 16px 20px; border-top: 1px solid var(--daily-line); color: var(--daily-muted); font-size: 12px; }
+.daily-templates-footer a { color: var(--daily-blue); }
+.home-routine-section > summary { cursor: pointer; }
+.routine-history-hint { color: var(--daily-muted); font-size: 12px; margin: 8px 0 16px; }
+
+@media (max-width: 560px) {
+  .daily-template-form { grid-template-columns: minmax(0, 1fr) 82px; }
+  .daily-template-form button { grid-column: 1 / -1; }
+  .daily-templates-grid { padding: 14px; gap: 8px; }
+  .daily-template-card { padding: 12px; }
+  .daily-template-card strong { max-width: 100%; padding-bottom: 16px; }
+  .daily-template-status { top: auto; bottom: 12px; right: 10px; }
+}
+
 .icon-button,
 .task-icon-button,
 .timer-icon-button,
@@ -1512,15 +1579,6 @@ body {
   display: none;
 }
 
-.workspace-drawer.is-points {
-  right: 0;
-  left: auto;
-  width: min(680px, calc(100vw - 68px));
-  border-right: 0;
-  border-left: 1px solid var(--daily-line);
-  box-shadow: -18px 0 42px rgba(35, 51, 44, .13);
-}
-
 .workspace-drawer-header {
   display: flex;
   min-height: 72px;
@@ -1566,34 +1624,10 @@ body {
   display: none;
 }
 
-.schedule-intro-card,
-.schedule-overview-card,
-.points-intro-card,
-.points-note-card {
+.schedule-overview-card {
   border: 1px solid var(--daily-line);
   border-radius: 10px;
   background: color-mix(in srgb, var(--daily-panel-solid) 91%, var(--daily-blue-soft));
-}
-
-.schedule-intro-card,
-.points-intro-card,
-.points-note-card {
-  padding: 14px;
-}
-
-.schedule-intro-card {
-  padding: 0 2px 2px;
-  border: 0;
-  background: transparent;
-}
-
-.schedule-intro-card label,
-.points-policy-block label {
-  display: block;
-  margin-bottom: 7px;
-  color: var(--daily-text);
-  font-size: 13px;
-  font-weight: 750;
 }
 
 .workspace-textarea {
@@ -1609,17 +1643,9 @@ body {
   line-height: 1.75;
 }
 
-.schedule-intro-card .workspace-textarea,
 .schedule-overview-row .workspace-textarea,
 .schedule-section-editor .workspace-textarea {
   field-sizing: content;
-}
-
-.schedule-intro-card .workspace-textarea {
-  min-height: 54px;
-  resize: none;
-  font-size: 12.5px;
-  line-height: 1.6;
 }
 
 .schedule-reference-links {
@@ -1627,7 +1653,7 @@ body {
   flex-wrap: wrap;
   align-items: center;
   gap: 7px;
-  margin-top: 9px;
+  margin: 0;
 }
 
 .schedule-reference-links > span {
@@ -1657,11 +1683,6 @@ body {
   border-color: color-mix(in srgb, var(--daily-blue) 58%, var(--daily-line));
   background: color-mix(in srgb, var(--daily-blue-soft) 84%, var(--daily-panel-solid));
   transform: translateY(-1px);
-}
-
-.schedule-reference-links a i {
-  font-size: 9px;
-  opacity: .72;
 }
 
 .workspace-textarea:focus {
@@ -1779,276 +1800,7 @@ body {
   line-height: 1.65;
 }
 
-.workspace-save-hint {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  color: var(--daily-muted);
-  font-size: 11px;
-}
-
-.workspace-save-hint strong {
-  color: var(--daily-green);
-  font-weight: 700;
-}
-
-.points-draft-badge {
-  display: inline-flex;
-  width: fit-content;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 9px;
-  border-radius: 999px;
-  background: var(--daily-amber-soft);
-  color: var(--daily-amber);
-  font-size: 11px;
-  font-weight: 750;
-}
-
-.points-intro-card h3,
-.points-note-card h3 {
-  margin: 0 0 5px;
-  font-size: 16px;
-}
-
-.points-intro-card p,
-.points-note-card p {
-  margin: 0;
-  color: var(--daily-muted);
-  font-size: 12px;
-}
-
-.points-policy-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.points-policy-block {
-  min-width: 0;
-  padding: 13px;
-  border: 1px solid var(--daily-line);
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--daily-panel-solid) 94%, transparent);
-}
-
-.points-policy-block .workspace-textarea {
-  min-height: 170px;
-}
-
-.points-policy-block.is-wide {
-  grid-column: 1 / -1;
-}
-
-.points-policy-block.is-wide .workspace-textarea {
-  min-height: 104px;
-}
-
-.points-view-tabs {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 7px;
-  padding: 4px;
-  border: 1px solid var(--daily-line);
-  border-radius: 11px;
-  background: color-mix(in srgb, var(--daily-blue-soft) 66%, var(--daily-panel-solid));
-}
-
-.points-view-tab {
-  min-height: 38px;
-  border: 0;
-  border-radius: 8px;
-  background: transparent;
-  color: var(--daily-muted);
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.points-view-tab.is-active {
-  background: var(--daily-panel-solid);
-  color: var(--daily-text);
-  box-shadow: 0 5px 14px rgba(44, 59, 52, .08);
-}
-
-.points-view-pane {
-  display: grid;
-  gap: 12px;
-}
-
-.points-view-pane[hidden] {
-  display: none;
-}
-
-.points-shop-summary {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.points-shop-stat {
-  display: grid;
-  gap: 5px;
-  padding: 15px;
-  border: 1px solid var(--daily-line);
-  border-radius: 11px;
-  background: color-mix(in srgb, var(--daily-panel-solid) 90%, var(--daily-blue-soft));
-}
-
-.points-shop-stat span {
-  color: var(--daily-muted);
-  font-size: 12px;
-}
-
-.points-shop-stat strong {
-  color: var(--daily-blue);
-  font-size: 28px;
-  line-height: 1;
-}
-
-.points-reward-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.points-reward-card {
-  display: grid;
-  min-width: 0;
-  gap: 11px;
-  padding: 15px;
-  border: 1px solid var(--daily-line);
-  border-radius: 12px;
-  background: var(--daily-panel-solid);
-}
-
-.points-reward-card header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.points-reward-card h3,
-.points-redemption-card h3 {
-  margin: 0;
-  color: var(--daily-text);
-  font-size: 15px;
-}
-
-.points-reward-card p {
-  min-height: 38px;
-  margin: 0;
-  color: var(--daily-muted);
-  font-size: 12px;
-  line-height: 1.55;
-}
-
-.points-reward-cost {
-  flex: none;
-  padding: 4px 8px;
-  border-radius: 999px;
-  background: var(--daily-blue-soft);
-  color: var(--daily-blue);
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.points-redeem-button {
-  min-height: 34px;
-  border: 1px solid color-mix(in srgb, var(--daily-blue) 46%, var(--daily-line));
-  border-radius: 8px;
-  background: var(--daily-blue-soft);
-  color: var(--daily-blue);
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.points-redeem-button:disabled {
-  cursor: not-allowed;
-  opacity: .48;
-}
-
-.points-redemption-card {
-  display: grid;
-  gap: 8px;
-  padding: 14px;
-  border: 1px solid var(--daily-line);
-  border-radius: 11px;
-  background: color-mix(in srgb, var(--daily-panel-solid) 94%, transparent);
-}
-
-.points-redemption-list {
-  display: grid;
-  gap: 6px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.points-redemption-list li,
-.points-redemption-empty {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  color: var(--daily-muted);
-  font-size: 12px;
-}
-
-.points-redemption-list strong {
-  color: var(--daily-text);
-}
-
-.points-wallet-panel {
-  display: grid;
-  padding: 0;
-  overflow: hidden;
-}
-
-.points-wallet-trigger {
-  display: grid;
-  width: 100%;
-  padding: 14px;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  text-align: left;
-  cursor: pointer;
-}
-
-.points-wallet-trigger:hover,
-.points-wallet-trigger.is-active {
-  background: color-mix(in srgb, var(--daily-blue-soft) 46%, transparent);
-}
-
-.points-wallet-stats {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.points-wallet-stat {
-  display: grid;
-  gap: 4px;
-  padding: 12px;
-  border: 1px solid var(--daily-line);
-  border-radius: 9px;
-  background: color-mix(in srgb, var(--daily-panel-solid) 90%, var(--daily-blue-soft));
-}
-
-.points-wallet-stat span {
-  color: var(--daily-muted);
-  font-size: 11px;
-}
-
-.points-wallet-stat strong {
-  color: var(--daily-blue);
-  font-size: 23px;
-  line-height: 1;
-}
-
-.points-header-button {
+.workspace-header-button {
   display: inline-flex;
   min-width: 128px;
   height: 42px;
@@ -2063,71 +1815,31 @@ body {
   cursor: pointer;
 }
 
-.points-header-button i {
+.workspace-header-button i {
   color: var(--daily-blue);
 }
 
-.points-header-button strong,
-.points-header-button small {
+.workspace-header-button strong,
+.workspace-header-button small {
   display: block;
   line-height: 1.2;
   text-align: left;
 }
 
-.points-header-button strong {
+.workspace-header-button strong {
   font-size: 13px;
 }
 
-.points-header-button small {
+.workspace-header-button small {
   margin-top: 2px;
   color: var(--daily-muted);
   font-size: 10px;
 }
 
-.points-header-button:hover,
-.points-header-button.is-active {
+.workspace-header-button:hover,
+.workspace-header-button.is-active {
   border-color: color-mix(in srgb, var(--daily-blue) 48%, var(--daily-line));
   background: var(--daily-blue-soft);
-}
-
-.points-score-button {
-  min-width: 132px;
-  padding: 0 12px;
-}
-
-.points-header-score-grid {
-  display: grid;
-  min-width: 66px;
-  grid-template-columns: minmax(0, 1fr);
-  align-items: center;
-}
-
-.points-header-score {
-  display: grid;
-  gap: 1px;
-  padding: 0 10px;
-  text-align: center;
-}
-
-.points-header-score + .points-header-score {
-  border-left: 1px solid var(--daily-line);
-}
-
-.points-header-score small,
-.points-header-score strong {
-  text-align: center;
-}
-
-.points-header-score small {
-  margin: 0;
-  color: var(--daily-muted);
-  font-size: 9px;
-}
-
-.points-header-score strong {
-  color: var(--daily-blue);
-  font-size: 17px;
-  line-height: 1;
 }
 
 .schedule-header-button {
@@ -5627,6 +5339,7 @@ body[data-authenticated="false"] input:disabled {
   border: 0;
   background: transparent;
   color: inherit;
+  font: inherit;
   text-align: left;
   cursor: pointer;
 }
@@ -5727,6 +5440,19 @@ body[data-authenticated="false"] input:disabled {
   cursor: inherit;
 }
 
+.task-carry-note {
+  display: block;
+  margin-top: 3px;
+  color: var(--daily-muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.task-rollover-hint {
+  color: var(--daily-muted);
+  font-size: 11px;
+}
+
 .task-time-button {
   display: inline-flex;
   min-width: 58px;
@@ -5751,12 +5477,109 @@ body[data-authenticated="false"] input:disabled {
   color: var(--daily-blue);
 }
 
-.task-item > .task-checkbox {
+.task-item > .task-checkbox-hit {
   grid-column: -2 / -1;
   margin: 0;
   justify-self: end;
+}
+
+.task-checkbox-hit {
+  display: inline-grid;
+  width: 22px;
+  height: 26px;
+  cursor: pointer;
+  place-items: center;
+}
+
+.task-checkbox-hit .task-checkbox {
+  margin: 0;
   accent-color: var(--daily-green);
   cursor: pointer;
+}
+
+.day-quick-form {
+  margin: 0 0 12px;
+}
+
+.day-quick-form input {
+  min-height: 44px;
+}
+
+.day-task-view-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.day-task-filters {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid var(--daily-line);
+  border-radius: 10px;
+  background: var(--daily-panel-solid);
+}
+
+.day-task-filters button {
+  min-height: 34px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--daily-muted);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.day-task-filters button.is-active {
+  background: var(--daily-blue-soft);
+  color: var(--daily-blue);
+}
+
+.day-task-search {
+  display: flex;
+  min-height: 38px;
+  flex: 1 1 190px;
+  max-width: 300px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 11px;
+  border: 1px solid var(--daily-line);
+  border-radius: 9px;
+  background: var(--daily-panel-solid);
+  color: var(--daily-muted);
+}
+
+.day-task-search input {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--daily-text);
+  font: inherit;
+  font-size: 12px;
+}
+
+.day-task-search:focus-within {
+  border-color: var(--daily-blue);
+}
+
+.day-task-view-count {
+  margin: 0 0 9px;
+  color: var(--daily-muted);
+  font-size: 11px;
+}
+
+.day-task-view-count:empty {
+  display: none;
 }
 
 .task-empty-state {
@@ -6011,6 +5834,13 @@ body[data-authenticated="false"] input:disabled {
 .timer-sound-button.is-muted {
   color: #a2aaa6;
   background: #fff;
+}
+
+.timer-sync-status {
+  margin: -4px 0 12px;
+  color: var(--daily-muted);
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 .timer-task-binding {
@@ -6567,6 +6397,99 @@ body[data-authenticated="false"] input:disabled {
 }
 
 @media (max-width: 720px) {
+  .day-task-view-toolbar {
+    align-items: stretch;
+  }
+
+  .day-task-filters {
+    flex: 1 1 auto;
+  }
+
+  .day-task-filters button {
+    min-height: 44px;
+    flex: 1;
+  }
+
+  .day-task-search {
+    min-height: 44px;
+    max-width: none;
+  }
+
+  .day-quick-form .add-button,
+  .quadrant-add-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .quadrant-task-list .task-item {
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    grid-template-areas: "select copy check" "priority timing actions";
+    gap: 2px 5px;
+    padding: 6px;
+  }
+
+  .quadrant-task-list .task-select-button {
+    width: 44px;
+    height: 44px;
+    grid-area: select;
+    border: 0;
+    background: transparent;
+  }
+
+  .quadrant-task-list .task-select-button span {
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--daily-line);
+  }
+
+  .quadrant-task-list .task-select-button.is-active span {
+    border: 4px solid var(--daily-panel-solid);
+    box-shadow: 0 0 0 1px var(--daily-blue);
+  }
+
+  .quadrant-task-list .task-detail-trigger {
+    min-height: 44px;
+    grid-area: copy;
+    align-content: center;
+  }
+
+  .quadrant-task-list .priority-button {
+    width: 44px;
+    height: 44px;
+    grid-area: priority;
+  }
+
+  .quadrant-task-list .task-time-button {
+    min-height: 44px;
+    grid-area: timing;
+    justify-content: flex-start;
+  }
+
+  .quadrant-task-list .task-actions {
+    grid-area: actions;
+    opacity: 1;
+  }
+
+  .quadrant-task-list .task-actions .task-overflow-toggle {
+    width: 44px;
+    height: 44px;
+  }
+
+  .quadrant-task-list .task-checkbox-hit {
+    width: 44px;
+    height: 44px;
+    grid-area: check;
+  }
+
+  .quadrant-task-list .task-checkbox-hit .task-checkbox {
+    width: 22px;
+    height: 22px;
+  }
+
+  .task-overflow-action {
+    min-height: 44px;
+  }
+
   .weekly-project-list {
     grid-template-columns: 1fr;
   }
@@ -6671,13 +6594,6 @@ body[data-authenticated="false"] input:disabled {
     width: 100%;
   }
 
-  .workspace-drawer.is-points {
-    right: 0;
-    left: 0;
-    width: 100%;
-    border-left: 0;
-  }
-
   .daily-header {
     margin-left: 0;
   }
@@ -6690,42 +6606,18 @@ body[data-authenticated="false"] input:disabled {
     grid-template-columns: minmax(0, 1fr) auto;
   }
 
-  .points-header-button {
+  .workspace-header-button {
     min-width: 42px;
     width: 42px;
     padding: 0;
-  }
-
-  .points-score-button {
-    min-width: 118px;
-    width: 118px;
-    padding: 0 8px;
-  }
-
-  .points-header-score {
-    padding: 0 6px;
-  }
-
-  .points-header-score small {
-    display: block;
-    font-size: 8px;
-  }
-
-  .points-header-score strong {
-    display: block;
-    font-size: 15px;
   }
 
   .schedule-header-button {
     display: inline-flex;
   }
 
-  .points-header-button span {
+  .workspace-header-button span {
     display: none;
-  }
-
-  .points-reward-list {
-    grid-template-columns: minmax(0, 1fr);
   }
 
   .mobile-page-nav {
@@ -6856,17 +6748,12 @@ body[data-authenticated="false"] input:disabled {
     padding: 14px 12px 28px;
   }
 
-  .schedule-overview-row,
-  .points-policy-grid {
+  .schedule-overview-row {
     grid-template-columns: minmax(0, 1fr);
   }
 
   .schedule-overview-row strong {
     width: fit-content;
-  }
-
-  .points-policy-block.is-wide {
-    grid-column: auto;
   }
 
   .memo-editor-toolbar {
@@ -7559,13 +7446,11 @@ html.daily-standalone .focus-column {
       </div>
       <nav class="mobile-page-nav" aria-label="每日打卡页面导航"><a class="rail-button" href="/daily/" title="每日首页" aria-label="每日首页"><img class="doki-ui-icon" src="/daily/doki-icons/check.svg" alt="" aria-hidden="true"></a><a class="rail-button" href="/daily/plan/" title="计划与任务" aria-label="计划与任务"><img class="doki-ui-icon" src="/daily/doki-icons/todo.svg" alt="" aria-hidden="true"></a><a class="rail-button" href="/daily/focus/" title="每周复盘" aria-label="每周复盘"><img class="doki-ui-icon" src="/daily/doki-icons/history.svg" alt="" aria-hidden="true"></a><a class="rail-button is-active" href="/daily/notes/" data-private-nav title="备忘录" aria-label="备忘录"><img class="doki-ui-icon" src="/daily/doki-icons/file_heart.svg" alt="" aria-hidden="true"></a></nav>
       <div class="daily-header-actions" role="toolbar" aria-label="账号管理">
-        <button class="points-header-button points-score-button" type="button" data-workspace-open="points" data-points-view="shop" title="查看积分商城和积分章程" aria-label="累计积分，点击查看积分商城和积分章程">
-          <i class="fa-solid fa-gem" aria-hidden="true"></i>
-          <div class="points-header-score-grid" aria-hidden="true">
-            <div class="points-header-score"><small>累计积分</small><strong data-points-total>0</strong></div>
-          </div>
+        <button class="workspace-header-button daily-templates-button" type="button" data-daily-templates-open title="添加日常任务" aria-label="添加日常任务">
+          <i class="fa-solid fa-seedling" aria-hidden="true"></i>
+          <span><strong>日常任务</strong><small>一键添加</small></span>
         </button>
-        <button class="points-header-button schedule-header-button" type="button" data-workspace-open="schedule" title="打开日程安排" aria-label="打开日程安排">
+        <button class="workspace-header-button schedule-header-button" type="button" data-workspace-open="schedule" title="打开日程安排" aria-label="打开日程安排">
           <img class="doki-ui-icon" src="/daily/doki-icons/library.svg" alt="" aria-hidden="true">
           <span><strong>日程安排</strong><small>查看与编辑</small></span>
         </button>
@@ -7599,18 +7484,14 @@ html.daily-standalone .focus-column {
       </header>
       <div class="workspace-drawer-body">
         <section class="workspace-pane" data-workspace-pane="schedule">
-          <div class="schedule-intro-card">
-            <label for="schedule-intro">安排说明</label>
-            <textarea class="workspace-textarea" id="schedule-intro" data-schedule-field="intro" maxlength="5000"></textarea>
-            <nav class="schedule-reference-links" aria-label="日程安排参考资料">
-              <span>参考资料</span>
-              <a href="/11/PDCA/" target="_blank" rel="noopener">PDCA <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
-              <a href="/11/LM/" target="_blank" rel="noopener">烧水学习法 <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
-              <a href="/31/001Sleep/" target="_blank" rel="noopener">睡眠革命 <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
-              <a href="/31/002Exercise/" target="_blank" rel="noopener">囚徒健身 <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
-              <a href="/31/003Eat/" target="_blank" rel="noopener">饮食的迷思 <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
-            </nav>
-          </div>
+          <nav class="schedule-reference-links" aria-label="日程安排参考内容">
+            <span>参考内容</span>
+            <a href="/11/PDCA/" target="_blank" rel="noopener">PDCA</a>
+            <a href="/11/LM/" target="_blank" rel="noopener">烧水学习法</a>
+            <a href="/31/001Sleep/" target="_blank" rel="noopener">睡眠革命</a>
+            <a href="/31/002Exercise/" target="_blank" rel="noopener">囚徒健身</a>
+            <a href="/31/003Eat/" target="_blank" rel="noopener">饮食的迷思</a>
+          </nav>
           <div class="schedule-overview-card" aria-label="作息安排概览">
             <div class="schedule-overview-row">
               <strong>睡觉安排</strong>
@@ -7649,62 +7530,8 @@ html.daily-standalone .focus-column {
               <textarea class="workspace-textarea" data-schedule-section="review" maxlength="12000"></textarea>
             </div>
           </details>
-          <div class="workspace-save-hint"><span>可直接修改文字和编号格式</span><strong data-schedule-save-status>已自动保存</strong></div>
         </section>
 
-        <section class="workspace-pane" data-workspace-pane="points" hidden>
-          <div class="points-view-tabs" role="tablist" aria-label="积分功能">
-            <button class="points-view-tab is-active" type="button" data-points-view-tab="shop" role="tab">积分商城</button>
-            <button class="points-view-tab" type="button" data-points-view-tab="policy" role="tab">积分章程</button>
-          </div>
-
-          <section class="points-view-pane" data-points-view-pane="shop">
-            <div class="points-shop-summary" aria-label="积分概览">
-              <div class="points-shop-stat"><span>本周积分</span><strong data-points-week>0</strong></div>
-              <div class="points-shop-stat"><span>可用累计积分</span><strong data-points-total>0</strong></div>
-            </div>
-            <div class="points-intro-card">
-              <h3>把持续行动换成真正喜欢的生活</h3>
-              <p>积分可以兑换真实生活里的放松和期待。兑换只使用现有积分，不会形成负分。</p>
-            </div>
-            <div class="points-reward-list" data-points-reward-list></div>
-            <div class="points-redemption-card">
-              <h3>最近兑换</h3>
-              <ul class="points-redemption-list" data-points-redemption-list></ul>
-            </div>
-          </section>
-
-          <section class="points-view-pane" data-points-view-pane="policy" hidden>
-            <span class="points-draft-badge"><i class="fa-solid fa-flask" aria-hidden="true"></i>积分系统试行版 · 2026-08-24 起</span>
-            <div class="points-intro-card">
-              <h3>当前实际生效的自动计分规则</h3>
-              <p>启用时旧积分已清零。系统自动统计任务、日常打卡和 50 分钟专注轮；工作日日常漏项在次日扣分，账户始终以 0 为下限。</p>
-            </div>
-            <div class="points-policy-grid">
-              <div class="points-policy-block">
-                <label for="points-weekday">日常加分</label>
-                <textarea class="workspace-textarea" id="points-weekday" data-policy-field="weekday" maxlength="12000"></textarea>
-              </div>
-              <div class="points-policy-block">
-                <label for="points-deductions">漏项扣分与保底</label>
-                <textarea class="workspace-textarea" id="points-deductions" data-policy-field="deductions" maxlength="12000"></textarea>
-              </div>
-              <div class="points-policy-block">
-                <label for="points-weekend">周末与休息</label>
-                <textarea class="workspace-textarea" id="points-weekend" data-policy-field="weekend" maxlength="12000"></textarea>
-              </div>
-              <div class="points-policy-block">
-                <label for="points-weekly">每周结算</label>
-                <textarea class="workspace-textarea" id="points-weekly" data-policy-field="weekly" maxlength="12000"></textarea>
-              </div>
-              <div class="points-policy-block is-wide">
-                <label for="points-note">规划备注</label>
-                <textarea class="workspace-textarea" id="points-note" data-policy-field="note" maxlength="5000"></textarea>
-              </div>
-            </div>
-            <div class="workspace-save-hint"><span>章程可继续按实际运行情况调整</span><strong data-policy-save-status>已自动保存</strong></div>
-          </section>
-        </section>
       </div>
     </aside>
 
@@ -7863,6 +7690,20 @@ html.daily-standalone .focus-column {
             </div>
           </div>
 
+          <form class="quick-form day-quick-form" data-task-quick-form>
+            <input type="text" maxlength="160" data-task-quick-input placeholder="添加今日任务，回车保存" autocomplete="off" aria-label="快速添加当前日期任务">
+            <button class="add-button" type="submit" title="添加任务" aria-label="添加任务"><img class="doki-ui-icon" src="/daily/doki-icons/add.svg" alt="" aria-hidden="true"></button>
+          </form>
+          <div class="day-task-view-toolbar">
+            <div class="day-task-filters" role="group" aria-label="任务完成状态筛选">
+              <button type="button" class="is-active" data-task-filter="all" aria-pressed="true">全部 0</button>
+              <button type="button" data-task-filter="pending" aria-pressed="false">待办 0</button>
+              <button type="button" data-task-filter="done" aria-pressed="false">已完成 0</button>
+            </div>
+            <label class="day-task-search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input type="search" maxlength="120" data-task-search placeholder="搜索任务、备注或标签" aria-label="搜索当前日期任务"></label>
+          </div>
+          <p class="day-task-view-count" data-task-view-count aria-live="polite"></p>
+
           <div class="quadrant-grid" data-task-list>
             <section class="quadrant-card quadrant-pink" aria-labelledby="quadrant-pink-title">
               <header><strong id="quadrant-pink-title"><span>Ⅰ</span>重要且紧急</strong></header>
@@ -7879,19 +7720,20 @@ html.daily-standalone .focus-column {
             <section class="quadrant-card quadrant-green" aria-labelledby="quadrant-green-title">
               <header><strong id="quadrant-green-title"><span>Ⅳ</span>不重要不紧急</strong></header>
               <ul class="task-list quadrant-task-list" data-quadrant-list="green"></ul>
-              <section class="home-routine-section" id="daily-routines">
-                <div class="routine-heading">
-                  <h3><i class="fa-solid fa-seedling" aria-hidden="true"></i>日常任务</h3>
+              <details class="home-routine-section" id="daily-routines">
+                <summary class="routine-heading">
+                  <h3><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>日常记录</h3>
                   <span data-routine-total>累计 00:00</span>
-                </div>
+                </summary>
+                <p class="routine-history-hint">保留日常时长与睡眠结构记录</p>
                 <ul class="routine-list" data-routine-list></ul>
-              </section>
+              </details>
             </section>
           </div>
 
           <div class="day-list-footer">
-            <button class="subtle-button" type="button" data-carry><i class="fa-solid fa-rotate-right"></i>结转昨日未完成</button>
-            <button class="subtle-button" type="button" data-clear-done><i class="fa-solid fa-broom"></i>清理已完成</button>
+            <span class="task-rollover-hint">未完成任务自动顺延至次日</span>
+            <button class="subtle-button" type="button" data-clear-done><i class="fa-solid fa-eye-slash"></i>隐藏已完成</button>
           </div>
 
           <div class="day-bottom-grid">
@@ -7925,6 +7767,7 @@ html.daily-standalone .focus-column {
             <div class="focus-tag-list" data-focus-tags role="radiogroup" aria-label="学习方向"></div>
           </div>
           <div class="timer-task-binding is-empty" data-timer-task>请先在左侧任务清单中选择任务</div>
+          <p class="timer-sync-status" data-timer-sync role="status" aria-live="polite">登录后可同步所有设备的计时</p>
           <div class="mode-switch" role="tablist" aria-label="番茄钟阶段">
             <button class="mode-button is-active" type="button" data-mode="focus">专注 50</button>
             <button class="mode-button" type="button" data-mode="break">休息 10</button>
@@ -8071,6 +7914,23 @@ html.daily-standalone .focus-column {
       </form>
     </section>
   </div>
+  <div class="task-detail-modal" data-daily-templates-modal hidden>
+    <section class="task-detail-dialog daily-templates-dialog" role="dialog" aria-modal="true" aria-labelledby="daily-templates-title">
+      <header class="task-create-header">
+        <div><span class="task-create-icon"><i class="fa-solid fa-seedling" aria-hidden="true"></i></span>
+          <div><h2 id="daily-templates-title">日常任务</h2><p data-daily-templates-date></p></div>
+        </div>
+        <button class="task-detail-close" type="button" data-daily-templates-close aria-label="关闭日常任务"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </header>
+      <div class="daily-templates-grid" data-daily-templates-list></div>
+      <form class="daily-template-form" data-daily-template-form>
+        <label><span>自定义日常任务</span><input type="text" maxlength="160" data-daily-template-title placeholder="例如：复盘、拉伸" autocomplete="off" required></label>
+        <label class="daily-template-minutes"><span>目标分钟</span><input type="number" min="1" max="1440" value="30" data-daily-template-minutes required></label>
+        <button class="task-create-submit" type="submit"><i class="fa-solid fa-plus" aria-hidden="true"></i>保存并添加</button>
+      </form>
+      <footer class="daily-templates-footer"><span>同一天不会重复添加</span><a href="/daily/plan/">管理习惯打卡 <i class="fa-solid fa-angle-right" aria-hidden="true"></i></a></footer>
+    </section>
+  </div>
   <div class="task-detail-modal task-create-modal" data-task-create-modal hidden>
     <section class="task-detail-dialog task-create-dialog" role="dialog" aria-modal="true" aria-labelledby="task-create-title">
       <header class="task-create-header">
@@ -8092,9 +7952,10 @@ html.daily-standalone .focus-column {
           <label><span><i class="fa-regular fa-calendar"></i>日期</span><input type="date" data-task-create-date required></label>
           <label><span><i class="fa-solid fa-table-cells-large"></i>四象限</span><select data-task-create-priority><option value="pink">重要且紧急</option><option value="blue">重要但不紧急</option><option value="yellow" selected>紧急但不重要</option><option value="green">不重要不紧急</option></select></label>
           <label><span><i class="fa-solid fa-tag"></i>学习标签</span><select data-task-create-category></select></label>
+          <label><span><i class="fa-regular fa-clock"></i>目标时长（分钟）</span><input type="number" min="1" max="1440" step="1" value="60" data-task-create-target required></label>
           <label><span><i class="fa-solid fa-folder-tree"></i>固定任务目录</span><select data-task-create-plan-location disabled></select></label>
         </div>
-        <label class="task-create-fixed-toggle"><input type="checkbox" data-task-create-fixed><span><i class="fa-solid fa-thumbtack"></i>同时保存为固定 1h 任务，之后可反复加入今日</span></label>
+        <label class="task-create-fixed-toggle"><input type="checkbox" data-task-create-fixed><span><i class="fa-solid fa-thumbtack"></i>同时保存为固定任务，之后可反复加入每日任务</span></label>
         <label class="task-create-note-field">
           <span>备注（可选）</span>
           <textarea class="task-detail-note" maxlength="6000" data-task-create-note placeholder="补充资料、步骤或需要注意的内容……"></textarea>
@@ -8221,6 +8082,7 @@ html.daily-standalone .focus-column {
 
   var STORAGE_KEY = 'ruiqy.daily.v1'
   var PENDING_SYNC_KEY = 'ruiqy.daily.pending-sync.v1'
+  var REMOTE_BASE_KEY = 'ruiqy.daily.remote-base.v1'
   var TIMER_KEY = 'ruiqy.daily.timer.v1'
   var ROUTINE_TIMER_KEY = 'ruiqy.daily.routine.timer.v1'
   var DOKI_THEME_KEY = 'ruiqy.daily.doki-theme.v1'
@@ -8228,7 +8090,7 @@ html.daily-standalone .focus-column {
   var PLAN_NAVIGATION_KEY = 'ruiqy.daily.plan-navigation.v1'
   var PLAN_LIBRARY_LAYOUT_KEY = 'ruiqy.daily.plan-library-layout.v1'
   var DAILY_OFFLINE_PACKAGE_KEY = 'ruiqy.daily.offline-package-version.v1'
-  var DAILY_OFFLINE_PACKAGE_VERSION = 'daily-v1'
+  var DAILY_OFFLINE_PACKAGE_VERSION = 'daily-quick-tasks-v1'
   var LEGACY_DAILY_OFFLINE_SYNC_KEY = 'ruiqy.daily.offline-sync-date.v1'
   var DOKI_THEMES = {
     'emilia-light': { tone: 'light', sticker: '/daily/doki/emilia_light.png' },
@@ -8253,8 +8115,11 @@ html.daily-standalone .focus-column {
     { name: '🏃 运动', label: '运动' },
     { name: '🗣️ 英语', label: '英语' },
     { name: '➗ 数学', label: '数学' },
+    { name: '🧩 408', label: '408' },
+    { name: '🧮 算法', label: '算法' },
     { name: '💻 计科', label: '计科' },
     { name: '🛡️ 网安', label: '网安' },
+    { name: '🧷 项目', label: '项目' },
     { name: '🌱 日常', label: '日常' }
   ]
   var ROUTINES = [
@@ -8270,7 +8135,7 @@ html.daily-standalone .focus-column {
     overview: {
       sleep: '周 35+ 睡眠周期，22:05 睡，5:40 起（5 个睡眠周期）；看情况午休 40min（1 个可控睡眠周期）。',
       exercise: '日均 1h，每日晨跑 5km + 自重训练（单杠、俯卧撑等），每周三次帕梅拉或练腹（Keep 一周六节）。',
-      study: '日均 10h，具体按照实际情况和自己的学习能力安排。周末主要复盘，不新学太多内容，多复盘。'
+      study: '2028 浙大计算机考研（预计 2027 年 12 月初试）：每周学习 6 天、休息 1 天，单日学习上限 8h。基础期每周上限 48h：11408 36h（数学一 15h、408 15h、英语一 6h），PAT/算法 6h，CTF 3h，Fuzzing 项目 2h，复盘 1h。只按周添加任务。'
     },
     sections: [
       {
@@ -8280,46 +8145,23 @@ html.daily-standalone .focus-column {
       },
       {
         id: 'study',
-        title: '2、每天四大节课学习专业相关知识（一周摸一天鱼）',
-        content: '1. 上午两节课数学为主。\n2. 下午一节英语，一节计算机相关的。'
+        title: '2、2028 浙大计算机：六学一休，单日最多 8h',
+        content: '1. 每个学习日：数学一 2.5h + 408 2.5h + 英语一 1h。\n2. 周一、三、五安排 PAT/算法各 2h；周四安排 Fuzzing 项目 2h。\n3. 周二、六安排 CTF 1.5h + 复盘 0.5h。\n4. 周日默认完全休息；需要换休时只交换日期，不补成连续七天。'
       },
       {
         id: 'growth',
-        title: '3、每天一大节课学习提升自己的课',
-        content: '1. 自我提升类：比如学礼仪文化、声乐唱歌、养花练体等。\n2. 开心娱乐类：找感兴趣的游戏玩一会儿。'
+        title: '3、算法、CTF 与工程项目（服从初试主线）',
+        content: '1. PAT/算法：C++、STL、数据结构与机试题。\n2. CTF：只在授权靶场练习，主攻 Pwn / Reverse。\n3. 项目：以 AFL++ 为主线做 Fuzzing 项目；初试前保持轻量，初试后扩展为完整作品。'
       },
       {
         id: 'review',
-        title: '4、每晚 21:00 复盘当天 + 准备睡觉',
-        content: '1. 给 AW 充电，冲一杯咖啡。\n2. 按照实际情况简单复盘，内容包括运动、日程、日志等。'
+        title: '4、每周六复盘，下一周只排一次',
+        content: '1. 记录各科实际时长、完成率、错题和卡点。\n2. 只根据真实完成量安排下一周；落下的内容先删减支线，不挤占睡眠和休息日。\n3. 2027 年 9—10 月以浙江大学 2028 招生目录为最终准绳，届时再锁定学院和方向。'
       }
     ],
     updatedAt: 0
   }
-  var DEFAULT_POINTS_POLICY = {
-    weekday: '工作日（周一至周五）\n• 完成 1 项日常任务：+2 分，每日最多 +12 分\n• 完成 1 项四象限任务：+3 分，每日最多 +15 分\n• 完成 1 个 50 分钟专注轮：+2 分，每日最多 +10 分\n• 08:00 前完成晨间安排：+3 分\n• 22:00 前完成晚间复盘：+3 分\n• 当日计划完成率 100%：额外 +5 分',
-    deductions: '未完成与扣分（仅工作日）\n• 计划中的必做日常未完成：每项 -2 分\n• 重要且紧急任务逾期：每项 -5 分\n• 当天完全没有记录且未请假：-8 分\n• 单日扣分下限建议为 -10 分，避免一次失误破坏长期积极性',
-    weekend: '周末与休息\n• 周六、周日默认休息，不因未完成日常而扣分\n• 主动学习、运动或完成周复盘仍可加分\n• 周末奖励建议每日最多 +10 分\n• 生病、旅行或事先登记的休息日按周末规则处理',
-    weekly: '每周结算\n• 工作日 5 天均有有效记录：+10 分\n• 完成一次周复盘：+8 分\n• 达成每周专注目标：+12 分\n• 建议等级：0–39 待调整；40–69 稳定；70–99 优秀；100+ 可兑换奖励',
-    note: '这是第一版章程草案，先重视持续性，再逐步调整分值。建议连续运行 2 周后，根据实际完成难度校准加分、扣分和奖励门槛。',
-    updatedAt: 0
-  }
-  var POINTS_TRIAL_START_KEY = '2026-08-24'
-  var POINTS_STATE_VERSION = 24
-  DEFAULT_POINTS_POLICY = {
-    weekday: '正式试行计分（2026-08-24 起）\n• 完成 1 项四象限任务：+3 分，每日最多 +15 分\n• 当日已安排的四象限任务全部完成：额外 +5 分\n• 完成 1 项日常任务：+2 分，每日最多 +12 分\n• 6 项日常任务全部完成：额外 +5 分\n• 完成 1 个完整的 50 分钟专注轮：+2 分，每日最多 +10 分',
-    deductions: '日常漏项与保底规则\n• 工作日每有 1 项日常任务未完成：-2 分\n• 漏项扣分在次日结算，当天进行中不会提前扣分\n• 四象限任务未完成不额外扣分，只失去对应加分与全完成奖励\n• 本周积分和累计积分都以 0 为下限，不会显示负分',
-    weekend: '周末与休息\n• 周六、周日默认休息，未完成日常不扣分\n• 周末主动完成日常、计划或专注轮，仍按正常标准加分\n• 兑换“休息一天”只扣除已有积分，不会让积分变成负数',
-    weekly: '积分结算方式\n• 本周积分：本周每日加分减去已结算的日常漏项扣分\n• 累计积分：2026-08-24 起的净积分减去奖励兑换积分\n• 每日约可通过任务、日常和专注获得最高 47 分\n• 兑换后保留奖励名称、消耗分值和日期；积分最低为 0',
-    note: '试行版于 2026-08-24（周一）正式启用，启用时旧积分已清零。先运行两周：奖励真实完成，漏项适度扣分，但始终保留 0 分下限，避免形成负债式压力。',
-    updatedAt: 0
-  }
-  var POINT_REWARDS = [
-    { id: 'wesley', icon: 'fa-burger', label: '吃好吃的', cost: 60, note: '可选：魏斯理汉堡、火锅、烤肉、寿司，或当天真正想吃的一顿饭。' },
-    { id: 'rest-half-day', icon: 'fa-mug-hot', label: '休息半天', cost: 60, note: '兑换半天完整休息时间，不安排必须完成的学习和日常任务。' },
-    { id: 'outing', icon: 'fa-person-walking-luggage', label: '出去玩', cost: 120, note: '安排一次完整的外出游玩或期待已久的活动。' },
-    { id: 'rest-day', icon: 'fa-bed', label: '休息一天', cost: 120, note: '兑换一整天休息时间，不安排必须完成的日常任务。' }
-  ]
+  var DAILY_STATE_VERSION = 25
   var PRIORITY_ORDER = ['pink', 'blue', 'yellow', 'green']
   var PRIORITY_LABELS = {
     yellow: '紧急但不重要',
@@ -8336,16 +8178,19 @@ html.daily-standalone .focus-column {
     { id: 'plan-wish', key: 'wish', icon: 'doki:heart', index: '4', name: '心愿小记' }
   ]
   var PLAN_PROJECT_PRESETS = [
-    { id: 'project-exam-11408', groupId: 'plan-main', icon: 'doki:folder-library', name: '考研 11857' },
+    { id: 'project-exam-11408', groupId: 'plan-main', icon: 'doki:folder-library', name: '2028 浙大计算机（11408）' },
     { id: 'project-cs-course', groupId: 'plan-main', icon: 'doki:folder_test', name: '计科课程' },
     { id: 'project-ml-engineer', groupId: 'plan-main', icon: 'doki:folder_db_solid', name: '算法工程师（机器学习方向）' }
   ]
   var PLAN_SECTION_PRESETS = [
-    { id: 'section-exam-math', subgroupId: 'project-exam-11408', icon: 'doki:graph', name: '高数' },
-    { id: 'section-exam-cybersecurity', subgroupId: 'project-exam-11408', icon: 'doki:locked', name: '网安' },
-    { id: 'section-exam-english', subgroupId: 'project-exam-11408', icon: 'doki:bookmark', name: '英语' },
-    { id: 'section-exam-politics', subgroupId: 'project-exam-11408', icon: 'doki:file', name: '政治' },
-    { id: 'section-exam-408', subgroupId: 'project-exam-11408', icon: 'doki:terminal', name: '计算机 408' },
+    { id: 'section-exam-math', subgroupId: 'project-exam-11408', icon: 'doki:graph', name: '301 数学一' },
+    { id: 'section-exam-cybersecurity', subgroupId: 'project-exam-11408', icon: 'doki:locked', name: 'CTF · Pwn / Reverse' },
+    { id: 'section-exam-english', subgroupId: 'project-exam-11408', icon: 'doki:bookmark', name: '201 英语一' },
+    { id: 'section-exam-politics', subgroupId: 'project-exam-11408', icon: 'doki:file', name: '101 思想政治理论' },
+    { id: 'section-exam-408', subgroupId: 'project-exam-11408', icon: 'doki:terminal', name: '408 计算机综合' },
+    { id: 'section-exam-pat', subgroupId: 'project-exam-11408', icon: 'doki:network_graph', name: 'PAT / 算法机试' },
+    { id: 'section-exam-project', subgroupId: 'project-exam-11408', icon: 'doki:build', name: 'Fuzzing 项目' },
+    { id: 'section-exam-review', subgroupId: 'project-exam-11408', icon: 'doki:check', name: '周复盘' },
     { id: 'section-cs-foundation', subgroupId: 'project-cs-course', icon: 'doki:dependencies', name: '专业基础' },
     { id: 'section-cs-system', subgroupId: 'project-cs-course', icon: 'doki:settings', name: '系统与工程' },
     { id: 'section-ml-algorithm', subgroupId: 'project-ml-engineer', icon: 'doki:network_graph', name: '数据结构与算法' },
@@ -8353,9 +8198,14 @@ html.daily-standalone .focus-column {
     { id: 'section-ml-project', subgroupId: 'project-ml-engineer', icon: 'doki:build', name: '项目实践' }
   ]
   var PLAN_TASK_PRESETS = [
-    { id: 'task-exam-math-1h', text: '高数 1h', sectionId: 'section-exam-math', focusTag: '➗ 数学' },
-    { id: 'task-exam-cybersecurity-1h', text: '网安 1h', sectionId: 'section-exam-cybersecurity', focusTag: '🛡️ 网安' },
-    { id: 'task-exam-english-1h', text: '英语 1h', sectionId: 'section-exam-english', focusTag: '🗣️ 英语' }
+    { id: 'task-exam-math-1h', text: '数学一 1h', sectionId: 'section-exam-math', focusTag: '➗ 数学' },
+    { id: 'task-exam-408-1h', text: '408 1h', sectionId: 'section-exam-408', focusTag: '🧩 408' },
+    { id: 'task-exam-english-1h', text: '英语一 1h', sectionId: 'section-exam-english', focusTag: '🗣️ 英语' },
+    { id: 'task-exam-politics-1h', text: '政治 1h', sectionId: 'section-exam-politics', focusTag: '🧠 背书' },
+    { id: 'task-exam-pat-1h', text: 'PAT / 算法 1h', sectionId: 'section-exam-pat', focusTag: '🧮 算法' },
+    { id: 'task-exam-cybersecurity-1h', text: 'CTF · Pwn / Reverse 1h', sectionId: 'section-exam-cybersecurity', focusTag: '🛡️ 网安' },
+    { id: 'task-exam-project-1h', text: 'Fuzzing 项目 1h', sectionId: 'section-exam-project', focusTag: '🧷 项目' },
+    { id: 'task-exam-review-1h', text: '考研周复盘 1h', sectionId: 'section-exam-review', focusTag: '🌱 日常' }
   ]
   var DOKI_ICON_FILES = ["add.svg","angle_braces.svg","arrow_bottom_left.svg","arrow_right.svg","arrow_upper_right.svg","avatar.svg","bean.svg","boat.svg","bookmark.svg","bow.svg","breakpoint.svg","build_close.svg","build.svg","check.svg","cheemsburbger.svg","cherry.svg","chevron_down.svg","chevron_left.svg","chevron_right.svg","chevron_up.svg","circle.svg","clear_text.svg","close.svg","cloud_outline.svg","cloud.svg","collapse_all.svg","comma_glyph.svg","commit_horizontal.svg","commit_vertical.svg","config.svg","copy.svg","coverage.svg","cowfee_build.svg","cowfee.svg","css.svg","cupcake_refresh.svg","cupcake.svg","curly_braces.svg","db_solid.svg","db.svg","debug.svg","dependencies.svg","disabled_breakpoint.svg","dna.svg","docker.svg","doki_icon_logo.svg","doki_icon_settings.svg","doki_icon.svg","dual_chevrons.svg","dual_panels_refresh.svg","dual_panels.svg","edit.svg","ellipsis_horizontal.svg","ellipsis_vertical.svg","error_circle.svg","evaluate_expression_kotlin.svg","evaluate_expression.svg","excludedFolder.svg","expand_all.svg","file_close.svg","file_config.svg","file_edit.svg","file_heart.svg","file_kotlin.svg","file.svg","filter.svg","flash_star.svg","folder_cowfee.svg","folder_db_solid.svg","folder_heart.svg","folder_hex_stack_glyph.svg","folder_library.svg","folder_settings.svg","folder_test.svg","folder.svg","force_step_into.svg","game_kun.svg","ghost.svg","graph.svg","group.svg","heart.svg","help.svg","hex_glyph_duex.svg","hex_heart_glyph.svg","hex_outline_glyph.svg","hex_stack_glyph.svg","hidden_toolbar.svg","hide.svg","history.svg","hollow_square_circle_glyph.svg","ice_cream.svg","image.svg","info_circle.svg","intertwine.svg","jar.svg","jest.svg","key.svg","kotlin.svg","layout_dual_chevrons.svg","layout.svg","library.svg","light_house.svg","lightning_bolt.svg","link.svg","linked_angle_braces.svg","locate.svg","locked.svg","mamsnrhbr_chehfde.svg","neko_glyph_kotlin.svg","neko_glyph.svg","network_graph.svg","no_view.svg","notifications_heart.svg","notifications.svg","npm.svg","open.svg","optical_glyph.svg","outline_circle_glyph_kotlin.svg","outline_circle_glyph.svg","outline_rectangle_glyph.svg","outline_square_glyph.svg","package.svg","partial_hex_glyph_kotlin.svg","partial_hex_glyph.svg","partial_ring_glyph.svg","partial_triangle_glyph.svg","pause.svg","pin.svg","play_solid.svg","play.svg","plugin.svg","pretzel_refresh.svg","pretzel.svg","printer.svg","profile.svg","project_glyph.svg","pull_request.svg","python.svg","rating_0.svg","rating_1.svg","rating_2.svg","rating_3.svg","rating_4.svg","rating.svg","re_run.svg","rectangle_triangle_circle_glyph.svg","recursion.svg","refresh.svg","restart.svg","resume.svg","revert.svg","rip_outline.svg","rip_play_solid.svg","rip.svg","scratches.svg","scroll_to_end.svg","search_left.svg","search_right.svg","services.svg","settings.svg","skull.svg","soft_wrap.svg","solid_doki_glyph.svg","solid_trapezoid_glyph.svg","solid_triangle_glyph.svg","space_glyph.svg","spiral_glyph_kotlin.svg","spiral_glyph.svg","square_braces.svg","square_star_glyph.svg","star_bar_glyph.svg","star_outline_glyph.svg","star_outline.svg","star_pentagon_glyph.svg","star_ring_glyph.svg","star.svg","step_into.svg","step_out.svg","step_over.svg","stop_solid.svg","stop.svg","structure.svg","subtract.svg","tab.svg","tada_view_filled.svg","tada.svg","tag.svg","terminal_solid.svg","terminal.svg","test_outline_view_filled.svg","test_outline.svg","test.svg","todo.svg","trash.svg","trigram.svg","unlocked.svg","update.svg","vcs_solid.svg","vcs.svg","view_filled.svg","view.svg","warning_circle_filled.svg","warning_circle.svg","warning_triangle.svg","watch.svg"]
   var DOKI_ICON_PAGE_SIZE = 48
@@ -8594,6 +8444,7 @@ html.daily-standalone .focus-column {
   var state = loadState()
   var storedPlanNavigation = loadPlanNavigation()
   var selectedDate = todayKey()
+  var observedToday = selectedDate
   var calendarAnchor = todayKey()
   var weeklyAnchor = startOfWeek(todayKey())
   var storedPlanGroup = storedPlanNavigation && state.planGroups.find(function (group) { return group.id === storedPlanNavigation.groupId })
@@ -8634,6 +8485,7 @@ html.daily-standalone .focus-column {
   var selectedDailyTaskId = null
   var selectedRoutineId = null
   var selectedTaskDetailId = null
+  var taskViewState = { filter: 'all', query: '' }
   var selectedMemoId = state.memos.length ? state.memos[0].id : null
   var selectedMemoFolderId = selectedMemoId
     ? (state.memos.find(function (memo) { return memo.id === selectedMemoId }).folderId || '')
@@ -8642,11 +8494,21 @@ html.daily-standalone .focus-column {
   expandedMemoFolders[selectedMemoFolderId || '__unfiled__'] = true
   var memoViewModes = Object.create(null)
   var timer = loadTimer()
+  var sharedTimerState = {
+    ready: false, revision: Number.isFinite(timer.sharedRevision) ? timer.sharedRevision : -1,
+    serverOffset: Number(timer.serverOffset) || 0, lastSuccessAt: 0, lastAttemptAt: 0,
+    request: null, command: null, pendingCommand: timer.pendingCommand || null, pollHandle: null, error: false,
+    legacy: !timer.shared && (timer.running || timer.accumulatedSeconds > 0) ? Object.assign({}, timer) : null
+  }
   var routineTimer = loadRoutineTimer()
   var timerHandle = null
   var routineHandle = null
   var toastHandle = null
   var remoteSaveHandle = null
+  var remoteSaveInFlight = null
+  var remoteBaseData = loadRemoteBase()
+  var remoteObservedRevision = 0
+  var remoteLatestDocument = null
   var deferredInstallPrompt = null
   var projectOrderGroupId = ''
   var sectionOrderProjectId = ''
@@ -8719,12 +8581,18 @@ html.daily-standalone .focus-column {
   var taskCreateDateLabel = document.querySelector('[data-task-create-date-label]')
   var taskCreatePriority = document.querySelector('[data-task-create-priority]')
   var taskCreateCategory = document.querySelector('[data-task-create-category]')
+  var taskCreateTarget = document.querySelector('[data-task-create-target]')
   var taskCreateNote = document.querySelector('[data-task-create-note]')
   var taskCreateFixed = document.querySelector('[data-task-create-fixed]')
   var taskCreatePlanLocation = document.querySelector('[data-task-create-plan-location]')
   var inboxFixed = document.querySelector('[data-inbox-fixed]')
   var taskList = document.querySelector('[data-task-list]')
   var taskCount = document.querySelector('[data-task-count]')
+  var taskQuickForm = document.querySelector('[data-task-quick-form]')
+  var taskQuickInput = document.querySelector('[data-task-quick-input]')
+  var taskSearchInput = document.querySelector('[data-task-search]')
+  var taskFilterButtons = Array.from(document.querySelectorAll('[data-task-filter]'))
+  var taskViewCount = document.querySelector('[data-task-view-count]')
   var progressText = document.querySelector('[data-progress-text]')
   var progressPercent = document.querySelector('[data-progress-percent]')
   var progressFill = document.querySelector('[data-progress-fill]')
@@ -8745,7 +8613,6 @@ html.daily-standalone .focus-column {
   var weeklyDailyList = document.querySelector('[data-weekly-daily-list]')
   var weeklyProjectList = document.querySelector('[data-weekly-project-list]')
   var weeklyNextButton = document.querySelector('[data-weekly-next]')
-  var carryButton = document.querySelector('[data-carry]')
   var clearDoneButton = document.querySelector('[data-clear-done]')
   var calendarGrid = document.querySelector('[data-calendar-grid]')
   var calendarRange = document.querySelector('[data-calendar-range]')
@@ -8764,6 +8631,7 @@ html.daily-standalone .focus-column {
   var timerFinish = document.querySelector('[data-timer-finish]')
   var timerSound = document.querySelector('[data-timer-sound]')
   var timerTask = document.querySelector('[data-timer-task]')
+  var timerSyncStatus = document.querySelector('[data-timer-sync]')
   var toast = document.querySelector('[data-toast]')
   var importInput = document.querySelector('[data-import-input]')
   var utilityDrawer = document.querySelector('[data-utility-drawer]')
@@ -8775,12 +8643,6 @@ html.daily-standalone .focus-column {
   var workspaceDrawer = document.querySelector('[data-workspace-drawer]')
   var workspaceTitle = document.querySelector('[data-workspace-title]')
   var workspaceSummary = document.querySelector('[data-workspace-summary]')
-  var scheduleSaveStatus = document.querySelector('[data-schedule-save-status]')
-  var policySaveStatus = document.querySelector('[data-policy-save-status]')
-  var pointsWeekValue = document.querySelectorAll('[data-points-week]')
-  var pointsTotalValue = document.querySelectorAll('[data-points-total]')
-  var pointsRewardList = document.querySelector('[data-points-reward-list]')
-  var pointsRedemptionList = document.querySelector('[data-points-redemption-list]')
   var authButton = document.querySelector('[data-auth-button]')
   var dokiThemePicker = document.querySelector('[data-doki-picker]')
   var dokiThemeToggle = document.querySelector('[data-doki-toggle]')
@@ -8829,7 +8691,10 @@ html.daily-standalone .focus-column {
   var editingRoutineId = null
   var activeUtility = null
   var activeWorkspace = null
-  var activePointsView = 'shop'
+  var dailyTemplatesModal = document.querySelector('[data-daily-templates-modal]')
+  var dailyTemplatesList = document.querySelector('[data-daily-templates-list]')
+  var dailyTemplatesDate = document.querySelector('[data-daily-templates-date]')
+  var dailyTemplateForm = document.querySelector('[data-daily-template-form]')
 
   function storedDokiTheme() {
     try {
@@ -8943,13 +8808,9 @@ html.daily-standalone .focus-column {
     return JSON.parse(JSON.stringify(DEFAULT_SCHEDULE))
   }
 
-  function defaultPointsPolicy() {
-    return JSON.parse(JSON.stringify(DEFAULT_POINTS_POLICY))
-  }
-
   function blankState() {
     return {
-      version: POINTS_STATE_VERSION,
+      version: DAILY_STATE_VERSION,
       planGroups: PLAN_GROUP_PRESETS.map(function (preset, index) {
         return { id: preset.id, name: preset.name, icon: preset.icon, systemKey: preset.key, sortOrder: index, createdAt: Date.now() }
       }),
@@ -8966,14 +8827,6 @@ html.daily-standalone .focus-column {
       planCompletionHistory: [],
       utilityRead: { alertKeys: [], trashIds: [] },
       schedule: defaultScheduleState(),
-      pointsPolicy: defaultPointsPolicy(),
-      pointsWallet: {
-        startKey: POINTS_TRIAL_START_KEY,
-        startedAt: Date.parse('2026-08-24T00:00:00+08:00'),
-        baselineEarned: 0,
-        redemptions: [],
-        updatedAt: 0
-      },
       inbox: ROUTINES.map(function (routine, index) {
         return {
           id: 'routine-plan-' + routine.id,
@@ -9036,34 +8889,6 @@ html.daily-standalone .focus-column {
       updatedAt: Math.max(0, Number(schedule.updatedAt) || 0)
     }
 
-    var policy = value.pointsPolicy && typeof value.pointsPolicy === 'object' ? value.pointsPolicy : {}
-    value.pointsPolicy = {
-      weekday: typeof policy.weekday === 'string' ? policy.weekday.slice(0, 12000) : DEFAULT_POINTS_POLICY.weekday,
-      deductions: typeof policy.deductions === 'string' ? policy.deductions.slice(0, 12000) : DEFAULT_POINTS_POLICY.deductions,
-      weekend: typeof policy.weekend === 'string' ? policy.weekend.slice(0, 12000) : DEFAULT_POINTS_POLICY.weekend,
-      weekly: typeof policy.weekly === 'string' ? policy.weekly.slice(0, 12000) : DEFAULT_POINTS_POLICY.weekly,
-      note: typeof policy.note === 'string' ? policy.note.slice(0, 5000) : DEFAULT_POINTS_POLICY.note,
-      updatedAt: Math.max(0, Number(policy.updatedAt) || 0)
-    }
-
-    var wallet = value.pointsWallet && typeof value.pointsWallet === 'object' ? value.pointsWallet : {}
-    value.pointsWallet = {
-      startKey: /^\d{4}-\d{2}-\d{2}$/.test(wallet.startKey) ? wallet.startKey : POINTS_TRIAL_START_KEY,
-      startedAt: Math.max(0, Number(wallet.startedAt) || 0),
-      baselineEarned: Math.max(0, Math.round(Number(wallet.baselineEarned) || 0)),
-      redemptions: (Array.isArray(wallet.redemptions) ? wallet.redemptions : []).filter(function (entry) {
-        return entry && typeof entry === 'object' && typeof entry.id === 'string' && typeof entry.rewardId === 'string'
-      }).map(function (entry) {
-        return {
-          id: entry.id.slice(0, 120),
-          rewardId: entry.rewardId.slice(0, 80),
-          label: typeof entry.label === 'string' ? entry.label.slice(0, 120) : '',
-          cost: Math.max(0, Math.round(Number(entry.cost) || 0)),
-          createdAt: Math.max(0, Number(entry.createdAt) || 0)
-        }
-      }).slice(-500),
-      updatedAt: Math.max(0, Number(wallet.updatedAt) || 0)
-    }
   }
 
   function normalizedTimestamp(value, fallback) {
@@ -9381,7 +9206,7 @@ html.daily-standalone .focus-column {
       if (!routineTask.note) routineTask.note = '每日目标：' + focusDurationLabel(routine.targetMinutes * 60) + '。完成后在首页记录实际时长。'
       if (!routineTask.focusTag) routineTask.focusTag = '🌱 日常'
       routineTask.fixed = true
-      routineTask.targetMinutes = routine.targetMinutes
+      routineTask.targetMinutes = Math.max(1, Number(routineTask.targetMinutes) || routine.targetMinutes)
     })
     if (previousVersion < 19) {
       value.planGroups.forEach(function (group) { group.icon = migratePlanIconToDoki(group, 'group') })
@@ -9390,24 +9215,7 @@ html.daily-standalone .focus-column {
     }
     normalizeMemoState(value, previousVersion)
     normalizeWorkspaceState(value)
-    if (previousVersion < 22) {
-      var baselineEarned = Object.keys(value.days || {}).reduce(function (sum, key) {
-        if (key < POINTS_TRIAL_START_KEY) return sum
-        return sum + earnedPointsForDay(value.days[key], key)
-      }, 0)
-      value.pointsWallet = {
-        startKey: POINTS_TRIAL_START_KEY,
-        startedAt: Date.now(),
-        baselineEarned: Math.max(0, baselineEarned),
-        redemptions: [],
-        updatedAt: Date.now()
-      }
-    }
-    if (previousVersion < POINTS_STATE_VERSION) {
-      value.pointsPolicy = defaultPointsPolicy()
-      value.pointsPolicy.updatedAt = Date.now()
-    }
-    value.version = POINTS_STATE_VERSION
+    value.version = DAILY_STATE_VERSION
     return value
   }
 
@@ -9443,7 +9251,7 @@ html.daily-standalone .focus-column {
 
   function saveState() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
-    if (authState.authenticated) {
+    if (authState.authenticated && (!remoteBaseData || JSON.stringify(state) !== JSON.stringify(remoteBaseData.state))) {
       setPendingSync(true)
       scheduleRemoteSave()
     }
@@ -9512,6 +9320,7 @@ html.daily-standalone .focus-column {
         if (!response.ok) {
           var error = new Error(payload.error || '服务器暂时无法处理请求。')
           error.status = response.status
+          error.payload = payload
           throw error
         }
         return payload
@@ -9576,13 +9385,93 @@ html.daily-standalone .focus-column {
     return Boolean(value.inbox.length || value.trash.length || value.memos.length || value.memoFolders.length || Object.keys(value.days).length || Object.keys(value.weeklyNotes).length)
   }
 
+  function loadRemoteBase() {
+    try {
+      var value = JSON.parse(localStorage.getItem(REMOTE_BASE_KEY))
+      return value && value.state && Number.isFinite(Number(value.revision)) ? value : null
+    } catch (error) { return null }
+  }
+
+  function rememberRemoteBase(documentData) {
+    remoteBaseData = { revision: Number(documentData.revision) || 0, state: cloneStateValue(documentData.state) }
+    try { localStorage.setItem(REMOTE_BASE_KEY, JSON.stringify(remoteBaseData)) } catch (error) {}
+  }
+
+  function receiveSharedDocument(documentData) {
+    if (!documentData || !documentData.state || Number(documentData.revision) < remoteObservedRevision) return false
+    remoteObservedRevision = Number(documentData.revision) || 0
+    remoteLatestDocument = cloneStateValue(documentData)
+    if (hasPendingSync()) {
+      if (!remoteBaseData && !documentData.privateFieldsRedacted) {
+        // Older clients have no common ancestor. Let the server conservatively
+        // union both copies (including each task's focus records), rather than
+        // interpreting missing cached items as deletions from today's document.
+        rememberRemoteBase({ revision: documentData.revision, state: {} })
+      }
+      if (authState.authenticated && !remoteSaveInFlight) scheduleRemoteSave()
+      return false
+    }
+    var nextState = cloneStateValue(documentData.state)
+    if (documentData.privateFieldsRedacted) {
+      nextState.memos = state.memos || []
+      nextState.memoFolders = state.memoFolders || []
+    } else {
+      rememberRemoteBase(documentData)
+    }
+    normalizePlanState(nextState)
+    var changed = JSON.stringify(nextState) !== JSON.stringify(state)
+    state = nextState
+    saveLocalOnly()
+    if (changed) renderAll()
+    if (authState.authenticated && Number(documentData.state.version) < DAILY_STATE_VERSION) scheduleRemoteSave()
+    return true
+  }
+
+  function flushRemoteState() {
+    clearTimeout(remoteSaveHandle)
+    if (!authState.authenticated) return Promise.reject(new Error('请先登录，再同步当前内容'))
+    if (remoteSaveInFlight) {
+      return remoteSaveInFlight.then(function () { return hasPendingSync() ? flushRemoteState() : null })
+    }
+    if (!hasPendingSync()) return Promise.resolve()
+    var prepare = remoteBaseData ? Promise.resolve() : apiRequest('/data', { method: 'GET' }).then(receiveSharedDocument)
+    remoteSaveInFlight = prepare.then(function () {
+      var sentState = cloneStateValue(state)
+      var sentText = JSON.stringify(sentState)
+      var base = cloneStateValue(remoteBaseData)
+      return apiRequest('/data', {
+        method: 'PUT',
+        body: JSON.stringify({ state: sentState, expectedRevision: base.revision, baseState: base.state })
+      }).then(function (payload) {
+        var saved = payload.document || payload
+        if (!saved.state) throw new Error('服务器未返回已保存的数据，请刷新后重试')
+        remoteObservedRevision = Math.max(remoteObservedRevision, Number(saved.revision) || 0)
+        if (JSON.stringify(state) === sentText) {
+          setPendingSync(false)
+          receiveSharedDocument(remoteLatestDocument && Number(remoteLatestDocument.revision) > Number(saved.revision) ? remoteLatestDocument : saved)
+        } else {
+          // New keystrokes arrived while the request was in flight. Only the
+          // submitted snapshot is acknowledged; the next merge retains both
+          // those new keystrokes and the server's timer settlement.
+          rememberRemoteBase({ revision: saved.revision, state: sentState })
+          setPendingSync(true)
+        }
+      })
+    }).then(function (result) {
+      remoteSaveInFlight = null
+      return result
+    }, function (error) {
+      remoteSaveInFlight = null
+      throw error
+    })
+    return remoteSaveInFlight.then(function () { return hasPendingSync() ? flushRemoteState() : null })
+  }
+
   function scheduleRemoteSave() {
     setPendingSync(true)
     clearTimeout(remoteSaveHandle)
     remoteSaveHandle = setTimeout(function () {
-      apiRequest('/data', { method: 'PUT', body: JSON.stringify({ state: state }) }).then(function () {
-        setPendingSync(false)
-      }).catch(function (error) {
+      flushRemoteState().catch(function (error) {
         if (!IS_LOCAL_PREVIEW && (error.status === 401 || error.status === 403)) {
           authState.authenticated = false
           authState.csrf = null
@@ -9619,9 +9508,15 @@ html.daily-standalone .focus-column {
       '.quadrant-add-button',
       '.memo-create-button', '.memo-folder-form input', '.memo-folder-form button', '.memo-folder-action',
       '.memo-folder-select', '.memo-title-input', '.memo-content-input', '.memo-delete-button',
-      '.workspace-textarea', '.points-redeem-button'
+      '.workspace-textarea'
     ].join(',')
     document.querySelectorAll(selector).forEach(function (control) {
+      if (control.matches('.task-detail-close')) {
+        control.disabled = false
+        control.removeAttribute('data-auth-disabled')
+        control.removeAttribute('data-edit-control')
+        return
+      }
       if (!authState.authenticated) {
         if (!control.disabled) control.setAttribute('data-auth-disabled', 'true')
         control.disabled = true
@@ -9676,21 +9571,13 @@ html.daily-standalone .focus-column {
       closeAuthModal()
       return apiRequest('/data', { method: 'GET' })
     }).then(function (documentData) {
-      if (hasPendingSync()) {
-        scheduleRemoteSave()
-        showToast('已登录，本地变更正在同步到服务器')
-      } else if (documentData.revision === 0 && hasLocalContent(state)) {
-        scheduleRemoteSave()
-        showToast('已登录，本机已有内容将同步到服务器')
-      } else if (documentData.state && typeof documentData.state === 'object') {
-        var serverVersionBeforeMigration = Number(documentData.state.version) || 0
-        state = documentData.state
-        normalizePlanState(state)
-        saveLocalOnly()
-        if (serverVersionBeforeMigration < POINTS_STATE_VERSION) scheduleRemoteSave()
-        showToast('已登录，服务器内容已同步')
-      }
+      if (documentData.revision === 0 && hasLocalContent(state)) setPendingSync(true)
+      receiveSharedDocument(documentData)
       renderAll()
+      return flushRemoteState().then(function () {
+        showToast('已登录，学习状态正在同步')
+        return refreshSharedTimer()
+      })
     }).catch(function (error) {
       authMessage.textContent = error.message
       throw error
@@ -9705,7 +9592,7 @@ html.daily-standalone .focus-column {
       authState = { authenticated: false, trusted: false, trustDays: null, csrf: null, available: true }
       clearAuthCache()
       scheduleAuthCheck(AUTH_RECHECK_MS)
-      if (timer.running) toggleTimer()
+      // Logging out this device must not pause the shared session on others.
       if (routineTimer) stopRoutine(true)
       renderAll()
       showToast('已退出，现在是只读模式')
@@ -9805,31 +9692,14 @@ html.daily-standalone .focus-column {
     merged.schedule = Number(remote.schedule && remote.schedule.updatedAt) > Number(local.schedule && local.schedule.updatedAt)
       ? cloneStateValue(remote.schedule)
       : cloneStateValue(local.schedule || remote.schedule || DEFAULT_SCHEDULE)
-    merged.pointsPolicy = Number(remote.pointsPolicy && remote.pointsPolicy.updatedAt) > Number(local.pointsPolicy && local.pointsPolicy.updatedAt)
-      ? cloneStateValue(remote.pointsPolicy)
-      : cloneStateValue(local.pointsPolicy || remote.pointsPolicy || DEFAULT_POINTS_POLICY)
-    merged.pointsWallet = {
-      startKey: (local.pointsWallet && local.pointsWallet.startKey)
-        || (remote.pointsWallet && remote.pointsWallet.startKey)
-        || POINTS_TRIAL_START_KEY,
-      startedAt: Math.max(
-        Number(remote.pointsWallet && remote.pointsWallet.startedAt) || 0,
-        Number(local.pointsWallet && local.pointsWallet.startedAt) || 0
-      ),
-      baselineEarned: Math.max(
-        Number(remote.pointsWallet && remote.pointsWallet.baselineEarned) || 0,
-        Number(local.pointsWallet && local.pointsWallet.baselineEarned) || 0
-      ),
-      redemptions: mergeEntityLists(
-        remote.pointsWallet && remote.pointsWallet.redemptions,
-        local.pointsWallet && local.pointsWallet.redemptions,
-        false
-      ),
-      updatedAt: Math.max(
-        Number(remote.pointsWallet && remote.pointsWallet.updatedAt) || 0,
-        Number(local.pointsWallet && local.pointsWallet.updatedAt) || 0
-      )
-    }
+    // Retired fields remain opaque history; no scoring or reward logic runs.
+    ;['pointsPolicy', 'pointsWallet'].forEach(function (key) {
+      var remoteHistory = remote[key]
+      var localHistory = local[key]
+      if (!remoteHistory && !localHistory) return
+      merged[key] = cloneStateValue(Number(remoteHistory && remoteHistory.updatedAt) > Number(localHistory && localHistory.updatedAt)
+        ? remoteHistory : localHistory || remoteHistory)
+    })
     merged.days = {}
     mergeUniqueValues(Object.keys(remote.days || {}), Object.keys(local.days || {})).forEach(function (key) {
       merged.days[key] = mergeLocalDay(remote.days && remote.days[key], local.days && local.days[key])
@@ -9841,32 +9711,19 @@ html.daily-standalone .focus-column {
     authState = { authenticated: true, trusted: true, trustDays: null, csrf: null, available: true }
     renderAll()
     return apiRequest('/data', { method: 'GET' }).then(function (documentData) {
-      var apiState = documentData.state && typeof documentData.state === 'object' ? documentData.state : blankState()
-      var apiStateVersionBeforeMigration = Number(apiState.version) || 0
       var migrated = localStorage.getItem(LOCAL_API_MIGRATION_KEY) === '1'
       if (!migrated) {
-        state = mergeLocalBootstrapState(apiState, state)
-        normalizePlanState(state)
-        saveLocalOnly()
-        renderAll()
-        return apiRequest('/data', { method: 'PUT', body: JSON.stringify({ state: state }) }).then(function () {
-          setPendingSync(false)
+        setPendingSync(true)
+        receiveSharedDocument(documentData)
+        return flushRemoteState().then(function () {
           localStorage.setItem(LOCAL_API_MIGRATION_KEY, '1')
-          showToast('本地浏览器数据已合并到本地 Daily 数据文件')
+          return refreshSharedTimer()
         })
       }
-      if (hasPendingSync()) {
-        scheduleRemoteSave()
-      } else if (Number(documentData.revision) > 0) {
-        state = apiState
-        normalizePlanState(state)
-        saveLocalOnly()
-        if (apiStateVersionBeforeMigration < POINTS_STATE_VERSION) scheduleRemoteSave()
-      } else if (hasLocalContent(state)) {
-        scheduleRemoteSave()
-      }
+      if (documentData.revision === 0 && hasLocalContent(state)) setPendingSync(true)
+      receiveSharedDocument(documentData)
       renderAll()
-      return null
+      return refreshSharedTimer()
     }).catch(function () {
       authState.available = true
       authState.authenticated = true
@@ -9888,7 +9745,7 @@ html.daily-standalone .focus-column {
       renderAll()
       if (cacheAge < AUTH_RECHECK_MS) {
         scheduleAuthCheck(AUTH_RECHECK_MS - cacheAge)
-        return Promise.resolve()
+        return refreshSharedTimer()
       }
     }
     if (authInteractionActive) {
@@ -9912,29 +9769,11 @@ html.daily-standalone .focus-column {
       }
       return apiRequest('/data', { method: 'GET' })
     }).then(function (documentData) {
-      if (documentData.state && typeof documentData.state === 'object') {
-        var serverVersionBeforeMigration = Number(documentData.state.version) || 0
-        var localState = state
-        if (authState.authenticated && hasPendingSync()) {
-          scheduleRemoteSave()
-        } else if (documentData.privateFieldsRedacted) {
-          var localMemos = Array.isArray(localState.memos) ? localState.memos : []
-          var localMemoFolders = Array.isArray(localState.memoFolders) ? localState.memoFolders : []
-          state = documentData.state
-          state.memos = localMemos
-          state.memoFolders = localMemoFolders
-          normalizePlanState(state)
-        } else if (documentData.revision > 0 || !hasLocalContent(localState)) {
-          state = documentData.state
-          normalizePlanState(state)
-          saveLocalOnly()
-        } else if (authState.authenticated && hasLocalContent(localState)) {
-          scheduleRemoteSave()
-        }
-        if (authState.authenticated && serverVersionBeforeMigration < POINTS_STATE_VERSION) scheduleRemoteSave()
-      }
+      if (authState.authenticated && documentData.revision === 0 && hasLocalContent(state)) setPendingSync(true)
+      receiveSharedDocument(documentData)
       renderAll()
       scheduleAuthCheck(AUTH_RECHECK_MS)
+      if (authState.authenticated) return refreshSharedTimer()
     }).catch(function () {
       if (!sessionResolved && previouslyAuthenticated) {
         authState.authenticated = true
@@ -9986,7 +9825,9 @@ html.daily-standalone .focus-column {
     try {
       var parsed = JSON.parse(localStorage.getItem(TIMER_KEY))
       if (!parsed || (parsed.mode !== 'focus' && parsed.mode !== 'break')) return defaultTimer()
-      parsed.remaining = Number(parsed.remaining) || durationFor(parsed.mode)
+      var total = durationFor(parsed.mode)
+      var remaining = Number(parsed.remaining)
+      parsed.remaining = Number.isFinite(remaining) ? Math.max(0, Math.min(total, remaining)) : total
       parsed.running = Boolean(parsed.running)
       parsed.endAt = parsed.endAt ? Number(parsed.endAt) : null
       parsed.dayKey = parsed.dayKey || todayKey()
@@ -9994,22 +9835,21 @@ html.daily-standalone .focus-column {
       parsed.taskId = typeof parsed.taskId === 'string' ? parsed.taskId : ''
       parsed.taskText = typeof parsed.taskText === 'string' ? parsed.taskText : ''
       parsed.tagConfirmed = Boolean(parsed.tagConfirmed)
-      parsed.accumulatedSeconds = Math.max(0, Number(parsed.accumulatedSeconds) || 0)
+      parsed.accumulatedSeconds = Math.min(total, Math.max(0, Number(parsed.accumulatedSeconds) || 0))
       parsed.runStartedAt = parsed.runStartedAt ? Number(parsed.runStartedAt) : null
       parsed.sessionStartedAt = parsed.sessionStartedAt ? Number(parsed.sessionStartedAt) : null
       parsed.soundEnabled = parsed.soundEnabled !== false
-      var total = durationFor(parsed.mode)
       if (!parsed.running && parsed.accumulatedSeconds === 0 && parsed.remaining < total) {
         parsed.accumulatedSeconds = Math.max(0, total - parsed.remaining)
       }
       if (parsed.running && parsed.endAt) {
         var left = Math.ceil((parsed.endAt - Date.now()) / 1000)
         if (left > 0) {
-          parsed.remaining = left
-          if (!parsed.runStartedAt) parsed.runStartedAt = Date.now()
+          parsed.remaining = Math.min(total, left)
+          if (!parsed.runStartedAt) parsed.runStartedAt = parsed.endAt - (total - parsed.accumulatedSeconds) * 1000
         }
         else {
-          // Keep the expired phase active until the first render records it.
+          // Retain the expired phase until the server adopts or settles it.
           parsed.running = true
           parsed.remaining = 0
           if (!parsed.runStartedAt) parsed.runStartedAt = parsed.endAt - total * 1000
@@ -10022,7 +9862,232 @@ html.daily-standalone .focus-column {
   }
 
   function saveTimer() {
+    if (sharedTimerState) {
+      timer.sharedRevision = sharedTimerState.revision
+      timer.serverOffset = sharedTimerState.serverOffset
+      timer.pendingCommand = sharedTimerState.pendingCommand
+    }
     localStorage.setItem(TIMER_KEY, JSON.stringify(timer))
+  }
+
+  function sharedTimerNow() {
+    return Date.now() + sharedTimerState.serverOffset
+  }
+
+  function sharedTimerSelection() {
+    return {
+      mode: timer.mode, dayKey: timer.dayKey || selectedDate || todayKey(),
+      taskId: timer.taskId, project: timer.project, tagConfirmed: timer.tagConfirmed
+    }
+  }
+
+  function applySharedTimer(payload, requestedAt) {
+    if (!payload || !payload.timer || !Number.isFinite(Number(payload.timerRevision))) {
+      throw new Error('共享计时服务返回了无效状态')
+    }
+    if (payload.document) receiveSharedDocument(payload.document)
+    var revision = Number(payload.timerRevision)
+    if (revision < sharedTimerState.revision) return false
+    var wasReady = sharedTimerState.ready
+    var previous = timer
+    var incoming = Object.assign(defaultTimer(), payload.timer)
+    // An idle timer can have a task staged locally. Polling the same revision
+    // must not erase that choice before the user presses Start.
+    var keepSelection = !incoming.running && !incoming.sessionId && !incoming.accumulatedSeconds &&
+      !previous.running && !previous.sessionId && !previous.accumulatedSeconds &&
+      (revision === sharedTimerState.revision || (!wasReady && revision === 0))
+    if (keepSelection) {
+      ;['dayKey', 'taskId', 'taskText', 'project', 'tagConfirmed'].forEach(function (key) { incoming[key] = previous[key] })
+    }
+    incoming.soundEnabled = previous.soundEnabled !== false
+    var serverNow = Number(payload.serverNow)
+    if (Number.isFinite(serverNow)) {
+      sharedTimerState.serverOffset = serverNow - ((Number(payload.clientRequestedAt) || Number(requestedAt) || Date.now()) + Date.now()) / 2
+    }
+    sharedTimerState.revision = revision
+    sharedTimerState.ready = true
+    sharedTimerState.lastSuccessAt = Date.now()
+    sharedTimerState.error = false
+    incoming.shared = true
+    timer = incoming
+    if (!keepSelection && timer.taskId) {
+      var routineId = routineIdFromTaskId(timer.taskId)
+      selectedDailyTaskId = routineId ? null : timer.taskId
+      selectedRoutineId = routineId || null
+    }
+    saveTimer()
+    if (timer.running) beginTicker()
+    else stopTicker()
+    if (previous.taskId !== timer.taskId || previous.dayKey !== timer.dayKey || previous.running !== timer.running) renderDay()
+    if (wasReady && previous.mode !== timer.mode && (previous.running || previous.accumulatedSeconds > 0) && !timer.running) {
+      playBell('end')
+      showToast(previous.mode === 'focus' ? '专注结束，学习时长已同步，点击开始休息' : '休息结束，已暂停，点击开始下一轮专注')
+    }
+    renderTimer()
+    return true
+  }
+
+  function refreshSharedTimer(options) {
+    var settings = options || {}
+    if (!authState.authenticated) return Promise.resolve(false)
+    if (sharedTimerState.command && !settings.forCommand) return sharedTimerState.command
+    if (sharedTimerState.request) return settings.required ? sharedTimerState.request.then(function (ok) {
+      if (!ok) throw new Error('尚未取得最新计时状态，请连接后重试')
+      return ok
+    }) : sharedTimerState.request
+    var requestedAt = Date.now()
+    sharedTimerState.lastAttemptAt = requestedAt
+    var request = apiRequest('/timer', { method: 'GET' }).then(function (payload) {
+      return adoptLegacyTimer(payload)
+    }).then(function (payload) {
+      applySharedTimer(payload, requestedAt)
+      return true
+    }).catch(function (error) {
+      sharedTimerState.error = true
+      if (error.status === 401 || error.status === 403) {
+        authState.authenticated = false
+        authState.csrf = null
+        clearAuthCache()
+        renderAll()
+        showToast('请重新登录以同步所有设备的计时')
+      } else renderTimer()
+      if (settings.required) throw error
+      return false
+    })
+    sharedTimerState.request = request.then(function (value) {
+      sharedTimerState.request = null
+      return value
+    }, function (error) {
+      sharedTimerState.request = null
+      throw error
+    })
+    return sharedTimerState.request
+  }
+
+  function adoptLegacyTimer(payload) {
+    if (!sharedTimerState.legacy) return Promise.resolve(payload)
+    var legacy = sharedTimerState.legacy
+    localStorage.setItem(TIMER_KEY + '.legacy-backup', JSON.stringify(legacy))
+    if (Number(payload.timerRevision) !== 0) {
+      sharedTimerState.legacy = null
+      showToast('已同步共享计时；此前的本机计时已保留备份')
+      return Promise.resolve(payload)
+    }
+    return flushRemoteState().then(function () {
+      var pending = sharedTimerState.pendingCommand || {
+        action: 'adopt', legacyTimer: legacy, expectedRevision: 0,
+        commandId: 'timer-migrate-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2)
+      }
+      sharedTimerState.pendingCommand = pending
+      saveTimer()
+      var requestedAt = Date.now()
+      return apiRequest('/timer', { method: 'POST', body: JSON.stringify(pending) }).then(function (migrated) {
+        migrated.clientRequestedAt = requestedAt
+        return migrated
+      })
+    }).then(function (migrated) {
+      sharedTimerState.legacy = null
+      sharedTimerState.pendingCommand = null
+      return migrated
+    }).catch(function (error) {
+      if (error.status === 409 && error.payload && error.payload.timer) {
+        sharedTimerState.legacy = null
+        sharedTimerState.pendingCommand = null
+        return error.payload
+      }
+      if (error.status === 400 || error.status === 422) {
+        sharedTimerState.legacy = null
+        sharedTimerState.pendingCommand = null
+        showToast('此前的本机计时无法接续，已保留备份；请选择任务重新开始')
+        return error.payload && error.payload.timer ? error.payload : payload
+      }
+      throw error
+    })
+  }
+
+  function beginSharedTimerPolling() {
+    if (sharedTimerState.pollHandle) return
+    sharedTimerState.pollHandle = setInterval(function () {
+      if (!document.hidden && refreshCurrentDate()) renderAll()
+      if (document.hidden || navigator.onLine === false || !authState.authenticated || sharedTimerState.command) return
+      if (sharedTimerState.pendingCommand) runSharedTimerCommand('retry')
+      else refreshSharedTimer()
+    }, 4000)
+  }
+
+  function runSharedTimerCommand(action, selection) {
+    if (sharedTimerState.command) return sharedTimerState.command
+    if (!canEdit()) return Promise.resolve(false)
+    if (navigator.onLine === false) {
+      showToast('当前离线，联网后才能控制共享计时；计时状态会自动同步')
+      return Promise.resolve(false)
+    }
+    var observedRevision = sharedTimerState.revision
+    var observedSession = timer.sessionId || ''
+    var observedMode = timer.mode
+    var desiredSelection = selection || sharedTimerSelection()
+    var pending = sharedTimerState.pendingCommand
+    var preparing = pending ? Promise.resolve(true) : refreshSharedTimer({ required: true, forCommand: true }).then(function () {
+      // A phase completed, or another device started a new session, while this
+      // device was stale. Show that state before accepting another command.
+      if (observedRevision !== sharedTimerState.revision &&
+          ((timer.sessionId || '') !== observedSession || timer.mode !== observedMode)) {
+        showToast('计时状态已在其他设备更新，请按当前状态操作')
+        return false
+      }
+      if (action === 'start' && timer.running) {
+        showToast('当前任务已在计时，所有设备已同步')
+        return false
+      }
+      return flushRemoteState().then(function () { return true })
+    })
+    var request = preparing.then(function (ready) {
+      if (!ready) return false
+      if (!pending) {
+        pending = {
+          action: action, selection: desiredSelection, expectedRevision: sharedTimerState.revision,
+          commandId: window.crypto && typeof window.crypto.randomUUID === 'function'
+            ? window.crypto.randomUUID() : 'timer-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2)
+        }
+        sharedTimerState.pendingCommand = pending
+        saveTimer()
+      }
+      var requestedAt = Date.now()
+      return apiRequest('/timer', { method: 'POST', body: JSON.stringify(pending) }).then(function (payload) {
+        sharedTimerState.pendingCommand = null
+        applySharedTimer(payload, requestedAt)
+        if (pending.action === 'start' && timer.running && timer.accumulatedSeconds === 0) playBell('start')
+        return true
+      })
+    }).catch(function (error) {
+      if (error.status && error.status < 500) {
+        sharedTimerState.pendingCommand = null
+        if (error.status === 409 && error.payload && error.payload.timer) applySharedTimer(error.payload, Date.now())
+        saveTimer()
+      }
+      sharedTimerState.error = error.status !== 409
+      if (error.status === 401 || error.status === 403) {
+        authState.authenticated = false
+        authState.csrf = null
+        clearAuthCache()
+        renderAll()
+      }
+      showToast(error.status === 409
+        ? '计时已被其他设备更新，已同步最新状态'
+        : '计时操作未确认：' + (error.message || '连接失败，将在联网后重试'))
+      return false
+    })
+    sharedTimerState.command = request.then(function (value) {
+      sharedTimerState.command = null
+      renderTimer()
+      return value
+    }, function (error) {
+      sharedTimerState.command = null
+      renderTimer()
+      throw error
+    })
+    renderTimer()
+    return sharedTimerState.command
   }
 
   function loadRoutineTimer() {
@@ -10149,7 +10214,9 @@ html.daily-standalone .focus-column {
   }
 
   function todayKey() {
-    return localDateKey(new Date())
+    var now = Date.now()
+    if (sharedTimerState && sharedTimerState.ready) now += sharedTimerState.serverOffset
+    return new Date(now + 8 * 60 * 60 * 1000).toISOString().slice(0, 10)
   }
 
   function parseDate(key) {
@@ -10217,8 +10284,9 @@ html.daily-standalone .focus-column {
       var day = state.days[key]
       if (!day || typeof day !== 'object') continue
       var tasks = Array.isArray(day.tasks) ? day.tasks : []
-      stats.taskTotal += tasks.length
-      stats.taskDone += tasks.filter(function (task) { return Boolean(task.done) }).length
+      var visibleTasks = tasks.filter(function (task) { return !task.deletedAt })
+      stats.taskTotal += visibleTasks.length
+      stats.taskDone += visibleTasks.filter(function (task) { return Boolean(task.done) }).length
       var dayFocusSeconds = Number.isFinite(Number(day.focusSeconds))
         ? Math.max(0, Number(day.focusSeconds) || 0)
         : Math.max(0, Number(day.focusSessions) || 0) * FOCUS_SECONDS
@@ -10247,14 +10315,29 @@ html.daily-standalone .focus-column {
           stats.focusTasksByProject[name][task.text] = (stats.focusTasksByProject[name][task.text] || 0) + seconds
         })
       })
+      ;(Array.isArray(day.routineFocusRecords) ? day.routineFocusRecords : []).forEach(function (record) {
+        var name = normalizeProjectName(record.project)
+        var seconds = Math.max(0, Number(record.seconds) || 0)
+        if (!seconds) return
+        if (!stats.focusTasksByProject[name]) stats.focusTasksByProject[name] = {}
+        stats.focusTasksByProject[name][record.text] = (stats.focusTasksByProject[name][record.text] || 0) + seconds
+      })
       var completedMap = day.routineCompleted && typeof day.routineCompleted === 'object' ? day.routineCompleted : {}
       var secondsMap = day.routineSeconds && typeof day.routineSeconds === 'object' ? day.routineSeconds : {}
-      var completedToday = ROUTINES.filter(function (routine) {
+      var completedHabits = new Set(ROUTINES.filter(function (routine) {
         return Boolean(completedMap[routine.id])
           || Math.max(0, Number(secondsMap[routine.id]) || 0) >= routine.targetMinutes * 60
-      }).length
+      }).map(function (routine) { return 'routine-plan-' + routine.id }))
+      visibleTasks.forEach(function (task) {
+        var templateId = task.sourceTemplateId || task.sourcePlanId
+        if (!templateId) return
+        var source = (state.inbox || []).find(function (item) { return item.id === templateId })
+        var isHabit = task.sourceTemplateGroup === 'plan-habit' || templateId.indexOf('routine-plan-') === 0 || (source && source.groupId === 'plan-habit')
+        if (isHabit && (task.done || Math.max(0, Number(task.focusSeconds) || 0) >= Math.max(1, Number(task.targetMinutes) || 60) * 60)) completedHabits.add(templateId)
+      })
+      var completedToday = completedHabits.size
       stats.routineDone += completedToday
-      if (tasks.length || (typeof day.note === 'string' && day.note.trim())
+      if (visibleTasks.length || (typeof day.note === 'string' && day.note.trim())
         || (typeof day.summary === 'string' && day.summary.trim()) || Number(day.focusSessions) || completedToday) {
         stats.activeDays += 1
       }
@@ -10823,7 +10906,7 @@ html.daily-standalone .focus-column {
       var day = state.days[key]
       if (!day || !Array.isArray(day.tasks)) return
       day.tasks.forEach(function (task) {
-        if (task.done) return
+        if (task.done || task.carriedToDate || task.deletedAt) return
         reminders.push({ task: task, dayKey: key, overdue: key < today })
       })
     })
@@ -10985,162 +11068,6 @@ html.daily-standalone .focus-column {
     state.schedule.updatedAt = Date.now()
   }
 
-  function earnedPointsForDay(day, dayKey) {
-    day = day && typeof day === 'object' ? day : {}
-    var tasks = Array.isArray(day.tasks) ? day.tasks : []
-    var completedTasks = tasks.filter(function (task) { return Boolean(task.done) }).length
-    var completedMap = day.routineCompleted && typeof day.routineCompleted === 'object' ? day.routineCompleted : {}
-    var secondsMap = day.routineSeconds && typeof day.routineSeconds === 'object' ? day.routineSeconds : {}
-    var completedRoutines = ROUTINES.filter(function (routine) {
-      return Boolean(completedMap[routine.id])
-        || Math.max(0, Number(secondsMap[routine.id]) || 0) >= routine.targetMinutes * 60
-    }).length
-    var focusSeconds = Number.isFinite(Number(day.focusSeconds))
-      ? Math.max(0, Number(day.focusSeconds) || 0)
-      : Math.max(0, Number(day.focusSessions) || 0) * FOCUS_SECONDS
-    var focusRounds = Math.floor(focusSeconds / FOCUS_SECONDS)
-    var points = Math.min(completedTasks * 3, 15)
-      + Math.min(completedRoutines * 2, 12)
-      + Math.min(focusRounds * 2, 10)
-    if (tasks.length && completedTasks === tasks.length) points += 5
-    if (completedRoutines === ROUTINES.length) points += 5
-    var isPastDay = typeof dayKey === 'string' && dayKey < todayKey()
-    var date = typeof dayKey === 'string' ? parseDate(dayKey) : null
-    var isWeekend = date && (date.getDay() === 0 || date.getDay() === 6)
-    if (isPastDay && !isWeekend) points -= (ROUTINES.length - completedRoutines) * 2
-    return points
-  }
-
-  function pointsSummary() {
-    normalizeWorkspaceState(state)
-    var startKey = state.pointsWallet.startKey || POINTS_TRIAL_START_KEY
-    var baselineEarned = Math.max(0, Number(state.pointsWallet.baselineEarned) || 0)
-    var weekStart = startOfWeek(todayKey())
-    var weekEnd = shiftDate(weekStart, 6)
-    var rawWeek = 0
-    var rawEarned = 0
-    var lastKey = todayKey()
-    for (var key = startKey; key <= lastKey; key = shiftDate(key, 1)) {
-      var value = earnedPointsForDay(state.days[key], key)
-      rawEarned += value
-      if (key >= weekStart && key <= weekEnd) rawWeek += value
-    }
-    var baselineInCurrentWeek = startKey >= weekStart && startKey <= weekEnd ? baselineEarned : 0
-    var week = Math.max(0, rawWeek - baselineInCurrentWeek)
-    var earned = Math.max(0, rawEarned - baselineEarned)
-    var spent = state.pointsWallet.redemptions.reduce(function (sum, entry) {
-      return sum + Math.max(0, Number(entry.cost) || 0)
-    }, 0)
-    return { week: week, earned: earned, spent: spent, total: Math.max(0, earned - spent) }
-  }
-
-  function renderPointsWallet() {
-    if (!state.pointsWallet) normalizeWorkspaceState(state)
-    var summary = pointsSummary()
-    pointsWeekValue.forEach(function (element) { element.textContent = String(summary.week) })
-    pointsTotalValue.forEach(function (element) { element.textContent = String(summary.total) })
-
-    if (pointsRewardList) {
-      pointsRewardList.textContent = ''
-      POINT_REWARDS.forEach(function (reward) {
-        var card = document.createElement('article')
-        card.className = 'points-reward-card'
-        var header = document.createElement('header')
-        var title = document.createElement('h3')
-        var icon = document.createElement('i')
-        icon.className = 'fa-solid ' + reward.icon
-        icon.setAttribute('aria-hidden', 'true')
-        title.appendChild(icon)
-        title.appendChild(document.createTextNode(' ' + reward.label))
-        var cost = document.createElement('span')
-        cost.className = 'points-reward-cost'
-        cost.textContent = reward.cost + ' 分'
-        header.appendChild(title)
-        header.appendChild(cost)
-        var note = document.createElement('p')
-        note.textContent = reward.note
-        var button = document.createElement('button')
-        button.className = 'points-redeem-button'
-        button.type = 'button'
-        button.textContent = summary.total >= reward.cost ? '兑换奖励' : '还差 ' + (reward.cost - summary.total) + ' 分'
-        button.disabled = !authState.authenticated || summary.total < reward.cost
-        button.addEventListener('click', function () { redeemPointsReward(reward.id) })
-        card.appendChild(header)
-        card.appendChild(note)
-        card.appendChild(button)
-        pointsRewardList.appendChild(card)
-      })
-    }
-
-    if (pointsRedemptionList) {
-      pointsRedemptionList.textContent = ''
-      var redemptions = state.pointsWallet.redemptions.slice().sort(function (a, b) {
-        return Number(b.createdAt) - Number(a.createdAt)
-      }).slice(0, 8)
-      if (!redemptions.length) {
-        var empty = document.createElement('li')
-        empty.className = 'points-redemption-empty'
-        empty.textContent = '暂时没有兑换记录，先把喜欢的奖励存起来。'
-        pointsRedemptionList.appendChild(empty)
-      } else {
-        redemptions.forEach(function (entry) {
-          var item = document.createElement('li')
-          var label = document.createElement('strong')
-          label.textContent = entry.label || '已兑换奖励'
-          var meta = document.createElement('span')
-          var date = entry.createdAt ? new Date(entry.createdAt).toLocaleDateString('zh-CN') : ''
-          meta.textContent = '-' + entry.cost + ' 分' + (date ? ' · ' + date : '')
-          item.appendChild(label)
-          item.appendChild(meta)
-          pointsRedemptionList.appendChild(item)
-        })
-      }
-    }
-  }
-
-  function redeemPointsReward(rewardId) {
-    if (!canEdit()) return
-    var reward = POINT_REWARDS.find(function (entry) { return entry.id === rewardId })
-    if (!reward) return
-    var summary = pointsSummary()
-    if (summary.total < reward.cost) {
-      showToast('积分还不够，再完成一些计划吧')
-      return
-    }
-    if (!window.confirm('使用 ' + reward.cost + ' 分兑换“' + reward.label + '”吗？')) return
-    state.pointsWallet.redemptions.push({
-      id: uid(),
-      rewardId: reward.id,
-      label: reward.label,
-      cost: reward.cost,
-      createdAt: Date.now()
-    })
-    state.pointsWallet.updatedAt = Date.now()
-    saveState()
-    renderPointsWallet()
-    showToast('已兑换：' + reward.label)
-  }
-
-  function setPointsView(view) {
-    activePointsView = view === 'policy' ? 'policy' : 'shop'
-    document.querySelectorAll('[data-points-view-tab]').forEach(function (button) {
-      button.classList.toggle('is-active', button.getAttribute('data-points-view-tab') === activePointsView)
-    })
-    document.querySelectorAll('[data-points-view-pane]').forEach(function (pane) {
-      pane.hidden = pane.getAttribute('data-points-view-pane') !== activePointsView
-    })
-    if (activeWorkspace === 'points' && workspaceTitle) {
-      workspaceTitle.innerHTML = activePointsView === 'policy'
-        ? '<i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>积分章程'
-        : '<i class="fa-solid fa-gift" aria-hidden="true"></i>积分商城'
-    }
-    if (activeWorkspace === 'points' && workspaceSummary) {
-      workspaceSummary.textContent = activePointsView === 'policy'
-        ? '2026-08-24 起试行 · 有奖有扣 · 最低 0 分'
-        : '把持续行动兑换成真正喜欢的生活奖励'
-    }
-  }
-
   function renderWorkspaceEditors() {
     if (!workspaceDrawer) return
     normalizeWorkspaceState(state)
@@ -11152,44 +11079,15 @@ html.daily-standalone .focus-column {
       var section = state.schedule.sections.find(function (entry) { return entry.id === id })
       if (document.activeElement !== field) field.value = section ? section.content : ''
     })
-    document.querySelectorAll('[data-policy-field]').forEach(function (field) {
-      var key = field.getAttribute('data-policy-field')
-      if (document.activeElement !== field) field.value = state.pointsPolicy[key] || ''
-    })
-    document.querySelectorAll('[data-workspace-pane]').forEach(function (pane) {
-      pane.hidden = pane.getAttribute('data-workspace-pane') !== activeWorkspace
-    })
-    setPointsView(activePointsView)
-    renderPointsWallet()
-    if (scheduleSaveStatus) scheduleSaveStatus.textContent = '已自动保存'
-    if (policySaveStatus) policySaveStatus.textContent = '已自动保存'
   }
 
-  function showWorkspaceSaveStatus(element) {
-    if (!element) return
-    element.textContent = '正在保存…'
-    setTimeout(function () {
-      element.textContent = '已自动保存'
-    }, 650)
-  }
-
-  function openWorkspace(mode, pointsView) {
+  function openWorkspace() {
     if (!workspaceDrawer) return
-    activeWorkspace = mode === 'points' ? 'points' : 'schedule'
-    if (activeWorkspace === 'points') activePointsView = pointsView === 'policy' ? 'policy' : 'shop'
+    activeWorkspace = 'schedule'
     closeUtility()
     workspaceDrawer.hidden = false
-    workspaceDrawer.classList.toggle('is-points', activeWorkspace === 'points')
-    if (workspaceTitle) {
-      workspaceTitle.innerHTML = activeWorkspace === 'points'
-        ? '<i class="fa-solid fa-gem" aria-hidden="true"></i>积分中心'
-        : '<i class="fa-solid fa-calendar-days" aria-hidden="true"></i>日程安排'
-    }
-    if (workspaceSummary) {
-      workspaceSummary.textContent = activeWorkspace === 'points'
-        ? '积分商城与积分章程'
-        : '日常节奏、学习分块与晚间复盘'
-    }
+    if (workspaceTitle) workspaceTitle.innerHTML = '<i class="fa-solid fa-calendar-days" aria-hidden="true"></i>日程安排'
+    if (workspaceSummary) workspaceSummary.textContent = '日常节奏、学习分块与晚间复盘'
     document.querySelectorAll('[data-workspace-open]').forEach(function (button) {
       button.classList.toggle('is-active', button.getAttribute('data-workspace-open') === activeWorkspace)
     })
@@ -11201,7 +11099,6 @@ html.daily-standalone .focus-column {
     activeWorkspace = null
     if (workspaceDrawer) {
       workspaceDrawer.hidden = true
-      workspaceDrawer.classList.remove('is-points')
     }
     document.querySelectorAll('[data-workspace-open]').forEach(function (button) {
       button.classList.remove('is-active')
@@ -11411,7 +11308,9 @@ html.daily-standalone .focus-column {
       state.trash.splice(index, 1)
     } else if (item.source === 'day' && item.dayKey) {
       state.trash.splice(index, 1)
-      ensureDay(item.dayKey).tasks.push({
+      var restoredDay = ensureDay(item.dayKey)
+      var existingTask = item.taskData && restoredDay.tasks.find(function (task) { return task.id === item.taskData.id })
+      var restoredTask = existingTask ? JSON.parse(JSON.stringify(existingTask)) : item.taskData ? JSON.parse(JSON.stringify(item.taskData)) : {
         id: uid(),
         text: item.text,
         priority: normalizePriority(item.priority),
@@ -11419,7 +11318,11 @@ html.daily-standalone .focus-column {
         done: false,
         createdAt: Date.now(),
         completedAt: null
-      })
+      }
+      delete restoredTask.deletedAt
+      var previousIndex = restoredDay.tasks.findIndex(function (task) { return task.id === restoredTask.id })
+      if (previousIndex >= 0) restoredDay.tasks[previousIndex] = restoredTask
+      else restoredDay.tasks.push(restoredTask)
     } else {
       state.trash.splice(index, 1)
       normalizePlanState(state)
@@ -12728,11 +12631,146 @@ html.daily-standalone .focus-column {
     showToast('已移入垃圾桶')
   }
 
+  function taskFromTemplate(day, templateId) {
+    return day.tasks.find(function (task) {
+      return task.sourceTemplateId === templateId || task.sourcePlanId === templateId
+    }) || null
+  }
+
+  function enqueueTemplateTask(item, dateKey) {
+    var day = ensureDay(dateKey)
+    var existing = taskFromTemplate(day, item.id)
+    if (existing) return { task: existing, added: false }
+    var task = {
+      id: 'daily-template-' + dateKey + '-' + encodeURIComponent(item.id),
+      text: item.text,
+      priority: normalizePriority(item.priority),
+      note: item.id === 'routine-plan-sleep' ? '在“日常记录”中填写睡眠结构，完成后勾选这项任务。' : (item.note || ''),
+      sourcePlanId: item.id,
+      sourceTemplateId: item.id,
+      sourceTemplateGroup: item.groupId || '',
+      sourcePlanFixed: Boolean(item.fixed),
+      dueDate: dateKey,
+      focusTag: item.id === 'routine-plan-sleep' ? '' : (item.focusTag || ''),
+      targetMinutes: Math.max(1, Number(item.targetMinutes) || 60),
+      focusSeconds: 0,
+      focusByProject: {},
+      focusRecords: [],
+      done: false,
+      createdAt: Date.now(),
+      completedAt: null
+    }
+    day.tasks.push(task)
+    return { task: task, added: true }
+  }
+
+  function dailyTaskTemplates() {
+    return state.inbox.filter(function (item) {
+      return item.groupId === 'plan-habit' && !item.deletedAt
+    }).slice().sort(comparePlanOrder)
+  }
+
+  function renderDailyTemplates() {
+    if (!dailyTemplatesList) return
+    dailyTemplatesList.textContent = ''
+    dailyTemplatesDate.textContent = '加入 ' + selectedDate + (selectedDate === todayKey() ? ' · 今天' : '')
+    var day = ensureDay(selectedDate)
+    dailyTaskTemplates().forEach(function (item) {
+      var existing = taskFromTemplate(day, item.id)
+      var button = document.createElement('button')
+      button.type = 'button'
+      button.className = 'daily-template-card' + (existing ? ' is-added' : '')
+      var title = document.createElement('strong')
+      title.textContent = item.text
+      var duration = document.createElement('small')
+      duration.textContent = '目标 ' + focusDurationLabel(Math.max(1, Number(item.targetMinutes) || 60) * 60)
+      var status = document.createElement('span')
+      status.className = 'daily-template-status'
+      status.textContent = existing ? (existing.deletedAt ? '在垃圾桶' : existing.carriedToDate ? '已顺延' : existing.done ? '✓ 已完成' : '✓ 已加入') : '+ 添加'
+      button.setAttribute('aria-label', item.text + '，' + status.textContent)
+      button.appendChild(title)
+      button.appendChild(duration)
+      button.appendChild(status)
+      button.addEventListener('click', function () { addDailyTemplate(item.id) })
+      dailyTemplatesList.appendChild(button)
+    })
+    applyAccessMode()
+  }
+
+  function openDailyTemplates() {
+    if (!dailyTemplatesModal) return
+    closeWorkspace()
+    closeUtility()
+    renderDailyTemplates()
+    dailyTemplatesModal.hidden = false
+    applyAccessMode()
+  }
+
+  function closeDailyTemplates() {
+    if (dailyTemplatesModal) dailyTemplatesModal.hidden = true
+  }
+
+  function addDailyTemplate(id) {
+    if (!canEdit()) return
+    var item = state.inbox.find(function (entry) { return entry.id === id })
+    if (!item) return
+    var result = enqueueTemplateTask(item, selectedDate)
+    if (result.task.deletedAt) {
+      showToast('这项任务已移入垃圾桶，可先恢复任务')
+      return
+    }
+    if (result.task.carriedToDate) {
+      selectedDate = result.task.carriedToDate
+      revealAddedTask()
+      closeDailyTemplates()
+      renderAll()
+      showToast('已打开顺延后的任务日期')
+      return
+    }
+    if (result.added) saveState()
+    revealAddedTask()
+    if (!result.task.done && !timer.running && !timer.sessionId && selectedDailyTaskId !== result.task.id && result.task.focusTag) selectDailyTask(result.task.id)
+    renderAll()
+    renderDailyTemplates()
+    showToast(result.added ? '已加入 ' + selectedDate + ' 的任务' : (result.task.done ? '这项任务已完成' : '这项任务已在当天列表中'))
+  }
+
+  function createDailyTemplate(event) {
+    event.preventDefault()
+    if (!canEdit()) return
+    var titleInput = dailyTemplateForm.querySelector('[data-daily-template-title]')
+    var minutesInput = dailyTemplateForm.querySelector('[data-daily-template-minutes]')
+    var text = titleInput.value.trim().slice(0, 160)
+    if (!text) return
+    var item = {
+      id: uid(), text: text, priority: 'green', groupId: 'plan-habit', subgroupId: '', sectionId: '',
+      note: '', focusTag: '🌱 日常', fixed: true,
+      targetMinutes: Math.min(1440, Math.max(1, Number(minutesInput.value) || 30)),
+      sortOrder: nextPlanSortOrder(dailyTaskTemplates()), createdAt: Date.now()
+    }
+    state.inbox.push(item)
+    enqueueTemplateTask(item, selectedDate)
+    revealAddedTask()
+    saveState()
+    dailyTemplateForm.reset()
+    renderAll()
+    renderDailyTemplates()
+    showToast('已保存为日常任务，并加入 ' + selectedDate)
+  }
+
   function scheduleInbox(id, forceAdd) {
     var item = state.inbox.find(function (entry) { return entry.id === id })
     if (!item) return
     var today = ensureDay(todayKey())
-    var existingIndex = today.tasks.findIndex(function (task) { return task.sourcePlanId === item.id })
+    var existingTask = taskFromTemplate(today, item.id)
+    var existingIndex = existingTask ? today.tasks.indexOf(existingTask) : -1
+    if (existingTask && item.fixed) {
+      selectedDate = todayKey()
+      revealAddedTask()
+      renderAll()
+      showToast(existingTask.done ? '这个任务今天已完成' : '这个任务已经在今日任务中')
+      return
+    }
     if (existingIndex >= 0 && !item.fixed) {
       if (forceAdd) {
         showToast('这个任务已经在今日任务中')
@@ -12746,27 +12784,49 @@ html.daily-standalone .focus-column {
       showToast('已移出今日任务')
       return
     }
-    today.tasks.push({
-      id: uid(),
-      text: item.text,
-      priority: normalizePriority(item.priority),
-      note: item.note || '',
-      sourcePlanId: item.id,
-      sourcePlanFixed: Boolean(item.fixed),
-      dueDate: todayKey(),
-      focusTag: item.focusTag || '',
-      targetMinutes: Math.max(1, Number(item.targetMinutes) || 60),
-      focusSeconds: 0,
-      focusByProject: {},
-      focusRecords: [],
-      done: false,
-      createdAt: Date.now(),
-      completedAt: null
-    })
+    enqueueTemplateTask(item, todayKey())
     selectedDate = todayKey()
+    revealAddedTask()
     saveState()
     renderAll()
     showToast(item.fixed ? '固定任务已复制到今天，目录原任务已保留' : '已加入今日任务')
+  }
+
+  function normalizeTaskTargetMinutes(value) {
+    var minutes = Number(value)
+    return Number.isFinite(minutes) && minutes > 0 ? Math.min(1440, Math.max(1, Math.round(minutes))) : 60
+  }
+
+  function filterDailyTasks(tasks, filter, query) {
+    var words = String(query || '').trim().toLocaleLowerCase().split(/\s+/).filter(Boolean)
+    return (Array.isArray(tasks) ? tasks : []).filter(function (task) {
+      if (!task || task.deletedAt) return false
+      if (filter === 'pending' && task.done) return false
+      if (filter === 'done' && !task.done) return false
+      var searchable = [task.text, task.note, task.focusTag].join(' ').toLocaleLowerCase()
+      return words.every(function (word) { return searchable.indexOf(word) >= 0 })
+    }).sort(function (a, b) { return Number(Boolean(a.done)) - Number(Boolean(b.done)) })
+  }
+
+  function revealAddedTask() {
+    taskViewState.filter = 'all'
+    taskViewState.query = ''
+    if (taskSearchInput) taskSearchInput.value = ''
+  }
+
+  function submitQuickTask(event) {
+    event.preventDefault()
+    if (!taskQuickInput || !canEdit()) return
+    var title = taskQuickInput.value.trim().slice(0, 160)
+    if (!title) {
+      taskQuickInput.focus()
+      return
+    }
+    revealAddedTask()
+    addToday(title, { dueDate: selectedDate, priority: 'yellow', targetMinutes: 60 })
+    taskQuickInput.value = ''
+    taskQuickInput.focus()
+    showToast('已添加任务')
   }
 
   function addToday(text, details) {
@@ -12781,7 +12841,7 @@ html.daily-standalone .focus-column {
       focusTag: next.focusTag || '',
       sourcePlanId: next.sourcePlanId || '',
       sourcePlanFixed: Boolean(next.sourcePlanFixed),
-      targetMinutes: Math.max(1, Number(next.targetMinutes) || 60),
+      targetMinutes: normalizeTaskTargetMinutes(next.targetMinutes),
       focusSeconds: 0,
       focusByProject: {},
       focusRecords: [],
@@ -12865,7 +12925,7 @@ html.daily-standalone .focus-column {
       note: (details.note || '').slice(0, 6000),
       focusTag: details.focusTag || '',
       fixed: true,
-      targetMinutes: 60,
+      targetMinutes: normalizeTaskTargetMinutes(details.targetMinutes),
       sortOrder: firstPlanSortOrder(state.inbox.filter(function (entry) {
         return entry.groupId === group.id && entry.subgroupId === (project ? project.id : '') && entry.sectionId === (section ? section.id : '')
       })),
@@ -12878,8 +12938,10 @@ html.daily-standalone .focus-column {
   function openTaskCreate() {
     if (!taskCreateModal || !canEdit()) return
     taskCreateForm.reset()
+    if (taskQuickInput) taskCreateTitle.value = taskQuickInput.value.trim().slice(0, 160)
     taskCreateDate.value = selectedDate
     taskCreatePriority.value = 'yellow'
+    if (taskCreateTarget) taskCreateTarget.value = '60'
     if (taskCreateFixed) taskCreateFixed.checked = false
     populateTaskCreatePlanLocations()
     if (taskCreatePlanLocation) taskCreatePlanLocation.disabled = true
@@ -12915,45 +12977,32 @@ html.daily-standalone .focus-column {
       priority: taskCreatePriority.value,
       focusTag: taskCreateCategory.value,
       note: taskCreateNote.value,
-      targetMinutes: 60
+      targetMinutes: normalizeTaskTargetMinutes(taskCreateTarget && taskCreateTarget.value)
     }
     if (taskCreateFixed && taskCreateFixed.checked) {
       var planItem = createFixedPlanTask(title, details)
       details.sourcePlanId = planItem.id
       details.sourcePlanFixed = true
     }
+    revealAddedTask()
     addToday(title, details)
+    if (taskQuickInput && taskQuickInput.value.trim() === title) taskQuickInput.value = ''
     closeTaskCreate()
     showToast(details.sourcePlanFixed
-      ? '已添加到今日，并保存为可复用的固定 1h 任务'
-      : '已添加 1h 任务到四象限')
+      ? '已添加任务，并保存为可复用的固定任务'
+      : '已添加任务到四象限')
   }
 
   function editTask(id) {
-    var task = ensureDay(selectedDate).tasks.find(function (entry) { return entry.id === id })
-    if (!task) return
-    var next = askEdit(task.text)
-    if (!next) return
-    task.text = next
-    saveState()
-    renderDay()
+    if (!canEdit()) return
+    openTaskDetail(id)
+    if (taskDetailTitle) taskDetailTitle.focus()
   }
 
   function editTaskNote(id) {
-    var task = ensureDay(selectedDate).tasks.find(function (entry) { return entry.id === id })
-    if (!task || !canEdit()) return
-    if (task.sourcePlanId) {
-      var planItem = state.inbox.find(function (item) { return item.id === task.sourcePlanId })
-      if (planItem) {
-        openPlanTaskActionModal(planItem.id, 'note')
-        return
-      }
-    }
-    var next = window.prompt('任务备注', task.note || '')
-    if (next === null) return
-    task.note = next.slice(0, 6000)
-    saveState()
-    renderDay()
+    if (!canEdit()) return
+    openTaskDetail(id)
+    if (taskDetailNote) taskDetailNote.focus()
   }
 
   function cycleTaskPriority(id) {
@@ -12967,39 +13016,56 @@ html.daily-standalone .focus-column {
   function toggleTask(id, checked) {
     var task = ensureDay(selectedDate).tasks.find(function (entry) { return entry.id === id })
     if (!task) return
+    if (task.carriedToDate) {
+      showToast('该任务已顺延，请在 ' + task.carriedToDate + ' 处理')
+      renderDay()
+      return
+    }
     task.done = checked
     task.completedAt = checked ? Date.now() : null
     syncPlanCompletionRecord(task, selectedDate)
     saveState()
     renderDay()
     renderCalendar()
-    renderPointsWallet()
   }
 
   function deleteTask(id) {
     var day = ensureDay(selectedDate)
     var index = day.tasks.findIndex(function (task) { return task.id === id })
     if (index < 0) return
-    var task = day.tasks.splice(index, 1)[0]
-    if (!task.done) {
-      sendToTrash({
+    if (day.tasks[index].carriedToDate) {
+      showToast('该任务已顺延，请在 ' + day.tasks[index].carriedToDate + ' 删除')
+      return
+    }
+    if (timer.taskId === id && timer.dayKey === selectedDate && (timer.running || timer.sessionId || timer.accumulatedSeconds > 0)) {
+      showToast('请先结束或重置当前计时，再删除任务')
+      return
+    }
+    var task = day.tasks[index]
+    var snapshot = JSON.parse(JSON.stringify(task))
+    task.deletedAt = Date.now()
+    sendToTrash({
         text: task.text,
         priority: task.priority,
         source: 'day',
         dayKey: selectedDate,
         note: task.note,
+        taskData: snapshot,
         createdAt: task.createdAt
       })
-    }
     saveState()
     renderAll()
-    showToast(task.done ? '已完成任务已清理' : '未完成任务已移入垃圾桶')
+    showToast('任务已移入垃圾桶，时长记录可一起恢复')
   }
 
   function returnToInbox(id) {
     var day = ensureDay(selectedDate)
     var index = day.tasks.findIndex(function (task) { return task.id === id })
     if (index < 0) return
+    if (day.tasks[index].carriedToDate) {
+      showToast('该任务已顺延，请在 ' + day.tasks[index].carriedToDate + ' 调整')
+      return
+    }
     var task = day.tasks.splice(index, 1)[0]
     if (!task.sourcePlanId || !state.inbox.some(function (item) { return item.id === task.sourcePlanId })) {
       state.inbox.unshift({
@@ -13408,8 +13474,12 @@ html.daily-standalone .focus-column {
     if (!canEdit()) return
     var task = findDailyTask(selectedDate, id)
     if (!task || task.done) return
-    if ((timer.running || timer.accumulatedSeconds > 0) && timer.taskId && timer.taskId !== id) {
-      showToast('请先结束或重置当前计时，再切换任务')
+    if (task.carriedToDate) {
+      showToast('该任务已顺延，请在 ' + task.carriedToDate + ' 选择')
+      return
+    }
+    if (sharedTimerState.command || timer.running || timer.accumulatedSeconds > 0 || timer.sessionId) {
+      if (timer.taskId !== id || timer.dayKey !== selectedDate) showToast('请先结束或重置当前计时，再切换任务')
       return
     }
     selectedDailyTaskId = selectedDailyTaskId === id ? null : id
@@ -13431,6 +13501,57 @@ html.daily-standalone .focus-column {
     renderTimer()
   }
 
+  function startDailyTaskFocus(id) {
+    if (!canEdit()) return Promise.resolve(false)
+    var task = findDailyTask(selectedDate, id)
+    if (!task || task.done || task.deletedAt) return Promise.resolve(false)
+    if (task.sourcePlanId === 'routine-plan-sleep') {
+      showToast('请在“日常记录”中调整睡眠结构，睡眠不计入学习专注')
+      return Promise.resolve(false)
+    }
+    if (task.carriedToDate) {
+      showToast('该任务已顺延，请在 ' + task.carriedToDate + ' 开始专注')
+      return Promise.resolve(false)
+    }
+    if (sharedTimerState.command) {
+      showToast('正在同步计时，请稍后再试')
+      return Promise.resolve(false)
+    }
+    var activeSession = timer.running || timer.accumulatedSeconds > 0 || timer.sessionId
+    var sameTask = timer.taskId === id && timer.dayKey === selectedDate
+    if (activeSession && !sameTask) {
+      showToast('请先结束或重置当前计时，再切换任务')
+      return Promise.resolve(false)
+    }
+    if (activeSession && timer.mode !== 'focus') {
+      showToast('请先结束当前休息，再开始任务专注')
+      return Promise.resolve(false)
+    }
+    if (timer.running) {
+      showToast('这个任务正在专注中')
+      return Promise.resolve(false)
+    }
+    if (timer.mode !== 'focus') {
+      return switchMode('focus', false).then(function (changed) {
+        return changed ? startDailyTaskFocus(id) : false
+      })
+    }
+    if (!sameTask) selectDailyTask(id)
+    if (timer.taskId !== id || timer.dayKey !== selectedDate) return Promise.resolve(false)
+    var focusPanel = document.querySelector('#daily-focus')
+    var visibleFocusPanel = focusPanel && !focusPanel.closest('[hidden]')
+    if (visibleFocusPanel) focusPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    if (!timer.tagConfirmed && !timer.sessionId) {
+      if (!visibleFocusPanel) {
+        openTaskDetail(id)
+        if (taskDetailCategory) taskDetailCategory.focus()
+      }
+      showToast(visibleFocusPanel ? '任务已选中，选择学习方向后即可开始专注' : '先在任务详情选择学习标签，再从菜单开始专注')
+      return Promise.resolve(false)
+    }
+    return startTimer()
+  }
+
   function selectRoutineTask(id) {
     if (!canEdit()) return
     var routine = routineById(id)
@@ -13438,8 +13559,8 @@ html.daily-standalone .focus-column {
     var currentlySelected = selectedRoutineId === id ||
       (timer.taskId === routineTaskId(id) && timer.dayKey === selectedDate)
     var nextId = currentlySelected ? null : id
-    if ((timer.running || timer.accumulatedSeconds > 0) && timer.taskId && timer.taskId !== routineTaskId(id)) {
-      showToast('请先结束或重置当前计时，再切换任务')
+    if (sharedTimerState.command || timer.running || timer.accumulatedSeconds > 0 || timer.sessionId) {
+      if (timer.taskId !== routineTaskId(id) || timer.dayKey !== selectedDate) showToast('请先结束或重置当前计时，再切换任务')
       return
     }
     selectedRoutineId = nextId
@@ -13498,7 +13619,6 @@ html.daily-standalone .focus-column {
     syncPlanCompletionRecord(task, selectedDate)
     saveState()
     renderDay()
-    renderPointsWallet()
     renderWeeklySummary()
     showToast('已按实际情况改为 ' + focusDurationLabel(nextSeconds))
   }
@@ -13513,7 +13633,9 @@ html.daily-standalone .focus-column {
     if (!task || !taskDetailModal) return
     selectedTaskDetailId = id
     taskDetailDone.checked = Boolean(task.done)
-    taskDetailDate.value = task.dueDate || selectedDate
+    taskDetailDone.disabled = Boolean(task.carriedToDate)
+    taskDetailDate.disabled = Boolean(task.carriedToDate)
+    taskDetailDate.value = task.carriedToDate ? selectedDate : (task.dueDate || selectedDate)
     taskDetailTitle.value = task.text
     taskDetailNote.value = task.note || ''
     taskDetailCreated.textContent = new Date(Number(task.createdAt) || Date.now()).toLocaleString('zh-CN', { hour12: false })
@@ -13546,6 +13668,11 @@ html.daily-standalone .focus-column {
   function updateTaskDetail() {
     var task = findDailyTask(selectedDate, selectedTaskDetailId)
     if (!task || !canEdit()) return
+    if (task.carriedToDate && (Boolean(taskDetailDone.checked) !== Boolean(task.done) ||
+        (taskDetailDate.value || selectedDate) !== selectedDate)) {
+      showToast('该任务已顺延，请在 ' + task.carriedToDate + ' 调整完成状态或日期')
+      return
+    }
     var previousTag = normalizeProjectName(task.focusTag || timer.project)
     var nextTag = normalizeProjectName(taskDetailCategory.value)
     task.done = Boolean(taskDetailDone.checked)
@@ -13559,7 +13686,7 @@ html.daily-standalone .focus-column {
       assignTaskFocusDuration(currentDay, task, nextTag, assignedSeconds)
       task.focusRecords.forEach(function (record) { record.project = nextTag })
     }
-    timer.project = task.focusTag
+    if (!timer.running && !timer.sessionId && timer.accumulatedSeconds <= 0 && timer.taskId === task.id) timer.project = task.focusTag
     var source = task.sourcePlanId && state.inbox.find(function (item) { return item.id === task.sourcePlanId })
     if (source) {
       var nextGroupId = taskDetailFolder.value
@@ -13583,8 +13710,10 @@ html.daily-standalone .focus-column {
 
   function renderDay() {
     var day = ensureDay(selectedDate)
-    var done = day.tasks.filter(function (task) { return task.done }).length
-    var total = day.tasks.length
+    var allTasks = day.tasks.filter(function (task) { return !task.deletedAt })
+    var visibleTasks = filterDailyTasks(allTasks, taskViewState.filter, taskViewState.query)
+    var done = allTasks.filter(function (task) { return task.done }).length
+    var total = allTasks.length
     var percent = total ? Math.round(done / total * 100) : 0
     var isToday = selectedDate === todayKey()
     var currentPage = document.body.getAttribute('data-daily-page') || 'home'
@@ -13596,9 +13725,17 @@ html.daily-standalone .focus-column {
     progressPercent.textContent = percent + '%'
     progressFill.style.width = percent + '%'
     taskCount.textContent = String(total)
+    if (taskViewCount) taskViewCount.textContent = visibleTasks.length === total ? '' : '显示 ' + visibleTasks.length + ' / ' + total + ' 项'
+    taskFilterButtons.forEach(function (button) {
+      var filter = button.getAttribute('data-task-filter')
+      var count = filter === 'done' ? done : filter === 'pending' ? total - done : total
+      button.textContent = (filter === 'done' ? '已完成' : filter === 'pending' ? '待办' : '全部') + ' ' + count
+      button.classList.toggle('is-active', taskViewState.filter === filter)
+      button.setAttribute('aria-pressed', String(taskViewState.filter === filter))
+    })
+    if (taskQuickInput) taskQuickInput.placeholder = isToday ? '添加今日任务，回车保存' : '添加这一天的任务，回车保存'
     if (noteInput) noteInput.value = day.note
     dailySummaryInput.value = day.summary
-    carryButton.disabled = !ensureDay(shiftDate(selectedDate, -1)).tasks.some(function (task) { return !task.done })
     clearDoneButton.disabled = done === 0
     focusSessions.textContent = String(Number(day.focusSessions) || 0)
     focusMinutes.textContent = String(Math.round((Number(day.focusSeconds) || 0) / 60))
@@ -13612,7 +13749,7 @@ html.daily-standalone .focus-column {
       list.textContent = ''
     })
 
-    day.tasks.forEach(function (task) {
+    visibleTasks.forEach(function (task) {
       task.priority = normalizePriority(task.priority)
       var row = document.createElement('li')
       var selected = selectedDailyTaskId === task.id || (timer.taskId === task.id && timer.dayKey === selectedDate)
@@ -13638,18 +13775,37 @@ html.daily-standalone .focus-column {
       checkbox.addEventListener('change', function () {
         toggleTask(task.id, checkbox.checked)
       })
+      var checkboxHit = document.createElement('label')
+      checkboxHit.className = 'task-checkbox-hit'
+      checkboxHit.addEventListener('click', function (event) { event.stopPropagation() })
+      checkboxHit.appendChild(checkbox)
 
       var priority = createPriorityButton(task.priority, function (event) {
         event.stopPropagation()
         cycleTaskPriority(task.id)
       })
 
-      var text = document.createElement('div')
+      var text = document.createElement('button')
+      text.type = 'button'
       text.className = 'task-text task-detail-trigger task-copy'
       var title = document.createElement('span')
       title.textContent = task.text
       text.appendChild(title)
-      text.title = selected ? '点击取消选择' : '点击选择并绑定番茄钟'
+      if (task.carriedToDate || task.carriedFromDate) {
+        var carryNote = document.createElement('small')
+        carryNote.className = 'task-carry-note'
+        carryNote.textContent = task.carriedToCancelled ? '已取消顺延'
+          : task.carriedToDate
+          ? '已顺延至 ' + task.carriedToDate
+          : '从 ' + task.carriedFromDate + ' 顺延'
+        text.appendChild(carryNote)
+      }
+      text.title = '查看和编辑任务详情'
+      text.setAttribute('aria-label', '查看任务详情：' + task.text)
+      text.addEventListener('click', function (event) {
+        event.stopPropagation()
+        openTaskDetail(task.id)
+      })
       if (task.note) {
         var taskNoteIndicator = document.createElement('i')
         taskNoteIndicator.className = 'fa-solid fa-note-sticky plan-task-note-indicator'
@@ -13704,6 +13860,7 @@ html.daily-standalone .focus-column {
       })
       actionToggle.setAttribute('aria-haspopup', 'menu')
       actionToggle.setAttribute('aria-expanded', 'false')
+      if (!task.done && !task.carriedToDate && task.sourcePlanId !== 'routine-plan-sleep') appendTaskAction('doki:play', '开始专注', false, function () { startDailyTaskFocus(task.id) })
       appendTaskAction('doki:bookmark', '备注', false, function () { editTaskNote(task.id) })
       appendTaskAction('doki:folder_library', '放回计划栏', false, function () { returnToInbox(task.id) })
       appendTaskAction('doki:edit', '编辑任务', false, function () { editTask(task.id) })
@@ -13711,8 +13868,8 @@ html.daily-standalone .focus-column {
       actions.append(actionToggle, actionMenu)
 
       row.addEventListener('click', function (event) {
-        if (event.target.closest('.task-time-button, .task-actions, .task-checkbox, .priority-button, .task-select-button')) return
-        selectDailyTask(task.id)
+        if (event.target.closest('.task-time-button, .task-actions, .task-checkbox-hit, .priority-button, .task-select-button, .task-detail-trigger')) return
+        openTaskDetail(task.id)
       })
 
       row.appendChild(selectButton)
@@ -13720,7 +13877,7 @@ html.daily-standalone .focus-column {
       row.appendChild(text)
       row.appendChild(timing)
       row.appendChild(actions)
-      row.appendChild(checkbox)
+      row.appendChild(checkboxHit)
       ;(quadrantLists[task.priority] || quadrantLists.pink).appendChild(row)
     })
 
@@ -13728,55 +13885,42 @@ html.daily-standalone .focus-column {
       if (quadrantLists[priority].children.length) return
       var empty = document.createElement('li')
       empty.className = 'quadrant-empty'
-      empty.textContent = priority === 'green' ? '日常之外，暂时没有其他任务' : '暂无任务'
+      empty.textContent = taskViewState.query || taskViewState.filter !== 'all'
+        ? '没有符合筛选的任务'
+        : (priority === 'green' ? '点击右上角“日常任务”添加常用事项' : '暂无任务')
       quadrantLists[priority].appendChild(empty)
     })
-  }
-
-  function carryPrevious() {
-    var previousKey = shiftDate(selectedDate, -1)
-    var unfinished = ensureDay(previousKey).tasks.filter(function (task) { return !task.done })
-    var current = ensureDay(selectedDate)
-    var existing = new Set(current.tasks.map(function (task) { return task.text.trim().toLowerCase() }))
-    var added = 0
-    unfinished.forEach(function (task) {
-      var normalized = task.text.trim().toLowerCase()
-      if (existing.has(normalized)) return
-      current.tasks.push({
-        id: uid(),
-        text: task.text,
-        priority: normalizePriority(task.priority),
-        note: task.note || '',
-        sourcePlanId: task.sourcePlanId || null,
-        dueDate: selectedDate,
-        focusTag: task.focusTag || '',
-        focusSeconds: 0,
-        focusByProject: {},
-        focusRecords: [],
-        done: false,
-        createdAt: Date.now(),
-        completedAt: null
-      })
-      existing.add(normalized)
-      added += 1
-    })
-    saveState()
-    renderDay()
-    renderCalendar()
-    showToast(added ? '已结转 ' + added + ' 项任务' : '没有需要结转的新任务')
+    applyAccessMode()
   }
 
   function clearDone() {
-    var day = ensureDay(selectedDate)
-    var count = day.tasks.filter(function (task) { return task.done }).length
-    day.tasks.filter(function (task) { return task.done }).forEach(function (task) {
-      syncPlanCompletionRecord(task, selectedDate)
-    })
-    day.tasks = day.tasks.filter(function (task) { return !task.done })
-    saveState()
+    taskViewState.filter = 'pending'
     renderDay()
-    renderCalendar()
-    showToast('已清理 ' + count + ' 项已完成任务')
+    showToast('已隐藏完成任务，可在“已完成”中查看')
+  }
+
+  function refreshCurrentDate() {
+    var current = todayKey()
+    if (current === observedToday) return false
+    var previous = observedToday
+    observedToday = current
+    if (selectedDate === previous) {
+      selectedDate = current
+      calendarAnchor = current
+      selectedDailyTaskId = null
+      selectedRoutineId = null
+      selectedTaskDetailId = null
+      if (taskDetailModal) taskDetailModal.hidden = true
+      if (timer && !timer.running && !timer.sessionId && !timer.accumulatedSeconds) {
+        timer.dayKey = current
+        timer.taskId = ''
+        timer.taskText = ''
+        timer.tagConfirmed = false
+        saveTimer()
+      }
+    }
+    if (weeklyAnchor === startOfWeek(previous)) weeklyAnchor = startOfWeek(current)
+    return true
   }
 
   function selectDate(key) {
@@ -13870,11 +14014,12 @@ html.daily-standalone .focus-column {
       button.type = 'button'
       button.className = 'focus-tag' + (selected ? ' is-active' : '')
       button.textContent = tag.name
-      button.disabled = timer.running
+      button.disabled = !authState.authenticated || timer.running || Boolean(timer.sessionId) || Boolean(sharedTimerState.command)
       button.setAttribute('role', 'radio')
       button.setAttribute('aria-checked', selected ? 'true' : 'false')
       button.setAttribute('aria-label', '学习方向：' + tag.label)
       button.addEventListener('click', function () {
+        if (timer.running || timer.sessionId || sharedTimerState.command || !canEdit()) return
         timer.project = tag.name
         timer.tagConfirmed = true
         var selectedTask = findDailyTask(selectedDate, selectedDailyTaskId)
@@ -14120,7 +14265,6 @@ html.daily-standalone .focus-column {
     saveState()
     renderRoutines(day)
     renderWeeklySummary()
-    renderPointsWallet()
     closeDurationEdit()
     showToast(routine.emoji + ' ' + routine.label + '已改为 ' + focusDurationLabel(day.routineSeconds[routine.id]))
   }
@@ -14174,7 +14318,6 @@ html.daily-standalone .focus-column {
     saveState()
     renderRoutines(day)
     renderWeeklySummary()
-    renderPointsWallet()
     closeSleepDetails()
     showToast('🛌 睡眠结构已保存，共 ' + focusDurationLabel(day.routineSeconds.sleep))
   }
@@ -14201,7 +14344,6 @@ html.daily-standalone .focus-column {
     saveRoutineTimer()
     stopRoutineTicker()
     renderRoutines(ensureDay(selectedDate))
-    renderPointsWallet()
     if (!silent && finished) showToast(finished.emoji + ' ' + finished.label + '本次记录 ' + formatRoutineTime(elapsed))
   }
 
@@ -14223,7 +14365,6 @@ html.daily-standalone .focus-column {
     delete day.routineCompleted[id]
     saveState()
     renderRoutines(day)
-    renderPointsWallet()
     showToast(routine.emoji + ' ' + routine.label + '今日计时已重置')
   }
 
@@ -14243,7 +14384,6 @@ html.daily-standalone .focus-column {
     saveState()
     renderDay()
     renderTimer()
-    renderPointsWallet()
     showToast(routine.emoji + ' ' + routine.label + (complete ? '已完成今日打卡' : '已取消完成状态'))
   }
 
@@ -14272,18 +14412,24 @@ html.daily-standalone .focus-column {
 
   function syncTimerRemaining() {
     if (!timer.running || !timer.endAt) return false
-    timer.remaining = Math.max(0, Math.ceil((timer.endAt - Date.now()) / 1000))
-    if (timer.remaining <= 0) {
-      completePhase(true)
-      return true
+    timer.remaining = Math.max(0, Math.ceil((timer.endAt - sharedTimerNow()) / 1000))
+    if (timer.remaining <= 0 && navigator.onLine !== false && authState.authenticated && !sharedTimerState.request &&
+        !sharedTimerState.command && Date.now() - sharedTimerState.lastAttemptAt >= 3000) {
+      // The server settles completed sessions once, including when every device
+      // was asleep. This device only displays the countdown and fetches results.
+      refreshSharedTimer()
     }
     return false
   }
 
   function timerElapsedSeconds() {
     var elapsed = Math.max(0, Number(timer.accumulatedSeconds) || 0)
-    if (timer.running && timer.runStartedAt) {
-      elapsed += Math.max(0, Math.floor((Date.now() - timer.runStartedAt) / 1000))
+    if (timer.running && timer.endAt) {
+      // The deadline includes earlier runs and excludes time spent paused.
+      // It also remains accurate after a reload or a throttled background tab.
+      elapsed = Math.max(elapsed, durationFor(timer.mode) - Math.ceil((timer.endAt - sharedTimerNow()) / 1000))
+    } else if (timer.running && timer.runStartedAt) {
+      elapsed += Math.max(0, Math.floor((sharedTimerNow() - timer.runStartedAt) / 1000))
     }
     return Math.min(durationFor(timer.mode), elapsed)
   }
@@ -14304,14 +14450,25 @@ html.daily-standalone .focus-column {
     timerLabel.textContent = timer.mode === 'focus'
       ? (timer.tagConfirmed ? '专注 · ' + timer.project : '等待选择学习方向')
       : '休息阶段 · 10 分钟'
-    var timerToggleText = timer.running ? '暂停' : (timer.accumulatedSeconds > 0 ? '继续' : '开始')
+    var timerToggleText = timer.running ? '暂停' : (timer.sessionId || timer.accumulatedSeconds > 0 ? '继续' : '开始')
     if (timerToggleLabel) timerToggleLabel.textContent = timerToggleText
     if (timerToggleGlyph) timerToggleGlyph.className = timer.running ? 'fa-solid fa-pause' : 'fa-solid fa-play'
     timerToggle.classList.toggle('is-running', timer.running)
+    timerToggle.disabled = !authState.authenticated || Boolean(sharedTimerState.command)
     timerToggle.title = timerToggleText + '计时'
     timerToggle.setAttribute('aria-label', timerToggle.title)
     timerToggle.classList.toggle('is-break', timer.mode === 'break')
-    if (timerFinish) timerFinish.disabled = !authState.authenticated || (!timer.running && timer.accumulatedSeconds <= 0)
+    if (timerFinish) timerFinish.disabled = !authState.authenticated || Boolean(sharedTimerState.command) || (!timer.running && timer.accumulatedSeconds <= 0)
+    var resetControl = document.querySelector('[data-timer-reset]')
+    if (resetControl) resetControl.disabled = !authState.authenticated || Boolean(sharedTimerState.command)
+    if (timerSyncStatus) {
+      timerSyncStatus.textContent = !authState.authenticated ? '登录后可同步所有设备的计时'
+        : sharedTimerState.command ? '正在同步计时操作…'
+        : navigator.onLine === false || sharedTimerState.error ? '连接中断，联网后自动同步计时'
+        : !sharedTimerState.ready ? '正在同步其他设备的计时…'
+        : timer.running && timer.remaining <= 0 ? '本轮已结束，正在同步学习时长…'
+        : '多设备计时已同步'
+    }
     if (timerTask) {
       var task = timerBoundTask()
       timerTask.textContent = timer.mode === 'focus'
@@ -14333,13 +14490,15 @@ html.daily-standalone .focus-column {
     timerRing.style.setProperty('--timer-color', timer.mode === 'focus' ? 'var(--daily-coral)' : 'var(--daily-green)')
     document.querySelectorAll('[data-mode]').forEach(function (button) {
       button.classList.toggle('is-active', button.getAttribute('data-mode') === timer.mode)
+      button.disabled = !authState.authenticated || Boolean(sharedTimerState.command)
     })
     renderProjectOptions()
     document.title = timer.running ? formatTime(timer.remaining) + ' · ' + (timer.mode === 'focus' ? '专注' : '休息') : '每日计划 | Ruiqy~'
   }
 
   function startTimer() {
-    if (!canEdit()) return
+    if (!canEdit()) return Promise.resolve(false)
+    if (timer.sessionId && !timer.running) return runSharedTimerCommand('resume')
     if (timer.mode === 'focus') {
       var selected = selectedDailyTaskId && findDailyTask(selectedDate, selectedDailyTaskId)
       var selectedRoutine = selectedRoutineId && routineById(selectedRoutineId)
@@ -14351,167 +14510,53 @@ html.daily-standalone .focus-column {
           : (bound && !bound.done ? bound : null))
       if (!task) {
         showToast('请先选择一个未完成任务，再开始专注')
-        return
-      }
-      if (timer.taskId && timer.taskId !== task.id && timer.accumulatedSeconds > 0) {
-        showToast('请先结束或重置当前计时，再切换任务')
-        return
+        return Promise.resolve(false)
       }
       timer.taskId = task.id
       timer.taskText = task.text
       timer.dayKey = selected || selectedRoutine ? selectedDate : timer.dayKey
-      if (task.isRoutine) {
-        timer.project = normalizeProjectName(timer.project || '🌱 日常')
-        selectedRoutineId = task.routineId
-        selectedDailyTaskId = null
-      } else {
-        timer.project = normalizeProjectName(task.focusTag || timer.project)
-        selectedDailyTaskId = task.id
-        selectedRoutineId = null
-      }
+      timer.project = normalizeProjectName(task.isRoutine ? (timer.project || '🌱 日常') : (task.focusTag || timer.project))
       if (!timer.tagConfirmed) {
         showToast('请先选择学习方向标签，再开始专注')
-        return
+        return Promise.resolve(false)
       }
     }
-    var total = durationFor(timer.mode)
-    timer.accumulatedSeconds = Math.min(total, Math.max(0, Number(timer.accumulatedSeconds) || 0))
-    timer.remaining = Math.max(0, total - timer.accumulatedSeconds)
-    if (timer.remaining <= 0) timer.remaining = total
-    timer.project = normalizeProjectName(timer.project)
-    timer.running = true
-    timer.dayKey = timer.dayKey || selectedDate || todayKey()
-    timer.runStartedAt = Date.now()
-    if (!timer.sessionStartedAt) timer.sessionStartedAt = timer.runStartedAt
-    timer.endAt = Date.now() + timer.remaining * 1000
-    if (timer.accumulatedSeconds === 0) playBell('start')
-    saveTimer()
-    beginTicker()
-    renderDay()
-    renderTimer()
+    return runSharedTimerCommand('start', sharedTimerSelection())
   }
 
   function pauseTimer() {
-    if (!timer.running) return
-    timer.accumulatedSeconds = timerElapsedSeconds()
-    timer.remaining = Math.max(0, durationFor(timer.mode) - timer.accumulatedSeconds)
-    timer.running = false
-    timer.endAt = null
-    timer.runStartedAt = null
-    saveTimer()
-    stopTicker()
-    renderTimer()
+    if (!timer.running) return Promise.resolve(false)
+    return runSharedTimerCommand('pause')
   }
 
   function toggleTimer() {
-    if (timer.running) pauseTimer()
-    else startTimer()
+    return timer.running ? pauseTimer() : startTimer()
   }
 
   function resetTimer() {
-    timer.running = false
-    timer.endAt = null
-    timer.runStartedAt = null
-    timer.sessionStartedAt = null
-    timer.accumulatedSeconds = 0
-    timer.remaining = durationFor(timer.mode)
-    saveTimer()
-    stopTicker()
-    renderTimer()
+    return runSharedTimerCommand('reset')
   }
 
   function switchMode(mode, autoStart) {
-    if (mode === timer.mode) return
-    if ((timer.running || timer.accumulatedSeconds > 0) && !window.confirm('切换阶段会清除当前未结束的计时，确定继续吗？')) return
-    timer.mode = mode
-    timer.remaining = durationFor(mode)
-    timer.running = false
-    timer.accumulatedSeconds = 0
-    timer.runStartedAt = null
-    timer.sessionStartedAt = null
-    timer.endAt = null
-    saveTimer()
-    stopTicker()
-    renderTimer()
-    if (autoStart) startTimer()
-  }
-
-  function recordFocusTime(seconds) {
-    var safeSeconds = Math.max(1, Math.round(Number(seconds) || 0))
-    var dayKey = timer.dayKey || selectedDate || todayKey()
-    var day = ensureDay(dayKey)
-    var task = timerBoundTask()
-    var project = normalizeProjectName((task && task.focusTag) || timer.project)
-    day.focusSessions = (Number(day.focusSessions) || 0) + 1
-    day.focusSeconds = (Number(day.focusSeconds) || 0) + safeSeconds
-    day.focusByProject[project] = (Number(day.focusByProject[project]) || 0) + 1
-    day.focusByProjectSeconds[project] = (Number(day.focusByProjectSeconds[project]) || 0) + safeSeconds
-    if (task && task.isRoutine) {
-      if (task.routineId !== 'sleep') {
-        day.routineSeconds[task.routineId] = (Number(day.routineSeconds[task.routineId]) || 0) + safeSeconds
-      }
-      day.routineFocusRecords.push({
-        routineId: task.routineId,
-        text: task.text,
-        startedAt: timer.sessionStartedAt || Date.now() - safeSeconds * 1000,
-        endedAt: Date.now(),
-        seconds: safeSeconds,
-        project: project
-      })
-    } else if (task) {
-      task.focusTag = project
-      task.focusSeconds = (Number(task.focusSeconds) || 0) + safeSeconds
-      if (!task.focusByProject || typeof task.focusByProject !== 'object') task.focusByProject = {}
-      if (!Array.isArray(task.focusRecords)) task.focusRecords = []
-      task.focusByProject[project] = (Number(task.focusByProject[project]) || 0) + safeSeconds
-      task.focusRecords.push({
-        startedAt: timer.sessionStartedAt || Date.now() - safeSeconds * 1000,
-        endedAt: Date.now(),
-        seconds: safeSeconds,
-        project: project
-      })
-    }
-    return { day: day, task: task, project: project, seconds: safeSeconds }
+    if (mode === timer.mode) return Promise.resolve(false)
+    if ((timer.running || timer.accumulatedSeconds > 0) && !window.confirm('切换阶段会清除当前未结束的计时，确定继续吗？')) return Promise.resolve(false)
+    var selection = sharedTimerSelection()
+    selection.mode = mode
+    return runSharedTimerCommand('switch', selection).then(function (changed) {
+      return changed && autoStart ? startTimer() : changed
+    })
   }
 
   function completePhase(autoFinished) {
-    var finishedMode = timer.mode
-    var elapsed = autoFinished ? durationFor(finishedMode) : timerElapsedSeconds()
-    timer.running = false
-    timer.endAt = null
-    timer.runStartedAt = null
-    stopTicker()
-    if (finishedMode === 'focus') {
-      var result = recordFocusTime(elapsed)
-      saveState()
-      showToast(result.project + '：已记录 ' + focusDurationLabel(result.seconds) + '，任务可手动勾选完成，进入休息阶段')
-    } else {
-      showToast('休息结束，已进入下一轮专注')
-    }
-    playBell('end')
-    timer.mode = finishedMode === 'focus' ? 'break' : 'focus'
-    timer.remaining = durationFor(timer.mode)
-    timer.accumulatedSeconds = 0
-    timer.sessionStartedAt = null
-    if (finishedMode === 'focus' && timerBoundTask() && timerBoundTask().done) {
-      timer.taskId = ''
-      timer.taskText = ''
-    }
-    saveTimer()
-    renderDay()
-    renderCalendar()
-    renderWeeklySummary()
-    renderTimer()
-    renderPointsWallet()
-    if (autoFinished) startTimer()
+    return autoFinished ? refreshSharedTimer() : runSharedTimerCommand('finish')
   }
 
   function finishPhase() {
     if (!timer.running && timer.accumulatedSeconds <= 0) {
       showToast('请先开始当前阶段')
-      return
+      return Promise.resolve(false)
     }
-    completePhase(false)
+    return completePhase(false)
   }
 
   function beginTicker() {
@@ -14519,7 +14564,6 @@ html.daily-standalone .focus-column {
     timerHandle = setInterval(function () {
       if (syncTimerRemaining()) return
       renderTimer()
-      if (timer.remaining % 10 === 0) saveTimer()
     }, 500)
   }
 
@@ -14609,6 +14653,7 @@ html.daily-standalone .focus-column {
   }
 
   function renderAll() {
+    refreshCurrentDate()
     normalizePlanState(state)
     renderPlanGroups()
     renderWeeklySummary()
@@ -14619,6 +14664,7 @@ html.daily-standalone .focus-column {
     renderTimer()
     renderUtilityPanel()
     renderWorkspaceEditors()
+    if (dailyTemplatesModal && !dailyTemplatesModal.hidden) renderDailyTemplates()
     applyAccessMode()
   }
 
@@ -14741,6 +14787,17 @@ html.daily-standalone .focus-column {
 
   if (taskCreateButton) taskCreateButton.addEventListener('click', openTaskCreate)
   if (taskCreateForm) taskCreateForm.addEventListener('submit', submitTaskCreate)
+  if (taskQuickForm) taskQuickForm.addEventListener('submit', submitQuickTask)
+  if (taskSearchInput) taskSearchInput.addEventListener('input', function () {
+    taskViewState.query = taskSearchInput.value
+    renderDay()
+  })
+  taskFilterButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      taskViewState.filter = button.getAttribute('data-task-filter')
+      renderDay()
+    })
+  })
   if (taskCreateFixed && taskCreatePlanLocation) taskCreateFixed.addEventListener('change', function () {
     taskCreatePlanLocation.disabled = !taskCreateFixed.checked
     if (taskCreateFixed.checked) taskCreatePlanLocation.focus()
@@ -14854,7 +14911,6 @@ html.daily-standalone .focus-column {
     calendarAnchor = todayKey()
     selectDate(todayKey())
   })
-  carryButton.addEventListener('click', carryPrevious)
   clearDoneButton.addEventListener('click', clearDone)
   timerToggle.addEventListener('click', toggleTimer)
   document.querySelector('[data-timer-reset]').addEventListener('click', resetTimer)
@@ -14880,18 +14936,20 @@ html.daily-standalone .focus-column {
     })
   })
   document.querySelector('[data-utility-close]').addEventListener('click', closeUtility)
+  document.querySelectorAll('[data-daily-templates-open]').forEach(function (button) {
+    button.addEventListener('click', openDailyTemplates)
+  })
+  document.querySelectorAll('[data-daily-templates-close]').forEach(function (button) {
+    button.addEventListener('click', closeDailyTemplates)
+  })
+  if (dailyTemplateForm) dailyTemplateForm.addEventListener('submit', createDailyTemplate)
+  if (dailyTemplatesModal) dailyTemplatesModal.addEventListener('click', function (event) {
+    if (event.target === dailyTemplatesModal) closeDailyTemplates()
+  })
   document.querySelectorAll('[data-workspace-open]').forEach(function (button) {
     button.addEventListener('click', function () {
-      var mode = button.getAttribute('data-workspace-open')
-      var pointsView = button.getAttribute('data-points-view') || 'shop'
-      if (activeWorkspace === mode && (mode !== 'points' || activePointsView === pointsView)) closeWorkspace()
-      else openWorkspace(mode, pointsView)
-    })
-  })
-  document.querySelectorAll('[data-points-view-tab]').forEach(function (button) {
-    button.addEventListener('click', function () {
-      setPointsView(button.getAttribute('data-points-view-tab'))
-      applyAccessMode()
+      if (activeWorkspace === 'schedule') closeWorkspace()
+      else openWorkspace()
     })
   })
   if (workspaceDrawer) {
@@ -14900,7 +14958,6 @@ html.daily-standalone .focus-column {
       field.addEventListener('input', function () {
         setScheduleField(field.getAttribute('data-schedule-field'), field.value)
         saveState()
-        showWorkspaceSaveStatus(scheduleSaveStatus)
       })
     })
     document.querySelectorAll('[data-schedule-section]').forEach(function (field) {
@@ -14911,19 +14968,10 @@ html.daily-standalone .focus-column {
         section.content = field.value
         state.schedule.updatedAt = Date.now()
         saveState()
-        showWorkspaceSaveStatus(scheduleSaveStatus)
-      })
-    })
-    document.querySelectorAll('[data-policy-field]').forEach(function (field) {
-      field.addEventListener('input', function () {
-        var key = field.getAttribute('data-policy-field')
-        state.pointsPolicy[key] = field.value
-        state.pointsPolicy.updatedAt = Date.now()
-        saveState()
-        showWorkspaceSaveStatus(policySaveStatus)
       })
     })
   }
+
   if (dokiThemeToggle) {
     dokiThemeToggle.addEventListener('click', function (event) {
       event.stopPropagation()
@@ -14942,6 +14990,7 @@ html.daily-standalone .focus-column {
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape' && activeUtility) closeUtility()
     if (event.key === 'Escape' && activeWorkspace) closeWorkspace()
+    if (event.key === 'Escape') closeDailyTemplates()
     if (event.key === 'Escape') setDokiMenu(false)
     if (event.key === 'Escape' && taskCreateModal && !taskCreateModal.hidden) closeTaskCreate()
     if (event.key === 'Escape' && taskDetailModal && !taskDetailModal.hidden) closeTaskDetail()
@@ -15045,16 +15094,25 @@ html.daily-standalone .focus-column {
     showToast('已下载到本地，之后可从桌面直接打开')
   })
   window.addEventListener('online', function () {
+    if (refreshCurrentDate()) renderAll()
     if (authState.authenticated && hasPendingSync()) {
       scheduleRemoteSave()
       showToast('网络已恢复，正在补同步本地内容')
     }
+    if (sharedTimerState.pendingCommand) runSharedTimerCommand('retry')
+    else refreshSharedTimer()
   })
   window.addEventListener('offline', function () {
     showToast('已切换为本地模式，内容会在联网后自动同步')
+    renderTimer()
   })
   document.addEventListener('visibilitychange', function () {
-    if (!document.hidden) updateInstallButton()
+    if (!document.hidden) {
+      if (refreshCurrentDate()) renderAll()
+      updateInstallButton()
+      renderTimer()
+      refreshSharedTimer()
+    }
   })
 
   window.addEventListener('storage', function (event) {
@@ -15067,6 +15125,21 @@ html.daily-standalone .focus-column {
     if (event.key === STORAGE_KEY) {
       state = loadState()
       renderAll()
+    }
+    if (event.key === TIMER_KEY && !sharedTimerState.command) {
+      var cached = loadTimer()
+      if (cached.shared && Number(cached.sharedRevision) >= sharedTimerState.revision) {
+        timer = cached
+        sharedTimerState.revision = Number(cached.sharedRevision)
+        sharedTimerState.serverOffset = Number(cached.serverOffset) || 0
+        sharedTimerState.pendingCommand = cached.pendingCommand || null
+        if (timer.running) beginTicker()
+        else stopTicker()
+        renderDay()
+        renderTimer()
+      }
+      // The originating tab already fetched this authoritative snapshot. The
+      // regular poll checks freshness without creating a storage/fetch loop.
     }
     if (event.key === ROUTINE_TIMER_KEY) {
       routineTimer = loadRoutineTimer()
@@ -15090,13 +15163,14 @@ html.daily-standalone .focus-column {
   initializePlanLibraryResizer()
   ensureDay(selectedDate)
   if (timer.running) beginTicker()
-  else if (timer.remaining <= 0) {
+  else if (timer.remaining <= 0 && timer.accumulatedSeconds <= 0) {
     timer = defaultTimer()
     saveTimer()
   }
   if (routineTimer) stopRoutine(true)
   saveState()
   renderAll()
+  beginSharedTimerPolling()
   initializeAccount()
 })()
 </script>
