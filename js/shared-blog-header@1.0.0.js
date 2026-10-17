@@ -9,8 +9,10 @@
       if (!menus || !toggle) return
       menus.classList.remove('is-open')
       toggle.setAttribute('aria-expanded', 'false')
+      toggle.setAttribute('aria-label', '打开导航菜单')
       groups.forEach(function (group) {
         group.closest('.menus_item').classList.remove('is-open')
+        group.closest('.menus_item').classList.add('is-dismissed')
         group.setAttribute('aria-expanded', 'false')
       })
     }
@@ -20,16 +22,35 @@
         event.stopPropagation()
         var open = menus.classList.toggle('is-open')
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false')
+        toggle.setAttribute('aria-label', open ? '关闭导航菜单' : '打开导航菜单')
       })
     }
 
     groups.forEach(function (group) {
       group.addEventListener('click', function (event) {
-        if (!window.matchMedia('(max-width: 980px)').matches) return
         event.stopPropagation()
         var item = group.closest('.menus_item')
         var open = item.classList.toggle('is-open')
+        item.classList.toggle('is-dismissed', !open)
+        groups.forEach(function (other) {
+          if (other === group) return
+          other.closest('.menus_item').classList.remove('is-open')
+          other.setAttribute('aria-expanded', 'false')
+        })
         group.setAttribute('aria-expanded', open ? 'true' : 'false')
+      })
+      group.addEventListener('keydown', function (event) {
+        if (event.key !== 'ArrowDown') return
+        event.preventDefault()
+        var item = group.closest('.menus_item')
+        item.classList.add('is-open')
+        item.classList.remove('is-dismissed')
+        group.setAttribute('aria-expanded', 'true')
+        var firstLink = item.querySelector('.menus_item_child a')
+        if (firstLink) firstLink.focus()
+      })
+      group.closest('.menus_item').addEventListener('mouseenter', function () {
+        this.classList.remove('is-dismissed')
       })
     })
 
@@ -37,8 +58,24 @@
       if (!header.contains(event.target)) closeMenu()
     })
 
+    header.addEventListener('focusout', function (event) {
+      var item = event.target.closest('.menus_item')
+      if (!item || item.contains(event.relatedTarget)) return
+      item.classList.remove('is-open')
+      var group = item.querySelector('[data-shared-nav-group]')
+      if (group) group.setAttribute('aria-expanded', 'false')
+    })
+
     document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape') closeMenu()
+      if (event.key !== 'Escape' || !header.contains(document.activeElement)) return
+      var focusedGroup = document.activeElement.closest('.menus_item')
+      var wasOpen = menus && menus.classList.contains('is-open')
+      closeMenu()
+      if (wasOpen && toggle) toggle.focus()
+      else if (focusedGroup) {
+        var group = focusedGroup.querySelector('[data-shared-nav-group]')
+        if (group) group.focus()
+      }
     })
 
     window.addEventListener('resize', function () {

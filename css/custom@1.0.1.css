@@ -559,3 +559,59 @@ a.site-page[href="/daily/"] > i.fa-calendar-check::before {
         margin-top: 10px;
     }
 }
+
+
+/* Preserve the existing navigation appearance while using real keyboard controls. */
+#nav button.site-page,
+#sidebar-menus button.site-page {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    text-align: left;
+}
+
+#nav button.site-page {
+    padding: 0 0 6px;
+}
+
+#sidebar-menus button.site-page {
+    width: 100%;
+}
+
+#nav .site-page:focus-visible,
+#sidebar-menus .site-page:focus-visible {
+    outline: 2px solid var(--doki-accent, #7d61ad);
+    outline-offset: 4px;
+    border-radius: 3px;
+}
+
+/* Leave room for the sticky navigation when opening a heading from the contents. */
+#article-container :is(h1, h2, h3, h4, h5, h6)[id] {
+    scroll-margin-top: 76px;
+}
+
+@media (max-width: 768px) {
+    #nav #search-button button,
+    #nav #toggle-menu button,
+    #sidebar-menus .site-page {
+        min-height: 44px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #content-inner.layout :is(h1, h2, h3, h4, h5, h6)::before,
+    #content-inner.layout :is(h1, h2, h3, h4, h5, h6):hover::before {
+        animation: none;
+    }
+
+    #nav,
+    #nav .menus_item_child,
+    #nav .group > i:last-child,
+    #sidebar-menus {
+        animation: none;
+        transition: none;
+    }
+}

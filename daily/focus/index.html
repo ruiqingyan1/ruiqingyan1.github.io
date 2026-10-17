@@ -7487,7 +7487,7 @@ html.daily-standalone .focus-column {
       <div class="daily-header-actions" role="toolbar" aria-label="账号管理">
         <button class="workspace-header-button daily-templates-button" type="button" data-daily-templates-open title="添加日常任务" aria-label="添加日常任务">
           <i class="fa-solid fa-seedling" aria-hidden="true"></i>
-          <span><strong>日常任务</strong><small>一键添加</small></span>
+          <span><strong>日常任务</strong><small>每天自动加入</small></span>
         </button>
         <button class="workspace-header-button schedule-header-button" type="button" data-workspace-open="schedule" title="打开日程安排" aria-label="打开日程安排">
           <img class="doki-ui-icon" src="/daily/doki-icons/library.svg" alt="" aria-hidden="true">
@@ -7833,11 +7833,11 @@ html.daily-standalone .focus-column {
           <div class="session-summary">
             <div class="session-stat">
               <strong data-focus-sessions>0</strong>
-              <span>今日完成轮数</span>
+              <span data-focus-sessions-label>今日完成轮数</span>
             </div>
             <div class="session-stat">
               <strong data-focus-minutes>0</strong>
-              <span>今日专注分钟</span>
+              <span data-focus-minutes-label>今日专注分钟</span>
             </div>
           </div>
         </section>
@@ -8664,6 +8664,8 @@ html.daily-standalone .focus-column {
   var calendarRange = document.querySelector('[data-calendar-range]')
   var focusSessions = document.querySelector('[data-focus-sessions]')
   var focusMinutes = document.querySelector('[data-focus-minutes]')
+  var focusSessionsLabel = document.querySelector('[data-focus-sessions-label]')
+  var focusMinutesLabel = document.querySelector('[data-focus-minutes-label]')
   var focusProjectTags = document.querySelector('[data-focus-tags]')
   var projectFocusList = document.querySelector('[data-project-focus-list]')
   var routineList = document.querySelector('[data-routine-list]')
@@ -13903,6 +13905,8 @@ html.daily-standalone .focus-column {
     clearDoneButton.disabled = done === 0
     focusSessions.textContent = String(Number(day.focusSessions) || 0)
     focusMinutes.textContent = String(Math.round((Number(day.focusSeconds) || 0) / 60))
+    if (focusSessionsLabel) focusSessionsLabel.textContent = (isToday ? '今日' : '当日') + '完成轮数'
+    if (focusMinutesLabel) focusMinutesLabel.textContent = (isToday ? '今日' : '当日') + '专注分钟'
     renderProjectOptions()
     renderProjectFocus(day)
     renderRoutines(day)

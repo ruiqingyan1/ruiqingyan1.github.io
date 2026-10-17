@@ -32,6 +32,11 @@ document.addEventListener('DOMContentLoaded', function () {
       btf.animateIn(document.getElementById('menu-mask'), 'to_show 0.5s')
       document.getElementById('sidebar-menus').classList.add('open')
       mobileSidebarOpen = true
+      const toggle = document.querySelector('#toggle-menu button')
+      toggle && toggle.setAttribute('aria-expanded', 'true')
+      toggle && toggle.setAttribute('aria-label', '关闭导航菜单')
+      const firstItem = document.querySelector('#sidebar-menus .menus_items .site-page')
+      firstItem && firstItem.focus()
     },
     close: () => {
       const $body = document.body
@@ -40,6 +45,9 @@ document.addEventListener('DOMContentLoaded', function () {
       btf.animateOut(document.getElementById('menu-mask'), 'to_hide 0.5s')
       document.getElementById('sidebar-menus').classList.remove('open')
       mobileSidebarOpen = false
+      const toggle = document.querySelector('#toggle-menu button')
+      toggle && toggle.setAttribute('aria-expanded', 'false')
+      toggle && toggle.setAttribute('aria-label', '打开导航菜单')
     }
   }
 
@@ -637,9 +645,96 @@ document.addEventListener('DOMContentLoaded', function () {
       const target = e.target.closest('.site-page.group')
       if (!target) return
       target.classList.toggle('hide')
+      target.setAttribute('aria-expanded', String(!target.classList.contains('hide')))
     }
 
-    document.querySelector('#sidebar-menus .menus_items').addEventListener('click', handleClickOfSubMenu)
+    const sidebar = document.querySelector('#sidebar-menus .menus_items')
+    sidebar.querySelectorAll('.site-page.group').forEach(group => {
+      group.setAttribute('aria-expanded', String(!group.classList.contains('hide')))
+    })
+    sidebar.addEventListener('click', handleClickOfSubMenu)
+  }
+
+  // Native buttons support both keyboard activation and touch on desktop-size screens.
+  const accessibleNavigation = () => {
+    const setGroupOpen = (item, open) => {
+      if (!item) return
+      const group = item.querySelector('.site-page.group')
+      if (!group) return
+      item.classList.toggle('is-open', open)
+      item.classList.toggle('is-dismissed', !open)
+      group.setAttribute('aria-expanded', String(open))
+    }
+    const closeGroups = except => {
+      document.querySelectorAll('#nav .menus_item.is-open').forEach(item => {
+        if (item !== except) setGroupOpen(item, false)
+      })
+    }
+
+    document.addEventListener('click', event => {
+      const group = event.target.closest('#nav .site-page.group')
+      if (group) {
+        const item = group.closest('.menus_item')
+        const open = !item.classList.contains('is-open')
+        closeGroups(item)
+        setGroupOpen(item, open)
+      } else if (!event.target.closest('#nav .menus_item')) {
+        closeGroups()
+      }
+    })
+    document.addEventListener('mouseover', event => {
+      const item = event.target.closest('#nav .menus_item')
+      if (item && !item.contains(event.relatedTarget)) {
+        closeGroups(item)
+        item.classList.remove('is-dismissed')
+        const group = item.querySelector('.site-page.group')
+        group && group.setAttribute('aria-expanded', 'true')
+      }
+    })
+    document.addEventListener('mouseout', event => {
+      const item = event.target.closest('#nav .menus_item')
+      if (item && !item.contains(event.relatedTarget) && !item.classList.contains('is-open')) setGroupOpen(item, false)
+    })
+    document.addEventListener('focusout', event => {
+      const item = event.target.closest('#nav .menus_item')
+      if (item && !item.contains(event.relatedTarget)) setGroupOpen(item, false)
+    })
+    document.addEventListener('keydown', event => {
+      if (mobileSidebarOpen) {
+        if (event.key === 'Escape') {
+          event.preventDefault()
+          sidebarFn.close()
+          document.querySelector('#toggle-menu button').focus()
+        } else if (event.key === 'Tab') {
+          const items = Array.from(document.querySelectorAll('#sidebar-menus a, #sidebar-menus button')).filter(item => item.getClientRects().length)
+          const first = items[0]
+          const last = items[items.length - 1]
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault()
+            last.focus()
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault()
+            first.focus()
+          }
+        }
+        return
+      }
+
+      const item = event.target.closest('#nav .menus_item')
+      const group = item && item.querySelector('.site-page.group')
+      if (!group) return
+      if (event.key === 'ArrowDown' && event.target === group) {
+        event.preventDefault()
+        closeGroups(item)
+        setGroupOpen(item, true)
+        const firstLink = item.querySelector('.menus_item_child a')
+        firstLink && firstLink.focus()
+      } else if (event.key === 'Escape') {
+        event.preventDefault()
+        setGroupOpen(item, false)
+        group.focus()
+      }
+    })
   }
 
   /**
@@ -848,6 +943,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('menu-mask').addEventListener('click', e => { sidebarFn.close() })
 
     clickFnOfSubMenu()
+    accessibleNavigation()
     GLOBAL_CONFIG.islazyload && lazyloadImg()
     GLOBAL_CONFIG.copyright !== undefined && addCopyright()
 

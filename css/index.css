@@ -3537,7 +3537,7 @@ h1.page-title + .tag-cloud-list {
   box-shadow: 0 5px 6px -5px rgba(133,133,133,0.6);
 }
 #page-header.not-top-img #nav a,
-#page-header.not-top-img #nav span.site-page,
+#page-header.not-top-img #nav .site-page,
 #page-header.not-top-img #nav .site-name {
   color: var(--font-color);
   text-shadow: none;
@@ -3565,13 +3565,13 @@ h1.page-title + .tag-cloud-list {
   text-shadow: none;
 }
 #page-header.nav-fixed #nav a,
-#page-header.nav-fixed #nav span.site-page,
+#page-header.nav-fixed #nav .site-page,
 #page-header.nav-fixed #nav #toggle-menu {
   color: var(--font-color);
   text-shadow: none;
 }
 #page-header.nav-fixed #nav a:hover,
-#page-header.nav-fixed #nav span.site-page:hover,
+#page-header.nav-fixed #nav .site-page:hover,
 #page-header.nav-fixed #nav #toggle-menu:hover {
   color: #49b1f5;
 }
@@ -3753,11 +3753,11 @@ h1.page-title + .tag-cloud-list {
   color: var(--white);
 }
 #nav a,
-#nav span.site-page {
+#nav .site-page {
   color: var(--light-grey);
 }
 #nav a:hover,
-#nav span.site-page:hover {
+#nav .site-page:hover {
   color: var(--white);
 }
 #nav .site-name {
@@ -3772,17 +3772,29 @@ h1.page-title + .tag-cloud-list {
   display: inline-block;
   padding: 0 0 0 14px;
 }
-#nav .menus_items .menus_item:hover .menus_item_child {
+#nav .menus_items .menus_item:hover .menus_item_child,
+#nav .menus_items .menus_item.is-open .menus_item_child {
   display: block;
 }
-#nav .menus_items .menus_item:hover > span > i:last-child {
+#nav .menus_items .menus_item:hover > .group > i:last-child,
+#nav .menus_items .menus_item.is-open > .group > i:last-child {
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
   -o-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
-#nav .menus_items .menus_item > span > i:last-child {
+#nav .menus_items .menus_item.is-dismissed .menus_item_child {
+  display: none;
+}
+#nav .menus_items .menus_item.is-dismissed > .group > i:last-child {
+  -webkit-transform: none;
+  -moz-transform: none;
+  -o-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+#nav .menus_items .menus_item > .group > i:last-child {
   padding: 4px;
   -webkit-transition: -webkit-transform 0.3s;
   -moz-transition: -moz-transform 0.3s;
