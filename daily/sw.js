@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ruiqy-daily-shell-v9'
+const CACHE_NAME = 'ruiqy-daily-shell-v10'
 const CACHE_MANIFEST_URL = '/daily/cache-manifest.json'
 
 const APP_SHELL = [

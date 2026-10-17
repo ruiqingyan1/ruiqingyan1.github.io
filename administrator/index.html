@@ -1,0 +1,220 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="same-origin"><title>设备授权后台 · Daily</title><link rel="icon" href="/daily/icons/icon-192.png"><style>
+:root{color-scheme:light;--bg:#faf7fd;--panel:#fff;--line:#e8dff1;--text:#463e50;--muted:#8a7e96;--purple:#8762b0;--pink:#d85f98;--green:#22876e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif}button,input,select{font:inherit}button,a,input,select{touch-action:manipulation}button{cursor:pointer}button:disabled{opacity:.55;cursor:wait}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #bf9cde;outline-offset:3px}[hidden]{display:none!important}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px max(24px,calc((100vw - 1120px)/2));border-bottom:1px solid var(--line);background:#fff}header h1{margin:0;font-size:23px}header p{margin:2px 0 0;color:var(--muted);font-size:13px}.header-actions{display:flex;align-items:center;gap:12px}a{color:var(--purple);text-decoration:none}main{max-width:1168px;margin:32px auto;padding:0 24px}.panel{border:1px solid var(--line);border-radius:18px;background:var(--panel);box-shadow:0 8px 30px #65527a08}.login-panel{max-width:440px;margin:8vh auto;padding:32px}.login-panel h2{margin:0 0 6px;font-size:24px}.muted{color:var(--muted);font-size:13px}label{display:block;font-size:13px}input,select{width:100%;min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--text)}.login-panel label{margin-top:20px}.login-panel input{margin-top:6px}.button{min-height:40px;padding:8px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--text)}.primary{border-color:var(--purple);background:var(--purple);color:#fff}.login-panel .primary{width:100%;margin-top:24px}.error{min-height:1.5em;color:#ba3e68;font-size:13px}.overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:24px}.stat{padding:18px 22px}.stat span{display:block;color:var(--muted);font-size:13px}.stat strong{font-size:30px;font-weight:650}.stat:nth-child(2) strong{color:var(--green)}.stat:nth-child(4) strong{color:var(--pink)}.toolbar{display:flex;align-items:center;gap:12px;margin-bottom:16px}.toolbar input{flex:1}.toolbar select{max-width:150px}.sync-status{margin:0 0 16px;color:var(--muted);font-size:12px}.device-list{display:grid;gap:16px}.device{padding:22px}.device-head{display:flex;gap:18px;align-items:start;justify-content:space-between}.device h2{margin:0;font-size:17px;overflow-wrap:anywhere}.device-meta{display:flex;flex-wrap:wrap;gap:6px 20px;margin:14px 0;color:var(--muted);font-size:12px}.device-id{font-family:ui-monospace,monospace;font-size:11px;overflow-wrap:anywhere}.badge{flex-shrink:0;padding:3px 10px;border-radius:20px;background:#f2edf7;color:var(--purple);font-size:12px}.badge.authorized{background:#e7f5ef;color:var(--green)}.badge.locked{background:#fff0f5;color:#bc477a}.device-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.device-actions .button{font-size:13px}.danger{color:#bc477a}.device-name-form{display:flex;gap:8px;max-width:420px;margin-top:16px}.device-name-form input{min-width:0;min-height:40px;padding:7px 10px}.device-name-form .button{flex-shrink:0}.empty{padding:42px;text-align:center;color:var(--muted)}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);max-width:calc(100vw - 32px);padding:12px 20px;border-radius:12px;background:#493d56;color:white;box-shadow:0 8px 26px #45374e26;z-index:5}.notice{padding:14px 18px;margin-bottom:20px;border:1px solid var(--line);border-radius:12px;background:#f4eff9;color:#76638b;font-size:13px}
+@media(max-width:650px){header{padding:18px 16px;align-items:start}header h1{font-size:20px}.header-actions{gap:8px;flex-wrap:wrap;justify-content:end;font-size:13px}main{padding:0 16px;margin:20px auto}.overview{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.stat{padding:14px 16px}.stat strong{font-size:26px}.toolbar{flex-wrap:wrap}.toolbar input{flex-basis:100%}.toolbar select{max-width:none;flex:1}.device{padding:18px}.device-head{gap:10px}.login-panel{padding:24px;margin:32px auto}.device-actions .button{flex:1;white-space:nowrap}.device-name-form{max-width:none}}
+</style></head><body>
+<header><div><h1>🌱 设备授权后台</h1><p>Daily · 管理设备、授权期限与访问状态</p></div><div class="header-actions"><a href="/daily/">返回每日计划</a><button class="button" type="button" data-admin-logout hidden>退出后台</button></div></header>
+<main><section class="panel login-panel" data-login-panel><h2>管理员登录</h2><p class="muted">输入后台账号和密码，管理各设备的使用期限。</p><form data-admin-login><label>账号<input name="username" value="administrator" autocomplete="username" required></label><label>密码<input name="password" type="password" autocomplete="current-password" required></label><button class="button primary" type="submit">登录后台</button><p class="error" data-login-message role="status" aria-live="polite"></p></form><p class="muted">密码连续错误 3 次会锁定当前浏览器设备，需从其他已授权的管理设备解除锁定。</p></section>
+<section data-dashboard hidden><div class="overview"><div class="panel stat"><span>全部设备</span><strong data-count-total>0</strong></div><div class="panel stat"><span>使用中</span><strong data-count-authorized>0</strong></div><div class="panel stat"><span>待授权 / 已到期</span><strong data-count-pending>0</strong></div><div class="panel stat"><span>已锁定</span><strong data-count-locked>0</strong></div></div><div class="notice">目标设备打开 Daily 后会自动登记。授权与解锁会自动生效；添加时长从尚未到期的期限继续累计，已到期则从现在起算。日本与本地使用同一授权服务。</div><div class="toolbar"><input type="search" data-device-search placeholder="搜索设备名称或编号" aria-label="搜索设备"><select data-device-filter aria-label="筛选设备状态"><option value="all">全部状态</option><option value="authorized">授权中</option><option value="pending">待授权 / 已到期</option><option value="locked">已锁定</option><option value="revoked">已撤销</option></select><button class="button" type="button" data-device-refresh>刷新</button></div><p class="sync-status" data-sync-status role="status"></p><div class="device-list" data-device-list></div></section></main><div class="toast" data-admin-toast role="status" aria-live="polite" hidden></div><script>
+(function () {
+  'use strict'
+  var local = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
+  var base = local ? 'http://' + location.hostname + ':7002' : '/api/daily'
+  var csrf = null
+  var authenticated = false
+  var busy = false
+  var devices = []
+  var revision = null
+  var deviceSignature = ''
+  var timer = null
+  var toastTimer = null
+  var form = document.querySelector('[data-admin-login]')
+  var loginPanel = document.querySelector('[data-login-panel]')
+  var dashboard = document.querySelector('[data-dashboard]')
+  var message = document.querySelector('[data-login-message]')
+  var list = document.querySelector('[data-device-list]')
+  var search = document.querySelector('[data-device-search]')
+  var filter = document.querySelector('[data-device-filter]')
+  var sync = document.querySelector('[data-sync-status]')
+  var logout = document.querySelector('[data-admin-logout]')
+
+  function request(path, options) {
+    var settings = options || {}
+    settings.credentials = 'include'
+    settings.cache = 'no-store'
+    settings.headers = Object.assign({ 'Content-Type': 'application/json' }, settings.headers || {})
+    if (csrf && settings.method && settings.method !== 'GET') settings.headers['X-CSRF-Token'] = csrf
+    return fetch(base + path, settings).then(function (response) {
+      return response.json().catch(function () { return {} }).then(function (payload) {
+        if (!response.ok) {
+          var error = new Error(payload.error || '请求失败，请稍后重试。')
+          error.status = response.status
+          throw error
+        }
+        return payload
+      })
+    })
+  }
+  function showToast(text) {
+    var target = document.querySelector('[data-admin-toast]')
+    target.textContent = text
+    target.hidden = false
+    clearTimeout(toastTimer)
+    toastTimer = setTimeout(function () { target.hidden = true }, 3500)
+  }
+  function dateLabel(value) {
+    if (!value) return '—'
+    var date = new Date(typeof value === 'number' && value < 1e12 ? value * 1000 : value)
+    return Number.isNaN(date.getTime()) ? '—' : date.toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai', hour12: false })
+  }
+  function statusOf(device) {
+    if (device.locked) return { code: 'locked', label: '已锁定' }
+    if (device.revoked) return { code: 'revoked', label: '已撤销' }
+    if (device.authorized) return { code: 'authorized', label: device.permanent ? '永久授权' : '授权中' }
+    return { code: 'pending', label: device.expiresAt ? '已到期' : '待授权' }
+  }
+  function setAuthenticated(value) {
+    authenticated = Boolean(value)
+    loginPanel.hidden = authenticated
+    dashboard.hidden = !authenticated
+    logout.hidden = !authenticated
+    if (!authenticated) {
+      csrf = null
+      devices = []
+      list.textContent = ''
+      clearTimeout(timer)
+    }
+  }
+  function action(device, payload) {
+    if (busy) return
+    busy = true
+    Array.from(list.querySelectorAll('button')).forEach(function (button) { button.disabled = true })
+    request('/admin/devices/' + encodeURIComponent(device.id), { method: 'POST', body: JSON.stringify(payload) })
+      .then(function () { revision = null; return refreshDevices(true) })
+      .then(function () { showToast('已保存，设备会自动读取最新授权。') })
+      .catch(function (error) {
+        if (error.status === 401 || error.status === 403) setAuthenticated(false)
+        showToast(error.message)
+      }).finally(function () {
+        busy = false
+        Array.from(list.querySelectorAll('button')).forEach(function (button) { button.disabled = false })
+      })
+  }
+  function button(text, callback, extra) {
+    var target = document.createElement('button')
+    target.type = 'button'
+    target.className = 'button' + (extra ? ' ' + extra : '')
+    target.textContent = text
+    target.addEventListener('click', callback)
+    return target
+  }
+  function renderDevices() {
+    var counts = { total: devices.length, authorized: 0, pending: 0, locked: 0 }
+    devices.forEach(function (device) {
+      var status = statusOf(device).code
+      if (status === 'authorized') counts.authorized++
+      else if (status === 'locked') counts.locked++
+      else counts.pending++
+    })
+    Object.keys(counts).forEach(function (key) { document.querySelector('[data-count-' + key + ']').textContent = counts[key] })
+    var query = search.value.trim().toLocaleLowerCase()
+    var visible = devices.filter(function (device) {
+      return (!query || [device.name, device.id, device.userAgent].join(' ').toLocaleLowerCase().indexOf(query) >= 0) && (filter.value === 'all' || statusOf(device).code === filter.value)
+    })
+    list.textContent = ''
+    if (!visible.length) {
+      var empty = document.createElement('div')
+      empty.className = 'panel empty'
+      empty.textContent = devices.length ? '没有匹配的设备。' : '还没有设备。请在目标设备打开 Daily，它会自动出现在这里。'
+      list.appendChild(empty)
+      return
+    }
+    visible.forEach(function (device) {
+      var card = document.createElement('article')
+      card.className = 'panel device'
+      var heading = document.createElement('div')
+      heading.className = 'device-head'
+      var title = document.createElement('h2')
+      title.textContent = device.name || '未命名设备'
+      var badge = document.createElement('span')
+      var status = statusOf(device)
+      badge.className = 'badge ' + status.code
+      badge.textContent = status.label
+      heading.append(title, badge)
+      var meta = document.createElement('div')
+      meta.className = 'device-meta'
+      ;['期限：' + (device.permanent ? '永久' : dateLabel(device.expiresAt)), '密码错误：' + (Number(device.failedAttempts) || 0) + ' / 3', '最近访问：' + dateLabel(device.lastSeenAt || device.updatedAt)].forEach(function (text) {
+        var span = document.createElement('span'); span.textContent = text; meta.appendChild(span)
+      })
+      var id = document.createElement('div')
+      id.className = 'muted device-id'
+      id.textContent = '设备编号 ' + device.id
+      var actions = document.createElement('div')
+      actions.className = 'device-actions'
+      ;[['+ 1 年', 'year'], ['+ 半年', 'half-year'], ['+ 1 个月', 'month'], ['+ 3 天', 'three-days'], ['永久授权', 'permanent']].forEach(function (entry) {
+        actions.appendChild(button(entry[0], function () {
+          action(device, { action: entry[1] === 'permanent' ? 'grant' : 'extend', period: entry[1] })
+        }, entry[1] === 'permanent' ? 'primary' : ''))
+      })
+      if (device.locked) actions.appendChild(button('解除锁定并授权 3 天', function () { action(device, { action: 'unlock', period: 'three-days' }) }))
+      actions.appendChild(button('撤销授权', function () { action(device, { action: 'revoke' }) }, 'danger'))
+      var rename = document.createElement('form')
+      rename.className = 'device-name-form'
+      var input = document.createElement('input')
+      input.value = device.name || ''
+      input.maxLength = 80
+      input.placeholder = '例如：我的 iPad'
+      input.setAttribute('aria-label', '设备名称')
+      var save = button('保存名称', function () {})
+      save.type = 'submit'
+      rename.append(input, save)
+      rename.addEventListener('submit', function (event) { event.preventDefault(); action(device, { action: 'rename', name: input.value.trim() }) })
+      card.append(heading, meta, id, actions, rename)
+      list.appendChild(card)
+    })
+  }
+  function schedule() {
+    clearTimeout(timer)
+    if (authenticated) timer = setTimeout(function () { refreshDevices(false).catch(function () {}) }, 4000)
+  }
+  function refreshDevices(force) {
+    if (!authenticated) return Promise.resolve()
+    if (!force && (document.hidden || busy || (list.contains(document.activeElement) && document.activeElement.matches('input,select,textarea')))) { schedule(); return Promise.resolve() }
+    return request('/admin/devices').then(function (payload) {
+      devices = Array.isArray(payload.devices) ? payload.devices : []
+      var signature = JSON.stringify(devices)
+      if (force || revision !== payload.revision || deviceSignature !== signature) {
+        revision = payload.revision
+        deviceSignature = signature
+        renderDevices()
+      }
+      sync.textContent = '已连接授权服务 · ' + dateLabel(new Date().toISOString()) + ' · 自动更新中'
+    }).catch(function (error) {
+      if (error.status === 401 || error.status === 403 || error.status === 423) {
+        setAuthenticated(false)
+        message.textContent = error.message
+      } else sync.textContent = '暂未连接，保留当前列表。' + error.message
+      throw error
+    }).finally(schedule)
+  }
+  form.addEventListener('submit', function (event) {
+    event.preventDefault()
+    var submit = form.querySelector('button[type="submit"]')
+    submit.disabled = true
+    message.textContent = '正在校验…'
+    request('/admin/login', { method: 'POST', body: JSON.stringify({ username: form.elements.username.value.trim(), password: form.elements.password.value }) })
+      .then(function (payload) {
+        csrf = payload.csrf
+        form.elements.password.value = ''
+        message.textContent = ''
+        revision = null
+        setAuthenticated(true)
+        return refreshDevices(true)
+      }).catch(function (error) { message.textContent = error.message })
+      .finally(function () { submit.disabled = false })
+  })
+  logout.addEventListener('click', function () {
+    request('/admin/logout', { method: 'POST', body: '{}' }).then(function () { setAuthenticated(false) }).catch(function (error) { showToast(error.message) })
+  })
+  search.addEventListener('input', renderDevices)
+  filter.addEventListener('change', renderDevices)
+  document.querySelector('[data-device-refresh]').addEventListener('click', function () { refreshDevices(true).catch(function () {}) })
+  document.addEventListener('visibilitychange', function () { if (!document.hidden && authenticated) refreshDevices(true).catch(function () {}) })
+  request('/admin/session').then(function (payload) {
+    csrf = payload.csrf || null
+    setAuthenticated(payload.authenticated)
+    if (authenticated) return refreshDevices(true)
+  }).catch(function (error) { message.textContent = error.message })
+})()
+</script></body></html>

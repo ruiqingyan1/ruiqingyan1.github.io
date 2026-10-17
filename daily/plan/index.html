@@ -5135,7 +5135,7 @@ body[data-daily-page="plan"] .daily-summary-section {
 
 .auth-actions {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 8px;
 }
 
@@ -5498,11 +5498,50 @@ body[data-authenticated="false"] input:disabled {
 }
 
 .day-quick-form {
+  grid-template-columns: minmax(0, 1fr) 44px 38px;
   margin: 0 0 12px;
 }
 
 .day-quick-form input {
   min-height: 44px;
+}
+
+.task-voice-button {
+  display: inline-grid;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid var(--daily-line);
+  border-radius: 10px;
+  background: var(--daily-panel-solid);
+  color: var(--daily-muted);
+  cursor: pointer;
+}
+
+.task-voice-button:hover,
+.task-voice-button.is-listening {
+  border-color: #db659d;
+  background: #fff0f7;
+  color: #b9437a;
+}
+
+.task-voice-status {
+  margin: -6px 0 10px;
+  color: var(--daily-muted);
+  font-size: 12px;
+}
+
+.auth-device-status {
+  overflow-wrap: anywhere;
+  color: var(--daily-muted);
+  font-size: 12px;
+}
+
+.auth-admin-link {
+  justify-self: center;
+  color: #8260ad;
+  font-size: 13px;
 }
 
 .day-task-view-toolbar {
@@ -7454,7 +7493,7 @@ html.daily-standalone .focus-column {
           <img class="doki-ui-icon" src="/daily/doki-icons/library.svg" alt="" aria-hidden="true">
           <span><strong>日程安排</strong><small>查看与编辑</small></span>
         </button>
-        <button class="auth-button" type="button" data-auth-button title="输入密码并授信设备" aria-label="输入密码并授信设备">
+        <button class="auth-button" type="button" data-auth-button title="授权当前设备" aria-label="授权当前设备">
           <img class="doki-ui-icon" src="/daily/doki-icons/locked.svg" alt="" aria-hidden="true">
         </button>
         <button class="icon-button" type="button" data-export title="导出计划数据" aria-label="导出计划数据" hidden><i class="fa-solid fa-download"></i></button>
@@ -7540,7 +7579,7 @@ html.daily-standalone .focus-column {
         <div class="memo-privacy-card">
           <span class="memo-privacy-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></span>
           <h2>备忘录已锁定</h2>
-          <p>这里保存的是私人备忘。输入管理密码并授信当前设备后，才能查看内容。</p>
+          <p>这里保存的是私人备忘。授权当前设备后，才能查看内容。</p>
           <button class="memo-unlock-button" type="button" data-memo-unlock>
             <i class="fa-solid fa-key" aria-hidden="true"></i>解锁备忘录
           </button>
@@ -7686,14 +7725,15 @@ html.daily-standalone .focus-column {
             </div>
             <div class="quadrant-toolbar-actions">
               <span class="panel-count" data-task-count>0</span>
-              <button class="add-button quadrant-add-button" type="button" data-task-create-open title="添加任务" aria-label="添加任务"><img class="doki-ui-icon" src="/daily/doki-icons/add.svg" alt="" aria-hidden="true"></button>
             </div>
           </div>
 
           <form class="quick-form day-quick-form" data-task-quick-form>
             <input type="text" maxlength="160" data-task-quick-input placeholder="添加今日任务，回车保存" autocomplete="off" aria-label="快速添加当前日期任务">
-            <button class="add-button" type="submit" title="添加任务" aria-label="添加任务"><img class="doki-ui-icon" src="/daily/doki-icons/add.svg" alt="" aria-hidden="true"></button>
+            <button class="task-voice-button" type="button" data-task-voice title="语音输入任务" aria-label="语音输入任务" aria-pressed="false"><i class="fa-solid fa-microphone" aria-hidden="true"></i></button>
+            <button class="add-button" type="submit" title="添加任务；未输入时可设置详情" aria-label="添加任务"><img class="doki-ui-icon" src="/daily/doki-icons/add.svg" alt="" aria-hidden="true"></button>
           </form>
+          <p class="task-voice-status" data-task-voice-status role="status" aria-live="polite" hidden></p>
           <div class="day-task-view-toolbar">
             <div class="day-task-filters" role="group" aria-label="任务完成状态筛选">
               <button type="button" class="is-active" data-task-filter="all" aria-pressed="true">全部 0</button>
@@ -7732,7 +7772,7 @@ html.daily-standalone .focus-column {
           </div>
 
           <div class="day-list-footer">
-            <span class="task-rollover-hint">未完成任务自动顺延至次日</span>
+            <span class="task-rollover-hint">日常任务每天自动加入 · 其他未完成任务自动顺延</span>
             <button class="subtle-button" type="button" data-clear-done><i class="fa-solid fa-eye-slash"></i>隐藏已完成</button>
           </div>
 
@@ -7950,7 +7990,7 @@ html.daily-standalone .focus-column {
         </label>
         <div class="task-detail-fields">
           <label><span><i class="fa-regular fa-calendar"></i>日期</span><input type="date" data-task-create-date required></label>
-          <label><span><i class="fa-solid fa-table-cells-large"></i>四象限</span><select data-task-create-priority><option value="pink">重要且紧急</option><option value="blue">重要但不紧急</option><option value="yellow" selected>紧急但不重要</option><option value="green">不重要不紧急</option></select></label>
+          <label><span><i class="fa-solid fa-table-cells-large"></i>四象限</span><select data-task-create-priority><option value="pink" selected>重要且紧急</option><option value="blue">重要但不紧急</option><option value="yellow">紧急但不重要</option><option value="green">不重要不紧急</option></select></label>
           <label><span><i class="fa-solid fa-tag"></i>学习标签</span><select data-task-create-category></select></label>
           <label><span><i class="fa-regular fa-clock"></i>目标时长（分钟）</span><input type="number" min="1" max="1440" step="1" value="60" data-task-create-target required></label>
           <label><span><i class="fa-solid fa-folder-tree"></i>固定任务目录</span><select data-task-create-plan-location disabled></select></label>
@@ -8034,20 +8074,22 @@ html.daily-standalone .focus-column {
     </section>
   </div>
   <div class="auth-modal" data-auth-modal hidden>
-    <section class="auth-dialog" role="dialog" aria-modal="true" aria-label="设备授信">
+    <section class="auth-dialog" role="dialog" aria-modal="true" aria-label="设备授权">
       <header class="auth-dialog-header">
         <button class="auth-close" type="button" data-auth-close title="关闭" aria-label="关闭登录窗口"><i class="fa-solid fa-xmark"></i></button>
       </header>
       <form class="auth-form" data-auth-form>
+        <h2>授权当前设备</h2>
+        <p class="auth-device-status" data-auth-device-status>输入密码可授权 3 天；长期使用可由后台授权。</p>
         <label class="auth-password-field">
           <i class="fa-solid fa-key" aria-hidden="true"></i>
-          <input type="password" minlength="12" autocomplete="current-password" data-auth-password placeholder="输入管理密码" aria-label="管理密码" required>
+          <input type="password" minlength="12" autocomplete="current-password" data-auth-password placeholder="输入短期授权密码" aria-label="短期授权密码" required>
         </label>
         <div class="auth-actions">
-          <button class="auth-submit is-short" type="submit" data-auth-days="1">授信 1 天</button>
-          <button class="auth-submit" type="submit" data-auth-days="30">授信 30 天</button>
+          <button class="auth-submit" type="submit">授权 3 天</button>
         </div>
         <p class="auth-message" data-auth-message></p>
+        <a class="auth-admin-link" href="/administrator/">设备授权后台</a>
       </form>
     </section>
   </div>
@@ -8090,7 +8132,7 @@ html.daily-standalone .focus-column {
   var PLAN_NAVIGATION_KEY = 'ruiqy.daily.plan-navigation.v1'
   var PLAN_LIBRARY_LAYOUT_KEY = 'ruiqy.daily.plan-library-layout.v1'
   var DAILY_OFFLINE_PACKAGE_KEY = 'ruiqy.daily.offline-package-version.v1'
-  var DAILY_OFFLINE_PACKAGE_VERSION = 'daily-quick-tasks-v1'
+  var DAILY_OFFLINE_PACKAGE_VERSION = 'daily-device-access-v2'
   var LEGACY_DAILY_OFFLINE_SYNC_KEY = 'ruiqy.daily.offline-sync-date.v1'
   var DOKI_THEMES = {
     'emilia-light': { tone: 'light', sticker: '/daily/doki/emilia_light.png' },
@@ -8101,12 +8143,12 @@ html.daily-standalone .focus-column {
   }
   var IS_LOCAL_PREVIEW = location.hostname === '127.0.0.1' || location.hostname === 'localhost' || location.hostname === '[::1]' || location.protocol === 'file:'
   var API_BASE = IS_LOCAL_PREVIEW
-    ? 'http://127.0.0.1:7002'
+    ? 'http://' + (location.hostname === 'localhost' ? 'localhost' : '127.0.0.1') + ':7002'
     : '/api/daily'
   var AUTH_CACHE_KEY = 'ruiqy.daily.auth.v1'
   var LOCAL_API_MIGRATION_KEY = 'ruiqy.daily.local-api-migrated.v1'
-  var AUTH_RECHECK_MS = 30 * 60 * 1000
-  var AUTH_RETRY_MS = 5 * 60 * 1000
+  var AUTH_RECHECK_MS = 4 * 1000
+  var AUTH_RETRY_MS = 10 * 1000
   var FOCUS_SECONDS = 50 * 60
   var BREAK_SECONDS = 10 * 60
   var STUDY_TAGS = [
@@ -8517,7 +8559,7 @@ html.daily-standalone .focus-column {
   var activePlanIconPage = 0
   var planDirectoryContextTarget = null
   var planLibraryLayout = { width: 440, collapsed: false }
-  var authState = { authenticated: IS_LOCAL_PREVIEW, trusted: IS_LOCAL_PREVIEW, trustDays: null, csrf: null, available: true }
+  var authState = { authenticated: false, trusted: false, trustDays: null, csrf: null, available: true, device: null }
   var authCheckHandle = null
   var authCheckInFlight = null
   var authInteractionActive = false
@@ -8590,6 +8632,10 @@ html.daily-standalone .focus-column {
   var taskCount = document.querySelector('[data-task-count]')
   var taskQuickForm = document.querySelector('[data-task-quick-form]')
   var taskQuickInput = document.querySelector('[data-task-quick-input]')
+  var taskVoiceButton = document.querySelector('[data-task-voice]')
+  var taskVoiceStatus = document.querySelector('[data-task-voice-status]')
+  var taskVoiceRecognition = null
+  var taskVoiceActive = false
   var taskSearchInput = document.querySelector('[data-task-search]')
   var taskFilterButtons = Array.from(document.querySelectorAll('[data-task-filter]'))
   var taskViewCount = document.querySelector('[data-task-view-count]')
@@ -8653,6 +8699,7 @@ html.daily-standalone .focus-column {
   var authForm = document.querySelector('[data-auth-form]')
   var authPassword = document.querySelector('[data-auth-password]')
   var authMessage = document.querySelector('[data-auth-message]')
+  var authDeviceStatus = document.querySelector('[data-auth-device-status]')
   var installButton = document.querySelector('[data-install-app]')
   var installModal = document.querySelector('[data-install-modal]')
   var installAction = document.querySelector('[data-install-action]')
@@ -9329,7 +9376,6 @@ html.daily-standalone .focus-column {
   }
 
   function readAuthCache() {
-    if (IS_LOCAL_PREVIEW) return null
     try {
       var cached = JSON.parse(sessionStorage.getItem(AUTH_CACHE_KEY))
       if (!cached || !cached.authenticated || !cached.csrf || !Number(cached.checkedAt)) return null
@@ -9340,12 +9386,13 @@ html.daily-standalone .focus-column {
   }
 
   function storeAuthCache() {
-    if (IS_LOCAL_PREVIEW || !authState.authenticated || !authState.csrf) return
+    if (!authState.authenticated || !authState.csrf) return
     try {
       sessionStorage.setItem(AUTH_CACHE_KEY, JSON.stringify({
         authenticated: true,
         trusted: Boolean(authState.trusted),
         trustDays: Number(authState.trustDays) || null,
+        device: authState.device || null,
         csrf: authState.csrf,
         checkedAt: Date.now()
       }))
@@ -9353,7 +9400,6 @@ html.daily-standalone .focus-column {
   }
 
   function clearAuthCache() {
-    if (IS_LOCAL_PREVIEW) return
     try {
       sessionStorage.removeItem(AUTH_CACHE_KEY)
     } catch (error) {}
@@ -9365,16 +9411,16 @@ html.daily-standalone .focus-column {
     authState.trusted = Boolean(cached.trusted)
     authState.trustDays = Number(cached.trustDays) || null
     authState.csrf = cached.csrf
+    authState.device = cached.device || null
     authState.available = true
     return true
   }
 
   function scheduleAuthCheck(delay) {
-    if (IS_LOCAL_PREVIEW) return
     clearTimeout(authCheckHandle)
     authCheckHandle = setTimeout(function () {
-      if (authInteractionActive || document.hidden) {
-        scheduleAuthCheck(60 * 1000)
+      if (document.hidden) {
+        scheduleAuthCheck(AUTH_RECHECK_MS)
         return
       }
       initializeAccount({ force: true, silent: true })
@@ -9472,7 +9518,7 @@ html.daily-standalone .focus-column {
     clearTimeout(remoteSaveHandle)
     remoteSaveHandle = setTimeout(function () {
       flushRemoteState().catch(function (error) {
-        if (!IS_LOCAL_PREVIEW && (error.status === 401 || error.status === 403)) {
+        if (error.status === 401 || error.status === 403 || error.status === 423) {
           authState.authenticated = false
           authState.csrf = null
           clearAuthCache()
@@ -9488,16 +9534,19 @@ html.daily-standalone .focus-column {
   function applyAccessMode() {
     document.body.setAttribute('data-authenticated', authState.authenticated ? 'true' : 'false')
     if (authButton) {
-      authButton.hidden = authState.authenticated
+      authButton.hidden = false
       authButton.classList.toggle('is-authenticated', authState.authenticated)
       authButton.innerHTML = authState.authenticated
         ? '<img class="doki-ui-icon" src="/daily/doki-icons/unlocked.svg" alt="" aria-hidden="true">'
         : '<img class="doki-ui-icon" src="/daily/doki-icons/locked.svg" alt="" aria-hidden="true">'
+      var device = authState.device || {}
+      var expiry = device.expiresAt ? new Date(device.expiresAt).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' }) : ''
       authButton.title = authState.authenticated
-        ? '设备已授信 ' + (authState.trustDays || 1) + ' 天，点击退出'
-        : '输入密码并授信设备'
+        ? (device.permanent ? '设备已永久授权，点击退出' : expiry ? '设备授权至 ' + expiry + '，点击退出' : '设备已授权，点击退出')
+        : (device.locked ? '设备已锁定，请在后台解除锁定' : '输入密码短期授权，或由后台授权')
       authButton.setAttribute('aria-label', authButton.title)
     }
+    if (typeof updateAuthDeviceStatus === 'function') updateAuthDeviceStatus()
     var selector = [
       '.quick-form input', '.quick-form button', '.daily-note', '.daily-summary-note', '.weekly-note',
       '.task-checkbox', '.task-icon-button', '.priority-button', '.focus-tag', '.mode-button',
@@ -9505,7 +9554,7 @@ html.daily-standalone .focus-column {
       '.plan-task-title', '.plan-task-subgroup', '.plan-task-section', '.plan-task-note', '.plan-task-fixed-toggle input', '.plan-schedule-button',
       '.task-select-button', '.task-focus-button', '.sleep-detail-dialog input', '.sleep-detail-dialog button',
       '.task-detail-dialog input', '.task-detail-dialog textarea', '.task-detail-dialog select', '.task-detail-dialog button',
-      '.quadrant-add-button',
+      '.task-voice-button',
       '.memo-create-button', '.memo-folder-form input', '.memo-folder-form button', '.memo-folder-action',
       '.memo-folder-select', '.memo-title-input', '.memo-content-input', '.memo-delete-button',
       '.workspace-textarea'
@@ -9530,19 +9579,19 @@ html.daily-standalone .focus-column {
 
   function canEdit() {
     if (authState.authenticated) return true
-    showToast(authState.available ? '请先登录管理账号' : '登录服务未启动，当前为只读预览')
+    showToast(authState.available ? '请先授权当前设备' : '授权服务未连接，当前为只读预览')
     return false
   }
 
   function openAuthModal() {
     if (!authModal) return
-    if (IS_LOCAL_PREVIEW) return
     if (!authState.available) {
       showToast('登录服务未启动，当前为只读预览')
       return
     }
     authInteractionActive = true
     authMessage.textContent = ''
+    updateAuthDeviceStatus()
     authModal.hidden = false
     setTimeout(function () { authPassword.focus() }, 0)
   }
@@ -9555,15 +9604,29 @@ html.daily-standalone .focus-column {
     authMessage.textContent = ''
   }
 
-  function login(password, trustDays) {
+  function updateAuthDeviceStatus() {
+    if (!authDeviceStatus) return
+    var device = authState.device || {}
+    var label = device.name || '当前浏览器'
+    if (device.id) label += ' · ' + device.id.slice(0, 8)
+    authDeviceStatus.textContent = device.locked
+      ? label + '：密码错误已达 3 次，请通过后台解锁并授权。'
+      : label + '：密码可授权 3 天；后台授权后此页会自动恢复使用。'
+    if (authForm) Array.from(authForm.querySelectorAll('[type="submit"]')).forEach(function (button) {
+      button.disabled = Boolean(device.locked)
+    })
+  }
+
+  function login(password) {
     authMessage.textContent = '正在校验...'
     return apiRequest('/login', {
       method: 'POST',
-      body: JSON.stringify({ password: password, trustDays: trustDays })
+      body: JSON.stringify({ password: password })
     }).then(function (payload) {
       authState.authenticated = true
       authState.trusted = Boolean(payload.trusted)
-      authState.trustDays = Number(payload.trustDays) || trustDays
+      authState.trustDays = Number(payload.trustDays) || 3
+      authState.device = payload.device || authState.device
       authState.csrf = payload.csrf
       authState.available = true
       storeAuthCache()
@@ -9575,17 +9638,20 @@ html.daily-standalone .focus-column {
       receiveSharedDocument(documentData)
       renderAll()
       return flushRemoteState().then(function () {
+        if (IS_LOCAL_PREVIEW) localStorage.setItem(LOCAL_API_MIGRATION_KEY, '1')
         showToast('已登录，学习状态正在同步')
         return refreshSharedTimer()
       })
     }).catch(function (error) {
+      if (error.payload && error.payload.device) authState.device = error.payload.device
+      updateAuthDeviceStatus()
       authMessage.textContent = error.message
       throw error
     })
   }
 
   function logout() {
-    if (IS_LOCAL_PREVIEW) return Promise.resolve()
+    stopTaskVoice(true)
     return apiRequest('/logout', { method: 'POST', body: '{}' }).catch(function () {
       return null
     }).then(function () {
@@ -9655,6 +9721,7 @@ html.daily-standalone .focus-column {
     var local = browserDay && typeof browserDay === 'object' ? browserDay : {}
     var result = Object.assign({}, remote, local)
     result.tasks = mergeEntityLists(remote.tasks, local.tasks, false)
+    result.dailyTemplateIds = mergeUniqueValues(remote.dailyTemplateIds, local.dailyTemplateIds)
     result.note = local.note || remote.note || ''
     result.summary = local.summary || remote.summary || ''
     result.focusSessions = Math.max(Number(remote.focusSessions) || 0, Number(local.focusSessions) || 0)
@@ -9707,35 +9774,12 @@ html.daily-standalone .focus-column {
     return merged
   }
 
-  function initializeLocalAccount() {
-    authState = { authenticated: true, trusted: true, trustDays: null, csrf: null, available: true }
-    renderAll()
-    return apiRequest('/data', { method: 'GET' }).then(function (documentData) {
-      var migrated = localStorage.getItem(LOCAL_API_MIGRATION_KEY) === '1'
-      if (!migrated) {
-        setPendingSync(true)
-        receiveSharedDocument(documentData)
-        return flushRemoteState().then(function () {
-          localStorage.setItem(LOCAL_API_MIGRATION_KEY, '1')
-          return refreshSharedTimer()
-        })
-      }
-      if (documentData.revision === 0 && hasLocalContent(state)) setPendingSync(true)
-      receiveSharedDocument(documentData)
-      renderAll()
-      return refreshSharedTimer()
-    }).catch(function () {
-      authState.available = true
-      authState.authenticated = true
-      renderAll()
-      showToast('本地数据服务暂时未启动，内容仅保存在当前浏览器')
-    })
-  }
-
   function initializeAccount(options) {
     var settings = options || {}
-    if (IS_LOCAL_PREVIEW) {
-      return initializeLocalAccount()
+    // Preserve legacy local drafts until this browser is authorized to merge
+    // them into the local API; a public read must not replace those drafts.
+    if (IS_LOCAL_PREVIEW && localStorage.getItem(LOCAL_API_MIGRATION_KEY) !== '1' && hasLocalContent(state)) {
+      setPendingSync(true)
     }
     if (authCheckInFlight) return authCheckInFlight
 
@@ -9748,10 +9792,6 @@ html.daily-standalone .focus-column {
         return refreshSharedTimer()
       }
     }
-    if (authInteractionActive) {
-      scheduleAuthCheck(AUTH_RETRY_MS)
-      return Promise.resolve()
-    }
 
     var previouslyAuthenticated = authState.authenticated
     var sessionResolved = false
@@ -9761,11 +9801,14 @@ html.daily-standalone .focus-column {
       authState.trusted = Boolean(payload.trusted)
       authState.trustDays = Number(payload.trustDays) || null
       authState.csrf = payload.csrf || null
+      authState.device = payload.device || null
       authState.available = true
+      if (authState.authenticated && authModal && !authModal.hidden) closeAuthModal()
       if (authState.authenticated) storeAuthCache()
       else clearAuthCache()
       if (previouslyAuthenticated && !authState.authenticated) {
-        showToast('登录已到期，请重新授信')
+        stopTaskVoice(true)
+        showToast('设备授权已到期或被撤销，请重新授权')
       }
       return apiRequest('/data', { method: 'GET' })
     }).then(function (documentData) {
@@ -9773,7 +9816,15 @@ html.daily-standalone .focus-column {
       receiveSharedDocument(documentData)
       renderAll()
       scheduleAuthCheck(AUTH_RECHECK_MS)
-      if (authState.authenticated) return refreshSharedTimer()
+      if (authState.authenticated) {
+        if (IS_LOCAL_PREVIEW && localStorage.getItem(LOCAL_API_MIGRATION_KEY) !== '1') {
+          return flushRemoteState().then(function () {
+            localStorage.setItem(LOCAL_API_MIGRATION_KEY, '1')
+            return refreshSharedTimer()
+          })
+        }
+        return refreshSharedTimer()
+      }
     }).catch(function () {
       if (!sessionResolved && previouslyAuthenticated) {
         authState.authenticated = true
@@ -10167,6 +10218,7 @@ html.daily-standalone .focus-column {
     state.days[key].sleepMinutes.nap = sleepPeriodMinutes(state.days[key], 'nap')
     state.days[key].routineSeconds.sleep = sleepTotalMinutes(state.days[key]) * 60
     if (!Array.isArray(state.days[key].routineFocusRecords)) state.days[key].routineFocusRecords = []
+    ensureAutomaticDailyTasks(key, state.days[key])
     return state.days[key]
   }
 
@@ -12509,7 +12561,7 @@ html.daily-standalone .focus-column {
     state.inbox.unshift({
       id: uid(),
       text: text,
-      priority: 'yellow',
+      priority: 'pink',
       groupId: group.id,
       subgroupId: project ? project.id : '',
       sectionId: section ? section.id : '',
@@ -12639,9 +12691,17 @@ html.daily-standalone .focus-column {
 
   function enqueueTemplateTask(item, dateKey) {
     var day = ensureDay(dateKey)
+    if (!Array.isArray(day.dailyTemplateIds)) day.dailyTemplateIds = []
+    if (day.dailyTemplateIds.indexOf(item.id) < 0) day.dailyTemplateIds.push(item.id)
     var existing = taskFromTemplate(day, item.id)
     if (existing) return { task: existing, added: false }
-    var task = {
+    var task = createTemplateTask(item, dateKey)
+    day.tasks.push(task)
+    return { task: task, added: true }
+  }
+
+  function createTemplateTask(item, dateKey) {
+    return {
       id: 'daily-template-' + dateKey + '-' + encodeURIComponent(item.id),
       text: item.text,
       priority: normalizePriority(item.priority),
@@ -12660,14 +12720,32 @@ html.daily-standalone .focus-column {
       createdAt: Date.now(),
       completedAt: null
     }
-    day.tasks.push(task)
-    return { task: task, added: true }
   }
 
   function dailyTaskTemplates() {
+    var deletedGroups = state.deletedPlanGroupIds || []
+    var deletedTasks = state.deletedPlanTaskIds || []
+    if (deletedGroups.indexOf('plan-habit') >= 0) return []
     return state.inbox.filter(function (item) {
-      return item.groupId === 'plan-habit' && !item.deletedAt
+      return item.groupId === 'plan-habit' && !item.deletedAt && item.enabled !== false && item.disabled !== true && deletedTasks.indexOf(item.id) < 0
     }).slice().sort(comparePlanOrder)
+  }
+
+  function ensureAutomaticDailyTasks(dateKey, day) {
+    if (dateKey !== todayKey()) return false
+    if (!Array.isArray(day.dailyTemplateIds)) day.dailyTemplateIds = []
+    var changed = false
+    dailyTaskTemplates().forEach(function (item) {
+      var existing = taskFromTemplate(day, item.id)
+      if (existing || day.dailyTemplateIds.indexOf(item.id) >= 0) {
+        if (day.dailyTemplateIds.indexOf(item.id) < 0) day.dailyTemplateIds.push(item.id)
+        return
+      }
+      day.dailyTemplateIds.push(item.id)
+      day.tasks.push(createTemplateTask(item, dateKey))
+      changed = true
+    })
+    return changed
   }
 
   function renderDailyTemplates() {
@@ -12743,7 +12821,7 @@ html.daily-standalone .focus-column {
     var text = titleInput.value.trim().slice(0, 160)
     if (!text) return
     var item = {
-      id: uid(), text: text, priority: 'green', groupId: 'plan-habit', subgroupId: '', sectionId: '',
+      id: uid(), text: text, priority: 'pink', groupId: 'plan-habit', subgroupId: '', sectionId: '',
       note: '', focusTag: '🌱 日常', fixed: true,
       targetMinutes: Math.min(1440, Math.max(1, Number(minutesInput.value) || 30)),
       sortOrder: nextPlanSortOrder(dailyTaskTemplates()), createdAt: Date.now()
@@ -12814,16 +12892,102 @@ html.daily-standalone .focus-column {
     if (taskSearchInput) taskSearchInput.value = ''
   }
 
-  function submitQuickTask(event) {
-    event.preventDefault()
-    if (!taskQuickInput || !canEdit()) return
-    var title = taskQuickInput.value.trim().slice(0, 160)
-    if (!title) {
+  function setTaskVoiceStatus(message, listening) {
+    taskVoiceActive = Boolean(listening)
+    if (taskVoiceButton) {
+      taskVoiceButton.classList.toggle('is-listening', taskVoiceActive)
+      taskVoiceButton.setAttribute('aria-pressed', taskVoiceActive ? 'true' : 'false')
+      taskVoiceButton.title = taskVoiceActive ? '停止语音输入' : '语音输入任务'
+      taskVoiceButton.setAttribute('aria-label', taskVoiceButton.title)
+    }
+    if (taskVoiceStatus) {
+      taskVoiceStatus.textContent = message || ''
+      taskVoiceStatus.hidden = !message
+    }
+  }
+
+  function stopTaskVoice(abort) {
+    if (!taskVoiceRecognition) return
+    var recognition = taskVoiceRecognition
+    // Ignore late callbacks after cancellation, navigation or access changes.
+    if (abort) {
+      taskVoiceRecognition = null
+      setTaskVoiceStatus('', false)
+    }
+    try {
+      if (abort) recognition.abort()
+      else recognition.stop()
+    } catch (error) {
+      taskVoiceRecognition = null
+      setTaskVoiceStatus('', false)
+    }
+  }
+
+  function toggleTaskVoice() {
+    if (!canEdit() || !taskQuickInput) return
+    if (taskVoiceRecognition) {
+      stopTaskVoice(false)
+      return
+    }
+    var Recognition = window.SpeechRecognition || window.webkitSpeechRecognition
+    if (!Recognition) {
+      setTaskVoiceStatus('此浏览器不支持语音输入，可使用输入法的听写功能。', false)
       taskQuickInput.focus()
       return
     }
+    var recognition = new Recognition()
+    var original = taskQuickInput.value.trim()
+    var received = false
+    var failed = false
+    recognition.lang = 'zh-CN'
+    recognition.continuous = false
+    recognition.interimResults = true
+    taskVoiceRecognition = recognition
+    recognition.onresult = function (event) {
+      if (taskVoiceRecognition !== recognition || !authState.authenticated) return
+      var text = Array.from(event.results).map(function (result) { return result[0].transcript }).join('')
+      if (!text.trim()) return
+      received = true
+      taskQuickInput.value = (original + (original ? ' ' : '') + text.trim()).slice(0, 160)
+    }
+    recognition.onerror = function (event) {
+      if (taskVoiceRecognition !== recognition) return
+      failed = true
+      var messages = {
+        'not-allowed': '未获得麦克风权限，请在浏览器设置中允许后重试。',
+        'service-not-allowed': '浏览器暂不允许语音识别，可使用输入法听写。',
+        'audio-capture': '没有可用的麦克风，请检查设备连接。',
+        'no-speech': '没有听到语音，点击麦克风可以重试。',
+        'network': '语音识别服务未连接，请检查网络或使用输入法听写。'
+      }
+      setTaskVoiceStatus(messages[event.error] || '语音输入已结束，可编辑文字后添加。', false)
+    }
+    recognition.onend = function () {
+      if (taskVoiceRecognition !== recognition) return
+      taskVoiceRecognition = null
+      if (!failed) setTaskVoiceStatus(received ? '已转为文字，确认后点 ＋ 添加。' : '没有识别到内容，可以重试。', false)
+      taskQuickInput.focus()
+    }
+    try {
+      recognition.start()
+      setTaskVoiceStatus('正在听，请说出任务…再次点击麦克风结束。语音由浏览器识别。', true)
+    } catch (error) {
+      taskVoiceRecognition = null
+      setTaskVoiceStatus('无法启动语音输入，请检查麦克风权限后重试。', false)
+    }
+  }
+
+  function submitQuickTask(event) {
+    event.preventDefault()
+    if (!taskQuickInput || !canEdit()) return
+    if (typeof stopTaskVoice === 'function') stopTaskVoice(true)
+    var title = taskQuickInput.value.trim().slice(0, 160)
+    if (!title) {
+      openTaskCreate()
+      return
+    }
     revealAddedTask()
-    addToday(title, { dueDate: selectedDate, priority: 'yellow', targetMinutes: 60 })
+    addToday(title, { dueDate: selectedDate, priority: 'pink', targetMinutes: 60 })
     taskQuickInput.value = ''
     taskQuickInput.focus()
     showToast('已添加任务')
@@ -12835,7 +12999,7 @@ html.daily-standalone .focus-column {
     ensureDay(targetDate).tasks.push({
       id: uid(),
       text: text,
-      priority: normalizePriority(next.priority || 'yellow'),
+      priority: normalizePriority(next.priority || 'pink'),
       note: (next.note || '').slice(0, 6000),
       dueDate: targetDate,
       focusTag: next.focusTag || '',
@@ -12918,7 +13082,7 @@ html.daily-standalone .focus-column {
     var item = {
       id: uid(),
       text: text,
-      priority: normalizePriority(details.priority || 'yellow'),
+      priority: normalizePriority(details.priority || 'pink'),
       groupId: group.id,
       subgroupId: project ? project.id : '',
       sectionId: section ? section.id : '',
@@ -12940,7 +13104,7 @@ html.daily-standalone .focus-column {
     taskCreateForm.reset()
     if (taskQuickInput) taskCreateTitle.value = taskQuickInput.value.trim().slice(0, 160)
     taskCreateDate.value = selectedDate
-    taskCreatePriority.value = 'yellow'
+    taskCreatePriority.value = 'pink'
     if (taskCreateTarget) taskCreateTarget.value = '60'
     if (taskCreateFixed) taskCreateFixed.checked = false
     populateTaskCreatePlanLocations()
@@ -14786,6 +14950,14 @@ html.daily-standalone .focus-column {
   }
 
   if (taskCreateButton) taskCreateButton.addEventListener('click', openTaskCreate)
+  if (taskVoiceButton) taskVoiceButton.addEventListener('click', toggleTaskVoice)
+  if (taskQuickInput) taskQuickInput.addEventListener('input', function () {
+    if (taskVoiceRecognition) stopTaskVoice(true)
+  })
+  window.addEventListener('pagehide', function () { stopTaskVoice(true) })
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) stopTaskVoice(true)
+  })
   if (taskCreateForm) taskCreateForm.addEventListener('submit', submitTaskCreate)
   if (taskQuickForm) taskQuickForm.addEventListener('submit', submitQuickTask)
   if (taskSearchInput) taskSearchInput.addEventListener('input', function () {
@@ -15060,15 +15232,13 @@ html.daily-standalone .focus-column {
     event.preventDefault()
     var password = authPassword.value
     if (!password) return
-    login(password, 30).catch(function () {})
+    login(password).catch(function () {})
   })
   authForm.addEventListener('submit', function (event) {
     event.preventDefault()
     var password = authPassword.value
     if (!password) return
-    var submitter = event.submitter
-    var trustDays = Number(submitter && submitter.getAttribute('data-auth-days')) || 30
-    login(password, trustDays).catch(function () {})
+    login(password).catch(function () {})
   })
 
   if (installButton) installButton.addEventListener('click', syncDailyOffline)
