@@ -176,7 +176,7 @@
   list-style: none;
   opacity: 0;
   transform: translateY(-5px);
-  transition: opacity .16s ease, transform .16s ease, visibility .16s ease;
+  transition: opacity .16s ease, transform .16s ease;
 }
 
 #page-header.shared-blog-header .menus_item:hover > .menus_item_child,
