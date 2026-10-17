@@ -171,8 +171,8 @@ class LocalSearch {
   }
 
   fetchData () {
-    const isXml = !this.path.endsWith('json')
-    fetch(this.path)
+    const isXml = !new URL(this.path, location.href).pathname.endsWith('.json')
+    fetch(this.path, { cache: 'no-store' })
       .then(response => response.text())
       .then(res => {
         // Get the contents from search data
