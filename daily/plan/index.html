@@ -5020,16 +5020,27 @@ body[data-daily-page="plan"] .daily-summary-section {
 }
 
 .auth-button {
-  display: inline-grid;
-  width: 38px;
+  display: inline-flex;
+  min-width: 38px;
   height: 38px;
-  padding: 0;
+  max-width: 180px;
+  padding: 0 9px;
+  gap: 6px;
   border: 1px solid #d9e2de;
   border-radius: 7px;
   background: #fff;
   color: #40504a;
   cursor: pointer;
-  place-items: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-device-label {
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .auth-button i {
@@ -5094,6 +5105,17 @@ body[data-daily-page="plan"] .daily-summary-section {
   display: grid;
   gap: 10px;
 }
+
+.auth-form h2 { margin: 0; }
+.auth-device-info { margin: 0; color: var(--daily-muted); font-size: 13px; }
+.auth-device-status { margin: 0 0 4px; font-size: 13px; line-height: 1.6; }
+.auth-name-field { display: grid; gap: 5px; font-size: 13px; font-weight: 600; }
+.auth-name-field input { width: 100%; height: 42px; padding: 0 12px; border: 1px solid #d9e2de; border-radius: 7px; background: #fff; color: inherit; font: inherit; }
+.auth-name-field input:focus-visible { outline: 2px solid var(--daily-green); outline-offset: 2px; }
+.auth-password-field[hidden], .auth-logout[hidden] { display: none; }
+.auth-logout { min-height: 38px; border: 1px solid var(--daily-line); border-radius: 7px; background: transparent; color: var(--daily-muted); cursor: pointer; }
+.auth-message.is-success { color: var(--daily-green); }
+.auth-submit:disabled, .auth-logout:disabled { opacity: .55; cursor: default; }
 
 .auth-password-field {
   position: relative;
@@ -5536,12 +5558,6 @@ body[data-authenticated="false"] input:disabled {
   overflow-wrap: anywhere;
   color: var(--daily-muted);
   font-size: 12px;
-}
-
-.auth-admin-link {
-  justify-self: center;
-  color: #8260ad;
-  font-size: 13px;
 }
 
 .day-task-view-toolbar {
@@ -8079,17 +8095,19 @@ html.daily-standalone .focus-column {
         <button class="auth-close" type="button" data-auth-close title="关闭" aria-label="关闭登录窗口"><i class="fa-solid fa-xmark"></i></button>
       </header>
       <form class="auth-form" data-auth-form>
-        <h2>授权当前设备</h2>
-        <p class="auth-device-status" data-auth-device-status>输入密码可授权 3 天；长期使用可由后台授权。</p>
-        <label class="auth-password-field">
+        <h2 data-auth-title>设备授权登录</h2>
+        <p class="auth-device-info" data-auth-device-info>当前设备</p>
+        <p class="auth-device-status" data-auth-device-status>输入密码验证成功后，当前设备可使用 3 天。</p>
+        <label class="auth-name-field"><span>设备名称</span><input type="text" name="deviceName" maxlength="80" autocomplete="off" data-auth-device-name placeholder="例如：我的 iPad" aria-label="设备名称" required></label>
+        <label class="auth-password-field" data-auth-password-field>
           <i class="fa-solid fa-key" aria-hidden="true"></i>
           <input type="password" minlength="12" autocomplete="current-password" data-auth-password placeholder="输入短期授权密码" aria-label="短期授权密码" required>
         </label>
         <div class="auth-actions">
-          <button class="auth-submit" type="submit">授权 3 天</button>
+          <button class="auth-submit" type="submit" data-auth-submit>密码授权登录</button>
+          <button class="auth-logout" type="button" data-auth-logout hidden>退出登录</button>
         </div>
         <p class="auth-message" data-auth-message></p>
-        <a class="auth-admin-link" href="/administrator/">设备授权后台</a>
       </form>
     </section>
   </div>
@@ -8563,6 +8581,8 @@ html.daily-standalone .focus-column {
   var authCheckHandle = null
   var authCheckInFlight = null
   var authInteractionActive = false
+  var authNameDirty = false
+  var authBusy = false
 
   var inboxForm = document.querySelector('[data-inbox-form]')
   var inboxInput = document.querySelector('[data-inbox-input]')
@@ -8702,6 +8722,12 @@ html.daily-standalone .focus-column {
   var authPassword = document.querySelector('[data-auth-password]')
   var authMessage = document.querySelector('[data-auth-message]')
   var authDeviceStatus = document.querySelector('[data-auth-device-status]')
+  var authDeviceName = document.querySelector('[data-auth-device-name]')
+  var authDeviceInfo = document.querySelector('[data-auth-device-info]')
+  var authTitle = document.querySelector('[data-auth-title]')
+  var authPasswordField = document.querySelector('[data-auth-password-field]')
+  var authSubmit = document.querySelector('[data-auth-submit]')
+  var authLogout = document.querySelector('[data-auth-logout]')
   var installButton = document.querySelector('[data-install-app]')
   var installModal = document.querySelector('[data-install-modal]')
   var installAction = document.querySelector('[data-install-action]')
@@ -9541,11 +9567,15 @@ html.daily-standalone .focus-column {
       authButton.innerHTML = authState.authenticated
         ? '<img class="doki-ui-icon" src="/daily/doki-icons/unlocked.svg" alt="" aria-hidden="true">'
         : '<img class="doki-ui-icon" src="/daily/doki-icons/locked.svg" alt="" aria-hidden="true">'
+      var deviceLabel = document.createElement('span')
+      deviceLabel.className = 'auth-device-label'
+      deviceLabel.textContent = detectDeviceInfo().kind + (authState.authenticated ? ' · 已授权' : ' · 授权登录')
+      authButton.appendChild(deviceLabel)
       var device = authState.device || {}
       var expiry = device.expiresAt ? new Date(device.expiresAt).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' }) : ''
       authButton.title = authState.authenticated
-        ? (device.permanent ? '设备已永久授权，点击退出' : expiry ? '设备授权至 ' + expiry + '，点击退出' : '设备已授权，点击退出')
-        : (device.locked ? '设备已锁定，请在后台解除锁定' : '输入密码短期授权，或由后台授权')
+        ? (device.permanent ? '设备已永久授权，查看设备信息' : expiry ? '设备授权至 ' + expiry + '，查看设备信息' : '设备已授权，查看设备信息')
+        : (device.locked ? '设备已锁定，请联系管理员' : '查看当前设备并输入密码授权登录')
       authButton.setAttribute('aria-label', authButton.title)
     }
     if (typeof updateAuthDeviceStatus === 'function') updateAuthDeviceStatus()
@@ -9585,6 +9615,31 @@ html.daily-standalone .focus-column {
     return false
   }
 
+  function detectDeviceInfo(client) {
+    var browser = client || (typeof navigator === 'undefined' ? {} : navigator)
+    var agent = String(browser.userAgent || '')
+    var platform = String(browser.platform || '')
+    var kind = '其他'
+    if (/iPad/i.test(agent) || /MacIntel|Macintosh/i.test(platform + ' ' + agent) && Number(browser.maxTouchPoints) > 1) kind = 'iPad'
+    else if (/iPhone|iPod/i.test(agent)) kind = 'iPhone'
+    else if (/Android/i.test(agent)) kind = 'Android'
+    else if (/Mac/i.test(platform + ' ' + agent)) kind = 'Mac'
+    else if (/Win/i.test(platform + ' ' + agent)) kind = 'Windows'
+    else if (/Linux/i.test(platform + ' ' + agent)) kind = 'Linux'
+    var name = /Edg(?:A|iOS)?\//i.test(agent) ? 'Edge'
+      : /OPR\/|OPiOS\//i.test(agent) ? 'Opera'
+      : /Firefox\/|FxiOS\//i.test(agent) ? 'Firefox'
+      : /Chrome\/|CriOS\/|Chromium\//i.test(agent) ? 'Chrome'
+      : /Safari\//i.test(agent) ? 'Safari' : '浏览器'
+    return { kind: kind, browser: name }
+  }
+
+  function deviceProfileName(device, info) {
+    var name = typeof (device || {}).name === 'string' ? device.name.trim() : ''
+    if (name && name !== '新设备' && !/^(iPad|iPhone|Android|Mac|Windows|Linux) 浏览器$/.test(name)) return name
+    return info.kind + ' · ' + info.browser
+  }
+
   function openAuthModal() {
     if (!authModal) return
     if (!authState.available) {
@@ -9592,15 +9647,18 @@ html.daily-standalone .focus-column {
       return
     }
     authInteractionActive = true
+    authNameDirty = false
     authMessage.textContent = ''
+    authMessage.classList.remove('is-success')
     updateAuthDeviceStatus()
     authModal.hidden = false
-    setTimeout(function () { authPassword.focus() }, 0)
+    setTimeout(function () { (authState.authenticated ? authDeviceName : authPassword).focus() }, 0)
   }
 
   function closeAuthModal() {
     if (!authModal) return
     authInteractionActive = false
+    authNameDirty = false
     authModal.hidden = true
     authForm.reset()
     authMessage.textContent = ''
@@ -9609,21 +9667,65 @@ html.daily-standalone .focus-column {
   function updateAuthDeviceStatus() {
     if (!authDeviceStatus) return
     var device = authState.device || {}
-    var label = device.name || '当前浏览器'
-    if (device.id) label += ' · ' + device.id.slice(0, 8)
-    authDeviceStatus.textContent = device.locked
-      ? label + '：密码错误已达 3 次，请通过后台解锁并授权。'
-      : label + '：密码可授权 3 天；后台授权后此页会自动恢复使用。'
-    if (authForm) Array.from(authForm.querySelectorAll('[type="submit"]')).forEach(function (button) {
-      button.disabled = Boolean(device.locked)
+    var info = detectDeviceInfo()
+    if (authDeviceInfo) authDeviceInfo.textContent = '当前设备：' + info.kind + ' · ' + info.browser
+    if (authDeviceName && !authNameDirty) authDeviceName.value = deviceProfileName(device, info)
+    if (authTitle) authTitle.textContent = authState.authenticated ? '当前设备' : '设备授权登录'
+    if (authPasswordField) authPasswordField.hidden = authState.authenticated
+    if (authPassword) {
+      authPassword.required = !authState.authenticated
+      authPassword.disabled = authState.authenticated || Boolean(device.locked) || authBusy
+    }
+    if (authDeviceName) authDeviceName.disabled = authBusy
+    var expiry = device.expiresAt ? new Date(device.expiresAt).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai', hour12: false }) : ''
+    authDeviceStatus.textContent = device.locked ? '密码连续错误 3 次，当前设备已锁定，请联系管理员。'
+      : device.revoked ? '当前设备授权已撤销，请联系管理员。'
+      : authState.authenticated ? (device.permanent ? '当前设备已永久授权。' : expiry ? '授权有效期至 ' + expiry : '当前设备已授权。')
+      : '输入密码验证成功后，当前设备可使用 3 天。'
+    if (authSubmit) {
+      authSubmit.disabled = authBusy || Boolean(device.locked) || Boolean(device.revoked)
+      authSubmit.textContent = authBusy ? '正在处理…' : authState.authenticated ? '保存设备名称' : '密码授权登录'
+    }
+    if (authLogout) {
+      authLogout.hidden = !authState.authenticated
+      authLogout.disabled = authBusy
+    }
+  }
+
+  function saveCurrentDevice(name) {
+    authMessage.classList.remove('is-success')
+    authMessage.textContent = '正在保存...'
+    return apiRequest('/device', {
+      method: 'POST',
+      body: JSON.stringify({ name: name.trim(), deviceInfo: detectDeviceInfo() })
+    }).then(function (payload) {
+      authState.device = payload.device || authState.device
+      authNameDirty = false
+      storeAuthCache()
+      applyAccessMode()
+      authMessage.classList.add('is-success')
+      authMessage.textContent = '设备名称已保存。'
+      showToast('设备名称已保存')
+    }).catch(function (error) {
+      if (error.payload && error.payload.device) authState.device = error.payload.device
+      if (error.status === 401 || error.status === 403 || error.status === 423) {
+        authState.authenticated = false
+        authState.csrf = null
+        clearAuthCache()
+      }
+      applyAccessMode()
+      authMessage.textContent = error.message
+      throw error
     })
   }
 
-  function login(password) {
+  function login(password, deviceName) {
+    var info = detectDeviceInfo()
+    var name = typeof deviceName === 'string' ? deviceName.trim() : deviceProfileName(authState.device, info)
     authMessage.textContent = '正在校验...'
     return apiRequest('/login', {
       method: 'POST',
-      body: JSON.stringify({ password: password })
+      body: JSON.stringify({ password: password, deviceName: name, deviceInfo: info })
     }).then(function (payload) {
       authState.authenticated = true
       authState.trusted = Boolean(payload.trusted)
@@ -9657,7 +9759,7 @@ html.daily-standalone .focus-column {
     return apiRequest('/logout', { method: 'POST', body: '{}' }).catch(function () {
       return null
     }).then(function () {
-      authState = { authenticated: false, trusted: false, trustDays: null, csrf: null, available: true }
+      authState = { authenticated: false, trusted: false, trustDays: null, csrf: null, available: true, device: authState.device || null }
       clearAuthCache()
       scheduleAuthCheck(AUTH_RECHECK_MS)
       // Logging out this device must not pause the shared session on others.
@@ -9805,7 +9907,6 @@ html.daily-standalone .focus-column {
       authState.csrf = payload.csrf || null
       authState.device = payload.device || null
       authState.available = true
-      if (authState.authenticated && authModal && !authModal.hidden) closeAuthModal()
       if (authState.authenticated) storeAuthCache()
       else clearAuthCache()
       if (previouslyAuthenticated && !authState.authenticated) {
@@ -15223,26 +15324,42 @@ html.daily-standalone .focus-column {
   })
 
   authButton.addEventListener('click', function () {
-    if (authState.authenticated) logout()
-    else openAuthModal()
+    openAuthModal()
   })
   if (memoUnlockButton) memoUnlockButton.addEventListener('click', openAuthModal)
   document.querySelector('[data-auth-close]').addEventListener('click', closeAuthModal)
   authModal.addEventListener('click', function (event) {
     if (event.target === authModal) closeAuthModal()
   })
-  authPassword.addEventListener('keydown', function (event) {
-    if (event.key !== 'Enter') return
-    event.preventDefault()
-    var password = authPassword.value
-    if (!password) return
-    login(password).catch(function () {})
-  })
   authForm.addEventListener('submit', function (event) {
     event.preventDefault()
+    if (authBusy) return
+    var name = authDeviceName.value.trim()
+    if (!name) {
+      authMessage.textContent = '请填写设备名称。'
+      authDeviceName.focus()
+      return
+    }
     var password = authPassword.value
-    if (!password) return
-    login(password).catch(function () {})
+    if (!authState.authenticated && !password) return
+    authBusy = true
+    authMessage.classList.remove('is-success')
+    updateAuthDeviceStatus()
+    var request = authState.authenticated ? saveCurrentDevice(name) : login(password, name)
+    request.catch(function () {}).finally(function () {
+      authBusy = false
+      updateAuthDeviceStatus()
+    })
+  })
+  authDeviceName.addEventListener('input', function () { authNameDirty = true })
+  authLogout.addEventListener('click', function () {
+    if (authBusy) return
+    authBusy = true
+    updateAuthDeviceStatus()
+    logout().then(closeAuthModal).finally(function () {
+      authBusy = false
+      updateAuthDeviceStatus()
+    })
   })
 
   if (installButton) installButton.addEventListener('click', syncDailyOffline)

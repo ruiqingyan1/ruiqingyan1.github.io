@@ -6,7 +6,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
 </style></head><body>
 <header><div><h1>🌱 设备授权后台</h1><p>Daily · 管理设备、授权期限与访问状态</p></div><div class="header-actions"><a href="/daily/">返回每日计划</a><button class="button" type="button" data-admin-logout hidden>退出后台</button></div></header>
 <main><section class="panel login-panel" data-login-panel><h2>管理员登录</h2><p class="muted">输入后台账号和密码，管理各设备的使用期限。</p><form data-admin-login><label>账号<input name="username" value="administrator" autocomplete="username" required></label><label>密码<input name="password" type="password" autocomplete="current-password" required></label><button class="button primary" type="submit">登录后台</button><p class="error" data-login-message role="status" aria-live="polite"></p></form><p class="muted">密码连续错误 3 次会锁定当前浏览器设备，需从其他已授权的管理设备解除锁定。</p></section>
-<section data-dashboard hidden><div class="overview"><div class="panel stat"><span>全部设备</span><strong data-count-total>0</strong></div><div class="panel stat"><span>已授权</span><strong data-count-authorized>0</strong></div><div class="panel stat"><span>待授权 / 已到期</span><strong data-count-pending>0</strong></div><div class="panel stat"><span>已锁定</span><strong data-count-locked>0</strong></div></div><div class="notice">目标设备打开 Daily 后会自动登记。授权与解锁会自动生效；添加时长从尚未到期的期限继续累计，已到期则从现在起算。日本与本地使用同一授权服务。</div><div class="toolbar"><input type="search" data-device-search placeholder="搜索设备名称或编号" aria-label="搜索设备"><select data-device-filter aria-label="筛选设备状态"><option value="all">全部状态</option><option value="authorized">已授权</option><option value="pending">待授权 / 已到期</option><option value="locked">已锁定</option><option value="revoked">已撤销</option></select><button class="button" type="button" data-device-refresh>刷新</button></div><p class="sync-status" data-sync-status role="status"></p><div class="device-list" data-device-list></div></section></main><div class="toast" data-admin-toast role="status" aria-live="polite" hidden></div><script>
+<section data-dashboard hidden><div class="overview"><div class="panel stat"><span>全部设备</span><strong data-count-total>0</strong></div><div class="panel stat"><span>已授权</span><strong data-count-authorized>0</strong></div><div class="panel stat"><span>待授权 / 已到期</span><strong data-count-pending>0</strong></div><div class="panel stat"><span>已锁定</span><strong data-count-locked>0</strong></div></div><div class="notice">目标设备打开 Daily 后会自动登记。授权与解锁会自动生效；添加时长从尚未到期的期限继续累计，已到期则从现在起算。日本与本地使用同一授权服务。</div><div class="toolbar"><input type="search" data-device-search placeholder="搜索名称、设备类型或编号" aria-label="搜索设备"><select data-device-filter aria-label="筛选设备状态"><option value="all">全部状态</option><option value="authorized">已授权</option><option value="pending">待授权 / 已到期</option><option value="locked">已锁定</option><option value="revoked">已撤销</option></select><button class="button" type="button" data-device-refresh>刷新</button></div><p class="sync-status" data-sync-status role="status"></p><div class="device-list" data-device-list></div></section></main><div class="toast" data-admin-toast role="status" aria-live="polite" hidden></div><script>
 (function () {
   'use strict'
   var local = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
@@ -65,6 +65,33 @@ header{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
     if (device.authorized) return { code: 'authorized', label: device.permanent ? '永久授权' : '授权中' }
     return { code: 'pending', label: device.expiresAt ? '已到期' : '待授权' }
   }
+  function deviceInformation(device) {
+    var info = device && device.deviceInfo
+    if (!info || typeof info !== 'object') return '设备信息待更新'
+    var kinds = ['iPad', 'iPhone', 'Android', 'Mac', 'Windows', 'Linux', '其他']
+    var browsers = ['Safari', 'Chrome', 'Edge', 'Firefox', 'Opera', '浏览器']
+    var details = []
+    if (kinds.indexOf(info.kind) >= 0) details.push(info.kind === '其他' ? '其他设备' : info.kind)
+    if (browsers.indexOf(info.browser) >= 0) details.push(info.browser)
+    return details.length ? details.join(' · ') : '设备信息待更新'
+  }
+  function currentDeviceInformation() {
+    var ua = navigator.userAgent || ''
+    var kind = '其他'
+    if (/iPad/.test(ua) || (navigator.platform === 'MacIntel' && Number(navigator.maxTouchPoints) > 1)) kind = 'iPad'
+    else if (/iPhone|iPod/.test(ua)) kind = 'iPhone'
+    else if (/Android/.test(ua)) kind = 'Android'
+    else if (/Macintosh|Mac OS X/.test(ua)) kind = 'Mac'
+    else if (/Windows/.test(ua)) kind = 'Windows'
+    else if (/Linux/.test(ua)) kind = 'Linux'
+    var browser = '浏览器'
+    if (/Edg(?:e|A|iOS)?\//.test(ua)) browser = 'Edge'
+    else if (/OPR\/|OPiOS\//.test(ua)) browser = 'Opera'
+    else if (/Firefox\/|FxiOS\//.test(ua)) browser = 'Firefox'
+    else if (/Chrome\/|CriOS\//.test(ua)) browser = 'Chrome'
+    else if (/Safari\//.test(ua)) browser = 'Safari'
+    return { kind: kind, browser: browser }
+  }
   function setAuthenticated(value, device) {
     authenticated = Boolean(value)
     currentDeviceId = authenticated && device && typeof device.id === 'string' && device.id ? device.id : null
@@ -117,7 +144,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
     })
     var query = search.value.trim().toLocaleLowerCase()
     var visible = devices.filter(function (device) {
-      return (!query || [device.name, device.id, device.userAgent].join(' ').toLocaleLowerCase().indexOf(query) >= 0) && (filter.value === 'all' || statusOf(device).code === filter.value)
+      return (!query || [device.name, device.id, deviceInformation(device)].join(' ').toLocaleLowerCase().indexOf(query) >= 0) && (filter.value === 'all' || statusOf(device).code === filter.value)
     })
     list.textContent = ''
     if (!visible.length) {
@@ -147,7 +174,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
       heading.append(title, badge)
       var meta = document.createElement('div')
       meta.className = 'device-meta'
-      ;['期限：' + (device.permanent ? '永久' : dateLabel(device.expiresAt)), '密码错误：' + (Number(device.failedAttempts) || 0) + ' / 3', '最近访问：' + dateLabel(device.lastSeenAt || device.updatedAt)].forEach(function (text) {
+      ;['设备：' + deviceInformation(device), '期限：' + (device.permanent ? '永久' : dateLabel(device.expiresAt)), '密码错误：' + (Number(device.failedAttempts) || 0) + ' / 3', '最近访问：' + dateLabel(device.lastSeenAt || device.updatedAt)].forEach(function (text) {
         var span = document.createElement('span'); span.textContent = text; meta.appendChild(span)
       })
       var id = document.createElement('div')
@@ -227,7 +254,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
     var submit = form.querySelector('button[type="submit"]')
     submit.disabled = true
     message.textContent = '正在校验…'
-    request('/admin/login', { method: 'POST', body: JSON.stringify({ username: form.elements.username.value.trim(), password: form.elements.password.value }) })
+    request('/admin/login', { method: 'POST', body: JSON.stringify({ username: form.elements.username.value.trim(), password: form.elements.password.value, deviceInfo: currentDeviceInformation() }) })
       .then(function (payload) {
         csrf = payload.csrf
         form.elements.password.value = ''
