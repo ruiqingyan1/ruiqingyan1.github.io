@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ruiqy-daily-shell-v10'
+const CACHE_NAME = 'ruiqy-daily-shell-v11'
 const CACHE_MANIFEST_URL = '/daily/cache-manifest.json'
 
 const APP_SHELL = [
@@ -141,18 +141,13 @@ self.addEventListener('fetch', function (event) {
 
   if (request.mode === 'navigate' && url.origin === self.location.origin && url.pathname.indexOf('/daily') === 0) {
     event.respondWith(
-      caches.match(request).then(function (cached) {
-        var network = fetch(request)
-          .then(function (response) { return cacheResponse(request, response) })
-          .catch(function () { return cached })
-        if (cached) {
-          event.waitUntil(network.then(function () {}))
-          return cached
-        }
-        return network.then(function (response) {
-          return response || caches.match('/daily/')
+      fetch(request)
+        .then(function (response) { return cacheResponse(request, response) })
+        .catch(function () {
+          return caches.match(request).then(function (cached) {
+            return cached || caches.match('/daily/')
+          })
         })
-      })
     )
     return
   }
